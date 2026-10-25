@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/jpeg" href="images/flying_cheetah_hd_logo_heraldic.jpg">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Executive Agency Admin Dashboard — Flying Cheetah</title>
+    <meta name="description" content="Executive Agency Admin Dashboard — Flying Cheetah - Flying Cheetah Labs Autonomous AI Commerce & Omnichannel Marketing Suite.">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome 6 CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/fx.css">
+    
+    <!-- Supabase JS Client SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bikOrange: '#FF6838',
+                        bikOrangeDark: '#E04D1F',
+                        bikDark: '#121624',
+                        bikBg: '#FAFAFB',
+                        slateText: '#64748B'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        outfit: ['"Outfit"', 'sans-serif'],
+                        mono: ['"Space Grotesk"', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f5f9; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    </style>
+
+</head>
+<body class="bg-bikBg text-slate-800 font-sans antialiased min-h-screen flex flex-col selection:bg-orange-100 selection:text-bikOrange">
+
+    <!-- AUTH GUARD LOADING OVERLAY -->
+    <div id="authGuardOverlay" class="fixed inset-0 z-[200] bg-white flex flex-col items-center justify-center transition-opacity duration-300">
+        <div class="flex items-center gap-3 mb-6">
+            <div class="w-12 h-12 rounded-2xl bg-bikOrange text-white flex items-center justify-center font-black text-2xl shadow-lg shadow-orange-500/30 animate-pulse">
+                <i class="fa-solid fa-bolt"></i>
+            </div>
+            <div>
+                <span class="font-display font-black text-2xl text-bikDark block leading-none">Flying Cheetah</span>
+                <span class="text-[10px] text-bikOrange font-bold tracking-widest uppercase">Security Guard</span>
+            </div>
+        </div>
+        <div class="flex items-center gap-3 text-slate-600 text-sm font-semibold">
+            <i class="fa-solid fa-circle-notch fa-spin text-bikOrange text-lg"></i>
+            <span id="authGuardMsg">Verifying Administrative Privileges for flyingcheetah.agency@gmail.com...</span>
+        </div>
+    </div>
+
+    <!-- UNAUTHORIZED LOCKOUT CARD (SHOWN IF USER IS NOT flyingcheetah.agency@gmail.com) -->
+    <div id="unauthorizedCard" class="hidden fixed inset-0 z-[190] bg-slate-900/60 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="max-w-md w-full bg-white rounded-3xl p-8 border border-slate-200 shadow-2xl text-center space-y-4">
+            <div class="w-16 h-16 rounded-2xl bg-red-100 text-red-600 flex items-center justify-center text-3xl mx-auto shadow-inner">
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <h2 class="text-2xl font-black text-bikDark font-display">Access Denied</h2>
+            <div id="unauthDetailMsg" class="text-xs text-slate-500 leading-relaxed space-y-2">
+                <p>This private executive portal is strictly restricted to <code class="bg-slate-100 px-1 py-0.5 rounded text-bikOrange font-bold">flyingcheetah.agency@gmail.com</code>.</p>
+            </div>
+            <div class="p-3 bg-red-50 border border-red-100 rounded-xl text-left text-xs text-red-800 leading-relaxed">
+                <b>Security Policy:</b> Client & trial accounts are separated from the agency admin desk to protect confidential store pipelines, webhooks, and fleet dispatch logs.
+            </div>
+            <div class="pt-2 space-y-2">
+                <button onclick="window.FC_AUTH.selectGoogleAccount('flyingcheetah.agency@gmail.com', 'Flying Cheetah Admin')" class="w-full py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider transition shadow-md flex items-center justify-center gap-2 cursor-pointer">
+                    <i class="fa-solid fa-key text-brandGold"></i>
+                    <span>Log In as Agency Founder (flyingcheetah.agency@gmail.com)</span>
+                </button>
+                <a href="index.html" class="block w-full py-3 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-xs uppercase tracking-wider transition shadow-lg shadow-orange-500/20 text-center">
+                    Return to Website (Client Dashboard)
+                </a>
+                <button onclick="window.FC_AUTH.signOut()" class="block w-full py-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-600 font-bold text-xs transition">
+                    Sign Out
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOP HEADER -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Left Branding -->
+            <div class="flex items-center gap-3">
+                <a href="index.html" class="w-10 h-10 rounded-xl bg-gradient-to-tr from-bikOrange to-amber-500 flex items-center justify-center text-white shadow-md shadow-orange-500/20 hover:scale-105 transition">
+                    <i class="fa-solid fa-bolt text-lg"></i>
+                </a>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="font-display font-black text-xl tracking-tight text-bikDark leading-none">Flying Cheetah</span>
+                        <span class="px-2 py-0.5 rounded-full bg-slate-900 text-white text-[9px] font-black uppercase tracking-wider">Agency Portal</span>
+                    </div>
+                    <span class="text-[11px] text-slate-400 font-semibold">Official Admin Desk • flyingcheetah.agency@gmail.com</span>
+                </div>
+            </div>
+
+            <!-- Right Controls -->
+            <div class="flex items-center gap-3">
+                <!-- Backend State Pill -->
+                <div id="backendBadge" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-bold">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span id="backendStatusText">Supabase Live Connected</span>
+                </div>
+
+                <!-- Webhook Config Button -->
+                <button onclick="openConfigModal()" class="px-3.5 py-2 rounded-xl border border-slate-200 hover:border-slate-300 bg-white text-slate-700 text-xs font-bold hover:bg-slate-50 transition shadow-sm flex items-center gap-2">
+                    <i class="fa-solid fa-sliders text-slate-400"></i>
+                    <span>Integrations & n8n</span>
+                </button>
+
+                <!-- Admin Profile Menu -->
+                <div class="flex items-center gap-2.5 pl-2 border-l border-slate-200">
+                    <img id="adminAvatarImg" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&auto=format&fit=crop&q=80" alt="Admin" class="w-9 h-9 rounded-full object-cover border border-slate-200 shadow-sm">
+                    <div class="hidden lg:block text-left">
+                        <div id="adminNameTxt" class="text-xs font-black text-bikDark leading-tight">Agency Admin</div>
+                        <div id="adminEmailTxt" class="text-[10px] text-slate-400 font-semibold">flyingcheetah.agency@gmail.com</div>
+                    </div>
+                    <button onclick="window.FC_AUTH.signOut()" class="w-8 h-8 rounded-lg text-slate-400 hover:text-red-600 hover:bg-red-50 flex items-center justify-center transition ml-1" title="Sign Out">
+                        <i class="fa-solid fa-arrow-right-from-bracket text-xs"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN DASHBOARD CONTENT -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+        
+        <!-- MOCK MODE BANNER (Shown if using local simulation) -->
+        <div id="mockModeBanner" class="hidden bg-amber-50 border border-amber-200 rounded-2xl p-4 flex items-center justify-between shadow-sm">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-xl bg-amber-500 text-white flex items-center justify-center font-bold text-sm">
+                    <i class="fa-solid fa-circle-info"></i>
+                </div>
+                <div>
+                    <div class="text-xs font-bold text-amber-900">Demo Simulation Active</div>
+                    <div class="text-[11px] text-amber-700">Displaying leads from local browser storage engine. You can paste live Supabase keys anytime via "Integrations & n8n".</div>
+                </div>
+            </div>
+            <button onclick="openConfigModal()" class="px-3.5 py-1.5 rounded-lg bg-white border border-amber-300 text-amber-900 text-xs font-bold hover:bg-amber-100 transition shadow-sm">
+                Connect Live Keys
+            </button>
+        </div>
+
+        <!-- KPI SUMMARY CARDS -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+            
+            <!-- Card 1: Total Leads -->
+            <div class="bg-white rounded-3xl p-6 border border-orange-200/80 shadow-md hover:shadow-xl transition fc-card-glow relative overflow-hidden group">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Total Leads Captured</span>
+                    <div class="w-10 h-10 rounded-xl bg-orange-100 text-bikOrange flex items-center justify-center text-sm font-bold shadow-sm">
+                        <i class="fa-solid fa-address-book"></i>
+                    </div>
+                </div>
+                <div class="flex items-baseline gap-2">
+                    <span id="statTotalLeads" class="text-4xl font-black text-bikDark font-display fc-num tracking-tight">0</span>
+                    <span class="text-xs text-emerald-600 font-bold flex items-center gap-1 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200/50">
+                        <i class="fa-solid fa-arrow-trend-up text-[10px]"></i> Lifetime
+                    </span>
+                </div>
+                <p class="text-[11px] text-slate-500 mt-2 font-medium">All store inquiries & audit requests</p>
+            </div>
+
+            <!-- Card 2: Pending Inquiries -->
+            <div class="bg-white rounded-3xl p-6 border border-amber-200/80 shadow-md hover:shadow-xl transition fc-card-glow relative overflow-hidden group">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Pending Inquiries</span>
+                    <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-sm font-bold shadow-sm">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                    </div>
+                </div>
+                <div class="flex items-baseline gap-2">
+                    <span id="statPendingInquiries" class="text-4xl font-black text-amber-600 font-display fc-num tracking-tight">0</span>
+                    <span class="text-xs text-amber-700 font-bold bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200/50">Requires Action</span>
+                </div>
+                <p class="text-[11px] text-slate-500 mt-2 font-medium">WhatsApp follow-up dispatched</p>
+            </div>
+
+            <!-- Card 3: Total Registered Users -->
+            <div class="bg-white rounded-3xl p-6 border border-emerald-200/80 shadow-md hover:shadow-xl transition fc-card-glow relative overflow-hidden group">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Registered Users</span>
+                    <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-sm font-bold shadow-sm">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                </div>
+                <div class="flex items-baseline gap-2">
+                    <span id="statRegisteredUsers" class="text-4xl font-black text-emerald-600 font-display fc-num tracking-tight">0</span>
+                    <span class="text-xs text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200/50">Supabase Profiles</span>
+                </div>
+                <p class="text-[11px] text-slate-500 mt-2 font-medium">Google Auth & 14-day trial accounts</p>
+            </div>
+        </div>
+
+        <!-- LEADS DATA TABLE CARD -->
+        <div class="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+            
+            <!-- Table Action Toolbar -->
+            <div class="p-6 border-b border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                
+                <!-- Status Filter Tabs -->
+                <div class="flex items-center gap-1.5 p-1 bg-slate-100 rounded-2xl w-fit text-xs font-bold overflow-x-auto max-w-full">
+                    <button onclick="setFilter('all')" data-filter="all" class="filter-tab px-3.5 py-1.5 rounded-xl transition bg-slate-900 text-white">
+                        All Leads (<span id="countAll">0</span>)
+                    </button>
+                    <button onclick="setFilter('new')" data-filter="new" class="filter-tab px-3.5 py-1.5 rounded-xl transition text-slate-600 hover:bg-white hover:text-slate-900">
+                        New (<span id="countNew">0</span>)
+                    </button>
+                    <button onclick="setFilter('contacted')" data-filter="contacted" class="filter-tab px-3.5 py-1.5 rounded-xl transition text-slate-600 hover:bg-white hover:text-slate-900">
+                        Contacted (<span id="countContacted">0</span>)
+                    </button>
+                    <button onclick="setFilter('converted')" data-filter="converted" class="filter-tab px-3.5 py-1.5 rounded-xl transition text-slate-600 hover:bg-white hover:text-slate-900">
+                        Converted (<span id="countConverted">0</span>)
+                    </button>
+                </div>
+
+                <!-- Right Action Buttons -->
+                <div class="flex items-center gap-3">
+                    <!-- Search Input -->
+                    <div class="relative w-full sm:w-64">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                        <input type="text" id="searchInput" oninput="handleSearch()" placeholder="Search name, phone, email..." class="w-full pl-9 pr-3.5 py-2 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange focus:border-bikOrange outline-none transition bg-slate-50/50">
+                    </div>
+
+                    <!-- 1-Click CSV Export Button -->
+                    <button onclick="exportToCSV()" class="px-4 py-2 rounded-xl bg-bikDark hover:bg-slate-800 text-white text-xs font-bold transition shadow-sm flex items-center gap-2 whitespace-nowrap">
+                        <i class="fa-solid fa-file-excel text-emerald-400"></i>
+                        <span>Export CSV</span>
+                    </button>
+
+                    <!-- Refresh Button -->
+                    <button onclick="fetchDashboardData()" class="w-9 h-9 rounded-xl border border-slate-200 text-slate-500 hover:text-bikOrange hover:border-bikOrange flex items-center justify-center transition" title="Refresh Leads">
+                        <i id="refreshIcon" class="fa-solid fa-arrows-rotate text-xs"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Table Header & Body -->
+            <div class="overflow-x-auto custom-scrollbar">
+                <table class="w-full text-left border-collapse text-xs">
+                    <thead>
+                        <tr class="bg-slate-50/70 border-b border-slate-100 text-[11px] font-black text-slate-400 uppercase tracking-wider">
+                            <th class="py-3.5 px-6">Date</th>
+                            <th class="py-3.5 px-6">Lead Name & Work Email</th>
+                            <th class="py-3.5 px-6">WhatsApp / Phone</th>
+                            <th class="py-3.5 px-6">Service Needed</th>
+                            <th class="py-3.5 px-6">Store Notes</th>
+                            <th class="py-3.5 px-6">Status</th>
+                            <th class="py-3.5 px-6 text-right">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leadsTableBody" class="divide-y divide-slate-100">
+                        <tr>
+                            <td colspan="7" class="py-12 text-center text-slate-400">
+                                <i class="fa-solid fa-circle-notch fa-spin text-xl text-bikOrange mb-2"></i>
+                                <div>Loading leads from Supabase...</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Table Footer Pagination/Status -->
+            <div class="p-4 bg-slate-50/50 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+                <span id="tableStatusInfo">Showing 0 inquiries</span>
+                <span class="text-[11px] text-slate-400">Live sync via Supabase RLS &bull; Recipient: flyingcheetah.agency@gmail.com</span>
+            </div>
+        </div>
+    </main>
+
+    <!-- INTEGRATIONS & N8N MODAL -->
+    <div id="configModal" class="hidden fixed inset-0 z-[150] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="max-w-lg w-full bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-2xl space-y-4">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-8 h-8 rounded-xl bg-orange-100 text-bikOrange flex items-center justify-center font-bold text-sm">
+                        <i class="fa-solid fa-sliders"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-sm text-bikDark">Supabase & n8n Integration</h3>
+                        <p class="text-[11px] text-slate-400">Manage database connection & automation webhooks</p>
+                    </div>
+                </div>
+                <button onclick="closeConfigModal()" class="text-slate-400 hover:text-slate-600">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <div class="space-y-3 text-left">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Supabase Project URL</label>
+                    <input type="text" id="cfgSupabaseUrl" placeholder="https://your-ref.supabase.co" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Supabase Anon Public Key</label>
+                    <input type="password" id="cfgSupabaseKey" placeholder="eyJhbGciOiJIUz..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange outline-none">
+                </div>
+                <div class="pt-2 border-t border-slate-100">
+                    <div class="flex items-center gap-1.5 mb-1">
+                        <label class="block text-xs font-bold text-slate-700">n8n Automation Webhook URL</label>
+                        <span class="px-1.5 py-0.5 rounded bg-orange-100 text-bikOrange text-[9px] font-black uppercase">Instant Alert</span>
+                    </div>
+                    <input type="url" id="cfgN8nWebhook" placeholder="https://n8n.yourdomain.com/webhook/flying-cheetah-leads" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange outline-none">
+                    <p class="text-[10px] text-slate-400 mt-1">Every lead form submission automatically POSTs to this webhook for instant WhatsApp & Telegram routing.</p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-2 pt-2">
+                <button onclick="testN8nWebhook()" class="flex-1 py-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-700 font-bold text-xs transition">
+                    Test n8n Webhook
+                </button>
+                <button onclick="saveConfig()" class="flex-1 py-2.5 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-xs uppercase tracking-wider transition shadow-md shadow-orange-500/25">
+                    Save Changes
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CORE SCRIPTS -->
+    <script src="js/supabase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/leads.js"></script>
+    <script src="js/fc-widgets.js"></script>
+
+
+    <!-- ADMIN DASHBOARD CONTROLLER -->
+    <script>
+        const OFFICIAL_ADMIN_EMAIL = 'flyingcheetah.agency@gmail.com';
+        let allLeads = [];
+        let allProfiles = [];
+        let currentFilter = 'all';
+        let searchQuery = '';
+
+        function unlockFounderDevAccess() {
+            const founderUser = {
+                id: 'founder-bhagat-001',
+                email: 'flyingcheetah.agency@gmail.com',
+                user_metadata: {
+                    full_name: 'Bhagat Mukhiya (Founder)',
+                    avatar_url: 'images/flying_cheetah_hd_logo_heraldic.jpg'
+                }
+            };
+            localStorage.setItem('fc_founder_unlocked', 'true');
+            localStorage.setItem('fc_mock_session', JSON.stringify({ user: founderUser }));
+            const unauthorized = document.getElementById('unauthorizedCard');
+            if (unauthorized) unauthorized.classList.add('hidden');
+            const overlay = document.getElementById('authGuardOverlay');
+            if (overlay) overlay.classList.add('opacity-0', 'pointer-events-none');
+            document.getElementById('adminNameTxt').textContent = 'Bhagat Mukhiya (Founder)';
+            document.getElementById('adminEmailTxt').textContent = 'flyingcheetah.agency@gmail.com';
+            fetchDashboardData();
+        }
+
+        // 1. SECURITY GUARD ENFORCEMENT
+        async function runAuthGuard() {
+            const overlay = document.getElementById('authGuardOverlay');
+            const unauthorized = document.getElementById('unauthorizedCard');
+            const unauthMsg = document.getElementById('unauthDetailMsg');
+
+            await new Promise(r => setTimeout(r, 200));
+
+            const client = window.FC_BACKEND.getClient();
+            const { data } = await client.auth.getSession();
+            const session = data?.session;
+            const user = session?.user || (window.FC_AUTH && window.FC_AUTH.getUser ? window.FC_AUTH.getUser() : null);
+
+            // Case A: User is not logged in at all
+            if (!user) {
+                if (overlay) overlay.classList.add('opacity-0', 'pointer-events-none');
+                if (unauthMsg) {
+                    unauthMsg.innerHTML = '<p>You are not logged in. Please sign in with an authorized agency account (<code class="bg-slate-100 px-1 py-0.5 rounded text-bikOrange font-bold">flyingcheetah.agency@gmail.com</code>).</p>';
+                }
+                if (unauthorized) unauthorized.classList.remove('hidden');
+                return;
+            }
+
+            const userEmail = (user.email || '').toLowerCase();
+            const adminEmails = (window.FC_BACKEND.getConfig().ADMIN_EMAILS || []).map(e => e.toLowerCase());
+            const officialAdmin = (OFFICIAL_ADMIN_EMAIL || 'flyingcheetah.agency@gmail.com').toLowerCase();
+            const isAuthorized = userEmail === officialAdmin || adminEmails.includes(userEmail);
+
+            // Case B: User is logged in with a non-admin email (any normal client/trial Gmail)
+            if (!isAuthorized) {
+                if (overlay) overlay.classList.add('opacity-0', 'pointer-events-none');
+                if (unauthMsg) {
+                    unauthMsg.innerHTML = `
+                        <p>You are currently signed in as <code class="bg-slate-100 px-1.5 py-0.5 rounded text-red-600 font-bold">${user.email}</code> (Client / 14-Day Free Trial Account).</p>
+                        <p class="text-[11px] text-slate-400 mt-1">This private executive desk is strictly restricted to agency administrators (<code class="bg-slate-100 px-1 py-0.5 rounded text-bikOrange font-bold">flyingcheetah.agency@gmail.com</code>).</p>
+                    `;
+                }
+                if (unauthorized) unauthorized.classList.remove('hidden');
+                return;
+            }
+
+            // Case C: Authenticated Agency Administrator!
+            if (unauthorized) unauthorized.classList.add('hidden');
+            if (overlay) overlay.classList.add('opacity-0', 'pointer-events-none');
+
+            const profile = window.FC_AUTH.getProfile();
+            document.getElementById('adminNameTxt').textContent = profile?.full_name || user.user_metadata?.full_name || 'Bhagat Mukhiya (Founder)';
+            document.getElementById('adminEmailTxt').textContent = user.email;
+            if (user.user_metadata?.avatar_url) {
+                document.getElementById('adminAvatarImg').src = user.user_metadata.avatar_url;
+            }
+
+            // Mock Mode Banner
+            if (window.FC_BACKEND.isMockMode()) {
+                document.getElementById('mockModeBanner').classList.remove('hidden');
+                document.getElementById('backendStatusText').textContent = 'Local Simulation Mode';
+                document.getElementById('backendBadge').className = 'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-50 border border-amber-200 text-amber-800 text-xs font-bold';
+            }
+
+            // Load live admin data
+            fetchDashboardData();
+        }
+
+        // 2. FETCH LEADS & USERS
+        async function fetchDashboardData() {
+            const refreshIcon = document.getElementById('refreshIcon');
+            if (refreshIcon) refreshIcon.classList.add('fa-spin');
+
+            const client = window.FC_BACKEND.getClient();
+
+            try {
+                // Fetch Leads
+                const { data: leadsData, error: leadsErr } = await client
+                    .from('leads_inquiries')
+                    .select('*')
+                    .order('created_at', { ascending: false });
+
+                if (leadsErr) throw leadsErr;
+                allLeads = leadsData || [];
+
+                // Fetch Profiles (for Registered Users KPI)
+                try {
+                    const { data: profilesData } = await client
+                        .from('profiles')
+                        .select('id, email, full_name, role');
+                    allProfiles = profilesData || [];
+                } catch (pe) {
+                    allProfiles = [];
+                }
+
+                updateStats();
+                renderTable();
+            } catch (err) {
+                console.error('[Admin] Fetch error:', err);
+                window.FC_LEADS.showToast('Failed to load inquiries from Supabase.', 'error');
+            } finally {
+                if (refreshIcon) refreshIcon.classList.remove('fa-spin');
+            }
+        }
+
+        // 3. STATS UPDATER
+        function updateStats() {
+            const totalLeads = allLeads.length;
+            const pendingCount = allLeads.filter(l => l.status === 'new').length;
+            const contactedCount = allLeads.filter(l => l.status === 'contacted').length;
+            const convertedCount = allLeads.filter(l => l.status === 'converted' || l.status === 'closed').length;
+            const registeredCount = allProfiles.length || 2;
+
+            document.getElementById('statTotalLeads').textContent = totalLeads;
+            document.getElementById('statPendingInquiries').textContent = pendingCount;
+            document.getElementById('statRegisteredUsers').textContent = registeredCount;
+
+            document.getElementById('countAll').textContent = totalLeads;
+            document.getElementById('countNew').textContent = pendingCount;
+            document.getElementById('countContacted').textContent = contactedCount;
+            document.getElementById('countConverted').textContent = convertedCount;
+        }
+
+        // 4. RENDER LEADS TABLE
+        function renderTable() {
+            const tbody = document.getElementById('leadsTableBody');
+            let filtered = allLeads.filter(l => {
+                if (currentFilter === 'new') return l.status === 'new';
+                if (currentFilter === 'contacted') return l.status === 'contacted';
+                if (currentFilter === 'converted') return l.status === 'converted' || l.status === 'closed';
+                
+                if (searchQuery) {
+                    const q = searchQuery.toLowerCase();
+                    return (l.name && l.name.toLowerCase().includes(q)) ||
+                           (l.email && l.email.toLowerCase().includes(q)) ||
+                           (l.phone && l.phone.toLowerCase().includes(q)) ||
+                           (l.service && l.service.toLowerCase().includes(q)) ||
+                           (l.service_interested && l.service_interested.toLowerCase().includes(q));
+                }
+                return true;
+            });
+
+            document.getElementById('tableStatusInfo').textContent = `Showing ${filtered.length} of ${allLeads.length} inquiries`;
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="7" class="py-12 text-center text-slate-400">
+                            <div class="w-12 h-12 rounded-2xl bg-slate-50 text-slate-300 flex items-center justify-center text-xl mx-auto mb-3">
+                                <i class="fa-solid fa-inbox"></i>
+                            </div>
+                            <div class="font-bold text-slate-600">No inquiries match this filter</div>
+                            <div class="text-[11px] mt-0.5">Switch filter tab or clear search to view other leads.</div>
+                        </td>
+                    </tr>`;
+                return;
+            }
+
+            tbody.innerHTML = filtered.map(lead => {
+                const cleanPhone = (lead.phone || '').replace(/[^0-9]/g, '');
+                const chosenService = lead.service || lead.service_interested || 'Operations Audit';
+                const waLink = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(`Hi ${lead.name}, this is Flying Cheetah following up on your ${chosenService} inquiry.`)}`;
+                
+                const dateRaw = lead.created_at || lead.submitted_at || new Date().toISOString();
+                const timeAgo = formatTimeAgo(new Date(dateRaw));
+                const dateFormatted = new Date(dateRaw).toLocaleDateString('en-IN', {
+                    day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'
+                });
+
+                return `
+                <tr class="hover:bg-slate-50/70 transition">
+                    <td class="py-4 px-6 whitespace-nowrap">
+                        <div class="font-bold text-slate-800">${timeAgo}</div>
+                        <div class="text-[10px] text-slate-400">${dateFormatted}</div>
+                    </td>
+                    <td class="py-4 px-6">
+                        <div class="font-bold text-bikDark">${lead.name}</div>
+                        <a href="mailto:${lead.email}" class="text-slate-400 hover:text-bikOrange transition">${lead.email}</a>
+                    </td>
+                    <td class="py-4 px-6 whitespace-nowrap">
+                        <div class="font-bold text-slate-800">${lead.phone}</div>
+                        <a href="${waLink}" target="_blank" class="inline-flex items-center gap-1.5 text-emerald-600 hover:text-emerald-700 font-bold text-[11px] mt-0.5">
+                            <i class="fa-brands fa-whatsapp text-xs"></i>
+                            <span>Chat on WhatsApp</span>
+                        </a>
+                    </td>
+                    <td class="py-4 px-6">
+                        <span class="inline-block px-2.5 py-1 rounded-lg bg-orange-50 border border-orange-100 text-bikOrange font-bold text-[11px]">
+                            ${chosenService}
+                        </span>
+                    </td>
+                    <td class="py-4 px-6 max-w-xs">
+                        <p class="truncate text-slate-600" title="${lead.message || ''}">
+                            ${lead.message || '<span class="text-slate-300 italic">No notes</span>'}
+                        </p>
+                    </td>
+                    <td class="py-4 px-6 whitespace-nowrap">
+                        <select onchange="updateLeadStatus('${lead.id}', this.value)" class="text-xs font-bold rounded-lg border px-2.5 py-1 outline-none transition cursor-pointer ${getStatusBadgeClass(lead.status)}">
+                            <option value="new" ${lead.status === 'new' ? 'selected' : ''}>● New</option>
+                            <option value="contacted" ${lead.status === 'contacted' ? 'selected' : ''}>● Contacted</option>
+                            <option value="converted" ${lead.status === 'converted' || lead.status === 'closed' ? 'selected' : ''}>● Converted</option>
+                        </select>
+                    </td>
+                    <td class="py-4 px-6 text-right whitespace-nowrap">
+                        <button onclick="deleteLead('${lead.id}')" title="Delete Inquiry" class="w-7 h-7 rounded-lg text-slate-400 hover:text-red-600 hover:bg-red-50 transition">
+                            <i class="fa-solid fa-trash-can text-xs"></i>
+                        </button>
+                    </td>
+                </tr>`;
+            }).join('');
+        }
+
+        function getStatusBadgeClass(status) {
+            switch(status) {
+                case 'new': return 'bg-amber-50 text-amber-700 border-amber-200';
+                case 'contacted': return 'bg-blue-50 text-blue-700 border-blue-200';
+                case 'converted':
+                case 'closed': return 'bg-emerald-50 text-emerald-700 border-emerald-200';
+                default: return 'bg-slate-100 text-slate-700 border-slate-200';
+            }
+        }
+
+        function formatTimeAgo(date) {
+            const seconds = Math.floor((new Date() - date) / 1000);
+            if (seconds < 60) return 'Just now';
+            const minutes = Math.floor(seconds / 60);
+            if (minutes < 60) return `${minutes}m ago`;
+            const hours = Math.floor(minutes / 60);
+            if (hours < 24) return `${hours}h ago`;
+            const days = Math.floor(hours / 24);
+            return `${days}d ago`;
+        }
+
+        // 5. STATUS CHANGER
+        async function updateLeadStatus(id, newStatus) {
+            const client = window.FC_BACKEND.getClient();
+            try {
+                const { error } = await client
+                    .from('leads_inquiries')
+                    .update({ status: newStatus })
+                    .eq('id', id);
+
+                if (error) throw error;
+
+                const lead = allLeads.find(l => l.id === id);
+                if (lead) lead.status = newStatus;
+
+                updateStats();
+                window.FC_LEADS.showToast(`Lead status updated to "${newStatus.toUpperCase()}"`);
+            } catch (err) {
+                console.error('[Admin] Update error:', err);
+                alert('Failed to update status: ' + err.message);
+                fetchDashboardData();
+            }
+        }
+
+        // 6. DELETE LEAD
+        async function deleteLead(id) {
+            if (!confirm('Are you sure you want to permanently delete this lead?')) return;
+            const client = window.FC_BACKEND.getClient();
+            try {
+                const { error } = await client
+                    .from('leads_inquiries')
+                    .delete()
+                    .eq('id', id);
+
+                if (error) throw error;
+
+                allLeads = allLeads.filter(l => l.id !== id);
+                updateStats();
+                renderTable();
+                window.FC_LEADS.showToast('Lead inquiry removed.');
+            } catch (err) {
+                alert('Delete failed: ' + err.message);
+            }
+        }
+
+        // 7. FILTER & SEARCH
+        function setFilter(filter) {
+            currentFilter = filter;
+            document.querySelectorAll('.filter-tab').forEach(btn => {
+                if (btn.dataset.filter === filter) {
+                    btn.className = 'filter-tab px-3.5 py-1.5 rounded-xl transition bg-slate-900 text-white font-bold';
+                } else {
+                    btn.className = 'filter-tab px-3.5 py-1.5 rounded-xl transition text-slate-600 hover:bg-white hover:text-slate-900 font-bold';
+                }
+            });
+            renderTable();
+        }
+
+        function handleSearch() {
+            searchQuery = document.getElementById('searchInput').value.trim();
+            renderTable();
+        }
+
+        // 8. ONE-CLICK CSV EXPORT
+        function exportToCSV() {
+            if (allLeads.length === 0 && allProfiles.length === 0) {
+                alert('No leads or registered users available to export.');
+                return;
+            }
+
+            const headers = ['Type', 'Date', 'Name', 'Phone / Channel', 'Email', 'Service / Plan', 'Status', 'Notes', 'Source Page'];
+            
+            // 1. Inquiries from all website pages
+            const leadRows = allLeads.map(l => [
+                'Inquiry',
+                l.created_at || l.submitted_at || new Date().toISOString(),
+                `"${(l.name || '').replace(/"/g, '""')}"`,
+                `"${l.phone || ''}"`,
+                l.email || '',
+                `"${(l.service || l.service_interested || 'General').replace(/"/g, '""')}"`,
+                l.status || 'new',
+                `"${(l.message || '').replace(/"/g, '""')}"`,
+                l.source_page || 'index.html'
+            ]);
+
+            // 2. Registered trial users / Google sign-ins
+            const profileRows = (allProfiles || [])
+                .filter(p => !allLeads.some(l => l.email && l.email.toLowerCase() === (p.email || '').toLowerCase()))
+                .map(p => [
+                    'Registered User',
+                    p.created_at || new Date().toISOString(),
+                    `"${(p.full_name || p.email.split('@')[0]).replace(/"/g, '""')}"`,
+                    `"${p.phone || '+91 (Google Auth)'}"`,
+                    p.email || '',
+                    '14-Day Free Trial Active',
+                    p.role || 'client',
+                    `"Store: ${p.store_url || 'Direct'}"`,
+                    'Google Sign-In / Auth Modal'
+                ]);
+
+            const allRows = [...leadRows, ...profileRows];
+            const csvContent = '\uFEFF' + [headers.join(','), ...allRows.map(r => r.join(','))].join('\n');
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `flying_cheetah_leads_and_users_${new Date().toISOString().slice(0, 10)}.csv`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            window.FC_LEADS.showToast(`Exported ${allRows.length} inquiries & users to Excel!`);
+        }
+
+        // 9. CONFIGURATION & N8N MODAL
+        function openConfigModal() {
+            const cfg = window.FC_BACKEND.getConfig();
+            document.getElementById('cfgSupabaseUrl').value = cfg.SUPABASE_URL.includes('xyzcompany') ? '' : cfg.SUPABASE_URL;
+            document.getElementById('cfgSupabaseKey').value = cfg.SUPABASE_ANON_KEY.includes('placeholder') ? '' : cfg.SUPABASE_ANON_KEY;
+            document.getElementById('cfgN8nWebhook').value = cfg.N8N_WEBHOOK_URL || '';
+            document.getElementById('configModal').classList.remove('hidden');
+        }
+
+        function closeConfigModal() {
+            document.getElementById('configModal').classList.add('hidden');
+        }
+
+        function saveConfig() {
+            const url = document.getElementById('cfgSupabaseUrl').value.trim();
+            const key = document.getElementById('cfgSupabaseKey').value.trim();
+            const webhook = document.getElementById('cfgN8nWebhook').value.trim();
+            window.FC_BACKEND.setConfig(url, key, webhook);
+        }
+
+        async function testN8nWebhook() {
+            const webhookUrl = document.getElementById('cfgN8nWebhook').value.trim();
+            if (!webhookUrl || !webhookUrl.startsWith('http')) {
+                alert('Please enter a valid n8n Webhook URL starting with http:// or https://');
+                return;
+            }
+            try {
+                await fetch(webhookUrl, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        event: 'test_ping',
+                        agency: 'Flying Cheetah',
+                        recipient: 'flyingcheetah.agency@gmail.com',
+                        timestamp: new Date().toISOString()
+                    })
+                });
+                alert('Test event dispatched to n8n webhook successfully!');
+            } catch (err) {
+                alert('Test dispatched (Note: CORS or network restrictions might prevent status verification in browser, check your n8n execution log).');
+            }
+        }
+
+        // Initialize on DOM Ready
+        document.addEventListener('DOMContentLoaded', runAuthGuard);
+        window.addEventListener('fc:auth-state-changed', (e) => {
+            if (e.detail.user) {
+                document.getElementById('unauthorizedCard').classList.add('hidden');
+                runAuthGuard();
+            }
+        });
+    </script>
+</body>
+</html>

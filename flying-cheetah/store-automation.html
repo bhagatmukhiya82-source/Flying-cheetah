@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <link rel="icon" type="image/jpeg" href="images/flying_cheetah_hd_logo_heraldic.jpg">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store Automation & WhatsApp Journeys — Flying Cheetah</title>
+    <meta name="description" content="Never lose a high-intent lead again. Instantly engage with browsing visitors and convert them into paid orders via automated WhatsApp journeys and hyperlocal fleet dispatch.">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/fx.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Inter"', 'sans-serif'],
+                        display: ['"Plus Jakarta Sans"', '"Outfit"', 'sans-serif'],
+                        tech: ['"Space Grotesk"', 'monospace']
+                    },
+                    colors: {
+                        bikOrange: '#FF6838',
+                        bikOrangeDark: '#E04A1B',
+                        bikDark: '#0B0F19',
+                        bikBg: '#FFF9F6',
+                        brandGold: '#F59E0B',
+                        slateText: '#475569',
+                        waGreen: '#10B981'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .bik-mega-shadow {
+            box-shadow: 0 25px 60px -15px rgba(255, 104, 56, 0.15), 0 0 1px 1px rgba(0, 0, 0, 0.05);
+        }
+        .mega-menu {
+            display: none;
+        }
+        .dropdown-parent:hover .mega-menu {
+            display: block;
+        }
+    
+        .home-menu { display: none; }
+        .home-dropdown-parent:hover > .home-menu,
+        .home-dropdown-parent.active > .home-menu { display: block; }
+        .mega-menu { display: none; }
+        .products-dropdown-parent:hover > .mega-menu,
+        .products-dropdown-parent.active > .mega-menu { display: block; }
+        .dropdown-parent:hover > .mega-menu,
+        .dropdown-parent.active > .mega-menu { display: block; }
+    </style>
+</head>
+<body class="bg-white text-slate-900 font-sans antialiased selection:bg-bikOrange selection:text-white">
+
+    <!-- TOP ANNOUNCEMENT BANNER -->
+    <div class="bg-bikDark text-white py-2 px-4 text-center text-xs font-medium">
+        <span>🔥 New: Convert 98% more browsing visitors with Website Activity-based WhatsApp Automation.</span>
+        <a href="demo.html" class="underline ml-2 text-brandGold font-bold hover:text-white transition">Book Live Demo ↗</a>
+    </div>
+
+    <!-- MAIN NAVBAR WITH ACTIVE MEGA-MENU -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Logo: 2D Minimalist Vector Cheetah Logo -->
+            <a href="index.html" class="flex items-center space-x-3">
+                <img src="images/flying_cheetah_hd_logo_heraldic.jpg" alt="Flying Cheetah Logo" class="h-11 w-11 rounded-full object-cover border border-slate-200 shadow-sm">
+                <div class="flex flex-col">
+                    <span class="text-xl font-black tracking-tight font-display text-bikDark">FLYING CHEETAH</span>
+                    <span class="text-[9px] text-bikOrange font-bold tracking-widest uppercase -mt-1">STORE AUTOMATION</span>
+                </div>
+            </a>
+
+            <!-- CENTER NAV WITH WORKING CLICKABLE MEGA-MENU -->
+            <nav class="hidden lg:flex items-center space-x-8 text-sm font-semibold text-slate-700">
+                <!-- HOME DROPDOWN (NEXT TO PRODUCTS) -->
+                <div class="relative home-dropdown-parent py-6">
+                    <button class="home-btn flex items-center gap-1.5 hover:text-bikOrange transition focus:outline-none text-slate-800 hover:text-bikOrange font-bold text-sm">
+                        <i class="fa-solid fa-house text-xs text-bikOrange"></i>
+                        <span>Home</span>
+                        <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200"></i>
+                    </button>
+                    <!-- Dropdown Menu with the 4 items from user image -->
+                    <div class="mega-menu home-menu absolute top-full left-0 w-72 bg-white rounded-2xl border border-slate-200 p-4 shadow-2xl bik-mega-shadow z-50">
+                        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-3 pb-2 border-b border-slate-100 flex items-center justify-between">
+                            <span>Core Portals</span>
+                            <a href="home.html" class="text-bikOrange hover:underline font-bold">Executive Hub ↗</a>
+                        </div>
+                        <div class="space-y-1.5 pt-2">
+                            <!-- 1. Main Site -->
+                            <a href="index.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
+                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-bikOrange flex items-center justify-center text-sm group-hover:scale-110 transition">
+                                    <i class="fa-solid fa-store"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">Main Site</div>
+                                    <div class="text-[10px] text-slate-400">Flagship AI Commerce Suite</div>
+                                </div>
+                            </a>
+
+<!-- 3. Fleet Protocol -->
+                                                        <a href="web-development.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
+                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-bikOrange flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-code"></i></div>
+                                <div><div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">Web Development</div><div class="text-[10px] text-slate-400">ScaleDelight Inspired &bull; Mumbai</div></div>
+                            </a>
+<a href="delivery.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-emerald-50 text-slate-700 hover:text-emerald-600 transition group">
+                                <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center text-sm group-hover:scale-110 transition">
+                                    <i class="fa-solid fa-motorcycle"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs font-bold text-bikDark group-hover:text-emerald-600">Fleet Protocol</div>
+                                    <div class="text-[10px] text-slate-400">Hyperlocal Borzo/Porter API</div>
+                                </div>
+                            </a>
+
+                                                        <a href="about.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
+                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-bikOrange flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-circle-info"></i></div>
+                                <div><div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">About Us</div><div class="text-[10px] text-slate-400">Company Motive & Founders</div></div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                
+                <!-- Mega Menu Dropdown -->
+                <div class="relative products-dropdown-parent dropdown-parent py-6">
+                    <button class="flex items-center gap-1.5 hover:text-bikOrange transition focus:outline-none text-bikOrange font-bold">
+                        <span>Products & Automations</span>
+                        <i class="fa-solid fa-chevron-down text-[10px] transition group-hover:rotate-180"></i>
+                    </button>
+
+                    <!-- WORKING CLICKABLE MEGA-MENU (ALL ITEMS LINKED) -->
+                    <div class="mega-menu absolute top-full -left-28 w-[760px] bg-white rounded-2xl border border-slate-200 p-8 shadow-2xl bik-mega-shadow z-50">
+                        <div class="grid grid-cols-4 gap-6 text-xs">
+                            
+                            <!-- Col 1: CAMPAIGNS -->
+                            <div class="space-y-3">
+                                <div class="flex items-center gap-2 text-bikOrange font-bold uppercase tracking-wider text-[11px]">
+                                    <i class="fa-solid fa-bullhorn"></i> CAMPAIGNS
+                                </div>
+                                <ul class="space-y-2.5 text-slate-600 font-medium">
+                                    <li><a href="email-marketing.html" class="hover:text-bikOrange transition block hover:translate-x-1">Email marketing</a></li>
+                                    <li><a href="whatsapp-marketing.html" class="hover:text-bikOrange transition block hover:translate-x-1">WhatsApp marketing</a></li>
+                                    <li><a href="sms-marketing.html" class="hover:text-bikOrange transition block hover:translate-x-1">SMS marketing</a></li>
+                                    <li><a href="customer-data-platform.html" class="hover:text-bikOrange transition block hover:translate-x-1">Customer data platform</a></li>
+                                    <li><a href="rcs-messaging.html" class="hover:text-bikOrange transition block hover:translate-x-1">RCS messaging</a></li>
+                                </ul>
+                            </div>
+
+                            <!-- Col 2: AUTOMATIONS (ACTIVE) -->
+                            <div class="space-y-3 bg-orange-50/70 p-3 -m-3 rounded-xl border border-orange-100">
+                                <div class="flex items-center gap-2 text-bikOrange font-bold uppercase tracking-wider text-[11px]">
+                                    <i class="fa-solid fa-gear"></i> AUTOMATIONS
+                                </div>
+                                <ul class="space-y-2.5 text-slate-700 font-medium">
+                                    <li><a href="store-automation.html" class="text-bikOrange font-bold hover:underline block flex items-center gap-1"><span>Store automation</span> <i class="fa-solid fa-arrow-right text-[9px]"></i></a></li>
+                                    <li><a href="instagram-automation.html" class="hover:text-bikOrange transition block hover:translate-x-1">Instagram automation</a></li>
+                                    <li><a href="whatsapp-automation.html" class="hover:text-bikOrange transition block hover:translate-x-1">WhatsApp automation</a></li>
+                                    <li><a href="ctwa-automation.html" class="hover:text-bikOrange transition block hover:translate-x-1">Click to WhatsApp ads</a></li>
+                                    <li><a href="ai-voice-agents.html" class="hover:text-bikOrange transition block hover:translate-x-1">AI Voice Agents</a></li>
+                                </ul>
+                            </div>
+
+                            <!-- Col 3: HELPDESK -->
+                            <div class="space-y-3">
+                                <div class="flex items-center gap-2 text-bikOrange font-bold uppercase tracking-wider text-[11px]">
+                                    <i class="fa-solid fa-headset"></i> HELPDESK
+                                </div>
+                                <ul class="space-y-2.5 text-slate-600 font-medium">
+                                    <li><a href="customer-support.html" class="hover:text-bikOrange transition block hover:translate-x-1">Customer support</a></li>
+                                    <li><a href="whatsapp-calling.html" class="hover:text-bikOrange transition block hover:translate-x-1">WhatsApp calling</a></li>
+                                </ul>
+                            </div>
+
+                            <!-- Col 4: POPUPS & CHATBOTS -->
+                            <div class="space-y-5">
+                                <div class="space-y-2.5">
+                                    <div class="flex items-center gap-2 text-bikOrange font-bold uppercase tracking-wider text-[11px]">
+                                        <i class="fa-solid fa-comment-dots"></i> POPUPS
+                                    </div>
+                                    <ul class="text-slate-600 font-medium">
+                                        <li><a href="solutions.html?module=gamification" class="hover:text-bikOrange transition block hover:translate-x-1">Gamification</a></li>
+                                    </ul>
+                                </div>
+                                <div class="space-y-2.5 border-t border-slate-100 pt-3">
+                                    <div class="flex items-center gap-2 text-bikOrange font-bold uppercase tracking-wider text-[11px]">
+                                        <i class="fa-solid fa-robot"></i> CHATBOTS
+                                    </div>
+                                    <ul class="space-y-2 text-slate-600 font-medium">
+                                        <li><a href="solutions.html?module=whatsapp-chatbot" class="hover:text-bikOrange transition block hover:translate-x-1">WhatsApp chatbot</a></li>
+                                        <li><a href="solutions.html?module=instagram-chatbot" class="hover:text-bikOrange transition block hover:translate-x-1">Instagram chatbot</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Col 5: INTEGRATIONS & AI COMMERCE -->
+                        </div>
+                    </div>
+                </div>
+
+                <a href="delivery.html" class="hover:text-bikOrange transition">Fleet Dispatch</a>
+                <a href="web-development.html" class="hover:text-bikOrange transition">Web Development</a>
+                <a href="about.html" class="hover:text-bikOrange transition">About Us</a>
+            </nav>
+
+            <!-- ACTION CTA -->
+            <div class="flex items-center space-x-4">
+                <button onclick="window.FC_AUTH.openTrialModal()" data-fc-trial="true" href="https://wa.me/919876543210?text=Hi%20Bhagat%20%26%20Yash,%20I%20want%20to%20start%20the%20Free%20Store%20Automation%20Trial." target="_blank" class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-sm transition shadow-md shadow-orange-500/20">
+                    Start for Free
+                </button>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="pt-16 pb-20 md:pt-24 md:pb-28 bg-gradient-to-b from-bikBg via-white to-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Pitch -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-100/60 border border-orange-200 text-bikOrange text-xs font-bold uppercase tracking-wide">
+                        <i class="fa-solid fa-bolt text-brandGold"></i>
+                        Next-Gen Conversational Storefront Automation
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-bikDark tracking-tight leading-[1.08] font-display">
+                        Never lose a high-intent lead <span class="text-bikOrange">again!</span>
+                    </h1>
+
+                    <p class="text-lg text-slateText max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal">
+                        Instantly engage with high-intent leads as they browse your website, and convert their interest into sales before it cools off with website activity-based automation.
+                    </p>
+
+                    <!-- Dual CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <button onclick="window.FC_AUTH.openTrialModal()" data-fc-trial="true" href="https://wa.me/919876543210?text=Hi%20Flying%20Cheetah,%20I%20want%20to%20start%20for%20free%20with%20Store%20Automation." target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-sm transition shadow-lg shadow-orange-500/25">
+                            Start for free
+                        </button>
+                        <a href="demo.html" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-xl border border-slate-300 hover:border-bikOrange text-slate-800 font-bold text-sm bg-white hover:bg-orange-50/50 transition">
+                            Book a demo
+                        </a>
+                    </div>
+
+                    <!-- Hard Impact Metrics -->
+                    <div class="grid grid-cols-2 gap-6 pt-6 border-t border-slate-100 max-w-md mx-auto lg:mx-0 text-left">
+                        <div>
+                            <div class="text-3xl font-black text-bikOrange font-display">98%</div>
+                            <div class="text-xs font-semibold text-slate-500 mt-0.5">More lead acquisition</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-black text-emerald-600 font-display">25%</div>
+                            <div class="text-xs font-semibold text-slate-500 mt-0.5">Reduced lead drop-off</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Visual: High-Speed Web Dev & Store Automation Showcase -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative rounded-3xl border-2 border-slate-200/90 bg-white p-3 shadow-2xl bik-mega-shadow fc-card-interactive group">
+                        <img src="images/high_speed_store_dev_mockup.jpg" alt="Flying Cheetah High-Speed Web Development &amp; Store Automation" class="rounded-2xl w-full h-auto object-cover border border-slate-100 group-hover:scale-102 transition duration-500">
+                        
+                        <div class="p-3.5 bg-slate-50/90 rounded-xl mt-3 flex items-center justify-between text-xs font-semibold text-slate-600 font-tech">
+                            <span class="flex items-center gap-2 text-bikDark font-bold"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span> Sub-0.8s TTFB Load Speed</span>
+                            <span class="text-emerald-600 font-bold">Auto-Cart Recovery Active</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- OFFICIAL LOGOS & INTEGRATIONS STRIP -->
+    <section class="py-8 bg-orange-50/40 border-y border-orange-100/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs font-bold text-slate-500">
+                <span class="uppercase tracking-wider text-[11px] text-bikOrange flex items-center gap-1.5"><i class="fa-solid fa-bolt text-brandGold"></i> Pre-Configured For:</span>
+                <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-lime-800"><i class="fa-brands fa-shopify text-lg text-[#96bf48]"></i> Shopify</span>
+                <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-purple-800"><i class="fa-brands fa-wordpress text-lg text-[#96588a]"></i> WooCommerce</span>
+                <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-emerald-700"><i class="fa-brands fa-whatsapp text-lg text-emerald-500"></i> WhatsApp Cloud API</span>
+                <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-blue-700"><i class="fa-brands fa-meta text-lg text-[#0866FF]"></i> Meta Pixel & CAPI</span>
+                <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-violet-800"><i class="fa-solid fa-wand-magic-sparkles text-lg text-violet-500"></i> Autonomous AI</span>
+                <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-cyan-800"><i class="fa-solid fa-qrcode text-lg text-cyan-600"></i> UPI & Razorpay</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Visual Preview -->
+    <section class="py-24 bg-white border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-28">
+            
+            <!-- Feature 1: Reclaim Abandoned Leads -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-6 space-y-5">
+                    <span class="text-xs font-bold uppercase tracking-widest text-bikOrange bg-orange-50 px-3 py-1 rounded-full">Retention Automation</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark font-display leading-tight">
+                        Reclaim Abandoned Leads Instantly
+                    </h2>
+                    <p class="text-slateText text-base leading-relaxed">
+                        Re-engage with potential customers the instant they exit your website, ensuring they don’t forget about you and encouraging them towards a purchase with personalized WhatsApp catalog pings.
+                    </p>
+                    <div class="pt-2">
+                        <a href="https://wa.me/919876543210?text=Hi%20Flying%20Cheetah,%20I%20want%20to%20set%20up%20Abandoned%20Lead%20Recovery." target="_blank" class="inline-flex items-center gap-2 text-bikOrange font-bold text-sm hover:underline">
+                            <span>Reconnect now</span>
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="lg:col-span-6">
+                    <div class="p-3 rounded-2xl border border-slate-200 bg-slate-50 shadow-lg">
+                        <img src="images/whatsapp_commerce_checkout_mockup.jpg" alt="WhatsApp Abandonment Recovery Chat" class="rounded-xl w-full h-auto">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature Visual Preview -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-6 order-2 lg:order-1">
+                    <div class="p-3 rounded-2xl border border-slate-200 bg-slate-50 shadow-lg">
+                        <img src="images/omnichannel_preferred_platform.jpg" alt="Reach Them On Their Preferred Platform" class="rounded-xl w-full h-auto object-cover">
+                    </div>
+                </div>
+                <div class="lg:col-span-6 order-1 lg:order-2 space-y-5">
+                    <span class="text-xs font-bold uppercase tracking-widest text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">Omni-Channel Activation</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark font-display leading-tight">
+                        Reach Them On Their Preferred Platform
+                    </h2>
+                    <p class="text-slateText text-base leading-relaxed">
+                        Instantly connect with leads through their preferred channels, be it WhatsApp or Email, where they are most active. Combine direct chat checkouts with autonomous Borzo/Porter fleet dispatch in under 6 minutes.
+                    </p>
+                    <div class="pt-2">
+                        <a href="https://wa.me/919876543210?text=Hi%20Flying%20Cheetah,%20I'm%20ready%20to%20connect%20WhatsApp%20channels." target="_blank" class="inline-flex items-center gap-2 text-bikOrange font-bold text-sm hover:underline">
+                            <span>Connect now</span>
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature Visual Preview -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-6 space-y-5">
+                    <span class="text-xs font-bold uppercase tracking-widest text-blue-600 bg-blue-50 px-3 py-1 rounded-full">Telemetry & Impact</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark font-display leading-tight">
+                        Assess Automation's Direct Impact
+                    </h2>
+                    <p class="text-slateText text-base leading-relaxed">
+                        Track the performance of your automation step by step using the Journey Builder and gain a comprehensive understanding of its effectiveness through live analytics, delivery logs, and recovered revenue dashboards.
+                    </p>
+                    <div class="pt-2">
+                        <a href="delivery.html" class="inline-flex items-center gap-2 text-bikOrange font-bold text-sm hover:underline">
+                            <span>Explore Hyperlocal Fleet Engine</span>
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="lg:col-span-6">
+                    <div class="p-4 rounded-3xl border border-slate-200 bg-white shadow-xl space-y-4">
+                        <div class="rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+                            <img src="images/automation_impact_dashboard.jpg" alt="Automation Direct Impact & Recovered Revenue Dashboard" class="w-full h-auto object-cover">
+                        </div>
+                        <!-- Real-time SVG Telemetry Sparkline -->
+                        <div class="p-4 rounded-2xl bg-orange-50/60 border border-orange-100 space-y-3">
+                            <div class="flex items-center justify-between text-xs font-bold text-bikDark">
+                                <span class="flex items-center gap-2"><i class="fa-solid fa-chart-line text-bikOrange"></i> Hourly Recovered Revenue Velocity</span>
+                                <span class="text-emerald-600">+₹4,82,500 Today</span>
+                            </div>
+                            <svg class="w-full h-16" viewBox="0 0 300 60" fill="none">
+                                <path d="M0 50 Q 50 45 100 35 T 200 20 T 300 5 L 300 60 L 0 60 Z" fill="rgba(255,104,56,0.15)"/>
+                                <path d="M0 50 Q 50 45 100 35 T 200 20 T 300 5" stroke="#FF6838" stroke-width="3" stroke-linecap="round" fill="none"/>
+                                <circle cx="300" cy="5" r="4" fill="#10B981"/>
+                            </svg>
+                            <div class="flex items-center justify-between text-[11px] text-slate-500 font-semibold pt-1 border-t border-orange-100">
+                                <span>Cart triggers: 312</span>
+                                <span>WhatsApp clicks: 289</span>
+                                <span class="text-emerald-600 font-bold">UPI checkouts: 94</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    
+    <footer class="py-12 bg-white border-t border-slate-200 text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-3">
+                <img src="images/flying_cheetah_hd_logo_heraldic.jpg" alt="Flying Cheetah" class="h-6 w-6 rounded-full object-cover border border-slate-300">
+                <span class="font-bold text-slate-700">FLYING CHEETAH STORE AUTOMATION © 2026.</span>
+                <span>All Rights Reserved.</span>
+            </div>
+            <div class="flex items-center space-x-6 font-medium text-slate-600">
+                <a href="index.html" class="hover:text-bikOrange transition">Main Site</a>
+                <a href="customer-support.html" class="hover:text-bikOrange transition">Customer Support</a>
+                <a href="delivery.html" class="hover:text-bikOrange transition">Fleet Protocol</a>
+                <a href="about.html" class="hover:text-bikOrange transition">About Us</a>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Toggle dropdowns on click & close when clicking outside
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdownParents = document.querySelectorAll('.dropdown-parent');
+            dropdownParents.forEach(function(parent) {
+                const btn = parent.querySelector('button');
+                if (btn) {
+                    btn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        // Close other open dropdowns
+                        dropdownParents.forEach(p => { if (p !== parent) p.classList.remove('active'); });
+                        parent.classList.toggle('active');
+                    });
+                }
+            });
+
+            document.addEventListener('click', function(e) {
+                dropdownParents.forEach(p => p.classList.remove('active'));
+            });
+        });
+    </script>
+    <!-- Supabase & Flying Cheetah Backend Architecture SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/leads.js"></script>
+    <script src="js/fc-widgets.js"></script>
+
+<script>
+        // Top-level nav links hover safety: immediately dismiss all dropdowns
+        document.querySelectorAll('nav > a').forEach(function(link) {
+            link.addEventListener('mouseenter', function() {
+                document.querySelectorAll('.home-dropdown-parent, .products-dropdown-parent, .dropdown-parent').forEach(function(p) {
+                    p.classList.remove('active');
+                });
+            });
+        });
+        // Click outside dismiss
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.home-dropdown-parent') && !e.target.closest('.products-dropdown-parent') && !e.target.closest('.dropdown-parent')) {
+                document.querySelectorAll('.home-dropdown-parent, .products-dropdown-parent, .dropdown-parent').forEach(function(p) {
+                    p.classList.remove('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

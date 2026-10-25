@@ -1,0 +1,105 @@
+version: '3.8'
+
+services:
+  # Supabase PostgreSQL 16 compatible database
+  postgres:
+    image: postgres:16-alpine
+    container_name: flying_cheetah_db
+    restart: always
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: flyingcheetah_secure_db_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./migrations/001_initial_schema.sql:/docker-entrypoint-initdb.d/001_initial_schema.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # Redis 7 In-Memory Cache and Celery Broker
+  redis:
+    image: redis:7-alpine
+    container_name: flying_cheetah_redis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  # FastAPI Web Application & WebSocket Server
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: flying_cheetah_api
+    restart: always
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers 4
+    ports:
+      - "8000:8000"
+    environment:
+      - ENVIRONMENT=production
+      - DATABASE_URL=postgresql+asyncpg://postgres:flyingcheetah_secure_db_pass@postgres:5432/postgres
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+      - OFFICIAL_ADMIN_EMAIL=flyingcheetah.agency@gmail.com
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  # Celery Asynchronous Task Worker
+  celery_worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: flying_cheetah_celery_worker
+    restart: always
+    command: celery -A app.workers.celery_app worker --loglevel=info --concurrency=4
+    environment:
+      - ENVIRONMENT=production
+      - DATABASE_URL=postgresql+asyncpg://postgres:flyingcheetah_secure_db_pass@postgres:5432/postgres
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+      - OFFICIAL_ADMIN_EMAIL=flyingcheetah.agency@gmail.com
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  # Celery Periodic Scheduler (Beat) for 14-day trial scans
+  celery_beat:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: flying_cheetah_celery_beat
+    restart: always
+    command: celery -A app.workers.celery_app beat --loglevel=info
+    environment:
+      - ENVIRONMENT=production
+      - DATABASE_URL=postgresql+asyncpg://postgres:flyingcheetah_secure_db_pass@postgres:5432/postgres
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
+  redis_data:

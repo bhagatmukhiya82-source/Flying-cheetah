@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/jpeg" href="images/flying_cheetah_hd_logo_heraldic.jpg">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Calling Support for eCommerce | Flying Cheetah</title>
+    <meta name="description" content="WhatsApp Calling Support for eCommerce | Flying Cheetah - Flying Cheetah Labs Autonomous AI Commerce & Omnichannel Marketing Suite.">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome 6 CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/fx.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bikOrange: '#FF6838',
+                        bikOrangeDark: '#E04D1F',
+                        bikDark: '#0B0F19',
+                        bikBg: '#FFF9F6',
+                        slateText: '#475569',
+                        brandGold: '#F59E0B',
+                        waGreen: '#10B981',
+                        waDark: '#059669'
+                    },
+                    fontFamily: {
+                        sans: ['"Inter"', 'sans-serif'],
+                        display: ['"Plus Jakarta Sans"', '"Outfit"', 'sans-serif'],
+                        tech: ['"Space Grotesk"', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .dropdown-parent:hover .mega-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .mega-menu {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(8px);
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .home-menu.active {
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: translateY(0) !important;
+        }
+        .card-anim {
+            transition: all 0.25s ease;
+        }
+        .card-anim:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 32px -8px rgba(0,0,0,0.08);
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 12px rgba(37, 211, 102, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        .ring-pulse {
+            animation: pulse-ring 2s infinite;
+        }
+    </style>
+</head>
+<body class="bg-white text-slate-800 font-sans antialiased selection:bg-orange-100 selection:text-bikOrange">
+
+    <!-- TOP ANNOUNCEMENT BANNER -->
+    <div class="bg-gradient-to-r from-emerald-600 to-waDark text-white text-xs py-2 px-4 text-center font-medium flex items-center justify-center gap-2">
+        <span class="inline-flex items-center justify-center w-2 h-2 rounded-full bg-white ring-2 ring-white/40 animate-ping"></span>
+        <span><b>New Feature:</b> Official Meta WhatsApp VoIP Calling is now Live inside Flying Cheetah Helpdesk.</span>
+        <a href="demo.html" class="underline ml-2 text-white font-bold hover:text-emerald-100 transition">Book Live Demo ↗</a>
+    </div>
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-bikOrange to-amber-500 flex items-center justify-center text-white shadow-md shadow-orange-500/20 group-hover:scale-105 transition">
+                    <i class="fa-solid fa-bolt text-lg"></i>
+                </div>
+                <div>
+                    <span class="font-display font-extrabold text-xl tracking-tight text-bikDark block leading-none">Flying Cheetah</span>
+                    <span class="text-[10px] text-slateText tracking-widest uppercase font-semibold">Autonomous Commerce</span>
+                </div>
+            </a>
+
+            <!-- NAV LINKS -->
+            <nav class="hidden lg:flex items-center space-x-8 text-sm font-semibold text-slate-700">
+                
+                <!-- HOME DROPDOWN -->
+                <div class="relative home-dropdown-parent py-6">
+                    <button class="home-btn flex items-center gap-1.5 hover:text-bikOrange transition focus:outline-none text-slate-800 hover:text-bikOrange font-bold text-sm">
+                        <i class="fa-solid fa-house text-xs text-bikOrange"></i>
+                        <span>Home</span>
+                        <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200"></i>
+                    </button>
+                    <div class="mega-menu home-menu absolute top-full left-0 w-72 bg-white rounded-2xl border border-slate-200 p-4 shadow-2xl bik-mega-shadow z-50">
+                        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-3 pb-2 border-b border-slate-100 flex items-center justify-between">
+                            <span>Core Portals</span>
+                            <a href="home.html" class="text-bikOrange hover:underline font-bold">Executive Hub ↗</a>
+                        </div>
+                        <div class="space-y-1.5 pt-2">
+                            <a href="index.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
+                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-bikOrange flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-store"></i></div>
+                                <div><div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">Main Site</div><div class="text-[10px] text-slate-400">Flagship AI Commerce Suite</div></div>
+                            </a>
+                                                        <a href="web-development.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
+                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-bikOrange flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-code"></i></div>
+                                <div><div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">Web Development</div><div class="text-[10px] text-slate-400">ScaleDelight Inspired &bull; Mumbai</div></div>
+                            </a>
+<a href="delivery.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-emerald-50 text-slate-700 hover:text-emerald-600 transition group">
+                                <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-motorcycle"></i></div>
+                                <div><div class="text-xs font-bold text-bikDark group-hover:text-emerald-600">Fleet Protocol</div><div class="text-[10px] text-slate-400">Hyperlocal Borzo/Porter API</div></div>
+                            </a>
+                                                        <a href="about.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
+                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-bikOrange flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-circle-info"></i></div>
+                                <div><div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">About Us</div><div class="text-[10px] text-slate-400">Company Motive & Founders</div></div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRODUCTS & AUTOMATIONS MEGA MENU -->
+                <div class="relative products-dropdown-parent dropdown-parent py-6">
+                    <button class="flex items-center gap-1.5 hover:text-bikOrange transition focus:outline-none text-bikOrange font-bold">
+                        <span>Products & Automations</span>
+                        <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                    </button>
+                    <div class="mega-menu absolute top-full -left-28 w-[760px] bg-white rounded-2xl border border-slate-200 p-8 shadow-2xl bik-mega-shadow z-50">
+                        <div class="grid grid-cols-4 gap-6 text-xs">
+                            <div class="space-y-3">
+                                <div class="flex items-center gap-2 text-bikOrange font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-bullhorn"></i> CAMPAIGNS</div>
+                                <ul class="space-y-2.5 text-slate-600 font-medium">
+                                    <li><a href="email-marketing.html" class="hover:text-bikOrange transition block">Email marketing</a></li>
+                                    <li><a href="whatsapp-marketing.html" class="hover:text-bikOrange transition block">WhatsApp marketing</a></li>
+                                    <li><a href="sms-marketing.html" class="hover:text-bikOrange transition block">SMS marketing</a></li>
+                                    <li><a href="customer-data-platform.html" class="hover:text-bikOrange transition block">Customer data platform</a></li>
+                                    <li><a href="rcs-messaging.html" class="hover:text-bikOrange transition block">RCS messaging</a></li>
+                                </ul>
+                            </div>
+                            <div class="space-y-3 bg-orange-50/70 p-3 -m-3 rounded-xl border border-orange-100">
+                                <div class="flex items-center gap-2 text-bikOrange font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-gear"></i> AUTOMATIONS</div>
+                                <ul class="space-y-2.5 text-slate-700 font-medium">
+                                    <li><a href="store-automation.html" class="hover:text-bikOrange transition block font-bold text-bikOrange">Store automation ↗</a></li>
+                                    <li><a href="instagram-automation.html" class="hover:text-bikOrange transition block font-semibold text-pink-600">Instagram automation</a></li>
+                                    <li><a href="whatsapp-automation.html" class="hover:text-bikOrange transition block font-semibold text-emerald-600">WhatsApp automation</a></li>
+                                    <li><a href="ctwa-automation.html" class="hover:text-bikOrange transition block font-semibold text-blue-600">Click to WhatsApp ads</a></li>
+                                    <li><a href="ai-voice-agents.html" class="hover:text-bikOrange transition block font-semibold text-purple-600">AI Voice Agents</a></li>
+                                </ul>
+                            </div>
+                            <div class="space-y-3 bg-emerald-50/50 p-3 -m-3 rounded-xl border border-emerald-100">
+                                <div class="flex items-center gap-2 text-emerald-700 font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-headset"></i> HELPDESK</div>
+                                <ul class="space-y-2.5 text-slate-700 font-medium">
+                                    <li><a href="customer-support.html" class="hover:text-emerald-600 transition block">Customer support</a></li>
+                                    <li><a href="whatsapp-calling.html" class="hover:text-emerald-600 transition block font-bold text-emerald-700">WhatsApp calling ↗</a></li>
+                                </ul>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="space-y-2">
+                                    <div class="text-bikOrange font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-comment-dots"></i> POPUPS</div>
+                                    <a href="solutions.html?module=gamification" class="hover:text-bikOrange transition block text-slate-600">Gamification</a>
+                                </div>
+                                <div class="space-y-2 border-t border-slate-100 pt-3">
+                                    <div class="text-bikOrange font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-robot"></i> CHATBOTS</div>
+                                    <a href="solutions.html?module=whatsapp-chatbot" class="hover:text-bikOrange transition block text-slate-600">WhatsApp chatbot</a>
+                                    <a href="solutions.html?module=instagram-chatbot" class="hover:text-bikOrange transition block text-slate-600 mt-1">Instagram chatbot</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="delivery.html" class="hover:text-bikOrange transition">Fleet Dispatch</a>
+                <a href="web-development.html" class="hover:text-bikOrange transition">Web Development</a>
+                <a href="about.html" class="hover:text-bikOrange transition">About Us</a>
+            </nav>
+
+            <div class="flex items-center space-x-3">
+                <div class="fc-auth-slot"></div>
+                <button onclick="window.FC_AUTH.openTrialModal()" data-fc-trial="true" class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-sm transition shadow-md shadow-orange-500/20 cursor-pointer">Start for Free</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="pt-16 pb-20 bg-gradient-to-b from-emerald-50/50 via-bikBg to-white border-b border-slate-100 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-6 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100 border border-emerald-200 text-emerald-800 text-xs font-bold uppercase tracking-wide">
+                        <i class="fa-brands fa-whatsapp text-emerald-600 text-sm"></i> Official Meta Cloud WhatsApp Calling
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-bikDark tracking-tight leading-[1.08] font-display">
+                        WhatsApp Calling <span class="text-emerald-600">inside your Helpdesk.</span>
+                    </h1>
+
+                    <p class="text-lg text-slateText leading-relaxed">
+                        Make and receive WhatsApp voice calls directly inside Flying Cheetah for Sales and Customer Support. Never juggle tools, eliminate phone dropouts, and resolve complex issues 40% faster.
+                    </p>
+
+                    <!-- METRICS BADGES -->
+                    <div class="grid grid-cols-3 gap-3 pt-2">
+                        <div class="p-3.5 rounded-2xl bg-white border border-slate-200 shadow-sm text-center">
+                            <div class="text-2xl font-black text-emerald-600 font-display">40%</div>
+                            <div class="text-[11px] font-bold text-slate-500 mt-0.5">Faster Resolutions</div>
+                        </div>
+                        <div class="p-3.5 rounded-2xl bg-white border border-slate-200 shadow-sm text-center">
+                            <div class="text-2xl font-black text-bikOrange font-display">2X</div>
+                            <div class="text-[11px] font-bold text-slate-500 mt-0.5">First-Attempt Closes</div>
+                        </div>
+                        <div class="p-3.5 rounded-2xl bg-white border border-slate-200 shadow-sm text-center">
+                            <div class="text-2xl font-black text-blue-600 font-display">60%</div>
+                            <div class="text-[11px] font-bold text-slate-500 mt-0.5">Higher Pickups vs SIM</div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                        <a href="https://wa.me/919876543210?text=Hi%20Bhagat%20%26%20Yash,%20I%20want%20to%20deploy%20WhatsApp%20Calling%20for%20my%20store." target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm transition shadow-lg shadow-emerald-600/25">
+                            <i class="fa-brands fa-whatsapp text-lg mr-2"></i> Deploy WhatsApp Calling Now
+                        </a>
+                        <a href="demo.html" class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-4 rounded-xl border border-slate-300 hover:border-emerald-600 text-slate-800 font-bold text-sm bg-white hover:bg-emerald-50/50 transition">
+                            Book a demo
+                        </a>
+                        <button onclick="simulateCall()" class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-4 rounded-xl border border-slate-300 hover:border-emerald-600 text-slate-800 font-bold text-sm bg-white hover:bg-emerald-50/50 transition">
+                            <i class="fa-solid fa-play text-emerald-600 text-xs mr-2"></i> Simulate Call
+                        </button>
+                    </div>
+
+                    <div class="text-xs text-slate-400 flex items-center justify-center lg:justify-start gap-4 font-medium pt-2">
+                        <span><i class="fa-solid fa-check text-emerald-500 mr-1"></i> Zero SIM cards needed</span>
+                        <span><i class="fa-solid fa-check text-emerald-500 mr-1"></i> Official Meta BSP</span>
+                        <span><i class="fa-solid fa-check text-emerald-500 mr-1"></i> Shopify 1-Click Sync</span>
+                    </div>
+                </div>
+
+                <!-- RIGHT HERO VISUAL: ANIMATED FLOWCHART VIDEO CONSOLE -->
+                <div class="lg:col-span-6 relative">
+                    <div class="rounded-3xl border border-slate-800 bg-slate-950 shadow-2xl bik-mega-shadow fc-card-glow relative overflow-hidden text-white">
+                        
+                        <!-- Top Video Progress Bar -->
+                        <div class="w-full h-1 bg-slate-800 relative overflow-hidden">
+                            <div id="callingProgressBar" class="h-full bg-gradient-to-r from-emerald-500 via-teal-400 to-orange-400 transition-all duration-300 w-0"></div>
+                        </div>
+
+                        <!-- Video Player Header Chrome -->
+                        <div class="px-5 py-3 border-b border-slate-800 flex items-center justify-between bg-slate-900/60 backdrop-blur-md">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></span>
+                                <span class="text-[11px] font-bold text-slate-300 ml-1 font-mono flex items-center gap-1.5">
+                                    <i class="fa-solid fa-play text-emerald-400 text-[10px]"></i>
+                                    <span>WhatsApp In-Chat Call &rarr; Shopify Telemetry Flow</span>
+                                </span>
+                            </div>
+
+                            <div class="flex items-center gap-2">
+                                <span id="callingStepBadge" class="px-2.5 py-0.5 rounded-full bg-emerald-950 border border-emerald-800/60 text-emerald-300 text-[10px] font-mono font-bold">
+                                    Step 1: Inbound Call
+                                </span>
+                                <button onclick="toggleCallingVideo()" id="callPlayPauseBtn" class="w-7 h-7 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 flex items-center justify-center transition text-xs" title="Pause / Play">
+                                    <i class="fa-solid fa-pause" id="callPlayPauseIcon"></i>
+                                </button>
+                                <button onclick="restartCallingVideo()" class="w-7 h-7 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 flex items-center justify-center transition text-xs" title="Replay">
+                                    <i class="fa-solid fa-rotate-right"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Video Visual Canvas -->
+                        <div class="p-5 sm:p-6 grid grid-cols-1 sm:grid-cols-12 gap-5 items-center relative">
+                            
+                            <!-- Left: Connected Flowchart Road Map (7 cols) -->
+                            <div class="sm:col-span-7 space-y-3 relative">
+                                
+                                <!-- Background Animated Beam Line -->
+                                <div class="absolute left-6 top-7 bottom-7 w-1 -translate-x-1/2 z-0 pointer-events-none">
+                                    <div class="w-full h-full bg-slate-800 rounded-full"></div>
+                                    <div id="callingBeamActive" class="absolute top-0 left-0 w-full bg-gradient-to-b from-emerald-400 via-teal-300 to-emerald-400 rounded-full transition-all duration-500 shadow-[0_0_12px_#10b981] h-0"></div>
+                                </div>
+
+                                <!-- Node 1: In-Chat Call Initiation -->
+                                <div id="callNode1" onclick="jumpCallStep(0)" class="relative z-10 p-2.5 rounded-2xl bg-slate-900/90 border border-emerald-500/80 flex items-center gap-3 transition-all duration-300 cursor-pointer node-glow-active">
+                                    <div class="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-sm font-bold border border-emerald-500/30 transition shadow-sm">
+                                        <i class="fa-brands fa-whatsapp text-base"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center justify-between">
+                                            <span class="text-xs font-black text-white block">1. 1-Tap In-Chat Call</span>
+                                            <span class="text-[9px] font-mono text-emerald-400 bg-emerald-950 px-1.5 py-0.5 rounded border border-emerald-800/50">Origin</span>
+                                        </div>
+                                        <span class="text-[10px] text-slate-400 block truncate">Zero cellular numbers to dial</span>
+                                    </div>
+                                </div>
+
+                                <!-- Node 2: Meta Cloud VoIP Gateway -->
+                                <div id="callNode2" onclick="jumpCallStep(1)" class="relative z-10 p-2.5 rounded-2xl bg-slate-900/90 border border-slate-800 flex items-center gap-3 transition-all duration-300 cursor-pointer opacity-40">
+                                    <div class="w-8 h-8 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-sm font-bold border border-purple-500/30 transition shadow-sm">
+                                        <i class="fa-solid fa-cloud text-xs"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center justify-between">
+                                            <span class="text-xs font-black text-white block">2. Meta Cloud VoIP SIP</span>
+                                            <span class="text-[9px] font-mono text-purple-300">24kHz HD Audio</span>
+                                        </div>
+                                        <span class="text-[10px] text-slate-400 block truncate">42ms Latency • Zero dropouts</span>
+                                    </div>
+                                </div>
+
+                                <!-- Node 3: Shopify Cart Telemetry Pop-up -->
+                                <div id="callNode3" onclick="jumpCallStep(2)" class="relative z-10 p-2.5 rounded-2xl bg-slate-900/90 border border-slate-800 flex items-center gap-3 transition-all duration-300 cursor-pointer opacity-40">
+                                    <div class="w-8 h-8 rounded-xl bg-orange-500/20 text-orange-400 flex items-center justify-center text-sm font-bold border border-orange-500/30 transition shadow-sm">
+                                        <i class="fa-brands fa-shopify text-xs"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center justify-between">
+                                            <span class="text-xs font-black text-white block">3. Live Shopify Context</span>
+                                            <span class="text-[9px] font-mono text-orange-400">Pooja Sharma</span>
+                                        </div>
+                                        <span class="text-[10px] text-slate-400 block truncate">Cart: ₹3,499 • LTV: ₹34,500</span>
+                                    </div>
+                                </div>
+
+                                <!-- Node 4: In-Call Converted Sale -->
+                                <div id="callNode4" onclick="jumpCallStep(3)" class="relative z-10 p-3 rounded-2xl bg-slate-900/90 border border-slate-800 flex items-center gap-3 transition-all duration-300 cursor-pointer opacity-40">
+                                    <div class="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-base font-bold border border-emerald-500/30 transition shadow-sm">
+                                        <i class="fa-solid fa-circle-check"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center justify-between">
+                                            <span class="text-xs font-black text-white block flex items-center gap-1.5">
+                                                <span>4. In-Call Order Paid</span>
+                                                <i class="fa-solid fa-bolt text-emerald-400 text-xs"></i>
+                                            </span>
+                                            <span class="text-[9px] font-mono text-emerald-300 bg-emerald-950 px-2 py-0.5 rounded-full border border-emerald-500/40 font-bold">Closed 42s</span>
+                                        </div>
+                                        <span class="text-[10px] text-emerald-400 font-semibold block truncate">₹3,499 Converted • Borzo Dispatched</span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- Right: Live Synchronized In-Call Terminal (No Text Collisions!) (5 cols) -->
+                            <div class="sm:col-span-5 relative">
+                                <div class="rounded-2xl border border-slate-800 bg-[#0f172a] p-3.5 space-y-3 shadow-xl">
+                                    
+                                    <!-- In-Call Header -->
+                                    <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                                        <div class="flex items-center gap-2">
+                                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                                            <span class="text-[10px] font-bold text-slate-300">Active Meta VoIP</span>
+                                        </div>
+                                        <span class="text-[10px] font-mono text-emerald-400 font-bold" id="callingTimerDisplay">02:18</span>
+                                    </div>
+
+                                    <!-- Caller Profile Box -->
+                                    <div class="text-center space-y-1 py-1">
+                                        <div class="w-12 h-12 mx-auto rounded-full bg-gradient-to-tr from-emerald-600 to-teal-500 flex items-center justify-center text-white text-lg shadow-md shadow-emerald-500/20">
+                                            <i class="fa-solid fa-phone"></i>
+                                        </div>
+                                        <h5 class="text-xs font-black text-white">Pooja Sharma</h5>
+                                        <p class="text-[9px] text-slate-400">VIP Shopper • Mumbai, Bandra West</p>
+                                    </div>
+
+                                    <!-- Waveform Bars -->
+                                    <div class="flex items-center justify-center gap-1 h-5">
+                                        <span class="w-1 bg-emerald-400 rounded-full h-2 fc-wave-bar" style="animation-duration: 0.7s;"></span>
+                                        <span class="w-1 bg-teal-400 rounded-full h-4 fc-wave-bar" style="animation-duration: 1.0s;"></span>
+                                        <span class="w-1 bg-emerald-500 rounded-full h-5 fc-wave-bar" style="animation-duration: 0.8s;"></span>
+                                        <span class="w-1 bg-cyan-400 rounded-full h-3 fc-wave-bar" style="animation-duration: 1.2s;"></span>
+                                        <span class="w-1 bg-emerald-400 rounded-full h-5 fc-wave-bar" style="animation-duration: 0.9s;"></span>
+                                    </div>
+
+                                    <!-- Context Card -->
+                                    <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-[10px] space-y-1">
+                                        <div class="flex items-center justify-between font-bold">
+                                            <span class="text-slate-300">Royal Silk Kurti</span>
+                                            <span class="text-orange-400 font-mono">₹3,499</span>
+                                        </div>
+                                        <p class="text-[9px] text-slate-400" id="callingTelemetryStatus">Shopper inquired about express delivery.</p>
+                                        <button id="callingActionBtn" class="w-full py-1.5 rounded-lg bg-emerald-600 text-white font-bold text-[9px] flex items-center justify-center gap-1 mt-1 transition">
+                                            <i class="fa-brands fa-whatsapp"></i> Push 15% VIP Checkout
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Video Footer Status Bar -->
+                        <div class="px-5 py-2.5 bg-slate-900 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-300 font-mono">
+                            <span class="flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                                <span id="callingStatusText">Step 1: 1-Tap In-Chat Call Initiation</span>
+                            </span>
+                            <span class="text-emerald-400 font-bold">Zero Cellular Friction</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CORE 3 FEATURES (INSPIRATION FROM BIK.AI) -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-emerald-600 font-bold text-xs uppercase tracking-widest bg-emerald-50 px-3.5 py-1 rounded-full border border-emerald-100">Why Brands Choose Flying Cheetah Voice</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark font-display mt-3">What makes WhatsApp Calling better inside our Helpdesk</h2>
+                <p class="text-slateText text-sm mt-3">Shift from chat to voice seamlessly without switching tabs or losing customer history.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200 card-anim space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-bikDark">One place to manage every conversation</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        Your team gets complete visibility of chats and calls together. They never lose context, browse full Shopify order histories, and resolve issues without juggling five disconnected tools.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200 card-anim space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-bikOrange/10 text-bikOrange flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-bikDark">Faster resolutions that feel personal</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        Customers speak to a real team member when they need reassurance. This builds lasting trust, eliminates return skepticism, and helps your agents close high-ticket cart drops on the spot.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200 card-anim space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-bikDark">Automated follow ups that run on their own</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        Every call outcome automatically triggers the next action: sending customized Razorpay links, booking a WhatsApp demo, or logging post-call NPS feedback without manual typing.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: CALL & CHAT UNIFIED DEEP DIVE -->
+    <section class="py-20 bg-slate-50 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-6 space-y-6">
+                    <span class="text-xs font-bold text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full uppercase tracking-wider">Zero Context Loss</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark font-display">
+                        Calls and chat. Unified in one intelligent dashboard.
+                    </h2>
+                    <p class="text-slateText text-sm leading-relaxed">
+                        Sometimes customers explain sizing or styling better when they talk. Sometimes they need to send a photo of a damaged box or paste an order ID. With Voice Support on Flying Cheetah, both happen simultaneously in the exact same window.
+                    </p>
+                    
+                    <div class="space-y-3 pt-2">
+                        <div class="flex items-start gap-3">
+                            <div class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-xs mt-0.5"><i class="fa-solid fa-check"></i></div>
+                            <div>
+                                <h4 class="text-xs font-bold text-bikDark">Real-Time Audio Sentiment Telemetry</h4>
+                                <p class="text-[11px] text-slate-500">Detect caller mood and sentiment shifts live on the call, prompting agents with best upsell strategies.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-xs mt-0.5"><i class="fa-solid fa-check"></i></div>
+                            <div>
+                                <h4 class="text-xs font-bold text-bikDark">1-Click Reverse Pickup & Courier Dispatch</h4>
+                                <p class="text-[11px] text-slate-500">Approve size exchanges and dispatch Borzo courier drivers right while still on the call.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4">
+                        <a href="https://wa.me/919876543210?text=Hi%20Bhagat%20%26%20Yash,%20show%20me%20a%20demo%20of%20WhatsApp%20Calling." target="_blank" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs transition shadow-md">
+                            <span>Request Interactive Walkthrough with Founders</span>
+                            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6 relative">
+                    <div class="rounded-3xl overflow-hidden border-2 border-slate-200/90 shadow-2xl bg-white p-3 fc-card-interactive group">
+                        <img src="images/whatsapp_voip_telemetry_ui.jpg" alt="WhatsApp Voice Calling &amp; Real-Time Telemetry" class="w-full rounded-2xl object-cover group-hover:scale-102 transition duration-500">
+                        <div class="p-3 bg-slate-50/90 rounded-xl mt-3 flex items-center justify-between text-xs font-semibold text-slate-600 font-tech">
+                            <span class="flex items-center gap-2 text-emerald-600 font-bold"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-radar"></span> Encrypted VoIP 24kHz</span>
+                            <span class="text-bikOrange font-bold">Shopify Real-Time Telemetry</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FREQUENTLY ASKED QUESTIONS -->
+    <section class="py-20 bg-white border-t border-slate-200">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-14">
+                <span class="text-bikOrange font-bold text-xs uppercase tracking-widest bg-orange-50 px-3.5 py-1 rounded-full">Common Questions</span>
+                <h2 class="text-3xl font-extrabold text-bikDark font-display mt-3">Frequently Asked Questions</h2>
+            </div>
+
+            <div class="space-y-4 text-left">
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200">
+                    <h3 class="font-bold text-sm text-bikDark">Do my agents need physical SIM cards or extra phones?</h3>
+                    <p class="text-xs text-slate-500 mt-2 leading-relaxed">No. Flying Cheetah runs on the official Meta WhatsApp Business Cloud Calling API. Your team answers and makes calls directly through their laptop or mobile browser with standard headsets.</p>
+                </div>
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200">
+                    <h3 class="font-bold text-sm text-bikDark">Can customers call us on WhatsApp for free?</h3>
+                    <p class="text-xs text-slate-500 mt-2 leading-relaxed">Yes! WhatsApp voice calls run over internet data (VoIP). There are zero international or roaming charges for your customers, leading to a 60% higher pickup and completion rate compared to regular cellular dials.</p>
+                </div>
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200">
+                    <h3 class="font-bold text-sm text-bikDark">Does it sync with our Shopify or WooCommerce store?</h3>
+                    <p class="text-xs text-slate-500 mt-2 leading-relaxed">Yes! The moment a call rings, our sidebar automatically pulls the caller's Shopify order history, abandoned carts, lifetime value, and active courier tracking links.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <footer class="bg-white border-t border-slate-200 py-12 text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-2">
+                <div class="w-6 h-6 rounded-lg bg-bikOrange text-white flex items-center justify-center font-bold text-xs"><i class="fa-solid fa-bolt"></i></div>
+                <span class="font-bold text-bikDark">Flying Cheetah</span>
+                <span>© 2026. Official Meta Business Solution Provider.</span>
+            </div>
+            <div class="flex flex-wrap items-center gap-6 font-semibold">
+                <a href="index.html" class="hover:text-bikOrange transition">Main Site</a>
+                <a href="delivery.html" class="hover:text-bikOrange transition">Fleet Dispatch</a>
+                <a href="customer-support.html" class="hover:text-bikOrange transition">Customer Support</a>
+                <a href="whatsapp-calling.html" class="hover:text-bikOrange transition text-emerald-600 font-bold">WhatsApp Calling</a>
+                <a href="about.html" class="hover:text-bikOrange transition">About Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Flowchart Video Engine -->
+    <script src="js/flowchart-player.js"></script>
+    <script>
+        let callingPlayerInstance = null;
+        document.addEventListener('DOMContentLoaded', function() {
+            callingPlayerInstance = new FlowchartConsolePlayer({
+                progressBarId: 'callingProgressBar',
+                beamId: 'callingBeamActive',
+                stepBadgeId: 'callingStepBadge',
+                statusTextId: 'callingStatusText',
+                playPauseIconId: 'callPlayPauseIcon',
+                activeGlowClass: 'node-glow-active',
+                nodeIds: ['callNode1', 'callNode2', 'callNode3', 'callNode4'],
+                stepDuration: 2800,
+                steps: [
+                    {
+                        badge: 'Step 1: Inbound Call',
+                        status: '1-Tap In-Chat Call Initiated • Session Opened',
+                        timer: '00:04',
+                        desc: 'Customer tapped in-chat call button.',
+                        actionText: 'Connect Agent'
+                    },
+                    {
+                        badge: 'Step 2: Meta VoIP SIP',
+                        status: '24kHz HD Audio Synchronized • 42ms Latency',
+                        timer: '00:28',
+                        desc: 'Encrypted Meta Business VoIP Gateway routed to agent headset.',
+                        actionText: 'Pulling CRM...'
+                    },
+                    {
+                        badge: 'Step 3: Shopify Context',
+                        status: 'Cart & LTV Context Synced: Royal Silk Kurti (₹3,499)',
+                        timer: '01:05',
+                        desc: 'Shopper asked about express same-day delivery.',
+                        actionText: 'Push 15% VIP Checkout'
+                    },
+                    {
+                        badge: 'Step 4: Converted Sale',
+                        status: 'Order Paid & Closed in 42s • Borzo Courier Dispatched',
+                        timer: '01:42',
+                        desc: 'UPI Payment Confirmed ₹3,499. Tracking SMS triggered.',
+                        actionText: '✓ Order Paid ₹3,499'
+                    }
+                ],
+                onStepChange: function(index, step) {
+                    const timer = document.getElementById('callingTimerDisplay');
+                    const desc = document.getElementById('callingTelemetryStatus');
+                    const btn = document.getElementById('callingActionBtn');
+                    if (timer) timer.innerText = step.timer;
+                    if (desc) desc.innerText = step.desc;
+                    if (btn) btn.innerHTML = '<i class="fa-brands fa-whatsapp mr-1"></i> ' + step.actionText;
+                }
+            });
+        });
+
+        function jumpCallStep(index) {
+            if (callingPlayerInstance) callingPlayerInstance.jumpToStep(index);
+        }
+        function toggleCallingVideo() {
+            if (callingPlayerInstance) callingPlayerInstance.togglePlay();
+        }
+        function restartCallingVideo() {
+            if (callingPlayerInstance) callingPlayerInstance.restart();
+        }
+
+        function simulateCall() {
+            const timer = document.getElementById('call-timer');
+            timer.innerText = "Incoming Ringing... ✆";
+            setTimeout(() => {
+                timer.innerText = "Call Connected • 00:01 (HD Audio)";
+            }, 1200);
+        }
+        function triggerOffer() {
+            const fb = document.getElementById('offer-feedback');
+            fb.classList.remove('hidden');
+        }
+        function triggerBorzo() {
+            alert("✓ Borzo Courier Dispatch Triggered! Driver assigned: Ganesh K. (Delivery by 5:15 PM)");
+        }
+
+        // Dual Hover + Click Dropdown support for Home
+        document.addEventListener('DOMContentLoaded', function() {
+            const homeParent = document.querySelector('.home-dropdown-parent');
+            const homeBtn = document.querySelector('.home-btn');
+            const homeMenu = document.querySelector('.home-menu');
+            if(homeParent && homeBtn && homeMenu) {
+                homeBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    homeMenu.classList.toggle('active');
+                });
+                document.addEventListener('click', function(e) {
+                    if (!homeParent.contains(e.target)) {
+                        homeMenu.classList.remove('active');
+                    }
+                });
+            }
+        });
+    </script>
+    <!-- Supabase & Flying Cheetah Backend Architecture SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/leads.js"></script>
+    <script src="js/fc-widgets.js"></script>
+
+<script>
+        // Top-level nav links hover safety: immediately dismiss all dropdowns
+        document.querySelectorAll('nav > a').forEach(function(link) {
+            link.addEventListener('mouseenter', function() {
+                document.querySelectorAll('.home-dropdown-parent, .products-dropdown-parent, .dropdown-parent').forEach(function(p) {
+                    p.classList.remove('active');
+                });
+            });
+        });
+        // Click outside dismiss
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.home-dropdown-parent') && !e.target.closest('.products-dropdown-parent') && !e.target.closest('.dropdown-parent')) {
+                document.querySelectorAll('.home-dropdown-parent, .products-dropdown-parent, .dropdown-parent').forEach(function(p) {
+                    p.classList.remove('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

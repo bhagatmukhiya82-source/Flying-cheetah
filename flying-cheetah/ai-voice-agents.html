@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <link rel="icon" type="image/jpeg" href="images/flying_cheetah_hd_logo_heraldic.jpg">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Voice Agents for eCommerce & Retail — Flying Cheetah</title>
+    <meta name="description" content="AI Voice Agents for eCommerce & Retail — Flying Cheetah - Flying Cheetah Labs Autonomous AI Commerce & Omnichannel Marketing Suite.">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/fx.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['"Inter"', 'sans-serif'], display: ['"Plus Jakarta Sans"', 'sans-serif'], outfit: ['"Outfit"', 'sans-serif'], mono: ['"Space Grotesk"', 'monospace'] },
+                    colors: { bikOrange: '#FF6838', bikOrangeDark: '#E04A1B', bikDark: '#121624', bikBg: '#FFF9F6', brandGold: '#E5A93C', slateText: '#4E5A71' }
+                }
+            }
+        }
+    </script>
+    <style>
+        .bik-mega-shadow { box-shadow: 0 25px 60px -15px rgba(255, 104, 56, 0.15), 0 0 1px 1px rgba(0, 0, 0, 0.05); }
+        .mega-menu { display: none; }
+        .dropdown-parent:hover .mega-menu { display: block; }
+        .card-anim { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .card-anim:hover { transform: translateY(-4px); box-shadow: 0 20px 35px -10px rgba(0,0,0,0.08); }
+    
+        .home-menu { display: none; }
+        .home-dropdown-parent:hover > .home-menu,
+        .home-dropdown-parent.active > .home-menu { display: block; }
+        .mega-menu { display: none; }
+        .products-dropdown-parent:hover > .mega-menu,
+        .products-dropdown-parent.active > .mega-menu { display: block; }
+        .dropdown-parent:hover > .mega-menu,
+        .dropdown-parent.active > .mega-menu { display: block; }
+    </style>
+</head>
+<body class="bg-white text-slate-900 font-sans antialiased selection:bg-bikOrange selection:text-white">
+
+    <!-- TOP PROMO BANNER -->
+    <div class="bg-bikDark text-white py-2 px-4 text-center text-xs font-medium">
+        <span>🎙️ Meet the All-New AI Voice Agents: Phone-based calling that recovers abandoned carts and verifies COD orders.</span>
+        <a href="https://wa.me/919876543210" target="_blank" class="underline ml-2 text-brandGold font-bold hover:text-white transition">Listen to Audio Sample →</a>
+    </div>
+
+    <!-- MAIN NAVBAR WITH ACTIVE MEGA-MENU -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-3">
+                <img src="images/flying_cheetah_hd_logo_heraldic.jpg" alt="Flying Cheetah Logo" class="h-11 w-11 rounded-full object-cover border border-slate-200 shadow-sm">
+                <div class="flex flex-col">
+                    <span class="text-xl font-black tracking-tight font-display text-bikDark">FLYING CHEETAH</span>
+                    <span class="text-[9px] text-purple-600 font-bold tracking-widest uppercase -mt-1">AI VOICE CALLERS</span>
+                </div>
+            </a>
+
+            <nav class="hidden lg:flex items-center space-x-8 text-sm font-semibold text-slate-700">
+                <!-- HOME DROPDOWN (NEXT TO PRODUCTS) -->
+                <div class="relative home-dropdown-parent py-6">
+                    <button class="home-btn flex items-center gap-1.5 hover:text-bikOrange transition focus:outline-none text-slate-800 hover:text-bikOrange font-bold text-sm">
+                        <i class="fa-solid fa-house text-xs text-bikOrange"></i>
+                        <span>Home</span>
+                        <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200"></i>
+                    </button>
+                    <!-- Dropdown Menu with the 4 items from user image -->
+                    <div class="mega-menu home-menu absolute top-full left-0 w-72 bg-white rounded-2xl border border-slate-200 p-4 shadow-2xl bik-mega-shadow z-50">
+                        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-3 pb-2 border-b border-slate-100 flex items-center justify-between">
+                            <span>Core Portals</span>
+                            <a href="home.html" class="text-bikOrange hover:underline font-bold">Executive Hub ↗</a>
+                        </div>
+                        <div class="space-y-1.5 pt-2">
+                            <!-- 1. Main Site -->
+                            <a href="index.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
+                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-bikOrange flex items-center justify-center text-sm group-hover:scale-110 transition">
+                                    <i class="fa-solid fa-store"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">Main Site</div>
+                                    <div class="text-[10px] text-slate-400">Flagship AI Commerce Suite</div>
+                                </div>
+                            </a>
+
+<!-- 3. Fleet Protocol -->
+                                                        <a href="web-development.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
+                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-bikOrange flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-code"></i></div>
+                                <div><div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">Web Development</div><div class="text-[10px] text-slate-400">ScaleDelight Inspired &bull; Mumbai</div></div>
+                            </a>
+<a href="delivery.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-emerald-50 text-slate-700 hover:text-emerald-600 transition group">
+                                <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center text-sm group-hover:scale-110 transition">
+                                    <i class="fa-solid fa-motorcycle"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs font-bold text-bikDark group-hover:text-emerald-600">Fleet Protocol</div>
+                                    <div class="text-[10px] text-slate-400">Hyperlocal Borzo/Porter API</div>
+                                </div>
+                            </a>
+
+                                                        <a href="about.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
+                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-bikOrange flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-circle-info"></i></div>
+                                <div><div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">About Us</div><div class="text-[10px] text-slate-400">Company Motive & Founders</div></div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="relative products-dropdown-parent dropdown-parent py-6">
+                    <button class="flex items-center gap-1.5 hover:text-bikOrange transition focus:outline-none text-bikOrange font-bold">
+                        <span>Products & Automations</span>
+                        <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                    </button>
+                    <!-- Mega Menu -->
+                    <div class="mega-menu absolute top-full -left-28 w-[760px] bg-white rounded-2xl border border-slate-200 p-8 shadow-2xl bik-mega-shadow z-50">
+                        <div class="grid grid-cols-4 gap-6 text-xs">
+                            <div class="space-y-3">
+                                <div class="flex items-center gap-2 text-bikOrange font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-bullhorn"></i> CAMPAIGNS</div>
+                                <ul class="space-y-2.5 text-slate-600 font-medium">
+                                    <li><a href="email-marketing.html" class="hover:text-bikOrange transition block">Email marketing</a></li>
+                                    <li><a href="whatsapp-marketing.html" class="hover:text-bikOrange transition block">WhatsApp marketing</a></li>
+                                    <li><a href="sms-marketing.html" class="hover:text-bikOrange transition block">SMS marketing</a></li>
+                                    <li><a href="customer-data-platform.html" class="hover:text-bikOrange transition block">Customer data platform</a></li>
+                                    <li><a href="rcs-messaging.html" class="hover:text-bikOrange transition block">RCS messaging</a></li>
+                                </ul>
+                            </div>
+                            <div class="space-y-3 bg-orange-50/70 p-3 -m-3 rounded-xl border border-orange-100">
+                                <div class="flex items-center gap-2 text-bikOrange font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-gear"></i> AUTOMATIONS</div>
+                                <ul class="space-y-2.5 text-slate-700 font-medium">
+                                    <li><a href="store-automation.html" class="hover:text-bikOrange transition block">Store automation</a></li>
+                                    <li><a href="instagram-automation.html" class="hover:text-bikOrange transition block">Instagram automation</a></li>
+                                    <li><a href="whatsapp-automation.html" class="hover:text-bikOrange transition block">WhatsApp automation</a></li>
+                                    <li><a href="ctwa-automation.html" class="hover:text-bikOrange transition block">Click to WhatsApp ads</a></li>
+                                    <li><a href="ai-voice-agents.html" class="text-bikOrange font-bold hover:underline block flex items-center gap-1"><span>AI Voice Agents</span> <i class="fa-solid fa-arrow-right text-[9px]"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="space-y-3 bg-emerald-50/50 p-3 -m-3 rounded-xl border border-emerald-100">
+                                <div class="flex items-center gap-2 text-emerald-700 font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-headset"></i> HELPDESK</div>
+                                <ul class="space-y-2.5 text-slate-700 font-medium">
+                                    <li><a href="customer-support.html" class="hover:text-emerald-600 transition block">Customer support</a></li>
+                                    <li><a href="whatsapp-calling.html" class="hover:text-emerald-600 transition block font-bold text-emerald-700">WhatsApp calling ↗</a></li>
+                                </ul>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="space-y-2">
+                                    <div class="text-bikOrange font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-comment-dots"></i> POPUPS</div>
+                                    <a href="solutions.html?module=gamification" class="hover:text-bikOrange transition block text-slate-600">Gamification</a>
+                                </div>
+                                <div class="space-y-2 border-t border-slate-100 pt-3">
+                                    <div class="text-bikOrange font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-robot"></i> CHATBOTS</div>
+                                    <a href="solutions.html?module=whatsapp-chatbot" class="hover:text-bikOrange transition block text-slate-600">WhatsApp chatbot</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="delivery.html" class="hover:text-bikOrange transition">Fleet Dispatch</a>
+                <a href="web-development.html" class="hover:text-bikOrange transition">Web Development</a>
+                <a href="about.html" class="hover:text-bikOrange transition">About Us</a>
+            </nav>
+
+            <div class="flex items-center space-x-4">
+                <a href="https://wa.me/919876543210?text=Hi%20Bhagat%20%26%20Yash,%20I%20want%20to%20test%20the%20AI%20Voice%20Agents." target="_blank" class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-sm transition shadow-md shadow-orange-500/20">
+                    Deploy AI Voice Agent
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION (BIK.AI AI VOICE AGENT EXACT COPY & LAYOUT) -->
+    <section class="pt-16 pb-20 md:pt-24 md:pb-28 bg-gradient-to-b from-purple-50/30 via-white to-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-100 border border-purple-200 text-purple-800 text-xs font-bold uppercase tracking-wide">
+                        <i class="fa-solid fa-microphone-lines text-purple-600"></i> Next-Gen Conversational Voice Intelligence
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-bikDark tracking-tight leading-[1.08] font-display">
+                        Meet the All New <span class="text-purple-600">AI Voice Agents</span>.
+                    </h1>
+                    <p class="text-lg text-slateText max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal">
+                        Phone-based AI voice calling that recovers abandoned carts, verifies Cash-on-Delivery orders, and resolves customer issues automatically in natural Hindi, Hinglish, and English.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <button onclick="window.FC_AUTH.openTrialModal()" data-fc-trial="true" href="https://wa.me/919876543210?text=Hi%20Flying%20Cheetah,%20I%20want%20to%20start%20for%20free%20with%20AI%20Voice%20Agents." target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-sm transition shadow-lg shadow-orange-500/25">
+                            Start for free
+                        </button>
+                        <a href="demo.html" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-xl border border-slate-300 hover:border-bikOrange text-slate-800 font-bold text-sm bg-white hover:bg-orange-50/50 transition">
+                            Book a demo
+                        </a>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-6 pt-6 border-t border-slate-100 max-w-lg mx-auto lg:mx-0 text-left">
+                        <div class="p-3 rounded-2xl bg-purple-50/60 border border-purple-100">
+                            <div class="text-3xl font-black text-purple-600 font-display fc-num tracking-tight">42%</div>
+                            <div class="text-[11px] font-bold text-slate-600 mt-0.5">Cart Recovery Rate</div>
+                        </div>
+                        <div class="p-3 rounded-2xl bg-emerald-50/60 border border-emerald-100">
+                            <div class="text-3xl font-black text-emerald-600 font-display fc-num tracking-tight">0 Sec</div>
+                            <div class="text-[11px] font-bold text-slate-600 mt-0.5">Zero IVR Hold Time</div>
+                        </div>
+                        <div class="p-3 rounded-2xl bg-orange-50/60 border border-orange-100">
+                            <div class="text-3xl font-black text-bikOrange font-display fc-num tracking-tight">Hindi+Eng</div>
+                            <div class="text-[11px] font-bold text-slate-600 mt-0.5">Indian Native Tone</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Visual: Minimalist 3D AI Talking Agent Voice Orb -->
+                <div class="lg:col-span-5 relative">
+                    <!-- Main Glass Card with 3D Generated AI Voice Orb & Acoustic Waves -->
+                    <div class="rounded-3xl border border-purple-200/80 bg-white p-3 shadow-2xl bik-mega-shadow fc-card-glow relative overflow-hidden group">
+                        <div class="relative overflow-hidden rounded-2xl bg-slate-950 aspect-[4/3] flex items-center justify-center">
+                            <!-- High-Res 3D Minimalist AI Voice Orb Image -->
+                            <img src="images/ai_voice_agent_orb_3d.jpg" alt="Minimalist 3D AI Talking Agent Voice Orb" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700">
+                            
+                            <!-- Pulsing Acoustic Ripples Overlay -->
+                            <div class="fc-acoustic-ring"></div>
+                            <div class="fc-acoustic-ring-delayed"></div>
+
+                            <!-- Live Soundwave Equalizer Overlay at bottom of visual -->
+                            <div class="absolute bottom-4 left-4 right-4 fc-glass-dark p-3 rounded-xl border border-white/10 flex items-center justify-between z-10 backdrop-blur-md">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></div>
+                                    <span class="text-[11px] font-bold text-slate-200">Active Outbound Call</span>
+                                </div>
+
+                                <!-- Dynamic Audio Visualizer Bars -->
+                                <div class="flex items-center gap-1 h-5">
+                                    <span class="w-1 bg-cyan-400 rounded-full h-2 fc-wave-bar" style="animation-duration: 0.8s;"></span>
+                                    <span class="w-1 bg-purple-400 rounded-full h-5 fc-wave-bar" style="animation-duration: 1.1s;"></span>
+                                    <span class="w-1 bg-orange-400 rounded-full h-3 fc-wave-bar" style="animation-duration: 0.7s;"></span>
+                                    <span class="w-1 bg-emerald-400 rounded-full h-4 fc-wave-bar" style="animation-duration: 1.3s;"></span>
+                                    <span class="w-1 bg-purple-300 rounded-full h-2 fc-wave-bar" style="animation-duration: 0.9s;"></span>
+                                    <span class="w-1 bg-cyan-300 rounded-full h-5 fc-wave-bar" style="animation-duration: 1.0s;"></span>
+                                </div>
+
+                                <button onclick="simulateHeroCall()" id="heroCallBtn" class="px-2.5 py-1 rounded-lg bg-purple-600 hover:bg-purple-500 text-white font-bold text-[10px] transition flex items-center gap-1 shadow-sm">
+                                    <i class="fa-solid fa-volume-high"></i>
+                                    <span id="heroCallBtnText">Test Audio</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Card Footer Strip -->
+                        <div class="p-3 bg-slate-900 text-white rounded-xl mt-2 flex items-center justify-between text-xs font-semibold shadow-inner">
+                            <span class="flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                                <span class="text-slate-300 text-[11px]">Caller ID: Rahul Sharma (COD Verification)</span>
+                            </span>
+                            <span class="text-purple-300 font-mono text-[11px] bg-purple-900/60 px-2 py-0.5 rounded-md border border-purple-700/50">Intent: 99.8% Confirmed</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- OFFICIAL AI & TELEPHONY INTEGRATION STRIP -->
+    <section class="py-8 bg-purple-50/40 border-y border-purple-100/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs font-bold text-slate-500">
+                <span class="uppercase tracking-wider text-[11px] text-purple-700 flex items-center gap-1.5"><i class="fa-solid fa-microphone-lines text-purple-500 text-base"></i> Voice AI Infrastructure:</span>
+                <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-purple-700 font-bold"><i class="fa-solid fa-wand-magic-sparkles text-lg text-purple-500"></i> Autonomous Voice Engine</span>
+                <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-blue-700"><i class="fa-solid fa-phone-volume text-lg text-blue-600"></i> Cloud SIP & Exotel Trunk</span>
+                <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-emerald-700"><i class="fa-brands fa-whatsapp text-lg text-emerald-500"></i> WhatsApp Call Gateway</span>
+                <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-lime-800"><i class="fa-brands fa-shopify text-lg text-[#96bf48]"></i> Shopify COD Verification</span>
+                <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-amber-700"><i class="fa-solid fa-box-open text-lg text-amber-600"></i> RTO Loss Prevention</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- CORE FEATURE SHOWCASES -->
+    <section class="py-24 bg-white border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-28">
+            
+            <!-- Feature 1: COD Verification & RTO Slash -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-6 space-y-6">
+                    <span class="text-xs font-bold uppercase tracking-widest text-purple-600 bg-purple-50 border border-purple-100 px-3.5 py-1.5 rounded-full">
+                        <i class="fa-solid fa-shield-halved text-purple-600 mr-1"></i> RTO Fraud Prevention
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark font-display leading-tight">
+                        Confirm COD Orders in 60s, <span class="text-purple-600">Slash Return-to-Origin by 45%</span>
+                    </h2>
+                    <p class="text-slateText text-base leading-relaxed">
+                        Fake or impulsive Cash-on-Delivery orders eat up to 30% of Indian eCommerce profits. The moment a COD order is placed, our AI Voice Agent dials the buyer, confirms the pincode, and verifies intent in polite Hinglish before dispatching riders.
+                    </p>
+                    
+                    <!-- Pulsing Live Waveform & Transcript Box -->
+                    <div class="p-5 rounded-2xl bg-slate-900 text-white space-y-4 shadow-xl">
+                        <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+                                <span class="text-xs font-bold uppercase text-slate-300">Live Voice Call Simulation</span>
+                            </div>
+                            <span class="text-[11px] text-purple-300 font-mono">00:42 • Latency: 180ms</span>
+                        </div>
+
+                        <!-- Audio Waveform Visualizer -->
+                        <div class="flex items-center justify-center gap-1 h-8">
+                            <span class="w-1 bg-purple-400 rounded-full animate-pulse h-4"></span>
+                            <span class="w-1 bg-purple-300 rounded-full animate-pulse h-7"></span>
+                            <span class="w-1 bg-purple-500 rounded-full animate-pulse h-3"></span>
+                            <span class="w-1 bg-cyan-400 rounded-full animate-pulse h-8"></span>
+                            <span class="w-1 bg-purple-400 rounded-full animate-pulse h-5"></span>
+                            <span class="w-1 bg-purple-200 rounded-full animate-pulse h-6"></span>
+                            <span class="w-1 bg-cyan-300 rounded-full animate-pulse h-3"></span>
+                        </div>
+
+                        <div class="p-3 bg-slate-800/80 rounded-xl text-xs space-y-2 font-sans border border-slate-700">
+                            <p><strong class="text-purple-400">AI Agent:</strong> "Namaste Rahul ji! Main Flying Cheetah se call kar rahi hoon. Aapka ₹1,899 ka Kurta order confirm karna tha, address Charni Road hai na?"</p>
+                            <p><strong class="text-emerald-400">Customer:</strong> "Haan ji, bilkul sahi hai. Kal tak deliver ho jayega?"</p>
+                            <p><strong class="text-purple-400">AI Agent:</strong> "Haan ji Rahul ji, order confirm ho gaya hai! WhatsApp par Borzo live tracking link bhej diya hai."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Minimalist AI Talking Agent Call Console & Verification Simulator -->
+                <div class="lg:col-span-6">
+                    <div class="rounded-3xl border border-purple-200/80 bg-slate-950 p-6 sm:p-8 shadow-2xl bik-mega-shadow fc-card-glow relative overflow-hidden text-white space-y-6">
+                        <!-- Background Ambient Glow -->
+                        <div class="absolute -top-24 -right-24 w-64 h-64 bg-purple-600/20 rounded-full blur-3xl pointer-events-none"></div>
+                        <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-orange-600/20 rounded-full blur-3xl pointer-events-none"></div>
+
+                        <!-- Header Bar -->
+                        <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-purple-600 to-orange-500 flex items-center justify-center text-white shadow-md shadow-purple-500/20">
+                                    <i class="fa-solid fa-headset text-base"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-sm font-black font-display text-white">AI Voice Caller Terminal</h4>
+                                    <p class="text-[10px] text-slate-400 font-mono">Exotel Cloud SIP • Indian HD Voice</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-bold flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                                    <span>Call in Progress: 00:38</span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Minimalist Animated Talking Orb & Waveform Centerpiece -->
+                        <div class="relative py-6 flex flex-col items-center justify-center">
+                            <!-- Acoustic Wave Rings -->
+                            <div class="relative w-28 h-28 flex items-center justify-center">
+                                <div class="fc-acoustic-ring"></div>
+                                <div class="fc-acoustic-ring-delayed"></div>
+                                
+                                <!-- Core Luminous Voice Orb -->
+                                <div class="w-20 h-20 rounded-full bg-gradient-to-tr from-purple-600 via-pink-500 to-orange-400 fc-voice-orb-glow flex items-center justify-center shadow-2xl relative z-10 cursor-pointer" onclick="toggleCallSimulation()" title="Click to test voice cadence">
+                                    <i class="fa-solid fa-microphone text-white text-xl animate-pulse"></i>
+                                </div>
+                            </div>
+
+                            <!-- Live Voice Caption -->
+                            <div class="mt-4 text-center space-y-1">
+                                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-xs text-purple-300 font-medium">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse"></span>
+                                    <span id="callSpeakerStatus">AI Agent speaking to buyer in Mumbai...</span>
+                                </div>
+                                <p id="callLiveCaption" class="text-xs text-slate-300 italic max-w-sm font-sans pt-1">
+                                    "Haan ji Rahul ji, order confirm ho gaya hai! WhatsApp par Borzo live tracking link bhej diya hai."
+                                </p>
+                            </div>
+
+                            <!-- Dynamic Sound Waveform Equalizer Bars -->
+                            <div class="flex items-center justify-center gap-1.5 h-8 mt-4">
+                                <span class="w-1 bg-cyan-400 rounded-full h-3 fc-wave-bar" style="animation-duration: 0.6s;"></span>
+                                <span class="w-1.5 bg-purple-400 rounded-full h-6 fc-wave-bar" style="animation-duration: 0.9s;"></span>
+                                <span class="w-1.5 bg-pink-500 rounded-full h-8 fc-wave-bar" style="animation-duration: 0.7s;"></span>
+                                <span class="w-2 bg-orange-400 rounded-full h-5 fc-wave-bar" style="animation-duration: 1.1s;"></span>
+                                <span class="w-1.5 bg-emerald-400 rounded-full h-7 fc-wave-bar" style="animation-duration: 0.8s;"></span>
+                                <span class="w-1 bg-cyan-300 rounded-full h-4 fc-wave-bar" style="animation-duration: 1.0s;"></span>
+                            </div>
+                        </div>
+
+                        <!-- Live Order Telemetry Card -->
+                        <div class="p-4 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-3 text-xs">
+                            <div class="flex items-center justify-between">
+                                <span class="text-slate-400 font-medium flex items-center gap-1.5">
+                                    <i class="fa-brands fa-shopify text-[#96bf48]"></i> Order #4921 (Shopify COD)
+                                </span>
+                                <span class="text-emerald-400 font-bold bg-emerald-950/80 px-2.5 py-0.5 rounded-full border border-emerald-800/60 flex items-center gap-1">
+                                    <i class="fa-solid fa-circle-check text-[10px]"></i> Intent Confirmed (99.8%)
+                                </span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3 text-slate-300 pt-1">
+                                <div>
+                                    <span class="text-[10px] text-slate-500 block uppercase font-mono">Recipient</span>
+                                    <strong class="text-white text-xs">Rahul Sharma</strong> (+91 98765 43210)
+                                </div>
+                                <div>
+                                    <span class="text-[10px] text-slate-500 block uppercase font-mono">Dispatch Destination</span>
+                                    <strong class="text-white text-xs">Charni Road, South Mumbai</strong>
+                                </div>
+                            </div>
+                            
+                            <!-- Triggered Automated Action -->
+                            <div class="p-2.5 rounded-xl bg-purple-950/40 border border-purple-800/40 flex items-center justify-between text-[11px] text-purple-200">
+                                <span class="flex items-center gap-1.5">
+                                    <i class="fa-solid fa-motorcycle text-orange-400"></i>
+                                    <span>Borzo Hyperlocal Courier Dispatched</span>
+                                </span>
+                                <span class="font-bold text-emerald-400 font-mono">OTP: 4921</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 2: High-AOV Abandoned Cart Recovery -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-6 order-2 lg:order-1">
+                    <div class="p-3 rounded-2xl border border-slate-200 bg-white shadow-2xl bik-mega-shadow">
+                        <img src="images/whatsapp_commerce_checkout_mockup.jpg" alt="WhatsApp Instant Followup after Voice Call" class="rounded-xl w-full h-auto object-cover border border-slate-100">
+                    </div>
+                </div>
+                <div class="lg:col-span-6 order-1 lg:order-2 space-y-6">
+                    <span class="text-xs font-bold uppercase tracking-widest text-emerald-600 bg-emerald-50 border border-emerald-100 px-3.5 py-1.5 rounded-full">
+                        <i class="fa-solid fa-phone text-emerald-500 mr-1"></i> High-Touch Sales Recovery
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark font-display leading-tight">
+                        Voice Call High-Value Baskets <span class="text-emerald-600">Over ₹3,000+</span>
+                    </h2>
+                    <p class="text-slateText text-base leading-relaxed">
+                        Don't let high-value orders slip away through unread emails. When an order above ₹3,000 is abandoned at checkout, our voice agent dials them within 15 minutes, solves hesitation regarding sizing or returns, and instantly pushes a 1-tap checkout link into their WhatsApp.
+                    </p>
+                    <div class="pt-2">
+                        <a href="https://wa.me/919876543210?text=Hi%20Bhagat%20%26%20Yash,%20I%20want%20to%20deploy%20AI%20Voice%20Agents%20for%20my%20store." target="_blank" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs transition shadow-lg shadow-purple-500/25">
+                            <i class="fa-solid fa-microphone"></i> Test Voice Call Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    
+    <footer class="py-12 bg-white border-t border-slate-200 text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-3">
+                <img src="images/flying_cheetah_hd_logo_heraldic.jpg" alt="Flying Cheetah" class="h-6 w-6 rounded-full object-cover border border-slate-300">
+                <span class="font-bold text-slate-700">FLYING CHEETAH AI VOICE AGENTS © 2026.</span>
+                <span>All Rights Reserved.</span>
+            </div>
+            <div class="flex flex-wrap items-center gap-4 font-medium text-slate-600">
+                <a href="index.html" class="hover:text-bikOrange transition">Main Site</a>
+                <a href="store-automation.html" class="hover:text-bikOrange transition">Store Automation</a>
+                <a href="instagram-automation.html" class="hover:text-pink-600 transition">Instagram</a>
+                <a href="whatsapp-automation.html" class="hover:text-emerald-600 transition">WhatsApp</a>
+                <a href="ctwa-automation.html" class="hover:text-blue-600 transition">CTWA Ads</a>
+                <a href="delivery.html" class="hover:text-bikOrange transition">Fleet Protocol</a>
+                <a href="about.html" class="hover:text-bikOrange transition">About Us</a>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Toggle dropdowns on click & close when clicking outside
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdownParents = document.querySelectorAll('.dropdown-parent');
+            dropdownParents.forEach(function(parent) {
+                const btn = parent.querySelector('button');
+                if (btn) {
+                    btn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        // Close other open dropdowns
+                        dropdownParents.forEach(p => { if (p !== parent) p.classList.remove('active'); });
+                        parent.classList.toggle('active');
+                    });
+                }
+            });
+
+            document.addEventListener('click', function(e) {
+                dropdownParents.forEach(p => p.classList.remove('active'));
+            });
+        });
+
+        // Interactive AI Voice Agent Call Simulation
+        const conversationSteps = [
+            { speaker: "AI Agent", text: "\"Namaste Rahul ji! Main Flying Cheetah se call kar rahi hoon. Aapka ₹1,899 ka Kurta order confirm karna tha, address Charni Road hai na?\"", status: "AI speaking to buyer in Mumbai..." },
+            { speaker: "Rahul (Customer)", text: "\"Haan ji, bilkul sahi hai. Kal tak deliver ho jayega?\"", status: "Buyer confirming order intent & pincode..." },
+            { speaker: "AI Agent", text: "\"Haan ji Rahul ji, order confirm ho gaya hai! WhatsApp par Borzo live tracking link bhej diya hai.\"", status: "Order verified & dispatched via Borzo!" }
+        ];
+        let currentStep = 0;
+        let isSimulating = false;
+
+        function toggleCallSimulation() {
+            currentStep = (currentStep + 1) % conversationSteps.length;
+            const step = conversationSteps[currentStep];
+            const captionEl = document.getElementById('callLiveCaption');
+            const statusEl = document.getElementById('callSpeakerStatus');
+            if (captionEl && statusEl) {
+                captionEl.textContent = step.text;
+                statusEl.textContent = step.status;
+            }
+        }
+
+        function simulateHeroCall() {
+            const btnText = document.getElementById('heroCallBtnText');
+            if (!isSimulating) {
+                isSimulating = true;
+                if (btnText) btnText.textContent = "Playing...";
+                let count = 0;
+                const timer = setInterval(() => {
+                    toggleCallSimulation();
+                    count++;
+                    if (count >= conversationSteps.length) {
+                        clearInterval(timer);
+                        isSimulating = false;
+                        if (btnText) btnText.textContent = "Test Audio";
+                    }
+                }, 2200);
+            }
+        }
+    </script>
+    <!-- Supabase & Flying Cheetah Backend Architecture SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/leads.js"></script>
+    <script src="js/fc-widgets.js"></script>
+
+<script>
+        // Top-level nav links hover safety: immediately dismiss all dropdowns
+        document.querySelectorAll('nav > a').forEach(function(link) {
+            link.addEventListener('mouseenter', function() {
+                document.querySelectorAll('.home-dropdown-parent, .products-dropdown-parent, .dropdown-parent').forEach(function(p) {
+                    p.classList.remove('active');
+                });
+            });
+        });
+        // Click outside dismiss
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.home-dropdown-parent') && !e.target.closest('.products-dropdown-parent') && !e.target.closest('.dropdown-parent')) {
+                document.querySelectorAll('.home-dropdown-parent, .products-dropdown-parent, .dropdown-parent').forEach(function(p) {
+                    p.classList.remove('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

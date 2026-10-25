@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <link rel="icon" type="image/jpeg" href="images/flying_cheetah_hd_logo_heraldic.jpg">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Automation & DM Conversational Sales — Flying Cheetah</title>
+    <meta name="description" content="Instagram Automation & DM Conversational Sales — Flying Cheetah - Flying Cheetah Labs Autonomous AI Commerce & Omnichannel Marketing Suite.">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/fx.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['"Inter"', 'sans-serif'], display: ['"Plus Jakarta Sans"', 'sans-serif'], outfit: ['"Outfit"', 'sans-serif'], mono: ['"Space Grotesk"', 'monospace'] },
+                    colors: {
+                        igPink: '#E1306C',
+                        igPurple: '#C13584',
+                        igOrange: '#F56040',
+                        bikDark: '#121624',
+                        brandGold: '#E5A93C',
+                        slateText: '#4E5A71'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .ig-gradient-text {
+            background: linear-gradient(45deg, #F56040, #E1306C, #C13584);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .bik-mega-shadow { box-shadow: 0 25px 60px -15px rgba(225, 48, 108, 0.15), 0 0 1px 1px rgba(0, 0, 0, 0.05); }
+        .mega-menu { display: none; }
+        .dropdown-parent:hover .mega-menu { display: block; }
+        .card-anim { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .card-anim:hover { transform: translateY(-4px); box-shadow: 0 20px 35px -10px rgba(0,0,0,0.08); }
+    
+        .home-menu { display: none; }
+        .home-dropdown-parent:hover > .home-menu,
+        .home-dropdown-parent.active > .home-menu { display: block; }
+        .mega-menu { display: none; }
+        .products-dropdown-parent:hover > .mega-menu,
+        .products-dropdown-parent.active > .mega-menu { display: block; }
+        .dropdown-parent:hover > .mega-menu,
+        .dropdown-parent.active > .mega-menu { display: block; }
+    </style>
+</head>
+<body class="bg-white text-slate-900 font-sans antialiased selection:bg-igPink selection:text-white">
+
+    <!-- TOP PROMO BANNER -->
+    <div class="bg-bikDark text-white py-2 px-4 text-center text-xs font-medium">
+        <span>📸 Turn Instagram Reel comments & Story mentions into instant WhatsApp sales with zero human delay.</span>
+        <a href="demo.html" class="underline ml-2 text-brandGold font-bold hover:text-white transition">Book Live Demo ↗</a>
+    </div>
+
+    <!-- MAIN NAVBAR WITH ACTIVE MEGA-MENU -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-3">
+                <img src="images/flying_cheetah_hd_logo_heraldic.jpg" alt="Flying Cheetah Logo" class="h-11 w-11 rounded-full object-cover border border-slate-200 shadow-sm">
+                <div class="flex flex-col">
+                    <span class="text-xl font-black tracking-tight font-display text-bikDark">FLYING CHEETAH</span>
+                    <span class="text-[9px] text-igPink font-bold tracking-widest uppercase -mt-1">INSTAGRAM AUTOMATION</span>
+                </div>
+            </a>
+
+            <nav class="hidden lg:flex items-center space-x-8 text-sm font-semibold text-slate-700">
+                <!-- HOME DROPDOWN (NEXT TO PRODUCTS) -->
+                <div class="relative home-dropdown-parent py-6">
+                    <button class="home-btn flex items-center gap-1.5 hover:text-bikOrange transition focus:outline-none text-slate-800 hover:text-bikOrange font-bold text-sm">
+                        <i class="fa-solid fa-house text-xs text-bikOrange"></i>
+                        <span>Home</span>
+                        <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200"></i>
+                    </button>
+                    <!-- Dropdown Menu with the 4 items from user image -->
+                    <div class="mega-menu home-menu absolute top-full left-0 w-72 bg-white rounded-2xl border border-slate-200 p-4 shadow-2xl bik-mega-shadow z-50">
+                        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-3 pb-2 border-b border-slate-100 flex items-center justify-between">
+                            <span>Core Portals</span>
+                            <a href="home.html" class="text-bikOrange hover:underline font-bold">Executive Hub ↗</a>
+                        </div>
+                        <div class="space-y-1.5 pt-2">
+                            <!-- 1. Main Site -->
+                            <a href="index.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
+                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-bikOrange flex items-center justify-center text-sm group-hover:scale-110 transition">
+                                    <i class="fa-solid fa-store"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">Main Site</div>
+                                    <div class="text-[10px] text-slate-400">Flagship AI Commerce Suite</div>
+                                </div>
+                            </a>
+
+<!-- 3. Fleet Protocol -->
+                                                        <a href="web-development.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
+                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-bikOrange flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-code"></i></div>
+                                <div><div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">Web Development</div><div class="text-[10px] text-slate-400">ScaleDelight Inspired &bull; Mumbai</div></div>
+                            </a>
+<a href="delivery.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-emerald-50 text-slate-700 hover:text-emerald-600 transition group">
+                                <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center text-sm group-hover:scale-110 transition">
+                                    <i class="fa-solid fa-motorcycle"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs font-bold text-bikDark group-hover:text-emerald-600">Fleet Protocol</div>
+                                    <div class="text-[10px] text-slate-400">Hyperlocal Borzo/Porter API</div>
+                                </div>
+                            </a>
+
+                                                        <a href="about.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
+                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-bikOrange flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-circle-info"></i></div>
+                                <div><div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">About Us</div><div class="text-[10px] text-slate-400">Company Motive & Founders</div></div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="relative products-dropdown-parent dropdown-parent py-6">
+                    <button class="flex items-center gap-1.5 hover:text-igPink transition focus:outline-none text-igPink font-bold">
+                        <span>Products & Automations</span>
+                        <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                    </button>
+                    <!-- Mega Menu -->
+                    <div class="mega-menu absolute top-full -left-28 w-[760px] bg-white rounded-2xl border border-slate-200 p-8 shadow-2xl bik-mega-shadow z-50">
+                        <div class="grid grid-cols-4 gap-6 text-xs">
+                            <div class="space-y-3">
+                                <div class="flex items-center gap-2 text-igPink font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-bullhorn"></i> CAMPAIGNS</div>
+                                <ul class="space-y-2.5 text-slate-600 font-medium">
+                                    <li><a href="email-marketing.html" class="hover:text-igPink transition block">Email marketing</a></li>
+                                    <li><a href="whatsapp-marketing.html" class="hover:text-igPink transition block">WhatsApp marketing</a></li>
+                                    <li><a href="sms-marketing.html" class="hover:text-igPink transition block">SMS marketing</a></li>
+                                    <li><a href="customer-data-platform.html" class="hover:text-igPink transition block">Customer data platform</a></li>
+                                    <li><a href="rcs-messaging.html" class="hover:text-igPink transition block">RCS messaging</a></li>
+                                </ul>
+                            </div>
+                            <div class="space-y-3 bg-pink-50/70 p-3 -m-3 rounded-xl border border-pink-100">
+                                <div class="flex items-center gap-2 text-igPink font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-gear"></i> AUTOMATIONS</div>
+                                <ul class="space-y-2.5 text-slate-700 font-medium">
+                                    <li><a href="store-automation.html" class="hover:text-igPink transition block">Store automation</a></li>
+                                    <li><a href="instagram-automation.html" class="text-igPink font-bold hover:underline block flex items-center gap-1"><span>Instagram automation</span> <i class="fa-solid fa-arrow-right text-[9px]"></i></a></li>
+                                    <li><a href="whatsapp-automation.html" class="hover:text-igPink transition block">WhatsApp automation</a></li>
+                                    <li><a href="ctwa-automation.html" class="hover:text-igPink transition block">Click to WhatsApp ads</a></li>
+                                    <li><a href="ai-voice-agents.html" class="hover:text-igPink transition block">AI Voice Agents</a></li>
+                                </ul>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex items-center gap-2 text-igPink font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-headset"></i> HELPDESK</div>
+                                <ul class="space-y-2.5 text-slate-600 font-medium">
+                                    <li><a href="customer-support.html" class="hover:text-igPink transition block">Customer support</a></li>
+                                    <li><a href="whatsapp-calling.html" class="hover:text-igPink transition block">WhatsApp calling</a></li>
+                                </ul>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="space-y-2">
+                                    <div class="text-igPink font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-comment-dots"></i> POPUPS</div>
+                                    <a href="solutions.html?module=gamification" class="hover:text-igPink transition block text-slate-600">Gamification</a>
+                                </div>
+                                <div class="space-y-2 border-t border-slate-100 pt-3">
+                                    <div class="text-igPink font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-robot"></i> CHATBOTS</div>
+                                    <a href="solutions.html?module=whatsapp-chatbot" class="hover:text-igPink transition block text-slate-600">WhatsApp chatbot</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="delivery.html" class="hover:text-igPink transition">Fleet Dispatch</a>
+                <a href="web-development.html" class="hover:text-igPink transition">Web Development</a>
+                <a href="about.html" class="hover:text-igPink transition">About Us</a>
+            </nav>
+
+            <div class="flex items-center space-x-4">
+                <a href="https://wa.me/919876543210?text=Hi%20Bhagat%20%26%20Yash,%20I%20want%20to%20deploy%20Instagram%20Automation." target="_blank" class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-gradient-to-r from-igOrange via-igPink to-igPurple text-white font-bold text-sm transition shadow-md shadow-pink-500/20">
+                    Connect Instagram
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION (BIK.AI INSTAGRAM EXACT COPY & VALUE PROPOSITION) -->
+    <section class="pt-16 pb-20 md:pt-24 md:pb-28 bg-gradient-to-b from-pink-50/40 via-white to-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pink-100 border border-pink-200 text-igPink text-xs font-bold uppercase tracking-wide">
+                        <i class="fa-brands fa-instagram text-base"></i> Meta Official Messaging API Partner
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-bikDark tracking-tight leading-[1.08] font-display">
+                        Drive more Instagram interactions <span class="ig-gradient-text">towards transactions</span>.
+                    </h1>
+                    <p class="text-lg text-slateText max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal">
+                        Engage instantly with every interaction from your followers and prospects and turn 50% of them into paying customers with automated Reel comment replies and DM buy-flows.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <button onclick="window.FC_AUTH.openTrialModal()" data-fc-trial="true" href="https://wa.me/919876543210?text=Hi%20Flying%20Cheetah,%20I%20want%20to%20start%20for%20free%20with%20Instagram%20Automation." target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-xl bg-gradient-to-r from-igOrange via-igPink to-igPurple text-white font-bold text-sm transition shadow-lg shadow-pink-500/25">
+                            Start for free
+                        </button>
+                        <a href="demo.html" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-xl border border-slate-300 hover:border-igPink text-slate-800 font-bold text-sm bg-white hover:bg-pink-50/50 transition">
+                            Book a demo
+                        </a>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-6 pt-6 border-t border-slate-100 max-w-lg mx-auto lg:mx-0 text-left">
+                        <div class="p-3 rounded-2xl bg-pink-50/60 border border-pink-100">
+                            <div class="text-3xl font-black text-igPink font-display fc-num tracking-tight">50%</div>
+                            <div class="text-[11px] font-bold text-slate-600 mt-0.5">Comment to Buyers</div>
+                        </div>
+                        <div class="p-3 rounded-2xl bg-emerald-50/60 border border-emerald-100">
+                            <div class="text-3xl font-black text-emerald-600 font-display fc-num tracking-tight">2.1s</div>
+                            <div class="text-[11px] font-bold text-slate-600 mt-0.5">Instant Auto-DM</div>
+                        </div>
+                        <div class="p-3 rounded-2xl bg-purple-50/60 border border-purple-100">
+                            <div class="text-3xl font-black text-purple-600 font-display fc-num tracking-tight">3.4x</div>
+                            <div class="text-[11px] font-bold text-slate-600 mt-0.5">ROAS Multiplier</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Visual: Generated UI Mockup -->
+                <div class="lg:col-span-5 relative">
+                    <div class="rounded-3xl border border-pink-200/80 bg-white p-3 shadow-2xl bik-mega-shadow fc-card-glow relative overflow-hidden group">
+                        <div class="relative overflow-hidden rounded-2xl">
+                            <img src="images/instagram_automation_dashboard.jpg" alt="Instagram Automation Comment to DM Purchase Pipeline" class="w-full h-auto object-cover transform group-hover:scale-[1.02] transition duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent pointer-events-none"></div>
+                        </div>
+                        <div class="p-3.5 bg-slate-900 text-white rounded-xl mt-2 flex items-center justify-between text-xs font-semibold shadow-inner">
+                            <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Active Reel Trigger: 'Price Please'</span>
+                            <span class="text-pink-300 font-mono text-[11px] bg-pink-950 px-2 py-0.5 rounded-md border border-pink-700/50">Auto-DM Dispatched</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- OFFICIAL INSTAGRAM & META INTEGRATION STRIP -->
+    <section class="py-8 bg-pink-50/40 border-y border-pink-100/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs font-bold text-slate-500">
+                <span class="uppercase tracking-wider text-[11px] text-pink-700 flex items-center gap-1.5"><i class="fa-brands fa-instagram text-pink-600 text-base"></i> Meta Official Tech:</span>
+                <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-pink-600 font-bold"><i class="fa-brands fa-instagram text-lg text-[#E1306C]"></i> Instagram Graph API</span>
+                <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-blue-700"><i class="fa-brands fa-meta text-lg text-[#0866FF]"></i> Meta Business Suite</span>
+                <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-emerald-700"><i class="fa-brands fa-whatsapp text-lg text-emerald-500"></i> WhatsApp Cloud API</span>
+                <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-lime-800"><i class="fa-brands fa-shopify text-lg text-[#96bf48]"></i> Shopify Direct Sync</span>
+                <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-cyan-800"><i class="fa-solid fa-qrcode text-lg text-cyan-600"></i> UPI 1-Tap Pay</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- CORE 4 FEATURES (EXACT BIK.AI ARCHITECTURE) -->
+    <section class="py-24 bg-white border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="p-6 rounded-2xl border border-slate-200 bg-slate-50/60 card-anim">
+                    <div class="w-12 h-12 rounded-xl bg-pink-100 text-igPink flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+                    <h3 class="font-bold text-base text-bikDark mb-2">Engagement on Auto-Pilot</h3>
+                    <p class="text-xs text-slateText leading-relaxed">Journeys trigger automatically when a user comments on Reels, DMs on ads, or mentions you in Stories, guiding leads to purchases.</p>
+                </div>
+
+                <div class="p-6 rounded-2xl border border-slate-200 bg-slate-50/60 card-anim">
+                    <div class="w-12 h-12 rounded-xl bg-orange-100 text-igOrange flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-address-card"></i>
+                    </div>
+                    <h3 class="font-bold text-base text-bikDark mb-2">Intent-Based Lead Capture</h3>
+                    <p class="text-xs text-slateText leading-relaxed">Qualify leads based on product intent and automatically retarget them with dedicated WhatsApp catalog campaigns.</p>
+                </div>
+
+                <div class="p-6 rounded-2xl border border-slate-200 bg-slate-50/60 card-anim">
+                    <div class="w-12 h-12 rounded-xl bg-purple-100 text-igPurple flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <h3 class="font-bold text-base text-bikDark mb-2">AI Chatbot Responses</h3>
+                    <p class="text-xs text-slateText leading-relaxed">Handles 80% of routine product questions instantly in DMs, escalating high-value buyers to human staff automatically.</p>
+                </div>
+
+                <div class="p-6 rounded-2xl border border-slate-200 bg-slate-50/60 card-anim">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <h3 class="font-bold text-base text-bikDark mb-2">Measure Business Value</h3>
+                    <p class="text-xs text-slateText leading-relaxed">Track step-by-step performance of your Instagram journeys with real-time revenue attribution dashboards.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    
+    <footer class="py-12 bg-white border-t border-slate-200 text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-3">
+                <img src="images/flying_cheetah_hd_logo_heraldic.jpg" alt="Flying Cheetah" class="h-6 w-6 rounded-full object-cover border border-slate-300">
+                <span class="font-bold text-slate-700">FLYING CHEETAH INSTAGRAM COMMERCE © 2026.</span>
+                <span>All Rights Reserved.</span>
+            </div>
+            <div class="flex flex-wrap items-center gap-4 font-medium text-slate-600">
+                <a href="index.html" class="hover:text-bikOrange transition">Main Site</a>
+                <a href="store-automation.html" class="hover:text-bikOrange transition">Store Automation</a>
+                <a href="whatsapp-automation.html" class="hover:text-emerald-600 transition">WhatsApp</a>
+                <a href="ctwa-automation.html" class="hover:text-blue-600 transition">CTWA Ads</a>
+                <a href="ai-voice-agents.html" class="hover:text-purple-600 transition">Voice Agents</a>
+                <a href="delivery.html" class="hover:text-bikOrange transition">Fleet Protocol</a>
+                <a href="about.html" class="hover:text-bikOrange transition">About Us</a>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Toggle dropdowns on click & close when clicking outside
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdownParents = document.querySelectorAll('.dropdown-parent');
+            dropdownParents.forEach(function(parent) {
+                const btn = parent.querySelector('button');
+                if (btn) {
+                    btn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        // Close other open dropdowns
+                        dropdownParents.forEach(p => { if (p !== parent) p.classList.remove('active'); });
+                        parent.classList.toggle('active');
+                    });
+                }
+            });
+
+            document.addEventListener('click', function(e) {
+                dropdownParents.forEach(p => p.classList.remove('active'));
+            });
+        });
+    </script>
+    <!-- Supabase & Flying Cheetah Backend Architecture SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/leads.js"></script>
+    <script src="js/fc-widgets.js"></script>
+
+<script>
+        // Top-level nav links hover safety: immediately dismiss all dropdowns
+        document.querySelectorAll('nav > a').forEach(function(link) {
+            link.addEventListener('mouseenter', function() {
+                document.querySelectorAll('.home-dropdown-parent, .products-dropdown-parent, .dropdown-parent').forEach(function(p) {
+                    p.classList.remove('active');
+                });
+            });
+        });
+        // Click outside dismiss
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.home-dropdown-parent') && !e.target.closest('.products-dropdown-parent') && !e.target.closest('.dropdown-parent')) {
+                document.querySelectorAll('.home-dropdown-parent, .products-dropdown-parent, .dropdown-parent').forEach(function(p) {
+                    p.classList.remove('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

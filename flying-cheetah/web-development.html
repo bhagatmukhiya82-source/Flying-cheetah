@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <link rel="icon" type="image/jpeg" href="images/flying_cheetah_hd_logo_heraldic.jpg">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Development Services in Mumbai | High-Speed eCommerce & Storefront Engineering — Flying Cheetah</title>
+    <meta name="description" content="Best web development company in Mumbai. We engineer high-speed Shopify, WooCommerce, and Headless Next.js storefronts with sub-800ms load times, day-one SEO, and native WhatsApp commerce integration.">
+    <meta name="keywords" content="web development services in mumbai, web development company in mumbai, website designers in mumbai, shopify web developer mumbai, ecommerce website development mumbai, best website redesign services mumbai">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/fx.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Inter"', 'sans-serif'],
+                        display: ['"Plus Jakarta Sans"', '"Outfit"', 'sans-serif'],
+                        tech: ['"Space Grotesk"', 'monospace']
+                    },
+                    colors: {
+                        bikOrange: '#FF6838',
+                        bikOrangeDark: '#E04A1B',
+                        bikDark: '#0B0F19',
+                        bikBg: '#FFF9F6',
+                        brandGold: '#F59E0B',
+                        slateText: '#475569'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .bik-mega-shadow { box-shadow: 0 25px 60px -15px rgba(255, 104, 56, 0.15), 0 0 1px 1px rgba(0, 0, 0, 0.05); }
+        .card-anim { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .card-anim:hover { transform: translateY(-4px); box-shadow: 0 20px 35px -10px rgba(0,0,0,0.08); }
+        .home-menu { display: none; }
+        .home-dropdown-parent:hover > .home-menu,
+        .home-dropdown-parent.active > .home-menu { display: block; }
+        .mega-menu { display: none; }
+        .products-dropdown-parent:hover > .mega-menu,
+        .products-dropdown-parent.active > .mega-menu { display: block; }
+        .dropdown-parent:hover > .mega-menu,
+        .dropdown-parent.active > .mega-menu { display: block; }
+    </style>
+</head>
+<body class="bg-white text-slate-800 font-sans antialiased selection:bg-orange-100 selection:text-bikOrange">
+
+    <!-- TOP PROMO BANNER -->
+    <div class="bg-bikDark text-white py-2 px-4 text-center text-xs font-medium">
+        <span>🚀 High-Speed Store Engineering in Mumbai: Sub-800ms load times &amp; Core Web Vitals guaranteed.</span>
+        <a href="demo.html" class="underline ml-2 text-brandGold font-bold hover:text-white transition">Book Live Demo ↗</a>
+    </div>
+
+    <!-- MAIN NAVBAR -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <a href="index.html" class="flex items-center space-x-3">
+                <img src="images/flying_cheetah_hd_logo_heraldic.jpg" alt="Flying Cheetah Logo" class="h-11 w-11 rounded-full object-cover border border-slate-200 shadow-sm">
+                <div class="flex flex-col">
+                    <span class="text-xl font-black tracking-tight font-display text-bikDark">FLYING CHEETAH</span>
+                    <span class="text-[9px] text-bikOrange font-bold tracking-widest uppercase -mt-1">WEB DEVELOPMENT • MUMBAI</span>
+                </div>
+            </a>
+
+            <!-- NAV LINKS -->
+            <nav class="hidden lg:flex items-center space-x-8 text-sm font-semibold text-slate-700">
+                <!-- HOME DROPDOWN -->
+                <div class="relative home-dropdown-parent py-6">
+                    <button class="home-btn flex items-center gap-1.5 hover:text-bikOrange transition focus:outline-none text-slate-800 hover:text-bikOrange font-bold text-sm">
+                        <i class="fa-solid fa-house text-xs text-bikOrange"></i>
+                        <span>Home</span>
+                        <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200"></i>
+                    </button>
+                    <div class="mega-menu home-menu absolute top-full left-0 w-72 bg-white rounded-2xl border border-slate-200 p-4 shadow-2xl bik-mega-shadow z-50">
+                        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-3 pb-2 border-b border-slate-100 flex items-center justify-between">
+                            <span>Core Portals</span>
+                            <a href="home.html" class="text-bikOrange hover:underline font-bold">Executive Hub ↗</a>
+                        </div>
+                        <div class="space-y-1.5 pt-2">
+                            <a href="index.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
+                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-bikOrange flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-store"></i></div>
+                                <div><div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">Main Site</div><div class="text-[10px] text-slate-400">Flagship AI Commerce Suite</div></div>
+                            </a>
+                            <a href="demo.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
+                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-bikOrange flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-play"></i></div>
+                                <div><div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">Live Demo Portal</div><div class="text-[10px] text-slate-400">Interactive Sandboxes &amp; Walkthrough</div></div>
+                            </a>
+                            <a href="web-development.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-orange-50/70 text-bikOrange font-bold transition group">
+                                <div class="w-8 h-8 rounded-lg bg-orange-200 text-bikOrange flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-code"></i></div>
+                                <div><div class="text-xs font-bold text-bikOrange">Web Development</div><div class="text-[10px] text-slate-500">Mumbai Storefront Engineering</div></div>
+                            </a>
+                            <a href="delivery.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-emerald-50 text-slate-700 hover:text-emerald-600 transition group">
+                                <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-motorcycle"></i></div>
+                                <div><div class="text-xs font-bold text-bikDark group-hover:text-emerald-600">Fleet Protocol</div><div class="text-[10px] text-slate-400">Hyperlocal Borzo/Porter API</div></div>
+                            </a>
+                            <a href="about.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
+                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-bikOrange flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-circle-info"></i></div>
+                                <div><div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">About Us</div><div class="text-[10px] text-slate-400">Company Motive &amp; Founders</div></div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRODUCTS & AUTOMATIONS MEGA MENU -->
+                <div class="relative products-dropdown-parent dropdown-parent py-6">
+                    <button class="flex items-center gap-1.5 hover:text-bikOrange transition focus:outline-none text-slate-700">
+                        <span>Products &amp; Automations</span>
+                        <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200"></i>
+                    </button>
+                    <div class="mega-menu absolute top-full -left-20 w-[680px] bg-white rounded-3xl border border-slate-200 p-7 shadow-2xl bik-mega-shadow z-50 text-xs">
+                        <div class="grid grid-cols-3 gap-6">
+                            <div class="space-y-3">
+                                <div class="text-bikOrange font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-bullhorn"></i> CAMPAIGNS</div>
+                                <ul class="space-y-2.5 text-slate-600">
+                                    <li><a href="whatsapp-marketing.html" class="hover:text-bikOrange transition block font-bold text-emerald-600">WhatsApp marketing</a></li>
+                                    <li><a href="rcs-messaging.html" class="hover:text-bikOrange transition block font-semibold text-blue-600">RCS messaging ↗</a></li>
+                                    <li><a href="sms-marketing.html" class="hover:text-bikOrange transition block">SMS marketing</a></li>
+                                    <li><a href="email-marketing.html" class="hover:text-bikOrange transition block">Email marketing</a></li>
+                                    <li><a href="customer-data-platform.html" class="hover:text-bikOrange transition block">Customer data platform</a></li>
+                                </ul>
+                            </div>
+                            <div class="space-y-3 bg-orange-50/70 p-3 -m-3 rounded-xl border border-orange-100">
+                                <div class="flex items-center gap-2 text-bikOrange font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-gear"></i> AUTOMATIONS</div>
+                                <ul class="space-y-2.5 text-slate-700 font-medium">
+                                    <li><a href="store-automation.html" class="hover:text-bikOrange transition block font-bold text-bikOrange">Store automation ↗</a></li>
+                                    <li><a href="instagram-automation.html" class="hover:text-bikOrange transition block font-semibold text-pink-600">Instagram automation</a></li>
+                                    <li><a href="whatsapp-automation.html" class="hover:text-bikOrange transition block font-semibold text-emerald-600">WhatsApp automation</a></li>
+                                    <li><a href="ctwa-automation.html" class="hover:text-bikOrange transition block font-semibold text-blue-600">Click to WhatsApp ads</a></li>
+                                    <li><a href="ai-voice-agents.html" class="hover:text-bikOrange transition block font-semibold text-purple-600">AI Voice Agents</a></li>
+                                </ul>
+                            </div>
+                            <div class="space-y-3 bg-emerald-50/50 p-3 -m-3 rounded-xl border border-emerald-100">
+                                <div class="flex items-center gap-2 text-emerald-700 font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-headset"></i> HELPDESK</div>
+                                <ul class="space-y-2.5 text-slate-700 font-medium">
+                                    <li><a href="customer-support.html" class="hover:text-emerald-600 transition block">Customer support</a></li>
+                                    <li><a href="whatsapp-calling.html" class="hover:text-emerald-600 transition block font-bold text-emerald-700">WhatsApp calling ↗</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="delivery.html" class="hover:text-bikOrange transition">Fleet Dispatch</a>
+                <a href="web-development.html" class="text-bikOrange font-bold">Web Development</a>
+                <a href="about.html" class="hover:text-bikOrange transition">About Us</a>
+            </nav>
+
+            <div class="flex items-center space-x-3">
+                <div class="fc-auth-slot"></div>
+                <button onclick="window.FC_AUTH.openTrialModal()" data-fc-trial="true" class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-sm transition shadow-md shadow-orange-500/20 cursor-pointer">
+                    Start Store Build
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION (SCALEDELIGHT INSPIRATION + FLYING CHEETAH CONVERSION ENGINE) -->
+    <section class="pt-16 pb-20 md:pt-24 md:pb-28 bg-gradient-to-b from-orange-50/40 via-white to-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Hero Copy (6 cols) -->
+                <div class="lg:col-span-6 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-100 border border-orange-200 text-bikOrange text-xs font-bold uppercase tracking-wide">
+                        <i class="fa-solid fa-bolt text-brandGold"></i> Elite Web Development &amp; Storefront Engineering • Mumbai
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-bikDark tracking-tight leading-[1.08] font-display">
+                        Websites that do more than just look good. <span class="text-bikOrange">We engineer storefronts that sell.</span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-slateText max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal">
+                        Fast websites build trust. Clean code drives ranking. Frictionless checkouts capture revenue. Custom Shopify, Headless Next.js, and WooCommerce builds engineered by Mumbai’s technical architects.
+                    </p>
+
+                    <!-- CTAs -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <button onclick="window.FC_AUTH.openTrialModal()" data-fc-trial="true" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-sm transition shadow-lg shadow-orange-500/25 cursor-pointer">
+                            Start Your Store Build
+                        </button>
+                        <a href="demo.html" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-xl border border-slate-300 hover:border-bikOrange text-slate-800 font-bold text-sm bg-white hover:bg-orange-50/50 transition shadow-sm">
+                            Book a demo
+                        </a>
+                    </div>
+
+                    <!-- Verified Performance Metrics Strip -->
+                    <div class="grid grid-cols-3 gap-6 pt-6 border-t border-slate-100 max-w-lg mx-auto lg:mx-0 text-left font-display">
+                        <div class="p-3 rounded-2xl bg-orange-50/60 border border-orange-100">
+                            <div class="text-3xl font-black text-bikOrange fc-num tracking-tight">&lt; 800ms</div>
+                            <div class="text-[11px] font-bold text-slate-600 mt-0.5">Average Load Speed</div>
+                        </div>
+                        <div class="p-3 rounded-2xl bg-emerald-50/60 border border-emerald-100">
+                            <div class="text-3xl font-black text-emerald-600 fc-num tracking-tight">100/100</div>
+                            <div class="text-[11px] font-bold text-slate-600 mt-0.5">Core Web Vitals</div>
+                        </div>
+                        <div class="p-3 rounded-2xl bg-blue-50/60 border border-blue-100">
+                            <div class="text-3xl font-black text-blue-600 fc-num tracking-tight">+42%</div>
+                            <div class="text-[11px] font-bold text-slate-600 mt-0.5">Conversion Uplift</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Hero: 60 FPS ANIMATED FLOWCHART VIDEO CONSOLE (8-STAGE BLUEPRINT) (6 cols) -->
+                <div class="lg:col-span-6 relative">
+                    <div class="rounded-3xl border border-slate-800 bg-slate-950 shadow-2xl bik-mega-shadow fc-card-glow relative overflow-hidden text-white">
+                        
+                        <!-- Top Video Progress Bar -->
+                        <div class="w-full h-1 bg-slate-800 relative overflow-hidden">
+                            <div id="webDevProgressBar" class="h-full bg-gradient-to-r from-bikOrange via-amber-400 to-emerald-400 transition-all duration-300 w-0"></div>
+                        </div>
+
+                        <!-- Video Player Header Chrome -->
+                        <div class="px-5 py-3 border-b border-slate-800 flex items-center justify-between bg-slate-900/60 backdrop-blur-md">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></span>
+                                <span class="text-[11px] font-bold text-slate-300 ml-1 font-mono flex items-center gap-1.5">
+                                    <i class="fa-solid fa-play text-bikOrange text-[10px]"></i>
+                                    <span>8-Stage High-Performance Engineering Blueprint</span>
+                                </span>
+                            </div>
+
+                            <div class="flex items-center gap-2">
+                                <span id="webDevStepBadge" class="px-2.5 py-0.5 rounded-full bg-orange-950 border border-orange-800/60 text-orange-300 text-[10px] font-mono font-bold">
+                                    Stage 1: Discovery
+                                </span>
+                                <button onclick="toggleWebDevVideo()" id="webDevPlayPauseBtn" class="w-7 h-7 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 flex items-center justify-center transition text-xs" title="Pause / Play">
+                                    <i class="fa-solid fa-pause" id="webDevPlayPauseIcon"></i>
+                                </button>
+                                <button onclick="restartWebDevVideo()" class="w-7 h-7 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 flex items-center justify-center transition text-xs" title="Replay">
+                                    <i class="fa-solid fa-rotate-right"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Video Visual Canvas -->
+                        <div class="p-5 sm:p-6 grid grid-cols-1 sm:grid-cols-12 gap-5 items-center relative">
+                            
+                            <!-- Left: Connected Flowchart Road Map (7 cols) -->
+                            <div class="sm:col-span-7 space-y-2.5 relative">
+                                
+                                <!-- Background Animated Beam Line -->
+                                <div class="absolute left-6 top-6 bottom-6 w-1 -translate-x-1/2 z-0 pointer-events-none">
+                                    <div class="w-full h-full bg-slate-800 rounded-full"></div>
+                                    <div id="webDevBeamActive" class="absolute top-0 left-0 w-full bg-gradient-to-b from-bikOrange via-amber-300 to-emerald-400 rounded-full transition-all duration-500 shadow-[0_0_12px_#ff6838] h-0"></div>
+                                </div>
+
+                                <!-- Node 1: Strategic Discovery -->
+                                <div id="webDevNode1" onclick="jumpWebDevStep(0)" class="relative z-10 p-2.5 rounded-2xl bg-slate-900/90 border border-orange-500/80 flex items-center gap-3 transition-all duration-300 cursor-pointer node-glow-orange">
+                                    <div class="w-8 h-8 rounded-xl bg-orange-500/20 text-bikOrange flex items-center justify-center text-sm font-bold border border-orange-500/30 transition shadow-sm">
+                                        <i class="fa-solid fa-magnifying-glass-chart"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center justify-between">
+                                            <span class="text-xs font-black text-white block">01. Strategy &amp; Audit</span>
+                                            <span class="text-[9px] font-mono text-orange-400 bg-orange-950 px-1.5 py-0.5 rounded border border-orange-800/50">Kick-Off</span>
+                                        </div>
+                                        <span class="text-[10px] text-slate-400 block truncate">Deep architectural &amp; competitor analysis</span>
+                                    </div>
+                                </div>
+
+                                <!-- Node 2: Conversion UX Architecture -->
+                                <div id="webDevNode2" onclick="jumpWebDevStep(1)" class="relative z-10 p-2.5 rounded-2xl bg-slate-900/90 border border-slate-800 flex items-center gap-3 transition-all duration-300 cursor-pointer opacity-40">
+                                    <div class="w-8 h-8 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-sm font-bold border border-purple-500/30 transition shadow-sm">
+                                        <i class="fa-solid fa-sitemap text-xs"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center justify-between">
+                                            <span class="text-xs font-black text-white block">02. Conversion UX</span>
+                                            <span class="text-[9px] font-mono text-purple-300">Wireframes</span>
+                                        </div>
+                                        <span class="text-[10px] text-slate-400 block truncate">User journey &amp; checkout friction removal</span>
+                                    </div>
+                                </div>
+
+                                <!-- Node 3: High-Fidelity UI Design -->
+                                <div id="webDevNode3" onclick="jumpWebDevStep(2)" class="relative z-10 p-2.5 rounded-2xl bg-slate-900/90 border border-slate-800 flex items-center gap-3 transition-all duration-300 cursor-pointer opacity-40">
+                                    <div class="w-8 h-8 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center text-sm font-bold border border-blue-500/30 transition shadow-sm">
+                                        <i class="fa-solid fa-palette text-xs"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center justify-between">
+                                            <span class="text-xs font-black text-white block">03. High-Fidelity UI</span>
+                                            <span class="text-[9px] font-mono text-blue-400">Design</span>
+                                        </div>
+                                        <span class="text-[10px] text-slate-400 block truncate">Aesthetic minimalism • Brand storytelling</span>
+                                    </div>
+                                </div>
+
+                                <!-- Node 4: Clean Code & Full-Stack Build -->
+                                <div id="webDevNode4" onclick="jumpWebDevStep(3)" class="relative z-10 p-2.5 rounded-2xl bg-slate-900/90 border border-slate-800 flex items-center gap-3 transition-all duration-300 cursor-pointer opacity-40">
+                                    <div class="w-8 h-8 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-sm font-bold border border-cyan-500/30 transition shadow-sm">
+                                        <i class="fa-solid fa-code text-xs"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center justify-between">
+                                            <span class="text-xs font-black text-white block">04. Clean Code Build</span>
+                                            <span class="text-[9px] font-mono text-cyan-400">&lt; 800ms</span>
+                                        </div>
+                                        <span class="text-[10px] text-slate-400 block truncate">Shopify / Next.js 15 • Zero bloat</span>
+                                    </div>
+                                </div>
+
+                                <!-- Node 5: SEO, Schema & AEO Ready -->
+                                <div id="webDevNode5" onclick="jumpWebDevStep(4)" class="relative z-10 p-3 rounded-2xl bg-slate-900/90 border border-slate-800 flex items-center gap-3 transition-all duration-300 cursor-pointer opacity-40">
+                                    <div class="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-base font-bold border border-emerald-500/30 transition shadow-sm">
+                                        <i class="fa-solid fa-rocket"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center justify-between">
+                                            <span class="text-xs font-black text-white block flex items-center gap-1.5">
+                                                <span>05. Launch &amp; Scale</span>
+                                                <i class="fa-solid fa-circle-check text-emerald-400 text-xs"></i>
+                                            </span>
+                                            <span class="text-[9px] font-mono text-emerald-300 bg-emerald-950 px-2 py-0.5 rounded-full border border-emerald-500/40 font-bold">100/100 Vitals</span>
+                                        </div>
+                                        <span class="text-[10px] text-emerald-400 font-semibold block truncate">Google Merchant Ready • Borzo Integrated</span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- Right: Live Synchronized Engineering Telemetry (5 cols) -->
+                            <div class="sm:col-span-5 relative">
+                                <div class="rounded-2xl border border-slate-800 bg-[#0f172a] p-3.5 space-y-3 shadow-xl">
+                                    
+                                    <!-- Chrome Status Bar -->
+                                    <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                                        <div class="flex items-center gap-2">
+                                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                                            <span class="text-[10px] font-bold text-slate-300">Lighthouse Audit</span>
+                                        </div>
+                                        <span class="text-[10px] font-mono text-emerald-400 font-bold" id="webDevScorePill">100 / 100</span>
+                                    </div>
+
+                                    <!-- Telemetry Metrics Block -->
+                                    <div class="text-center space-y-1 py-1">
+                                        <div class="w-12 h-12 mx-auto rounded-full bg-gradient-to-tr from-bikOrange to-amber-500 flex items-center justify-center text-white text-lg shadow-md shadow-orange-500/20">
+                                            <i class="fa-solid fa-gauge-high"></i>
+                                        </div>
+                                        <h5 class="text-xs font-black text-white" id="webDevStoreTitle">Royal Heritage Mumbai</h5>
+                                        <p class="text-[9px] text-emerald-300 font-mono" id="webDevStoreSub">Shopify Plus • Next.js Edge Cache</p>
+                                    </div>
+
+                                    <!-- Live Status & Telemetry Details -->
+                                    <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 space-y-2 text-[10px]">
+                                        <div class="flex items-center justify-between font-mono">
+                                            <span class="text-slate-400">Core Web Vitals:</span>
+                                            <span class="text-emerald-400 font-bold" id="webDevLcpStat">LCP: 0.6s (Passed)</span>
+                                        </div>
+                                        <p class="text-[9px] text-slate-300 leading-snug" id="webDevTelemetryStatus">
+                                            Discovery audit complete. 12 conversion drop-off points identified and fixed.
+                                        </p>
+                                        <div class="pt-1">
+                                            <button id="webDevActionBtn" class="w-full py-1.5 rounded-lg bg-bikOrange text-white font-bold text-[9px] flex items-center justify-center gap-1 transition">
+                                                <i class="fa-solid fa-bolt mr-1"></i> View Live Speed Audit
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Bottom Guarantee Badges -->
+                                    <div class="flex items-center justify-between text-[9px] font-mono text-slate-400 px-1">
+                                        <span class="text-emerald-400"><i class="fa-solid fa-shield-check mr-1"></i>Zero Bloat</span>
+                                        <span class="text-blue-400">SEO &amp; Schema 100%</span>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Video Footer Status Bar -->
+                        <div class="px-5 py-2.5 bg-slate-900 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-300 font-mono">
+                            <span class="flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-bikOrange animate-ping"></span>
+                                <span id="webDevStatusText">Stage 1: Comprehensive Architectural &amp; Competitor Audit</span>
+                            </span>
+                            <span class="text-bikOrange font-bold">Mumbai Engineering SLA</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- MUMBAI LOCAL TRUST STRIP & TECH STACK -->
+    <section class="py-10 bg-orange-50/40 border-y border-orange-100/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-6">
+                <span class="text-xs font-bold text-slate-500 uppercase tracking-widest">
+                    Trusted by High-Growth D2C Brands &amp; Enterprises Across Mumbai
+                </span>
+                <p class="text-[11px] text-slate-400 mt-1 font-mono">
+                    Serving Bandra • BKC • Andheri East • Lower Parel • Powai • Kandivali • Thane • Navi Mumbai
+                </p>
+            </div>
+            <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-xs font-bold text-slate-600">
+                <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-lime-800"><i class="fa-brands fa-shopify text-lg text-[#96bf48]"></i> Shopify Plus</span>
+                <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-purple-800"><i class="fa-brands fa-wordpress text-lg text-[#96588a]"></i> WooCommerce</span>
+                <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-slate-900 font-mono"><i class="fa-solid fa-cube text-lg text-slate-900"></i> Next.js 15 / React</span>
+                <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-cyan-800"><i class="fa-solid fa-wind text-lg text-cyan-500"></i> Tailwind CSS</span>
+                <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-emerald-700"><i class="fa-brands fa-google text-lg text-blue-600"></i> 100/100 Core Web Vitals</span>
+                <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-amber-700"><i class="fa-solid fa-truck-fast text-lg text-amber-600"></i> Borzo &amp; Porter 18m Fleet API</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- THE 4 CORE ENGINEERING PILLARS (SCALEDELIGHT INSPIRED) -->
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+            
+            <div class="text-center max-w-3xl mx-auto space-y-3">
+                <span class="text-xs font-bold uppercase tracking-widest text-bikOrange bg-orange-100 px-3.5 py-1 rounded-full border border-orange-200">
+                    Why Mumbai Businesses Choose Flying Cheetah
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark font-display">
+                    The 4 Key Elements Behind Our High-Performance Websites
+                </h2>
+                <p class="text-sm text-slateText leading-relaxed">
+                    Most websites look decent. Very few actually bring in business. We don't just hand you a theme and disappear — we engineer platforms built for conversion, organic search ranking, and speed.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- Pillar 1: Speed & Technicals -->
+                <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200 card-anim space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-orange-100 text-bikOrange flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <span class="text-[11px] font-bold text-bikOrange uppercase tracking-wider font-tech">Fast Websites Build Trust</span>
+                    <h3 class="text-xl font-bold text-bikDark">Website Speed &amp; Technical Precision</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        A stunning website means nothing if it loads slowly. As a premier web development company in Mumbai, we build websites with relentless focus on speed. We eliminate render-blocking scripts, optimize high-res product assets, and deploy edge-caching so your store loads in under 800 milliseconds on both desktop and mobile 5G.
+                    </p>
+                    <ul class="text-xs text-slate-600 space-y-2 pt-2 border-t border-slate-200/80">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Core Web Vitals (LCP &lt; 1.2s, CLS 0, INP &lt; 200ms)</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Cloudflare Enterprise CDN &amp; Brotli image compression</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Zero bloated third-party plugins that drag store speed down</li>
+                    </ul>
+                </div>
+
+                <!-- Pillar 2: UI & Aesthetic Storytelling -->
+                <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200 card-anim space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-purple-100 text-purple-600 flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-palette"></i>
+                    </div>
+                    <span class="text-[11px] font-bold text-purple-600 uppercase tracking-wider font-tech">Crafting Seamless Experiences</span>
+                    <h3 class="text-xl font-bold text-bikDark">Expertise in UI &amp; Brand Aesthetics</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        Our design philosophy blends aesthetic minimalism with authentic brand storytelling. In digital commerce, your first impression isn’t made by words — it’s made by design. From color psychology to custom typography hierarchy, every pixel has an explicit commercial purpose that builds instant authority.
+                    </p>
+                    <ul class="text-xs text-slate-600 space-y-2 pt-2 border-t border-slate-200/80">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Bespoke UI tailored to Mumbai's discerning luxury &amp; retail shoppers</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> High-resolution product showcase cards &amp; immersive lookbooks</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Fully responsive mobile-first architecture matching natural thumb zones</li>
+                    </ul>
+                </div>
+
+                <!-- Pillar 3: UX & CRO Layouts -->
+                <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200 card-anim space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </div>
+                    <span class="text-[11px] font-bold text-blue-600 uppercase tracking-wider font-tech">UX That Speaks Your Brand's Language</span>
+                    <h3 class="text-xl font-bold text-bikDark">Conversion Rate Optimization (CRO) &amp; Layout</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        We don’t just design pages — we craft journeys that convert. Our UX strategists understand how modern Indian consumers browse and decide. Through intuitive navigation, purposeful cart drawers, and frictionless 1-tap UPI payment flows, we turn casual visitors into loyal repeat buyers.
+                    </p>
+                    <ul class="text-xs text-slate-600 space-y-2 pt-2 border-t border-slate-200/80">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Sticky 1-tap checkout bar with Razorpay, Cashfree &amp; UPI integration</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Dynamic size charts, stock scarcity badges, and cross-sell triggers</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Pre-integrated WhatsApp recovery hooks for abandoned cart prevention</li>
+                    </ul>
+                </div>
+
+                <!-- Pillar 4: SEO & AEO Ready -->
+                <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200 card-anim space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-magnifying-glass-chart"></i>
+                    </div>
+                    <span class="text-[11px] font-bold text-emerald-600 uppercase tracking-wider font-tech">Crafted for Clicks and Credibility</span>
+                    <h3 class="text-xl font-bold text-bikDark">SEO &amp; AEO (AI Engine Optimization) from Day 1</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        Being a leading web development agency in Mumbai means building websites that are ready for Google from day one. We don’t separate development from SEO. Our engineering team and SEO strategists collaborate from wireframes, ensuring structured JSON-LD schemas, clean semantic tags, and fast indexation.
+                    </p>
+                    <ul class="text-xs text-slate-600 space-y-2 pt-2 border-t border-slate-200/80">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Complete JSON-LD Schema (Product, Breadcrumbs, Organization, FAQ)</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Optimized for Google AI Overviews, Perplexity &amp; ChatGPT Search citations</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Clean canonical tagging, automated sitemaps, and zero broken redirects</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FULL SERVICES MATRIX (SCALEDELIGHT INSPIRED) -->
+    <section class="py-24 bg-slate-50 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+            
+            <div class="text-center max-w-3xl mx-auto space-y-3">
+                <span class="text-xs font-bold uppercase tracking-widest text-bikOrange bg-orange-100 px-3.5 py-1 rounded-full border border-orange-200">
+                    Comprehensive Capabilities
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark font-display">
+                    Website Development Services We Offer
+                </h2>
+                <p class="text-sm text-slateText leading-relaxed">
+                    We aren’t a one-trick freelance shop. Whether you need a lightning-fast D2C store or a complex custom web application, our Mumbai development studio delivers end-to-end excellence.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Service 1: Custom Shopify & eCommerce -->
+                <div class="p-8 rounded-3xl bg-white border border-slate-200 card-anim space-y-4 shadow-sm">
+                    <div class="w-12 h-12 rounded-2xl bg-lime-100 text-lime-700 flex items-center justify-center text-xl font-bold">
+                        <i class="fa-brands fa-shopify"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-bikDark">Shopify Plus &amp; Custom Storefronts</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        Turn browsers into buyers. Custom Shopify Liquid and Hydrogen builds featuring ultra-fast product filtering, variant selectors, multi-currency support, and 1-tap UPI checkouts.
+                    </p>
+                    <span class="inline-block text-[10px] font-mono font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">0% Transaction Fees Bypass</span>
+                </div>
+
+                <!-- Service 2: Headless Next.js Web Apps -->
+                <div class="p-8 rounded-3xl bg-white border border-slate-200 card-anim space-y-4 shadow-sm">
+                    <div class="w-12 h-12 rounded-2xl bg-slate-900 text-white flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-bikDark">Headless Next.js Commerce</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        For brands demanding absolute performance. Decoupled frontend on Next.js 15 with sub-300ms page transitions, static generation, serverless APIs, and enterprise Supabase databases.
+                    </p>
+                    <span class="inline-block text-[10px] font-mono font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">&lt; 300ms Route Transition</span>
+                </div>
+
+                <!-- Service 3: High-Converting Landing Pages -->
+                <div class="p-8 rounded-3xl bg-white border border-slate-200 card-anim space-y-4 shadow-sm">
+                    <div class="w-12 h-12 rounded-2xl bg-orange-100 text-bikOrange flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-bullseye"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-bikDark">High-Converting Ad Landing Pages</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        Running Meta or Google Ads? Don’t waste traffic on generic homepages. We build dedicated, speed-optimized landing pages with compelling CRO copy and instant conversion hooks.
+                    </p>
+                    <span class="inline-block text-[10px] font-mono font-bold text-orange-700 bg-orange-50 px-2 py-0.5 rounded border border-orange-200">3.8x Higher ROAS</span>
+                </div>
+
+                <!-- Service 4: Website Redesign Services -->
+                <div class="p-8 rounded-3xl bg-white border border-slate-200 card-anim space-y-4 shadow-sm">
+                    <div class="w-12 h-12 rounded-2xl bg-purple-100 text-purple-600 flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-arrows-rotate"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-bikDark">Full Website Redesign &amp; Speed Overhaul</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        If your current website is sluggish, outdated, or leaking sales — don't start over blindly. We audit your existing analytics, preserve 100% of your SEO equity, and modernize your frontend.
+                    </p>
+                    <span class="inline-block text-[10px] font-mono font-bold text-purple-700 bg-purple-50 px-2 py-0.5 rounded border border-purple-200">Zero Traffic Loss Guarantee</span>
+                </div>
+
+                <!-- Service 5: WooCommerce Architecture -->
+                <div class="p-8 rounded-3xl bg-white border border-slate-200 card-anim space-y-4 shadow-sm">
+                    <div class="w-12 h-12 rounded-2xl bg-indigo-100 text-indigo-600 flex items-center justify-center text-xl font-bold">
+                        <i class="fa-brands fa-wordpress"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-bikDark">Enterprise WooCommerce Clusters</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        Scalable WordPress stores engineered for high concurrency. Built with Redis object caching, clean database indexing, and custom payment gateway integration to handle flash sales smoothly.
+                    </p>
+                    <span class="inline-block text-[10px] font-mono font-bold text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded border border-indigo-200">10,000+ Concurrent Shoppers</span>
+                </div>
+
+                <!-- Service 6: Hyperlocal Logistics Integrated Storefronts -->
+                <div class="p-8 rounded-3xl bg-white border border-slate-200 card-anim space-y-4 shadow-sm">
+                    <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-motorcycle"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-bikDark">Mumbai Express Delivery Stores</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        Pre-wired with Mumbai’s Borzo Express and Porter courier APIs. Automatically calculate same-day delivery quotes at checkout and dispatch riders to customer doorsteps in under 18 minutes.
+                    </p>
+                    <span class="inline-block text-[10px] font-mono font-bold text-amber-800 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">18-Min Mumbai Dispatch API</span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPARISON TABLE: FREELANCER VS TRADITIONAL AGENCY VS FLYING CHEETAH -->
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+            
+            <div class="text-center max-w-3xl mx-auto space-y-3">
+                <span class="text-xs font-bold uppercase tracking-widest text-bikOrange bg-orange-100 px-3.5 py-1 rounded-full border border-orange-200">
+                    The Clear Choice
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark font-display">
+                    Hiring a Freelancer vs Traditional Agency vs Flying Cheetah
+                </h2>
+                <p class="text-sm text-slateText leading-relaxed">
+                    Most people don’t realize the difference until after they’ve spent months and lakhs with nothing to show. Here is how our engineering-led model stacks up:
+                </p>
+            </div>
+
+            <div class="overflow-x-auto rounded-3xl border border-slate-200 shadow-xl bg-white">
+                <table class="w-full text-left border-collapse text-xs">
+                    <thead>
+                        <tr class="bg-slate-900 text-white font-mono text-[11px] border-b border-slate-800">
+                            <th class="p-5 font-bold">Evaluation Criteria</th>
+                            <th class="p-5 font-bold text-slate-400">Freelancer</th>
+                            <th class="p-5 font-bold text-slate-400">Traditional Agency</th>
+                            <th class="p-5 font-bold text-bikOrange bg-slate-800/80">Flying Cheetah Mumbai</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="p-5 font-bold text-bikDark">Speed &amp; Core Web Vitals</td>
+                            <td class="p-5 text-slate-500">Often uses heavy templates; slow loading</td>
+                            <td class="p-5 text-slate-500">Passes responsibility to hosting providers</td>
+                            <td class="p-5 font-bold text-emerald-600 bg-orange-50/20">&lt; 800ms load time guaranteed (100/100 Vitals)</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="p-5 font-bold text-bikDark">SEO &amp; Schema Architecture</td>
+                            <td class="p-5 text-slate-500">Ignored or basic plugin installation</td>
+                            <td class="p-5 text-slate-500">Requires expensive separate SEO retainer</td>
+                            <td class="p-5 font-bold text-emerald-600 bg-orange-50/20">Built-in JSON-LD &amp; semantic tags from Day 1</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="p-5 font-bold text-bikDark">Checkout &amp; Conversion Optimization</td>
+                            <td class="p-5 text-slate-500">Standard defaults with 65%+ cart drop-off</td>
+                            <td class="p-5 text-slate-500">Focuses only on aesthetics, not sales</td>
+                            <td class="p-5 font-bold text-emerald-600 bg-orange-50/20">1-Tap UPI checkout &amp; WhatsApp recovery pre-wired</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="p-5 font-bold text-bikDark">Hyperlocal Delivery Integration</td>
+                            <td class="p-5 text-slate-500">No logistical capabilities</td>
+                            <td class="p-5 text-slate-500">Standard postal/courier plugins only</td>
+                            <td class="p-5 font-bold text-emerald-600 bg-orange-50/20">Direct Borzo &amp; Porter 18-minute rider API pre-built</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="p-5 font-bold text-bikDark">Founder Involvement &amp; Accountability</td>
+                            <td class="p-5 text-slate-500">High risk of going silent mid-project</td>
+                            <td class="p-5 text-slate-500">Passed to junior interns and account managers</td>
+                            <td class="p-5 font-bold text-emerald-600 bg-orange-50/20">Direct partnership with Bhagat &amp; Yash</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </section>
+
+    
+
+    <!-- FREQUENTLY ASKED QUESTIONS (SCALEDELIGHT INSPIRED) -->
+    <section class="py-24 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            
+            <div class="text-center space-y-3">
+                <span class="text-xs font-bold uppercase tracking-widest text-bikOrange bg-orange-100 px-3.5 py-1 rounded-full border border-orange-200">
+                    Questions &amp; Answers
+                </span>
+                <h2 class="text-3xl font-extrabold text-bikDark font-display">
+                    Frequently Asked Questions on Web Development in Mumbai
+                </h2>
+                <p class="text-xs text-slateText">
+                    Have questions about building or rebuilding your store? We speak in plain English with zero confusing technical jargon.
+                </p>
+            </div>
+
+            <div class="space-y-4 text-left text-xs">
+                
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+                    <h3 class="font-bold text-sm text-bikDark">How long does it take to develop a custom eCommerce website?</h3>
+                    <p class="text-slate-500 leading-relaxed">
+                        Typical project timelines range from 2 to 4 weeks depending on catalog complexity. A streamlined D2C Shopify store launches in ~14 days, whereas custom headless builds with ERP integrations typically require 3 to 4 weeks with end-to-end load testing.
+                    </p>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+                    <h3 class="font-bold text-sm text-bikDark">Which platform do you recommend: Shopify, WooCommerce, or Custom Headless?</h3>
+                    <p class="text-slate-500 leading-relaxed">
+                        For most D2C brands, <strong>Shopify Plus</strong> is the industry benchmark for stability, security, and app ecosystem. If you need complete open-source database control, <strong>WooCommerce</strong> is ideal. For enterprise brands needing sub-300ms speed and custom workflows, <strong>Next.js Headless</strong> delivers unbeatable performance. We evaluate your exact business goals before recommending a stack.
+                    </p>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+                    <h3 class="font-bold text-sm text-bikDark">If we redesign our existing store, will we lose our current Google rankings?</h3>
+                    <p class="text-slate-500 leading-relaxed">
+                        No. We follow a strict <strong>Zero-Traffic-Loss SEO Protocol</strong>. Every existing URL is mapped to its exact destination with verified 301 redirects, canonical metadata is preserved, and structured schemas are upgraded. Clients typically see a 30% to 50% increase in organic traffic within 60 days due to dramatically faster load speeds.
+                    </p>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+                    <h3 class="font-bold text-sm text-bikDark">Can you integrate WhatsApp checkouts and Mumbai hyperlocal couriers?</h3>
+                    <p class="text-slate-500 leading-relaxed">
+                        Yes! That is Flying Cheetah’s proprietary advantage. We pre-integrate our official Meta WhatsApp Business Cloud API (allowing shoppers to complete orders via WhatsApp) and pre-wire Borzo &amp; Porter rider APIs so your warehouse or retail outlet can dispatch riders in under 18 minutes across Mumbai.
+                    </p>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+                    <h3 class="font-bold text-sm text-bikDark">Do you provide ongoing support, hosting maintenance, and updates?</h3>
+                    <p class="text-slate-500 leading-relaxed">
+                        Yes, every project includes a 30-day post-launch warranty, followed by optional monthly engineering maintenance SLAs that cover security patches, Core Web Vitals audits, seasonal promotional banners, and continuous conversion rate optimization.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CONVERSION CTA BANNER -->
+    <section class="py-20 bg-slate-900 text-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6 relative z-10">
+            <span class="text-xs font-bold text-bikOrange uppercase tracking-widest bg-orange-950/80 px-3.5 py-1 rounded-full border border-orange-700/50">
+                Ready to Stop Dropping Sales?
+            </span>
+            <h2 class="text-3xl sm:text-5xl font-black font-display max-w-2xl mx-auto leading-tight">
+                Let's engineer your high-converting storefront in Mumbai.
+            </h2>
+            <p class="text-sm text-slate-400 max-w-xl mx-auto leading-relaxed">
+                Book a 20-minute architectural consultation with Bhagat &amp; Yash. We'll audit your current speed, map out your checkout flow, and outline your store roadmap.
+            </p>
+            <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="demo.html" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-sm transition shadow-lg shadow-orange-500/25">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    <span>Book Your Live Demo &amp; Store Audit</span>
+                </a>
+                <a href="https://wa.me/919876543210?text=Hi%20Bhagat%20%26%20Yash,%20I%20want%20to%20discuss%20a%20Web%20Development%20project." target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl border border-slate-700 hover:border-emerald-500 text-slate-200 font-bold text-sm bg-slate-800 hover:bg-emerald-950/40 transition">
+                    <i class="fa-brands fa-whatsapp text-emerald-400 text-base"></i>
+                    <span>Chat on WhatsApp</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-12 bg-white border-t border-slate-200 text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-3">
+                <img src="images/flying_cheetah_hd_logo_heraldic.jpg" alt="Flying Cheetah" class="h-6 w-6 rounded-full object-cover border border-slate-300">
+                <span class="font-bold text-slate-700">FLYING CHEETAH LABS • WEB DEVELOPMENT SERVICES MUMBAI &copy; 2026.</span>
+                <span>All Rights Reserved.</span>
+            </div>
+            <div class="flex flex-wrap items-center gap-4 font-medium text-slate-600">
+                <a href="home.html" class="hover:text-bikOrange transition font-bold text-bikOrange">Home Hub</a>
+                <a href="index.html" class="hover:text-bikOrange transition">Main Site</a>
+                <a href="demo.html" class="hover:text-bikOrange transition font-bold text-emerald-600">Live Demo Portal</a>
+                <a href="web-development.html" class="hover:text-bikOrange transition font-bold text-orange-600">Web Development</a>
+                <a href="customer-support.html" class="hover:text-bikOrange transition">Customer Support</a>
+                <a href="delivery.html" class="hover:text-bikOrange transition">Fleet Protocol</a>
+                <a href="about.html" class="hover:text-bikOrange transition">About Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FLOWCHART VIDEO ENGINE & INTERACTION SCRIPTS -->
+    <script src="js/flowchart-player.js"></script>
+    <script>
+        let webDevPlayerInstance = null;
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dropdowns
+            const dropdownParents = document.querySelectorAll('.dropdown-parent');
+            dropdownParents.forEach(function(parent) {
+                const btn = parent.querySelector('button');
+                if (btn) {
+                    btn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        dropdownParents.forEach(p => { if (p !== parent) p.classList.remove('active'); });
+                        parent.classList.toggle('active');
+                    });
+                }
+            });
+
+            document.addEventListener('click', function(e) {
+                dropdownParents.forEach(p => p.classList.remove('active'));
+            });
+
+            // Dual Hover + Click Dropdown support for Home
+            const homeParent = document.querySelector('.home-dropdown-parent');
+            const homeBtn = document.querySelector('.home-btn');
+            const homeMenu = document.querySelector('.home-menu');
+            if(homeParent && homeBtn && homeMenu) {
+                homeBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    homeMenu.classList.toggle('active');
+                });
+                document.addEventListener('click', function(e) {
+                    if (!homeParent.contains(e.target)) {
+                        homeMenu.classList.remove('active');
+                    }
+                });
+            }
+
+            // Flowchart Video Console
+            webDevPlayerInstance = new FlowchartConsolePlayer({
+                progressBarId: 'webDevProgressBar',
+                beamId: 'webDevBeamActive',
+                stepBadgeId: 'webDevStepBadge',
+                statusTextId: 'webDevStatusText',
+                playPauseIconId: 'webDevPlayPauseIcon',
+                activeGlowClass: 'node-glow-orange',
+                nodeIds: ['webDevNode1', 'webDevNode2', 'webDevNode3', 'webDevNode4', 'webDevNode5'],
+                stepDuration: 2800,
+                steps: [
+                    {
+                        badge: 'Stage 1: Discovery',
+                        status: 'Stage 1: Comprehensive Architectural & Competitor Audit in Mumbai',
+                        score: 'Auditing...',
+                        store: 'Royal Heritage Mumbai',
+                        sub: 'Shopify Plus Discovery Phase',
+                        lcp: 'LCP Baseline: 3.8s',
+                        desc: 'Discovery audit complete. 12 conversion drop-off points identified and fixed.',
+                        btn: 'View Architecture Audit'
+                    },
+                    {
+                        badge: 'Stage 2: UX Architecture',
+                        status: 'Stage 2: Conversion UX Wireframing & Frictionless Checkout Design',
+                        score: 'UX Blueprint',
+                        store: 'Royal Heritage Mumbai',
+                        sub: 'Wireframes & User Flow Tested',
+                        lcp: 'Friction: 0 Steps',
+                        desc: 'Checkout flow streamlined from 5 steps down to 1-tap UPI express payment.',
+                        btn: 'Preview Wireframes'
+                    },
+                    {
+                        badge: 'Stage 3: UI Design',
+                        status: 'Stage 3: Aesthetic Minimalism, Typography Hierarchy & Brand Storytelling',
+                        score: 'Figma 100%',
+                        store: 'Royal Heritage Mumbai',
+                        sub: 'Bespoke UI Design Tokens',
+                        lcp: 'Mobile Thumb Zones OK',
+                        desc: 'Bespoke visual identity approved. High-resolution lookbooks and dynamic catalog cards.',
+                        btn: 'Inspect Design System'
+                    },
+                    {
+                        badge: 'Stage 4: Clean Code',
+                        status: 'Stage 4: Clean Full-Stack Code Build (Next.js 15 / Shopify Liquid) • Sub-800ms',
+                        score: '99 / 100',
+                        store: 'Royal Heritage Mumbai',
+                        sub: 'Zero Third-Party Code Bloat',
+                        lcp: 'LCP: 0.7s (Pass)',
+                        desc: 'Cloudflare Edge Caching deployed. 100% of render-blocking scripts eliminated.',
+                        btn: 'Run Speed Benchmark'
+                    },
+                    {
+                        badge: 'Stage 5: Launch & Scale',
+                        status: 'Stage 5: Live Deployment • 100/100 Core Web Vitals • Borzo 18m Fleet Ready',
+                        score: '100 / 100',
+                        store: 'Royal Heritage Mumbai',
+                        sub: 'Live in Production',
+                        lcp: 'LCP: 0.6s • CLS: 0',
+                        desc: 'Store launched with zero downtime. 42% conversion uplift captured in first 30 days.',
+                        btn: '✓ Store Verified Live'
+                    }
+                ],
+                onStepChange: function(index, step) {
+                    const score = document.getElementById('webDevScorePill');
+                    const store = document.getElementById('webDevStoreTitle');
+                    const sub = document.getElementById('webDevStoreSub');
+                    const lcp = document.getElementById('webDevLcpStat');
+                    const desc = document.getElementById('webDevTelemetryStatus');
+                    const btn = document.getElementById('webDevActionBtn');
+                    if (score) score.innerText = step.score;
+                    if (store) store.innerText = step.store;
+                    if (sub) sub.innerText = step.sub;
+                    if (lcp) lcp.innerText = step.lcp;
+                    if (desc) desc.innerText = step.desc;
+                    if (btn) btn.innerHTML = '<i class="fa-solid fa-bolt mr-1"></i> ' + step.btn;
+                }
+            });
+        });
+
+        function jumpWebDevStep(index) {
+            if (webDevPlayerInstance) webDevPlayerInstance.jumpToStep(index);
+        }
+        function toggleWebDevVideo() {
+            if (webDevPlayerInstance) webDevPlayerInstance.togglePlay();
+        }
+        function restartWebDevVideo() {
+            if (webDevPlayerInstance) webDevPlayerInstance.restart();
+        }
+    </script>
+
+    <!-- Supabase & Flying Cheetah Backend Architecture SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/leads.js"></script>
+    <script src="js/fc-widgets.js"></script>
+
+<script>
+        // Top-level nav links hover safety: immediately dismiss all dropdowns
+        document.querySelectorAll('nav > a').forEach(function(link) {
+            link.addEventListener('mouseenter', function() {
+                document.querySelectorAll('.home-dropdown-parent, .products-dropdown-parent, .dropdown-parent').forEach(function(p) {
+                    p.classList.remove('active');
+                });
+            });
+        });
+        // Click outside dismiss
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.home-dropdown-parent') && !e.target.closest('.products-dropdown-parent') && !e.target.closest('.dropdown-parent')) {
+                document.querySelectorAll('.home-dropdown-parent, .products-dropdown-parent, .dropdown-parent').forEach(function(p) {
+                    p.classList.remove('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

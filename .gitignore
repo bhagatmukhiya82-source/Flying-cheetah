@@ -1,0 +1,69 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+dist/
+build/
+*.egg-info/
+
+# Environments
+.env
+.env.local
+.env.*.local
+venv/
+.venv/
+env/
+
+# Databases & local storage
+*.db
+*.sqlite
+*.sqlite3
+
+# Node / Frontend / Vercel
+node_modules/
+.vercel/
+.vercel_backup/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Operating System
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Temporary files
+temp/
+tmp/
+*.tmp
+update_fc_widgets.py
+apply_hero_graph.py
+update_logos.py
+
+# College / Unrelated case study files
+*SAKEC*
+*sakec*
+make_banner*.py
+page_*.png
+
+# Scratch and inspection scripts
+check_logo_content.py
+download_logos.py
+find_logo.py
+inspect_logos.py
+make_highres_banner.py
+logo_inspect.png
+logo_on_white.jpg
+
+# Google OAuth Client Secrets
+client_secret*.json

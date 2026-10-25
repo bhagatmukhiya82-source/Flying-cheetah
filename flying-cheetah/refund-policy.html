@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancellation & Refund Policy | Flying Cheetah Labs</title>
+    <meta name="description" content="Official Cancellation, Return and Refund Policy for Flying Cheetah Labs subscriptions, custom store engineering retainers, and Free Trial terms.">
+    <link rel="icon" type="image/jpeg" href="images/flying_cheetah_hd_logo_heraldic.jpg">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/fx.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bikOrange: '#ff5c00',
+                        bikOrangeDark: '#e05100',
+                        bikDark: '#0b0f19',
+                        bikBg: '#f8fafc',
+                        brandGold: '#f59e0b'
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                        tech: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white text-slate-800 antialiased font-sans selection:bg-orange-100 selection:text-bikOrange">
+
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-3">
+                <img src="images/flying_cheetah_hd_logo_heraldic.jpg" alt="Flying Cheetah Logo" class="h-11 w-11 rounded-full object-cover border border-slate-200 shadow-sm">
+                <div class="flex flex-col">
+                    <span class="text-xl font-black tracking-tight font-display text-bikDark">FLYING CHEETAH</span>
+                    <span class="text-[9px] text-bikOrange font-bold tracking-widest uppercase -mt-1">REFUND POLICY</span>
+                </div>
+            </a>
+            <div class="flex items-center gap-3">
+                <a href="index.html" class="px-4 py-2 rounded-xl text-xs font-bold text-slate-700 hover:text-bikOrange transition">← Back to Platform</a>
+                <button onclick="window.FC_AUTH.openTrialModal()" class="px-4 py-2 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-xs transition shadow-sm">Start Free Pilot</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="py-16 bg-slate-50/50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 bg-white p-8 sm:p-12 rounded-3xl border border-slate-200 shadow-xl space-y-8">
+            <div>
+                <span class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold font-tech uppercase tracking-wider">Merchant Transparency</span>
+                <h1 class="text-3xl sm:text-4xl font-black text-bikDark tracking-tight mt-3 font-display">Cancellation & Refund Policy</h1>
+                <p class="text-xs text-slate-400 mt-1">Effective Date: October 25, 2026</p>
+            </div>
+
+            <div class="prose prose-slate max-w-none text-sm leading-relaxed space-y-6 text-slate-600">
+                <section class="space-y-3">
+                    <h2 class="text-lg font-bold text-bikDark">1. 14-Day Free Pilot Commitment</h2>
+                    <p>At Flying Cheetah Labs, we believe in demonstrating tangible revenue ROI before asking for commercial commitment. Every merchant account initiates with a <b>100% Free 14-Day Pilot</b> with no credit card required. If you decide not to proceed during or after the pilot, your account incurs exactly ₹0.00.</p>
+                </section>
+
+                <section class="space-y-3">
+                    <h2 class="text-lg font-bold text-bikDark">2. Subscription Cancellation Policy</h2>
+                    <p>Clients on monthly SaaS retainers may cancel their recurring subscription at any point with <b>zero cancellation penalties</b>. Upon cancellation:</p>
+                    <ul class="list-disc pl-5 space-y-1.5">
+                        <li>You maintain full operational access to your active AI agents and dashboards until the end of your prepaid billing period.</li>
+                        <li>No further renewal charges will be debited against your payment method.</li>
+                        <li>All historical client catalogs, order telemetry, and CSV exports remain available for export prior to account closure.</li>
+                    </ul>
+                </section>
+
+                <section class="space-y-3">
+                    <h2 class="text-lg font-bold text-bikDark">3. Refund Eligibility & Request Process</h2>
+                    <p>Because Flying Cheetah allocates dedicated cloud compute instances, WhatsApp BSP line activations, and automated runner microservices:</p>
+                    <ul class="list-disc pl-5 space-y-1.5">
+                        <li><b>Platform Retainers:</b> If you experience sustained platform service disruption attributable solely to Flying Cheetah lasting greater than 48 continuous hours, you are entitled to a pro-rata refund for the affected billing period.</li>
+                        <li><b>Meta Conversation Units:</b> Third-party telecom and Meta Cloud API fees consumed through delivered broadcasts and AI conversations are non-refundable once dispatched.</li>
+                        <li><b>Custom Engineering:</b> Web development and custom headless storefront retainers are billed against milestone deliverables approved by the merchant.</li>
+                    </ul>
+                </section>
+
+                <section class="space-y-3">
+                    <h2 class="text-lg font-bold text-bikDark">4. Refund Processing Timeline</h2>
+                    <p>Approved refunds are processed within <b>5 to 7 business days</b> directly back to the original source payment instrument (Bank Account, UPI, or Credit Card) via our payment gateway partner (Razorpay / Stripe).</p>
+                </section>
+
+                <section class="space-y-3">
+                    <h2 class="text-lg font-bold text-bikDark">5. How to Submit a Refund or Cancellation Request</h2>
+                    <p>To request a subscription cancellation or refund, email our finance desk with your Store Name and registered billing email:</p>
+                    <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 text-xs">
+                        <b>Flying Cheetah Billing Desk</b> • <a href="mailto:flyingcheetah.agency@gmail.com" class="text-bikOrange font-bold underline">flyingcheetah.agency@gmail.com</a> • Phone: +91 99203 86421
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-8 bg-white border-t border-slate-200 text-xs text-slate-500 text-center">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>FLYING CHEETAH LABS • © 2026. All Rights Reserved.</div>
+            <div class="flex items-center gap-4">
+                <a href="privacy-policy.html" class="hover:text-bikOrange">Privacy Policy</a>
+                <a href="terms-of-service.html" class="hover:text-bikOrange">Terms of Service</a>
+                <a href="refund-policy.html" class="text-bikOrange font-bold">Refund Policy</a>
+                <a href="about.html" class="hover:text-bikOrange">About Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/leads.js"></script>
+    <script src="js/fc-widgets.js"></script>
+
+</body>
+</html>

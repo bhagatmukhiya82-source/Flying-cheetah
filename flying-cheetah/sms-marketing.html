@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <link rel="icon" type="image/jpeg" href="images/flying_cheetah_hd_logo_heraldic.jpg">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise SMS & DLT Telecom Gateway — Flying Cheetah</title>
+    <meta name="description" content="Enterprise SMS & DLT Telecom Gateway — Flying Cheetah - Flying Cheetah Labs Autonomous AI Commerce & Omnichannel Marketing Suite.">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/fx.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Inter"', 'sans-serif'],
+                        display: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        outfit: ['"Outfit"', 'sans-serif'],
+                        mono: ['"Space Grotesk"', 'monospace']
+                    },
+                    colors: {
+                        bikOrange: '#FF6838',
+                        bikOrangeDark: '#E04A1B',
+                        bikDark: '#121624',
+                        bikBg: '#FFF9F6',
+                        brandGold: '#E5A93C',
+                        slateText: '#4E5A71',
+                        telcoBlue: '#0284C7'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .bik-mega-shadow { box-shadow: 0 25px 60px -15px rgba(2, 132, 199, 0.15), 0 0 1px 1px rgba(0, 0, 0, 0.05); }
+        .mega-menu { display: none; }
+        .dropdown-parent:hover .mega-menu { display: block; }
+        .card-anim { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .card-anim:hover { transform: translateY(-4px); box-shadow: 0 20px 35px -10px rgba(0,0,0,0.08); }
+    
+        .home-menu { display: none; }
+        .home-dropdown-parent:hover > .home-menu,
+        .home-dropdown-parent.active > .home-menu { display: block; }
+        .mega-menu { display: none; }
+        .products-dropdown-parent:hover > .mega-menu,
+        .products-dropdown-parent.active > .mega-menu { display: block; }
+        .dropdown-parent:hover > .mega-menu,
+        .dropdown-parent.active > .mega-menu { display: block; }
+    </style>
+</head>
+<body class="bg-white text-slate-900 font-sans antialiased selection:bg-telcoBlue selection:text-white">
+
+    <!-- TOP PROMO BANNER -->
+    <div class="bg-bikDark text-white py-2 px-4 text-center text-xs font-medium">
+        <span>📲 100% TRAI DLT Compliant Enterprise SMS: Under 3s delivery on Jio, Airtel & Vi.</span>
+        <a href="demo.html" class="underline ml-2 text-brandGold font-bold hover:text-white transition">Book Live Demo ↗</a>
+    </div>
+
+    <!-- MAIN NAVBAR -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-3">
+                <img src="images/flying_cheetah_hd_logo_heraldic.jpg" alt="Flying Cheetah Logo" class="h-11 w-11 rounded-full object-cover border border-slate-200 shadow-sm">
+                <div class="flex flex-col">
+                    <span class="text-xl font-black tracking-tight font-display text-bikDark">FLYING CHEETAH</span>
+                    <span class="text-[9px] text-blue-600 font-bold tracking-widest uppercase -mt-1">SMS & DLT GATEWAY</span>
+                </div>
+            </a>
+
+            <!-- CENTER NAV -->
+            <nav class="hidden lg:flex items-center space-x-8 text-sm font-semibold text-slate-700">
+
+                <a href="home.html" class="hover:text-bikOrange transition text-bikOrange font-bold">Home Hub</a>
+                <!-- HOME DROPDOWN (NEXT TO PRODUCTS) -->
+                <div class="relative home-dropdown-parent py-6">
+                    <button class="home-btn flex items-center gap-1.5 hover:text-bikOrange transition focus:outline-none text-slate-800 hover:text-bikOrange font-bold text-sm">
+                        <i class="fa-solid fa-house text-xs text-bikOrange"></i>
+                        <span>Home</span>
+                        <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200"></i>
+                    </button>
+                    <!-- Dropdown Menu with the 4 items from user image -->
+                    <div class="mega-menu home-menu absolute top-full left-0 w-72 bg-white rounded-2xl border border-slate-200 p-4 shadow-2xl bik-mega-shadow z-50">
+                        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-3 pb-2 border-b border-slate-100 flex items-center justify-between">
+                            <span>Core Portals</span>
+                            <a href="home.html" class="text-bikOrange hover:underline font-bold">Executive Hub ↗</a>
+                        </div>
+                        <div class="space-y-1.5 pt-2">
+                            <!-- 1. Main Site -->
+                            <a href="index.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
+                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-bikOrange flex items-center justify-center text-sm group-hover:scale-110 transition">
+                                    <i class="fa-solid fa-store"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">Main Site</div>
+                                    <div class="text-[10px] text-slate-400">Flagship AI Commerce Suite</div>
+                                </div>
+                            </a>
+
+<!-- 3. Fleet Protocol -->
+                                                        <a href="web-development.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
+                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-bikOrange flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-code"></i></div>
+                                <div><div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">Web Development</div><div class="text-[10px] text-slate-400">ScaleDelight Inspired &bull; Mumbai</div></div>
+                            </a>
+<a href="delivery.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-emerald-50 text-slate-700 hover:text-emerald-600 transition group">
+                                <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center text-sm group-hover:scale-110 transition">
+                                    <i class="fa-solid fa-motorcycle"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs font-bold text-bikDark group-hover:text-emerald-600">Fleet Protocol</div>
+                                    <div class="text-[10px] text-slate-400">Hyperlocal Borzo/Porter API</div>
+                                </div>
+                            </a>
+
+                                                        <a href="about.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
+                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-bikOrange flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-circle-info"></i></div>
+                                <div><div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">About Us</div><div class="text-[10px] text-slate-400">Company Motive & Founders</div></div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                                <!-- Dropdown -->
+                <div class="relative products-dropdown-parent dropdown-parent py-6">
+                    <button class="flex items-center gap-1.5 hover:text-bikOrange transition focus:outline-none text-bikOrange font-bold">
+                        <span>Products & Automations</span>
+                        <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                    </button>
+                    <!-- Mega Menu -->
+                    <div class="mega-menu absolute top-full -left-28 w-[760px] bg-white rounded-2xl border border-slate-200 p-8 shadow-2xl bik-mega-shadow z-50">
+                        <div class="grid grid-cols-4 gap-6 text-xs">
+                            <div class="space-y-3 bg-orange-50/50 p-3 -m-3 rounded-xl border border-orange-100">
+                                <div class="flex items-center gap-2 text-bikOrange font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-bullhorn"></i> CAMPAIGNS</div>
+                                <ul class="space-y-2.5 text-slate-700 font-medium">
+                                    <li><a href="email-marketing.html" class="hover:text-bikOrange transition block">Email marketing ↗</a></li>
+                                    <li><a href="whatsapp-marketing.html" class="hover:text-bikOrange transition block font-bold text-emerald-600">WhatsApp marketing ↗</a></li>
+                                    <li><a href="sms-marketing.html" class="hover:text-bikOrange transition block font-bold text-blue-600">SMS marketing ↗</a></li>
+                                    <li><a href="customer-data-platform.html" class="hover:text-bikOrange transition block font-bold text-indigo-600">Customer data platform ↗</a></li>
+                                    <li><a href="rcs-messaging.html" class="hover:text-bikOrange transition block font-bold text-cyan-600">RCS messaging ↗</a></li>
+                                </ul>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex items-center gap-2 text-bikOrange font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-gear"></i> AUTOMATIONS</div>
+                                <ul class="space-y-2.5 text-slate-700 font-medium">
+                                    <li><a href="store-automation.html" class="hover:text-bikOrange transition block font-bold text-bikOrange">Store automation ↗</a></li>
+                                    <li><a href="instagram-automation.html" class="hover:text-pink-600 transition block font-semibold text-pink-600">Instagram automation ↗</a></li>
+                                    <li><a href="whatsapp-automation.html" class="hover:text-emerald-600 transition block font-semibold text-emerald-600">WhatsApp automation ↗</a></li>
+                                    <li><a href="ctwa-automation.html" class="hover:text-blue-600 transition block font-semibold text-blue-600">Click to WhatsApp ads ↗</a></li>
+                                    <li><a href="ai-voice-agents.html" class="hover:text-purple-600 transition block font-semibold text-purple-600">AI Voice Agents ↗</a></li>
+                                </ul>
+                            </div>
+                            <div class="space-y-3 bg-emerald-50/50 p-3 -m-3 rounded-xl border border-emerald-100">
+                                <div class="flex items-center gap-2 text-emerald-700 font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-headset"></i> HELPDESK</div>
+                                <ul class="space-y-2.5 text-slate-700 font-medium">
+                                    <li><a href="customer-support.html" class="hover:text-emerald-600 transition block">Customer support</a></li>
+                                    <li><a href="whatsapp-calling.html" class="hover:text-emerald-600 transition block font-bold text-emerald-700">WhatsApp calling ↗</a></li>
+                                </ul>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="space-y-2">
+                                    <div class="text-bikOrange font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-comment-dots"></i> POPUPS</div>
+                                    <a href="solutions.html?module=gamification" class="hover:text-bikOrange transition block text-slate-600">Gamification</a>
+                                </div>
+                                <div class="space-y-2 border-t border-slate-100 pt-3">
+                                    <div class="text-bikOrange font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-robot"></i> CHATBOTS</div>
+                                    <a href="solutions.html?module=whatsapp-chatbot" class="hover:text-bikOrange transition block text-slate-600">WhatsApp chatbot</a>
+                                    <a href="solutions.html?module=instagram-chatbot" class="hover:text-bikOrange transition block text-slate-600 mt-1">Instagram chatbot</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="delivery.html" class="hover:text-bikOrange transition">Fleet Dispatch</a>
+                <a href="web-development.html" class="hover:text-bikOrange transition">Web Development</a>
+                <a href="about.html" class="hover:text-bikOrange transition">About Us</a>
+            </nav>
+
+            <div class="flex items-center space-x-4">
+                <a href="https://wa.me/919876543210?text=Hi%20Bhagat%20%26%20Yash,%20I%20want%20to%20deploy%20Enterprise%20SMS%20Gateways." target="_blank" class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm transition shadow-md shadow-blue-500/20">
+                    Get DLT Routes
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION (BIK.AI SMS COPY) -->
+    <section class="pt-16 pb-20 md:pt-24 md:pb-28 bg-gradient-to-b from-blue-50/30 via-white to-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-6 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 border border-blue-200 text-blue-800 text-xs font-bold uppercase tracking-wide">
+                        <i class="fa-solid fa-tower-broadcast"></i> Carrier-Direct High Throughput SMS Gateway
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-bikDark tracking-tight leading-[1.08] font-display">
+                        Connect with Ideal Customers on the <span class="text-blue-600">most widely used platform</span>.
+                    </h1>
+                    <p class="text-lg text-slateText max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal">
+                        All you need for SMS-led growth. Deliver time-bound promotional flash alerts, instant transactional OTPs, and abandoned cart nudges with 100% TRAI DLT compliance.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <button onclick="window.FC_AUTH.openTrialModal()" data-fc-trial="true" href="https://wa.me/919876543210?text=Hi%20Flying%20Cheetah,%20I%20want%20to%20start%20for%20free%20with%20SMS%20Marketing." target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm transition shadow-lg shadow-blue-500/25">
+                            Start for free
+                        </button>
+                        <a href="demo.html" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-xl border border-slate-300 hover:border-blue-600 text-slate-800 font-bold text-sm bg-white hover:bg-blue-50/50 transition">
+                            Book a demo
+                        </a>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-6 pt-6 border-t border-slate-100 max-w-lg mx-auto lg:mx-0 text-left">
+                        <div class="p-3 rounded-2xl bg-blue-50/60 border border-blue-100">
+                            <div class="text-3xl font-black text-blue-600 font-display fc-num tracking-tight">&lt; 2.8s</div>
+                            <div class="text-[11px] font-bold text-slate-600 mt-0.5">Carrier Latency</div>
+                        </div>
+                        <div class="p-3 rounded-2xl bg-emerald-50/60 border border-emerald-100">
+                            <div class="text-3xl font-black text-emerald-600 font-display fc-num tracking-tight">100%</div>
+                            <div class="text-[11px] font-bold text-slate-600 mt-0.5">TRAI DLT Assured</div>
+                        </div>
+                        <div class="p-3 rounded-2xl bg-orange-50/60 border border-orange-100">
+                            <div class="text-3xl font-black text-bikOrange font-display fc-num tracking-tight">5.4x</div>
+                            <div class="text-[11px] font-bold text-slate-600 mt-0.5">Average ROAS</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Visual: ANIMATED FLOWCHART VIDEO CONSOLE -->
+                <div class="lg:col-span-6 relative">
+                    <div class="rounded-3xl border border-slate-800 bg-slate-950 shadow-2xl bik-mega-shadow fc-card-glow relative overflow-hidden text-white">
+                        
+                        <!-- Top Video Progress Bar -->
+                        <div class="w-full h-1 bg-slate-800 relative overflow-hidden">
+                            <div id="smsProgressBar" class="h-full bg-gradient-to-r from-blue-500 via-cyan-400 to-emerald-400 transition-all duration-300 w-0"></div>
+                        </div>
+
+                        <!-- Video Player Header Chrome -->
+                        <div class="px-5 py-3 border-b border-slate-800 flex items-center justify-between bg-slate-900/60 backdrop-blur-md">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></span>
+                                <span class="text-[11px] font-bold text-slate-300 ml-1 font-mono flex items-center gap-1.5">
+                                    <i class="fa-solid fa-play text-blue-400 text-[10px]"></i>
+                                    <span>Carrier DLT Flash SMS & Failover Pipeline</span>
+                                </span>
+                            </div>
+
+                            <div class="flex items-center gap-2">
+                                <span id="smsStepBadge" class="px-2.5 py-0.5 rounded-full bg-blue-950 border border-blue-800/60 text-blue-300 text-[10px] font-mono font-bold">
+                                    Step 1: Detection
+                                </span>
+                                <button onclick="toggleSmsVideo()" id="smsPlayPauseBtn" class="w-7 h-7 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 flex items-center justify-center transition text-xs" title="Pause / Play">
+                                    <i class="fa-solid fa-pause" id="smsPlayPauseIcon"></i>
+                                </button>
+                                <button onclick="restartSmsVideo()" class="w-7 h-7 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 flex items-center justify-center transition text-xs" title="Replay">
+                                    <i class="fa-solid fa-rotate-right"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Video Visual Canvas -->
+                        <div class="p-5 sm:p-6 grid grid-cols-1 sm:grid-cols-12 gap-5 items-center relative">
+                            
+                            <!-- Left: Connected Flowchart Road Map (7 cols) -->
+                            <div class="sm:col-span-7 space-y-3 relative">
+                                
+                                <!-- Background Animated Beam Line -->
+                                <div class="absolute left-6 top-7 bottom-7 w-1 -translate-x-1/2 z-0 pointer-events-none">
+                                    <div class="w-full h-full bg-slate-800 rounded-full"></div>
+                                    <div id="smsBeamActive" class="absolute top-0 left-0 w-full bg-gradient-to-b from-blue-400 via-cyan-300 to-emerald-400 rounded-full transition-all duration-500 shadow-[0_0_12px_#0866ff] h-0"></div>
+                                </div>
+
+                                <!-- Node 1: Unread Chat Detection -->
+                                <div id="smsNode1" onclick="jumpSmsStep(0)" class="relative z-10 p-2.5 rounded-2xl bg-slate-900/90 border border-blue-500/80 flex items-center gap-3 transition-all duration-300 cursor-pointer node-glow-blue">
+                                    <div class="w-8 h-8 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center text-sm font-bold border border-blue-500/30 transition shadow-sm">
+                                        <i class="fa-solid fa-envelope-open-text"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center justify-between">
+                                            <span class="text-xs font-black text-white block">1. Unread Trigger</span>
+                                            <span class="text-[9px] font-mono text-blue-400 bg-blue-950 px-1.5 py-0.5 rounded border border-blue-800/50">15m Window</span>
+                                        </div>
+                                        <span class="text-[10px] text-slate-400 block truncate">WhatsApp/Email unopened &rarr; Failover</span>
+                                    </div>
+                                </div>
+
+                                <!-- Node 2: TRAI DLT Template Validation -->
+                                <div id="smsNode2" onclick="jumpSmsStep(1)" class="relative z-10 p-2.5 rounded-2xl bg-slate-900/90 border border-slate-800 flex items-center gap-3 transition-all duration-300 cursor-pointer opacity-40">
+                                    <div class="w-8 h-8 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-sm font-bold border border-purple-500/30 transition shadow-sm">
+                                        <i class="fa-solid fa-shield-halved text-xs"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center justify-between">
+                                            <span class="text-xs font-black text-white block">2. TRAI DLT Validation</span>
+                                            <span class="text-[9px] font-mono text-purple-300">VM-FLCHTA</span>
+                                        </div>
+                                        <span class="text-[10px] text-slate-400 block truncate">100% Pre-approved &bull; Zero spam block</span>
+                                    </div>
+                                </div>
+
+                                <!-- Node 3: SS7 Carrier Direct Pipe -->
+                                <div id="smsNode3" onclick="jumpSmsStep(2)" class="relative z-10 p-2.5 rounded-2xl bg-slate-900/90 border border-slate-800 flex items-center gap-3 transition-all duration-300 cursor-pointer opacity-40">
+                                    <div class="w-8 h-8 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-sm font-bold border border-cyan-500/30 transition shadow-sm">
+                                        <i class="fa-solid fa-tower-cell text-xs"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center justify-between">
+                                            <span class="text-xs font-black text-white block">3. SS7 Carrier Trunk</span>
+                                            <span class="text-[9px] font-mono text-cyan-400">1.8s Latency</span>
+                                        </div>
+                                        <span class="text-[10px] text-slate-400 block truncate">Jio + Airtel dual carrier routing</span>
+                                    </div>
+                                </div>
+
+                                <!-- Node 4: Smart Link Recovery -->
+                                <div id="smsNode4" onclick="jumpSmsStep(3)" class="relative z-10 p-3 rounded-2xl bg-slate-900/90 border border-slate-800 flex items-center gap-3 transition-all duration-300 cursor-pointer opacity-40">
+                                    <div class="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-base font-bold border border-emerald-500/30 transition shadow-sm">
+                                        <i class="fa-solid fa-circle-check"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center justify-between">
+                                            <span class="text-xs font-black text-white block flex items-center gap-1.5">
+                                                <span>4. Smart Link Converted</span>
+                                                <i class="fa-solid fa-bolt text-emerald-400 text-xs"></i>
+                                            </span>
+                                            <span class="text-[9px] font-mono text-emerald-300 bg-emerald-950 px-2 py-0.5 rounded-full border border-emerald-500/40 font-bold">5.4x ROAS</span>
+                                        </div>
+                                        <span class="text-[10px] text-emerald-400 font-semibold block truncate">1-Click UPI Paid &bull; Zero App Install</span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- Right: Live Synchronized Carrier Telemetry Screen (5 cols) -->
+                            <div class="sm:col-span-5 relative">
+                                <div class="rounded-2xl border border-slate-800 bg-[#0c1322] p-3.5 space-y-3 shadow-xl">
+                                    
+                                    <!-- Telecom Carrier Bar -->
+                                    <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                                        <div class="flex items-center gap-2">
+                                            <span class="w-2.5 h-2.5 rounded-full bg-blue-500 animate-pulse"></span>
+                                            <span class="text-[10px] font-bold text-slate-300">Carrier Trunk: Active</span>
+                                        </div>
+                                        <span class="text-[10px] font-mono text-cyan-400 font-bold" id="smsLatencyStats">1.8s Latency</span>
+                                    </div>
+
+                                    <!-- SMS Handset Bubble -->
+                                    <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 space-y-2 text-[10px]">
+                                        <div class="flex items-center justify-between text-slate-400 text-[9px]">
+                                            <span class="font-bold text-white font-mono" id="smsSenderHeader">VM-FLCHTA</span>
+                                            <span class="text-blue-400">TRAI Compliant</span>
+                                        </div>
+                                        <p class="text-[9px] text-slate-300 leading-snug font-mono" id="smsBodyPreview">
+                                            Flying Cheetah: Priya, your ₹3,499 cart is reserved for 30 mins! Tap: fc7.in/m3k to claim 1-tap checkout.
+                                        </p>
+                                        <div class="p-1.5 rounded-lg bg-blue-950/60 border border-blue-800/40 flex items-center justify-between text-[9px]">
+                                            <span class="text-blue-200">Shortlink CTR:</span>
+                                            <span class="text-emerald-400 font-bold">34.8% Click-Through</span>
+                                        </div>
+                                        <button id="smsActionBtn" class="w-full py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-bold text-[9px] flex items-center justify-center gap-1 transition">
+                                            <i class="fa-solid fa-tower-cell mr-1"></i> Send Flash SMS Failover
+                                        </button>
+                                    </div>
+
+                                    <!-- Carrier Quality Strip -->
+                                    <div class="flex items-center justify-between text-[9px] font-mono text-slate-400 px-1">
+                                        <span class="text-emerald-400"><i class="fa-solid fa-check mr-1"></i>DLT Entity Whitelisted</span>
+                                        <span class="text-cyan-400">99.8% Delivered</span>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Video Footer Status Bar -->
+                        <div class="px-5 py-2.5 bg-slate-900 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-300 font-mono">
+                            <span class="flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-blue-400 animate-ping"></span>
+                                <span id="smsStatusText">Step 1: Unread Chat Triggers Smart SMS Failover</span>
+                            </span>
+                            <span class="text-blue-400 font-bold">Tier-1 Telecom Interconnect</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- OFFICIAL LOGOS STRIP -->
+    <section class="py-8 bg-blue-50/40 border-y border-blue-100/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs font-bold text-slate-500">
+                <span class="uppercase tracking-wider text-[11px] text-blue-700 flex items-center gap-1.5"><i class="fa-solid fa-tower-cell text-blue-600 text-base"></i> Telecom Infrastructure:</span>
+                <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-blue-700 font-bold"><i class="fa-solid fa-sim-card text-lg text-blue-600"></i> Jio Enterprise Fiber</span>
+                <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-red-700"><i class="fa-solid fa-tower-broadcast text-lg text-red-600"></i> Airtel Corporate Direct</span>
+                <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-amber-700"><i class="fa-solid fa-network-wired text-lg text-amber-600"></i> Vodafone Idea (Vi) Grid</span>
+                <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-emerald-700"><i class="fa-solid fa-shield-check text-lg text-emerald-600"></i> TRAI DLT Pre-Registered</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- CORE 4 FEATURES (BIK.AI ARCHITECTURE) -->
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+            <div class="text-center max-w-2xl mx-auto">
+                <span class="text-xs font-bold uppercase tracking-widest text-blue-600 bg-blue-100 px-3 py-1 rounded-full">Core Capabilities</span>
+                <h2 class="text-3xl font-extrabold text-bikDark mt-3 font-display">Carrier-Grade Telecommunications For Commerce</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="p-6 rounded-2xl border border-slate-200 bg-slate-50/60 card-anim">
+                    <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-bolt"></i></div>
+                    <h3 class="font-bold text-base text-bikDark mb-2">&lt; 3s Latency Routes</h3>
+                    <p class="text-xs text-slateText leading-relaxed">Direct carrier connections bypass multi-hop aggregator delays, ensuring OTPs and checkout codes arrive in seconds.</p>
+                </div>
+
+                <div class="p-6 rounded-2xl border border-slate-200 bg-slate-50/60 card-anim">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-file-shield"></i></div>
+                    <h3 class="font-bold text-base text-bikDark mb-2">Pre-Approved DLT Headers</h3>
+                    <p class="text-xs text-slateText leading-relaxed">Done-for-you TRAI registration and entity verification, avoiding the bureaucratic 3-week delays typical of other platforms.</p>
+                </div>
+
+                <div class="p-6 rounded-2xl border border-slate-200 bg-slate-50/60 card-anim">
+                    <div class="w-12 h-12 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-chart-simple"></i></div>
+                    <h3 class="font-bold text-base text-bikDark mb-2">Deep CTR Attribution</h3>
+                    <p class="text-xs text-slateText leading-relaxed">Short link generator (fc.to) tracks individual buyer clicks, device OS, and exact recovered revenue in real-time.</p>
+                </div>
+
+                <div class="p-6 rounded-2xl border border-slate-200 bg-slate-50/60 card-anim">
+                    <div class="w-12 h-12 rounded-xl bg-orange-100 text-bikOrange flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-motorcycle"></i></div>
+                    <h3 class="font-bold text-base text-bikDark mb-2">Borzo Courier SMS Nudges</h3>
+                    <p class="text-xs text-slateText leading-relaxed">Automated transactional SMS dispatches live rider tracking links to customers for zero-lag hyperlocal delivery.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        
+    <footer class="py-12 bg-white border-t border-slate-200 text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-3">
+                <img src="images/flying_cheetah_hd_logo_heraldic.jpg" alt="Flying Cheetah" class="h-6 w-6 rounded-full object-cover border border-slate-300">
+                <span class="font-bold text-slate-700">FLYING CHEETAH LABS • ALL-IN-ONE AI COMMERCE SUITE © 2026.</span>
+                <span>All Rights Reserved.</span>
+            </div>
+            <div class="flex flex-wrap items-center gap-4 font-medium text-slate-600">
+                <a href="home.html" class="hover:text-bikOrange transition font-bold text-bikOrange">Home Hub</a>
+                <a href="index.html" class="hover:text-bikOrange transition">Main Site</a>
+                <a href="customer-support.html" class="hover:text-bikOrange transition">Customer Support</a>
+                <a href="delivery.html" class="hover:text-bikOrange transition">Fleet Protocol</a>
+                <a href="about.html" class="hover:text-bikOrange transition">About Us</a>
+            </div>
+        </div>
+    </footer>
+    <!-- Flowchart Video Engine -->
+    <script src="js/flowchart-player.js"></script>
+    <script>
+        let smsPlayerInstance = null;
+        document.addEventListener('DOMContentLoaded', function() {
+            smsPlayerInstance = new FlowchartConsolePlayer({
+                progressBarId: 'smsProgressBar',
+                beamId: 'smsBeamActive',
+                stepBadgeId: 'smsStepBadge',
+                statusTextId: 'smsStatusText',
+                playPauseIconId: 'smsPlayPauseIcon',
+                activeGlowClass: 'node-glow-blue',
+                nodeIds: ['smsNode1', 'smsNode2', 'smsNode3', 'smsNode4'],
+                stepDuration: 2800,
+                steps: [
+                    {
+                        badge: 'Step 1: Detection',
+                        status: 'Unread Chat Monitor: WhatsApp unopened for 15 minutes',
+                        latency: 'Scanning...',
+                        sender: 'VM-FLCHTA',
+                        body: 'Shopper Priya dropped out at checkout without opening WhatsApp notification.',
+                        btn: 'Checking DLT Whitelist'
+                    },
+                    {
+                        badge: 'Step 2: DLT Valid',
+                        status: 'TRAI DLT Template Pre-Approved: Entity ID 170115982001 (VM-FLCHTA)',
+                        latency: '< 50ms Match',
+                        sender: 'VM-FLCHTA',
+                        body: 'Template hash matched. Zero risk of telecom operator filtering or spam tagging.',
+                        btn: 'Routing to SS7 Pipe'
+                    },
+                    {
+                        badge: 'Step 3: SS7 Carrier',
+                        status: 'Carrier Direct Trunk: Handed to Jio & Airtel Gateway in 1.8s',
+                        latency: '1.8s Latency',
+                        sender: 'VM-FLCHTA',
+                        body: 'Flying Cheetah: Priya, your ₹3,499 cart is reserved for 30 mins! Tap: fc7.in/m3k to claim 1-tap checkout.',
+                        btn: 'Awaiting User Tap'
+                    },
+                    {
+                        badge: 'Step 4: Converted',
+                        status: 'Smart Link Converted: 1-Tap UPI Completed • ₹3,499 Captured (5.4x ROAS)',
+                        latency: 'Delivered 100%',
+                        sender: 'VM-FLCHTA',
+                        body: 'Payment received via UPI. Order #FC-8942 logged in Shopify.',
+                        btn: '✓ Sale Recovered'
+                    }
+                ],
+                onStepChange: function(index, step) {
+                    const latency = document.getElementById('smsLatencyStats');
+                    const sender = document.getElementById('smsSenderHeader');
+                    const body = document.getElementById('smsBodyPreview');
+                    const btn = document.getElementById('smsActionBtn');
+                    if (latency) latency.innerText = step.latency;
+                    if (sender) sender.innerText = step.sender;
+                    if (body) body.innerText = step.body;
+                    if (btn) btn.innerHTML = '<i class="fa-solid fa-tower-cell mr-1"></i> ' + step.btn;
+                }
+            });
+        });
+
+        function jumpSmsStep(index) {
+            if (smsPlayerInstance) smsPlayerInstance.jumpToStep(index);
+        }
+        function toggleSmsVideo() {
+            if (smsPlayerInstance) smsPlayerInstance.togglePlay();
+        }
+        function restartSmsVideo() {
+            if (smsPlayerInstance) smsPlayerInstance.restart();
+        }
+
+        // Toggle dropdowns on click & close when clicking outside
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdownParents = document.querySelectorAll('.dropdown-parent');
+            dropdownParents.forEach(function(parent) {
+                const btn = parent.querySelector('button');
+                if (btn) {
+                    btn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        // Close other open dropdowns
+                        dropdownParents.forEach(p => { if (p !== parent) p.classList.remove('active'); });
+                        parent.classList.toggle('active');
+                    });
+                }
+            });
+
+            document.addEventListener('click', function(e) {
+                dropdownParents.forEach(p => p.classList.remove('active'));
+            });
+        });
+    </script>
+    <!-- Supabase & Flying Cheetah Backend Architecture SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/leads.js"></script>
+    <script src="js/fc-widgets.js"></script>
+
+<script>
+        // Top-level nav links hover safety: immediately dismiss all dropdowns
+        document.querySelectorAll('nav > a').forEach(function(link) {
+            link.addEventListener('mouseenter', function() {
+                document.querySelectorAll('.home-dropdown-parent, .products-dropdown-parent, .dropdown-parent').forEach(function(p) {
+                    p.classList.remove('active');
+                });
+            });
+        });
+        // Click outside dismiss
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.home-dropdown-parent') && !e.target.closest('.products-dropdown-parent') && !e.target.closest('.dropdown-parent')) {
+                document.querySelectorAll('.home-dropdown-parent, .products-dropdown-parent, .dropdown-parent').forEach(function(p) {
+                    p.classList.remove('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

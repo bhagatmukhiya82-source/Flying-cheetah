@@ -1,0 +1,408 @@
+/**
+ * FLYING CHEETAH LABS - CORE FX, ANIMATION & VISUAL ENGINE
+ * High-performance keyframes, glassmorphism, glowing border beams, and micro-interactions
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+:root {
+    --fc-orange: #FF6838;
+    --fc-orange-dark: #E04A1B;
+    --fc-dark: #0B0F19;
+    --fc-dark-card: #121826;
+    --fc-emerald: #10B981;
+    --fc-violet: #7C3AED;
+    --fc-gold: #F59E0B;
+    --fc-blue: #0866FF;
+}
+
+/* 1. TYPOGRAPHY CLASSES */
+.font-display {
+    font-family: 'Plus Jakarta Sans', 'Outfit', sans-serif !important;
+}
+
+.font-tech {
+    font-family: 'Space Grotesk', monospace !important;
+}
+
+.font-body {
+    font-family: 'Inter', sans-serif !important;
+}
+
+/* 2. GLASSMORPHISM UTILITIES */
+.fc-glass {
+    background: rgba(255, 255, 255, 0.78);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.fc-glass-dark {
+    background: rgba(11, 15, 25, 0.78);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.fc-glass-card {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.05);
+}
+
+/* 3. SHADOWS & GLOWS */
+.glow-orange {
+    box-shadow: 0 15px 35px -5px rgba(255, 104, 56, 0.28);
+}
+
+.glow-emerald {
+    box-shadow: 0 15px 35px -5px rgba(16, 185, 129, 0.28);
+}
+
+.glow-violet {
+    box-shadow: 0 15px 35px -5px rgba(124, 58, 237, 0.28);
+}
+
+.glow-ambient {
+    background: radial-gradient(circle at 50% 0%, rgba(255, 104, 56, 0.12) 0%, rgba(124, 58, 237, 0.05) 50%, transparent 80%);
+}
+
+.glow-ambient-dark {
+    background: radial-gradient(circle at 50% -20%, rgba(255, 104, 56, 0.25) 0%, rgba(124, 58, 237, 0.15) 45%, transparent 75%);
+}
+
+/* 4. KEYFRAME ANIMATIONS */
+@keyframes floatSlow {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-8px) rotate(0.5deg);
+    }
+}
+
+@keyframes floatReverse {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(8px);
+    }
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.82;
+        transform: scale(1.03);
+    }
+}
+
+@keyframes borderBeam {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes marqueeInfinite {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes shimmerSweep {
+    0% {
+        transform: translateX(-150%);
+    }
+    100% {
+        transform: translateX(150%);
+    }
+}
+
+@keyframes liveRadarPing {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+    }
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+    }
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+    }
+}
+
+/* 5. ANIMATION UTILITY CLASSES */
+.animate-float {
+    animation: floatSlow 5s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+    animation: floatReverse 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+    animation: pulseGlow 3s ease-in-out infinite;
+}
+
+.animate-radar {
+    animation: liveRadarPing 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+.border-beam {
+    background: linear-gradient(90deg, #FF6838, #F59E0B, #7C3AED, #10B981, #FF6838);
+    background-size: 300% 300%;
+    animation: borderBeam 6s linear infinite;
+}
+
+/* 6. INFINITE MARQUEE STRIP */
+.marquee-container {
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.marquee-content {
+    display: inline-flex;
+    animation: marqueeInfinite 24s linear infinite;
+}
+
+.marquee-container:hover .marquee-content {
+    animation-play-state: paused;
+}
+
+/* 7. CARD MICRO-INTERACTIONS */
+.fc-card-interactive {
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fc-card-interactive:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 25px 45px -12px rgba(15, 23, 42, 0.12), 0 0 1px 1px rgba(255, 104, 56, 0.15);
+}
+
+.fc-card-interactive-dark {
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fc-card-interactive-dark:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 1px 1px rgba(255, 104, 56, 0.3);
+    border-color: rgba(255, 104, 56, 0.4);
+}
+
+/* 8. BUTTON HOVER SHIMMER */
+.btn-shimmer {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-shimmer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+    transform: translateX(-150%);
+}
+
+.btn-shimmer:hover::after {
+    animation: shimmerSweep 0.85s ease-in-out;
+}
+
+/* 9. MINIMALIST AI TALKING VOICE AGENT ANIMATIONS */
+@keyframes voiceOrbMorph {
+    0% {
+        border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+        transform: rotate(0deg) scale(1);
+    }
+    33% {
+        border-radius: 70% 30% 46% 54% / 30% 29% 71% 70%;
+        transform: rotate(120deg) scale(1.05);
+    }
+    66% {
+        border-radius: 50% 60% 60% 50% / 60% 60% 50% 50%;
+        transform: rotate(240deg) scale(0.96);
+    }
+    100% {
+        border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+        transform: rotate(360deg) scale(1);
+    }
+}
+
+@keyframes voiceOrbAura {
+    0%, 100% {
+        box-shadow: 0 0 45px 12px rgba(124, 58, 237, 0.45), 0 0 90px 25px rgba(255, 104, 56, 0.3), inset 0 0 35px rgba(6, 182, 212, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 70px 28px rgba(255, 104, 56, 0.55), 0 0 120px 45px rgba(124, 58, 237, 0.4), inset 0 0 50px rgba(16, 185, 129, 0.6);
+    }
+}
+
+@keyframes acousticRings {
+    0% {
+        transform: scale(0.65);
+        opacity: 0.85;
+    }
+    100% {
+        transform: scale(1.85);
+        opacity: 0;
+    }
+}
+
+@keyframes soundWaveDancing {
+    0%, 100% {
+        transform: scaleY(0.25);
+    }
+    50% {
+        transform: scaleY(1);
+    }
+}
+
+.fc-voice-orb-glow {
+    animation: voiceOrbMorph 8s ease-in-out infinite, voiceOrbAura 3.5s ease-in-out infinite;
+}
+
+.fc-acoustic-ring {
+    position: absolute;
+    inset: -15px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(124, 58, 237, 0.45);
+    animation: acousticRings 2.6s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+    pointer-events: none;
+}
+
+.fc-acoustic-ring-delayed {
+    position: absolute;
+    inset: -15px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255, 104, 56, 0.4);
+    animation: acousticRings 2.6s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+    animation-delay: 1.3s;
+    pointer-events: none;
+}
+
+.fc-wave-bar {
+    transform-origin: center;
+    animation: soundWaveDancing 1.2s ease-in-out infinite;
+}
+
+/* 10. CONNECTED NODES & GLOWING PATH ANIMATION */
+@keyframes flowDash {
+    0% {
+        stroke-dashoffset: 600;
+    }
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes nodeActiveGlow {
+    0%, 100% {
+        box-shadow: 0 0 15px rgba(16, 185, 129, 0.5), 0 0 30px rgba(16, 185, 129, 0.3);
+        border-color: #10B981;
+    }
+    50% {
+        box-shadow: 0 0 25px rgba(16, 185, 129, 0.8), 0 0 50px rgba(16, 185, 129, 0.5);
+        border-color: #34D399;
+    }
+}
+
+@keyframes photonParticle {
+    0% {
+        offset-distance: 0%;
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        offset-distance: 100%;
+        opacity: 0;
+    }
+}
+
+.node-glow-active {
+    animation: nodeActiveGlow 1.8s ease-in-out infinite;
+    transform: scale(1.04);
+}
+
+@keyframes nodeOrangeGlow {
+    0%, 100% {
+        box-shadow: 0 0 15px rgba(255, 104, 56, 0.5), 0 0 30px rgba(255, 104, 56, 0.25);
+        border-color: #FF6838;
+    }
+    50% {
+        box-shadow: 0 0 25px rgba(255, 104, 56, 0.8), 0 0 50px rgba(255, 104, 56, 0.45);
+        border-color: #FF8A65;
+    }
+}
+.node-glow-orange {
+    animation: nodeOrangeGlow 1.8s ease-in-out infinite;
+    transform: scale(1.04);
+}
+
+@keyframes nodeBlueGlow {
+    0%, 100% {
+        box-shadow: 0 0 15px rgba(8, 102, 255, 0.5), 0 0 30px rgba(8, 102, 255, 0.25);
+        border-color: #0866FF;
+    }
+    50% {
+        box-shadow: 0 0 25px rgba(8, 102, 255, 0.8), 0 0 50px rgba(8, 102, 255, 0.45);
+        border-color: #38BDF8;
+    }
+}
+.node-glow-blue {
+    animation: nodeBlueGlow 1.8s ease-in-out infinite;
+    transform: scale(1.04);
+}
+
+@keyframes nodeIndigoGlow {
+    0%, 100% {
+        box-shadow: 0 0 15px rgba(99, 102, 241, 0.5), 0 0 30px rgba(99, 102, 241, 0.25);
+        border-color: #6366F1;
+    }
+    50% {
+        box-shadow: 0 0 25px rgba(99, 102, 241, 0.8), 0 0 50px rgba(99, 102, 241, 0.45);
+        border-color: #818CF8;
+    }
+}
+.node-glow-indigo {
+    animation: nodeIndigoGlow 1.8s ease-in-out infinite;
+    transform: scale(1.04);
+}
+
+@keyframes spinSlow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+.fc-spin-slow {
+    animation: spinSlow 12s linear infinite;
+}
+
+.path-beam-glow {
+    filter: drop-shadow(0 0 6px #10B981) drop-shadow(0 0 12px rgba(16, 185, 129, 0.6));
+}
