@@ -140,7 +140,7 @@ def generate_seated_winged_cheetah_logo():
 def generate_architecture_mesh():
     """
     Renders a pristine, editorial-grade architecture blueprint (Dark Mode / Vercel-Stripe aesthetic):
-    Webhook Ingestion -> Gemini 3.8 AI Cognition Node -> Async Event Router -> Borzo Dispatch & Tally Sync.
+    Webhook Ingestion -> Artificial Intelligence AI Cognition Node -> Async Event Router -> Borzo Dispatch & Tally Sync.
     """
     fig, ax = plt.subplots(figsize=(12, 7), dpi=300)
     fig.patch.set_facecolor(BG_DARK)
@@ -169,7 +169,7 @@ def generate_architecture_mesh():
     draw_card(0.05, 0.11, 0.22, 0.22, "Vendor Invoice Scan", "Camera / Paper Receipt OCR", "LAYER 01 // MEDIA", GOLD_DARK, BG_SURFACE, GOLD_PRIMARY)
 
     # Column 2: Central Intelligence & Orchestration (Center)
-    draw_card(0.36, 0.25, 0.28, 0.58, "Flying Cheetah Core", "Gemini 3.8 Multimodal Reasoner\n+ High-Throughput n8n Workflows\n\n• Token Latency: 110ms\n• Zero-Wait Event Webhook Loop\n• JSON Schema Enforced Payload", "LAYER 02 // COGNITION & ENGINE", GOLD_PRIMARY, "#0F131F", GOLD_LIGHT)
+    draw_card(0.36, 0.25, 0.28, 0.58, "Flying Cheetah Core", "Artificial Intelligence Multimodal Reasoner\n+ High-Throughput n8n Workflows\n\n• Token Latency: 110ms\n• Zero-Wait Event Webhook Loop\n• JSON Schema Enforced Payload", "LAYER 02 // COGNITION & ENGINE", GOLD_PRIMARY, "#0F131F", GOLD_LIGHT)
 
     # Column 3: Downstream Dispatch & Ledger (Right)
     draw_card(0.72, 0.70, 0.24, 0.20, "Borzo / Porter API", "Instant 2-Wheeler Fleet Dispatch\nLive GPS Tracking link sent to buyer", "LAYER 03 // LOGISTICS", ACCENT_GREEN, BG_CARD, ACCENT_GREEN)
@@ -360,9 +360,9 @@ def generate_whatsapp_store_preview():
     print("✓ WhatsApp Store UI Preview generated successfully!")
 
 
-def generate_gemini_ocr_engine():
+def generate_ai_ocr_engine():
     """
-    Renders the Gemini 3.8 Multimodal OCR & Ledger Engine:
+    Renders the Artificial Intelligence Multimodal OCR & Ledger Engine:
     Physical handwritten/printed vendor bill on the left,
     neural OCR bounding boxes, and instant structured JSON & Tally format on the right.
     """
@@ -399,10 +399,10 @@ def generate_gemini_ocr_engine():
     ax.add_patch(bb2)
     ax.text(0.12, 0.32, "TOTAL INVOICE PAYABLE: ₹20,550", color=ACCENT_GREEN, fontsize=7.8, fontweight='bold')
 
-    # Center Process Beam: Gemini 3.8 Multimodal Vision Extraction
+    # Center Process Beam: Artificial Intelligence Multimodal Vision Extraction
     ax.plot([0.45, 0.54], [0.50, 0.50], color=GOLD_PRIMARY, linewidth=2.0)
     ax.scatter([0.495], [0.50], color=GOLD_LIGHT, s=90, zorder=8)
-    ax.text(0.495, 0.55, "Gemini 3.8 Vision\n< 1.8s Latency", color=GOLD_LIGHT, fontsize=7.2, fontweight='bold', ha='center')
+    ax.text(0.495, 0.55, "Artificial Intelligence Vision\n< 1.8s Latency", color=GOLD_LIGHT, fontsize=7.2, fontweight='bold', ha='center')
 
     # Right: Structured Ledger & Tally Payload
     ledger = FancyBboxPatch((0.55, 0.15), 0.38, 0.70, boxstyle="round,pad=0.015,rounding_size=0.02",
@@ -430,9 +430,9 @@ def generate_gemini_ocr_engine():
     ax.set_ylim(0, 1)
     ax.axis("off")
     plt.tight_layout()
-    plt.savefig(f"{OUTPUT_DIR}/gemini_ocr_engine.png", bbox_inches="tight", facecolor=BG_DARK, pad_inches=0.03)
+    plt.savefig(f"{OUTPUT_DIR}/ai_ocr_engine.png", bbox_inches="tight", facecolor=BG_DARK, pad_inches=0.03)
     plt.close()
-    print("✓ Gemini OCR Engine diagram generated successfully!")
+    print("✓ Artificial Intelligence OCR Engine diagram generated successfully!")
 
 
 def generate_roi_metric_dashboard():
@@ -493,6 +493,6 @@ if __name__ == "__main__":
     generate_architecture_mesh()
     generate_hyperlocal_dispatch_map()
     generate_whatsapp_store_preview()
-    generate_gemini_ocr_engine()
+    generate_ai_ocr_engine()
     generate_roi_metric_dashboard()
     print("\nAll brand assets generated in luxury minimalist aesthetic!")

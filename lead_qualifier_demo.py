@@ -3,20 +3,20 @@ import json
 from google import genai
 from google.genai import types
 
-# 1. Provide your Gemini API key (from https://aistudio.google.com/)
+# 1. Provide your Artificial Intelligence API key (from https://aistudio.google.com/)
 # You can set it as an environment variable or replace the placeholder below
-GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "YOUR_GEMINI_API_KEY_HERE")
+AI_API_KEY = os.environ.get("AI_API_KEY", "YOUR_AI_API_KEY_HERE")
 
 def process_lead(lead_message: str):
     """
     Analyzes an incoming customer message, determines intent, budget,
     urgency, and generates a personalized response.
     """
-    if GEMINI_API_KEY == "YOUR_GEMINI_API_KEY_HERE":
-        print("⚠️ Please set your GEMINI_API_KEY before running!")
+    if AI_API_KEY == "YOUR_AI_API_KEY_HERE":
+        print("⚠️ Please set your AI_API_KEY before running!")
         return
 
-    client = genai.Client(api_key=GEMINI_API_KEY)
+    client = genai.Client(api_key=AI_API_KEY)
 
     prompt = f"""
     You are an AI lead qualification assistant for a business in Mumbai.
@@ -33,7 +33,7 @@ def process_lead(lead_message: str):
     """
 
     response = client.models.generate_content(
-        model="gemini-1.5-flash",
+        model="ai-model-pro",
         contents=prompt,
         config=types.GenerateContentConfig(
             response_mime_type="application/json"

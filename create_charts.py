@@ -8,7 +8,7 @@ def generate_flowchart_1(filename="flowchart_agency_lifecycle.png"):
 
     # Step boxes
     steps = [
-        {"num": "STEP 1", "title": "Zero-Cost Infra", "sub": "n8n + Gemini API\nLocal Dev Environment", "col": "#EBF8FF", "border": "#3182CE"},
+        {"num": "STEP 1", "title": "Zero-Cost Infra", "sub": "n8n + Artificial Intelligence API\nLocal Dev Environment", "col": "#EBF8FF", "border": "#3182CE"},
         {"num": "STEP 2", "title": "Agency Website", "sub": "Clean 1-Page Portfolio\nWhatsApp CTA + Demos", "col": "#E6FFFA", "border": "#319795"},
         {"num": "STEP 3", "title": "Target Audience", "sub": "Real Estate, CAs\nD2C & Local MSMEs", "col": "#FEFCBF", "border": "#D69E2E"},
         {"num": "STEP 4", "title": "Client Outreach", "sub": "Warm Audit + 3-Day Test\nZero Risk Proposal", "col": "#FEEBC8", "border": "#DD6B20"},

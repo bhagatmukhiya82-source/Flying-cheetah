@@ -61,7 +61,7 @@ def create_hero_graphic(path="c:/AUTOMATION BUSSNIESS/flying-cheetah/images/hero
     ax.add_patch(c2)
     ax.text(5.0, 4.4, "FLYING CHEETAH", color="#F59E0B", fontsize=11, fontweight="bold", ha="center")
     ax.text(5.0, 4.0, "Brain & Dispatch", color="#93C5FD", fontsize=8.5, ha="center")
-    ax.text(5.0, 2.8, "• Gemini 3.8 Intelligence\n• Auto-Tally / Sheets\n• Fraud & RTO Guard\n• Dispatch Orchestration", color="#E5E7EB", fontsize=9, ha="center")
+    ax.text(5.0, 2.8, "• Artificial Intelligence Engine\n• Auto-Tally / Sheets\n• Fraud & RTO Guard\n• Dispatch Orchestration", color="#E5E7EB", fontsize=9, ha="center")
 
     # 3. Rider Hyperlocal Delivery
     c3 = patches.FancyBboxPatch((6.8, 2.0), 2.2, 2.6, boxstyle="round,pad=0.1,rounding_size=0.2", facecolor="#1F2937", edgecolor="#3B82F6", lw=2)
@@ -121,7 +121,7 @@ def create_feature_graphics():
     ax.set_facecolor("#111827")
     rect = patches.FancyBboxPatch((0.5, 0.5), 5.0, 3.2, boxstyle="round,pad=0.2,rounding_size=0.25", facecolor="#1F2937", edgecolor="#F59E0B", lw=2)
     ax.add_patch(rect)
-    ax.text(3.0, 3.2, "⚡ Gemini AI Back-Office", color="#FBBF24", fontsize=13, fontweight="bold", ha="center")
+    ax.text(3.0, 3.2, "⚡ Autonomous Artificial Intelligence Back-Office", color="#FBBF24", fontsize=13, fontweight="bold", ha="center")
     ax.text(3.0, 2.3, "Extracts vendor invoices, syncs Tally / Sheets,\nauto-triages lead qualification, and sends\nautomated follow-ups with zero staff intervention.", color="#E5E7EB", fontsize=10, ha="center", va="center")
     ax.text(3.0, 1.1, "Eliminate 15+ Hours of Weekly Data Entry", color="#A78BFA", fontsize=9, fontweight="bold", ha="center")
     ax.axis("off"); ax.set_xlim(0, 6); ax.set_ylim(0, 4.2)
@@ -139,7 +139,7 @@ def create_founders_badge(path="c:/AUTOMATION BUSSNIESS/flying-cheetah/images/fo
     ax.add_patch(b1)
     ax.text(2.1, 2.6, "Bhagat Mukhiya", color="#FFFFFF", fontsize=12, fontweight="bold", ha="center")
     ax.text(2.1, 2.2, "Co-Founder & AI Architect", color="#F59E0B", fontsize=9, fontweight="bold", ha="center")
-    ax.text(2.1, 1.3, "• n8n Core Pipelines & APIs\n• Gemini 3.8 Intelligence Setup\n• Python & Web Architecture\n• Systems & Error Telemetry", color="#D1D5DB", fontsize=8.5, ha="center")
+    ax.text(2.1, 1.3, "• n8n Core Pipelines & APIs\n• Artificial Intelligence Engine Setup\n• Python & Web Architecture\n• Systems & Error Telemetry", color="#D1D5DB", fontsize=8.5, ha="center")
 
     # Yash Card
     b2 = patches.FancyBboxPatch((4.2, 0.4), 3.4, 2.8, boxstyle="round,pad=0.1,rounding_size=0.2", facecolor="#1F2937", edgecolor="#3B82F6", lw=1.5)

@@ -123,7 +123,7 @@ def create_guide_pdf(filename="Automation_Business_Starter_Guide.pdf"):
     stack_data = [
         [Paragraph("<b>Component</b>", body_style), Paragraph("<b>Software / Tool</b>", body_style), Paragraph("<b>Cost</b>", body_style), Paragraph("<b>Purpose</b>", body_style)],
         [Paragraph("Core Engine", body_style), Paragraph("n8n (Self-Hosted)", body_style), Paragraph("₹0", body_style), Paragraph("Visual drag-and-drop workflow builder. Runs locally on port 5678 without task quotas.", body_style)],
-        [Paragraph("AI Reasoning", body_style), Paragraph("Google Gemini API (AI Studio)", body_style), Paragraph("₹0", body_style), Paragraph("Gemini 1.5/2.0 Flash with free tier (15 requests/min) for OCR, parsing, and chat.", body_style)],
+        [Paragraph("AI Reasoning", body_style), Paragraph("Google Artificial Intelligence API (AI Studio)", body_style), Paragraph("₹0", body_style), Paragraph("Artificial Intelligence 1.5/2.0 Flash with free tier (15 requests/min) for OCR, parsing, and chat.", body_style)],
         [Paragraph("Scripting & Code", body_style), Paragraph("Python 3.15 + VS Code", body_style), Paragraph("₹0", body_style), Paragraph("Custom logic, webhooks, data transformations, and browser automation.", body_style)],
         [Paragraph("Data Storage", body_style), Paragraph("Google Sheets / Airtable", body_style), Paragraph("₹0", body_style), Paragraph("Client-friendly lightweight databases for tracking leads, logs, and orders.", body_style)],
         [Paragraph("Screen Demos", body_style), Paragraph("Loom (Free Plan)", body_style), Paragraph("₹0", body_style), Paragraph("2-minute proof-of-concept videos to pitch non-technical owners.", body_style)]
@@ -142,7 +142,7 @@ def create_guide_pdf(filename="Automation_Business_Starter_Guide.pdf"):
     # SECTION 2: How to Run & Connect Locally
     elements.append(Paragraph("2. Quick Setup Verification", h2_style))
     elements.append(Paragraph("• <b>Launch n8n:</b> Open PowerShell and run <code>n8n start</code>. Access the visual editor in Chrome at <code>http://localhost:5678</code>.", bullet_style))
-    elements.append(Paragraph("• <b>Get Free Gemini Key:</b> Visit <code>aistudio.google.com</code>, sign in with your Google account, click 'Get API Key', and copy the key.", bullet_style))
+    elements.append(Paragraph("• <b>Get Free Artificial Intelligence Key:</b> Visit <code>aistudio.google.com</code>, sign in with your Google account, click 'Get API Key', and copy the key.", bullet_style))
     elements.append(Paragraph("• <b>Run Custom Script:</b> Run <code>python lead_qualifier_demo.py</code> inside your workspace folder to test AI parsing on incoming customer requests.", bullet_style))
     elements.append(Spacer(1, 14))
 
@@ -175,7 +175,7 @@ def create_guide_pdf(filename="Automation_Business_Starter_Guide.pdf"):
     draw_arrow(d1, 110, 51, 140, 51)
     draw_node(d1, 140, 30, 105, 42, "n8n Processing", "Deduplicate & Parse", colors.HexColor("#E6FFFA"))
     draw_arrow(d1, 245, 51, 275, 51)
-    draw_node(d1, 275, 30, 110, 42, "Gemini Flash AI", "Qualify & Score Intent", colors.HexColor("#FEFCBF"))
+    draw_node(d1, 275, 30, 110, 42, "Artificial Intelligence Flash AI", "Qualify & Score Intent", colors.HexColor("#FEFCBF"))
     draw_arrow(d1, 385, 51, 415, 51)
     draw_node(d1, 415, 30, 100, 42, "Action & Alert", "WhatsApp + Sheet", colors.HexColor("#C6F6D5"))
     elements.append(d1)
@@ -199,7 +199,7 @@ def create_guide_pdf(filename="Automation_Business_Starter_Guide.pdf"):
     draw_arrow(d2, 110, 51, 140, 51)
     draw_node(d2, 140, 30, 105, 42, "n8n Trigger", "Extract Attachment", colors.HexColor("#EBF8FF"))
     draw_arrow(d2, 245, 51, 275, 51)
-    draw_node(d2, 275, 30, 110, 42, "Gemini Vision OCR", "Vendor, GST, Total, Date", colors.HexColor("#FEFCBF"))
+    draw_node(d2, 275, 30, 110, 42, "Artificial Intelligence Vision OCR", "Vendor, GST, Total, Date", colors.HexColor("#FEFCBF"))
     draw_arrow(d2, 385, 51, 415, 51)
     draw_node(d2, 415, 30, 100, 42, "Export to Accounting", "Google Sheet / Tally XML", colors.HexColor("#C6F6D5"))
     elements.append(d2)
@@ -247,7 +247,7 @@ def create_guide_pdf(filename="Automation_Business_Starter_Guide.pdf"):
 
     # SECTION 6: The 30-Day Action Roadmap
     elements.append(Paragraph("6. Step-by-Step 30-Day Execution Roadmap", h1_style))
-    elements.append(Paragraph("• <b>Week 1 (Build 1 Demo):</b> Connect n8n to Google Sheets. Use your free Gemini key to build the lead qualification flow. Record a 90-second video demo.", bullet_style))
+    elements.append(Paragraph("• <b>Week 1 (Build 1 Demo):</b> Connect n8n to Google Sheets. Use your free Artificial Intelligence key to build the lead qualification flow. Record a 90-second video demo.", bullet_style))
     elements.append(Paragraph("• <b>Week 2 (The Warm Circle):</b> Talk to 5 business owners you already know (family friends, local shops, dentists). Offer to automate 1 small manual task for free for 3 days.", bullet_style))
     elements.append(Paragraph("• <b>Week 3 (Case Study & Testimonial):</b> Once they see it save time, ask for a short testimonial or introduce you to 2 other business owners.", bullet_style))
     elements.append(Paragraph("• <b>Week 4 (Close First Paid Client):</b> Pitch the WhatsApp or Invoice Automation with a ₹15,000 setup + ₹5,000/month monitoring fee.", bullet_style))

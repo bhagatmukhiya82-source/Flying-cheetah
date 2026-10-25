@@ -6,6 +6,12 @@ Flying Cheetah Labs is architected as an **enterprise-grade, event-driven autono
 
 ## 📐 High-Level Architecture Diagram
 
+<div align="center">
+  <img src="assets/ai_commerce_neural_matrix.png" alt="Flying Cheetah Autonomous AI Commerce Neural Architecture" width="900" style="border-radius: 12px; border: 2px solid #00F0FF; box-shadow: 0 10px 30px rgba(0, 240, 255, 0.2);" />
+</div>
+
+<br/>
+
 ```mermaid
 flowchart TD
     subgraph ClientLayer["🌐 Client & Channel Ingestion"]
@@ -39,7 +45,7 @@ flowchart TD
     end
 
     subgraph ExternalIntegrations["🚀 External Logistics & AI APIs"]
-        GeminiAI["Google Gemini 3.8 Intelligence / OCR"]
+        AutonomousAI["Autonomous Multi-Modal Artificial Intelligence Engine"]
         BorzoAPI["Borzo Hyperlocal Courier API (2-Wheeler Fleet)"]
         PorterAPI["Porter Logistics API (Trucks & 3-Wheelers)"]
         UPIPay["Razorpay & UPI Instant Settlement"]
@@ -56,7 +62,7 @@ flowchart TD
     FastAPI --> FormSubmit
 
     RedisQueue --> WorkerPool
-    WorkerPool --> GeminiAI
+    WorkerPool --> AutonomousAI
     WorkerPool --> BorzoAPI
     WorkerPool --> PorterAPI
     WorkerPool --> UPIPay

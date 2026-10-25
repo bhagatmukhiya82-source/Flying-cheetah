@@ -188,7 +188,7 @@ def generate_full_master_pdf(filename="Agency_Master_Playbook_Bhagat_Yash.pdf"):
         [
             Paragraph("<b>Chartered Accountants & Traders</b><br/>(Fort, Crawford Market, BKC)", body_style),
             Paragraph("Accountants spend 10-15 hours/week typing invoice data from PDFs/photos into Tally.", body_style),
-            Paragraph("<b>AI Invoice-to-Sheet Scanner:</b> Gemini Vision OCR reads bills, extracts GST, total, vendor, and fills spreadsheets automatically.", body_style),
+            Paragraph("<b>AI Invoice-to-Sheet Scanner:</b> Artificial Intelligence Vision OCR reads bills, extracts GST, total, vendor, and fills spreadsheets automatically.", body_style),
             Paragraph("₹30,000 setup<br/>+ ₹10,000/mo", body_style)
         ],
         [
@@ -213,7 +213,7 @@ def generate_full_master_pdf(filename="Agency_Master_Playbook_Bhagat_Yash.pdf"):
     # SECTION 5: The Founders' Co-Working Division (Bhagat & Yash)
     elements.append(Paragraph("5. Co-Founder Responsibility Split", h1_style))
     elements.append(Paragraph("To execute smoothly and scale rapidly without overlapping or confusion, divide tasks clearly:", body_style))
-    elements.append(Paragraph("• <b>Technical & Automation Architect (Bhagat Mukhiya):</b> n8n workflow construction, Gemini API prompts, Python scripts, web portal logic, and error monitoring.", bullet_style))
+    elements.append(Paragraph("• <b>Technical & Automation Architect (Bhagat Mukhiya):</b> n8n workflow construction, Artificial Intelligence API prompts, Python scripts, web portal logic, and error monitoring.", bullet_style))
     elements.append(Paragraph("• <b>Client Acquisition & Frontend Experience (Yash Gaikwad):</b> Outreach message sequences, client discovery calls, demo recordings, UI/UX frontend styling, and weekly client reporting.", bullet_style))
     elements.append(Spacer(1, 8))
 
