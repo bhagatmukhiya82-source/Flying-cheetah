@@ -79,7 +79,7 @@ class Settings(BaseSettings):
     
     # Hyperlocal Courier APIs (Borzo & Porter)
     BORZO_AUTH_TOKEN: str = Field(default="MOCK_BORZO_AUTH_TOKEN", env="BORZO_AUTH_TOKEN")
-    BORZO_API_URL: str = Field(default="https://robot.borzodelivery.com/api/business/1.2", env="BORZO_API_URL")
+    BORZO_API_URL: str = Field(default="https://robot-in.borzodelivery.com/api/business/1.8", env="BORZO_API_URL")
     PORTER_API_KEY: str = Field(default="MOCK_PORTER_API_KEY", env="PORTER_API_KEY")
     
     # Voice AI Pipeline (Twilio / Exotel / Deepgram / ElevenLabs)
