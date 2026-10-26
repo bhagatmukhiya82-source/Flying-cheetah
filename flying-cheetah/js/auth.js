@@ -1086,80 +1086,23 @@
         }));
     }
 
-    // 4. SIGN IN WITH GOOGLE (POPUP-SAFE OAUTH + INSTANT IN-APP FALLBACK)
+    // 4. SIGN IN WITH GOOGLE (OFFICIAL SUPABASE PKCE OAUTH + IN-APP EMAIL FALLBACK)
     async function signInWithGoogle(context = 'signin') {
         try {
             const redirectUrl = window.location.origin + window.location.pathname;
+            console.log('[Auth] Initiating Google Sign-In with redirect to:', redirectUrl);
 
-            // Use skipBrowserRedirect: true so the primary window NEVER unloads or navigates away!
             const { data, error } = await client.auth.signInWithOAuth({
                 provider: 'google',
                 options: {
-                    redirectTo: redirectUrl,
-                    skipBrowserRedirect: true
+                    redirectTo: redirectUrl
                 }
             });
 
-            if (error || !data?.url) {
-                console.warn('[Google OAuth Notice]:', error ? error.message : 'No OAuth URL returned');
+            if (error) {
+                console.warn('[Google OAuth Notice]:', error.message);
                 openGoogleEmailModal();
-                return;
             }
-
-            // Open OAuth in a centered popup window - main website remains 100% stable!
-            const width = 520;
-            const height = 650;
-            const left = Math.max(0, Math.round(window.screenX + (window.outerWidth - width) / 2));
-            const top = Math.max(0, Math.round(window.screenY + (window.outerHeight - height) / 2));
-            const popup = window.open(
-                data.url,
-                'FC_Google_OAuth_Popup',
-                "width=520,height=650,left=" + left + ",top=" + top + ",resizable=yes,scrollbars=yes,status=yes"
-            );
-
-            // If popup was blocked by browser
-            if (!popup || popup.closed || typeof popup.closed === 'undefined') {
-                console.warn('[Google OAuth]: Popup blocked. Opening in-app Google prompt.');
-                openGoogleEmailModal();
-                return;
-            }
-
-            // Monitor popup session completion without navigating the parent window
-            const checkPopupInterval = setInterval(async () => {
-                try {
-                    if (!popup || popup.closed) {
-                        clearInterval(checkPopupInterval);
-                        const { data: sessionData } = await client.auth.getSession();
-                        if (sessionData?.session) {
-                            currentUser = sessionData.session.user;
-                            await loadUserProfile(currentUser);
-                            syncNavbarUI();
-                            closeAuthModal();
-                            showAuthToast('🎉 Signed in with Google successfully!');
-                        }
-                        return;
-                    }
-
-                    const popupHref = popup.location.href;
-                    if (popupHref && (popupHref.includes('access_token=') || popupHref.includes(window.location.origin))) {
-                        clearInterval(checkPopupInterval);
-                        popup.close();
-                        const { data: sessionData } = await client.auth.getSession();
-                        if (sessionData?.session) {
-                            currentUser = sessionData.session.user;
-                            await loadUserProfile(currentUser);
-                            syncNavbarUI();
-                            closeAuthModal();
-                            showAuthToast('🎉 Signed in with Google successfully!');
-                        }
-                    }
-                } catch (crossOriginErr) {
-                    // Cross-origin while on google accounts is expected
-                }
-            }, 600);
-
-            setTimeout(() => clearInterval(checkPopupInterval), 120000);
-
         } catch (err) {
             console.warn('[Google OAuth Catch]:', err);
             openGoogleEmailModal();
@@ -1412,40 +1355,99 @@
         }
     }
 
-    function checkUrlAuthErrors() {
-        // If loaded on localhost:8080 with access_token while production is live, redirect back to production
-        if (window.location.hostname === 'localhost' && window.location.hash.includes('access_token=')) {
-            const prodUrl = 'https://flying-cheetah.vercel.app/' + window.location.hash;
-            console.log('[Auth] Localhost redirect intercepted. Forwarding to production:', prodUrl);
-            window.location.replace(prodUrl);
-            return;
-        }
-
+    // Comprehensive OAuth Callback & PKCE Code Exchange Handler
+    async function handleOAuthCallback() {
         const params = new URLSearchParams(window.location.search);
+        const code = params.get('code');
         const hashParams = new URLSearchParams(window.location.hash.replace(/^#/, ''));
+        const hasHashToken = hashParams.has('access_token');
         const err = params.get('error') || hashParams.get('error');
         const errDesc = params.get('error_description') || hashParams.get('error_description');
 
+        // Handle error parameters returned from provider
         if (err || errDesc) {
             console.warn('[Auth OAuth Callback Error]:', err, errDesc);
             window.history.replaceState({}, document.title, window.location.pathname);
             setTimeout(() => {
-                showAuthToast('Google sign-in: enter your email below to continue', 'info');
+                showAuthToast('Google sign-in not completed. Please continue below:', 'info');
                 openGoogleEmailModal();
             }, 300);
-        } else if (window.location.hash.includes('access_token=')) {
-            // Clean URL hash safely after Supabase extracts token
-            setTimeout(() => {
+            return;
+        }
+
+        // PKCE Flow: Exchange authorization code for authenticated session
+        if (code) {
+            console.log('[Auth PKCE] Exchanging code for user session...');
+            showAuthToast('🔐 Finalizing Google Authentication...', 'info');
+
+            try {
+                let res = null;
+                if (typeof client.auth.exchangeCodeForSession === 'function') {
+                    res = await client.auth.exchangeCodeForSession(code);
+                } else {
+                    res = await client.auth.getSession();
+                }
+
+                if (res?.error) {
+                    console.warn('[Auth PKCE Error]:', res.error.message);
+                }
+
+                const user = res?.data?.session?.user || res?.data?.user;
+                if (user) {
+                    currentUser = user;
+                    await loadUserProfile(currentUser);
+                    localStorage.setItem('fc_session_user', JSON.stringify(currentUser));
+                    if (currentProfile) {
+                        localStorage.setItem('fc_session_profile', JSON.stringify(currentProfile));
+                    }
+                    syncNavbarUI();
+                    const displayName = currentProfile?.full_name || currentUser.user_metadata?.full_name || currentUser.email;
+                    showAuthToast(`👋 Welcome back, ${displayName}!`);
+                    notifyAgencyOfLogin(currentUser, 'GOOGLE_SIGNIN');
+
+                    window.dispatchEvent(new CustomEvent('fc:auth-state-changed', {
+                        detail: { user: currentUser, profile: currentProfile }
+                    }));
+                }
+            } catch (err) {
+                console.error('[Auth PKCE Exception]:', err);
+            } finally {
+                // Remove ?code= from the address bar for clean user experience
                 window.history.replaceState({}, document.title, window.location.pathname);
-            }, 800);
+            }
+            return;
+        }
+
+        // Implicit Flow: access_token in URL hash
+        if (hasHashToken) {
+            console.log('[Auth Hash] Processing access_token in URL hash...');
+            setTimeout(async () => {
+                const { data } = await client.auth.getSession();
+                if (data?.session?.user) {
+                    currentUser = data.session.user;
+                    await loadUserProfile(currentUser);
+                    localStorage.setItem('fc_session_user', JSON.stringify(currentUser));
+                    if (currentProfile) {
+                        localStorage.setItem('fc_session_profile', JSON.stringify(currentProfile));
+                    }
+                    syncNavbarUI();
+                    const displayName = currentProfile?.full_name || currentUser.user_metadata?.full_name || currentUser.email;
+                    showAuthToast(`👋 Welcome back, ${displayName}!`);
+                    notifyAgencyOfLogin(currentUser, 'GOOGLE_SIGNIN');
+
+                    window.dispatchEvent(new CustomEvent('fc:auth-state-changed', {
+                        detail: { user: currentUser, profile: currentProfile }
+                    }));
+                }
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }, 500);
         }
     }
 
     // 9. INITIALIZE ON DOM READY
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', async () => {
         injectAuthModal();
         setupTrialClickInterceptors();
-        checkUrlAuthErrors();
 
         // Restore saved session if active
         const savedUser = localStorage.getItem('fc_session_user');
@@ -1458,10 +1460,33 @@
             } catch (e) {}
         }
 
+        // Handle OAuth Callback (PKCE code exchange / token hash)
+        await handleOAuthCallback();
+
+        // Check active session from Supabase client if not yet loaded
+        if (!currentUser) {
+            try {
+                const { data } = await client.auth.getSession();
+                if (data?.session?.user) {
+                    currentUser = data.session.user;
+                    await loadUserProfile(currentUser);
+                    localStorage.setItem('fc_session_user', JSON.stringify(currentUser));
+                    if (currentProfile) {
+                        localStorage.setItem('fc_session_profile', JSON.stringify(currentProfile));
+                    }
+                    syncNavbarUI();
+                }
+            } catch (e) {}
+        }
+
         client.auth.onAuthStateChange(async (event, session) => {
             currentUser = session?.user || currentUser || null;
             if (currentUser) {
                 await loadUserProfile(currentUser);
+                localStorage.setItem('fc_session_user', JSON.stringify(currentUser));
+                if (currentProfile) {
+                    localStorage.setItem('fc_session_profile', JSON.stringify(currentProfile));
+                }
 
                 if (event === 'SIGNED_IN' || event === 'USER_UPDATED') {
                     notifyAgencyOfLogin(currentUser, event);
