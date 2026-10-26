@@ -50,6 +50,17 @@
         }, 4500);
     }
 
+    // Helper: Safely extract user initials without throwing TypeError
+    function getSafeInitials(name) {
+        if (!name || typeof name !== 'string') return 'FC';
+        const clean = name.trim();
+        if (!clean) return 'FC';
+        const parts = clean.split(/\s+/).filter(Boolean);
+        if (parts.length === 0) return 'FC';
+        if (parts.length === 1) return parts[0].substring(0, 2).toUpperCase();
+        return ((parts[0][0] || 'F') + (parts[parts.length - 1][0] || 'C')).toUpperCase();
+    }
+
     // Password Evaluation Utility (Professional Criteria)
     function evaluatePassword(pwd) {
         const val = pwd || '';
@@ -1075,21 +1086,80 @@
         }));
     }
 
-    // 4. SIGN IN WITH GOOGLE (GENUINE OAUTH + CLEAN FALLBACK)
+    // 4. SIGN IN WITH GOOGLE (POPUP-SAFE OAUTH + INSTANT IN-APP FALLBACK)
     async function signInWithGoogle(context = 'signin') {
         try {
+            const redirectUrl = window.location.origin + window.location.pathname;
+
+            // Use skipBrowserRedirect: true so the primary window NEVER unloads or navigates away!
             const { data, error } = await client.auth.signInWithOAuth({
                 provider: 'google',
                 options: {
-                    redirectTo: window.location.origin + window.location.pathname
+                    redirectTo: redirectUrl,
+                    skipBrowserRedirect: true
                 }
             });
 
-            if (error) {
-                console.warn('[Google OAuth Notice]:', error.message);
-                // Open clean, direct Google email sign-in modal
+            if (error || !data?.url) {
+                console.warn('[Google OAuth Notice]:', error ? error.message : 'No OAuth URL returned');
                 openGoogleEmailModal();
+                return;
             }
+
+            // Open OAuth in a centered popup window - main website remains 100% stable!
+            const width = 520;
+            const height = 650;
+            const left = Math.max(0, Math.round(window.screenX + (window.outerWidth - width) / 2));
+            const top = Math.max(0, Math.round(window.screenY + (window.outerHeight - height) / 2));
+            const popup = window.open(
+                data.url,
+                'FC_Google_OAuth_Popup',
+                "width=520,height=650,left=" + left + ",top=" + top + ",resizable=yes,scrollbars=yes,status=yes"
+            );
+
+            // If popup was blocked by browser
+            if (!popup || popup.closed || typeof popup.closed === 'undefined') {
+                console.warn('[Google OAuth]: Popup blocked. Opening in-app Google prompt.');
+                openGoogleEmailModal();
+                return;
+            }
+
+            // Monitor popup session completion without navigating the parent window
+            const checkPopupInterval = setInterval(async () => {
+                try {
+                    if (!popup || popup.closed) {
+                        clearInterval(checkPopupInterval);
+                        const { data: sessionData } = await client.auth.getSession();
+                        if (sessionData?.session) {
+                            currentUser = sessionData.session.user;
+                            await loadUserProfile(currentUser);
+                            syncNavbarUI();
+                            closeAuthModal();
+                            showAuthToast('🎉 Signed in with Google successfully!');
+                        }
+                        return;
+                    }
+
+                    const popupHref = popup.location.href;
+                    if (popupHref && (popupHref.includes('access_token=') || popupHref.includes(window.location.origin))) {
+                        clearInterval(checkPopupInterval);
+                        popup.close();
+                        const { data: sessionData } = await client.auth.getSession();
+                        if (sessionData?.session) {
+                            currentUser = sessionData.session.user;
+                            await loadUserProfile(currentUser);
+                            syncNavbarUI();
+                            closeAuthModal();
+                            showAuthToast('🎉 Signed in with Google successfully!');
+                        }
+                    }
+                } catch (crossOriginErr) {
+                    // Cross-origin while on google accounts is expected
+                }
+            }, 600);
+
+            setTimeout(() => clearInterval(checkPopupInterval), 120000);
+
         } catch (err) {
             console.warn('[Google OAuth Catch]:', err);
             openGoogleEmailModal();
@@ -1175,10 +1245,11 @@
                 `;
             } else {
                 // Logged in: Show Avatar & User Menu
-                const name = currentProfile?.full_name || currentUser.user_metadata?.full_name || currentUser.email.split('@')[0];
+                const rawName = currentProfile?.full_name || currentUser.user_metadata?.full_name || (currentUser.email ? currentUser.email.split('@')[0] : 'User');
+                const name = typeof rawName === 'string' && rawName.trim() ? rawName.trim() : 'User';
                 const avatar = currentProfile?.avatar_url || currentUser.user_metadata?.avatar_url;
                 const isAdmin = currentProfile?.role === 'admin' || window.FC_BACKEND.getConfig().ADMIN_EMAILS.includes((currentUser.email || '').toLowerCase());
-                const initials = name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+                const initials = getSafeInitials(name);
 
                 container.innerHTML = `
                     <div class="relative group/auth">
@@ -1342,6 +1413,14 @@
     }
 
     function checkUrlAuthErrors() {
+        // If loaded on localhost:8080 with access_token while production is live, redirect back to production
+        if (window.location.hostname === 'localhost' && window.location.hash.includes('access_token=')) {
+            const prodUrl = 'https://flying-cheetah.vercel.app/' + window.location.hash;
+            console.log('[Auth] Localhost redirect intercepted. Forwarding to production:', prodUrl);
+            window.location.replace(prodUrl);
+            return;
+        }
+
         const params = new URLSearchParams(window.location.search);
         const hashParams = new URLSearchParams(window.location.hash.replace(/^#/, ''));
         const err = params.get('error') || hashParams.get('error');
@@ -1354,6 +1433,11 @@
                 showAuthToast('Google sign-in: enter your email below to continue', 'info');
                 openGoogleEmailModal();
             }, 300);
+        } else if (window.location.hash.includes('access_token=')) {
+            // Clean URL hash safely after Supabase extracts token
+            setTimeout(() => {
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }, 800);
         }
     }
 
