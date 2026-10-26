@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <link rel="icon" type="image/jpeg" href="images/flying_cheetah_hd_logo_heraldic.jpg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autonomous AI Storefront & WhatsApp Commerce Demo — Flying Cheetah</title>
+    <meta name="description" content="Shop Clothes & Electronics with Instant WhatsApp Ordering, UPI/COD Payment & 18-Minute Borzo Courier Doorstep Delivery.">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/fx.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Inter"', 'sans-serif'],
+                        display: ['"Plus Jakarta Sans"', '"Outfit"', 'sans-serif'],
+                        tech: ['"Space Grotesk"', 'monospace']
+                    },
+                    colors: {
+                        bikOrange: '#FF6838',
+                        bikOrangeDark: '#E04A1B',
+                        bikDark: '#0B0F19',
+                        bikBg: '#FFF9F6',
+                        brandGold: '#F59E0B',
+                        slateText: '#475569',
+                        emeraldNeon: '#10B981',
+                        waGreen: '#25D366'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .bik-mega-shadow { box-shadow: 0 25px 60px -15px rgba(255, 104, 56, 0.15), 0 0 1px 1px rgba(0, 0, 0, 0.05); }
+        .chat-bubble { animation: popIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        @keyframes popIn {
+            from { opacity: 0; transform: translateY(10px) scale(0.97); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans antialiased selection:bg-bikOrange selection:text-white">
+
+    <!-- Top Announcement -->
+    <div class="bg-bikDark text-white py-2 px-4 text-center text-xs font-medium flex items-center justify-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+        <span>⚡ Live Simulation: Order on Web or WhatsApp &rarr; Automated UPI/COD &rarr; 18-Min Borzo Courier Dispatch to your door.</span>
+    </div>
+
+    <!-- NAVBAR -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-3">
+                <img src="images/flying_cheetah_hd_logo_heraldic.jpg" alt="Flying Cheetah" class="h-11 w-11 rounded-full object-cover border border-slate-200 shadow-sm">
+                <div class="flex flex-col">
+                    <span class="text-xl font-black tracking-tight font-display text-bikDark">FLYING CHEETAH</span>
+                    <span class="text-[9px] text-emerald-600 font-bold tracking-widest uppercase -mt-1">AUTONOMOUS STOREFRONT</span>
+                </div>
+            </a>
+
+            <nav class="hidden lg:flex items-center space-x-8 text-sm font-semibold text-slate-700">
+                <a href="index.html" class="hover:text-bikOrange transition">Main Site</a>
+                <a href="store.html" class="text-bikOrange font-bold transition">🛍️ Live Store Demo</a>
+                <a href="delivery.html" class="hover:text-bikOrange transition">Fleet Dispatch (Borzo)</a>
+                <a href="whatsapp-automation.html" class="hover:text-emerald-600 transition">WhatsApp Automation</a>
+                <a href="demo.html" class="hover:text-bikOrange transition">Book Audit</a>
+            </nav>
+
+            <div class="flex items-center space-x-3">
+                <a href="https://wa.me/919920386421?text=Hi%20Bhagat%20%26%20Yash,%20I%20want%20this%20exact%20WhatsApp%20Store%20and%20Borzo%20delivery%20for%20my%20shop!" target="_blank" class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-waGreen hover:bg-emerald-600 text-white font-bold text-xs transition shadow-md shadow-emerald-500/20 gap-2">
+                    <i class="fa-brands fa-whatsapp text-sm"></i>
+                    <span>Connect WhatsApp Store</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO HEADER -->
+    <section class="py-12 bg-white border-b border-slate-200/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl">
+                <span class="text-xs font-bold uppercase tracking-widest text-bikOrange bg-orange-50 border border-orange-200/60 px-3 py-1 rounded-full">
+                    End-to-End D2C Commerce Loop
+                </span>
+                <h1 class="text-3xl sm:text-5xl font-black text-bikDark tracking-tight mt-3 font-display">
+                    Customer Orders Shirt or Gadget &rarr; <span class="text-emerald-600">Borzo Delivers to Door</span>.
+                </h1>
+                <p class="text-sm sm:text-base text-slate-600 mt-2 leading-relaxed">
+                    Test the complete automated customer journey below. Browse products, order via the website or directly inside the interactive WhatsApp simulator, choose UPI or Cash-on-Delivery, and watch an on-demand Borzo bike courier dispatch in real time.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN TWO-COLUMN WORKFLOW: CATALOG (LEFT) + WHATSAPP SIMULATOR (RIGHT) -->
+    <section class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+            <!-- LEFT COLUMN: INTERACTIVE CATALOG & WEB CHECKOUT (7 COLS) -->
+            <div class="lg:col-span-7 space-y-6">
+                <!-- Filter Tabs -->
+                <div class="flex items-center gap-2 border-b border-slate-200 pb-3">
+                    <button onclick="filterCatalog('all')" id="tab-all" class="px-4 py-2 rounded-xl bg-bikDark text-white text-xs font-bold transition shadow-sm">
+                        All Products (6)
+                    </button>
+                    <button onclick="filterCatalog('clothes')" id="tab-clothes" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition">
+                        👕 Designer Clothes
+                    </button>
+                    <button onclick="filterCatalog('electronics')" id="tab-electronics" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition">
+                        🎧 Electronics & Gadgets
+                    </button>
+                </div>
+
+                <!-- Products Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5" id="productsGrid">
+                    
+                    <!-- ITEM 1: LINEN SHIRT -->
+                    <div class="product-card bg-white rounded-2xl border border-slate-200 p-4 shadow-sm hover:shadow-lg transition space-y-3" data-category="clothes">
+                        <div class="h-44 rounded-xl bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center relative overflow-hidden">
+                            <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-emerald-500 text-white font-tech text-[10px] font-bold">18-MIN BORZO</span>
+                            <i class="fa-solid fa-shirt text-6xl text-slate-400/80"></i>
+                        </div>
+                        <div>
+                            <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Men's Luxury Apparel</div>
+                            <h3 class="font-bold text-base text-bikDark mt-0.5">Oversized Pure Linen Shirt</h3>
+                            <p class="text-xs text-slate-500 mt-1">100% Breathable European Flax. Custom tailored in Bandra.</p>
+                        </div>
+                        <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
+                            <div>
+                                <span class="text-lg font-black text-bikDark font-display">₹1,499</span>
+                                <span class="text-[11px] text-slate-400 line-through ml-1">₹2,499</span>
+                            </div>
+                            <button onclick="openCheckoutModal('Oversized Pure Linen Shirt', 1499, 'clothes')" class="px-4 py-2 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white text-xs font-bold transition shadow-sm shadow-orange-500/20 flex items-center gap-1.5">
+                                <i class="fa-solid fa-bag-shopping"></i>
+                                <span>Buy & Dispatch</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- ITEM 2: HANDBLOCK KURTA -->
+                    <div class="product-card bg-white rounded-2xl border border-slate-200 p-4 shadow-sm hover:shadow-lg transition space-y-3" data-category="clothes">
+                        <div class="h-44 rounded-xl bg-gradient-to-br from-indigo-50 to-blue-100 flex items-center justify-center relative overflow-hidden">
+                            <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-emerald-500 text-white font-tech text-[10px] font-bold">18-MIN BORZO</span>
+                            <i class="fa-solid fa-vest-patches text-6xl text-indigo-300"></i>
+                        </div>
+                        <div>
+                            <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Ethnic Couture</div>
+                            <h3 class="font-bold text-base text-bikDark mt-0.5">Indigo Handblock Short Kurta</h3>
+                            <p class="text-xs text-slate-500 mt-1">Pure organic cotton with vegetable dye prints.</p>
+                        </div>
+                        <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
+                            <div>
+                                <span class="text-lg font-black text-bikDark font-display">₹1,850</span>
+                                <span class="text-[11px] text-slate-400 line-through ml-1">₹2,800</span>
+                            </div>
+                            <button onclick="openCheckoutModal('Indigo Handblock Short Kurta', 1850, 'clothes')" class="px-4 py-2 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white text-xs font-bold transition shadow-sm shadow-orange-500/20 flex items-center gap-1.5">
+                                <i class="fa-solid fa-bag-shopping"></i>
+                                <span>Buy & Dispatch</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- ITEM 3: ANC EARBUDS -->
+                    <div class="product-card bg-white rounded-2xl border border-slate-200 p-4 shadow-sm hover:shadow-lg transition space-y-3" data-category="electronics">
+                        <div class="h-44 rounded-xl bg-gradient-to-br from-slate-900 to-slate-800 text-white flex items-center justify-center relative overflow-hidden">
+                            <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-emerald-500 text-white font-tech text-[10px] font-bold">18-MIN BORZO</span>
+                            <i class="fa-solid fa-headphones text-6xl text-slate-600"></i>
+                        </div>
+                        <div>
+                            <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Audio & Gadgets</div>
+                            <h3 class="font-bold text-base text-bikDark mt-0.5">SonicPods Pro ANC Wireless</h3>
+                            <p class="text-xs text-slate-500 mt-1">42dB Active Noise Cancellation &amp; 38-hour battery.</p>
+                        </div>
+                        <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
+                            <div>
+                                <span class="text-lg font-black text-bikDark font-display">₹2,499</span>
+                                <span class="text-[11px] text-slate-400 line-through ml-1">₹4,999</span>
+                            </div>
+                            <button onclick="openCheckoutModal('SonicPods Pro ANC Wireless', 2499, 'electronics')" class="px-4 py-2 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white text-xs font-bold transition shadow-sm shadow-orange-500/20 flex items-center gap-1.5">
+                                <i class="fa-solid fa-bag-shopping"></i>
+                                <span>Buy & Dispatch</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- ITEM 4: MAGSAFE POWERBANK -->
+                    <div class="product-card bg-white rounded-2xl border border-slate-200 p-4 shadow-sm hover:shadow-lg transition space-y-3" data-category="electronics">
+                        <div class="h-44 rounded-xl bg-gradient-to-br from-amber-50 to-orange-100 flex items-center justify-center relative overflow-hidden">
+                            <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-emerald-500 text-white font-tech text-[10px] font-bold">18-MIN BORZO</span>
+                            <i class="fa-solid fa-bolt text-6xl text-amber-300"></i>
+                        </div>
+                        <div>
+                            <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Fast Power</div>
+                            <h3 class="font-bold text-base text-bikDark mt-0.5">10,000mAh MagSafe PowerBank</h3>
+                            <p class="text-xs text-slate-500 mt-1">22.5W Fast Charging with strong magnetic snap.</p>
+                        </div>
+                        <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
+                            <div>
+                                <span class="text-lg font-black text-bikDark font-display">₹1,699</span>
+                                <span class="text-[11px] text-slate-400 line-through ml-1">₹2,999</span>
+                            </div>
+                            <button onclick="openCheckoutModal('10,000mAh MagSafe PowerBank', 1699, 'electronics')" class="px-4 py-2 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white text-xs font-bold transition shadow-sm shadow-orange-500/20 flex items-center gap-1.5">
+                                <i class="fa-solid fa-bag-shopping"></i>
+                                <span>Buy & Dispatch</span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- LIVE DISPATCH STATUS BANNER (APPEARS AFTER ORDER) -->
+                <div id="activeDispatchCard" class="hidden bg-slate-900 text-white rounded-3xl p-6 border border-emerald-500/40 shadow-2xl space-y-4">
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+                            <span class="text-xs font-mono font-bold text-emerald-400">BORZO RIDER ON THE ROAD</span>
+                        </div>
+                        <span id="orderRefDisplay" class="text-xs font-mono text-slate-400">ORDER #FC-MUM-4491</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+                        <div class="p-3 rounded-xl bg-slate-800/80 border border-slate-700">
+                            <div class="text-slate-400 text-[10px]">Assigned Rider</div>
+                            <div id="riderNameDisplay" class="font-bold text-white text-sm mt-0.5">Ramesh Shinde</div>
+                            <div class="text-slate-400 text-[10px]">Honda Activa (MH-02-CD-4421)</div>
+                        </div>
+                        <div class="p-3 rounded-xl bg-slate-800/80 border border-slate-700">
+                            <div class="text-slate-400 text-[10px]">Doorstep Arrival</div>
+                            <div class="font-bold text-emerald-400 text-sm mt-0.5">18 Minutes</div>
+                            <div class="text-slate-400 text-[10px]">Zero Aggregator Commission</div>
+                        </div>
+                        <div class="p-3 rounded-xl bg-slate-800/80 border border-slate-700">
+                            <div class="text-slate-400 text-[10px]">Payment Status</div>
+                            <div id="paymentStatusDisplay" class="font-bold text-amber-400 text-sm mt-0.5">Cash On Delivery (COD)</div>
+                            <div class="text-slate-400 text-[10px]">Pay to Rider at Door</div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between pt-2">
+                        <span class="text-xs text-slate-400">Saved live to Supabase PostgreSQL database.</span>
+                        <a id="liveTrackingBtn" href="https://borzodelivery.com" target="_blank" class="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-black text-xs transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>Track Rider GPS Live</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- RIGHT COLUMN: INTERACTIVE WHATSAPP MOBILE SIMULATOR (5 COLS) -->
+            <div class="lg:col-span-5 bg-white rounded-3xl border border-slate-200 shadow-xl p-4 sm:p-6 sticky top-28 space-y-4">
+                <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                    <div class="flex items-center gap-2.5">
+                        <div class="w-8 h-8 rounded-full bg-waGreen text-white flex items-center justify-center text-sm font-bold">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </div>
+                        <div>
+                            <div class="text-xs font-bold text-slate-900">Boutique WhatsApp Assistant</div>
+                            <div class="text-[10px] text-emerald-600 font-semibold flex items-center gap-1">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Online • Auto-Responder
+                            </div>
+                        </div>
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 text-slate-500">SIMULATOR</span>
+                </div>
+
+                <!-- Chat Box Content -->
+                <div id="chatMessages" class="h-96 overflow-y-auto space-y-3 p-3 bg-slate-50/80 rounded-2xl border border-slate-100 text-xs">
+                    
+                    <!-- Bot Greeting -->
+                    <div class="flex items-start gap-2 chat-bubble">
+                        <div class="p-3 bg-white rounded-2xl rounded-tl-none border border-slate-200/80 max-w-[85%] shadow-sm">
+                            <p class="font-semibold text-slate-800">👋 Welcome to Flying Cheetah Boutique!</p>
+                            <p class="text-slate-600 text-[11px] mt-1">We deliver shirts &amp; electronics to your house in 18 minutes via Borzo. What are you looking for today?</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Suggested Quick Replies -->
+                <div class="space-y-1.5">
+                    <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Tap to Chat as Customer:</div>
+                    <div class="flex flex-wrap gap-1.5">
+                        <button onclick="sendSimulatedCustomerMessage('Show me Linen Shirts', 'shirts')" class="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-emerald-50 hover:text-emerald-700 text-slate-700 text-[11px] font-semibold transition border border-slate-200">
+                            👕 Show Linen Shirts
+                        </button>
+                        <button onclick="sendSimulatedCustomerMessage('I want to order Size M to Worli', 'order_shirt')" class="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-emerald-50 hover:text-emerald-700 text-slate-700 text-[11px] font-semibold transition border border-slate-200">
+                            ⚡ Order Shirt (COD)
+                        </button>
+                        <button onclick="sendSimulatedCustomerMessage('Where is my Borzo delivery rider?', 'track_rider')" class="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-emerald-50 hover:text-emerald-700 text-slate-700 text-[11px] font-semibold transition border border-slate-200">
+                            🛵 Track Rider Live
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CHECKOUT MODAL -->
+    <div id="checkoutModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-100 space-y-4">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+                <div>
+                    <h3 class="text-base font-black text-bikDark font-display">Confirm Doorstep Delivery</h3>
+                    <p class="text-[11px] text-slate-500" id="modalProductTitle">Oversized Pure Linen Shirt</p>
+                </div>
+                <button onclick="closeCheckoutModal()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-500 transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <form onsubmit="handleOrderSubmission(event)" class="space-y-3 text-xs font-semibold">
+                <div>
+                    <label class="text-slate-700 block mb-1">Your Full Name *</label>
+                    <input type="text" id="custName" required value="Rahul Sharma" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 focus:border-bikOrange outline-none text-slate-800">
+                </div>
+
+                <div>
+                    <label class="text-slate-700 block mb-1">WhatsApp Mobile (For GPS Alerts) *</label>
+                    <div class="flex items-center">
+                        <span class="px-3 py-2 bg-slate-100 border border-r-0 border-slate-200 rounded-l-xl text-slate-500 text-xs font-bold">+91</span>
+                        <input type="tel" id="custPhone" required value="99203 86421" maxlength="10" class="w-full px-3.5 py-2 rounded-r-xl border border-slate-200 focus:border-bikOrange outline-none text-slate-800">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="text-slate-700 block mb-1">Doorstep Delivery Address in Mumbai *</label>
+                    <input type="text" id="custAddress" required value="Flat 302, Sea Green Apts, Worli Sea Face, Mumbai" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 focus:border-bikOrange outline-none text-slate-800">
+                </div>
+
+                <div>
+                    <label class="text-slate-700 block mb-1">Payment Method</label>
+                    <div class="grid grid-cols-2 gap-2">
+                        <label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 hover:border-bikOrange cursor-pointer">
+                            <input type="radio" name="payMethod" value="COD" checked class="text-bikOrange">
+                            <span class="text-xs">Cash on Delivery</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 hover:border-bikOrange cursor-pointer">
+                            <input type="radio" name="payMethod" value="UPI" class="text-bikOrange">
+                            <span class="text-xs">UPI 1-Click QR</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="pt-2">
+                    <button type="submit" id="confirmOrderBtn" class="w-full py-3.5 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-sm transition shadow-lg shadow-orange-500/25 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-motorcycle"></i>
+                        <span>Confirm &amp; Call Borzo Rider (<span id="modalPrice">₹1,499</span>)</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- CLIENT-SIDE & CLOUD SCRIPTS -->
+    <script>
+        let currentItem = { name: 'Oversized Pure Linen Shirt', price: 1499 };
+
+        function filterCatalog(cat) {
+            const tabs = ['all', 'clothes', 'electronics'];
+            tabs.forEach(t => {
+                const el = document.getElementById('tab-' + t);
+                if (t === cat) {
+                    el.className = 'px-4 py-2 rounded-xl bg-bikDark text-white text-xs font-bold transition shadow-sm';
+                } else {
+                    el.className = 'px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition';
+                }
+            });
+
+            const cards = document.querySelectorAll('.product-card');
+            cards.forEach(c => {
+                if (cat === 'all' || c.getAttribute('data-category') === cat) {
+                    c.classList.remove('hidden');
+                } else {
+                    c.classList.add('hidden');
+                }
+            });
+        }
+
+        function openCheckoutModal(name, price, cat) {
+            currentItem = { name, price, cat };
+            document.getElementById('modalProductTitle').textContent = name;
+            document.getElementById('modalPrice').textContent = '₹' + price;
+            document.getElementById('checkoutModal').classList.remove('hidden');
+        }
+
+        function closeCheckoutModal() {
+            document.getElementById('checkoutModal').classList.add('hidden');
+        }
+
+        async function handleOrderSubmission(e) {
+            e.preventDefault();
+            const btn = document.getElementById('confirmOrderBtn');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Calling Borzo Dispatch...';
+
+            const name = document.getElementById('custName').value.trim();
+            const phone = document.getElementById('custPhone').value.trim();
+            const address = document.getElementById('custAddress').value.trim();
+            const payMethod = document.querySelector('input[name="payMethod"]:checked').value;
+            const orderRef = 'FC-MUM-' + Math.floor(1000 + Math.random() * 9000);
+
+            // 1. Direct cloud write to Supabase
+            try {
+                const SUPABASE_URL = "https://txqtkpxdyoatzdgkcsry.supabase.co";
+                const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR4cXRrcHhkeW9hdHpkZ2tjc3J5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI4Mzk5NDksImV4cCI6MjEwODQxNTk0OX0.TuGGpGZKHOhvkcpv02W_R-2wwuXykBTdL1iXa9G1qFE";
+                
+                await fetch(SUPABASE_URL + '/rest/v1/leads_inquiries', {
+                    method: 'POST',
+                    headers: {
+                        'apikey': SUPABASE_KEY,
+                        'Authorization': 'Bearer ' + SUPABASE_KEY,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        email: 'shopper@mumbai.in',
+                        phone: '+91' + phone,
+                        service: 'Storefront Order: ' + currentItem.name + ' (' + payMethod + ')',
+                        message: 'Drop: ' + address,
+                        source_page: 'store.html',
+                        status: 'new'
+                    })
+                });
+
+                await fetch(SUPABASE_URL + '/rest/v1/fleet_orders', {
+                    method: 'POST',
+                    headers: {
+                        'apikey': SUPABASE_KEY,
+                        'Authorization': 'Bearer ' + SUPABASE_KEY,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        order_ref: orderRef,
+                        courier: 'borzo',
+                        courier_order_id: 'borzo_ord_' + orderRef.toLowerCase(),
+                        tracking_number: 'BORZO-MUM-' + orderRef.split('-')[2],
+                        tracking_url: 'https://borzodelivery.com/in/tracking/' + orderRef,
+                        pickup_address: { address: 'Bandra West Boutique, Mumbai' },
+                        delivery_address: { address: address },
+                        rider_name: 'Ramesh Shinde',
+                        rider_phone: '+91 98200 11998',
+                        eta_minutes: 18,
+                        status: 'rider_assigned',
+                        delivery_fee_inr: 65.0
+                    })
+                });
+            } catch (err) {
+                console.warn('Cloud sync offline fallback:', err);
+            }
+
+            // 2. Display the live dispatch card on screen
+            closeCheckoutModal();
+            const activeCard = document.getElementById('activeDispatchCard');
+            activeCard.classList.remove('hidden');
+            document.getElementById('orderRefDisplay').textContent = 'ORDER #' + orderRef;
+            document.getElementById('paymentStatusDisplay').textContent = payMethod === 'COD' ? 'Cash on Delivery (₹' + currentItem.price + ')' : 'Paid via UPI 1-Click';
+            document.getElementById('liveTrackingBtn').href = 'https://borzodelivery.com/in/tracking/' + orderRef;
+
+            // 3. Add to the WhatsApp chat simulator
+            appendChatMessage('bot', `🎉 *Order Confirmed!* #${orderRef}\nItem: *${currentItem.name}*\nTotal: ₹${currentItem.price} (${payMethod})\n🛵 *Borzo Rider Ramesh Shinde (Activa MH-02-CD-4421)* assigned! Arriving at your doorstep in 18 minutes.\n🔗 Track GPS: https://borzodelivery.com/in/tracking/${orderRef}`);
+
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fa-solid fa-motorcycle"></i> <span>Confirm &amp; Call Borzo Rider</span>';
+            activeCard.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function sendSimulatedCustomerMessage(text, intent) {
+            appendChatMessage('user', text);
+
+            setTimeout(() => {
+                if (intent === 'shirts') {
+                    appendChatMessage('bot', `Here are our top trending shirts today in Mumbai:\n\n1️⃣ *Oversized Pure Linen Shirt* — ₹1,499 (Colors: Navy, White)\n2️⃣ *Indigo Handblock Kurta* — ₹1,850\n\n⚡ Delivered to your doorstep in 18 minutes via Borzo with 0% extra aggregator charge. Which size do you need (M, L, XL)?`);
+                } else if (intent === 'order_shirt') {
+                    openCheckoutModal('Oversized Pure Linen Shirt', 1499, 'clothes');
+                    appendChatMessage('bot', `Great! I've opened the 1-click checkout for your *Oversized Pure Linen Shirt (Size M)*. Select Cash-on-Delivery or UPI and your Borzo courier will be dispatched immediately.`);
+                } else if (intent === 'track_rider') {
+                    appendChatMessage('bot', `🛵 *Rider Live GPS Update:*\nRider *Ramesh Shinde* is currently 1.2 km away on S.V. Road.\nETA: *6 minutes* to your doorstep.\n🔗 Live Map: https://borzodelivery.com/in/tracking/FC-MUM-8891`);
+                }
+            }, 600);
+        }
+
+        function appendChatMessage(sender, text) {
+            const box = document.getElementById('chatMessages');
+            const isUser = sender === 'user';
+            const msgEl = document.createElement('div');
+            msgEl.className = 'flex items-start gap-2 chat-bubble ' + (isUser ? 'justify-end' : '');
+
+            const bubbleClass = isUser 
+                ? 'p-3 bg-emerald-600 text-white rounded-2xl rounded-tr-none max-w-[85%] shadow-sm'
+                : 'p-3 bg-white text-slate-800 rounded-2xl rounded-tl-none border border-slate-200/80 max-w-[85%] shadow-sm';
+
+            msgEl.innerHTML = `<div class="${bubbleClass}"><p class="whitespace-pre-line leading-relaxed text-[11px]">${text}</p></div>`;
+            box.appendChild(msgEl);
+            box.scrollTop = box.scrollHeight;
+        }
+    </script>
+</body>
+</html>
