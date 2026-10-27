@@ -186,7 +186,7 @@ Step-by-step conversion engine from Click-to-WhatsApp ads to 1-click UPI checkou
 Sub-6 minute rider arrival protocol across South Mumbai & MMR retail hubs:
 
 <div align="center">
-  <img src="docs/assets/hyperlocal_dispatch_map.jpg" alt="Hyperlocal Dispatch Map" width="850" style="border-radius: 12px; border: 1px solid #CBD5E1;" />
+  <img src="docs/assets/hyperlocal_dispatch_map.jpg" alt="Hyperlocal Dispatch Map" width="920" style="border-radius: 14px; border: 2px solid #00F0FF; box-shadow: 0 15px 40px rgba(0, 240, 255, 0.25);" />
 </div>
 
 ---
