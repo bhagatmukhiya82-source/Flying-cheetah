@@ -119,7 +119,7 @@
         document.getElementById('fcSuccessPhone').textContent = leadData.phone;
 
         const cleanPhone = (leadData.phone || '').replace(/[^0-9]/g, '');
-        const waLink = `https://wa.me/919876543210?text=${encodeURIComponent(`Hi Flying Cheetah team, this is ${leadData.name}. I just submitted an operations audit inquiry for ${leadData.service}.`)}`;
+        const waLink = `https://wa.me/919920386421?text=${encodeURIComponent(`Hi Flying Cheetah team, this is ${leadData.name}. I just submitted an operations audit inquiry for ${leadData.service}.`)}`;
         document.getElementById('fcSuccessWaBtn').href = waLink;
 
         const card = document.getElementById('fcSuccessModalCard');

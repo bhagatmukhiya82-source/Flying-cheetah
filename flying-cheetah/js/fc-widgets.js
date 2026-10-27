@@ -22,32 +22,219 @@
         }
     }
 
-    // 2. INJECT FLOATING WHATSAPP CHAT WIDGET
+    // 2. INJECT FLOATING WHATSAPP CHAT WIDGET & SMART PROACTIVE SUGGESTION POPUP
     function injectWhatsAppWidget() {
-        if (document.getElementById('fcFloatingWhatsApp')) return;
+        if (document.getElementById('fcFloatingWhatsAppWrapper')) return;
 
-        const widget = document.createElement('div');
-        widget.id = 'fcFloatingWhatsApp';
-        widget.className = 'fixed bottom-6 right-6 z-[140] flex items-center group';
-        widget.innerHTML = `
-            <a href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah%20Labs%2C%20I%20am%20interested%20in%20AI%20Commerce%20Automation%20and%20the%2014-Day%20Free%20Pilot." 
-               target="_blank" 
-               rel="noopener noreferrer"
-               aria-label="Chat on WhatsApp with Flying Cheetah"
-               class="relative flex items-center gap-3 px-4 py-3 bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-full shadow-2xl hover:shadow-emerald-500/30 transition-all duration-300 transform hover:scale-105">
-                <!-- Pulse indicator -->
-                <span class="absolute -top-1 -right-1 flex h-4 w-4">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-4 w-4 bg-emerald-500 border-2 border-white"></span>
-                </span>
-                <i class="fa-brands fa-whatsapp text-2xl"></i>
-                <div class="hidden sm:flex flex-col text-left pr-1">
-                    <span class="text-[10px] uppercase font-bold tracking-wider opacity-90 leading-tight">Instant Support</span>
-                    <span class="text-xs font-black tracking-tight leading-tight">Chat on WhatsApp</span>
+        const path = (window.location.pathname || '').toLowerCase();
+        let contextualGreeting = '👋 Welcome to Flying Cheetah! Ready to boost your store revenue with AI commerce agents, WhatsApp checkouts, and automated fleet dispatch?';
+        let contextualTag = 'General Inquiry';
+
+        if (path.includes('store-automation') || path.includes('cart')) {
+            contextualGreeting = '⚡ **Recover Abandoned Carts!** We help retail stores recover up to 34.8% of abandoned checkouts autonomously via WhatsApp. Want a 15-minute live teardown?';
+            contextualTag = 'Store Automation';
+        } else if (path.includes('delivery') || path.includes('fleet')) {
+            contextualGreeting = '🛵 **Hyperlocal Fleet Dispatch!** Automate 15-min order dispatch with Borzo & Porter APIs with zero dispatch payroll. How can we help your operations?';
+            contextualTag = 'Fleet Protocol';
+        } else if (path.includes('demo')) {
+            contextualGreeting = '🎯 **Live 1-on-1 Store Audit!** Connect directly with technical founders Bhagat Mukhiya & Yash Gaikwad. We will audit your store live.';
+            contextualTag = 'Demo Booking';
+        } else if (path.includes('web-development')) {
+            contextualGreeting = '💻 **High-Conversion Web Architecture!** Fast, bespoke retail stores built for extreme speed and sub-second checkout conversion.';
+            contextualTag = 'Web Development';
+        }
+
+        const now = new Date();
+        const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+        // Container
+        const widgetContainer = document.createElement('div');
+        widgetContainer.id = 'fcFloatingWhatsAppWrapper';
+        widgetContainer.className = 'fixed bottom-6 right-6 z-[140] flex flex-col items-end pointer-events-none select-none';
+
+        widgetContainer.innerHTML = `
+            <!-- CONVERSATIONAL WHATSAPP POPUP CARD -->
+            <div id="fcWhatsAppPopup" class="pointer-events-auto mb-3 w-[340px] max-w-[calc(100vw-2.5rem)] bg-[#ECE5DD] rounded-2xl shadow-2xl border border-slate-200/80 overflow-hidden transform opacity-0 translate-y-4 scale-95 pointer-events-none transition-all duration-300 ease-out font-sans">
+                <!-- Popup Header -->
+                <div class="bg-[#075E54] text-white p-3.5 flex items-center justify-between shadow-md">
+                    <div class="flex items-center gap-2.5">
+                        <div class="relative">
+                            <img src="images/flying_cheetah_hd_logo_heraldic.jpg" alt="Flying Cheetah Avatar" class="w-10 h-10 rounded-full object-cover border-2 border-white/80 shadow-xs">
+                            <span class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-400 border-2 border-[#075E54] rounded-full"></span>
+                        </div>
+                        <div class="text-left leading-tight">
+                            <div class="flex items-center gap-1.5">
+                                <h4 class="font-bold text-xs text-white font-display">Flying Cheetah Labs</h4>
+                                <span class="text-[9px] bg-emerald-600/90 text-white px-1.5 py-0.5 rounded-full font-semibold">Verified</span>
+                            </div>
+                            <p class="text-[10px] text-emerald-100 font-medium">Bhagat &amp; Yash • Replies in &lt; 15s</p>
+                        </div>
+                    </div>
+                    <button type="button" id="fcWaCloseBtn" aria-label="Close Chat Popup" class="w-7 h-7 rounded-full bg-black/20 hover:bg-black/40 text-white/90 hover:text-white flex items-center justify-center transition cursor-pointer">
+                        <i class="fa-solid fa-xmark text-xs"></i>
+                    </button>
                 </div>
-            </a>
+
+                <!-- Chat Body with WhatsApp Pattern Style -->
+                <div class="p-3.5 space-y-3 max-h-[380px] overflow-y-auto" style="background-image: radial-gradient(#d4cbbe 1px, transparent 1px); background-size: 16px 16px;">
+                    <!-- Message Bubble from Flying Cheetah -->
+                    <div class="bg-white rounded-2xl rounded-tl-sm p-3 shadow-sm border border-slate-200/60 text-slate-800 text-xs leading-relaxed space-y-2 relative">
+                        <div class="flex items-center justify-between text-[10px] text-slate-400 pb-1 border-b border-slate-100">
+                            <span class="font-bold text-emerald-700 uppercase tracking-wider text-[9px]"><i class="fa-brands fa-whatsapp text-emerald-600"></i> AI Assistant</span>
+                            <span>${timeStr}</span>
+                        </div>
+                        <p class="text-slate-700 text-xs">${contextualGreeting}</p>
+                        <p class="text-[11px] text-slate-500 font-medium">Where would you like to explore first?</p>
+                    </div>
+
+                    <!-- Interactive Suggestion Chips / Quick Actions -->
+                    <div class="space-y-1.5 pt-1">
+                        <div class="text-[10px] font-bold text-slate-500 uppercase tracking-wider px-1">Suggested Destinations:</div>
+                        
+                        <a href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah%20Labs%2C%20I%20am%20interested%20in%20the%2014-Day%20Free%20Pilot%20for%20${encodeURIComponent(contextualTag)}." 
+                           target="_blank" rel="noopener noreferrer"
+                           class="flex items-center justify-between px-3 py-2 bg-emerald-50 hover:bg-emerald-100/80 border border-emerald-200/80 rounded-xl text-emerald-900 text-xs font-bold transition shadow-xs group">
+                            <span class="flex items-center gap-2">
+                                <i class="fa-solid fa-rocket text-emerald-600 group-hover:scale-110 transition"></i>
+                                <span>Claim 14-Day Free Pilot</span>
+                            </span>
+                            <i class="fa-brands fa-whatsapp text-emerald-600 text-sm"></i>
+                        </a>
+
+                        <a href="demo.html" 
+                           class="flex items-center justify-between px-3 py-2 bg-white hover:bg-orange-50 border border-slate-200/80 hover:border-bikOrange rounded-xl text-slate-700 hover:text-bikOrange text-xs font-bold transition shadow-xs group">
+                            <span class="flex items-center gap-2">
+                                <i class="fa-solid fa-calendar-check text-bikOrange group-hover:scale-110 transition"></i>
+                                <span>Book Live 1-on-1 Demo</span>
+                            </span>
+                            <span class="text-[10px] bg-orange-100 text-bikOrange px-1.5 py-0.5 rounded font-mono font-bold">15 Min</span>
+                        </a>
+
+                        <a href="store-automation.html" 
+                           class="flex items-center justify-between px-3 py-2 bg-white hover:bg-slate-50 border border-slate-200/80 rounded-xl text-slate-700 hover:text-slate-900 text-xs font-semibold transition shadow-xs">
+                            <span class="flex items-center gap-2">
+                                <i class="fa-solid fa-shop text-amber-500"></i>
+                                <span>Store &amp; Cart Automation</span>
+                            </span>
+                            <i class="fa-solid fa-arrow-right text-[10px] text-slate-400"></i>
+                        </a>
+
+                        <a href="delivery.html" 
+                           class="flex items-center justify-between px-3 py-2 bg-white hover:bg-slate-50 border border-slate-200/80 rounded-xl text-slate-700 hover:text-slate-900 text-xs font-semibold transition shadow-xs">
+                            <span class="flex items-center gap-2">
+                                <i class="fa-solid fa-motorcycle text-emerald-600"></i>
+                                <span>Fleet Protocol (Borzo/Porter)</span>
+                            </span>
+                            <i class="fa-solid fa-arrow-right text-[10px] text-slate-400"></i>
+                        </a>
+                    </div>
+
+                    <!-- Quick WhatsApp Direct Message Composer -->
+                    <form id="fcWaQuickForm" class="pt-1 flex items-center gap-1.5">
+                        <input type="text" id="fcWaQuickInput" placeholder="Type a message or question..." 
+                               class="flex-1 px-3 py-2 bg-white border border-slate-200 rounded-xl text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-emerald-500 shadow-inner">
+                        <button type="submit" aria-label="Send via WhatsApp" class="w-9 h-9 shrink-0 bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-xl flex items-center justify-center shadow-md transition transform active:scale-95 cursor-pointer">
+                            <i class="fa-solid fa-paper-plane text-xs"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- FLOATING TOGGLE BUTTON -->
+            <div id="fcFloatingWhatsApp" class="pointer-events-auto flex items-center group">
+                <button type="button"
+                   id="fcWaToggleBtn"
+                   aria-label="Open WhatsApp Support and Automation Menu"
+                   class="relative flex items-center gap-3 px-4 py-3 bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-full shadow-2xl hover:shadow-emerald-500/30 transition-all duration-300 transform hover:scale-105 cursor-pointer">
+                    <!-- Pulse indicator -->
+                    <span class="absolute -top-1 -right-1 flex h-4 w-4">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-4 w-4 bg-emerald-500 border-2 border-white"></span>
+                    </span>
+                    <i class="fa-brands fa-whatsapp text-2xl"></i>
+                    <div class="hidden sm:flex flex-col text-left pr-1">
+                        <span class="text-[10px] uppercase font-bold tracking-wider opacity-90 leading-tight">Instant Support</span>
+                        <span class="text-xs font-black tracking-tight leading-tight">Chat on WhatsApp</span>
+                    </div>
+                </button>
+            </div>
         `;
-        document.body.appendChild(widget);
+
+        document.body.appendChild(widgetContainer);
+
+        const popup = document.getElementById('fcWhatsAppPopup');
+        const toggleBtn = document.getElementById('fcWaToggleBtn');
+        const closeBtn = document.getElementById('fcWaCloseBtn');
+        const quickForm = document.getElementById('fcWaQuickForm');
+        const quickInput = document.getElementById('fcWaQuickInput');
+
+        let isOpen = false;
+
+        function openPopup() {
+            if (isOpen || !popup) return;
+            popup.classList.remove('opacity-0', 'translate-y-4', 'scale-95', 'pointer-events-none');
+            popup.classList.add('opacity-100', 'translate-y-0', 'scale-100');
+            isOpen = true;
+        }
+
+        function closePopup(manual = false) {
+            if (!isOpen || !popup) return;
+            popup.classList.remove('opacity-100', 'translate-y-0', 'scale-100');
+            popup.classList.add('opacity-0', 'translate-y-4', 'scale-95', 'pointer-events-none');
+            isOpen = false;
+            if (manual) {
+                try {
+                    sessionStorage.setItem('fc_wa_popup_dismissed', '1');
+                } catch (e) {}
+            }
+        }
+
+        function togglePopup() {
+            if (isOpen) {
+                closePopup(false);
+            } else {
+                openPopup();
+            }
+        }
+
+        if (toggleBtn) {
+            toggleBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                togglePopup();
+            });
+        }
+
+        if (closeBtn) {
+            closeBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                closePopup(true);
+            });
+        }
+
+        if (quickForm && quickInput) {
+            quickForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const msg = quickInput.value.trim() || `Hi Flying Cheetah, I\'m visiting the website and would like to learn more about ${contextualTag}.`;
+                const waUrl = `https://wa.me/919920386421?text=${encodeURIComponent(msg)}`;
+                window.open(waUrl, '_blank', 'noopener,noreferrer');
+                quickInput.value = '';
+                closePopup(false);
+            });
+        }
+
+        // Automatic 5-second gentle trigger if not previously dismissed in this session
+        try {
+            const dismissed = sessionStorage.getItem('fc_wa_popup_dismissed');
+            if (!dismissed) {
+                setTimeout(() => {
+                    openPopup();
+                }, 5000);
+            }
+        } catch (e) {
+            setTimeout(openPopup, 5000);
+        }
     }
 
     // 3. INJECT MOBILE HAMBURGER & SLIDE-OUT DRAWER
