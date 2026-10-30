@@ -7,3 +7,9 @@ node_modules/
 .vercel
 .env*
 *.pptx
+
+*.mp4
+*.pdf
+*.pptx
+scratch/
+
