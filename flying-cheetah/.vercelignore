@@ -1,4 +1,5 @@
 *.mp4
+!videos/fly.mp4
 *.pdf
 .vercel_backup
 .git

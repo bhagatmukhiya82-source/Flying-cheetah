@@ -3,13 +3,10 @@
 .env.local
 *.log
 node_modules/
-
-.vercel
-.env*
 *.pptx
-
-*.mp4
 *.pdf
-*.pptx
+*.mp4
+!videos/fly.mp4
+!videos/
 scratch/
-
+videos_archive/
