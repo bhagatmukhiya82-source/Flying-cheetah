@@ -485,7 +485,7 @@
     // INITIALIZATION
     function initWidgets() {
         injectFavicon();
-        injectWhatsAppWidget();
+        // injectWhatsAppWidget(); // Chat popup widget removed
         injectMobileNavigation();
         ensureComplianceFooterLinks();
         initHeroInteractiveGraph();
