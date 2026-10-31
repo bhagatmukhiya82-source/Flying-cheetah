@@ -150,7 +150,7 @@ Unified triage dashboard routing WhatsApp inquiries, Instagram direct messages, 
 Direct comparative benchmark between conventional manual commerce operations and our autonomous Artificial Intelligence pipeline:
 
 <div align="center">
-  <img src="docs/assets/nano_banana_speed_metrics.png" alt="Benchmark Telemetry Comparison" width="920" style="border-radius: 14px; border: 2px solid #FFE600; box-shadow: 0 15px 40px rgba(255, 230, 0, 0.2);" />
+  <img src="docs/assets/nano_banana_speed_metrics.png" alt="Benchmark Telemetry Comparison" width="920" style="border-radius: 14px; border: 1px solid #E2E8F0; box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);" />
 </div>
 
 <br/>
@@ -159,7 +159,7 @@ Direct comparative benchmark between conventional manual commerce operations and
 Continuous self-reinforcing flywheel accelerating acquisition, neural qualification, instant dispatch, and predictive repeat retention:
 
 <div align="center">
-  <img src="docs/assets/nano_banana_ecosystem_flywheel.png" alt="Autonomous Commerce Flywheel" width="920" style="border-radius: 14px; border: 2px solid #00F0FF; box-shadow: 0 15px 40px rgba(0, 240, 255, 0.2);" />
+  <img src="docs/assets/nano_banana_ecosystem_flywheel.png" alt="Autonomous Commerce Flywheel" width="920" style="border-radius: 14px; border: 1px solid #E2E8F0; box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);" />
 </div>
 
 <br/>
@@ -186,7 +186,7 @@ Step-by-step conversion engine from Click-to-WhatsApp ads to 1-click UPI checkou
 Sub-6 minute rider arrival protocol across South Mumbai & MMR retail hubs:
 
 <div align="center">
-  <img src="docs/assets/hyperlocal_dispatch_map.jpg" alt="Hyperlocal Dispatch Map" width="920" style="border-radius: 14px; border: 2px solid #00F0FF; box-shadow: 0 15px 40px rgba(0, 240, 255, 0.25);" />
+  <img src="docs/assets/hyperlocal_dispatch_map.jpg" alt="Hyperlocal Dispatch Map" width="920" style="border-radius: 14px; border: 1px solid #E2E8F0; box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);" />
 </div>
 
 ---
@@ -195,7 +195,7 @@ Sub-6 minute rider arrival protocol across South Mumbai & MMR retail hubs:
 
 ### High-Level Neural Matrix
 <div align="center">
-  <img src="docs/assets/ai_commerce_neural_matrix.png" alt="AI Commerce Neural Architecture Matrix" width="920" style="border-radius: 14px; border: 2px solid #00F0FF; box-shadow: 0 15px 40px rgba(0, 240, 255, 0.25);" />
+  <img src="docs/assets/ai_commerce_neural_matrix.png" alt="AI Commerce Neural Architecture Matrix" width="920" style="border-radius: 14px; border: 1px solid #E2E8F0; box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);" />
 </div>
 
 <br/>
