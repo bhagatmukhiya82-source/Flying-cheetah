@@ -589,8 +589,8 @@
                     </div>
                 </div>
 
-                <!-- Video Element -->
-                <div class="relative aspect-video w-full bg-black flex items-center justify-center overflow-hidden">
+                <!-- Video Element with Play/Pause Overlay & Auto-resume -->
+                <div class="relative aspect-video w-full bg-black flex items-center justify-center overflow-hidden" id="videoWrapper">
                     <video id="heroShowcaseVideo"
                            class="w-full h-full object-cover"
                            controls
@@ -598,11 +598,19 @@
                            muted
                            loop
                            playsinline
-                           preload="metadata"
+                           webkit-playsinline
+                           preload="auto"
                            poster="images/fly_video_poster.jpg">
                         <source src="videos/fly.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
+
+                    <!-- Interactive Play/Pause Overlay -->
+                    <div id="videoPlayOverlay" class="absolute inset-0 bg-black/40 flex items-center justify-center transition-all duration-300 opacity-0 pointer-events-none" onclick="toggleHeroVideo()">
+                        <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-bikOrange/90 hover:bg-bikOrange text-white flex items-center justify-center shadow-2xl backdrop-blur-sm transform transition hover:scale-110 active:scale-95 pointer-events-auto cursor-pointer">
+                            <i id="videoPlayIcon" class="fa-solid fa-play text-2xl sm:text-3xl ml-1"></i>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Video Control / Feature Highlights Bar -->
@@ -992,6 +1000,54 @@
                 });
             }
         });
+    </script>
+
+    <script>
+    function toggleHeroVideo() {
+        const v = document.getElementById('heroShowcaseVideo');
+        const overlay = document.getElementById('videoPlayOverlay');
+        const icon = document.getElementById('videoPlayIcon');
+        if (!v) return;
+
+        if (v.paused) {
+            v.play();
+            if (overlay) overlay.classList.add('opacity-0', 'pointer-events-none');
+            if (icon) icon.className = 'fa-solid fa-pause text-2xl sm:text-3xl';
+        } else {
+            v.pause();
+            if (overlay) overlay.classList.remove('opacity-0', 'pointer-events-none');
+            if (icon) icon.className = 'fa-solid fa-play text-2xl sm:text-3xl ml-1';
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const v = document.getElementById('heroShowcaseVideo');
+        const overlay = document.getElementById('videoPlayOverlay');
+        const icon = document.getElementById('videoPlayIcon');
+        if (!v) return;
+
+        // Force muted autoplay for browser compliance
+        v.muted = true;
+        const p = v.play();
+        if (p !== undefined) {
+            p.then(() => {
+                if (overlay) overlay.classList.add('opacity-0', 'pointer-events-none');
+            }).catch(() => {
+                // If browser autoplay policy blocked it, show overlay button
+                if (overlay) overlay.classList.remove('opacity-0', 'pointer-events-none');
+            });
+        }
+
+        v.addEventListener('play', () => {
+            if (overlay) overlay.classList.add('opacity-0', 'pointer-events-none');
+            if (icon) icon.className = 'fa-solid fa-pause text-2xl sm:text-3xl';
+        });
+
+        v.addEventListener('pause', () => {
+            if (overlay) overlay.classList.remove('opacity-0', 'pointer-events-none');
+            if (icon) icon.className = 'fa-solid fa-play text-2xl sm:text-3xl ml-1';
+        });
+    });
     </script>
 </body>
 </html>
