@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flying Cheetah Labs — Autonomous Commerce Pitch Deck</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        display: ['"Outfit"', 'sans-serif'],
+                        tech: ['"Space Grotesk"', 'monospace']
+                    },
+                    colors: {
+                        obsidian: '#050710',
+                        cardNavy: '#0F1424',
+                        cardBorder: '#263452',
+                        solarGold: '#FFE600',
+                        neonCyan: '#00F0FF',
+                        hotMagenta: '#FF007F',
+                        limeEmerald: '#00FF88',
+                        cyberViolet: '#A855F7',
+                        slateText: '#94A3B8'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #050710;
+            color: #FFFFFF;
+            overflow: hidden;
+            user-select: none;
+        }
+        .cyber-grid {
+            background-image: linear-gradient(rgba(0, 240, 255, 0.04) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(0, 240, 255, 0.04) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+        .slide {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .slide.active {
+            display: flex;
+            opacity: 1;
+        }
+        .glow-gold { box-shadow: 0 0 35px -5px rgba(255, 230, 0, 0.25); }
+        .glow-cyan { box-shadow: 0 0 35px -5px rgba(0, 240, 255, 0.25); }
+        .glow-emerald { box-shadow: 0 0 35px -5px rgba(0, 255, 136, 0.25); }
+        .glow-magenta { box-shadow: 0 0 35px -5px rgba(255, 0, 127, 0.25); }
+    </style>
+</head>
+<body class="cyber-grid h-screen flex flex-col justify-between p-4 md:p-8">
+
+    <!-- TOP BAR -->
+    <header class="flex items-center justify-between border-b border-cardBorder/60 pb-3">
+        <div class="flex items-center space-x-3">
+            <img src="flying-cheetah/images/flying_cheetah_hd_logo_crest.jpg" alt="Flying Cheetah Logo" class="w-9 h-9 rounded-full border border-solarGold/50">
+            <div>
+                <span class="font-display font-black tracking-wider text-solarGold text-lg">FLYING CHEETAH LABS</span>
+                <span class="text-[10px] text-slateText block uppercase tracking-widest -mt-1 font-tech">Autonomous Commerce Engine</span>
+            </div>
+        </div>
+        <div class="flex items-center space-x-4">
+            <span id="slideIndicator" class="text-xs font-tech text-neonCyan bg-cardNavy px-3 py-1.5 rounded-full border border-neonCyan/30">
+                SLIDE 1 / 13
+            </span>
+            <a href="Flying_Cheetah_Autonomous_Commerce_Pitch_Deck.pptx" download class="bg-cardNavy hover:bg-cardBorder text-xs text-solarGold border border-solarGold/40 px-3 py-1.5 rounded-lg font-bold transition flex items-center space-x-2">
+                <i class="fa-solid fa-file-powerpoint"></i>
+                <span>Download .PPTX</span>
+            </a>
+            <button onclick="toggleFullscreen()" class="text-slateText hover:text-white text-sm p-1.5 rounded bg-cardNavy border border-cardBorder" title="Toggle Fullscreen">
+                <i class="fa-solid fa-expand"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN SLIDE CONTAINER (16:9 Aspect Ratio) -->
+    <main class="flex-1 flex items-center justify-center my-4 overflow-hidden relative">
+        
+        <!-- SLIDE 1: TITLE SLIDE -->
+        <section class="slide active w-full max-w-6xl h-full flex-col justify-center items-center text-center p-8 bg-cardNavy/90 rounded-2xl border border-solarGold/40 glow-gold relative" data-index="1">
+            <div class="inline-flex items-center space-x-2 bg-solarGold/10 border border-solarGold/30 text-solarGold text-xs font-bold px-4 py-1.5 rounded-full mb-6 uppercase tracking-widest font-tech">
+                🚀 Next-Generation AI Commerce & Fleet Logistics
+            </div>
+            <h1 class="text-4xl md:text-6xl font-black font-display tracking-tight text-white mb-4">
+                FLYING CHEETAH <span class="text-solarGold">LABS</span>
+            </h1>
+            <p class="text-lg md:text-xl text-slateText max-w-3xl mb-8 leading-relaxed font-sans">
+                All-in-One AI Marketing & Autonomous Commerce Platform: Empowering retailers, D2C brands, and local stores with human-like targeted marketing at scale and zero-payroll fleet dispatch.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-4xl text-left mb-8">
+                <div class="bg-obsidian/70 border border-neonCyan/30 p-4 rounded-xl">
+                    <span class="text-xs font-tech text-neonCyan font-bold uppercase tracking-wider block mb-1">01 / COMMERCE</span>
+                    <h3 class="font-bold text-white text-base">3-Tap WhatsApp Checkout</h3>
+                    <p class="text-xs text-slateText mt-1">Direct catalog ordering & 1-click Razorpay UPI intent links.</p>
+                </div>
+                <div class="bg-obsidian/70 border border-limeEmerald/30 p-4 rounded-xl">
+                    <span class="text-xs font-tech text-limeEmerald font-bold uppercase tracking-wider block mb-1">02 / TELEPHONY</span>
+                    <h3 class="font-bold text-white text-base">Sub-600ms AI Voice</h3>
+                    <p class="text-xs text-slateText mt-1">Instant COD verification & 24/7 conversational support bots.</p>
+                </div>
+                <div class="bg-obsidian/70 border border-hotMagenta/30 p-4 rounded-xl">
+                    <span class="text-xs font-tech text-hotMagenta font-bold uppercase tracking-wider block mb-1">03 / LOGISTICS</span>
+                    <h3 class="font-bold text-white text-base">1-Click Fleet Dispatch</h3>
+                    <p class="text-xs text-slateText mt-1">Borzo & Porter API on-demand couriers with 5-min prep buffer.</p>
+                </div>
+            </div>
+            <div class="text-xs text-slateText border-t border-cardBorder/60 pt-4 w-full flex justify-between font-tech">
+                <span>Co-Founders: <b>Bhagat Mukhiya & Yash Gaikwad</b></span>
+                <span>HQ: Opera House & Bandra West, Mumbai</span>
+                <span>Deployments: 2026-2027</span>
+            </div>
+        </section>
+
+        <!-- SLIDE 2: THE MARKET BOTTLENECK -->
+        <section class="slide w-full max-w-6xl h-full flex-col justify-between p-8 bg-cardNavy/90 rounded-2xl border border-red-500/30 relative" data-index="2">
+            <div>
+                <span class="text-xs font-tech text-red-400 font-bold tracking-widest uppercase">Market Reality & Operational Friction</span>
+                <h2 class="text-3xl font-display font-black text-white mt-1">The 3 Fatal Bottlenecks Draining Local Retail & D2C Margins</h2>
+                <p class="text-xs text-slateText mt-1">Why traditional stores struggle to grow and why direct customer ownership is critical.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-auto">
+                <div class="bg-obsidian/80 border border-red-500/40 p-6 rounded-xl flex flex-col justify-between">
+                    <div>
+                        <div class="bg-red-500/20 text-red-400 text-sm font-tech font-bold px-3 py-1 rounded inline-block mb-4">
+                            25% – 30% Margin Loss
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">The Aggregator Trap</h3>
+                        <ul class="text-xs text-slateText space-y-2">
+                            <li>• Merchants surrender 25%–30% gross revenue to Swiggy, Zomato, and marketplaces.</li>
+                            <li>• Aggregators conceal customer phone numbers, preventing direct retargeting.</li>
+                            <li>• Zero brand loyalty: buyers belong to the platform, not to the local merchant.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bg-obsidian/80 border border-amber-500/40 p-6 rounded-xl flex flex-col justify-between">
+                    <div>
+                        <div class="bg-amber-500/20 text-amber-400 text-sm font-tech font-bold px-3 py-1 rounded inline-block mb-4">
+                            40% Ad Spend Wasted
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">The Ad Spend Black Hole</h3>
+                        <ul class="text-xs text-slateText space-y-2">
+                            <li>• Leads from Instagram & Facebook go cold when response time exceeds 5 minutes.</li>
+                            <li>• Manual staff cannot handle sudden inquiry spikes or midnight purchase intent.</li>
+                            <li>• Unreplied WhatsApp inquiries lead to immediate competitor checkout.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bg-obsidian/80 border border-hotMagenta/40 p-6 rounded-xl flex flex-col justify-between">
+                    <div>
+                        <div class="bg-hotMagenta/20 text-hotMagenta text-sm font-tech font-bold px-3 py-1 rounded inline-block mb-4">
+                            30+ Mins Manual Hassle
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">The Dispatch Nightmare</h3>
+                        <ul class="text-xs text-slateText space-y-2">
+                            <li>• Store managers waste 30+ mins per order manually typing addresses into courier apps.</li>
+                            <li>• Full-time delivery drivers require ₹20,000 monthly payroll even during slow hours.</li>
+                            <li>• Unconfirmed COD orders suffer 35%+ RTO rates, devastating profit margins.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="text-xs text-slateText font-tech bg-obsidian/50 p-2.5 rounded border border-cardBorder text-center">
+                KEY TAKEAWAY: Merchants do not have a product problem; they have an autonomous operational execution problem.
+            </div>
+        </section>
+
+        <!-- SLIDE 3: SOLUTION FLYWHEEL -->
+        <section class="slide w-full max-w-6xl h-full flex-col justify-between p-8 bg-cardNavy/90 rounded-2xl border border-solarGold/40 glow-gold relative" data-index="3">
+            <div>
+                <span class="text-xs font-tech text-solarGold font-bold tracking-widest uppercase">Unified Architecture</span>
+                <h2 class="text-3xl font-display font-black text-white mt-1">The Flying Cheetah Autonomous Commerce Flywheel</h2>
+                <p class="text-xs text-slateText mt-1">An interconnected 5-pillar ecosystem eliminating friction from ad click to doorstep delivery.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-auto items-center">
+                <div class="space-y-2.5">
+                    <div class="bg-obsidian/80 border border-neonCyan/40 p-3 rounded-lg">
+                        <span class="text-xs font-tech text-neonCyan font-bold">1. Headless High-Speed Storefront</span>
+                        <p class="text-xs text-slateText mt-0.5">Sub-second Next.js web catalog synced in real time with inventory.</p>
+                    </div>
+                    <div class="bg-obsidian/80 border border-limeEmerald/40 p-3 rounded-lg">
+                        <span class="text-xs font-tech text-limeEmerald font-bold">2. WhatsApp Conversational Commerce</span>
+                        <p class="text-xs text-slateText mt-0.5">In-chat catalog, 15-min cart recovery, and 1-click UPI payments.</p>
+                    </div>
+                    <div class="bg-obsidian/80 border border-solarGold/40 p-3 rounded-lg">
+                        <span class="text-xs font-tech text-solarGold font-bold">3. Sub-600ms AI Voice Calling</span>
+                        <p class="text-xs text-slateText mt-0.5">Autonomous voice agents confirming COD delivery & validating addresses.</p>
+                    </div>
+                    <div class="bg-obsidian/80 border border-hotMagenta/40 p-3 rounded-lg">
+                        <span class="text-xs font-tech text-hotMagenta font-bold">4. 1-Click Zero-Payroll Fleet Dispatch</span>
+                        <p class="text-xs text-slateText mt-0.5">Instant Borzo bike assigned to counter with 5-minute prep buffer.</p>
+                    </div>
+                    <div class="bg-obsidian/80 border border-cyberViolet/40 p-3 rounded-lg">
+                        <span class="text-xs font-tech text-cyberViolet font-bold">5. Back-Office Gemini Vision OCR</span>
+                        <p class="text-xs text-slateText mt-0.5">Automated Tally XML and Google Sheets sync for zero manual data entry.</p>
+                    </div>
+                </div>
+                <div class="flex justify-center">
+                    <img src="docs/assets/nano_banana_ecosystem_flywheel.png" alt="Ecosystem Flywheel" class="rounded-xl border border-cardBorder max-h-[380px] object-contain shadow-2xl">
+                </div>
+            </div>
+            <div class="text-xs text-slateText font-tech text-center">
+                Powered by Event-Driven Microservices &bull; Meta Cloud BSP &bull; Google Gemini 2.0 &bull; Borzo Logistics Engine
+            </div>
+        </section>
+
+        <!-- SLIDE 4: PILLAR 1 - HIGH-SPEED STOREFRONTS -->
+        <section class="slide w-full max-w-6xl h-full flex-col justify-between p-8 bg-cardNavy/90 rounded-2xl border border-neonCyan/40 glow-cyan relative" data-index="4">
+            <div>
+                <span class="text-xs font-tech text-neonCyan font-bold tracking-widest uppercase">Pillar 1: Digital Front-Door</span>
+                <h2 class="text-3xl font-display font-black text-white mt-1">Headless Storefronts Engineered for Ultra-Fast Conversions</h2>
+                <p class="text-xs text-slateText mt-1">Replacing bloated Shopify themes with blazing-fast Next.js architecture.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-auto items-center">
+                <div class="bg-obsidian/80 border border-neonCyan/30 p-6 rounded-xl space-y-4">
+                    <h3 class="text-base font-bold text-neonCyan uppercase tracking-wider font-tech">SPEED EQUALS DIRECT REVENUE</h3>
+                    <ul class="text-xs text-slateText space-y-3 leading-relaxed">
+                        <li><b class="text-white">Sub-350ms Page Loads:</b> Eliminates bounce rates caused by slow 5-second traditional templates.</li>
+                        <li><b class="text-white">Direct WhatsApp Purchase Link:</b> Every product card features an instant 'Order on WhatsApp' button with pre-filled SKU.</li>
+                        <li><b class="text-white">Instant Catalog Management:</b> Merchants update prices, stock, and banners directly from a mobile dashboard.</li>
+                        <li><b class="text-white">Full SEO & Schema Integration:</b> Structured data for Google Local Search, rich snippets, and social previews.</li>
+                        <li><b class="text-white">Zero Server Maintenance:</b> Built on serverless edge compute with 99.99% uptime guarantee.</li>
+                    </ul>
+                </div>
+                <div class="flex justify-center">
+                    <img src="docs/assets/nano_banana_speed_metrics.png" alt="Speed Metrics" class="rounded-xl border border-cardBorder max-h-[380px] object-contain shadow-2xl">
+                </div>
+            </div>
+            <div class="text-xs text-slateText font-tech text-center">
+                Benchmarked across 50,000+ sessions &bull; 3.4x average conversion lift over legacy CMS themes
+            </div>
+        </section>
+
+        <!-- SLIDE 5: PILLAR 2 - WHATSAPP COMMERCE & CTWA -->
+        <section class="slide w-full max-w-6xl h-full flex-col justify-between p-8 bg-cardNavy/90 rounded-2xl border border-limeEmerald/40 glow-emerald relative" data-index="5">
+            <div>
+                <span class="text-xs font-tech text-limeEmerald font-bold tracking-widest uppercase">Pillar 2: Conversational Revenue</span>
+                <h2 class="text-3xl font-display font-black text-white mt-1">WhatsApp Commerce & Click-to-WhatsApp (CTWA) Marketing</h2>
+                <p class="text-xs text-slateText mt-1">Meeting customers where they spend 80% of their daily screen time.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-2">
+                <div class="bg-obsidian/80 border border-limeEmerald/30 p-4 rounded-xl">
+                    <h3 class="font-bold text-limeEmerald text-sm mb-2">3-Tap Native Checkout</h3>
+                    <ul class="text-xs text-slateText space-y-1.5">
+                        <li>• In-Chat Catalog browsing without leaving app.</li>
+                        <li>• Add-to-cart, variants & notes inside chat.</li>
+                        <li>• Razorpay UPI intent links (GPay, PhonePe).</li>
+                    </ul>
+                </div>
+                <div class="bg-obsidian/80 border border-solarGold/30 p-4 rounded-xl">
+                    <h3 class="font-bold text-solarGold text-sm mb-2">15-Min Cart Recovery</h3>
+                    <ul class="text-xs text-slateText space-y-1.5">
+                        <li>• Automated recovery trigger after 15 mins.</li>
+                        <li>• Product photo + 5% limited discount.</li>
+                        <li>• Recovers up to 68% of lost drop-offs.</li>
+                    </ul>
+                </div>
+                <div class="bg-obsidian/80 border border-neonCyan/30 p-4 rounded-xl">
+                    <h3 class="font-bold text-neonCyan text-sm mb-2">Click-to-WhatsApp Ads</h3>
+                    <ul class="text-xs text-slateText space-y-1.5">
+                        <li>• Meta ads route buyers into WhatsApp dialog.</li>
+                        <li>• Instant 15-second response saves ad spend.</li>
+                        <li>• 98% open rate vs 12% traditional email.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-obsidian/60 p-2 rounded-xl border border-cardBorder flex items-center justify-center">
+                    <img src="flying-cheetah/images/whatsapp_commerce_checkout_mockup.jpg" alt="WhatsApp Checkout" class="rounded max-h-44 object-contain">
+                </div>
+                <div class="bg-obsidian/60 p-2 rounded-xl border border-cardBorder flex items-center justify-center">
+                    <img src="flying-cheetah/images/ctwa_automation_dashboard.jpg" alt="CTWA Dashboard" class="rounded max-h-44 object-contain">
+                </div>
+            </div>
+            <div class="text-xs text-slateText font-tech text-center">
+                Official Meta Business Solution Provider Gateway &bull; Enterprise 100 MPS Throughput
+            </div>
+        </section>
+
+        <!-- SLIDE 6: PILLAR 3 - AI VOICE CALLING -->
+        <section class="slide w-full max-w-6xl h-full flex-col justify-between p-8 bg-cardNavy/90 rounded-2xl border border-solarGold/40 glow-gold relative" data-index="6">
+            <div>
+                <span class="text-xs font-tech text-solarGold font-bold tracking-widest uppercase">Pillar 3: Autonomous Telephony</span>
+                <h2 class="text-3xl font-display font-black text-white mt-1">Sub-600ms AI Voice Calling: Slashing RTO and Labor Overhead</h2>
+                <p class="text-xs text-slateText mt-1">Conversational voice agents verifying orders and answering customer inquiries 24/7.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-auto items-center">
+                <div class="bg-obsidian/80 border border-solarGold/30 p-6 rounded-xl space-y-4">
+                    <h3 class="text-base font-bold text-solarGold uppercase tracking-wider font-tech">THE ZERO-PAYROLL VOICE AGENT</h3>
+                    <ul class="text-xs text-slateText space-y-3 leading-relaxed">
+                        <li><b class="text-white">Instant COD Verification Call:</b> Within 60 seconds of order, calls buyer in fluent Hindi/English to confirm purchase intent.</li>
+                        <li><b class="text-white">Address Sanitization:</b> Identifies fake numbers, missing building numbers, or mismatched pincodes before dispatch.</li>
+                        <li><b class="text-white">RTO Slashing:</b> Reduces Return-to-Origin rates from the 35% national benchmark down to under 8%.</li>
+                        <li><b class="text-white">Ultra-Low Latency (<600ms):</b> Natural conversation with human inflections, polite interruptions, and zero awkward pauses.</li>
+                        <li><b class="text-white">Zero Call Center Salaries:</b> Replaces full-time telecallers costing ₹25,000/month with scalable pay-per-call compute.</li>
+                    </ul>
+                </div>
+                <div class="flex justify-center">
+                    <img src="flying-cheetah/images/ai_voice_agent_dashboard.jpg" alt="AI Voice Dashboard" class="rounded-xl border border-cardBorder max-h-[380px] object-contain shadow-2xl">
+                </div>
+            </div>
+            <div class="text-xs text-slateText font-tech text-center">
+                Powered by Gemini 2.0 Realtime Audio API &bull; Low Latency WebRTC Telephony Pipeline
+            </div>
+        </section>
+
+        <!-- SLIDE 7: PILLAR 4 - 1-CLICK FLEET DISPATCH -->
+        <section class="slide w-full max-w-6xl h-full flex-col justify-between p-8 bg-cardNavy/90 rounded-2xl border border-neonCyan/40 glow-cyan relative" data-index="7">
+            <div>
+                <span class="text-xs font-tech text-neonCyan font-bold tracking-widest uppercase">Pillar 4: Physical Fulfillment</span>
+                <h2 class="text-3xl font-display font-black text-white mt-1">1-Click Hyperlocal Fleet Dispatch & Zero-Payroll Couriers</h2>
+                <p class="text-xs text-slateText mt-1">Direct API integration with Borzo Business and Porter Logistics for instant counter pickup.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-auto items-center">
+                <div class="bg-obsidian/80 border border-neonCyan/30 p-6 rounded-xl space-y-4">
+                    <h3 class="text-base font-bold text-neonCyan uppercase tracking-wider font-tech">THE 1-CLICK COUNTER WORKFLOW</h3>
+                    <ul class="text-xs text-slateText space-y-3 leading-relaxed">
+                        <li><b class="text-white">Step 1: Order Reception:</b> Merchant receives instant notification with complete packing slip on phone.</li>
+                        <li><b class="text-white">Step 2: 5-Minute Packing Buffer:</b> Staff taps 'Dispatch Now'; rider arrival is auto-scheduled in 5-10 mins for safe packaging.</li>
+                        <li><b class="text-white">Step 3: Automated Rider Assignment:</b> Borzo Business API (v1.8) assigns the closest bike rider automatically.</li>
+                        <li><b class="text-white">Step 4: Live Telemetry Tracking:</b> Customer & merchant receive live GPS map tracking links in WhatsApp.</li>
+                        <li><b class="text-white">Step 5: Zero Fixed Overhead:</b> No bikes to buy, no maintenance, no fuel costs. Pay only per completed delivery.</li>
+                    </ul>
+                </div>
+                <div class="flex justify-center">
+                    <img src="flying-cheetah/images/hyperlocal_dispatch_map_3d.jpg" alt="Dispatch Map" class="rounded-xl border border-cardBorder max-h-[380px] object-contain shadow-2xl">
+                </div>
+            </div>
+            <div class="text-xs text-slateText font-tech text-center">
+                Direct Borzo Business API v1.8 &bull; Porter Logistics Integration &bull; Average pickup time: 7.2 minutes in Mumbai
+            </div>
+        </section>
+
+        <!-- SLIDE 8: PILLAR 5 - INTELLIGENT OCR & BACK-OFFICE -->
+        <section class="slide w-full max-w-6xl h-full flex-col justify-between p-8 bg-cardNavy/90 rounded-2xl border border-cyberViolet/40 relative" data-index="8">
+            <div>
+                <span class="text-xs font-tech text-cyberViolet font-bold tracking-widest uppercase">Pillar 5: Back-Office Automation</span>
+                <h2 class="text-3xl font-display font-black text-white mt-1">Gemini Vision OCR & Self-Hosted n8n Workflow Automation</h2>
+                <p class="text-xs text-slateText mt-1">Eliminating 15+ hours of manual data entry every week for accountants and store owners.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-2">
+                <div class="bg-obsidian/80 border border-cyberViolet/30 p-4 rounded-xl">
+                    <h3 class="font-bold text-cyberViolet text-sm mb-2">AI Invoice Scanner</h3>
+                    <ul class="text-xs text-slateText space-y-1.5">
+                        <li>• Upload bills via WhatsApp or email.</li>
+                        <li>• Gemini Vision extracts GSTIN, items, tax & totals.</li>
+                        <li>• 99.4% accuracy on handwritten thermal receipts.</li>
+                    </ul>
+                </div>
+                <div class="bg-obsidian/80 border border-solarGold/30 p-4 rounded-xl">
+                    <h3 class="font-bold text-solarGold text-sm mb-2">Instant Tally & Sheets</h3>
+                    <ul class="text-xs text-slateText space-y-1.5">
+                        <li>• Formats data directly into Tally XML.</li>
+                        <li>• Real-time append to Google Sheets ledger.</li>
+                        <li>• Automates monthly GSTR-2B reconciliation.</li>
+                    </ul>
+                </div>
+                <div class="bg-obsidian/80 border border-neonCyan/30 p-4 rounded-xl">
+                    <h3 class="font-bold text-neonCyan text-sm mb-2">Private n8n Engine</h3>
+                    <ul class="text-xs text-slateText space-y-1.5">
+                        <li>• Self-hosted on dedicated private cloud.</li>
+                        <li>• Zero per-task execution fees (unlike Zapier).</li>
+                        <li>• 100% data privacy: finances never leave server.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="bg-obsidian/60 p-3 rounded-xl border border-cardBorder flex items-center justify-center">
+                <img src="flying-cheetah/images/gemini_ocr_engine.png" alt="Gemini OCR Engine" class="rounded max-h-48 object-contain">
+            </div>
+            <div class="text-xs text-slateText font-tech text-center">
+                Gemini 2.0 Flash Vision Multimodal Model &bull; 3-Second Processing Speed Per Invoice
+            </div>
+        </section>
+
+        <!-- SLIDE 9: FULL SYSTEM ARCHITECTURE FLOWCHART -->
+        <section class="slide w-full max-w-6xl h-full flex-col justify-between p-8 bg-cardNavy/90 rounded-2xl border border-solarGold/40 glow-gold relative" data-index="9">
+            <div>
+                <span class="text-xs font-tech text-solarGold font-bold tracking-widest uppercase">Technical Blueprint & Data Pipeline</span>
+                <h2 class="text-3xl font-display font-black text-white mt-1">End-to-End Autonomous Commerce & Fleet Dispatch Data Pipeline</h2>
+                <p class="text-xs text-slateText mt-1">Real-time event-driven infrastructure connecting buyer discovery to accounting ledger in sub-seconds.</p>
+            </div>
+            <div class="my-auto flex justify-center">
+                <img src="docs/assets/pipeline_data_flowchart_nano_banana.png" alt="Full Data Pipeline Flowchart" class="rounded-xl border border-solarGold/30 max-h-[440px] object-contain shadow-2xl">
+            </div>
+            <div class="text-xs text-slateText font-tech text-center">
+                End-to-End Latency: Ad Click to Verified Dispatch in Under 90 Seconds &bull; High Reliability Architecture
+            </div>
+        </section>
+
+        <!-- SLIDE 10: COMMERCIAL PACKAGES & PRICING -->
+        <section class="slide w-full max-w-6xl h-full flex-col justify-between p-8 bg-cardNavy/90 rounded-2xl border border-limeEmerald/40 glow-emerald relative" data-index="10">
+            <div>
+                <span class="text-xs font-tech text-limeEmerald font-bold tracking-widest uppercase">Transparent Pricing & ROI</span>
+                <h2 class="text-3xl font-display font-black text-white mt-1">Turnkey Client Packages & Monetization Structure</h2>
+                <p class="text-xs text-slateText mt-1">Predictable agency packages tailored for rapid ROI and long-term partnership.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-auto">
+                <div class="bg-obsidian/80 border border-neonCyan/40 p-6 rounded-xl flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs font-tech text-neonCyan font-bold uppercase">Starter Storefront</span>
+                        <div class="text-2xl font-bold text-white mt-1">₹14,999 <span class="text-xs text-slateText font-normal">Setup</span></div>
+                        <div class="text-xs text-solarGold font-tech font-bold">+ ₹1,499 / mo</div>
+                        <div class="text-[10px] bg-cardNavy text-slateText px-2 py-1 rounded my-3">Best for: Cafes, Bakeries, Boutiques</div>
+                        <ul class="text-xs text-slateText space-y-2 mt-4">
+                            <li>• Digital catalog up to 30 products</li>
+                            <li>• Instant UPI QR & GPay checkout</li>
+                            <li>• WhatsApp order routing</li>
+                            <li>• Manual dispatch assistance</li>
+                            <li>• Standard 48-hr support SLA</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bg-obsidian/80 border border-solarGold p-6 rounded-xl flex flex-col justify-between glow-gold relative scale-105">
+                    <div class="absolute -top-3 right-4 bg-solarGold text-obsidian text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full font-tech">
+                        MOST POPULAR
+                    </div>
+                    <div>
+                        <span class="text-xs font-tech text-solarGold font-bold uppercase">Hyperlocal Hub</span>
+                        <div class="text-2xl font-bold text-white mt-1">₹29,999 <span class="text-xs text-slateText font-normal">Setup</span></div>
+                        <div class="text-xs text-solarGold font-tech font-bold">+ ₹3,499 / mo</div>
+                        <div class="text-[10px] bg-solarGold/10 text-solarGold px-2 py-1 rounded my-3">Best for: Retail, D2C Brands, Pharmacies</div>
+                        <ul class="text-xs text-slateText space-y-2 mt-4">
+                            <li>• Full headless e-commerce storefront</li>
+                            <li>• Native 3-tap WhatsApp Catalog & Cart</li>
+                            <li>• 1-Click Borzo & Porter API dispatch</li>
+                            <li>• 15-min abandoned cart recovery</li>
+                            <li>• COD verification voice agent</li>
+                            <li>• Priority WhatsApp concierge support</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bg-obsidian/80 border border-hotMagenta/40 p-6 rounded-xl flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs font-tech text-hotMagenta font-bold uppercase">Autonomous Enterprise</span>
+                        <div class="text-2xl font-bold text-white mt-1">₹59,999 <span class="text-xs text-slateText font-normal">Setup</span></div>
+                        <div class="text-xs text-solarGold font-tech font-bold">+ ₹9,999 / mo</div>
+                        <div class="text-[10px] bg-cardNavy text-slateText px-2 py-1 rounded my-3">Best for: Multi-Branch Chains & Wholesalers</div>
+                        <ul class="text-xs text-slateText space-y-2 mt-4">
+                            <li>• Multi-location dispatch routing</li>
+                            <li>• Gemini Vision OCR for invoice sync</li>
+                            <li>• Automated Tally XML & ERP sync</li>
+                            <li>• Custom AI voice calling scenarios</li>
+                            <li>• Dedicated account engineering</li>
+                            <li>• Weekly conversion & ads scaling</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="text-xs text-slateText font-tech text-center">
+                All packages include a 100% Risk-Free 3-Day Test Run Guarantee &bull; No Long-Term Contracts
+            </div>
+        </section>
+
+        <!-- SLIDE 11: AGENCY CLIENT ACQUISITION FUNNEL -->
+        <section class="slide w-full max-w-6xl h-full flex-col justify-between p-8 bg-cardNavy/90 rounded-2xl border border-neonCyan/40 glow-cyan relative" data-index="11">
+            <div>
+                <span class="text-xs font-tech text-neonCyan font-bold tracking-widest uppercase">Agency Operations & Sales Engine</span>
+                <h2 class="text-3xl font-display font-black text-white mt-1">Client Acquisition Funnel & The 'Zero-Resistance' Offer</h2>
+                <p class="text-xs text-slateText mt-1">How Bhagat and Yash generate leads, pitch risk-free trials, and lock in recurring retainers.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-auto items-center">
+                <div class="bg-obsidian/80 border border-neonCyan/30 p-6 rounded-xl space-y-4">
+                    <h3 class="text-sm font-bold text-neonCyan uppercase tracking-wider font-tech">THE ZERO-RESISTANCE CLIENT CLOSING FORMULA</h3>
+                    <ul class="text-xs text-slateText space-y-3 leading-relaxed">
+                        <li><b class="text-white">Phase 1: Local Lead Sourcing:</b> Target high-intent retail, cafes, and pharmacies in Mumbai (Bandra, Opera House, Thane, Andheri).</li>
+                        <li><b class="text-white">Phase 2: The 'Zero-Resistance' Pitch:</b> <i>"Most stores lose 40% ad spend on slow responses. We will install our instant WhatsApp & Dispatch automation for 3 days on a test run for free. If it works, we partner monthly. If not, you owe ₹0."</i></li>
+                        <li><b class="text-white">Phase 3: 24–48 Hour Deployment:</b> Zero delays. We connect verified catalog, WhatsApp Cloud API, and Borzo rider webhook within 48 hours.</li>
+                        <li><b class="text-white">Phase 4: Retainer Conversion:</b> After seeing real recovered sales and zero dispatch headaches in 3 days, merchants eagerly sign monthly retainers.</li>
+                    </ul>
+                </div>
+                <div class="flex justify-center">
+                    <img src="docs/assets/flowchart_client_funnel.png" alt="Client Funnel Flowchart" class="rounded-xl border border-cardBorder max-h-[380px] object-contain shadow-2xl">
+                </div>
+            </div>
+            <div class="text-xs text-slateText font-tech text-center">
+                Standard Close Rate: 65%+ Following the 3-Day Test Run Demonstration
+            </div>
+        </section>
+
+        <!-- SLIDE 12: PROVEN ROI & BUSINESS IMPACT -->
+        <section class="slide w-full max-w-6xl h-full flex-col justify-between p-8 bg-cardNavy/90 rounded-2xl border border-limeEmerald/40 glow-emerald relative" data-index="12">
+            <div>
+                <span class="text-xs font-tech text-limeEmerald font-bold tracking-widest uppercase">Concrete Business ROI</span>
+                <h2 class="text-3xl font-display font-black text-white mt-1">Proven Performance Benchmarks & Business Impact</h2>
+                <p class="text-xs text-slateText mt-1">Measurable revenue growth, labor cost reduction, and logistics efficiency.</p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 my-2">
+                <div class="bg-obsidian/80 border border-neonCyan/40 p-4 rounded-xl text-center">
+                    <div class="text-3xl font-black text-neonCyan font-display">3.4x</div>
+                    <div class="text-xs font-bold text-white mt-1">Conversion Lift</div>
+                    <div class="text-[10px] text-slateText mt-0.5">vs. standard mobile web</div>
+                </div>
+                <div class="bg-obsidian/80 border border-limeEmerald/40 p-4 rounded-xl text-center">
+                    <div class="text-3xl font-black text-limeEmerald font-display">98%</div>
+                    <div class="text-xs font-bold text-white mt-1">WhatsApp Open Rate</div>
+                    <div class="text-[10px] text-slateText mt-0.5">Within 15 mins of delivery</div>
+                </div>
+                <div class="bg-obsidian/80 border border-solarGold/40 p-4 rounded-xl text-center">
+                    <div class="text-3xl font-black text-solarGold font-display">82%</div>
+                    <div class="text-xs font-bold text-white mt-1">Dispatch Time Saved</div>
+                    <div class="text-[10px] text-slateText mt-0.5">From 30+ mins to 1 click</div>
+                </div>
+                <div class="bg-obsidian/80 border border-hotMagenta/40 p-4 rounded-xl text-center">
+                    <div class="text-3xl font-black text-hotMagenta font-display">₹0</div>
+                    <div class="text-xs font-bold text-white mt-1">Fixed Driver Salaries</div>
+                    <div class="text-[10px] text-slateText mt-0.5">100% on-demand fleet</div>
+                </div>
+            </div>
+            <div class="bg-obsidian/60 p-2 rounded-xl border border-cardBorder flex items-center justify-center">
+                <img src="flying-cheetah/images/hero_revenue_profit_dashboard.jpg" alt="Revenue & Profit Dashboard" class="rounded max-h-56 object-contain">
+            </div>
+            <div class="text-xs text-slateText font-tech text-center">
+                Live Data Verified Across Production Deployments &bull; Real Merchant ROI
+            </div>
+        </section>
+
+        <!-- SLIDE 13: LEADERSHIP, PARTNERS & PILOT CTA -->
+        <section class="slide w-full max-w-6xl h-full flex-col justify-between p-8 bg-cardNavy/90 rounded-2xl border border-solarGold/40 glow-gold relative" data-index="13">
+            <div>
+                <span class="text-xs font-tech text-solarGold font-bold tracking-widest uppercase">Leadership & Getting Started</span>
+                <h2 class="text-3xl font-display font-black text-white mt-1">Deploy Your 3-Day Risk-Free Autonomous Commerce Test Run</h2>
+                <p class="text-xs text-slateText mt-1">Partner with Mumbai's premier automation and AI commerce engineering lab.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-auto items-center">
+                <div class="bg-obsidian/80 border border-solarGold/30 p-6 rounded-xl flex flex-col justify-between h-full">
+                    <img src="flying-cheetah/images/founders_bhagat_yash_tech_duo.jpg" alt="Founders Bhagat & Yash" class="rounded-lg max-h-48 object-cover w-full mb-4 border border-cardBorder">
+                    <div>
+                        <h3 class="font-bold text-solarGold text-sm">Co-Founders: Bhagat Mukhiya & Yash Gaikwad</h3>
+                        <p class="text-xs text-slateText mt-2 leading-relaxed">
+                            Flying Cheetah Labs was founded to democratize enterprise-grade AI automation for Indian businesses. We engineer high-speed commerce, sub-600ms voice agents, and autonomous logistics dispatch that drive tangible bottom-line profits.
+                        </p>
+                    </div>
+                </div>
+                <div class="bg-obsidian/80 border border-limeEmerald/40 p-6 rounded-xl flex flex-col justify-between h-full">
+                    <div>
+                        <h3 class="text-lg font-bold text-limeEmerald font-display mb-2">START YOUR 3-DAY FREE PILOT</h3>
+                        <ul class="text-xs text-white space-y-2">
+                            <li><b>1. Discovery Audit:</b> Analyze ad spend and courier bottlenecks.</li>
+                            <li><b>2. 48-Hour Staging:</b> Deploy digital catalog & WhatsApp commerce.</li>
+                            <li><b>3. 3-Day Test Run:</b> Live automated orders & zero dispatch delay.</li>
+                            <li><b>4. Risk-Free Guarantee:</b> If it doesn't boost profit, you pay ₹0.</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Partner Logos -->
+                    <div class="bg-cardNavy p-2.5 rounded-lg border border-cardBorder my-3 flex items-center justify-around">
+                        <img src="flying-cheetah/images/logo_meta_bsp.png" alt="Meta BSP" class="h-6 object-contain">
+                        <img src="flying-cheetah/images/logo_shopify_partner.png" alt="Shopify" class="h-6 object-contain">
+                        <img src="flying-cheetah/images/logo_razorpay.png" alt="Razorpay" class="h-6 object-contain">
+                        <img src="flying-cheetah/images/logo_borzo.png" alt="Borzo" class="h-6 object-contain">
+                        <img src="flying-cheetah/images/logo_porter.png" alt="Porter" class="h-6 object-contain">
+                    </div>
+
+                    <!-- Direct Contact -->
+                    <div class="bg-obsidian p-3 rounded-lg border border-solarGold/30 text-xs">
+                        <div class="text-solarGold font-bold mb-1">READY TO AUTOMATE YOUR STORE?</div>
+                        <div class="text-slateText">📞 Phone / WhatsApp: <b class="text-white">+91 99203 86421</b></div>
+                        <div class="text-slateText">🌐 Live Web Portal: <a href="https://flying-cheetah.vercel.app/" target="_blank" class="text-neonCyan underline">flying-cheetah.vercel.app</a></div>
+                        <div class="text-slateText">📍 Mumbai: Opera House / Bandra West</div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-xs text-slateText font-tech text-center">
+                Flying Cheetah Labs &bull; Autonomous Commerce & Dispatch &bull; Mumbai, India
+            </div>
+        </section>
+
+    </main>
+
+    <!-- BOTTOM CONTROLS & THUMBNAILS -->
+    <footer class="flex items-center justify-between border-t border-cardBorder/60 pt-3">
+        <div class="flex items-center space-x-2">
+            <button onclick="prevSlide()" class="bg-cardNavy hover:bg-cardBorder text-white text-xs px-3.5 py-2 rounded-lg border border-cardBorder transition flex items-center space-x-1.5 font-bold">
+                <i class="fa-solid fa-chevron-left"></i>
+                <span>Previous</span>
+            </button>
+            <button onclick="nextSlide()" class="bg-solarGold hover:bg-amber-400 text-obsidian text-xs px-4 py-2 rounded-lg transition flex items-center space-x-1.5 font-black shadow-lg">
+                <span>Next Slide</span>
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+
+        <!-- Dot Navigation -->
+        <div id="dotNav" class="flex items-center space-x-1.5 hidden sm:flex">
+            <!-- Dynamically generated -->
+        </div>
+
+        <div class="text-xs text-slateText font-tech hidden md:block">
+            Keyboard: Use <kbd class="bg-cardNavy px-1.5 py-0.5 rounded text-white border border-cardBorder">←</kbd> <kbd class="bg-cardNavy px-1.5 py-0.5 rounded text-white border border-cardBorder">→</kbd> or <kbd class="bg-cardNavy px-1.5 py-0.5 rounded text-white border border-cardBorder">Space</kbd>
+        </div>
+    </footer>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 13;
+        const slides = document.querySelectorAll('.slide');
+        const indicator = document.getElementById('slideIndicator');
+        const dotNav = document.getElementById('dotNav');
+
+        // Init Dots
+        for (let i = 1; i <= totalSlides; i++) {
+            const dot = document.createElement('button');
+            dot.className = `w-2.5 h-2.5 rounded-full transition ${i === 1 ? 'bg-solarGold w-5' : 'bg-cardBorder'}`;
+            dot.onclick = () => goToSlide(i);
+            dotNav.appendChild(dot);
+        }
+
+        function updateSlideUI() {
+            slides.forEach(s => s.classList.remove('active'));
+            slides[currentSlide - 1].classList.add('active');
+            indicator.textContent = `SLIDE ${currentSlide} / ${totalSlides}`;
+            
+            // Update dots
+            const dots = dotNav.querySelectorAll('button');
+            dots.forEach((d, idx) => {
+                if (idx === currentSlide - 1) {
+                    d.className = 'w-5 h-2.5 rounded-full bg-solarGold transition';
+                } else {
+                    d.className = 'w-2.5 h-2.5 rounded-full bg-cardBorder transition hover:bg-slate-500';
+                }
+            });
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides) {
+                currentSlide++;
+            } else {
+                currentSlide = 1;
+            }
+            updateSlideUI();
+        }
+
+        function prevSlide() {
+            if (currentSlide > 1) {
+                currentSlide--;
+            } else {
+                currentSlide = totalSlides;
+            }
+            updateSlideUI();
+        }
+
+        function goToSlide(n) {
+            currentSlide = n;
+            updateSlideUI();
+        }
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(() => {});
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+                e.preventDefault();
+                prevSlide();
+            } else if (e.key === 'f' || e.key === 'F') {
+                toggleFullscreen();
+            }
+        });
+    </script>
+</body>
+</html>

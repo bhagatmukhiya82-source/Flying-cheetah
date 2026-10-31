@@ -176,8 +176,9 @@
                 <a href="about.html" class="hover:text-bikOrange transition">About Us</a>
             </nav>
 
-            <div class="flex items-center space-x-4">
-                <a href="https://wa.me/919920386421?text=Hi%20Bhagat%20%26%20Yash,%20I%20want%20to%20schedule%20an%20urgent%201-on-1%20demo." target="_blank" class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-sm transition shadow-md shadow-orange-500/20">
+            <div class="flex items-center space-x-3">
+                <div class="fc-auth-slot"></div>
+                <a href="https://wa.me/919920386421?text=Hi%20Bhagat%20%26%20Yash,%20I%20want%20to%20schedule%20an%20urgent%201-on-1%20demo." target="_blank" class="inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-xs sm:text-sm transition shadow-md shadow-orange-500/20">
                     <i class="fa-brands fa-whatsapp mr-1.5 text-base"></i> WhatsApp VIP Booking
                 </a>
             </div>
@@ -212,8 +213,11 @@
                         <div class="flex items-center justify-between border-b border-slate-100 pb-4 flex-wrap gap-2">
                             <span class="text-xs font-black uppercase text-slate-400 tracking-wider">Interactive Live Sandboxes:</span>
                             <div class="flex items-center gap-1.5 bg-slate-100 p-1 rounded-xl text-xs font-bold">
-                                <button onclick="setSandbox('whatsapp')" id="tab-whatsapp" class="px-3 py-1.5 rounded-lg bg-bikOrange text-white shadow-sm transition">
-                                    <i class="fa-brands fa-whatsapp mr-1"></i> WhatsApp
+                                                                <button onclick="setSandbox('advisor')" id="tab-advisor" class="px-3 py-1.5 rounded-lg bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-sm transition">
+                                    <i class="fa-solid fa-wand-magic-sparkles mr-1 text-yellow-300"></i> AI Solution Matcher
+                                </button>
+                                <button onclick="setSandbox('whatsapp')" id="tab-whatsapp" class="px-3 py-1.5 rounded-lg text-slate-600 hover:text-bikDark transition">
+                                    <i class="fa-brands fa-whatsapp mr-1 text-emerald-500"></i> WhatsApp
                                 </button>
                                 <button onclick="setSandbox('voice')" id="tab-voice" class="px-3 py-1.5 rounded-lg text-slate-600 hover:text-bikDark transition">
                                     <i class="fa-solid fa-microphone mr-1"></i> AI Voice
@@ -228,7 +232,131 @@
                         </div>
 
                         <!-- SANDBOX 1: WHATSAPP AUTOMATION (DEFAULT) -->
-                        <div id="sandbox-whatsapp" class="space-y-4">
+                                                <!-- SANDBOX 0: AI SERVICE MATCHER & PROMPT ENGINE (POWERED BY N8N) -->
+                        <div id="sandbox-advisor" class="space-y-4">
+                            <div class="flex items-center justify-between flex-wrap gap-2">
+                                <div>
+                                    <div class="flex items-center gap-2">
+                                        <h3 class="text-lg font-black text-bikDark font-display">Executive AI Service Recommender</h3>
+                                        <span class="px-2 py-0.5 rounded-full bg-purple-100 text-purple-700 text-[10px] font-bold border border-purple-200">
+                                            n8n Autonomous Engine
+                                        </span>
+                                    </div>
+                                    <p class="text-xs text-slate-500">State your store niche & operational bottleneck — AI diagnoses the exact blueprint & ROI</p>
+                                </div>
+                                <span class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-[10px] font-bold">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> n8n API Live
+                                </span>
+                            </div>
+
+                            <!-- Interactive Input Bench -->
+                            <div class="p-5 rounded-2xl border border-slate-200 bg-slate-900 text-white space-y-4 shadow-xl">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                                    <div>
+                                        <label class="block text-slate-300 font-bold mb-1">Your Brand / Store Name</label>
+                                        <input type="text" id="aiBrandName" placeholder="e.g. Bombay Apparel Co." value="Bombay Apparel Co." class="w-full px-3 py-2 rounded-xl bg-slate-800 border border-slate-700 text-white text-xs outline-none focus:border-purple-400">
+                                    </div>
+                                    <div>
+                                        <label class="block text-slate-300 font-bold mb-1">Target Industry / Sector</label>
+                                        <select id="aiIndustry" class="w-full px-3 py-2 rounded-xl bg-slate-800 border border-slate-700 text-white text-xs outline-none focus:border-purple-400">
+                                            <option value="D2C Fashion & Apparel">D2C Fashion & Apparel</option>
+                                            <option value="Restaurant / Cloud Kitchen">Restaurant / Cloud Kitchen</option>
+                                            <option value="Retail & Supermarket Grocery">Retail & Supermarket Grocery</option>
+                                            <option value="Beauty, Wellness & Skincare">Beauty, Wellness & Skincare</option>
+                                            <option value="Electronics & High-AOV Goods">Electronics & High-AOV Goods</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="text-xs">
+                                    <label class="block text-slate-300 font-bold mb-1">Current Bottleneck / What do you want to solve?</label>
+                                    <textarea id="aiProblemQuery" rows="2" placeholder="e.g. Swiggy 28% commission bohot zyada hai, ya COD orders me fake buyers se RTO loss ho raha hai..." class="w-full px-3 py-2 rounded-xl bg-slate-800 border border-slate-700 text-white text-xs outline-none focus:border-purple-400">Hamare COD orders me 40% fake nikalte hain aur RTO courier charges se bohot bada loss ho raha hai. Automatic voice confirmation chahiye.</textarea>
+                                </div>
+
+                                <!-- Quick Preset Chips -->
+                                <div class="flex items-center gap-1.5 flex-wrap text-[11px]">
+                                    <span class="text-slate-400 text-[10px] uppercase font-bold">Quick Tests:</span>
+                                    <button type="button" onclick="setAiPreset('rto')" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition">
+                                        🛡️ COD Fraud & RTO
+                                    </button>
+                                    <button type="button" onclick="setAiPreset('delivery')" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition">
+                                        🛵 Food / 0% Commission Fleet
+                                    </button>
+                                    <button type="button" onclick="setAiPreset('cart')" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition">
+                                        🛒 WhatsApp Cart Recovery
+                                    </button>
+                                    <button type="button" onclick="setAiPreset('web')" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition">
+                                        ⚡ Sub-100ms Website
+                                    </button>
+                                </div>
+
+                                <div class="flex items-center justify-between pt-1">
+                                    <div class="flex items-center gap-2 text-[11px] text-slate-400">
+                                        <span>Output Language:</span>
+                                        <label class="flex items-center gap-1 cursor-pointer text-slate-300 font-semibold">
+                                            <input type="radio" name="aiLang" value="hinglish" checked class="text-purple-500"> Hinglish
+                                        </label>
+                                        <label class="flex items-center gap-1 cursor-pointer text-slate-300 font-semibold">
+                                            <input type="radio" name="aiLang" value="english" class="text-purple-500"> English
+                                        </label>
+                                    </div>
+                                    <button type="button" id="btnRunAiPrompt" onclick="runAiServicePrompt()" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold text-xs transition flex items-center gap-2 shadow-lg shadow-purple-600/30">
+                                        <i class="fa-solid fa-bolt"></i>
+                                        <span>Generate Executive Proposal</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Live Generated Result Card (Initially Hidden) -->
+                            <div id="aiPromptResultCard" class="hidden rounded-2xl border-2 border-purple-200 bg-purple-50/50 p-5 space-y-4">
+                                <div class="flex items-center justify-between flex-wrap gap-2 border-b border-purple-100 pb-3">
+                                    <div class="flex items-center gap-2">
+                                        <span id="aiResBadge" class="px-2.5 py-1 rounded-full bg-purple-600 text-white text-[10px] font-black uppercase tracking-wider">
+                                            FLAGSHIP MATCH
+                                        </span>
+                                        <h4 id="aiResTitle" class="text-base font-black text-slate-900 font-display">
+                                            Solution Title
+                                        </h4>
+                                    </div>
+                                    <a id="aiResDocLink" href="#" target="_blank" class="text-xs font-bold text-purple-700 hover:text-purple-900 underline flex items-center gap-1">
+                                        <span>View System Blueprint</span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                    </a>
+                                </div>
+
+                                <!-- ROI Alert -->
+                                <div class="p-3 rounded-xl bg-white border border-purple-200 flex items-start gap-3 shadow-sm">
+                                    <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 text-sm font-bold">
+                                        <i class="fa-solid fa-chart-line"></i>
+                                    </div>
+                                    <div class="text-xs">
+                                        <span class="font-bold text-emerald-800 uppercase text-[10px] tracking-wide block">PROJECTED ROI IMPACT:</span>
+                                        <p id="aiResRoi" class="text-slate-700 font-medium mt-0.5">Calculating...</p>
+                                    </div>
+                                </div>
+
+                                <!-- Executive Pitch -->
+                                <div class="p-4 rounded-xl bg-white border border-slate-200 space-y-2 text-xs">
+                                    <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Executive C-Level Pitch:</span>
+                                    <p id="aiResPitch" class="text-slate-800 leading-relaxed font-sans"></p>
+                                </div>
+
+                                <!-- Action Buttons -->
+                                <div class="flex items-center gap-2 flex-wrap pt-1">
+                                    <button type="button" onclick="copyAiWhatsAppProposal()" id="btnCopyWaProposal" class="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition flex items-center gap-1.5 shadow-md shadow-emerald-600/20">
+                                        <i class="fa-brands fa-whatsapp"></i>
+                                        <span>Copy Formatted WhatsApp Pitch</span>
+                                    </button>
+                                    <button type="button" onclick="applyToBookingForm()" class="px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs transition flex items-center gap-1.5">
+                                        <i class="fa-solid fa-calendar-plus text-[10px]"></i>
+                                        <span>Apply to Demo Booking Form ➔</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- SANDBOX 1: WHATSAPP AUTOMATION -->
+                        <div id="sandbox-whatsapp" class="space-y-4 hidden">
                             <div class="flex items-center justify-between">
                                 <div>
                                     <h3 class="text-lg font-black text-bikDark font-display">15s Abandoned Cart Recovery &amp; 1-Tap UPI</h3>
@@ -488,6 +616,240 @@
 
     <!-- INTERACTIVE SCRIPTS -->
     <script>
+        // ==========================================
+        // 🐆 FLYING CHEETAH LABS: AI SERVICE MATCHER ENGINE
+        // ==========================================
+        const FC_SERVICE_CATALOG = {
+            fleet: {
+                title: 'Hyperlocal Fleet Protocol (Borzo & Porter API)',
+                badge: '0-PAYROLL LOGISTICS',
+                tagline: 'Autonomous 2-Wheeler Dispatch & Sub-5.8 Min Rider Allocation',
+                url: 'delivery.html',
+                roi: 'Eliminates 25% - 32% aggregator commissions, saving ₹40,000 to ₹1,50,000+ monthly on local delivery fees.',
+                highlights: [
+                    'Zero-payroll direct courier integration via Borzo & Porter APIs',
+                    'Automated dispatch in < 5.8 minutes without human phone calls',
+                    'Live GPS customer telemetry tracking via branded WhatsApp links',
+                    'Unified delivery dashboard with instant COD reconciliation'
+                ],
+                pitchHinglish: 'Agar aapka business local deliveries aur orders handle karta hai, toh Swiggy/Zomato ya third-party aggregators ko 25-30% margin dena band kijiye. Flying Cheetah ka Hyperlocal Fleet Protocol Borzo aur Porter ke saath direct API connect karta hai—jaise hi order aata hai, within 5.8 minutes rider automatically dispatch ho jata hai bina kisi manual call ke. Isse direct order profit aapki jeb me rehta hai aur delivery speed 30 minutes ke andar execute hoti hai.',
+                pitchEnglish: 'Stop surrendering 25% to 32% profit margins to third-party delivery aggregators. Flying Cheetah Hyperlocal Fleet Protocol connects directly with Borzo & Porter courier networks. The moment an order lands, our neural engine dispatches nearby 2-wheeler riders within 5.8 minutes with zero manual intervention, providing instant sub-30 minute doorstep delivery while keeping 100% of your retail margins.'
+            },
+            voice: {
+                title: 'Autonomous AI Voice Calling Agents (Bilingual Hindi + English)',
+                badge: 'ZERO-FRAUD COD ENGINE',
+                tagline: 'Sub-90s Voice Verification & Return-to-Origin (RTO) Elimination',
+                url: 'ai-voice-agents.html',
+                roi: 'Slashes COD Return-to-Origin (RTO) rates by 35% to 48%, saving massive dead courier freight losses.',
+                highlights: [
+                    'Natural, human-sounding bilingual AI voice (Fluent Hindi & English)',
+                    'Instant COD order verification call placed within 90 seconds of checkout',
+                    'Autonomous address confirmation, landmark tagging, and cancellation handling',
+                    'Direct sync with Shopify, WooCommerce, and CRM databases'
+                ],
+                pitchHinglish: 'eCommerce me sabse bada nuksan fake COD orders aur RTO (Return-to-Origin) se hota hai. Hamara Autonomous AI Voice Agent order aate hi 90 seconds ke andar customer ko call karta hai—bilkul natural Hindi/English me baat karke order aur delivery address confirm karta hai. Jo fake ya accidental orders hote hain wo dispatch se pehle hi cancel ho jate hain, jisse aapka dead shipping cost 40% tak bach jata hai.',
+                pitchEnglish: 'Eliminate crippling COD Return-to-Origin (RTO) losses before couriers ever leave your warehouse. Our Autonomous AI Voice Agent places a natural-sounding, ultra-low-latency call to the customer in Hindi or English within 90 seconds of order placement. It verifies intent, captures exact landmark details, and flags fraudulent buyers, saving tens of thousands in wasted reverse logistics fees.'
+            },
+            whatsapp: {
+                title: 'WhatsApp Conversational Commerce & Abandoned Cart Recovery',
+                badge: '42% CONVERSION RECOVERY',
+                tagline: 'In-Chat Storefront, Dynamic UPI Payments & 98% Open Rate Broadcasts',
+                url: 'whatsapp-automation.html',
+                roi: 'Recovers 38% to 44% of abandoned checkouts within 60 minutes with 98% open rates.',
+                highlights: [
+                    'Interactive WhatsApp catalog browsing & 1-click in-chat checkout',
+                    'Automated dynamic 3-tier cart recovery with personalized discount triggers',
+                    'Official Meta WhatsApp Cloud API verified green-tick infrastructure',
+                    'Integrated instant UPI payment gateways (Razorpay, Cashfree, PhonePe)'
+                ],
+                pitchHinglish: 'Email marketing ka open rate sirf 15-18% hota hai, jabki WhatsApp ka open rate 98% hai! Flying Cheetah WhatsApp Commerce suite ke through aapka customer seedha WhatsApp par catalog dekh sakta hai, cart me item add kar sakta hai, aur 1-click UPI se pay kar sakta hai. Agar koi customer cart chhod deta hai, toh hamara automated sequence 15-45 minute me unko smart reminder bhej kar 40%+ orders ko successfully recover kar leta hai.',
+                pitchEnglish: 'Legacy email marketing suffers from dismal 15% open rates while WhatsApp achieves an astonishing 98% engagement. Flying Cheetah turns your customer\'s WhatsApp into a high-converting storefront with interactive product carousels and direct UPI checkouts. Our automated cart recovery engine re-engages drop-offs within 15 minutes, boosting net store revenues by over 40%.'
+            },
+            webdev: {
+                title: 'ScaleDelight-Grade High Performance Web & App Engineering',
+                badge: 'SUB-100MS LATENCY',
+                tagline: 'Bespoke Modern Web Architecture Engineered for High Conversion',
+                url: 'web-development.html',
+                roi: 'Improves website visitor-to-buyer conversion by up to 1.8x with 99.8% Core Web Vitals score.',
+                highlights: [
+                    'Ultra-fast headless architecture with sub-second page load speeds',
+                    'Sleek modern UI/UX design inspired by top global venture platforms',
+                    'Built-in SEO, dynamic OpenGraph telemetry, and responsive mobile-first polish',
+                    'Direct turnkey integration with Supabase, n8n, and backend APIs'
+                ],
+                pitchHinglish: 'Agar aapki website slow hai ya uska design standard nahi lagta, toh visitors bina khareede nikal jate hain. Flying Cheetah custom ScaleDelight-inspired ultra-fast websites banata hai jo 1 second ke andar load hoti hain, mobile par super smooth chalti hain, aur directly automated backend & WhatsApp funnel se judti hain. Isse brand value enterprise-grade lagti hai aur conversion rate seedha badhta hai.',
+                pitchEnglish: 'Slow, cluttered websites kill brand credibility and bleed ad dollars. We engineer bespoke, ultra-high-performance web platforms with sub-100ms response times, 100% Core Web Vitals, and sleek micro-interactions that elevate your brand into an enterprise market leader and dramatically increase sales conversions.'
+            }
+        };
+
+        function setAiPreset(type) {
+            const presets = {
+                rto: {
+                    industry: 'D2C Fashion & Apparel',
+                    query: 'Hamare COD orders me 40% fake nikalte hain aur RTO courier charges se bohot bada loss ho raha hai. Automatic voice confirmation chahiye.'
+                },
+                delivery: {
+                    industry: 'Restaurant / Cloud Kitchen',
+                    query: 'Swiggy aur Zomato 28% commission le rahe hain aur delivery boy aane me 45 minutes lagte hain. Hame direct delivery setup karni hai.'
+                },
+                cart: {
+                    industry: 'Beauty, Wellness & Skincare',
+                    query: 'Customers are leaving checkout without paying. Need automated WhatsApp cart recovery and direct catalog ordering.'
+                },
+                web: {
+                    industry: 'Electronics & High-AOV Goods',
+                    query: 'Current store is very slow and bounce rate is high. We need a ScaleDelight inspired sub-100ms modern website.'
+                }
+            };
+            if (presets[type]) {
+                const elInd = document.getElementById('aiIndustry');
+                const elQuery = document.getElementById('aiProblemQuery');
+                if (elInd) elInd.value = presets[type].industry;
+                if (elQuery) elQuery.value = presets[type].query;
+            }
+        }
+
+        let currentAiProposalData = null;
+
+        async function runAiServicePrompt() {
+            const brand = (document.getElementById('aiBrandName')?.value || 'My Enterprise').trim();
+            const industry = document.getElementById('aiIndustry')?.value || 'D2C Retail';
+            const query = (document.getElementById('aiProblemQuery')?.value || '').trim();
+            const lang = document.querySelector('input[name="aiLang"]:checked')?.value || 'hinglish';
+            const btn = document.getElementById('btnRunAiPrompt');
+            const resultCard = document.getElementById('aiPromptResultCard');
+
+            if (btn) {
+                btn.disabled = true;
+                btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Analyzing n8n Matrix...';
+            }
+
+            const payload = {
+                name: 'Store Founder',
+                business_name: brand,
+                industry: industry,
+                query: query,
+                language: lang,
+                phone: '+919920386421',
+                email: 'founder@flyingcheetah.agency'
+            };
+
+            let data = null;
+
+            // Step 1: Call live n8n webhook API
+            try {
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 8000);
+
+                const response = await fetch('http://localhost:5678/webhook/fc-service-prompt', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload),
+                    signal: controller.signal
+                });
+                clearTimeout(timeoutId);
+
+                if (response.ok) {
+                    data = await response.json();
+                    console.log('[n8n Live Webhook] Received response:', data);
+                }
+            } catch (err) {
+                console.warn('[n8n Webhook Notice] Running client cognitive pipeline fallback:', err.message);
+            }
+
+            // Step 2: Resilient Client-Side Intelligent Matching Fallback
+            if (!data || !data.recommendation) {
+                const text = (query + ' ' + industry + ' ' + brand).toLowerCase();
+                let key = 'whatsapp';
+                if (/swiggy|zomato|borzo|porter|dispatch|delivery|restaurant|kitchen|food|rider/i.test(text)) {
+                    key = 'fleet';
+                } else if (/voice|call|calling|cod|rto|fake order|verification/i.test(text)) {
+                    key = 'voice';
+                } else if (/website|web|slow|speed|ui|ux|develop/i.test(text)) {
+                    key = 'webdev';
+                } else {
+                    key = 'whatsapp';
+                }
+
+                const s = FC_SERVICE_CATALOG[key];
+                const pitch = lang === 'english' ? s.pitchEnglish : s.pitchHinglish;
+
+                data = {
+                    recommendation: {
+                        primary: {
+                            key: key,
+                            title: s.title,
+                            badge: s.badge,
+                            tagline: s.tagline,
+                            url: s.url,
+                            roi: s.roi,
+                            highlights: s.highlights,
+                            executive_pitch: pitch
+                        }
+                    },
+                    ready_to_send_copy: {
+                        whatsapp_message: `*🐆 FLYING CHEETAH LABS • STRATEGIC PROPOSAL*\n\nNamaste *Founder* (${brand}),\n\nHumne aapki requirement analyze ki hai regarding: "${query || industry}".\n\nAapke business ke liye hamara recommended primary blueprint hai:\n🔥 *${s.title}*\n✨ *Core Impact:* ${s.tagline}\n💰 *Estimated ROI:* ${s.roi}\n\n*Key Highlights:*\n${s.highlights.map(h => '• ' + h).join('\n')}\n\n👉 *Book 1-on-1 Founder Demo:* https://flying-cheetah.vercel.app/demo.html\nWhatsApp Direct: https://wa.me/919920386421`
+                    }
+                };
+            }
+
+            currentAiProposalData = data;
+
+            // Render Output
+            const primary = data.recommendation.primary;
+            const elBadge = document.getElementById('aiResBadge');
+            const elTitle = document.getElementById('aiResTitle');
+            const elLink = document.getElementById('aiResDocLink');
+            const elRoi = document.getElementById('aiResRoi');
+            const elPitch = document.getElementById('aiResPitch');
+
+            if (elBadge) elBadge.textContent = primary.badge || 'FLAGSHIP SOLUTION';
+            if (elTitle) elTitle.textContent = primary.title;
+            if (elLink) elLink.href = primary.url;
+            if (elRoi) elRoi.textContent = primary.roi;
+            if (elPitch) elPitch.textContent = primary.executive_pitch;
+
+            if (resultCard) {
+                resultCard.classList.remove('hidden');
+                resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+
+            if (btn) {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fa-solid fa-bolt"></i> Generate Executive Proposal';
+            }
+        }
+
+        function copyAiWhatsAppProposal() {
+            if (!currentAiProposalData) return;
+            const text = currentAiProposalData.ready_to_send_copy?.whatsapp_message || 
+                `*FLYING CHEETAH LABS PROPOSAL*\nSolution: ${currentAiProposalData.recommendation.primary.title}\nROI: ${currentAiProposalData.recommendation.primary.roi}\nLink: https://flying-cheetah.vercel.app/${currentAiProposalData.recommendation.primary.url}`;
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = document.getElementById('btnCopyWaProposal');
+                if (btn) {
+                    const orig = btn.innerHTML;
+                    btn.innerHTML = '<i class="fa-solid fa-check"></i> <span>Copied to Clipboard!</span>';
+                    btn.classList.replace('bg-emerald-600', 'bg-slate-900');
+                    setTimeout(() => {
+                        btn.innerHTML = orig;
+                        btn.classList.replace('bg-slate-900', 'bg-emerald-600');
+                    }, 2500);
+                }
+            });
+        }
+
+        function applyToBookingForm() {
+            const brand = document.getElementById('aiBrandName')?.value.trim();
+            const storeInput = document.getElementById('demoStore');
+            if (brand && storeInput) storeInput.value = brand;
+
+            const form = document.getElementById('demoBookingForm');
+            if (form) {
+                form.scrollIntoView({ behavior: 'smooth' });
+                document.getElementById('demoName')?.focus();
+            }
+        }
+
         // Dropdown toggle
         document.addEventListener('DOMContentLoaded', function() {
             const dropdownParents = document.querySelectorAll('.dropdown-parent');
@@ -509,14 +871,14 @@
             // Check URL param ?module=...
             const urlParams = new URLSearchParams(window.location.search);
             const mod = urlParams.get('module');
-            if (mod && ['whatsapp', 'voice', 'fleet', 'support'].includes(mod)) {
+            if (mod && ['advisor', 'whatsapp', 'voice', 'fleet', 'support'].includes(mod)) {
                 setSandbox(mod);
             }
         });
 
         // Sandbox Switcher
         function setSandbox(name) {
-            const tabs = ['whatsapp', 'voice', 'fleet', 'support'];
+            const tabs = ['advisor', 'whatsapp', 'voice', 'fleet', 'support'];
             tabs.forEach(t => {
                 const box = document.getElementById(`sandbox-${t}`);
                 const tabBtn = document.getElementById(`tab-${t}`);
@@ -530,7 +892,11 @@
             const activeBtn = document.getElementById(`tab-${name}`);
             if (activeBox) activeBox.classList.remove('hidden');
             if (activeBtn) {
-                activeBtn.className = 'px-3 py-1.5 rounded-lg bg-bikOrange text-white shadow-sm transition';
+                if (name === 'advisor') {
+                    activeBtn.className = 'px-3 py-1.5 rounded-lg bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-sm transition';
+                } else {
+                    activeBtn.className = 'px-3 py-1.5 rounded-lg bg-bikOrange text-white shadow-sm transition';
+                }
             }
         }
 

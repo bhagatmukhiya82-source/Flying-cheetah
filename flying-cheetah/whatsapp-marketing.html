@@ -238,106 +238,106 @@
 
                 <!-- Right Visual: ANIMATED FLOWCHART VIDEO CONSOLE -->
                 <div class="lg:col-span-6 relative">
-                    <div class="rounded-3xl border border-slate-800 bg-slate-950 shadow-2xl bik-mega-shadow fc-card-glow relative overflow-hidden text-white">
+                    <div class="rounded-3xl border-2 border-slate-200/90 bg-white shadow-2xl bik-mega-shadow fc-card-glow relative overflow-hidden text-slate-800">
                         
                         <!-- Top Video Progress Bar -->
-                        <div class="w-full h-1 bg-slate-800 relative overflow-hidden">
+                        <div class="w-full h-1 bg-slate-100 relative overflow-hidden">
                             <div id="wamProgressBar" class="h-full bg-gradient-to-r from-emerald-500 via-teal-400 to-amber-400 transition-all duration-300 w-0"></div>
                         </div>
 
                         <!-- Video Player Header Chrome -->
-                        <div class="px-5 py-3 border-b border-slate-800 flex items-center justify-between bg-slate-900/60 backdrop-blur-md">
+                        <div class="px-5 py-3 border-b border-slate-200/80 flex items-center justify-between bg-slate-50/90 backdrop-blur-md">
                             <div class="flex items-center gap-2">
                                 <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
                                 <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span>
                                 <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></span>
-                                <span class="text-[11px] font-bold text-slate-300 ml-1 font-mono flex items-center gap-1.5">
-                                    <i class="fa-solid fa-play text-emerald-400 text-[10px]"></i>
+                                <span class="text-[11px] font-bold text-slate-700 ml-1 font-mono flex items-center gap-1.5">
+                                    <i class="fa-solid fa-play text-emerald-600 text-[10px]"></i>
                                     <span>Meta WhatsApp Broadcast & Commerce Engine</span>
                                 </span>
                             </div>
 
                             <div class="flex items-center gap-2">
-                                <span id="wamStepBadge" class="px-2.5 py-0.5 rounded-full bg-emerald-950 border border-emerald-800/60 text-emerald-300 text-[10px] font-mono font-bold">
+                                <span id="wamStepBadge" class="px-2.5 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-[10px] font-mono font-bold">
                                     Step 1: Segment
                                 </span>
-                                <button onclick="toggleWamVideo()" id="wamPlayPauseBtn" class="w-7 h-7 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 flex items-center justify-center transition text-xs" title="Pause / Play">
+                                <button onclick="toggleWamVideo()" id="wamPlayPauseBtn" class="w-7 h-7 rounded-lg bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 flex items-center justify-center transition text-xs shadow-xs" title="Pause / Play">
                                     <i class="fa-solid fa-pause" id="wamPlayPauseIcon"></i>
                                 </button>
-                                <button onclick="restartWamVideo()" class="w-7 h-7 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 flex items-center justify-center transition text-xs" title="Replay">
+                                <button onclick="restartWamVideo()" class="w-7 h-7 rounded-lg bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 flex items-center justify-center transition text-xs shadow-xs" title="Replay">
                                     <i class="fa-solid fa-rotate-right"></i>
                                 </button>
                             </div>
                         </div>
 
                         <!-- Video Visual Canvas -->
-                        <div class="p-5 sm:p-6 grid grid-cols-1 sm:grid-cols-12 gap-5 items-center relative">
+                        <div class="p-5 sm:p-6 grid grid-cols-1 sm:grid-cols-12 gap-5 items-center relative bg-gradient-to-b from-white via-slate-50/40 to-white">
                             
                             <!-- Left: Connected Flowchart Road Map (7 cols) -->
                             <div class="sm:col-span-7 space-y-3 relative">
                                 
                                 <!-- Background Animated Beam Line -->
                                 <div class="absolute left-6 top-7 bottom-7 w-1 -translate-x-1/2 z-0 pointer-events-none">
-                                    <div class="w-full h-full bg-slate-800 rounded-full"></div>
+                                    <div class="w-full h-full bg-slate-200 rounded-full"></div>
                                     <div id="wamBeamActive" class="absolute top-0 left-0 w-full bg-gradient-to-b from-emerald-400 via-teal-300 to-amber-400 rounded-full transition-all duration-500 shadow-[0_0_12px_#10b981] h-0"></div>
                                 </div>
 
                                 <!-- Node 1: VIP Audience Segmentation -->
-                                <div id="wamNode1" onclick="jumpWamStep(0)" class="relative z-10 p-2.5 rounded-2xl bg-slate-900/90 border border-emerald-500/80 flex items-center gap-3 transition-all duration-300 cursor-pointer node-glow-active">
-                                    <div class="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-sm font-bold border border-emerald-500/30 transition shadow-sm">
+                                <div id="wamNode1" onclick="jumpWamStep(0)" class="relative z-10 p-2.5 rounded-2xl bg-white border border-emerald-500/80 shadow-xs flex items-center gap-3 transition-all duration-300 cursor-pointer node-glow-active">
+                                    <div class="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-sm font-bold border border-emerald-200 transition shadow-xs">
                                         <i class="fa-solid fa-users"></i>
                                     </div>
                                     <div class="flex-1 min-w-0">
                                         <div class="flex items-center justify-between">
-                                            <span class="text-xs font-black text-white block">1. VIP Audience Segment</span>
-                                            <span class="text-[9px] font-mono text-emerald-400 bg-emerald-950 px-1.5 py-0.5 rounded border border-emerald-800/50">24,650 Shoppers</span>
+                                             <span class="text-xs font-black text-slate-900 block">1. VIP Audience Segment</span>
+                                            <span class="text-[9px] font-mono text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">24,650 Shoppers</span>
                                         </div>
-                                        <span class="text-[10px] text-slate-400 block truncate">RFM Filter: High-AOV Festive Buyers</span>
+                                        <span class="text-[10px] text-slate-500 block truncate">RFM Filter: High-AOV Festive Buyers</span>
                                     </div>
                                 </div>
 
                                 <!-- Node 2: Meta Cloud API Broadcast -->
-                                <div id="wamNode2" onclick="jumpWamStep(1)" class="relative z-10 p-2.5 rounded-2xl bg-slate-900/90 border border-slate-800 flex items-center gap-3 transition-all duration-300 cursor-pointer opacity-40">
-                                    <div class="w-8 h-8 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-sm font-bold border border-purple-500/30 transition shadow-sm">
+                                <div id="wamNode2" onclick="jumpWamStep(1)" class="relative z-10 p-2.5 rounded-2xl bg-white border border-slate-200 shadow-xs flex items-center gap-3 transition-all duration-300 cursor-pointer opacity-40">
+                                    <div class="w-8 h-8 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-sm font-bold border border-purple-200 transition shadow-xs">
                                         <i class="fa-solid fa-paper-plane text-xs"></i>
                                     </div>
                                     <div class="flex-1 min-w-0">
                                         <div class="flex items-center justify-between">
-                                            <span class="text-xs font-black text-white block">2. Meta Cloud Broadcast</span>
-                                            <span class="text-[9px] font-mono text-purple-300">98% Delivery</span>
+                                            <span class="text-xs font-black text-slate-900 block">2. Meta Cloud Broadcast</span>
+                                            <span class="text-[9px] font-mono text-purple-600">98% Delivery</span>
                                         </div>
-                                        <span class="text-[10px] text-slate-400 block truncate">Pre-approved template • Zero ban risk</span>
+                                        <span class="text-[10px] text-slate-500 block truncate">Pre-approved template • Zero ban risk</span>
                                     </div>
                                 </div>
 
                                 <!-- Node 3: Interactive Product Carousel -->
-                                <div id="wamNode3" onclick="jumpWamStep(2)" class="relative z-10 p-2.5 rounded-2xl bg-slate-900/90 border border-slate-800 flex items-center gap-3 transition-all duration-300 cursor-pointer opacity-40">
-                                    <div class="w-8 h-8 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center text-sm font-bold border border-blue-500/30 transition shadow-sm">
+                                <div id="wamNode3" onclick="jumpWamStep(2)" class="relative z-10 p-2.5 rounded-2xl bg-white border border-slate-200 shadow-xs flex items-center gap-3 transition-all duration-300 cursor-pointer opacity-40">
+                                    <div class="w-8 h-8 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-sm font-bold border border-blue-200 transition shadow-xs">
                                         <i class="fa-solid fa-layer-group text-xs"></i>
                                     </div>
                                     <div class="flex-1 min-w-0">
                                         <div class="flex items-center justify-between">
-                                            <span class="text-xs font-black text-white block">3. In-Chat Catalog Carousel</span>
-                                            <span class="text-[9px] font-mono text-blue-400">Shop on Chat</span>
+                                            <span class="text-xs font-black text-slate-900 block">3. In-Chat Catalog Carousel</span>
+                                            <span class="text-[9px] font-mono text-blue-600">Shop on Chat</span>
                                         </div>
-                                        <span class="text-[10px] text-slate-400 block truncate">Dynamic product variant & size selector</span>
+                                        <span class="text-[10px] text-slate-500 block truncate">Dynamic product variant & size selector</span>
                                     </div>
                                 </div>
 
                                 <!-- Node 4: 1-Tap UPI Payment & GMV -->
-                                <div id="wamNode4" onclick="jumpWamStep(3)" class="relative z-10 p-3 rounded-2xl bg-slate-900/90 border border-slate-800 flex items-center gap-3 transition-all duration-300 cursor-pointer opacity-40">
-                                    <div class="w-8 h-8 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-base font-bold border border-amber-500/30 transition shadow-sm">
+                                <div id="wamNode4" onclick="jumpWamStep(3)" class="relative z-10 p-3 rounded-2xl bg-white border border-slate-200 shadow-xs flex items-center gap-3 transition-all duration-300 cursor-pointer opacity-40">
+                                    <div class="w-8 h-8 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-base font-bold border border-amber-200 transition shadow-xs">
                                         <i class="fa-solid fa-bolt"></i>
                                     </div>
                                     <div class="flex-1 min-w-0">
                                         <div class="flex items-center justify-between">
-                                            <span class="text-xs font-black text-white block flex items-center gap-1.5">
+                                            <span class="text-xs font-black text-slate-900 block flex items-center gap-1.5">
                                                 <span>4. 1-Tap UPI Paid</span>
-                                                <i class="fa-solid fa-indian-rupee-sign text-amber-400 text-xs"></i>
+                                                <i class="fa-solid fa-indian-rupee-sign text-amber-500 text-xs"></i>
                                             </span>
-                                            <span class="text-[9px] font-mono text-emerald-300 bg-emerald-950 px-2 py-0.5 rounded-full border border-emerald-500/40 font-bold">₹8.92L GMV</span>
+                                            <span class="text-[9px] font-mono text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200 font-bold">₹8.92L GMV</span>
                                         </div>
-                                        <span class="text-[10px] text-emerald-400 font-semibold block truncate">2,140 Orders Closed • Borzo Dispatched</span>
+                                        <span class="text-[10px] text-emerald-600 font-semibold block truncate">2,140 Orders Closed • Borzo Dispatched</span>
                                     </div>
                                 </div>
 
@@ -345,41 +345,41 @@
 
                             <!-- Right: Live Synchronized WhatsApp Preview Terminal (5 cols) -->
                             <div class="sm:col-span-5 relative">
-                                <div class="rounded-2xl border border-slate-800 bg-[#075e54] p-3.5 space-y-3 shadow-xl">
+                                <div class="rounded-2xl border border-slate-200 bg-slate-50/90 p-3.5 space-y-3 shadow-md">
                                     
                                     <!-- WhatsApp Bar -->
-                                    <div class="flex items-center justify-between border-b border-emerald-700/60 pb-2">
+                                    <div class="flex items-center justify-between border-b border-slate-200 pb-2">
                                         <div class="flex items-center gap-2">
-                                            <div class="w-6 h-6 rounded-full bg-white text-[#075e54] flex items-center justify-center text-xs font-bold">
+                                            <div class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-xs font-bold">
                                                 <i class="fa-brands fa-whatsapp"></i>
                                             </div>
                                             <div>
-                                                <span class="text-[11px] font-bold text-white block leading-tight">Flying Cheetah Brand</span>
-                                                <span class="text-[8px] text-emerald-200 flex items-center gap-1"><i class="fa-solid fa-circle-check text-emerald-300"></i> Official Verified</span>
+                                                <span class="text-[11px] font-bold text-slate-900 block leading-tight">Flying Cheetah Brand</span>
+                                                <span class="text-[8px] text-emerald-600 flex items-center gap-1 font-semibold"><i class="fa-solid fa-circle-check text-emerald-500"></i> Official Verified</span>
                                             </div>
                                         </div>
-                                        <span class="text-[10px] font-mono text-emerald-200 font-bold" id="wamDeliveryStats">98.2% Inbox</span>
+                                        <span class="text-[10px] font-mono text-emerald-600 font-bold" id="wamDeliveryStats">98.2% Inbox</span>
                                     </div>
 
                                     <!-- Chat Bubble Simulation -->
-                                    <div class="bg-white text-slate-800 p-2.5 rounded-xl rounded-tl-none shadow text-[10px] space-y-1.5">
+                                    <div class="bg-white text-slate-800 p-2.5 rounded-xl rounded-tl-none shadow-xs border border-slate-200 text-[10px] space-y-1.5">
                                         <div class="font-bold text-slate-900" id="wamMessageHeading">Diwali VIP Festive Drop ✨</div>
                                         <p class="text-[9px] text-slate-600 leading-snug" id="wamMessageBody">
-                                            Exclusive 20% savings on the Royal Silk Kurti collection. Tap below to buy instantly without leaving WhatsApp.
+                                             Exclusive 20% savings on the Royal Silk Kurti collection. Tap below to buy instantly without leaving WhatsApp.
                                         </p>
                                         <div class="p-1.5 rounded-lg bg-slate-50 border border-slate-200 flex items-center justify-between">
                                             <span class="font-bold text-[9px] text-slate-700">Royal Silk Kurti (M)</span>
                                             <span class="text-emerald-700 font-mono font-bold">₹3,499</span>
                                         </div>
-                                        <button id="wamActionBtn" class="w-full py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-[9px] flex items-center justify-center gap-1 transition">
+                                        <button id="wamActionBtn" class="w-full py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-[9px] flex items-center justify-center gap-1 transition shadow-sm">
                                             <i class="fa-brands fa-whatsapp"></i> 1-Tap Pay via UPI
                                         </button>
                                     </div>
 
                                     <!-- Bottom Telemetry Badges -->
-                                    <div class="flex items-center justify-between text-[9px] font-mono text-emerald-100 px-1">
+                                    <div class="flex items-center justify-between text-[9px] font-mono text-slate-500 px-1">
                                         <span>Delivered: 24,650</span>
-                                        <span class="text-amber-300 font-bold" id="wamGmvBadge">₹8.92L Revenue</span>
+                                        <span class="text-emerald-700 font-bold" id="wamGmvBadge">₹8.92L Revenue</span>
                                     </div>
 
                                 </div>
@@ -388,12 +388,12 @@
                         </div>
 
                         <!-- Video Footer Status Bar -->
-                        <div class="px-5 py-2.5 bg-slate-900 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-300 font-mono">
+                        <div class="px-5 py-2.5 bg-slate-50/90 border-t border-slate-200/80 flex items-center justify-between text-[11px] text-slate-600 font-mono">
                             <span class="flex items-center gap-2">
-                                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
                                 <span id="wamStatusText">Step 1: 24,650 High-AOV Shoppers Segmented</span>
                             </span>
-                            <span class="text-emerald-400 font-bold">Meta Tier-4 High Throughput</span>
+                            <span class="text-emerald-600 font-bold">Meta Tier-4 High Throughput</span>
                         </div>
                     </div>
                 </div>

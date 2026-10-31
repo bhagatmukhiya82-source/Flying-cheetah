@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Executive Agency Admin Dashboard — Flying Cheetah</title>
     <meta name="description" content="Executive Agency Admin Dashboard — Flying Cheetah - Flying Cheetah Labs Autonomous AI Commerce & Omnichannel Marketing Suite.">
+    <meta name="robots" content="noindex, nofollow" />
     <link rel="canonical" href="https://flying-cheetah.vercel.app/admin">
     <meta property="og:url" content="https://flying-cheetah.vercel.app/admin">
     <meta property="og:site_name" content="Flying Cheetah">
@@ -131,14 +132,20 @@
                     <span>Integrations & n8n</span>
                 </button>
 
+                <!-- Merchant Store Profile Button -->
+                <button onclick="window.FC_AUTH.openProfileModal()" class="px-3.5 py-2 rounded-xl border border-orange-200 hover:border-bikOrange bg-orange-50/60 hover:bg-orange-100/70 text-bikOrange font-bold text-xs transition shadow-sm flex items-center gap-2 cursor-pointer" title="Edit Merchant Profile, GSTIN, UPI & Pickup Address">
+                    <i class="fa-solid fa-store text-bikOrange"></i>
+                    <span>Merchant Profile</span>
+                </button>
+
                 <!-- Admin Profile Menu -->
-                <div class="flex items-center gap-2.5 pl-2 border-l border-slate-200">
+                <div onclick="window.FC_AUTH.openProfileModal()" class="flex items-center gap-2.5 pl-2 border-l border-slate-200 cursor-pointer hover:opacity-85 transition" title="Click to view & edit Merchant Profile">
                     <img id="adminAvatarImg" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&auto=format&fit=crop&q=80" alt="Admin" class="w-9 h-9 rounded-full object-cover border border-slate-200 shadow-sm">
                     <div class="hidden lg:block text-left">
                         <div id="adminNameTxt" class="text-xs font-black text-bikDark leading-tight">Agency Admin</div>
                         <div id="adminEmailTxt" class="text-[10px] text-slate-400 font-semibold">flyingcheetah.agency@gmail.com</div>
                     </div>
-                    <button onclick="window.FC_AUTH.signOut()" class="w-8 h-8 rounded-lg text-slate-400 hover:text-red-600 hover:bg-red-50 flex items-center justify-center transition ml-1" title="Sign Out">
+                    <button onclick="event.stopPropagation(); window.FC_AUTH.signOut();" class="w-8 h-8 rounded-lg text-slate-400 hover:text-red-600 hover:bg-red-50 flex items-center justify-center transition ml-1" title="Sign Out">
                         <i class="fa-solid fa-arrow-right-from-bracket text-xs"></i>
                     </button>
                 </div>
@@ -163,6 +170,34 @@
             <button onclick="openConfigModal()" class="px-3.5 py-1.5 rounded-lg bg-white border border-amber-300 text-amber-900 text-xs font-bold hover:bg-amber-100 transition shadow-sm">
                 Connect Live Keys
             </button>
+        </div>
+
+        <!-- MERCHANT BUSINESS PROFILE & OPERATIONS STRIP -->
+        <div id="merchantProfileBanner" class="bg-white rounded-3xl p-5 border border-slate-200 shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+            <div class="flex items-start sm:items-center gap-3.5">
+                <div class="w-12 h-12 rounded-2xl bg-orange-100 text-bikOrange flex items-center justify-center text-xl shrink-0 shadow-inner">
+                    <i class="fa-solid fa-shop"></i>
+                </div>
+                <div>
+                    <div class="flex flex-wrap items-center gap-2">
+                        <span id="merchantDisplayBrand" class="text-base font-black text-bikDark font-display">Mumbai Couture & Boutique</span>
+                        <span id="merchantDisplayCategory" class="px-2.5 py-0.5 rounded-full bg-orange-50 border border-orange-200/80 text-bikOrange text-[10px] font-bold">Apparel & Fashion</span>
+                        <span id="merchantDisplayGstin" class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 font-mono text-[10px] font-bold">GSTIN: 27AAACF1234M1Z5</span>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-x-4 gap-y-1 mt-1.5 text-[11px] text-slate-500 font-medium">
+                        <span class="flex items-center gap-1"><i class="fa-brands fa-whatsapp text-emerald-500"></i> Support: <strong id="merchantDisplayWhatsApp" class="text-slate-700">+91 99203 86421</strong></span>
+                        <span class="flex items-center gap-1"><i class="fa-solid fa-location-dot text-rose-500"></i> Pickup: <span id="merchantDisplayPickup" class="text-slate-700 truncate max-w-xs">Shop 4, Opera House, Mumbai 400004</span></span>
+                        <span class="flex items-center gap-1"><i class="fa-solid fa-wallet text-indigo-500"></i> UPI: <strong id="merchantDisplayUpi" class="text-slate-700 font-mono">mumbaicouture@okhdfcbank</strong></span>
+                        <span class="flex items-center gap-1"><i class="fa-solid fa-route text-amber-500"></i> Radius: <strong id="merchantDisplayRadius" class="text-slate-700">15 km</strong></span>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center gap-2.5 shrink-0 self-end lg:self-center">
+                <button onclick="window.FC_AUTH.openProfileModal()" class="px-4 py-2.5 rounded-xl bg-bikDark hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider transition shadow-sm flex items-center gap-2 cursor-pointer">
+                    <i class="fa-solid fa-pen-to-square text-xs"></i>
+                    <span>Edit Profile & UPI</span>
+                </button>
+            </div>
         </div>
 
         <!-- KPI SUMMARY CARDS -->
@@ -427,6 +462,9 @@
                 document.getElementById('adminAvatarImg').src = user.user_metadata.avatar_url;
             }
 
+            // Sync rich merchant profile strip
+            syncMerchantDisplay();
+
             // Mock Mode Banner
             if (window.FC_BACKEND.isMockMode()) {
                 document.getElementById('mockModeBanner').classList.remove('hidden');
@@ -436,6 +474,86 @@
 
             // Load live admin data
             fetchDashboardData();
+            setupRealtimeSubscriptions();
+        }
+
+        function syncMerchantDisplay() {
+            if (!window.FC_AUTH || !window.FC_AUTH.getMerchantProfile) return;
+            const prof = window.FC_AUTH.getMerchantProfile();
+            const brandEl = document.getElementById('merchantDisplayBrand');
+            const catEl = document.getElementById('merchantDisplayCategory');
+            const gstinEl = document.getElementById('merchantDisplayGstin');
+            const waEl = document.getElementById('merchantDisplayWhatsApp');
+            const pickupEl = document.getElementById('merchantDisplayPickup');
+            const upiEl = document.getElementById('merchantDisplayUpi');
+            const radEl = document.getElementById('merchantDisplayRadius');
+
+            if (brandEl) brandEl.textContent = prof.business_name || 'Mumbai Couture & Boutique';
+            if (catEl) catEl.textContent = prof.category_niche || 'Apparel & Fashion';
+            if (gstinEl) gstinEl.textContent = `GSTIN: ${prof.gstin_udyam || '27AAACF1234M1Z5'}`;
+            if (waEl) waEl.textContent = prof.whatsapp_support || '+91 99203 86421';
+            if (pickupEl) pickupEl.textContent = prof.pickup_address || 'Shop 4, Opera House, Mumbai 400004';
+            if (upiEl) upiEl.textContent = prof.merchant_upi_id || 'mumbaicouture@okhdfcbank';
+            if (radEl) radEl.textContent = `${prof.delivery_radius_km || 15} km`;
+
+            const adminNameTxt = document.getElementById('adminNameTxt');
+            if (adminNameTxt && prof.business_name) {
+                adminNameTxt.textContent = `${prof.business_name} (Admin)`;
+            }
+        }
+
+        window.addEventListener('fc:merchant-profile-updated', syncMerchantDisplay);
+        window.addEventListener('DOMContentLoaded', syncMerchantDisplay);
+
+        let realtimeChannel = null;
+
+        function setupRealtimeSubscriptions() {
+            if (realtimeChannel) return;
+            const client = window.FC_BACKEND.getClient();
+            if (!client || !client.channel) return;
+
+            try {
+                realtimeChannel = client.channel('admin-live-stream')
+                    .on(
+                        'postgres_changes',
+                        { event: 'INSERT', schema: 'public', table: 'leads_inquiries' },
+                        (payload) => {
+                            console.log('[Supabase Realtime] Ingested Lead:', payload.new);
+                            if (!allLeads.some(l => l.id === payload.new.id)) {
+                                allLeads.unshift(payload.new);
+                                updateStats();
+                                renderTable();
+                                if (window.FC_LEADS && window.FC_LEADS.showToast) {
+                                    window.FC_LEADS.showToast('Realtime Alert: New lead from ' + (payload.new.name || 'a visitor') + '!', 'success');
+                                }
+                            }
+                        }
+                    )
+                    .on(
+                        'postgres_changes',
+                        { event: 'UPDATE', schema: 'public', table: 'leads_inquiries' },
+                        (payload) => {
+                            console.log('[Supabase Realtime] Lead Updated:', payload.new);
+                            const idx = allLeads.findIndex(l => l.id === payload.new.id);
+                            if (idx !== -1) {
+                                allLeads[idx] = payload.new;
+                                updateStats();
+                                renderTable();
+                            }
+                        }
+                    )
+                    .subscribe((status) => {
+                        console.log('[Supabase Realtime] Channel status:', status);
+                        if (status === 'SUBSCRIBED') {
+                            const badge = document.getElementById('backendStatusText');
+                            if (badge && !window.FC_BACKEND.isMockMode()) {
+                                badge.textContent = 'Supabase Realtime Live';
+                            }
+                        }
+                    });
+            } catch (err) {
+                console.warn('[Admin] Realtime subscription init error:', err);
+            }
         }
 
         // 2. FETCH LEADS & USERS

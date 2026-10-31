@@ -81,7 +81,8 @@
             </nav>
 
             <div class="flex items-center space-x-3">
-                <a href="https://wa.me/919920386421?text=Hi%20Bhagat%20%26%20Yash,%20I%20want%20this%20exact%20WhatsApp%20Store%20and%20Borzo%20delivery%20for%20my%20shop!" target="_blank" class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-waGreen hover:bg-emerald-600 text-white font-bold text-xs transition shadow-md shadow-emerald-500/20 gap-2">
+                <div class="fc-auth-slot"></div>
+                <a id="connectWhatsAppStoreBtn" href="https://wa.me/919920386421?text=Hi%20Bhagat%20%26%20Yash,%20I%20want%20this%20exact%20WhatsApp%20Store%20and%20Borzo%20delivery%20for%20my%20shop!" target="_blank" class="inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-waGreen hover:bg-emerald-600 text-white font-bold text-xs transition shadow-md shadow-emerald-500/20 gap-2">
                     <i class="fa-brands fa-whatsapp text-sm"></i>
                     <span>Connect WhatsApp Store</span>
                 </a>
@@ -644,6 +645,11 @@
 
             // 1. Call Borzo serverless dispatch endpoint with graceful fallback
             let dispatchRes = null;
+            const merchantInfo = (window.FC_AUTH && window.FC_AUTH.getMerchantProfile) ? window.FC_AUTH.getMerchantProfile() : {};
+            const storePickupAddr = merchantInfo.pickup_address || 'Bandra West Boutique, Mumbai';
+            const storePhone = merchantInfo.whatsapp_support || '9820011998';
+            const storeBrand = merchantInfo.business_name || 'Store Manager';
+
             try {
                 const response = await fetch('/api/borzo-dispatch', {
                     method: 'POST',
@@ -651,7 +657,7 @@
                     body: JSON.stringify({
                         action: 'create',
                         order_ref: orderData.orderRef,
-                        pickup: { address: 'Bandra West Boutique, Mumbai', phone: '9820011998', name: 'Store Manager' },
+                        pickup: { address: storePickupAddr, phone: storePhone, name: storeBrand },
                         dropoff: { address: orderData.address, phone: clean10Digits, name: orderData.name },
                         matter: orderData.item.name,
                         weight: 1.0
@@ -720,7 +726,7 @@
                         courier_order_id: dispatchRes.order_id || ('borzo_ord_' + orderData.orderRef.toLowerCase()),
                         tracking_number: dispatchRes.tracking_number || ('BORZO-MUM-' + orderData.orderRef.split('-')[2]),
                         tracking_url: dispatchRes.tracking_url || ('https://borzodelivery.com/in/tracking/' + orderData.orderRef),
-                        pickup_address: { address: 'Bandra West Boutique, Mumbai' },
+                        pickup_address: { address: storePickupAddr },
                         delivery_address: { address: orderData.address },
                         rider_name: dispatchRes.rider?.name || 'Ramesh Shinde',
                         rider_phone: dispatchRes.rider?.phone || '+91 98200 11998',
@@ -818,5 +824,10 @@
             box.scrollTop = box.scrollHeight;
         }
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/leads.js"></script>
+    <script src="js/fc-widgets.js"></script>
 </body>
 </html>

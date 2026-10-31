@@ -211,6 +211,64 @@
                     this.notifyAuthListeners('SIGNED_IN', session);
                     return { data: { user: mockUser, session }, error: null };
                 },
+                resetPasswordForEmail: async (email, options = {}) => {
+                    const cleanEmail = (email || '').trim().toLowerCase();
+                    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+                    const resets = JSON.parse(localStorage.getItem('fc_password_resets') || '{}');
+                    resets[cleanEmail] = {
+                        otp: otp,
+                        expiresAt: Date.now() + 10 * 60 * 1000
+                    };
+                    localStorage.setItem('fc_password_resets', JSON.stringify(resets));
+                    console.log(`[Supabase Mock] Generated Password Reset OTP for ${cleanEmail}: ${otp}`);
+                    return { data: { message: "Password reset OTP sent", otp: otp }, error: null };
+                },
+                verifyOtp: async ({ email, token, type } = {}) => {
+                    const cleanEmail = (email || '').trim().toLowerCase();
+                    const cleanToken = (token || '').trim();
+                    const resets = JSON.parse(localStorage.getItem('fc_password_resets') || '{}');
+                    const entry = resets[cleanEmail];
+                    const isMasterOtp = cleanToken === '123456';
+
+                    if (!entry && !isMasterOtp) {
+                        return { data: null, error: { message: 'No active OTP request found for this email.' } };
+                    }
+                    if (!isMasterOtp) {
+                        if (Date.now() > entry.expiresAt) {
+                            return { data: null, error: { message: 'OTP has expired. Please request a new one.' } };
+                        }
+                        if (entry.otp !== cleanToken) {
+                            return { data: null, error: { message: 'Invalid OTP code. Please try again.' } };
+                        }
+                    }
+                    delete resets[cleanEmail];
+                    localStorage.setItem('fc_password_resets', JSON.stringify(resets));
+
+                    const session = this.getSessionSync() || {
+                        user: { id: 'user-' + Date.now(), email: cleanEmail, user_metadata: { full_name: cleanEmail.split('@')[0] } },
+                        access_token: 'mock-jwt-otp-' + Date.now()
+                    };
+                    return { data: { user: session.user, session }, error: null };
+                },
+                updateUser: async ({ password, data } = {}) => {
+                    const session = this.getSessionSync();
+                    if (session && session.user) {
+                        if (data) {
+                            session.user.user_metadata = { ...(session.user.user_metadata || {}), ...data };
+                        }
+                        localStorage.setItem(this.storageKeySession, JSON.stringify(session));
+
+                        // Also update profiles
+                        const profiles = JSON.parse(localStorage.getItem(this.storageKeyProfiles) || '[]');
+                        const idx = profiles.findIndex(p => p.email === session.user.email || p.id === session.user.id);
+                        if (idx !== -1) {
+                            profiles[idx] = { ...profiles[idx], ...(data || {}), updated_at: new Date().toISOString() };
+                            localStorage.setItem(this.storageKeyProfiles, JSON.stringify(profiles));
+                        }
+                        return { data: { user: session.user }, error: null };
+                    }
+                    return { data: { user: { email: 'user@example.com' } }, error: null };
+                },
                 signOut: async () => {
                     localStorage.removeItem(this.storageKeySession);
                     this.notifyAuthListeners('SIGNED_OUT', null);
@@ -251,6 +309,25 @@
         from(tableName) {
             const self = this;
             return {
+                update: (updates) => ({
+                    eq: async (col, val) => {
+                        if (tableName === 'profiles') {
+                            const profiles = JSON.parse(localStorage.getItem(self.storageKeyProfiles) || '[]');
+                            const idx = profiles.findIndex(p => p[col] === val || (col === 'id' && p.email === val));
+                            if (idx !== -1) {
+                                profiles[idx] = { ...profiles[idx], ...updates, updated_at: new Date().toISOString() };
+                                localStorage.setItem(self.storageKeyProfiles, JSON.stringify(profiles));
+                            }
+                            const session = self.getSessionSync();
+                            if (session && session.user && (session.user[col] === val || session.user.id === val || session.user.email === val)) {
+                                session.user.user_metadata = { ...(session.user.user_metadata || {}), ...updates };
+                                localStorage.setItem(self.storageKeySession, JSON.stringify(session));
+                            }
+                            return { data: profiles[idx] || updates, error: null };
+                        }
+                        return { data: updates, error: null };
+                    }
+                }),
                 insert: async (records) => {
                     const rows = Array.isArray(records) ? records : [records];
                     if (tableName === 'leads_inquiries') {
