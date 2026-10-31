@@ -411,11 +411,11 @@
         // 30-Day Simulated Realistic Growth Telemetry
         const telemetryData = [];
         for (let day = 1; day <= 30; day++) {
-            const base = 21000 + (day / 30) * 11000;
-            const variance = Math.sin(day * 0.85) * 1600 + (day % 7 === 0 || day % 7 === 6 ? 2200 : -500);
+            const base = 4600 + (day / 30) * 3100;
+            const variance = Math.sin(day * 0.85) * 380 + (day % 7 === 0 || day % 7 === 6 ? 550 : -150);
             const rev = Math.round(base + variance);
-            const orders = Math.round(rev / 1650);
-            const recovered = Math.round(rev * 0.19);
+            const orders = Math.max(3, Math.min(7, Math.round(rev / 1350)));
+            const recovered = Math.round(rev * 0.16);
             telemetryData.push({ day, rev, orders, recovered });
         }
 
@@ -466,8 +466,12 @@
 
             if (tooltip && tooltipDate && tooltipRevenue) {
                 tooltipDate.textContent = `Dec ${item.day}, 2026 • Day ${item.day}`;
-                const surge = ((item.rev - 21000) / 21000 * 100).toFixed(1);
+                const surge = ((item.rev - 4600) / 4600 * 100).toFixed(1);
                 tooltipRevenue.innerHTML = `₹${item.rev.toLocaleString('en-IN')} <span class="text-[10px] text-emerald-300 font-bold">(+${surge}%)</span>`;
+                const subEl = document.getElementById('fcTooltipSub');
+                if (subEl) {
+                    subEl.innerHTML = `<span><i class="fa-solid fa-box text-orange-400 text-[9px]"></i> ${item.orders} Orders</span><span>•</span><span class="text-blue-300 font-bold">₹${item.recovered.toLocaleString('en-IN')} Recovered</span>`;
+                }
                 
                 // Position tooltip dynamically to avoid overflowing
                 const tipX = mouseX > rect.width * 0.55 ? mouseX - 180 : mouseX + 15;
