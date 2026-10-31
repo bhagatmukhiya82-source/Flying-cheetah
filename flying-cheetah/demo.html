@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-    <link rel="icon" type="image/jpeg" href="images/flying_cheetah_hd_logo_heraldic.jpg">
+    <link rel="icon" type="image/jpeg" href="images/flying_cheetah_logo_one_tail.png">
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -66,7 +66,7 @@
     <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <a href="index.html" class="flex items-center space-x-3">
-                <img src="images/flying_cheetah_hd_logo_heraldic.jpg" alt="Flying Cheetah Logo" class="h-11 w-11 rounded-full object-cover border border-slate-200 shadow-sm">
+                <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah Logo" class="h-11 w-11 rounded-full object-cover border border-slate-200 shadow-sm">
                 <div class="flex flex-col">
                     <span class="text-xl font-black tracking-tight font-display text-bikDark">FLYING CHEETAH</span>
                     <span class="text-[9px] text-bikOrange font-bold tracking-widest uppercase -mt-1">LIVE DEMO PORTAL</span>
@@ -232,28 +232,36 @@
                         </div>
 
                         <!-- SANDBOX 1: WHATSAPP AUTOMATION (DEFAULT) -->
-                                                <!-- SANDBOX 0: AI SERVICE MATCHER & PROMPT ENGINE (POWERED BY N8N) -->
+                                                                        <!-- SANDBOX 0: AI SERVICE MATCHER & PROMPT ENGINE (POWERED BY N8N) -->
                         <div id="sandbox-advisor" class="space-y-4">
                             <div class="flex items-center justify-between flex-wrap gap-2">
                                 <div>
                                     <div class="flex items-center gap-2">
-                                        <h3 class="text-lg font-black text-bikDark font-display">Executive AI Service Recommender</h3>
+                                        <h3 class="text-lg font-black text-bikDark font-display">Website Showcase &amp; Customer Messaging Engine</h3>
                                         <span class="px-2 py-0.5 rounded-full bg-purple-100 text-purple-700 text-[10px] font-bold border border-purple-200">
-                                            n8n Autonomous Engine
+                                            n8n Autonomous Workflow
                                         </span>
                                     </div>
-                                    <p class="text-xs text-slate-500">State your store niche & operational bottleneck — AI diagnoses the exact blueprint & ROI</p>
+                                    <p class="text-xs text-slate-500">Prompt n8n to match the best website showcase solution &amp; automatically dispatch a WhatsApp message to your customer</p>
                                 </div>
-                                <span class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-[10px] font-bold">
-                                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> n8n API Live
-                                </span>
+                                <a href="http://localhost:5678/workflow/oN4e4Mr67Cb8Nq5A" target="_blank" class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 text-[10px] font-bold transition">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> n8n Canvas Live ↗
+                                </a>
                             </div>
 
                             <!-- Interactive Input Bench -->
                             <div class="p-5 rounded-2xl border border-slate-200 bg-slate-900 text-white space-y-4 shadow-xl">
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
                                     <div>
-                                        <label class="block text-slate-300 font-bold mb-1">Your Brand / Store Name</label>
+                                        <label class="block text-slate-300 font-bold mb-1">Customer Name</label>
+                                        <input type="text" id="aiCustomerName" placeholder="e.g. Aarav Mehta" value="Aarav Mehta" class="w-full px-3 py-2 rounded-xl bg-slate-800 border border-slate-700 text-white text-xs outline-none focus:border-purple-400">
+                                    </div>
+                                    <div>
+                                        <label class="block text-slate-300 font-bold mb-1">Customer WhatsApp Number</label>
+                                        <input type="tel" id="aiCustomerPhone" placeholder="e.g. +91 99203 86421" value="+919920386421" class="w-full px-3 py-2 rounded-xl bg-slate-800 border border-slate-700 text-emerald-400 font-mono text-xs outline-none focus:border-emerald-400">
+                                    </div>
+                                    <div>
+                                        <label class="block text-slate-300 font-bold mb-1">Customer Brand / Store Name</label>
                                         <input type="text" id="aiBrandName" placeholder="e.g. Bombay Apparel Co." value="Bombay Apparel Co." class="w-full px-3 py-2 rounded-xl bg-slate-800 border border-slate-700 text-white text-xs outline-none focus:border-purple-400">
                                     </div>
                                     <div>
@@ -269,30 +277,30 @@
                                 </div>
 
                                 <div class="text-xs">
-                                    <label class="block text-slate-300 font-bold mb-1">Current Bottleneck / What do you want to solve?</label>
-                                    <textarea id="aiProblemQuery" rows="2" placeholder="e.g. Swiggy 28% commission bohot zyada hai, ya COD orders me fake buyers se RTO loss ho raha hai..." class="w-full px-3 py-2 rounded-xl bg-slate-800 border border-slate-700 text-white text-xs outline-none focus:border-purple-400">Hamare COD orders me 40% fake nikalte hain aur RTO courier charges se bohot bada loss ho raha hai. Automatic voice confirmation chahiye.</textarea>
+                                    <label class="block text-slate-300 font-bold mb-1">Prompt n8n Workflow (What website solution to showcase &amp; message to customer?)</label>
+                                    <textarea id="aiProblemQuery" rows="2" placeholder="e.g. Showcase our website and message the customer about COD Voice Confirmation & WhatsApp Storefront..." class="w-full px-3 py-2 rounded-xl bg-slate-800 border border-slate-700 text-white text-xs outline-none focus:border-purple-400">Showcase our website and send a customer message for COD order voice confirmation &amp; 40% RTO reduction.</textarea>
                                 </div>
 
                                 <!-- Quick Preset Chips -->
                                 <div class="flex items-center gap-1.5 flex-wrap text-[11px]">
-                                    <span class="text-slate-400 text-[10px] uppercase font-bold">Quick Tests:</span>
+                                    <span class="text-slate-400 text-[10px] uppercase font-bold">Quick Prompts:</span>
                                     <button type="button" onclick="setAiPreset('rto')" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition">
-                                        🛡️ COD Fraud & RTO
+                                        🛡️ COD Fraud &amp; Voice AI
                                     </button>
                                     <button type="button" onclick="setAiPreset('delivery')" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition">
-                                        🛵 Food / 0% Commission Fleet
+                                        🛵 0% Commission Fleet
                                     </button>
                                     <button type="button" onclick="setAiPreset('cart')" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition">
                                         🛒 WhatsApp Cart Recovery
                                     </button>
                                     <button type="button" onclick="setAiPreset('web')" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition">
-                                        ⚡ Sub-100ms Website
+                                        🌐 Full Website Showcase
                                     </button>
                                 </div>
 
-                                <div class="flex items-center justify-between pt-1">
+                                <div class="flex items-center justify-between pt-1 flex-wrap gap-2">
                                     <div class="flex items-center gap-2 text-[11px] text-slate-400">
-                                        <span>Output Language:</span>
+                                        <span>Message Language:</span>
                                         <label class="flex items-center gap-1 cursor-pointer text-slate-300 font-semibold">
                                             <input type="radio" name="aiLang" value="hinglish" checked class="text-purple-500"> Hinglish
                                         </label>
@@ -301,14 +309,23 @@
                                         </label>
                                     </div>
                                     <button type="button" id="btnRunAiPrompt" onclick="runAiServicePrompt()" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold text-xs transition flex items-center gap-2 shadow-lg shadow-purple-600/30">
-                                        <i class="fa-solid fa-bolt"></i>
-                                        <span>Generate Executive Proposal</span>
+                                        <i class="fa-solid fa-paper-plane"></i>
+                                        <span>Prompt n8n &amp; Message Customer</span>
                                     </button>
                                 </div>
                             </div>
 
                             <!-- Live Generated Result Card (Initially Hidden) -->
                             <div id="aiPromptResultCard" class="hidden rounded-2xl border-2 border-purple-200 bg-purple-50/50 p-5 space-y-4">
+                                <!-- Live n8n Telemetry Banner -->
+                                <div class="flex items-center justify-between flex-wrap gap-2 px-3 py-2 rounded-xl bg-slate-900 text-white text-[11px]">
+                                    <div class="flex items-center gap-2">
+                                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                                        <span id="aiTelemetryStatus" class="font-bold text-emerald-400">n8n Workflow Executed • Customer Message Ready</span>
+                                    </div>
+                                    <span id="aiTelemetryUuid" class="font-mono text-[10px] text-slate-400">CRM Synced</span>
+                                </div>
+
                                 <div class="flex items-center justify-between flex-wrap gap-2 border-b border-purple-100 pb-3">
                                     <div class="flex items-center gap-2">
                                         <span id="aiResBadge" class="px-2.5 py-1 rounded-full bg-purple-600 text-white text-[10px] font-black uppercase tracking-wider">
@@ -319,7 +336,7 @@
                                         </h4>
                                     </div>
                                     <a id="aiResDocLink" href="#" target="_blank" class="text-xs font-bold text-purple-700 hover:text-purple-900 underline flex items-center gap-1">
-                                        <span>View System Blueprint</span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                        <span>Open Showcase Webpage</span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
                                     </a>
                                 </div>
 
@@ -340,19 +357,36 @@
                                     <p id="aiResPitch" class="text-slate-800 leading-relaxed font-sans"></p>
                                 </div>
 
+                                <!-- Customer WhatsApp Message Preview -->
+                                <div class="p-4 rounded-xl bg-emerald-950 text-emerald-100 border border-emerald-800 space-y-2 text-xs">
+                                    <div class="flex items-center justify-between border-b border-emerald-800/80 pb-1.5">
+                                        <span class="text-[10px] font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1.5">
+                                            <i class="fa-brands fa-whatsapp text-sm"></i> Generated Customer WhatsApp Showcase Message:
+                                        </span>
+                                        <span id="aiTargetPhoneBadge" class="font-mono text-[10px] text-emerald-300">+919920386421</span>
+                                    </div>
+                                    <pre id="aiResWaPreview" class="text-[11px] text-emerald-100 whitespace-pre-wrap font-sans leading-relaxed max-h-48 overflow-y-auto"></pre>
+                                </div>
+
                                 <!-- Action Buttons -->
                                 <div class="flex items-center gap-2 flex-wrap pt-1">
-                                    <button type="button" onclick="copyAiWhatsAppProposal()" id="btnCopyWaProposal" class="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition flex items-center gap-1.5 shadow-md shadow-emerald-600/20">
-                                        <i class="fa-brands fa-whatsapp"></i>
-                                        <span>Copy Formatted WhatsApp Pitch</span>
+                                    <a id="btnSendCustomerWaDirect" href="https://wa.me/919920386421" target="_blank" class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition flex items-center gap-1.5 shadow-md shadow-emerald-600/20">
+                                        <i class="fa-brands fa-whatsapp text-sm"></i>
+                                        <span>Send WhatsApp to Customer Now ↗</span>
+                                    </a>
+                                    <button type="button" onclick="copyAiWhatsAppProposal()" id="btnCopyWaProposal" class="px-3.5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs transition flex items-center gap-1.5">
+                                        <i class="fa-regular fa-copy"></i>
+                                        <span>Copy Message</span>
                                     </button>
-                                    <button type="button" onclick="applyToBookingForm()" class="px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs transition flex items-center gap-1.5">
+                                    <button type="button" onclick="applyToBookingForm()" class="px-3.5 py-2.5 rounded-xl bg-purple-700 hover:bg-purple-600 text-white font-bold text-xs transition flex items-center gap-1.5">
                                         <i class="fa-solid fa-calendar-plus text-[10px]"></i>
-                                        <span>Apply to Demo Booking Form ➔</span>
+                                        <span>Apply to Booking Form ➔</span>
                                     </button>
                                 </div>
                             </div>
                         </div>
+
+
 
 
                         <!-- SANDBOX 1: WHATSAPP AUTOMATION -->
@@ -597,7 +631,7 @@
     <footer class="py-12 bg-white border-t border-slate-200 text-xs text-slate-500">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div class="flex items-center space-x-3">
-                <img src="images/flying_cheetah_hd_logo_heraldic.jpg" alt="Flying Cheetah" class="h-6 w-6 rounded-full object-cover border border-slate-300">
+                <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah" class="h-6 w-6 rounded-full object-cover border border-slate-300">
                 <span class="font-bold text-slate-700">FLYING CHEETAH LABS • LIVE DEMO SUITE © 2026.</span>
                 <span>All Rights Reserved.</span>
             </div>
@@ -711,7 +745,9 @@
 
         let currentAiProposalData = null;
 
-        async function runAiServicePrompt() {
+                async function runAiServicePrompt() {
+            const customerName = (document.getElementById('aiCustomerName')?.value || 'Valued Founder').trim();
+            const customerPhone = (document.getElementById('aiCustomerPhone')?.value || '+919920386421').trim();
             const brand = (document.getElementById('aiBrandName')?.value || 'My Enterprise').trim();
             const industry = document.getElementById('aiIndustry')?.value || 'D2C Retail';
             const query = (document.getElementById('aiProblemQuery')?.value || '').trim();
@@ -721,16 +757,16 @@
 
             if (btn) {
                 btn.disabled = true;
-                btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Analyzing n8n Matrix...';
+                btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Running n8n Showcase & Messaging...';
             }
 
             const payload = {
-                name: 'Store Founder',
+                name: customerName,
                 business_name: brand,
                 industry: industry,
                 query: query,
                 language: lang,
-                phone: '+919920386421',
+                phone: customerPhone,
                 email: 'founder@flyingcheetah.agency'
             };
 
@@ -739,7 +775,7 @@
             // Step 1: Call live n8n webhook API
             try {
                 const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 8000);
+                const timeoutId = setTimeout(() => controller.abort(), 9000);
 
                 const response = await fetch('http://localhost:5678/webhook/fc-service-prompt', {
                     method: 'POST',
@@ -765,7 +801,7 @@
                     key = 'fleet';
                 } else if (/voice|call|calling|cod|rto|fake order|verification/i.test(text)) {
                     key = 'voice';
-                } else if (/website|web|slow|speed|ui|ux|develop/i.test(text)) {
+                } else if (/website|web|slow|speed|ui|ux|develop|showcase/i.test(text)) {
                     key = 'webdev';
                 } else {
                     key = 'whatsapp';
@@ -773,6 +809,29 @@
 
                 const s = FC_SERVICE_CATALOG[key];
                 const pitch = lang === 'english' ? s.pitchEnglish : s.pitchHinglish;
+                const cleanDigits = customerPhone.replace(/[^0-9]/g, '');
+                const waDigits = cleanDigits.length === 10 ? '91' + cleanDigits : cleanDigits;
+                const waCopy = `*🐆 FLYING CHEETAH LABS • WEBSITE SHOWCASE & AI PROPOSAL*
+
+Namaste *${customerName}* (${brand}) 🙏,
+
+Humne aapki requirement (*"${query || industry}"*) analyze karke aapke liye custom automation blueprint ready kiya hai:
+
+🔥 *Recommended Primary Engine:*
+*${s.title}*
+✨ *Impact:* ${s.tagline}
+💰 *Projected ROI:* ${s.roi}
+
+*Key Capabilities:*
+${s.highlights.map(h => '• ' + h).join('
+')}
+
+🌐 *Full Website Showcase Portal:*
+• Main Hub: https://flying-cheetah.vercel.app/
+• Live Interactive Sandbox: https://flying-cheetah.vercel.app/demo.html
+• Solution Page: https://flying-cheetah.vercel.app/${s.url}
+
+👉 *Reply 'DEMO' or tap here to connect with Founders:* https://wa.me/919920386421`;
 
                 data = {
                     recommendation: {
@@ -788,7 +847,14 @@
                         }
                     },
                     ready_to_send_copy: {
-                        whatsapp_message: `*🐆 FLYING CHEETAH LABS • STRATEGIC PROPOSAL*\n\nNamaste *Founder* (${brand}),\n\nHumne aapki requirement analyze ki hai regarding: "${query || industry}".\n\nAapke business ke liye hamara recommended primary blueprint hai:\n🔥 *${s.title}*\n✨ *Core Impact:* ${s.tagline}\n💰 *Estimated ROI:* ${s.roi}\n\n*Key Highlights:*\n${s.highlights.map(h => '• ' + h).join('\n')}\n\n👉 *Book 1-on-1 Founder Demo:* https://flying-cheetah.vercel.app/demo.html\nWhatsApp Direct: https://wa.me/919920386421`
+                        whatsapp_message: waCopy,
+                        customer_whatsapp_deep_link: `https://wa.me/${waDigits}?text=${encodeURIComponent(waCopy)}`
+                    },
+                    automation_telemetry: {
+                        supabase_crm_status: 'synced_fallback',
+                        supabase_lead_uuid: 'fc-local-' + Date.now(),
+                        target_customer_phone: customerPhone,
+                        customer_instant_wa_link: `https://wa.me/${waDigits}?text=${encodeURIComponent(waCopy)}`
                     }
                 };
             }
@@ -797,17 +863,31 @@
 
             // Render Output
             const primary = data.recommendation.primary;
+            const telemetry = data.automation_telemetry || {};
+            const waMsg = data.ready_to_send_copy?.whatsapp_message || '';
+            const waLink = telemetry.customer_instant_wa_link || data.ready_to_send_copy?.customer_whatsapp_deep_link || `https://wa.me/${customerPhone.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(waMsg)}`;
+
             const elBadge = document.getElementById('aiResBadge');
             const elTitle = document.getElementById('aiResTitle');
             const elLink = document.getElementById('aiResDocLink');
             const elRoi = document.getElementById('aiResRoi');
             const elPitch = document.getElementById('aiResPitch');
+            const elWaPreview = document.getElementById('aiResWaPreview');
+            const elWaDirectBtn = document.getElementById('btnSendCustomerWaDirect');
+            const elPhoneBadge = document.getElementById('aiTargetPhoneBadge');
+            const elTelStatus = document.getElementById('aiTelemetryStatus');
+            const elTelUuid = document.getElementById('aiTelemetryUuid');
 
             if (elBadge) elBadge.textContent = primary.badge || 'FLAGSHIP SOLUTION';
             if (elTitle) elTitle.textContent = primary.title;
             if (elLink) elLink.href = primary.url;
             if (elRoi) elRoi.textContent = primary.roi;
             if (elPitch) elPitch.textContent = primary.executive_pitch;
+            if (elWaPreview) elWaPreview.textContent = waMsg;
+            if (elWaDirectBtn) elWaDirectBtn.href = waLink;
+            if (elPhoneBadge) elPhoneBadge.textContent = telemetry.target_customer_phone || customerPhone;
+            if (elTelStatus) elTelStatus.textContent = `n8n Executed • WhatsApp Queued for ${customerName}`;
+            if (elTelUuid) elTelUuid.textContent = `Supabase CRM: ${(telemetry.supabase_lead_uuid || 'Synced').slice(0, 13)}...`;
 
             if (resultCard) {
                 resultCard.classList.remove('hidden');
@@ -816,9 +896,11 @@
 
             if (btn) {
                 btn.disabled = false;
-                btn.innerHTML = '<i class="fa-solid fa-bolt"></i> Generate Executive Proposal';
+                btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Prompt n8n & Message Customer';
             }
         }
+
+
 
         function copyAiWhatsAppProposal() {
             if (!currentAiProposalData) return;

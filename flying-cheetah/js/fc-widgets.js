@@ -17,7 +17,7 @@
             const link = document.createElement('link');
             link.type = 'image/jpeg';
             link.rel = 'shortcut icon';
-            link.href = 'images/flying_cheetah_hd_logo_heraldic.jpg';
+            link.href = 'images/flying_cheetah_logo_one_tail.png';
             document.getElementsByTagName('head')[0].appendChild(link);
         }
     }
@@ -59,7 +59,7 @@
                 <div class="bg-[#075E54] text-white p-3.5 flex items-center justify-between shadow-md">
                     <div class="flex items-center gap-2.5">
                         <div class="relative">
-                            <img src="images/flying_cheetah_hd_logo_heraldic.jpg" alt="Flying Cheetah Avatar" class="w-10 h-10 rounded-full object-cover border-2 border-white/80 shadow-xs">
+                            <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah Avatar" class="w-10 h-10 rounded-full object-cover border-2 border-white/80 shadow-xs">
                             <span class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-400 border-2 border-[#075E54] rounded-full"></span>
                         </div>
                         <div class="text-left leading-tight">
@@ -275,7 +275,7 @@
                 <!-- Top Brand & Close -->
                 <div class="p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50/70">
                     <a href="index.html" class="flex items-center gap-2.5">
-                        <img src="images/flying_cheetah_hd_logo_heraldic.jpg" alt="Flying Cheetah Logo" class="w-8 h-8 rounded-full object-cover border border-slate-200">
+                        <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah Logo" class="w-8 h-8 rounded-full object-cover border border-slate-200">
                         <span class="font-black text-sm tracking-tight font-display text-bikDark">FLYING CHEETAH</span>
                     </a>
                     <button onclick="window.FC_WIDGETS.toggleMobileDrawer()" class="w-8 h-8 rounded-full flex items-center justify-center text-slate-400 hover:text-slate-800 hover:bg-slate-200/50 transition">
