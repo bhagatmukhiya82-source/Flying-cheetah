@@ -1,30 +1,32 @@
 from typing import Optional, Dict, Any
 from datetime import datetime
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 
 class FleetDispatchCreate(BaseModel):
-    order_ref: str = Field(..., example="FC-MUM-9821")
-    courier: Optional[str] = Field("borzo", example="borzo") # borzo or porter
+    order_ref: str = Field(..., examples=["FC-MUM-9821"])
+    courier: Optional[str] = Field("borzo", examples=["borzo"]) # borzo or porter
     pickup_address: Dict[str, Any] = Field(
         ...,
-        example={
+        examples=[{
             "address": "Shop 4, Linking Road, Bandra West, Mumbai 400050",
             "contact_name": "Store Manager",
             "contact_phone": "+91 98200 99887"
-        }
+        }]
     )
     delivery_address: Dict[str, Any] = Field(
         ...,
-        example={
+        examples=[{
             "address": "Flat 802, Sea View Apts, Worli Sea Face, Mumbai 400018",
             "contact_name": "Kavita Singhania",
             "contact_phone": "+91 98199 44332"
-        }
+        }]
     )
-    package_description: Optional[str] = Field("Fragile Apparel Parcel", example="Fragile Apparel Parcel")
-    package_weight_kg: Optional[float] = Field(1.5, example=1.5)
+    package_description: Optional[str] = Field("Fragile Apparel Parcel", examples=["Fragile Apparel Parcel"])
+    package_weight_kg: Optional[float] = Field(1.5, examples=[1.5])
 
 class FleetTrackingResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     order_ref: str
     courier: str
     tracking_number: Optional[str] = None
@@ -38,5 +40,3 @@ class FleetTrackingResponse(BaseModel):
     delivery_fee_inr: Optional[float] = None
     updated_at: datetime
 
-    class Config:
-        from_attributes = True

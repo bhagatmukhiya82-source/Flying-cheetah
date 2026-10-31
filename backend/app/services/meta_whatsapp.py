@@ -8,10 +8,17 @@ logger = logging.getLogger("meta_whatsapp")
 class MetaWhatsAppService:
     def __init__(self):
         self.version = settings.META_GRAPH_VERSION
-        self.token = settings.META_WA_TOKEN
         self.phone_id = settings.META_PHONE_NUMBER_ID
         self.api_url = f"https://graph.facebook.com/{self.version}/{self.phone_id}/messages"
-        self.is_mock = self.token.startswith("MOCK") or "mock" in self.token.lower()
+
+    @property
+    def token(self) -> str:
+        return settings.META_WA_TOKEN
+
+    @property
+    def is_mock(self) -> bool:
+        t = self.token
+        return not t or t.startswith("MOCK") or "mock" in t.lower()
 
     async def send_text_message(
         self,
@@ -44,11 +51,29 @@ class MetaWhatsAppService:
 
         headers = {"Authorization": f"Bearer {self.token}", "Content-Type": "application/json"}
         async with httpx.AsyncClient(timeout=10.0) as client:
-            resp = await client.post(self.api_url, json=payload, headers=headers)
-            resp.raise_for_status()
-            res = resp.json()
-            res["is_successful"] = True
-            return res
+            try:
+                resp = await client.post(self.api_url, json=payload, headers=headers)
+                if resp.status_code in [200, 201]:
+                    res = resp.json()
+                    res["is_successful"] = True
+                    return res
+                else:
+                    err_json = resp.json() if "application/json" in resp.headers.get("content-type", "") else {}
+                    err_msg = err_json.get("error", {}).get("message", resp.text)
+                    logger.warning(f"[Meta WA] API responded with HTTP {resp.status_code}: {err_msg}")
+                    return {
+                        "is_successful": False,
+                        "error": err_msg,
+                        "status_code": resp.status_code,
+                        "messages": [{"id": f"failed_{resp.status_code}"}]
+                    }
+            except Exception as e:
+                logger.error(f"[Meta WA] Connection exception: {e}")
+                return {
+                    "is_successful": False,
+                    "error": str(e),
+                    "messages": [{"id": "failed_connection"}]
+                }
 
     async def send_template_message(
         self,
@@ -81,11 +106,29 @@ class MetaWhatsAppService:
 
         headers = {"Authorization": f"Bearer {self.token}", "Content-Type": "application/json"}
         async with httpx.AsyncClient(timeout=10.0) as client:
-            resp = await client.post(self.api_url, json=payload, headers=headers)
-            resp.raise_for_status()
-            res = resp.json()
-            res["is_successful"] = True
-            return res
+            try:
+                resp = await client.post(self.api_url, json=payload, headers=headers)
+                if resp.status_code in [200, 201]:
+                    res = resp.json()
+                    res["is_successful"] = True
+                    return res
+                else:
+                    err_json = resp.json() if "application/json" in resp.headers.get("content-type", "") else {}
+                    err_msg = err_json.get("error", {}).get("message", resp.text)
+                    logger.warning(f"[Meta WA] Template API HTTP {resp.status_code}: {err_msg}")
+                    return {
+                        "is_successful": False,
+                        "error": err_msg,
+                        "status_code": resp.status_code,
+                        "messages": [{"id": f"failed_{resp.status_code}"}]
+                    }
+            except Exception as e:
+                logger.error(f"[Meta WA] Template connection exception: {e}")
+                return {
+                    "is_successful": False,
+                    "error": str(e),
+                    "messages": [{"id": "failed_connection"}]
+                }
 
     async def send_cart_recovery_button(
         self,
@@ -131,11 +174,29 @@ class MetaWhatsAppService:
 
         headers = {"Authorization": f"Bearer {self.token}", "Content-Type": "application/json"}
         async with httpx.AsyncClient(timeout=10.0) as client:
-            resp = await client.post(self.api_url, json=payload, headers=headers)
-            resp.raise_for_status()
-            res = resp.json()
-            res["is_successful"] = True
-            return res
+            try:
+                resp = await client.post(self.api_url, json=payload, headers=headers)
+                if resp.status_code in [200, 201]:
+                    res = resp.json()
+                    res["is_successful"] = True
+                    return res
+                else:
+                    err_json = resp.json() if "application/json" in resp.headers.get("content-type", "") else {}
+                    err_msg = err_json.get("error", {}).get("message", resp.text)
+                    logger.warning(f"[Meta WA] Cart Recovery API HTTP {resp.status_code}: {err_msg}")
+                    return {
+                        "is_successful": False,
+                        "error": err_msg,
+                        "status_code": resp.status_code,
+                        "messages": [{"id": f"failed_{resp.status_code}"}]
+                    }
+            except Exception as e:
+                logger.error(f"[Meta WA] Cart Recovery connection exception: {e}")
+                return {
+                    "is_successful": False,
+                    "error": str(e),
+                    "messages": [{"id": "failed_connection"}]
+                }
 
     async def send_cart_recovery_template(
         self,

@@ -8,9 +8,17 @@ from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, Asyn
 from app.main import app
 from app.core.database import Base, get_db
 from app.core.security import create_access_token
+from app.core.config import settings
 
 # Test in-memory / temporary SQLite database
 TEST_DB_URL = "sqlite+aiosqlite:///:memory:"
+
+@pytest.fixture(autouse=True)
+def mock_external_services():
+    orig_token = settings.META_WA_TOKEN
+    settings.META_WA_TOKEN = "MOCK_META_WA_TOKEN"
+    yield
+    settings.META_WA_TOKEN = orig_token
 
 test_engine = create_async_engine(TEST_DB_URL, echo=False)
 TestingSessionLocal = async_sessionmaker(bind=test_engine, class_=AsyncSession, expire_on_commit=False)

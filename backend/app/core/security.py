@@ -60,6 +60,20 @@ def verify_meta_signature(payload_bytes: bytes, hub_signature_header: str) -> bo
     
     return hmac.compare_digest(calculated_sig, expected_sig)
 
+def verify_razorpay_signature(payload_bytes: bytes, signature_header: Optional[str], secret: Optional[str] = None) -> bool:
+    """Verifies X-Razorpay-Signature for incoming Razorpay payment webhooks."""
+    webhook_secret = secret or getattr(settings, "RAZORPAY_KEY_SECRET", "")
+    if webhook_secret.startswith("mock_"):
+        return True
+    if not signature_header:
+        return False
+    calculated_sig = hmac.new(
+        webhook_secret.encode('utf-8'),
+        msg=payload_bytes,
+        digestmod=hashlib.sha256
+    ).hexdigest()
+    return hmac.compare_digest(calculated_sig, signature_header)
+
 async def get_current_user_token(credentials: Optional[HTTPAuthorizationCredentials] = Depends(security_bearer)) -> dict:
     if not credentials:
         raise HTTPException(

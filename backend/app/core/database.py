@@ -43,3 +43,24 @@ async def init_db():
     """Initializes tables for local testing / SQLite environment."""
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
+        if "sqlite" in settings.DATABASE_URL:
+            def migrate_sqlite_columns(connection):
+                cursor = connection.connection.cursor()
+                try:
+                    cursor.execute("PRAGMA table_info(profiles)")
+                    existing_cols = [row[1] for row in cursor.fetchall()]
+                    cols_to_add = [
+                        ("business_name", "TEXT"),
+                        ("category_niche", "TEXT"),
+                        ("gstin_udyam", "TEXT"),
+                        ("whatsapp_support", "TEXT"),
+                        ("pickup_address", "TEXT"),
+                        ("merchant_upi_id", "TEXT"),
+                        ("delivery_radius_km", "INTEGER DEFAULT 15")
+                    ]
+                    for col_name, col_type in cols_to_add:
+                        if col_name not in existing_cols:
+                            cursor.execute(f"ALTER TABLE profiles ADD COLUMN {col_name} {col_type}")
+                except Exception:
+                    pass
+            await conn.run_sync(migrate_sqlite_columns)

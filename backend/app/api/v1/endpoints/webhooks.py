@@ -1,4 +1,5 @@
 import json
+import uuid
 import logging
 from typing import Optional, Dict, Any
 from fastapi import APIRouter, Request, Response, HTTPException, status, Query, Header, Depends, BackgroundTasks
@@ -7,9 +8,10 @@ from sqlalchemy import select
 
 from app.core.config import settings
 from app.core.database import get_db, async_session_factory
-from app.core.security import verify_meta_signature
+from app.core.security import verify_meta_signature, verify_razorpay_signature
 from app.models.message import OmnichannelMessage
 from app.models.fleet import FleetOrder
+from app.models.payment import PaymentTransaction
 from app.schemas.webhook_schema import CourierGPSPayload
 from app.services.meta_whatsapp import whatsapp_service
 from app.services.meta_instagram import instagram_service
@@ -232,6 +234,146 @@ async def receive_courier_gps(
     background_tasks.add_task(ws_manager.broadcast_telemetry, telemetry_event)
 
     return {"status": "updated", "order_ref": fleet_order.order_ref, "eta_minutes": fleet_order.eta_minutes}
+
+@router.post("/razorpay")
+async def receive_razorpay_webhook(
+    request: Request,
+    background_tasks: BackgroundTasks,
+    x_razorpay_signature: Optional[str] = Header(None, alias="X-Razorpay-Signature"),
+    db: AsyncSession = Depends(get_db)
+):
+    """
+    Receives incoming Razorpay payment events (payment.captured, payment.failed, order.paid).
+    Verifies HMAC SHA-256 signature, records to payments_transactions, and updates order fulfillment.
+    """
+    raw_body = await request.body()
+    if not verify_razorpay_signature(raw_body, x_razorpay_signature):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Invalid Razorpay webhook signature"
+        )
+
+    try:
+        payload = json.loads(raw_body.decode("utf-8"))
+    except Exception:
+        raise HTTPException(status_code=400, detail="Invalid JSON payload")
+
+    event = payload.get("event", "")
+    payment_entity = payload.get("payload", {}).get("payment", {}).get("entity", {})
+    order_entity = payload.get("payload", {}).get("order", {}).get("entity", {})
+
+    order_ref = payment_entity.get("notes", {}).get("order_ref") or order_entity.get("receipt") or "FC-DIRECT"
+    payment_id = payment_entity.get("id") or f"pay_{uuid.uuid4().hex[:10]}"
+    amount = float(payment_entity.get("amount", 0)) / 100.0 if payment_entity.get("amount") else 0.0
+    status_str = "captured" if event == "payment.captured" else ("failed" if "failed" in event else "authorized")
+    method = payment_entity.get("method", "upi")
+    customer_phone = payment_entity.get("contact") or payment_entity.get("notes", {}).get("customer_phone", "")
+    customer_email = payment_entity.get("email") or payment_entity.get("notes", {}).get("customer_email", "")
+
+    # Save transaction in DB
+    trx = PaymentTransaction(
+        order_ref=order_ref,
+        payment_gateway="razorpay",
+        gateway_order_id=payment_entity.get("order_id") or order_entity.get("id"),
+        gateway_payment_id=payment_id,
+        amount_inr=amount,
+        currency=payment_entity.get("currency", "INR"),
+        status=status_str,
+        method=method,
+        customer_email=customer_email,
+        customer_phone=customer_phone,
+        raw_webhook_payload=payload
+    )
+    db.add(trx)
+    await db.commit()
+
+    # If captured, dispatch customer confirmation on WhatsApp
+    if status_str == "captured" and customer_phone:
+        receipt_text = (
+            f"🐆 *FLYING CHEETAH LABS - PAYMENT CONFIRMED*\n\n"
+            f"✅ Received *₹{amount:,.2f}* for Ref: *{order_ref}* via {method.upper()}.\n"
+            f"⚡ Mumbai 18-minute hyperlocal dispatch is processing.\n"
+            f"Live Tracking: https://flying-cheetah.vercel.app/delivery.html"
+        )
+        background_tasks.add_task(
+            whatsapp_service.send_text_message,
+            to_phone=customer_phone,
+            body=receipt_text
+        )
+
+    # Broadcast to Telemetry & Admin Inbox
+    background_tasks.add_task(
+        ws_manager.broadcast_telemetry,
+        {
+            "type": "payment_received",
+            "order_ref": order_ref,
+            "amount": amount,
+            "status": status_str,
+            "gateway": "razorpay"
+        }
+    )
+
+    return {"status": "success", "event": event, "payment_id": payment_id}
+
+@router.post("/borzo-status")
+async def receive_borzo_status_webhook(
+    request: Request,
+    background_tasks: BackgroundTasks,
+    db: AsyncSession = Depends(get_db)
+):
+    """
+    Receives Borzo courier status changes (courier_assigned, picked_up, delivered, cancelled).
+    Updates fleet_orders and broadcasts live telemetry.
+    """
+    try:
+        payload = await request.json()
+    except Exception:
+        raise HTTPException(status_code=400, detail="Invalid JSON payload")
+
+    order_id = str(payload.get("order_id", ""))
+    order_status = payload.get("status", "")
+    rider = payload.get("courier", {})
+    tracking_url = payload.get("tracking_url", "")
+
+    query = select(FleetOrder).where(
+        (FleetOrder.courier_order_id == order_id) | 
+        (FleetOrder.order_ref == payload.get("client_order_id", ""))
+    )
+    result = await db.execute(query)
+    fleet_order = result.scalar_one_or_none()
+
+    if fleet_order:
+        status_map = {
+            "planned": "assigning",
+            "courier_assigned": "rider_assigned",
+            "active": "in_transit",
+            "completed": "delivered",
+            "canceled": "cancelled"
+        }
+        fleet_order.status = status_map.get(order_status, order_status)
+        if tracking_url:
+            fleet_order.tracking_url = tracking_url
+        if rider.get("name"):
+            fleet_order.rider_name = rider.get("name")
+        if rider.get("phone"):
+            fleet_order.rider_phone = rider.get("phone")
+        
+        await db.commit()
+        await db.refresh(fleet_order)
+
+        background_tasks.add_task(
+            ws_manager.broadcast_telemetry,
+            {
+                "type": "order_status_update",
+                "order_ref": fleet_order.order_ref,
+                "status": fleet_order.status,
+                "rider_name": fleet_order.rider_name,
+                "rider_phone": fleet_order.rider_phone,
+                "tracking_url": fleet_order.tracking_url
+            }
+        )
+
+    return {"status": "success", "order_id": order_id, "processed_status": order_status}
 
 async def _save_inbound_message(channel: str, sender_id: str, recipient_id: str, content: str, external_msg_id: str, metadata: dict):
     try:

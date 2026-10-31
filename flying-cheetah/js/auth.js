@@ -720,6 +720,18 @@
                                 </div>
                             </div>
 
+                            <!-- Real Email OTP Option for Password Change -->
+                            <div class="p-3 rounded-2xl bg-slate-50 border border-slate-200/80">
+                                <div class="flex items-center justify-between mb-1.5">
+                                    <label class="block text-xs font-bold text-slate-700">Email Verification OTP <span class="text-slate-400 font-normal">(or use Current Password above)</span></label>
+                                    <button type="button" id="fcSecSendOtpBtn" class="text-[11px] text-bikOrange font-bold hover:underline cursor-pointer flex items-center gap-1">
+                                        <i class="fa-solid fa-paper-plane text-[10px]"></i> <span>Send OTP to Email</span>
+                                    </button>
+                                </div>
+                                <input type="text" id="fcSecOtpInput" maxlength="6" placeholder="Enter 6-digit code sent to your email" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs font-mono tracking-widest focus:ring-2 focus:ring-bikOrange focus:border-bikOrange outline-none bg-white">
+                                <p id="fcSecOtpFeedback" class="hidden text-[10px] text-emerald-600 font-bold mt-1.5"></p>
+                            </div>
+
                             <div>
                                 <div class="flex items-center justify-between mb-1">
                                     <label class="block text-xs font-bold text-slate-700">New Password</label>
@@ -1086,12 +1098,60 @@
         if (secNewPassInput) secNewPassInput.addEventListener('input', updateSecPasswordUI);
         if (secConfirmPassInput) secConfirmPassInput.addEventListener('input', updateSecPasswordUI);
 
+        // Security Tab: Send Email OTP Button
+        const secSendOtpBtn = document.getElementById('fcSecSendOtpBtn');
+        if (secSendOtpBtn) {
+            secSendOtpBtn.addEventListener('click', async () => {
+                const otpFeedback = document.getElementById('fcSecOtpFeedback');
+                const origHtml = secSendOtpBtn.innerHTML;
+                secSendOtpBtn.disabled = true;
+                secSendOtpBtn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin text-[10px]"></i> <span>Sending...</span>`;
+
+                try {
+                    const apiBase = window.location.port === '8000' ? '' : 'http://localhost:8000';
+                    const token = localStorage.getItem('fc_backend_token');
+                    const resp = await fetch(`${apiBase}/api/v1/auth/request-change-password-otp`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            ...(token ? { 'Authorization': `Bearer ${token}` } : {})
+                        }
+                    });
+                    const resData = await resp.json().catch(() => ({}));
+                    if (!resp.ok) {
+                        throw new Error(resData.detail || 'Could not send verification OTP.');
+                    }
+                    if (otpFeedback) {
+                        otpFeedback.textContent = `Security code sent to your email inbox! Valid for 10 minutes.`;
+                        otpFeedback.classList.remove('hidden');
+                    }
+                    showAuthToast('Verification OTP dispatched to your email!', 'success');
+                    let countdown = 60;
+                    const timer = setInterval(() => {
+                        countdown--;
+                        if (countdown <= 0) {
+                            clearInterval(timer);
+                            secSendOtpBtn.disabled = false;
+                            secSendOtpBtn.innerHTML = origHtml;
+                        } else {
+                            secSendOtpBtn.innerHTML = `<span>Resend (${countdown}s)</span>`;
+                        }
+                    }, 1000);
+                } catch (err) {
+                    secSendOtpBtn.disabled = false;
+                    secSendOtpBtn.innerHTML = origHtml;
+                    alert(err.message || 'Failed to send OTP to email.');
+                }
+            });
+        }
+
         // Security Tab: Change Password Form Submission
         const secChangePassForm = document.getElementById('fcSecChangePasswordForm');
         if (secChangePassForm) {
             secChangePassForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 const currPass = (document.getElementById('fcSecCurrentPass')?.value || '');
+                const otpVal = (document.getElementById('fcSecOtpInput')?.value || '').trim();
                 const newPass = (document.getElementById('fcSecNewPass')?.value || '');
                 const confirmPass = (document.getElementById('fcSecConfirmPass')?.value || '');
                 const feedback = document.getElementById('fcSecPassFeedback');
@@ -1128,6 +1188,7 @@
                         },
                         body: JSON.stringify({
                             current_password: currPass || undefined,
+                            otp: otpVal || undefined,
                             new_password: newPass
                         })
                     });
