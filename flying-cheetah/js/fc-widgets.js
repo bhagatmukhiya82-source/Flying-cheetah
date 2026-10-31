@@ -31,10 +31,10 @@
         let contextualTag = 'General Inquiry';
 
         if (path.includes('store-automation') || path.includes('cart')) {
-            contextualGreeting = '⚡ **Recover Abandoned Carts!** We help retail stores recover up to 34.8% of abandoned checkouts autonomously via WhatsApp. Want a 15-minute live teardown?';
+            contextualGreeting = '⚡ **Recover Abandoned Carts!** We help retail stores recover up to 18.6% of abandoned checkouts autonomously via WhatsApp. Want a 15-minute live teardown?';
             contextualTag = 'Store Automation';
         } else if (path.includes('delivery') || path.includes('fleet')) {
-            contextualGreeting = '🛵 **Hyperlocal Fleet Dispatch!** Automate 15-min order dispatch with Borzo & Porter APIs with zero dispatch payroll. How can we help your operations?';
+            contextualGreeting = '🛵 **Hyperlocal Fleet Dispatch!** Automate on-demand order dispatch with Borzo & Porter APIs with zero dispatch payroll. How can we help your operations?';
             contextualTag = 'Fleet Protocol';
         } else if (path.includes('demo')) {
             contextualGreeting = '🎯 **Live 1-on-1 Store Audit!** Connect directly with technical founders Bhagat Mukhiya & Yash Gaikwad. We will audit your store live.';
@@ -67,7 +67,7 @@
                                 <h4 class="font-bold text-xs text-white font-display">Flying Cheetah Labs</h4>
                                 <span class="text-[9px] bg-emerald-600/90 text-white px-1.5 py-0.5 rounded-full font-semibold">Verified</span>
                             </div>
-                            <p class="text-[10px] text-emerald-100 font-medium">Bhagat &amp; Yash • Replies in &lt; 15s</p>
+                            <p class="text-[10px] text-emerald-100 font-medium">Bhagat &amp; Yash • Replies in &lt; 45s</p>
                         </div>
                     </div>
                     <button type="button" id="fcWaCloseBtn" aria-label="Close Chat Popup" class="w-7 h-7 rounded-full bg-black/20 hover:bg-black/40 text-white/90 hover:text-white flex items-center justify-center transition cursor-pointer">
@@ -411,11 +411,11 @@
         // 30-Day Simulated Realistic Growth Telemetry
         const telemetryData = [];
         for (let day = 1; day <= 30; day++) {
-            const base = 110000 + (day / 30) * 72000;
-            const variance = Math.sin(day * 0.85) * 8500 + (day % 7 === 0 || day % 7 === 6 ? 12500 : -2500);
+            const base = 21000 + (day / 30) * 11000;
+            const variance = Math.sin(day * 0.85) * 1600 + (day % 7 === 0 || day % 7 === 6 ? 2200 : -500);
             const rev = Math.round(base + variance);
-            const orders = Math.round(rev / 1750);
-            const recovered = Math.round(rev * 0.21);
+            const orders = Math.round(rev / 1650);
+            const recovered = Math.round(rev * 0.19);
             telemetryData.push({ day, rev, orders, recovered });
         }
 
@@ -466,7 +466,7 @@
 
             if (tooltip && tooltipDate && tooltipRevenue) {
                 tooltipDate.textContent = `Dec ${item.day}, 2026 • Day ${item.day}`;
-                const surge = ((item.rev - 110000) / 110000 * 100).toFixed(1);
+                const surge = ((item.rev - 21000) / 21000 * 100).toFixed(1);
                 tooltipRevenue.innerHTML = `₹${item.rev.toLocaleString('en-IN')} <span class="text-[10px] text-emerald-300 font-bold">(+${surge}%)</span>`;
                 
                 // Position tooltip dynamically to avoid overflowing

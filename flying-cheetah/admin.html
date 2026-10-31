@@ -180,14 +180,14 @@
                 </div>
                 <div>
                     <div class="flex flex-wrap items-center gap-2">
-                        <span id="merchantDisplayBrand" class="text-base font-black text-bikDark font-display">Mumbai Couture & Boutique</span>
+                        <span id="merchantDisplayBrand" class="text-base font-black text-bikDark font-display">Merchant Store</span>
                         <span id="merchantDisplayCategory" class="px-2.5 py-0.5 rounded-full bg-orange-50 border border-orange-200/80 text-bikOrange text-[10px] font-bold">Apparel & Fashion</span>
-                        <span id="merchantDisplayGstin" class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 font-mono text-[10px] font-bold">GSTIN: 27AAACF1234M1Z5</span>
+                        <span id="merchantDisplayGstin" class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 font-mono text-[10px] font-bold">GSTIN: Not set</span>
                     </div>
                     <div class="flex flex-wrap items-center gap-x-4 gap-y-1 mt-1.5 text-[11px] text-slate-500 font-medium">
-                        <span class="flex items-center gap-1"><i class="fa-brands fa-whatsapp text-emerald-500"></i> Support: <strong id="merchantDisplayWhatsApp" class="text-slate-700">+91 99203 86421</strong></span>
-                        <span class="flex items-center gap-1"><i class="fa-solid fa-location-dot text-rose-500"></i> Pickup: <span id="merchantDisplayPickup" class="text-slate-700 truncate max-w-xs">Shop 4, Opera House, Mumbai 400004</span></span>
-                        <span class="flex items-center gap-1"><i class="fa-solid fa-wallet text-indigo-500"></i> UPI: <strong id="merchantDisplayUpi" class="text-slate-700 font-mono">mumbaicouture@okhdfcbank</strong></span>
+                        <span class="flex items-center gap-1"><i class="fa-brands fa-whatsapp text-emerald-500"></i> Support: <strong id="merchantDisplayWhatsApp" class="text-slate-700">Not set</strong></span>
+                        <span class="flex items-center gap-1"><i class="fa-solid fa-location-dot text-rose-500"></i> Pickup: <span id="merchantDisplayPickup" class="text-slate-700 truncate max-w-xs">Not configured</span></span>
+                        <span class="flex items-center gap-1"><i class="fa-solid fa-wallet text-indigo-500"></i> UPI: <strong id="merchantDisplayUpi" class="text-slate-700 font-mono">Not configured</strong></span>
                         <span class="flex items-center gap-1"><i class="fa-solid fa-route text-amber-500"></i> Radius: <strong id="merchantDisplayRadius" class="text-slate-700">15 km</strong></span>
                     </div>
                 </div>
@@ -488,12 +488,12 @@
             const upiEl = document.getElementById('merchantDisplayUpi');
             const radEl = document.getElementById('merchantDisplayRadius');
 
-            if (brandEl) brandEl.textContent = prof.business_name || 'Mumbai Couture & Boutique';
+            if (brandEl) brandEl.textContent = prof.business_name || 'Merchant Store';
             if (catEl) catEl.textContent = prof.category_niche || 'Apparel & Fashion';
-            if (gstinEl) gstinEl.textContent = `GSTIN: ${prof.gstin_udyam || '27AAACF1234M1Z5'}`;
-            if (waEl) waEl.textContent = prof.whatsapp_support || '+91 99203 86421';
-            if (pickupEl) pickupEl.textContent = prof.pickup_address || 'Shop 4, Opera House, Mumbai 400004';
-            if (upiEl) upiEl.textContent = prof.merchant_upi_id || 'mumbaicouture@okhdfcbank';
+            if (gstinEl) gstinEl.textContent = prof.gstin_udyam ? `GSTIN: ${prof.gstin_udyam}` : 'GSTIN: Not set';
+            if (waEl) waEl.textContent = prof.whatsapp_support || 'Not set';
+            if (pickupEl) pickupEl.textContent = prof.pickup_address || 'Not configured';
+            if (upiEl) upiEl.textContent = prof.merchant_upi_id || 'Not configured';
             if (radEl) radEl.textContent = `${prof.delivery_radius_km || 15} km`;
 
             const adminNameTxt = document.getElementById('adminNameTxt');

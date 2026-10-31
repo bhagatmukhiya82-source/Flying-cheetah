@@ -74,7 +74,7 @@
                         phone: '+91 99300 55443',
                         service: 'Click to WhatsApp Ads',
                         service_interested: 'Click to WhatsApp Ads',
-                        message: 'Scaling Meta Ads budget to ₹15L/mo. Want CTWA funnel with sub-15s response time.',
+                        message: 'Scaling Meta Ads budget to ₹3.5L/mo. Want CTWA funnel with fast response time.',
                         source_page: 'ctwa-automation.html',
                         status: 'closed',
                         created_at: new Date(Date.now() - 1000 * 60 * 60 * 28).toISOString(),

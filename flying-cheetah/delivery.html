@@ -12,7 +12,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://flying-cheetah.vercel.app/delivery">
     <meta property="og:title" content="Hyperlocal Fleet Dispatch & Zero-Payroll Couriers — Flying Cheetah">
-    <meta property="og:description" content="Order verified on WhatsApp -> Nearest Borzo or Porter bike rider dispatches within 1 km. Arrives at shop counter in under 6 minutes.">
+    <meta property="og:description" content="Order verified on WhatsApp -> Nearest Borzo or Porter bike rider dispatches within 1 km. Arrives at shop counter in 12-18 minutes.">
     <meta property="og:image" content="https://flying-cheetah.vercel.app/images/hyperlocal_dispatch_map_3d.jpg">
     <script type="application/ld+json">
     {
@@ -81,7 +81,7 @@
 
     <!-- Top Announcement -->
     <div class="bg-bikDark text-white py-2 px-4 text-center text-xs font-medium">
-        <span>🛵 Borzo & Porter API Gateway: Instant rider dispatch to your counter in under 6 minutes.</span>
+        <span>🛵 Borzo & Porter API Gateway: Instant rider dispatch to your counter in 12-18 minutes.</span>
         <a href="demo.html" class="underline ml-2 text-brandGold font-bold hover:text-white transition">Book Live Demo ↗</a>
     </div>
 
@@ -225,7 +225,7 @@
                         Hyperlocal Courier Dispatch on <span class="text-emerald-600">Auto-Pilot</span>.
                     </h1>
                     <p class="text-lg text-slateText max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal">
-                        Order verified on WhatsApp &rarr; Nearest Borzo or Porter bike rider dispatches within 1 km. Arrives at your shop counter in under 6 minutes.
+                        Order verified on WhatsApp &rarr; Nearest Borzo or Porter bike rider dispatches within 1 km. Arrives at your shop counter in 12-18 minutes.
                     </p>
 
                     <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
@@ -239,7 +239,7 @@
 
                     <div class="grid grid-cols-3 gap-6 pt-6 border-t border-slate-100 max-w-lg mx-auto lg:mx-0 text-left">
                         <div>
-                            <div class="text-2xl font-black text-bikDark font-display">5.8 Mins</div>
+                            <div class="text-2xl font-black text-bikDark font-display">14.2 Mins</div>
                             <div class="text-xs font-semibold text-slate-500 mt-0.5">Average Pickup Arrival</div>
                         </div>
                         <div>
@@ -297,7 +297,7 @@
                     <div class="w-12 h-12 rounded-xl bg-bikOrange/10 text-bikOrange flex items-center justify-center font-bold text-lg mb-4">2</div>
                     <h3 class="text-lg font-bold text-white mb-2">1-Click Counter Dispatch</h3>
                     <p class="text-xs text-slate-400 leading-relaxed">
-                        Seller packs the box and clicks <span class="text-white font-mono font-semibold">[Pack &amp; Call Borzo]</span>. Nearest 2-wheeler arrives at your counter in under 6 minutes.
+                        Seller packs the box and clicks <span class="text-white font-mono font-semibold">[Pack &amp; Call Borzo]</span>. Nearest 2-wheeler arrives at your counter in 12-18 minutes.
                     </p>
                 </div>
 
@@ -438,7 +438,7 @@
                                 </div>
                             </div>
                             <div class="text-right">
-                                <div id="riderEta" class="text-xs font-bold text-emerald-400">ETA: 5.8 mins</div>
+                                <div id="riderEta" class="text-xs font-bold text-emerald-400">ETA: 14.5 mins</div>
                                 <div class="text-[10px] text-slate-400">Pickup Counter</div>
                             </div>
                         </div>
@@ -483,7 +483,7 @@
                 <div class="p-6 rounded-2xl bg-white border border-slate-200 card-hover">
                     <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center font-black text-xl mb-4">3</div>
                     <h3 class="font-bold text-base text-bikDark mb-2">Rider Dispatches in 1km</h3>
-                    <p class="text-xs text-slate-500 leading-relaxed">Borzo/Porter API triggers the closest rider on the road. Arrives at shop counter in 5-8 mins.</p>
+                    <p class="text-xs text-slate-500 leading-relaxed">Borzo/Porter API triggers the closest rider on the road. Arrives at shop counter in 12-18 mins.</p>
                 </div>
                 <div class="p-6 rounded-2xl bg-white border border-slate-200 card-hover">
                     <div class="w-12 h-12 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center font-black text-xl mb-4">4</div>
@@ -628,7 +628,7 @@
                     tracking_number: 'BORZO-MUM-' + Math.random().toString(36).substring(2, 10).toUpperCase(),
                     tracking_url: 'https://borzodelivery.com/in/tracking/' + orderRef,
                     delivery_fee_inr: courier === 'porter' ? 180.0 : 65.0,
-                    eta_minutes: 5.8,
+                    eta_minutes: 14.5,
                     rider: {
                         name: courier === 'porter' ? 'Mohd. Salim (Tata Ace)' : 'Ramesh Shinde (Honda Activa)',
                         vehicle: courier === 'porter' ? 'MH-04-AZ-9912' : 'MH-02-CD-4421'
@@ -641,12 +641,12 @@
 
             log.innerHTML += `
                 <div class="text-emerald-400 mt-2">✓ [2/3] Rider Assigned: ${dispatchRes.rider?.name || 'Ramesh Shinde'}</div>
-                <div class="text-emerald-400">✓ [3/3] Live GPS Tracking Link Generated (ETA: ${dispatchRes.eta_minutes || 5.8} min)</div>
+                <div class="text-emerald-400">✓ [3/3] Live GPS Tracking Link Generated (ETA: ${dispatchRes.eta_minutes || 14.5} min)</div>
             `;
 
             document.getElementById('riderName').textContent = dispatchRes.rider?.name || 'Ramesh Shinde';
             document.getElementById('riderVehicle').textContent = dispatchRes.rider?.vehicle || 'Honda Activa (MH-02-CD-4421)';
-            document.getElementById('riderEta').textContent = 'ETA: ' + (dispatchRes.eta_minutes || 5.8) + ' mins';
+            document.getElementById('riderEta').textContent = 'ETA: ' + (dispatchRes.eta_minutes || 14.5) + ' mins';
             document.getElementById('trackingRef').textContent = dispatchRes.tracking_number || orderRef;
             document.getElementById('trackingLink').href = dispatchRes.tracking_url || 'https://borzodelivery.com';
 

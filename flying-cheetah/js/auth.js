@@ -11,6 +11,20 @@
 (function (window) {
     'use strict';
 
+    // Proactively purge any legacy mock merchant data from previous test sessions
+    try {
+        const rawSaved = localStorage.getItem('fc_merchant_profile');
+        if (rawSaved && (
+            rawSaved.includes('Mumbai Couture') ||
+            rawSaved.includes('Karan Malhotra') ||
+            rawSaved.includes('27AAACF1234M1Z5') ||
+            rawSaved.includes('mumbaicouture@okhdfcbank') ||
+            rawSaved.includes('99203 86421')
+        )) {
+            localStorage.removeItem('fc_merchant_profile');
+        }
+    } catch (_) {}
+
     const client = window.FC_BACKEND.getClient();
     let currentUser = null;
     let currentProfile = null;
@@ -100,13 +114,72 @@
         }
     }
 
+    // Helper: Phone Sanitization & Validation (Strict E.164 Standard)
+    function sanitizePhone(phone) {
+        if (!phone || typeof phone !== 'string') return '';
+        let cleaned = phone.trim().replace(/\(\s*0\s*\)/g, '').replace(/[\s\-\(\)\.]+/g, '');
+        if (!cleaned) return '';
+        if (cleaned.startsWith('00')) {
+            cleaned = '+' + cleaned.substring(2);
+        }
+        if (cleaned.startsWith('+')) {
+            let digits = cleaned.substring(1).replace(/\D/g, '');
+            if (!digits) return '';
+            if (digits.startsWith('910') && digits.length === 13) {
+                digits = '91' + digits.substring(3);
+            }
+            return '+' + digits;
+        }
+        if (cleaned.startsWith('0') && cleaned.length === 11 && /^\d+$/.test(cleaned)) {
+            return '+91' + cleaned.substring(1);
+        }
+        if (cleaned.length === 10 && /^\d+$/.test(cleaned)) {
+            return '+91' + cleaned;
+        }
+        if (cleaned.length === 12 && cleaned.startsWith('91') && /^\d+$/.test(cleaned)) {
+            return '+' + cleaned;
+        }
+        if (cleaned.length === 13 && cleaned.startsWith('091') && /^\d+$/.test(cleaned)) {
+            return '+' + cleaned.substring(1);
+        }
+        if (cleaned.length === 13 && cleaned.startsWith('910') && /^\d+$/.test(cleaned)) {
+            return '+91' + cleaned.substring(3);
+        }
+        const digitsOnly = cleaned.replace(/\D/g, '');
+        return digitsOnly ? '+' + digitsOnly : cleaned;
+    }
+
+    function validatePhone(phone) {
+        const clean = sanitizePhone(phone);
+        if (!clean) return false;
+        if (clean.startsWith('+91')) {
+            return /^\+91[6-9]\d{9}$/.test(clean);
+        }
+        return /^\+[1-9]\d{6,14}$/.test(clean);
+    }
+
+    function formatPhoneDisplay(phone) {
+        const clean = sanitizePhone(phone);
+        if (!clean) return phone || '';
+        if (clean.startsWith('+91') && clean.length === 13) {
+            return `+91 ${clean.substring(3, 8)} ${clean.substring(8)}`;
+        }
+        if (clean.startsWith('+1') && clean.length === 12) {
+            return `+1 (${clean.substring(2, 5)}) ${clean.substring(5, 8)}-${clean.substring(8)}`;
+        }
+        if (clean.startsWith('+44') && clean.length === 13) {
+            return `+44 ${clean.substring(3, 7)} ${clean.substring(7)}`;
+        }
+        return clean;
+    }
+
     // 1. INJECT AUTH & 14-DAY TRIAL MODAL INTO DOM
     function injectAuthModal() {
         if (document.getElementById('fcAuthModal')) return;
 
         const modalHtml = `
         <div id="fcAuthModal" class="fixed inset-0 z-[110] flex items-center justify-center bg-black/65 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300 p-4 overflow-y-auto">
-            <div id="fcAuthModalCard" class="relative w-full max-w-lg bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-2xl transform scale-95 transition-all duration-300 my-8">
+            <div id="fcAuthModalCard" class="relative w-full max-w-xl bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-2xl transform scale-95 transition-all duration-300 my-8">
                 
                 <!-- Close Button -->
                 <button id="fcAuthCloseBtn" class="absolute top-5 right-5 text-slate-400 hover:text-slate-700 w-8 h-8 rounded-full flex items-center justify-center hover:bg-slate-100 transition z-10" aria-label="Close modal">
@@ -114,14 +187,22 @@
                 </button>
 
                 <!-- TAB SWITCHER -->
-                <div class="flex p-1 rounded-2xl bg-slate-100 mb-6 text-xs font-bold">
-                    <button id="fcTabBtnTrial" type="button" class="flex-1 py-2.5 rounded-xl transition flex items-center justify-center gap-2 bg-white text-bikDark shadow-sm font-black">
-                        <i class="fa-solid fa-sparkles text-bikOrange"></i>
-                        <span>Start 14-Day Free Trial</span>
+                <div class="flex p-1 rounded-2xl bg-slate-100 mb-6 text-xs font-bold gap-1">
+                    <button id="fcTabBtnTrial" type="button" class="flex-1 py-2.5 rounded-xl transition flex items-center justify-center gap-1.5 bg-white text-bikDark shadow-sm font-black">
+                        <i class="fa-solid fa-sparkles text-bikOrange text-[11px]"></i>
+                        <span>Free Trial</span>
                     </button>
-                    <button id="fcTabBtnSignIn" type="button" class="flex-1 py-2.5 rounded-xl transition flex items-center justify-center gap-2 text-slate-500 hover:text-slate-800">
-                        <i class="fa-solid fa-arrow-right-to-bracket text-slate-400"></i>
+                    <button id="fcTabBtnSignIn" type="button" class="flex-1 py-2.5 rounded-xl transition flex items-center justify-center gap-1.5 text-slate-500 hover:text-slate-800 font-bold">
+                        <i class="fa-solid fa-arrow-right-to-bracket text-slate-400 text-[11px]"></i>
                         <span>Sign In</span>
+                    </button>
+                    <button id="fcTabBtnProfile" type="button" class="hidden flex-1 py-2.5 rounded-xl transition flex items-center justify-center gap-1.5 text-slate-500 hover:text-slate-800 font-bold">
+                        <i class="fa-solid fa-store text-slate-400 text-[11px]"></i>
+                        <span>Store Profile</span>
+                    </button>
+                    <button id="fcTabBtnSecurity" type="button" class="hidden flex-1 py-2.5 rounded-xl transition flex items-center justify-center gap-1.5 text-slate-500 hover:text-slate-800 font-bold">
+                        <i class="fa-solid fa-shield-halved text-slate-400 text-[11px]"></i>
+                        <span>Account & Security</span>
                     </button>
                 </div>
 
@@ -138,7 +219,7 @@
                             Start Your 14-Day Free Trial
                         </h3>
                         <p class="text-xs text-slate-500 mt-1 max-w-md mx-auto leading-relaxed">
-                            Full access to 100+ AI Voice Agents, WhatsApp Marketing, and Automated Cart Recovery. Zero payroll, cancel anytime.
+                            Full access to 15+ AI Voice Agents, WhatsApp Marketing, and Automated Cart Recovery. Zero payroll, cancel anytime.
                         </p>
 
                         <!-- Value Perks Pill Strip -->
@@ -190,12 +271,14 @@
                         <div>
                             <label class="block text-xs font-bold text-slate-700 mb-1">Work / Brand Email</label>
                             <input type="email" id="fcTrialEmail" name="email" required placeholder="founder@yourbrand.com" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange focus:border-bikOrange transition outline-none">
+                            <div id="fcTrialEmailHint" class="text-[10px] text-slate-400 mt-1 pl-1">One account identity tied to your official work email.</div>
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             <div>
                                 <label class="block text-xs font-bold text-slate-700 mb-1">WhatsApp Number</label>
                                 <input type="tel" id="fcTrialPhone" name="phone" required placeholder="+91 98765 43210" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange focus:border-bikOrange transition outline-none">
+                                <div id="fcTrialPhoneHint" class="text-[10px] text-slate-400 mt-1 pl-1">Strict E.164 phone binding (+91). 1 account per phone.</div>
                             </div>
                             <div>
                                 <label class="block text-xs font-bold text-slate-700 mb-1">Store URL <span class="text-slate-400 font-normal">(Optional)</span></label>
@@ -281,67 +364,416 @@
                         </p>
                     </div>
 
-                    <!-- 1-Click Google Sign In -->
-                    <div class="pt-2">
-                        <button id="fcGoogleSignInBtn" type="button" class="w-full flex items-center justify-center gap-3 px-5 py-3 rounded-2xl border-2 border-slate-200 bg-white hover:bg-slate-50 hover:border-slate-300 text-slate-800 font-bold text-xs sm:text-sm transition shadow-sm group cursor-pointer">
-                            <svg class="w-4 h-4 group-hover:scale-110 transition shrink-0" viewBox="0 0 24 24">
-                                <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.66v3.05h3.9c2.28-2.1 3.64-5.2 3.64-9.15z"/>
-                                <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.9-3.05c-1.08.72-2.45 1.16-4.03 1.16-3.1 0-5.73-2.1-6.67-4.94H1.32v3.15C3.33 21.36 7.39 24 12 24z"/>
-                                <path fill="#FBBC05" d="M5.33 14.26c-.24-.72-.38-1.49-.38-2.26s.14-1.54.38-2.26V6.59H1.32C.48 8.26 0 10.08 0 12s.48 3.74 1.32 5.41l4.01-3.15z"/>
-                                <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.39 0 3.33 2.64 1.32 6.59l4.01 3.15c.94-2.84 3.57-4.99 6.67-4.99z"/>
-                            </svg>
-                            <span>Continue with Google</span>
-                        </button>
-                    </div>
-
-                    <!-- Divider -->
-                    <div class="relative my-3">
-                        <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-slate-200"></div></div>
-                        <div class="relative flex justify-center text-[10px] uppercase font-bold tracking-wider text-slate-400 bg-white px-3">or sign in with email</div>
-                    </div>
-
-                    <!-- Sign In Form (Email + Password or Magic Link) -->
-                    <form id="fcSignInForm" class="space-y-3 text-left">
-                        <div>
-                            <label class="block text-xs font-bold text-slate-700 mb-1">Work Email</label>
-                            <input type="email" id="fcSignInEmail" required placeholder="you@company.com" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange focus:border-bikOrange transition outline-none">
-                        </div>
-                        <div>
-                            <div class="flex items-center justify-between mb-1">
-                                <label class="block text-xs font-bold text-slate-700">Password</label>
-                                <button type="button" id="fcForgotPasswordBtn" class="text-[11px] text-bikOrange font-bold hover:underline cursor-pointer">
-                                    Forgot Password?
-                                </button>
+                    <!-- Prominent Signed-In Active Merchant Card (visible when signed in) -->
+                    <div id="fcSignInActiveUserCard" class="hidden p-4 rounded-2xl bg-gradient-to-br from-orange-50/90 via-white to-amber-50/70 border border-orange-200 shadow-sm space-y-3">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2.5 min-w-0 text-left">
+                                <div id="fcSignInUserAvatar" class="w-10 h-10 rounded-2xl bg-bikDark text-white font-black text-xs flex items-center justify-center shrink-0 shadow-sm">
+                                    FC
+                                </div>
+                                <div class="min-w-0 text-left">
+                                    <div class="flex items-center gap-1.5">
+                                        <span id="fcSignInUserName" class="text-xs font-black text-bikDark truncate">Merchant</span>
+                                        <span id="fcSignInRoleBadge" class="text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800">Signed In</span>
+                                    </div>
+                                    <div id="fcSignInUserEmail" class="text-[11px] text-slate-500 truncate"></div>
+                                </div>
                             </div>
-                            <div class="relative">
-                                <input type="password" id="fcSignInPassword" required placeholder="Your account password" class="w-full pl-4 pr-10 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange focus:border-bikOrange transition outline-none">
-                                <button type="button" id="fcToggleSignInPassBtn" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition p-1" aria-label="Toggle password visibility">
-                                    <i id="fcToggleSignInPassIcon" class="fa-regular fa-eye text-xs"></i>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="flex items-center justify-between text-[11px] pt-1">
-                            <label class="flex items-center gap-1.5 text-slate-600 cursor-pointer">
-                                <input type="checkbox" id="fcRememberMeCheck" checked class="rounded border-slate-300 text-bikOrange focus:ring-bikOrange">
-                                <span>Remember me</span>
-                            </label>
-                            <button type="button" id="fcMagicLinkBtn" class="text-bikOrange font-bold hover:underline cursor-pointer">
-                                Send Magic Link instead
+                            <button type="button" id="fcSignOutFromModalBtn" class="text-[11px] font-bold text-red-500 hover:text-red-700 transition px-2.5 py-1 rounded-lg hover:bg-red-50 shrink-0 cursor-pointer">
+                                <i class="fa-solid fa-arrow-right-from-bracket mr-1 text-[10px]"></i>Sign Out
                             </button>
                         </div>
 
-                        <button type="submit" id="fcSignInSubmitBtn" class="w-full py-3.5 rounded-xl bg-bikDark hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider transition shadow-md flex items-center justify-center gap-2 mt-4 cursor-pointer">
-                            <i class="fa-solid fa-arrow-right-to-bracket text-xs"></i>
-                            <span>Sign In to Dashboard</span>
-                        </button>
-                    </form>
+                        <!-- Direct Merchant Profile Overview & Manage Button -->
+                        <div class="p-3 bg-white rounded-xl border border-orange-100/90 space-y-2 shadow-xs">
+                            <div class="flex items-center justify-between gap-2">
+                                <div class="min-w-0 text-left">
+                                    <div class="flex items-center gap-1.5">
+                                        <i class="fa-solid fa-store text-bikOrange text-xs shrink-0"></i>
+                                        <span id="fcSignInActiveBrand" class="text-xs font-bold text-slate-800 truncate">My Store Profile</span>
+                                    </div>
+                                    <div id="fcSignInActiveCat" class="text-[10px] text-slate-500 pl-4 truncate">15 km Radius</div>
+                                </div>
+                                <button type="button" id="fcSwitchToProfileFromSignInBtn" class="shrink-0 px-3.5 py-2 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-xs transition shadow-sm flex items-center gap-1.5 cursor-pointer">
+                                    <i class="fa-solid fa-pen-to-square text-xs"></i>
+                                    <span>Manage Merchant Profile</span>
+                                </button>
+                            </div>
+                            <!-- Quick Merchant Summary Chips -->
+                            <div id="fcSignInChipsRow" class="flex flex-wrap items-center gap-2 pt-1 border-t border-slate-100 text-[10px] text-slate-600">
+                                <span id="fcSignInChipPhone" class="inline-flex items-center gap-1 bg-slate-50 px-2 py-0.5 rounded-md border border-slate-100 truncate"><i class="fa-brands fa-whatsapp text-emerald-500"></i> <span id="fcSignInActivePhoneTxt">Not set</span></span>
+                                <span id="fcSignInChipGstin" class="inline-flex items-center gap-1 bg-slate-50 px-2 py-0.5 rounded-md border border-slate-100 font-mono"><i class="fa-solid fa-file-invoice text-slate-400"></i> <span id="fcSignInActiveGstinTxt">Not set</span></span>
+                                <span id="fcSignInChipUpi" class="inline-flex items-center gap-1 bg-slate-50 px-2 py-0.5 rounded-md border border-slate-100 font-mono truncate"><i class="fa-solid fa-wallet text-indigo-500"></i> <span id="fcSignInActiveUpiTxt">Not set</span></span>
+                            </div>
+                        </div>
 
-                    <div class="text-center pt-2">
-                        <p class="text-[11px] text-slate-500">
-                            Don't have an account yet? 
-                            <button type="button" id="fcSwitchToTrialLink" class="text-bikOrange font-bold hover:underline cursor-pointer">Start 14-Day Free Trial</button>
+                        <!-- Direct Hub Actions -->
+                        <div class="grid grid-cols-2 gap-2 pt-1">
+                            <a href="admin.html" id="fcSignInAdminLink" class="py-2 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-[11px] text-center transition flex items-center justify-center gap-1.5">
+                                <i class="fa-solid fa-gauge-high text-[10px] text-brandGold"></i>
+                                <span>Operations Portal</span>
+                            </a>
+                            <a href="store.html" class="py-2 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-[11px] text-center transition flex items-center justify-center gap-1.5">
+                                <i class="fa-solid fa-bag-shopping text-[10px] text-slate-500"></i>
+                                <span>Browse Store</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Alternate Switch Account Option (visible when signed in) -->
+                    <div id="fcSignInSwitchAccountRow" class="hidden text-center pt-1">
+                        <button type="button" id="fcToggleAltSignInBtn" class="text-[11px] text-slate-500 hover:text-bikOrange font-bold transition inline-flex items-center gap-1 cursor-pointer">
+                            <i class="fa-solid fa-repeat text-[10px]"></i>
+                            <span>Sign into a different merchant account</span>
+                        </button>
+                    </div>
+
+                    <!-- Unauthenticated Login Controls (hidden when user is already signed in) -->
+                    <div id="fcSignInLoggedOutControls" class="space-y-4">
+                        <!-- 1-Click Google Sign In -->
+                        <div class="pt-2">
+                            <button id="fcGoogleSignInBtn" type="button" class="w-full flex items-center justify-center gap-3 px-5 py-3 rounded-2xl border-2 border-slate-200 bg-white hover:bg-slate-50 hover:border-slate-300 text-slate-800 font-bold text-xs sm:text-sm transition shadow-sm group cursor-pointer">
+                                <svg class="w-4 h-4 group-hover:scale-110 transition shrink-0" viewBox="0 0 24 24">
+                                    <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.66v3.05h3.9c2.28-2.1 3.64-5.2 3.64-9.15z"/>
+                                    <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.9-3.05c-1.08.72-2.45 1.16-4.03 1.16-3.1 0-5.73-2.1-6.67-4.94H1.32v3.15C3.33 21.36 7.39 24 12 24z"/>
+                                    <path fill="#FBBC05" d="M5.33 14.26c-.24-.72-.38-1.49-.38-2.26s.14-1.54.38-2.26V6.59H1.32C.48 8.26 0 10.08 0 12s.48 3.74 1.32 5.41l4.01-3.15z"/>
+                                    <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.39 0 3.33 2.64 1.32 6.59l4.01 3.15c.94-2.84 3.57-4.99 6.67-4.99z"/>
+                                </svg>
+                                <span>Continue with Google</span>
+                            </button>
+                        </div>
+
+                        <!-- Divider -->
+                        <div class="relative my-3">
+                            <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-slate-200"></div></div>
+                            <div class="relative flex justify-center text-[10px] uppercase font-bold tracking-wider text-slate-400 bg-white px-3">or sign in with email</div>
+                        </div>
+
+                        <!-- Sign In Form (Email + Password or Magic Link) -->
+                        <form id="fcSignInForm" class="space-y-3 text-left">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Work Email</label>
+                                <input type="email" id="fcSignInEmail" required placeholder="you@company.com" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange focus:border-bikOrange transition outline-none">
+                            </div>
+                            <div>
+                                <div class="flex items-center justify-between mb-1">
+                                    <label class="block text-xs font-bold text-slate-700">Password</label>
+                                    <button type="button" id="fcForgotPasswordBtn" class="text-[11px] text-bikOrange font-bold hover:underline cursor-pointer">
+                                        Forgot Password?
+                                    </button>
+                                </div>
+                                <div class="relative">
+                                    <input type="password" id="fcSignInPassword" required placeholder="Your account password" class="w-full pl-4 pr-10 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange focus:border-bikOrange transition outline-none">
+                                    <button type="button" id="fcToggleSignInPassBtn" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition p-1" aria-label="Toggle password visibility">
+                                        <i id="fcToggleSignInPassIcon" class="fa-regular fa-eye text-xs"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-between text-[11px] pt-1">
+                                <label class="flex items-center gap-1.5 text-slate-600 cursor-pointer">
+                                    <input type="checkbox" id="fcRememberMeCheck" checked class="rounded border-slate-300 text-bikOrange focus:ring-bikOrange">
+                                    <span>Remember me</span>
+                                </label>
+                                <button type="button" id="fcMagicLinkBtn" class="text-bikOrange font-bold hover:underline cursor-pointer">
+                                    Send Magic Link instead
+                                </button>
+                            </div>
+
+                            <button type="submit" id="fcSignInSubmitBtn" class="w-full py-3.5 rounded-xl bg-bikDark hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider transition shadow-md flex items-center justify-center gap-2 mt-4 cursor-pointer">
+                                <i class="fa-solid fa-arrow-right-to-bracket text-xs"></i>
+                                <span>Sign In to Dashboard</span>
+                            </button>
+                        </form>
+
+                        <div class="text-center pt-2">
+                            <p class="text-[11px] text-slate-500">
+                                Don't have an account yet? 
+                                <button type="button" id="fcSwitchToTrialLink" class="text-bikOrange font-bold hover:underline cursor-pointer">Start 14-Day Free Trial</button>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ========================================== -->
+                <!-- VIEW 3: RICH MERCHANT PROFILE & SETTINGS  -->
+                <!-- ========================================== -->
+                <div id="fcViewProfile" class="space-y-4 hidden">
+                    <div class="text-center">
+                        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-50 border border-orange-200/80 text-bikOrange text-[11px] font-black uppercase tracking-wider mb-2">
+                            <i class="fa-solid fa-store text-brandGold"></i> Merchant Profile & Operations
+                        </div>
+                        <h3 class="text-2xl font-black text-bikDark font-display tracking-tight">
+                            Merchant Store Profile
+                        </h3>
+                        <p class="text-xs text-slate-500 mt-1 max-w-sm mx-auto leading-relaxed">
+                            Configure your business identity, GSTIN, Borzo pickup address, and direct customer UPI checkouts.
                         </p>
+                    </div>
+
+                    <!-- Live Sync Indicator -->
+                    <div class="p-3 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between text-xs">
+                        <div class="flex items-center gap-2.5 min-w-0 text-left">
+                            <div id="fcModalProfileAvatar" class="w-8 h-8 rounded-full bg-slate-900 text-white font-bold text-xs flex items-center justify-center shrink-0">
+                                FC
+                            </div>
+                            <div class="truncate">
+                                <span id="fcModalProfileUserTxt" class="font-bold text-slate-800 block truncate">Account Profile</span>
+                                <span id="fcModalProfileEmailTxt" class="text-[10px] text-slate-500 block truncate"></span>
+                            </div>
+                        </div>
+                        <span id="fcModalProfileSyncBadge" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 flex items-center gap-1 shrink-0">
+                            <i class="fa-solid fa-shield-check text-emerald-600"></i> Cloud Synced
+                        </span>
+                    </div>
+
+                    <!-- Profile Form -->
+                    <form id="fcModalProfileForm" class="space-y-3 text-left">
+                        <!-- Row 1: Business Name & Category -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Business / Brand Name <span class="text-red-500">*</span></label>
+                                <input type="text" id="fcModalProfileBusinessName" required minlength="2" placeholder="e.g. Suchali's Artisan Bakehouse" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange focus:border-bikOrange outline-none transition">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Category / Niche</label>
+                                <select id="fcModalProfileCategory" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange focus:border-bikOrange outline-none transition bg-white">
+                                    <option value="Apparel & Fashion">👕 Apparel & Fashion</option>
+                                    <option value="Electronics & Gadgets">🎧 Electronics & Gadgets</option>
+                                    <option value="Jewelry & Luxury">💍 Jewelry & Luxury</option>
+                                    <option value="Beauty & Personal Care">💄 Beauty & Personal Care</option>
+                                    <option value="Gourmet Food & Beverage">🍵 Gourmet Food & Beverage</option>
+                                    <option value="Home & Living">🏡 Home & Living</option>
+                                    <option value="Health & Wellness">🌿 Health & Wellness</option>
+                                    <option value="D2C General Retail">📦 D2C General Retail</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Row 2: Founder Name & GSTIN -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Founder / Owner Name</label>
+                                <input type="text" id="fcModalProfileFullName" placeholder="Your Full Name" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange focus:border-bikOrange outline-none transition">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">GSTIN / Udyam Number</label>
+                                <input type="text" id="fcModalProfileGstin" placeholder="e.g. 27AAACF1234M1Z5" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs uppercase font-mono focus:ring-2 focus:ring-bikOrange focus:border-bikOrange outline-none transition">
+                            </div>
+                        </div>
+
+                        <!-- Row 3: WhatsApp Support & Store URL -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Support Phone / WhatsApp <span class="text-red-500">*</span></label>
+                                <input type="tel" id="fcModalProfileWhatsApp" required placeholder="e.g. +91 98765 43210" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange focus:border-bikOrange outline-none transition">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Store / Website URL</label>
+                                <input type="text" id="fcModalProfileStoreUrl" placeholder="e.g. https://yourbrand.com" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange focus:border-bikOrange outline-none transition">
+                            </div>
+                        </div>
+
+                        <!-- Row 4: Warehouse / Pickup Address -->
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Warehouse / Pickup Address (Borzo Dispatch) <span class="text-red-500">*</span></label>
+                            <textarea id="fcModalProfilePickupAddress" rows="2" required placeholder="e.g. Shop 4, Ground Floor, Linking Road, Bandra West, Mumbai 400050" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange focus:border-bikOrange outline-none transition"></textarea>
+                        </div>
+
+                        <!-- Row 5: Merchant UPI ID & Delivery Radius -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Merchant UPI ID (Direct Checkouts)</label>
+                                <input type="text" id="fcModalProfileUpiId" placeholder="e.g. yourbrand@okhdfcbank" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs font-mono focus:ring-2 focus:ring-bikOrange focus:border-bikOrange outline-none transition">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Delivery Radius</label>
+                                <select id="fcModalProfileRadius" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange focus:border-bikOrange outline-none transition bg-white">
+                                    <option value="5">5 km (15-20 Min Hyperlocal)</option>
+                                    <option value="10">10 km (Intra-Zone Quick Commerce)</option>
+                                    <option value="15" selected>15 km (Standard Mumbai Central/Western)</option>
+                                    <option value="25">25 km (Greater Mumbai Extended)</option>
+                                    <option value="50">50 km (MMR Region / Thane / Navi Mumbai)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Inline Feedback Alert -->
+                        <div id="fcModalProfileFeedback" class="hidden p-2.5 rounded-xl text-xs font-bold text-center"></div>
+
+                        <!-- Inline Edit & Save Actions -->
+                        <div class="pt-2 flex items-center justify-between gap-3">
+                            <button type="button" id="fcModalProfileSwitchSignInBtn" class="text-xs text-slate-500 hover:text-slate-800 transition font-semibold cursor-pointer">
+                                <i class="fa-solid fa-arrow-left text-[10px] mr-1"></i> Back to Sign In
+                            </button>
+                            <button type="submit" id="fcModalSaveProfileBtn" class="px-6 py-3 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-xs uppercase tracking-wider transition shadow-md shadow-orange-500/20 flex items-center gap-2 cursor-pointer">
+                                <i class="fa-solid fa-floppy-disk text-xs"></i>
+                                <span>Save Merchant Profile</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- ========================================== -->
+                <!-- VIEW 4: RICH ACCOUNT IDENTITY & SECURITY   -->
+                <!-- ========================================== -->
+                <div id="fcViewSecurity" class="space-y-4 hidden">
+                    <div class="text-center">
+                        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-50 border border-orange-200/80 text-bikOrange text-[11px] font-black uppercase tracking-wider mb-2">
+                            <i class="fa-solid fa-shield-check text-brandGold"></i> Identity & Security Management
+                        </div>
+                        <h3 class="text-2xl font-black text-bikDark font-display tracking-tight">
+                            Account & Security
+                        </h3>
+                        <p class="text-xs text-slate-500 mt-1 max-w-sm mx-auto leading-relaxed">
+                            Verified 1-Account Identity Model (1 Email + 1 Phone), update credentials, and manage active device sessions.
+                        </p>
+                    </div>
+
+                    <!-- 1-Account Identity Anchor Card -->
+                    <div class="p-4 rounded-2xl bg-gradient-to-br from-slate-50 via-white to-orange-50/40 border border-slate-200 shadow-sm space-y-3">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3 text-left">
+                                <div id="fcSecAvatar" class="w-12 h-12 rounded-2xl bg-bikDark text-white font-black text-sm flex items-center justify-center shadow-sm shrink-0">
+                                    FC
+                                </div>
+                                <div class="min-w-0">
+                                    <div class="flex items-center gap-2">
+                                        <span id="fcSecFullName" class="text-sm font-black text-bikDark truncate">Merchant Founder</span>
+                                        <span id="fcSecMembershipBadge" class="text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 shrink-0">14d Free Trial</span>
+                                    </div>
+                                    <div id="fcSecAccountStatus" class="text-[11px] text-slate-500 truncate">1-Account Bound Identity • Active Merchant</div>
+                                </div>
+                            </div>
+                            <span class="text-[10px] font-bold px-2.5 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200 hidden sm:inline-flex items-center shrink-0">
+                                <i class="fa-solid fa-fingerprint mr-1"></i> SaaS Identity
+                            </span>
+                        </div>
+
+                        <!-- Identity Anchor Credentials Grid -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2 border-t border-slate-200/80 text-left">
+                            <!-- Primary Email Anchor -->
+                            <div class="p-3 rounded-xl bg-white border border-slate-200/80 space-y-1">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1">
+                                        <i class="fa-solid fa-envelope text-slate-400"></i> Primary Email
+                                    </span>
+                                    <span class="text-[9px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200/60 px-2 py-0.5 rounded-full flex items-center gap-1">
+                                        <i class="fa-solid fa-check text-[8px]"></i> Verified
+                                    </span>
+                                </div>
+                                <div id="fcSecEmailTxt" class="font-bold text-slate-800 text-xs truncate">you@company.com</div>
+                            </div>
+
+                            <!-- Bound Phone Anchor -->
+                            <div class="p-3 rounded-xl bg-white border border-slate-200/80 space-y-1">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1">
+                                        <i class="fa-brands fa-whatsapp text-emerald-500"></i> Linked Phone (E.164)
+                                    </span>
+                                    <button type="button" id="fcSecToggleEditPhoneBtn" class="text-[10px] font-bold text-bikOrange hover:underline cursor-pointer">
+                                        Edit / Link
+                                    </button>
+                                </div>
+                                <div id="fcSecPhoneTxt" class="font-mono font-bold text-slate-800 text-xs truncate">+91 98200 12345</div>
+                            </div>
+                        </div>
+
+                        <!-- Inline Edit Phone Panel -->
+                        <div id="fcSecPhoneEditPanel" class="hidden p-3 rounded-xl bg-orange-50/70 border border-orange-200 text-left space-y-2 mt-2">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold text-slate-800">Update Linked Phone Number</span>
+                                <span class="text-[10px] text-slate-400">Strict 1-to-1 Uniqueness</span>
+                            </div>
+                            <p class="text-[11px] text-slate-500">Every merchant account strictly binds exactly one phone number. Duplicate numbers across different accounts are prevented.</p>
+                            <div class="flex gap-2">
+                                <input type="tel" id="fcSecNewPhoneInput" placeholder="+91 98200 12345" class="flex-1 px-3 py-2 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange focus:border-bikOrange outline-none bg-white">
+                                <button type="button" id="fcSecSavePhoneBtn" class="px-4 py-2 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-xs shadow-sm cursor-pointer">Save</button>
+                                <button type="button" id="fcSecCancelPhoneBtn" class="px-3 py-2 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-xs cursor-pointer">Cancel</button>
+                            </div>
+                            <div id="fcSecPhoneEditFeedback" class="hidden p-2 rounded-lg text-[11px] font-bold"></div>
+                        </div>
+                    </div>
+
+                    <!-- Change Password Card -->
+                    <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-xs space-y-3 text-left">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <div class="w-7 h-7 rounded-lg bg-orange-50 text-bikOrange flex items-center justify-center text-xs">
+                                    <i class="fa-solid fa-key"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs font-black text-bikDark uppercase tracking-wider">Change Account Password</h4>
+                                    <p class="text-[10px] text-slate-400">Secure 12-round bcrypt cryptographic hashing</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <form id="fcSecChangePasswordForm" class="space-y-3">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Current Password <span class="text-slate-400 font-normal">(Leave blank if signed in via Google)</span></label>
+                                <div class="relative">
+                                    <input type="password" id="fcSecCurrentPass" placeholder="Enter current password" class="w-full pl-3.5 pr-10 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange focus:border-bikOrange outline-none">
+                                    <button type="button" id="fcToggleSecCurrentPassBtn" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1" aria-label="Toggle password">
+                                        <i id="fcToggleSecCurrentPassIcon" class="fa-regular fa-eye text-xs"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex items-center justify-between mb-1">
+                                    <label class="block text-xs font-bold text-slate-700">New Password</label>
+                                    <span id="fcSecNewPassStrengthLabel" class="text-[10px] font-bold text-slate-400">Min 8 characters</span>
+                                </div>
+                                <div class="relative">
+                                    <input type="password" id="fcSecNewPass" required minlength="8" placeholder="Create strong new password" class="w-full pl-3.5 pr-10 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange focus:border-bikOrange outline-none">
+                                    <button type="button" id="fcToggleSecNewPassBtn" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1" aria-label="Toggle password">
+                                        <i id="fcToggleSecNewPassIcon" class="fa-regular fa-eye text-xs"></i>
+                                    </button>
+                                </div>
+                                <!-- Strength bar -->
+                                <div class="grid grid-cols-3 gap-1.5 pt-1.5">
+                                    <div id="fcSecStrengthBar1" class="h-1 rounded-full bg-slate-200 transition-colors"></div>
+                                    <div id="fcSecStrengthBar2" class="h-1 rounded-full bg-slate-200 transition-colors"></div>
+                                    <div id="fcSecStrengthBar3" class="h-1 rounded-full bg-slate-200 transition-colors"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex items-center justify-between mb-1">
+                                    <label class="block text-xs font-bold text-slate-700">Confirm New Password</label>
+                                    <span id="fcSecMatchStatus" class="text-[10px] font-bold text-slate-400"></span>
+                                </div>
+                                <div class="relative">
+                                    <input type="password" id="fcSecConfirmPass" required minlength="8" placeholder="Confirm your new password" class="w-full pl-3.5 pr-10 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange focus:border-bikOrange outline-none">
+                                    <button type="button" id="fcToggleSecConfirmPassBtn" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1" aria-label="Toggle password">
+                                        <i id="fcToggleSecConfirmPassIcon" class="fa-regular fa-eye text-xs"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div id="fcSecPassFeedback" class="hidden p-2.5 rounded-xl text-xs font-bold text-center"></div>
+
+                            <button type="submit" id="fcSecUpdatePassBtn" class="w-full py-3 rounded-xl bg-bikDark hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider transition shadow-sm flex items-center justify-center gap-2 cursor-pointer">
+                                <i class="fa-solid fa-lock text-xs"></i>
+                                <span>Update Account Password</span>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Active Session & One-Click Sign Out -->
+                    <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between text-xs text-left">
+                        <div class="flex items-center gap-2.5 min-w-0">
+                            <div class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shrink-0"></div>
+                            <div class="truncate">
+                                <span class="font-bold text-slate-800 block truncate">Active Device Session</span>
+                                <span class="text-[10px] text-slate-500 block truncate">256-Bit SSL Secured JWT • Authenticated</span>
+                            </div>
+                        </div>
+                        <button type="button" id="fcSecSignOutBtn" class="px-3.5 py-2 rounded-xl bg-red-50 hover:bg-red-100 text-red-600 font-bold text-xs transition border border-red-200 flex items-center gap-1.5 cursor-pointer shrink-0">
+                            <i class="fa-solid fa-arrow-right-from-bracket text-xs"></i>
+                            <span>Sign Out</span>
+                        </button>
                     </div>
                 </div>
 
@@ -485,109 +917,6 @@
         </div>
 
         <!-- ======================================================== -->
-        <!-- RICH MERCHANT PROFILE & SETTINGS MODAL                   -->
-        <!-- ======================================================== -->
-        <div id="fcMerchantProfileModal" class="fixed inset-0 z-[140] flex items-center justify-center bg-black/65 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300 p-4">
-            <div id="fcMerchantProfileCard" class="relative max-w-xl w-full bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-200 text-left transform scale-95 transition-all duration-300 max-h-[90vh] overflow-y-auto">
-                <button type="button" id="fcCloseProfileModalBtn" class="absolute top-5 right-5 text-slate-400 hover:text-slate-700 w-8 h-8 rounded-full flex items-center justify-center hover:bg-slate-100 transition z-10" aria-label="Close modal">
-                    <i class="fa-solid fa-xmark text-sm"></i>
-                </button>
-
-                <div class="flex items-center gap-3.5 mb-5 border-b border-slate-100 pb-4">
-                    <div class="w-12 h-12 rounded-2xl bg-orange-50 text-bikOrange flex items-center justify-center text-xl shadow-inner shrink-0">
-                        <i class="fa-solid fa-store"></i>
-                    </div>
-                    <div>
-                        <div class="flex items-center gap-2">
-                            <h3 class="text-lg font-black text-bikDark font-display">Merchant Business Profile</h3>
-                            <span class="text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800">Verified</span>
-                        </div>
-                        <p class="text-xs text-slate-500 mt-0.5">Configure your brand details, GSTIN, Borzo pickup address & UPI payments.</p>
-                    </div>
-                </div>
-
-                <form id="fcMerchantProfileForm" class="space-y-4">
-                    <!-- Row 1: Brand & Category -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <div>
-                            <label class="block text-xs font-bold text-slate-700 mb-1">Business / Brand Name <span class="text-red-500">*</span></label>
-                            <input type="text" id="fcProfileBusinessName" required placeholder="e.g. Mumbai Couture Boutique" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange focus:border-bikOrange outline-none transition">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-slate-700 mb-1">Category / Niche</label>
-                            <select id="fcProfileCategory" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange focus:border-bikOrange outline-none transition bg-white">
-                                <option value="Apparel & Fashion">👕 Apparel & Fashion</option>
-                                <option value="Electronics & Gadgets">🎧 Electronics & Gadgets</option>
-                                <option value="Jewelry & Luxury">💍 Jewelry & Luxury</option>
-                                <option value="Beauty & Personal Care">💄 Beauty & Personal Care</option>
-                                <option value="Gourmet Food & Beverage">🍵 Gourmet Food & Beverage</option>
-                                <option value="Home & Living">🏡 Home & Living</option>
-                                <option value="Health & Wellness">🌿 Health & Wellness</option>
-                                <option value="D2C General Retail">📦 D2C General Retail</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- Row 2: Founder Name & GSTIN -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <div>
-                            <label class="block text-xs font-bold text-slate-700 mb-1">Merchant / Founder Name</label>
-                            <input type="text" id="fcProfileFullName" placeholder="e.g. Karan Malhotra" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange focus:border-bikOrange outline-none transition">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-slate-700 mb-1">GSTIN / Udyam Registration</label>
-                            <input type="text" id="fcProfileGstin" placeholder="e.g. 27AAACF1234M1Z5" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs uppercase font-mono focus:ring-2 focus:ring-bikOrange focus:border-bikOrange outline-none transition">
-                        </div>
-                    </div>
-
-                    <!-- Row 3: WhatsApp Support & Store URL -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <div>
-                            <label class="block text-xs font-bold text-slate-700 mb-1">WhatsApp Support Number <span class="text-red-500">*</span></label>
-                            <input type="tel" id="fcProfileWhatsApp" required placeholder="+91 99203 86421" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange focus:border-bikOrange outline-none transition">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-slate-700 mb-1">Website / Shopify Store URL</label>
-                            <input type="url" id="fcProfileStoreUrl" placeholder="https://mumbaicouture.in" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange focus:border-bikOrange outline-none transition">
-                        </div>
-                    </div>
-
-                    <!-- Row 4: Pickup Address -->
-                    <div>
-                        <label class="block text-xs font-bold text-slate-700 mb-1">Warehouse / Pickup Address (Borzo Courier Dispatch) <span class="text-red-500">*</span></label>
-                        <textarea id="fcProfilePickupAddress" rows="2" required placeholder="Shop 4, Ground Floor, Opera House, Charni Road, Mumbai, Maharashtra 400004" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange focus:border-bikOrange outline-none transition"></textarea>
-                    </div>
-
-                    <!-- Row 5: Merchant UPI ID & Delivery Radius -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <div>
-                            <label class="block text-xs font-bold text-slate-700 mb-1">Merchant UPI ID (For Direct Customer Checkouts)</label>
-                            <input type="text" id="fcProfileUpiId" placeholder="mumbaicouture@okhdfcbank" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs font-mono focus:ring-2 focus:ring-bikOrange focus:border-bikOrange outline-none transition">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-slate-700 mb-1">Default Delivery Radius</label>
-                            <select id="fcProfileRadius" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange focus:border-bikOrange outline-none transition bg-white">
-                                <option value="5">5 km (Sub-15 Minute Hyperlocal)</option>
-                                <option value="10">10 km (Intra-Zone Quick Commerce)</option>
-                                <option value="15" selected>15 km (Standard Mumbai Central/Western)</option>
-                                <option value="25">25 km (Greater Mumbai Extended)</option>
-                                <option value="50">50 km (MMR Region / Thane / Navi Mumbai)</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="pt-3 border-t border-slate-100 flex items-center justify-between gap-3">
-                        <button type="button" id="fcCancelProfileBtn" class="px-4 py-2.5 rounded-xl text-slate-500 hover:text-slate-800 text-xs font-bold transition">Cancel</button>
-                        <button type="submit" id="fcSaveMerchantProfileBtn" class="px-6 py-2.5 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white text-xs font-bold uppercase tracking-wider transition shadow-md flex items-center gap-2 cursor-pointer">
-                            <i class="fa-solid fa-floppy-disk text-xs"></i>
-                            <span>Save Merchant Profile</span>
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <!-- ======================================================== -->
         <!-- CLEAN GOOGLE EMAIL SIGN-IN MODAL (NO MOCK ACCOUNTS)       -->
         <!-- ======================================================== -->
         <div id="fcGoogleEmailModal" class="fixed inset-0 z-[140] flex items-center justify-center bg-black/65 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300 p-4">
@@ -627,8 +956,276 @@
         const closeBtn = document.getElementById('fcAuthCloseBtn');
         const tabTrial = document.getElementById('fcTabBtnTrial');
         const tabSignIn = document.getElementById('fcTabBtnSignIn');
+        const tabProfile = document.getElementById('fcTabBtnProfile');
+        const tabSecurity = document.getElementById('fcTabBtnSecurity');
         const switchSignIn = document.getElementById('fcSwitchToSignInLink');
         const switchTrial = document.getElementById('fcSwitchToTrialLink');
+        const switchProfileBtn = document.getElementById('fcSwitchToProfileFromSignInBtn');
+        const modalProfileSwitchSignIn = document.getElementById('fcModalProfileSwitchSignInBtn');
+        const modalSignOutBtn = document.getElementById('fcSignOutFromModalBtn');
+        const modalProfileForm = document.getElementById('fcModalProfileForm');
+
+        if (tabSecurity) tabSecurity.addEventListener('click', () => switchTab('security'));
+
+        // Live validation hints on trial form
+        const trialPhoneInput = document.getElementById('fcTrialPhone');
+        const trialPhoneHint = document.getElementById('fcTrialPhoneHint');
+        if (trialPhoneInput && trialPhoneHint) {
+            trialPhoneInput.addEventListener('input', () => {
+                const val = trialPhoneInput.value;
+                const clean = sanitizePhone(val);
+                const isValid = validatePhone(clean);
+                if (!val.trim()) {
+                    trialPhoneHint.textContent = 'Strict E.164 phone binding (+91). 1 account per phone.';
+                    trialPhoneHint.className = 'text-[10px] text-slate-400 mt-1 pl-1';
+                } else if (isValid) {
+                    trialPhoneHint.innerHTML = `<span class="text-emerald-600 font-bold"><i class="fa-solid fa-check"></i> Formatted: ${formatPhoneDisplay(clean)} (E.164 Identity Standard)</span>`;
+                    trialPhoneHint.className = 'text-[10px] mt-1 pl-1';
+                } else {
+                    trialPhoneHint.innerHTML = `<span class="text-amber-600 font-medium"><i class="fa-solid fa-circle-info"></i> Enter 10-digit mobile number with country code (e.g. +91 98200 12345)</span>`;
+                    trialPhoneHint.className = 'text-[10px] mt-1 pl-1';
+                }
+            });
+        }
+
+        const trialEmailInput = document.getElementById('fcTrialEmail');
+        const trialEmailHint = document.getElementById('fcTrialEmailHint');
+        if (trialEmailInput && trialEmailHint) {
+            trialEmailInput.addEventListener('input', () => {
+                const val = trialEmailInput.value.trim();
+                const isValid = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(val);
+                if (!val) {
+                    trialEmailHint.textContent = 'One account identity tied to your official work email.';
+                    trialEmailHint.className = 'text-[10px] text-slate-400 mt-1 pl-1';
+                } else if (isValid) {
+                    trialEmailHint.innerHTML = `<span class="text-emerald-600 font-bold"><i class="fa-solid fa-check"></i> Valid email format (${val})</span>`;
+                    trialEmailHint.className = 'text-[10px] mt-1 pl-1';
+                } else {
+                    trialEmailHint.innerHTML = `<span class="text-slate-400">e.g. founder@yourcompany.com</span>`;
+                    trialEmailHint.className = 'text-[10px] text-slate-400 mt-1 pl-1';
+                }
+            });
+        }
+
+        // Security Tab: Password show/hide eye toggles
+        const toggleSecCurrentPassBtn = document.getElementById('fcToggleSecCurrentPassBtn');
+        const toggleSecNewPassBtn = document.getElementById('fcToggleSecNewPassBtn');
+        const toggleSecConfirmPassBtn = document.getElementById('fcToggleSecConfirmPassBtn');
+
+        if (toggleSecCurrentPassBtn) {
+            toggleSecCurrentPassBtn.addEventListener('click', () => togglePasswordVisibility('fcSecCurrentPass', 'fcToggleSecCurrentPassIcon'));
+        }
+        if (toggleSecNewPassBtn) {
+            toggleSecNewPassBtn.addEventListener('click', () => togglePasswordVisibility('fcSecNewPass', 'fcToggleSecNewPassIcon'));
+        }
+        if (toggleSecConfirmPassBtn) {
+            toggleSecConfirmPassBtn.addEventListener('click', () => togglePasswordVisibility('fcSecConfirmPass', 'fcToggleSecConfirmPassIcon'));
+        }
+
+        // Security Tab: Password strength & match feedback
+        const secNewPassInput = document.getElementById('fcSecNewPass');
+        const secConfirmPassInput = document.getElementById('fcSecConfirmPass');
+        const secStrengthLabel = document.getElementById('fcSecNewPassStrengthLabel');
+        const secBar1 = document.getElementById('fcSecStrengthBar1');
+        const secBar2 = document.getElementById('fcSecStrengthBar2');
+        const secBar3 = document.getElementById('fcSecStrengthBar3');
+        const secMatchStatus = document.getElementById('fcSecMatchStatus');
+
+        function updateSecPasswordUI() {
+            const pwd = secNewPassInput ? secNewPassInput.value : '';
+            const confirmVal = secConfirmPassInput ? secConfirmPassInput.value : '';
+            const evalResult = evaluatePassword(pwd);
+
+            if (!pwd) {
+                if (secStrengthLabel) {
+                    secStrengthLabel.textContent = 'Min 8 characters';
+                    secStrengthLabel.className = 'text-[10px] font-bold text-slate-400';
+                }
+                if (secBar1) secBar1.className = 'h-1 rounded-full bg-slate-200 transition-colors';
+                if (secBar2) secBar2.className = 'h-1 rounded-full bg-slate-200 transition-colors';
+                if (secBar3) secBar3.className = 'h-1 rounded-full bg-slate-200 transition-colors';
+            } else if (evalResult.score <= 1) {
+                if (secStrengthLabel) {
+                    secStrengthLabel.textContent = 'Weak';
+                    secStrengthLabel.className = 'text-[10px] font-bold text-red-500';
+                }
+                if (secBar1) secBar1.className = 'h-1 rounded-full bg-red-500 transition-colors';
+                if (secBar2) secBar2.className = 'h-1 rounded-full bg-slate-200 transition-colors';
+                if (secBar3) secBar3.className = 'h-1 rounded-full bg-slate-200 transition-colors';
+            } else if (evalResult.score === 2) {
+                if (secStrengthLabel) {
+                    secStrengthLabel.textContent = 'Fair';
+                    secStrengthLabel.className = 'text-[10px] font-bold text-amber-500';
+                }
+                if (secBar1) secBar1.className = 'h-1 rounded-full bg-amber-500 transition-colors';
+                if (secBar2) secBar2.className = 'h-1 rounded-full bg-amber-500 transition-colors';
+                if (secBar3) secBar3.className = 'h-1 rounded-full bg-slate-200 transition-colors';
+            } else {
+                if (secStrengthLabel) {
+                    secStrengthLabel.textContent = 'Strong ✓';
+                    secStrengthLabel.className = 'text-[10px] font-bold text-emerald-600';
+                }
+                if (secBar1) secBar1.className = 'h-1 rounded-full bg-emerald-500 transition-colors';
+                if (secBar2) secBar2.className = 'h-1 rounded-full bg-emerald-500 transition-colors';
+                if (secBar3) secBar3.className = 'h-1 rounded-full bg-emerald-500 transition-colors';
+            }
+
+            if (secMatchStatus) {
+                if (!confirmVal) {
+                    secMatchStatus.textContent = '';
+                } else if (confirmVal === pwd) {
+                    secMatchStatus.textContent = 'Passwords match ✓';
+                    secMatchStatus.className = 'text-[10px] font-bold text-emerald-600';
+                } else {
+                    secMatchStatus.textContent = 'Passwords do not match';
+                    secMatchStatus.className = 'text-[10px] font-bold text-red-500';
+                }
+            }
+        }
+
+        if (secNewPassInput) secNewPassInput.addEventListener('input', updateSecPasswordUI);
+        if (secConfirmPassInput) secConfirmPassInput.addEventListener('input', updateSecPasswordUI);
+
+        // Security Tab: Change Password Form Submission
+        const secChangePassForm = document.getElementById('fcSecChangePasswordForm');
+        if (secChangePassForm) {
+            secChangePassForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const currPass = (document.getElementById('fcSecCurrentPass')?.value || '');
+                const newPass = (document.getElementById('fcSecNewPass')?.value || '');
+                const confirmPass = (document.getElementById('fcSecConfirmPass')?.value || '');
+                const feedback = document.getElementById('fcSecPassFeedback');
+                const submitBtn = document.getElementById('fcSecUpdatePassBtn');
+
+                const evalRes = evaluatePassword(newPass);
+                if (!evalRes.isValid) {
+                    if (feedback) {
+                        feedback.className = 'p-2.5 rounded-xl text-xs font-bold text-center bg-red-50 text-red-800 border border-red-200 block';
+                        feedback.textContent = 'New password must be at least 8 characters and include numbers and uppercase/special characters.';
+                    }
+                    return;
+                }
+                if (newPass !== confirmPass) {
+                    if (feedback) {
+                        feedback.className = 'p-2.5 rounded-xl text-xs font-bold text-center bg-red-50 text-red-800 border border-red-200 block';
+                        feedback.textContent = 'New passwords do not match. Please verify confirmation.';
+                    }
+                    return;
+                }
+
+                submitBtn.disabled = true;
+                const origHtml = submitBtn.innerHTML;
+                submitBtn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin text-xs"></i> <span>Updating Password...</span>`;
+
+                try {
+                    const apiBase = window.location.port === '8000' ? '' : 'http://localhost:8000';
+                    const token = localStorage.getItem('fc_backend_token');
+                    const resp = await fetch(`${apiBase}/api/v1/auth/change-password`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            ...(token ? { 'Authorization': `Bearer ${token}` } : {})
+                        },
+                        body: JSON.stringify({
+                            current_password: currPass || undefined,
+                            new_password: newPass
+                        })
+                    });
+                    const data = await resp.json().catch(() => ({}));
+                    if (!resp.ok) {
+                        throw new Error(data.detail || 'Failed to update password.');
+                    }
+
+                    // Also update Supabase if available
+                    try {
+                        if (typeof client.auth.updateUser === 'function') {
+                            await client.auth.updateUser({ password: newPass });
+                        }
+                    } catch (_) {}
+
+                    if (feedback) {
+                        feedback.className = 'p-2.5 rounded-xl text-xs font-bold text-center bg-emerald-50 text-emerald-800 border border-emerald-200 block';
+                        feedback.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600 mr-1.5"></i> Password successfully updated!`;
+                        setTimeout(() => { feedback.className = 'hidden'; }, 4000);
+                    }
+                    secChangePassForm.reset();
+                    updateSecPasswordUI();
+                    showAuthToast('🔒 Account password updated successfully!', 'success');
+                } catch (err) {
+                    if (feedback) {
+                        feedback.className = 'p-2.5 rounded-xl text-xs font-bold text-center bg-red-50 text-red-800 border border-red-200 block';
+                        feedback.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-red-600 mr-1.5"></i> ${err.message || 'Failed to update password.'}`;
+                    }
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = origHtml;
+                }
+            });
+        }
+
+        // Security Tab: Edit Phone Panel
+        const toggleEditPhoneBtn = document.getElementById('fcSecToggleEditPhoneBtn');
+        const cancelPhoneBtn = document.getElementById('fcSecCancelPhoneBtn');
+        const phoneEditPanel = document.getElementById('fcSecPhoneEditPanel');
+        const newPhoneInput = document.getElementById('fcSecNewPhoneInput');
+        const phoneFeedback = document.getElementById('fcSecPhoneEditFeedback');
+        const savePhoneBtn = document.getElementById('fcSecSavePhoneBtn');
+
+        if (toggleEditPhoneBtn && phoneEditPanel) {
+            toggleEditPhoneBtn.addEventListener('click', () => {
+                phoneEditPanel.classList.toggle('hidden');
+                if (!phoneEditPanel.classList.contains('hidden') && newPhoneInput) {
+                    newPhoneInput.value = currentProfile?.phone || currentProfile?.whatsapp_support || '';
+                    newPhoneInput.focus();
+                }
+            });
+        }
+        if (cancelPhoneBtn && phoneEditPanel) {
+            cancelPhoneBtn.addEventListener('click', () => {
+                phoneEditPanel.classList.add('hidden');
+            });
+        }
+        if (savePhoneBtn) {
+            savePhoneBtn.addEventListener('click', async () => {
+                const raw = (newPhoneInput?.value || '').trim();
+                const clean = sanitizePhone(raw);
+                if (!validatePhone(clean)) {
+                    if (phoneFeedback) {
+                        phoneFeedback.className = 'p-2 rounded-lg text-[11px] font-bold bg-red-50 text-red-700 block';
+                        phoneFeedback.textContent = 'Please enter a valid phone number (e.g. +91 98200 12345).';
+                    }
+                    return;
+                }
+                savePhoneBtn.disabled = true;
+                savePhoneBtn.textContent = 'Saving...';
+                try {
+                    await saveMerchantProfile({ phone: clean, whatsapp_support: clean });
+                    if (phoneFeedback) {
+                        phoneFeedback.className = 'p-2 rounded-lg text-[11px] font-bold bg-emerald-50 text-emerald-700 block';
+                        phoneFeedback.textContent = 'Phone number updated successfully!';
+                        setTimeout(() => {
+                            phoneEditPanel.classList.add('hidden');
+                            phoneFeedback.className = 'hidden';
+                        }, 2000);
+                    }
+                    populateSecurityView();
+                } catch (err) {
+                    if (phoneFeedback) {
+                        phoneFeedback.className = 'p-2 rounded-lg text-[11px] font-bold bg-red-50 text-red-700 block';
+                        phoneFeedback.textContent = err.message || 'Failed to update phone number.';
+                    }
+                } finally {
+                    savePhoneBtn.disabled = false;
+                    savePhoneBtn.textContent = 'Save';
+                }
+            });
+        }
+
+        // Security Tab: Sign Out
+        const secSignOutBtn = document.getElementById('fcSecSignOutBtn');
+        if (secSignOutBtn) {
+            secSignOutBtn.addEventListener('click', signOut);
+        }
 
         const googleTrialBtn = document.getElementById('fcGoogleTrialBtn');
         const googleSignInBtn = document.getElementById('fcGoogleSignInBtn');
@@ -763,8 +1360,85 @@
 
         if (tabTrial) tabTrial.addEventListener('click', () => switchTab('trial'));
         if (tabSignIn) tabSignIn.addEventListener('click', () => switchTab('signin'));
+        if (tabProfile) tabProfile.addEventListener('click', () => switchTab('profile'));
         if (switchSignIn) switchSignIn.addEventListener('click', () => switchTab('signin'));
         if (switchTrial) switchTrial.addEventListener('click', () => switchTab('trial'));
+        if (switchProfileBtn) switchProfileBtn.addEventListener('click', () => switchTab('profile'));
+        if (modalProfileSwitchSignIn) {
+            modalProfileSwitchSignIn.addEventListener('click', () => switchTab('signin'));
+        }
+        const toggleAltSignInBtn = document.getElementById('fcToggleAltSignInBtn');
+        if (toggleAltSignInBtn) {
+            toggleAltSignInBtn.addEventListener('click', () => {
+                const loggedOutControls = document.getElementById('fcSignInLoggedOutControls');
+                if (loggedOutControls) loggedOutControls.classList.toggle('hidden');
+            });
+        }
+
+        if (modalSignOutBtn) {
+            modalSignOutBtn.addEventListener('click', async () => {
+                await signOut();
+                syncSignInActiveCard();
+                populateAuthModalProfileForm();
+            });
+        }
+
+        syncModalTabVisibility();
+
+        // Inline Merchant Profile Form Submit inside Auth Modal
+        if (modalProfileForm) {
+            modalProfileForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const saveBtn = document.getElementById('fcModalSaveProfileBtn');
+                const feedback = document.getElementById('fcModalProfileFeedback');
+                const origHtml = saveBtn ? saveBtn.innerHTML : '';
+
+                if (saveBtn) {
+                    saveBtn.disabled = true;
+                    saveBtn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin text-xs"></i> <span>Saving Profile...</span>`;
+                }
+
+                try {
+                    const profileData = {
+                        full_name: (document.getElementById('fcModalProfileFullName')?.value || '').trim(),
+                        business_name: (document.getElementById('fcModalProfileBusinessName')?.value || '').trim(),
+                        category_niche: document.getElementById('fcModalProfileCategory')?.value || 'Apparel & Fashion',
+                        gstin_udyam: (document.getElementById('fcModalProfileGstin')?.value || '').trim().toUpperCase(),
+                        whatsapp_support: (document.getElementById('fcModalProfileWhatsApp')?.value || '').trim(),
+                        store_url: (document.getElementById('fcModalProfileStoreUrl')?.value || '').trim(),
+                        pickup_address: (document.getElementById('fcModalProfilePickupAddress')?.value || '').trim(),
+                        merchant_upi_id: (document.getElementById('fcModalProfileUpiId')?.value || '').trim(),
+                        delivery_radius_km: parseInt(document.getElementById('fcModalProfileRadius')?.value || '15', 10)
+                    };
+
+                    await saveMerchantProfile(profileData);
+
+                    if (feedback) {
+                        feedback.className = 'p-2.5 rounded-xl text-xs font-bold text-center bg-emerald-50 text-emerald-800 border border-emerald-200 block';
+                        feedback.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600 mr-1.5"></i> Merchant profile successfully saved & synced!`;
+                        setTimeout(() => {
+                            feedback.className = 'hidden';
+                        }, 4000);
+                    }
+
+                    populateAuthModalProfileForm();
+                    syncSignInActiveCard();
+                } catch (err) {
+                    console.error('[Modal Profile Save Error]:', err);
+                    if (feedback) {
+                        feedback.className = 'p-2.5 rounded-xl text-xs font-bold text-center bg-red-50 text-red-800 border border-red-200 block';
+                        feedback.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-red-600 mr-1.5"></i> ${err.message || 'Failed to save profile.'}`;
+                    } else {
+                        alert(err.message || 'Failed to save profile.');
+                    }
+                } finally {
+                    if (saveBtn) {
+                        saveBtn.disabled = false;
+                        saveBtn.innerHTML = origHtml;
+                    }
+                }
+            });
+        }
 
         // Google Authentication Buttons
         if (googleTrialBtn) {
@@ -1152,54 +1826,6 @@
             });
         }
 
-        // ========================================================
-        // MERCHANT BUSINESS PROFILE FORM HANDLERS
-        // ========================================================
-        const profileModal = document.getElementById('fcMerchantProfileModal');
-        const closeProfileBtn = document.getElementById('fcCloseProfileModalBtn');
-        const cancelProfileBtn = document.getElementById('fcCancelProfileBtn');
-        const profileForm = document.getElementById('fcMerchantProfileForm');
-
-        if (closeProfileBtn) closeProfileBtn.addEventListener('click', closeProfileModal);
-        if (cancelProfileBtn) cancelProfileBtn.addEventListener('click', closeProfileModal);
-        if (profileModal) {
-            profileModal.addEventListener('click', (e) => {
-                if (e.target === profileModal) closeProfileModal();
-            });
-        }
-
-        if (profileForm) {
-            profileForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const submitBtn = document.getElementById('fcSaveMerchantProfileBtn');
-                submitBtn.disabled = true;
-                submitBtn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin text-xs"></i> <span>Saving...</span>`;
-
-                try {
-                    const profileData = {
-                        full_name: (document.getElementById('fcProfileFullName')?.value || '').trim(),
-                        business_name: (document.getElementById('fcProfileBusinessName')?.value || '').trim(),
-                        category_niche: document.getElementById('fcProfileCategory')?.value || 'Apparel & Fashion',
-                        gstin_udyam: (document.getElementById('fcProfileGstin')?.value || '').trim().toUpperCase(),
-                        whatsapp_support: (document.getElementById('fcProfileWhatsApp')?.value || '').trim(),
-                        store_url: (document.getElementById('fcProfileStoreUrl')?.value || '').trim(),
-                        pickup_address: (document.getElementById('fcProfilePickupAddress')?.value || '').trim(),
-                        merchant_upi_id: (document.getElementById('fcProfileUpiId')?.value || '').trim(),
-                        delivery_radius_km: parseInt(document.getElementById('fcProfileRadius')?.value || '15', 10)
-                    };
-
-                    await saveMerchantProfile(profileData);
-                    closeProfileModal();
-                } catch (err) {
-                    console.error('[Merchant Profile Save Error]:', err);
-                    alert(err.message || 'Failed to save merchant profile.');
-                } finally {
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = `<i class="fa-solid fa-floppy-disk text-xs"></i> <span>Save Merchant Profile</span>`;
-                }
-            });
-        }
-
         // Google Direct Email Modal Handlers
         if (closeGoogleEmailBtn) closeGoogleEmailBtn.addEventListener('click', closeGoogleEmailModal);
         if (googleEmailModal) {
@@ -1254,32 +1880,32 @@
 
                 const name = (payload.name || '').trim();
                 const email = (payload.email || '').trim().toLowerCase();
-                const phone = (payload.phone || '').trim();
+                const phone = sanitizePhone(payload.phone || '');
                 const storeUrl = (payload.store_url || '').trim();
                 const password = payload.password || '';
                 const confirmPassword = payload.confirm_password || '';
 
                 if (name.length < 2) {
-                    alert('Please enter your full name.');
+                    showAuthToast('Please enter your full name.', 'notice');
                     return;
                 }
                 if (!/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(email)) {
-                    alert('Please enter a valid work email address.');
+                    showAuthToast('Please enter a valid work email address.', 'notice');
                     return;
                 }
-                if (phone.replace(/[^0-9]/g, '').length < 7) {
-                    alert('Please enter a valid WhatsApp phone number.');
+                if (!validatePhone(phone)) {
+                    showAuthToast('Please enter a valid WhatsApp phone number (e.g. +91 98200 12345).', 'notice');
                     return;
                 }
 
                 // Professional Password Validation
                 const pwdEval = evaluatePassword(password);
                 if (!pwdEval.isValid) {
-                    alert('Password must be at least 8 characters long, contain at least 1 number, and 1 uppercase letter or symbol.');
+                    showAuthToast('Password must be at least 8 characters long, contain at least 1 number, and 1 uppercase letter or symbol.', 'notice');
                     return;
                 }
                 if (password !== confirmPassword) {
-                    alert('Passwords do not match. Please verify your confirm password.');
+                    showAuthToast('Passwords do not match. Please verify your confirm password.', 'notice');
                     return;
                 }
 
@@ -1287,6 +1913,47 @@
                 submitBtn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin text-sm"></i> <span>Activating 14-Day Trial...</span>`;
 
                 try {
+                    // 1. Call Backend API first to enforce 1-Account = 1-Email & 1-Phone uniqueness
+                    const apiBase = window.location.port === '8000' ? '' : 'http://localhost:8000';
+                    let backendUserData = null;
+                    try {
+                        const bResp = await fetch(`${apiBase}/api/v1/auth/register-trial`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                full_name: name,
+                                email,
+                                phone,
+                                store_url: storeUrl,
+                                password
+                            })
+                        });
+                        const bData = await bResp.json().catch(() => ({}));
+                        if (!bResp.ok) {
+                            const errMsg = (bData && (bData.detail || bData.message)) || 'Registration failed. Please check your details.';
+                            showAuthToast(errMsg, 'error');
+                            // If account or phone already exists, automatically switch to Sign In tab
+                            if (bResp.status === 400 || bResp.status === 409 || errMsg.toLowerCase().includes('already')) {
+                                switchTab('signin');
+                                const signInEmail = document.getElementById('fcSignInEmail');
+                                if (signInEmail) signInEmail.value = email;
+                                const signInPwd = document.getElementById('fcSignInPassword');
+                                if (signInPwd) signInPwd.focus();
+                            }
+                            submitBtn.disabled = false;
+                            submitBtn.innerHTML = originalContent;
+                            return;
+                        }
+                        if (bData.access_token) {
+                            localStorage.setItem('fc_backend_token', bData.access_token);
+                        }
+                        if (bData.user) {
+                            backendUserData = bData.user;
+                        }
+                    } catch (netErr) {
+                        console.warn('[Backend Register Trial Network Notice]:', netErr);
+                    }
+
                     let signUpUser = null;
                     // Call Supabase Auth SignUp
                     try {
@@ -1308,7 +1975,7 @@
                             if (error.message && error.message.toLowerCase().includes('rate limit')) {
                                 console.warn('[Supabase Auth]: Free tier email confirmation rate limit reached. Proceeding with instant client activation.');
                             } else {
-                                throw error;
+                                console.warn('[Supabase Auth SignUp Notice]:', error.message);
                             }
                         } else {
                             signUpUser = data?.user;
@@ -1321,11 +1988,11 @@
                     const isAdm = adminEmails.includes(email.toLowerCase());
 
                     const userObj = signUpUser || {
-                        id: 'trial-' + Date.now(),
+                        id: backendUserData?.id || ('trial-' + Date.now()),
                         email,
                         user_metadata: {
                             full_name: name,
-                            phone,
+                            phone: phone,
                             store_url: storeUrl,
                             role: isAdm ? 'admin' : 'client',
                             trial_active: true,
@@ -1339,13 +2006,19 @@
                         id: userObj.id,
                         email,
                         full_name: name,
+                        phone: phone,
+                        whatsapp_support: phone,
                         role: isAdm ? 'admin' : 'client',
                         trial_active: true,
-                        trial_days_left: 14
+                        trial_days_left: 14,
+                        ...(backendUserData || {})
                     };
 
                     localStorage.setItem('fc_session_user', JSON.stringify(userObj));
                     localStorage.setItem('fc_session_profile', JSON.stringify(currentProfile));
+                    if (backendUserData) {
+                        localStorage.setItem('fc_merchant_profile', JSON.stringify(backendUserData));
+                    }
 
                     // 1. Save lead record to Supabase
                     try {
@@ -1395,7 +2068,7 @@
 
                 } catch (err) {
                     console.error('[Trial Sign-up Error]:', err);
-                    alert(err.message || 'Failed to activate trial. Please try again.');
+                    showAuthToast(err.message || 'Failed to activate trial. Please try again.', 'error');
                 } finally {
                     submitBtn.disabled = false;
                     submitBtn.innerHTML = originalContent;
@@ -1417,21 +2090,72 @@
                 submitBtn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin text-sm"></i> <span>Signing In...</span>`;
 
                 try {
-                    let res;
-                    if (typeof client.auth.signInWithPassword === 'function') {
-                        res = await client.auth.signInWithPassword({ email, password });
-                    } else {
-                        res = await client.auth.signInWithOtp({ email });
+                    let backendToken = null;
+                    let backendUser = null;
+
+                    // 1. Authenticate with backend API first (supports email or phone number)
+                    try {
+                        const apiBase = window.location.port === '8000' ? '' : 'http://localhost:8000';
+                        const bResp = await fetch(`${apiBase}/api/v1/auth/login`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ email, password })
+                        });
+                        if (bResp.ok) {
+                            const bData = await bResp.json();
+                            if (bData.access_token) {
+                                backendToken = bData.access_token;
+                                localStorage.setItem('fc_backend_token', backendToken);
+                            }
+                            if (bData.user) {
+                                backendUser = bData.user;
+                            }
+                        }
+                    } catch (_) {}
+
+                    // 2. Authenticate with Supabase client
+                    let sbUser = null;
+                    try {
+                        let res;
+                        if (typeof client.auth.signInWithPassword === 'function') {
+                            res = await client.auth.signInWithPassword({ email, password });
+                        } else {
+                            res = await client.auth.signInWithOtp({ email });
+                        }
+                        if (res?.data?.user) {
+                            sbUser = res.data.user;
+                        }
+                    } catch (sbErr) {
+                        console.warn('[Supabase Sign In Notice]:', sbErr);
                     }
 
-                    if (res.error) throw res.error;
+                    if (!backendToken && !sbUser) {
+                        throw new Error('Invalid email, phone number, or password credentials.');
+                    }
 
-                    currentUser = res.data?.user;
+                    currentUser = sbUser || {
+                        id: backendUser?.id || ('user-' + Date.now()),
+                        email: backendUser?.email || email,
+                        user_metadata: {
+                            full_name: backendUser?.full_name || email.split('@')[0],
+                            phone: backendUser?.phone || backendUser?.whatsapp_support || '',
+                            role: backendUser?.role || 'client',
+                            trial_active: true,
+                            trial_days_left: 14
+                        },
+                        app_metadata: { provider: 'FastAPI Backend Auth' }
+                    };
+
                     await loadUserProfile(currentUser);
+                    if (backendUser) {
+                        currentProfile = { ...(currentProfile || {}), ...backendUser };
+                        localStorage.setItem('fc_merchant_profile', JSON.stringify(backendUser));
+                    }
                     localStorage.setItem('fc_session_user', JSON.stringify(currentUser));
                     if (currentProfile) {
                         localStorage.setItem('fc_session_profile', JSON.stringify(currentProfile));
                     }
+
                     syncNavbarUI();
 
                     signInForm.reset();
@@ -1449,32 +2173,242 @@
         }
     }
 
+    function syncModalTabVisibility() {
+        const tabTrial = document.getElementById('fcTabBtnTrial');
+        const tabSignIn = document.getElementById('fcTabBtnSignIn');
+        const tabProfile = document.getElementById('fcTabBtnProfile');
+        const tabSecurity = document.getElementById('fcTabBtnSecurity');
+
+        if (currentUser) {
+            if (tabTrial) tabTrial.classList.add('hidden');
+            if (tabSignIn) {
+                tabSignIn.classList.remove('hidden');
+                const label = tabSignIn.querySelector('span');
+                if (label) label.textContent = 'Overview';
+            }
+            if (tabProfile) tabProfile.classList.remove('hidden');
+            if (tabSecurity) tabSecurity.classList.remove('hidden');
+        } else {
+            if (tabTrial) tabTrial.classList.remove('hidden');
+            if (tabSignIn) {
+                tabSignIn.classList.remove('hidden');
+                const label = tabSignIn.querySelector('span');
+                if (label) label.textContent = 'Sign In';
+            }
+            if (tabProfile) tabProfile.classList.add('hidden');
+            if (tabSecurity) tabSecurity.classList.add('hidden');
+        }
+    }
+
     // 2. SWITCH TAB
     function switchTab(tab) {
+        // If unauthenticated user attempts to view profile or security, prompt & redirect to Sign In
+        if ((tab === 'profile' || tab === 'security') && !currentUser) {
+            showAuthToast('Please sign in to access account settings & security.', 'notice');
+            tab = 'signin';
+        }
+
         activeTab = tab;
         const tabTrial = document.getElementById('fcTabBtnTrial');
         const tabSignIn = document.getElementById('fcTabBtnSignIn');
+        const tabProfile = document.getElementById('fcTabBtnProfile');
+        const tabSecurity = document.getElementById('fcTabBtnSecurity');
         const viewTrial = document.getElementById('fcViewTrial');
         const viewSignIn = document.getElementById('fcViewSignIn');
+        const viewProfile = document.getElementById('fcViewProfile');
+        const viewSecurity = document.getElementById('fcViewSecurity');
 
         if (!tabTrial || !viewTrial) return;
 
+        const inactiveTabClass = 'flex-1 py-2.5 rounded-xl transition flex items-center justify-center gap-1.5 text-slate-500 hover:text-slate-800 font-bold';
+        const activeTabClass = 'flex-1 py-2.5 rounded-xl transition flex items-center justify-center gap-1.5 bg-white text-bikDark shadow-sm font-black';
+
+        if (tabTrial) tabTrial.className = inactiveTabClass;
+        if (tabSignIn) tabSignIn.className = inactiveTabClass;
+        if (tabProfile) tabProfile.className = inactiveTabClass + (!currentUser ? ' hidden' : '');
+        if (tabSecurity) tabSecurity.className = inactiveTabClass + (!currentUser ? ' hidden' : '');
+
+        if (viewTrial) viewTrial.classList.add('hidden');
+        if (viewSignIn) viewSignIn.classList.add('hidden');
+        if (viewProfile) viewProfile.classList.add('hidden');
+        if (viewSecurity) viewSecurity.classList.add('hidden');
+
         if (tab === 'trial') {
-            tabTrial.className = 'flex-1 py-2.5 rounded-xl transition flex items-center justify-center gap-2 bg-white text-bikDark shadow-sm font-black';
-            tabSignIn.className = 'flex-1 py-2.5 rounded-xl transition flex items-center justify-center gap-2 text-slate-500 hover:text-slate-800 font-bold';
-            viewTrial.classList.remove('hidden');
-            viewSignIn.classList.add('hidden');
-        } else {
-            tabSignIn.className = 'flex-1 py-2.5 rounded-xl transition flex items-center justify-center gap-2 bg-white text-bikDark shadow-sm font-black';
-            tabTrial.className = 'flex-1 py-2.5 rounded-xl transition flex items-center justify-center gap-2 text-slate-500 hover:text-slate-800 font-bold';
-            viewSignIn.classList.remove('hidden');
-            viewTrial.classList.add('hidden');
+            if (tabTrial) tabTrial.className = activeTabClass;
+            if (viewTrial) viewTrial.classList.remove('hidden');
+        } else if (tab === 'signin') {
+            if (tabSignIn) tabSignIn.className = activeTabClass;
+            if (viewSignIn) {
+                viewSignIn.classList.remove('hidden');
+                syncSignInActiveCard();
+            }
+        } else if (tab === 'profile') {
+            if (currentUser) {
+                if (tabProfile) tabProfile.className = activeTabClass;
+                if (viewProfile) {
+                    viewProfile.classList.remove('hidden');
+                    populateAuthModalProfileForm();
+                }
+            } else {
+                if (tabSignIn) tabSignIn.className = activeTabClass;
+                if (viewSignIn) {
+                    viewSignIn.classList.remove('hidden');
+                    syncSignInActiveCard();
+                }
+            }
+        } else if (tab === 'security') {
+            if (currentUser) {
+                if (tabSecurity) tabSecurity.className = activeTabClass;
+                if (viewSecurity) {
+                    viewSecurity.classList.remove('hidden');
+                    populateSecurityView();
+                }
+            } else {
+                if (tabSignIn) tabSignIn.className = activeTabClass;
+                if (viewSignIn) {
+                    viewSignIn.classList.remove('hidden');
+                    syncSignInActiveCard();
+                }
+            }
         }
+
+        syncModalTabVisibility();
+    }
+
+    function populateSecurityView() {
+        const prof = getMerchantProfile();
+        const avatarEl = document.getElementById('fcSecAvatar');
+        const fullNameEl = document.getElementById('fcSecFullName');
+        const badgeEl = document.getElementById('fcSecMembershipBadge');
+        const emailEl = document.getElementById('fcSecEmailTxt');
+        const phoneEl = document.getElementById('fcSecPhoneTxt');
+        const statusEl = document.getElementById('fcSecAccountStatus');
+
+        const email = currentUser?.email || prof.email || 'you@company.com';
+        const rawName = prof.full_name || currentProfile?.full_name || currentUser?.user_metadata?.full_name || email.split('@')[0];
+        const isAdmin = (currentProfile?.role === 'admin') || (window.FC_BACKEND?.getConfig()?.ADMIN_EMAILS || []).includes(email.toLowerCase());
+        const phone = currentProfile?.phone || currentProfile?.whatsapp_support || prof.whatsapp_support || prof.phone || '';
+
+        if (avatarEl) avatarEl.textContent = getSafeInitials(rawName);
+        if (fullNameEl) fullNameEl.textContent = rawName;
+        if (emailEl) emailEl.textContent = email;
+        if (phoneEl) {
+            phoneEl.textContent = phone ? formatPhoneDisplay(phone) : 'No phone linked (Click Edit to bind)';
+            phoneEl.className = phone ? 'font-mono font-bold text-slate-800 text-xs truncate' : 'font-sans italic text-slate-400 text-xs truncate';
+        }
+        if (badgeEl) {
+            badgeEl.textContent = isAdmin ? 'Admin Privileges' : '14d Free Trial Active';
+            badgeEl.className = `text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full shrink-0 ${isAdmin ? 'bg-orange-100 text-bikOrange' : 'bg-emerald-100 text-emerald-800'}`;
+        }
+        if (statusEl) {
+            statusEl.textContent = isAdmin ? 'Executive Platform Administrator' : 'Verified Single Merchant Account • Full AI Operations';
+        }
+
+        const editPanel = document.getElementById('fcSecPhoneEditPanel');
+        if (editPanel) editPanel.classList.add('hidden');
+    }
+
+    function populateAuthModalProfileForm() {
+        const prof = getMerchantProfile();
+        const busInput = document.getElementById('fcModalProfileBusinessName');
+        const catInput = document.getElementById('fcModalProfileCategory');
+        const nameInput = document.getElementById('fcModalProfileFullName');
+        const gstinInput = document.getElementById('fcModalProfileGstin');
+        const waInput = document.getElementById('fcModalProfileWhatsApp');
+        const storeUrlInput = document.getElementById('fcModalProfileStoreUrl');
+        const addrInput = document.getElementById('fcModalProfilePickupAddress');
+        const upiInput = document.getElementById('fcModalProfileUpiId');
+        const radInput = document.getElementById('fcModalProfileRadius');
+
+        if (busInput) busInput.value = prof.business_name || '';
+        if (catInput) catInput.value = prof.category_niche || 'Apparel & Fashion';
+        if (nameInput) nameInput.value = prof.full_name || '';
+        if (gstinInput) gstinInput.value = prof.gstin_udyam || '';
+        if (waInput) waInput.value = prof.whatsapp_support || '';
+        if (storeUrlInput) storeUrlInput.value = prof.store_url || '';
+        if (addrInput) addrInput.value = prof.pickup_address || '';
+        if (upiInput) upiInput.value = prof.merchant_upi_id || '';
+        if (radInput) radInput.value = (prof.delivery_radius_km || 15).toString();
+
+        // Update user status and sync pill in profile view
+        const avatarEl = document.getElementById('fcModalProfileAvatar');
+        const userTxt = document.getElementById('fcModalProfileUserTxt');
+        const emailTxt = document.getElementById('fcModalProfileEmailTxt');
+        const syncBadge = document.getElementById('fcModalProfileSyncBadge');
+
+        if (currentUser) {
+            const rawName = prof.full_name || currentProfile?.full_name || currentUser.user_metadata?.full_name || (currentUser.email ? currentUser.email.split('@')[0] : 'Merchant');
+            if (userTxt) userTxt.textContent = rawName;
+            if (emailTxt) emailTxt.textContent = currentUser.email || '';
+            if (avatarEl) avatarEl.textContent = getSafeInitials(rawName);
+            if (syncBadge) {
+                if (hasSavedMerchantProfile()) {
+                    syncBadge.className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 flex items-center gap-1 shrink-0';
+                    syncBadge.innerHTML = `<i class="fa-solid fa-shield-check text-emerald-600"></i> Cloud Synced`;
+                } else {
+                    syncBadge.className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 flex items-center gap-1 shrink-0';
+                    syncBadge.innerHTML = `<i class="fa-solid fa-clock text-amber-600"></i> Not Configured`;
+                }
+            }
+        } else {
+            if (userTxt) userTxt.textContent = 'Account Profile';
+            if (emailTxt) emailTxt.textContent = 'Sign in to sync profile';
+            if (avatarEl) avatarEl.textContent = 'FC';
+            if (syncBadge) {
+                syncBadge.className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 flex items-center gap-1 shrink-0';
+                syncBadge.innerHTML = `<i class="fa-solid fa-lock text-slate-400"></i> Sign In Required`;
+            }
+        }
+    }
+
+    function syncSignInActiveCard() {
+        const card = document.getElementById('fcSignInActiveUserCard');
+        const loggedOutControls = document.getElementById('fcSignInLoggedOutControls');
+        const altSignInRow = document.getElementById('fcSignInSwitchAccountRow');
+        if (!card) return;
+
+        if (!currentUser) {
+            card.classList.add('hidden');
+            if (loggedOutControls) loggedOutControls.classList.remove('hidden');
+            if (altSignInRow) altSignInRow.classList.add('hidden');
+            return;
+        }
+
+        card.classList.remove('hidden');
+        if (loggedOutControls) loggedOutControls.classList.add('hidden');
+        if (altSignInRow) altSignInRow.classList.remove('hidden');
+
+        const prof = getMerchantProfile();
+        const rawName = prof.full_name || currentProfile?.full_name || currentUser.user_metadata?.full_name || (currentUser.email ? currentUser.email.split('@')[0] : 'Merchant Founder');
+        const userEmail = currentUser.email || '';
+
+        const nameEl = document.getElementById('fcSignInUserName');
+        const emailEl = document.getElementById('fcSignInUserEmail');
+        const avatarEl = document.getElementById('fcSignInUserAvatar');
+        const brandEl = document.getElementById('fcSignInActiveBrand');
+        const catEl = document.getElementById('fcSignInActiveCat');
+        const phoneTxt = document.getElementById('fcSignInActivePhoneTxt');
+        const gstinTxt = document.getElementById('fcSignInActiveGstinTxt');
+        const upiTxt = document.getElementById('fcSignInActiveUpiTxt');
+
+        if (nameEl) nameEl.textContent = rawName;
+        if (emailEl) emailEl.textContent = userEmail;
+        if (avatarEl) avatarEl.textContent = getSafeInitials(rawName);
+        if (brandEl) brandEl.textContent = prof.business_name || 'My Store Profile';
+        if (catEl) catEl.textContent = `${prof.category_niche || 'Apparel & Fashion'} • ${prof.delivery_radius_km || 15} km Radius`;
+        if (phoneTxt) phoneTxt.textContent = prof.whatsapp_support || 'Not set';
+        if (gstinTxt) gstinTxt.textContent = prof.gstin_udyam || 'Not set';
+        if (upiTxt) upiTxt.textContent = prof.merchant_upi_id || 'Not set';
     }
 
     // 3. OPEN / CLOSE MODAL
     function openAuthModal(defaultTab = 'signin') {
         injectAuthModal();
+        if (defaultTab === 'profile' && !currentUser) {
+            showAuthToast('Please sign in to view and manage your profile.', 'notice');
+            defaultTab = 'signin';
+        }
+        syncModalTabVisibility();
         switchTab(defaultTab);
         const modal = document.getElementById('fcAuthModal');
         const card = document.getElementById('fcAuthModalCard');
@@ -1548,118 +2482,110 @@
     // Merchant Profile Modal
     function openProfileModal() {
         injectAuthModal();
-        const modal = document.getElementById('fcMerchantProfileModal');
-        const card = document.getElementById('fcMerchantProfileCard');
-        if (!modal) return;
-
-        // Prepopulate with latest saved merchant details
-        const prof = getMerchantProfile();
-        const nameInput = document.getElementById('fcProfileFullName');
-        const busInput = document.getElementById('fcProfileBusinessName');
-        const catInput = document.getElementById('fcProfileCategory');
-        const gstinInput = document.getElementById('fcProfileGstin');
-        const waInput = document.getElementById('fcProfileWhatsApp');
-        const addrInput = document.getElementById('fcProfilePickupAddress');
-        const upiInput = document.getElementById('fcProfileUpiId');
-        const radInput = document.getElementById('fcProfileRadius');
-        const storeUrlInput = document.getElementById('fcProfileStoreUrl');
-
-        if (nameInput) nameInput.value = prof.full_name || '';
-        if (busInput) busInput.value = prof.business_name || '';
-        if (catInput && prof.category_niche) catInput.value = prof.category_niche;
-        if (gstinInput) gstinInput.value = prof.gstin_udyam || '';
-        if (waInput) waInput.value = prof.whatsapp_support || '';
-        if (addrInput) addrInput.value = prof.pickup_address || '';
-        if (upiInput) upiInput.value = prof.merchant_upi_id || '';
-        if (radInput && prof.delivery_radius_km) radInput.value = prof.delivery_radius_km.toString();
-        if (storeUrlInput) storeUrlInput.value = prof.store_url || '';
-
-        modal.classList.remove('opacity-0', 'pointer-events-none');
-        if (card) {
-            card.classList.remove('scale-95');
-            card.classList.add('scale-100');
+        if (!currentUser) {
+            showAuthToast('Please sign in to view and manage your profile.', 'notice');
+            openAuthModal('signin');
+            return;
         }
+        openAuthModal('profile');
     }
 
     function closeProfileModal() {
-        const modal = document.getElementById('fcMerchantProfileModal');
-        const card = document.getElementById('fcMerchantProfileCard');
-        if (!modal) return;
-        modal.classList.add('opacity-0', 'pointer-events-none');
-        if (card) {
-            card.classList.remove('scale-100');
-            card.classList.add('scale-95');
+        closeAuthModal();
+    }
+
+    function hasSavedMerchantProfile() {
+        if (!currentUser) return false;
+        try {
+            const saved = JSON.parse(localStorage.getItem('fc_merchant_profile') || 'null');
+            if (saved && (saved._saved || saved.business_name || saved.pickup_address || saved.gstin_udyam || saved.merchant_upi_id)) {
+                return true;
+            }
+        } catch (_) {}
+        if (currentProfile && (currentProfile.business_name || currentProfile.pickup_address || currentProfile.gstin_udyam || currentProfile.merchant_upi_id)) {
+            return true;
         }
+        return false;
     }
 
     function getMerchantProfile() {
+        if (!currentUser || !hasSavedMerchantProfile()) {
+            return {
+                full_name: '',
+                business_name: '',
+                category_niche: 'Apparel & Fashion',
+                gstin_udyam: '',
+                whatsapp_support: '',
+                pickup_address: '',
+                merchant_upi_id: '',
+                delivery_radius_km: 15,
+                store_url: ''
+            };
+        }
+
         let saved = {};
         try {
             saved = JSON.parse(localStorage.getItem('fc_merchant_profile') || '{}');
         } catch (_) {}
 
         return {
-            full_name: saved.full_name || currentProfile?.full_name || currentUser?.user_metadata?.full_name || 'Karan Malhotra',
-            business_name: saved.business_name || currentProfile?.business_name || currentProfile?.company_name || 'Mumbai Couture & Boutique',
+            full_name: saved.full_name || currentProfile?.full_name || '',
+            business_name: saved.business_name || currentProfile?.business_name || '',
             category_niche: saved.category_niche || currentProfile?.category_niche || 'Apparel & Fashion',
-            gstin_udyam: saved.gstin_udyam || currentProfile?.gstin_udyam || '27AAACF1234M1Z5',
-            whatsapp_support: saved.whatsapp_support || currentProfile?.whatsapp_support || currentProfile?.phone || '+91 99203 86421',
-            pickup_address: saved.pickup_address || currentProfile?.pickup_address || 'Shop 4, Ground Floor, Opera House, Charni Road, Mumbai, Maharashtra 400004',
-            merchant_upi_id: saved.merchant_upi_id || currentProfile?.merchant_upi_id || 'mumbaicouture@okhdfcbank',
-            delivery_radius_km: saved.delivery_radius_km || currentProfile?.delivery_radius_km || 15,
-            store_url: saved.store_url || currentProfile?.store_url || 'https://mumbaicouture.in'
+            gstin_udyam: saved.gstin_udyam || currentProfile?.gstin_udyam || '',
+            whatsapp_support: saved.whatsapp_support || currentProfile?.whatsapp_support || '',
+            pickup_address: saved.pickup_address || currentProfile?.pickup_address || '',
+            merchant_upi_id: saved.merchant_upi_id || currentProfile?.merchant_upi_id || '',
+            delivery_radius_km: parseInt(saved.delivery_radius_km || currentProfile?.delivery_radius_km || 15, 10),
+            store_url: saved.store_url || currentProfile?.store_url || ''
         };
     }
 
     async function saveMerchantProfile(data) {
-        if (!data.business_name || data.business_name.trim().length < 2) {
-            throw new Error('Please enter a valid Business / Brand Name (minimum 2 characters).');
+        if (!data || typeof data !== 'object') {
+            throw new Error('Invalid profile data provided.');
         }
-        if (!data.whatsapp_support || data.whatsapp_support.trim().length < 7) {
-            throw new Error('Please enter a valid WhatsApp Support Number (minimum 7 digits).');
+
+        // Validate individual fields when they are explicitly passed
+        if (data.business_name !== undefined) {
+            if (!data.business_name || data.business_name.trim().length < 2) {
+                throw new Error('Please enter a valid Business / Brand Name (minimum 2 characters).');
+            }
         }
-        if (!data.pickup_address || data.pickup_address.trim().length < 5) {
-            throw new Error('Please enter a complete pickup address for Borzo courier dispatch.');
+        if (data.pickup_address !== undefined) {
+            if (!data.pickup_address || data.pickup_address.trim().length < 5) {
+                throw new Error('Please enter a complete pickup address for Borzo courier dispatch.');
+            }
+        }
+        if (data.whatsapp_support !== undefined && data.whatsapp_support) {
+            const cleanWa = sanitizePhone(data.whatsapp_support);
+            if (!validatePhone(cleanWa)) {
+                throw new Error('Please enter a valid WhatsApp Support Number (e.g. +91 98200 12345).');
+            }
+        }
+        if (data.phone !== undefined && data.phone) {
+            const cleanP = sanitizePhone(data.phone);
+            if (!validatePhone(cleanP)) {
+                throw new Error('Please enter a valid phone number (e.g. +91 98200 12345).');
+            }
         }
         if (data.merchant_upi_id && !data.merchant_upi_id.includes('@')) {
             throw new Error('Please enter a valid Merchant UPI ID (e.g. brand@okhdfcbank).');
         }
 
-        // Persist locally
-        localStorage.setItem('fc_merchant_profile', JSON.stringify(data));
-
-        if (currentProfile) {
-            currentProfile = { ...currentProfile, ...data };
-            localStorage.setItem('fc_session_profile', JSON.stringify(currentProfile));
-        }
-
-        // Persist to Supabase
+        // 1. Persist to FastAPI Backend FIRST to catch phone uniqueness / conflict errors!
+        let updatedBackend = null;
         try {
-            if (currentUser && client) {
-                await client.from('profiles').update({
-                    full_name: data.full_name,
-                    business_name: data.business_name,
-                    category_niche: data.category_niche,
-                    gstin_udyam: data.gstin_udyam,
-                    whatsapp_support: data.whatsapp_support,
-                    pickup_address: data.pickup_address,
-                    merchant_upi_id: data.merchant_upi_id,
-                    delivery_radius_km: parseInt(data.delivery_radius_km || 15, 10),
-                    store_url: data.store_url,
-                    metadata: data
-                }).eq('id', currentUser.id);
+            let token = localStorage.getItem('fc_backend_token');
+            if (!token && client?.auth?.getSession) {
+                try {
+                    const { data: sData } = await client.auth.getSession();
+                    token = sData?.session?.access_token;
+                } catch (_) {}
             }
-        } catch (e) {
-            console.warn('[Supabase Profile Update Error]:', e);
-        }
-
-        // Persist to FastAPI Backend
-        try {
-            const session = client.auth.getSessionSync ? client.auth.getSessionSync() : null;
-            const token = session?.access_token || localStorage.getItem('fc_backend_token');
             if (token) {
                 const apiBase = window.location.port === '8000' ? '' : 'http://localhost:8000';
-                await fetch(`${apiBase}/api/v1/auth/profile`, {
+                const bResp = await fetch(`${apiBase}/api/v1/auth/profile`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -1667,21 +2593,89 @@
                     },
                     body: JSON.stringify(data)
                 });
+                const bData = await bResp.json().catch(() => ({}));
+                if (!bResp.ok) {
+                    throw new Error(bData.detail || bData.message || 'Failed to update merchant profile.');
+                }
+                updatedBackend = bData;
             }
-        } catch (_) {}
+        } catch (backendErr) {
+            // Re-throw validation or conflict error so the caller can display the alert
+            if (backendErr.message && !backendErr.message.includes('fetch')) {
+                throw backendErr;
+            }
+            console.warn('[Backend Profile Sync Notice]:', backendErr);
+        }
 
-        window.dispatchEvent(new CustomEvent('fc:merchant-profile-updated', { detail: data }));
+        // 2. Persist locally ONLY AFTER backend validation succeeds
+        const toSave = { ...(currentProfile || {}), ...data, ...(updatedBackend || {}), _saved: true };
+        localStorage.setItem('fc_merchant_profile', JSON.stringify(toSave));
+
+        if (currentProfile) {
+            currentProfile = { ...currentProfile, ...toSave };
+            localStorage.setItem('fc_session_profile', JSON.stringify(currentProfile));
+        }
+
+        // 3. Persist to Supabase if connected
+        try {
+            if (currentUser && client) {
+                const sbPayload = {};
+                if (data.full_name !== undefined) sbPayload.full_name = data.full_name;
+                if (data.business_name !== undefined) sbPayload.business_name = data.business_name;
+                if (data.category_niche !== undefined) sbPayload.category_niche = data.category_niche;
+                if (data.gstin_udyam !== undefined) sbPayload.gstin_udyam = data.gstin_udyam;
+                if (data.whatsapp_support !== undefined) sbPayload.whatsapp_support = data.whatsapp_support;
+                if (data.pickup_address !== undefined) sbPayload.pickup_address = data.pickup_address;
+                if (data.merchant_upi_id !== undefined) sbPayload.merchant_upi_id = data.merchant_upi_id;
+                if (data.delivery_radius_km !== undefined) sbPayload.delivery_radius_km = parseInt(data.delivery_radius_km, 10);
+                if (data.store_url !== undefined) sbPayload.store_url = data.store_url;
+
+                if (Object.keys(sbPayload).length > 0) {
+                    await client.from('profiles').update(sbPayload).eq('id', currentUser.id);
+                }
+            }
+        } catch (e) {
+            console.warn('[Supabase Profile Update Error]:', e);
+        }
+
+        window.dispatchEvent(new CustomEvent('fc:merchant-profile-updated', { detail: toSave }));
         syncNavbarUI();
+        syncSignInActiveCard();
+        populateAuthModalProfileForm();
         showAuthToast('✅ Merchant profile successfully updated!');
-        return data;
+        return toSave;
     }
 
-    // Complete Google Email Sign-In (Any Visitor's Email, Zero Hardcoding)
+    // Complete Google Email Sign-In (Reconciling Existing Account & Profile)
     async function completeGoogleEmailSignIn(email) {
         const cleanEmail = email.trim().toLowerCase();
         const name = cleanEmail.split('@')[0];
         const adminEmails = (window.FC_BACKEND.getConfig().ADMIN_EMAILS || []).map(e => e.toLowerCase());
         const isAdm = adminEmails.includes(cleanEmail);
+
+        // 1. Reconcile with backend API first so existing merchant profile/phone is preserved
+        let reconciledUser = null;
+        let backendToken = null;
+        try {
+            const apiBase = window.location.port === '8000' ? '' : 'http://localhost:8000';
+            const bResp = await fetch(`${apiBase}/api/v1/auth/google-callback`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: cleanEmail, name: name, avatar_url: '' })
+            });
+            if (bResp.ok) {
+                const bData = await bResp.json();
+                if (bData.access_token) {
+                    backendToken = bData.access_token;
+                    localStorage.setItem('fc_backend_token', backendToken);
+                }
+                if (bData.user) {
+                    reconciledUser = bData.user;
+                }
+            }
+        } catch (netErr) {
+            console.warn('[Google OAuth Backend Reconciliation Notice]:', netErr);
+        }
 
         try {
             // Optional Supabase OTP dispatch
@@ -1695,13 +2689,17 @@
             console.warn('[Google Email Auth dispatch notice]:', e);
         }
 
+        const reconciledPhone = (reconciledUser && (reconciledUser.phone || reconciledUser.whatsapp_support)) || '';
+        const displayName = reconciledUser?.full_name || name;
+
         const userObj = {
-            id: isAdm ? 'admin-fc' : 'client-' + Date.now(),
+            id: reconciledUser?.id || (isAdm ? 'admin-fc' : 'client-' + Date.now()),
             email: cleanEmail,
             user_metadata: {
-                full_name: name,
-                name: name,
-                role: isAdm ? 'admin' : 'client',
+                full_name: displayName,
+                name: displayName,
+                phone: reconciledPhone,
+                role: reconciledUser?.role || (isAdm ? 'admin' : 'client'),
                 trial_active: true,
                 trial_days_left: 14
             },
@@ -1712,21 +2710,27 @@
         currentProfile = {
             id: userObj.id,
             email: cleanEmail,
-            full_name: name,
-            role: isAdm ? 'admin' : 'client',
+            full_name: displayName,
+            phone: reconciledPhone,
+            whatsapp_support: reconciledPhone,
+            role: reconciledUser?.role || (isAdm ? 'admin' : 'client'),
             trial_active: true,
-            trial_days_left: 14
+            trial_days_left: 14,
+            ...(reconciledUser || {})
         };
 
         localStorage.setItem('fc_session_user', JSON.stringify(userObj));
         localStorage.setItem('fc_session_profile', JSON.stringify(currentProfile));
+        if (reconciledUser) {
+            localStorage.setItem('fc_merchant_profile', JSON.stringify(reconciledUser));
+        }
 
-        // Save lead in Supabase
+        // Save lead in Supabase (preserving real phone number when available)
         try {
             await client.from('leads_inquiries').insert([{
-                name: name,
+                name: displayName,
                 email: cleanEmail,
-                phone: '+91 (Google Sign-In)',
+                phone: reconciledPhone || '+91 (Google Sign-In)',
                 service: isAdm ? 'Agency Executive' : '14-Day Free Pilot Account',
                 message: `User signed in via Google Account (${cleanEmail}).`,
                 source_page: window.location.pathname.split('/').pop() || 'index.html',
@@ -1737,9 +2741,9 @@
         // Forward to webhook
         if (window.FC_LEADS && typeof window.FC_LEADS.triggerN8nWebhook === 'function') {
             window.FC_LEADS.triggerN8nWebhook({
-                name: name,
+                name: displayName,
                 email: cleanEmail,
-                phone: '+91 (Google Sign-In)',
+                phone: reconciledPhone || '+91 (Google Sign-In)',
                 service: isAdm ? 'Agency Executive' : '14-Day Free Trial (Google Sign-In)',
                 message: `Signed in via Google.`,
                 source_page: window.location.pathname
@@ -1796,6 +2800,8 @@
         localStorage.removeItem('fc_founder_unlocked');
         localStorage.removeItem('fc_session_user');
         localStorage.removeItem('fc_session_profile');
+        localStorage.removeItem('fc_merchant_profile');
+        localStorage.removeItem('fc_backend_token');
         try {
             await client.auth.signOut();
         } catch (e) {}
@@ -1805,6 +2811,12 @@
             window.location.href = 'index.html';
         } else {
             syncNavbarUI();
+            syncModalTabVisibility();
+            if (activeTab === 'profile' || activeTab === 'security') {
+                switchTab('signin');
+            }
+            syncSignInActiveCard();
+            populateAuthModalProfileForm();
             showAuthToast('Signed out successfully.');
         }
     }
@@ -1826,12 +2838,47 @@
                 currentProfile = {
                     id: user.id,
                     email: user.email,
-                    full_name: user.user_metadata?.full_name || user.email.split('@')[0],
+                    full_name: user.user_metadata?.full_name || (user.email ? user.email.split('@')[0] : 'Merchant Founder'),
                     avatar_url: user.user_metadata?.avatar_url || '',
                     role: isAdm ? 'admin' : 'client',
                     trial_active: true,
                     trial_days_left: 14
                 };
+            }
+
+            // Sync with backend /api/v1/auth/me if backend token exists
+            try {
+                const bToken = localStorage.getItem('fc_backend_token');
+                if (bToken) {
+                    const apiBase = window.location.port === '8000' ? '' : 'http://localhost:8000';
+                    const meResp = await fetch(`${apiBase}/api/v1/auth/me`, {
+                        headers: { 'Authorization': `Bearer ${bToken}` }
+                    });
+                    if (meResp.ok) {
+                        const meData = await meResp.json();
+                        currentProfile = { ...currentProfile, ...meData };
+                    }
+                }
+            } catch (_) {}
+
+            // Synchronize fc_merchant_profile in localStorage ONLY IF active profile has saved merchant data
+            if (currentProfile && (currentProfile.business_name || currentProfile.pickup_address || currentProfile.gstin_udyam || currentProfile.merchant_upi_id)) {
+                const syncedMerchant = {
+                    full_name: currentProfile.full_name || '',
+                    business_name: currentProfile.business_name || '',
+                    category_niche: currentProfile.category_niche || 'Apparel & Fashion',
+                    gstin_udyam: currentProfile.gstin_udyam || '',
+                    whatsapp_support: currentProfile.whatsapp_support || currentProfile.phone || '',
+                    pickup_address: currentProfile.pickup_address || '',
+                    merchant_upi_id: currentProfile.merchant_upi_id || '',
+                    delivery_radius_km: currentProfile.delivery_radius_km || 15,
+                    store_url: currentProfile.store_url || '',
+                    _saved: true
+                };
+                localStorage.setItem('fc_merchant_profile', JSON.stringify(syncedMerchant));
+            }
+            if (currentProfile) {
+                localStorage.setItem('fc_session_profile', JSON.stringify(currentProfile));
             }
         } catch (err) {
             console.warn('[Profile] Error fetching profile:', err);
@@ -1929,6 +2976,7 @@
                 `;
             }
         });
+        syncModalTabVisibility();
     }
 
     // 7. GLOBAL INTERCEPTOR FOR "START FOR FREE" BUTTONS
@@ -2173,8 +3221,14 @@
         }
 
         client.auth.onAuthStateChange(async (event, session) => {
-            currentUser = session?.user || currentUser || null;
-            if (currentUser) {
+            if (event === 'SIGNED_OUT' || !session) {
+                currentUser = null;
+                currentProfile = null;
+                if (activeTab === 'profile') {
+                    switchTab('signin');
+                }
+            } else {
+                currentUser = session.user;
                 await loadUserProfile(currentUser);
                 localStorage.setItem('fc_session_user', JSON.stringify(currentUser));
                 if (currentProfile) {
@@ -2184,10 +3238,11 @@
                 if (event === 'SIGNED_IN' || event === 'USER_UPDATED') {
                     notifyAgencyOfLogin(currentUser, event);
                 }
-            } else {
-                currentProfile = null;
             }
             syncNavbarUI();
+            syncModalTabVisibility();
+            syncSignInActiveCard();
+            populateAuthModalProfileForm();
 
             window.dispatchEvent(new CustomEvent('fc:auth-state-changed', {
                 detail: { user: currentUser, profile: currentProfile }
@@ -2205,6 +3260,7 @@
         openProfileModal,
         closeProfileModal,
         getMerchantProfile,
+        hasSavedMerchantProfile,
         saveMerchantProfile,
         openGoogleEmailModal,
         closeGoogleEmailModal,
@@ -2216,7 +3272,11 @@
         getUser: () => currentUser,
         getProfile: () => currentProfile,
         syncNavbarUI,
-        evaluatePassword
+        syncModalTabVisibility,
+        evaluatePassword,
+        sanitizePhone,
+        validatePhone,
+        formatPhoneDisplay
     };
 
 })(window);
