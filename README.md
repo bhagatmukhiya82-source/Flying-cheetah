@@ -31,9 +31,9 @@
 
   <!-- VIBRANT NANO BANANA PANORAMIC HEADER BANNER -->
   <a href="https://flying-cheetah.vercel.app">
-    <img src="docs/assets/banner_quantum_growth.png" alt="Flying Cheetah Quantum Acceleration Banner" width="980" style="border-radius: 16px; border: 2px solid #FFE600; box-shadow: 0 20px 50px rgba(255, 230, 0, 0.25);" />
+    <img src="docs/assets/banner_quantum_growth.png" alt="Flying Cheetah 3D Autonomous Commerce Architecture" width="980" style="border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);" />
   </a>
-  <p><i><b>Autonomous Commerce Quantum Acceleration</b>: Sub-second conversational AI checkout, real-time Borzo/Porter fleet dispatch, and automated financial data streaming.</i></p>
+  <p><i><b>Flying Cheetah 3D Autonomous Commerce Architecture</b>: 1-Click conversational WhatsApp storefront, event-driven Supabase mesh, and automated 20-min Borzo doorstep delivery.</i></p>
 
 </div>
 
