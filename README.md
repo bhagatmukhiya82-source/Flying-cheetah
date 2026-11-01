@@ -410,6 +410,7 @@ Full legal documents available in the repository:
           Architecting distributed asynchronous systems, Python FastAPI backends, Celery worker clusters, and multi-modal Artificial Intelligence cognition pipelines for high-throughput enterprise commerce.
         </p>
         <div style="margin-top: 14px;">
+          <a href="https://www.linkedin.com/in/bhagat-mukhiya-b74683380"><img src="https://img.shields.io/badge/LinkedIn-Bhagat_Mukhiya-0A66C2?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
           <a href="https://github.com/bhagatmukhiya82-source"><img src="https://img.shields.io/badge/GitHub-bhagatmukhiya82--source-181717?style=flat-square&logo=github&logoColor=white" alt="GitHub" /></a>
           <a href="mailto:bhagatmukhiya82@gmail.com"><img src="https://img.shields.io/badge/Email-bhagatmukhiya82%40gmail.com-EA4335?style=flat-square&logo=gmail&logoColor=white" alt="Email" /></a>
         </div>
@@ -421,6 +422,7 @@ Full legal documents available in the repository:
           Spearheading merchant acquisition, high-impact brand outreach, courier fleet dispatch logistics, and enterprise client partnerships across Mumbai MMR and pan-India retail corridors.
         </p>
         <div style="margin-top: 14px;">
+          <a href="https://www.linkedin.com/in/yash-gaikwad-1669b0397"><img src="https://img.shields.io/badge/LinkedIn-Yash_Gaikwad-0A66C2?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
           <a href="https://wa.me/919920386421"><img src="https://img.shields.io/badge/WhatsApp-+91_99203_86421-25D366?style=flat-square&logo=whatsapp&logoColor=white" alt="WhatsApp" /></a>
           <a href="mailto:flyingcheetah.agency@gmail.com"><img src="https://img.shields.io/badge/Email-flyingcheetah.agency%40gmail.com-0078D4?style=flat-square&logo=microsoftoutlook&logoColor=white" alt="Email" /></a>
         </div>
