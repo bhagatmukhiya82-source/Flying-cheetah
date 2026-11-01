@@ -199,7 +199,7 @@
         }
 
         try {
-            console.log(`[n8n Automation] Forwarding lead payload to webhook: ${n8nUrl}`);
+            console.log(`[Automation Engine] Forwarding lead payload to webhook: ${n8nUrl}`);
             await fetch(n8nUrl, {
                 method: 'POST',
                 mode: 'no-cors',
@@ -219,10 +219,10 @@
                     }
                 })
             });
-            console.log('[n8n Automation] Lead successfully posted to n8n webhook.');
+            console.log('[Automation Engine] Lead successfully posted to webhook.');
             return true;
         } catch (err) {
-            console.warn('[n8n Webhook Error]:', err);
+            console.warn('[Automation Webhook Notice]:', err);
             return false;
         }
     }
