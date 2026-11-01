@@ -91,7 +91,7 @@
                     <div class="space-y-1.5 pt-1">
                         <div class="text-[10px] font-bold text-slate-500 uppercase tracking-wider px-1">Suggested Destinations:</div>
                         
-                        <a href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah%20Labs%2C%20I%20want%20to%20learn%20more%20about%20${encodeURIComponent(contextualTag)}." 
+                        <a href="https://wa.me/919920386421?text=Hi%20Bhagat%20%26%20Yash%2C%20I%20explored%20Flying%20Cheetah%20and%20I%27m%20looking%20forward%20to%20working%20with%20you.%20I%27d%20love%20to%20discuss%20${encodeURIComponent(contextualTag)}." 
                            target="_blank" rel="noopener noreferrer"
                            class="flex items-center justify-between px-3 py-2 bg-emerald-50 hover:bg-emerald-100/80 border border-emerald-200/80 rounded-xl text-emerald-900 text-xs font-bold transition shadow-xs group">
                             <span class="flex items-center gap-2">
