@@ -360,13 +360,13 @@
                         <label class="block text-xs font-bold text-slate-700">Cloud Automation Webhook URL</label>
                         <span class="px-1.5 py-0.5 rounded bg-orange-100 text-bikOrange text-[9px] font-black uppercase">Instant Alert</span>
                     </div>
-                    <input type="url" id="cfgN8nWebhook" placeholder="https://api.yourdomain.com/webhook/flying-cheetah-leads" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange outline-none">
+                    <input type="url" id="cfgAutomationWebhook" placeholder="https://api.yourdomain.com/webhook/flying-cheetah-leads" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange outline-none">
                     <p class="text-[10px] text-slate-400 mt-1">Every lead form submission automatically POSTs to this webhook for instant WhatsApp & Telegram routing.</p>
                 </div>
             </div>
 
             <div class="flex items-center gap-2 pt-2">
-                <button onclick="testN8nWebhook()" class="flex-1 py-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-700 font-bold text-xs transition">
+                <button onclick="testAutomationWebhook()" class="flex-1 py-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-700 font-bold text-xs transition">
                     Test Webhook
                 </button>
                 <button onclick="saveConfig()" class="flex-1 py-2.5 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-xs uppercase tracking-wider transition shadow-md shadow-orange-500/25">
@@ -840,7 +840,7 @@
             const cfg = window.FC_BACKEND.getConfig();
             document.getElementById('cfgSupabaseUrl').value = cfg.SUPABASE_URL.includes('xyzcompany') ? '' : cfg.SUPABASE_URL;
             document.getElementById('cfgSupabaseKey').value = cfg.SUPABASE_ANON_KEY.includes('placeholder') ? '' : cfg.SUPABASE_ANON_KEY;
-            document.getElementById('cfgN8nWebhook').value = cfg.N8N_WEBHOOK_URL || '';
+            document.getElementById('cfgAutomationWebhook').value = cfg.AUTOMATION_WEBHOOK_URL || cfg.WEBHOOK_URL || '';
             document.getElementById('configModal').classList.remove('hidden');
         }
 
@@ -851,12 +851,12 @@
         function saveConfig() {
             const url = document.getElementById('cfgSupabaseUrl').value.trim();
             const key = document.getElementById('cfgSupabaseKey').value.trim();
-            const webhook = document.getElementById('cfgN8nWebhook').value.trim();
+            const webhook = document.getElementById('cfgAutomationWebhook').value.trim();
             window.FC_BACKEND.setConfig(url, key, webhook);
         }
 
-        async function testN8nWebhook() {
-            const webhookUrl = document.getElementById('cfgN8nWebhook').value.trim();
+        async function testAutomationWebhook() {
+            const webhookUrl = document.getElementById('cfgAutomationWebhook').value.trim();
             if (!webhookUrl || !webhookUrl.startsWith('http')) {
                 alert('Please enter a valid Webhook URL starting with http:// or https://');
                 return;
