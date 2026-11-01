@@ -91,12 +91,12 @@
                     <div class="space-y-1.5 pt-1">
                         <div class="text-[10px] font-bold text-slate-500 uppercase tracking-wider px-1">Suggested Destinations:</div>
                         
-                        <a href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah%20Labs%2C%20I%20am%20interested%20in%20the%2014-Day%20Free%20Pilot%20for%20${encodeURIComponent(contextualTag)}." 
+                        <a href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah%20Labs%2C%20I%20want%20to%20learn%20more%20about%20${encodeURIComponent(contextualTag)}." 
                            target="_blank" rel="noopener noreferrer"
                            class="flex items-center justify-between px-3 py-2 bg-emerald-50 hover:bg-emerald-100/80 border border-emerald-200/80 rounded-xl text-emerald-900 text-xs font-bold transition shadow-xs group">
                             <span class="flex items-center gap-2">
                                 <i class="fa-solid fa-rocket text-emerald-600 group-hover:scale-110 transition"></i>
-                                <span>Claim 14-Day Free Pilot</span>
+                                <span>Chat with Founders</span>
                             </span>
                             <i class="fa-brands fa-whatsapp text-emerald-600 text-sm"></i>
                         </a>
@@ -105,7 +105,7 @@
                            class="flex items-center justify-between px-3 py-2 bg-white hover:bg-orange-50 border border-slate-200/80 hover:border-bikOrange rounded-xl text-slate-700 hover:text-bikOrange text-xs font-bold transition shadow-xs group">
                             <span class="flex items-center gap-2">
                                 <i class="fa-solid fa-calendar-check text-bikOrange group-hover:scale-110 transition"></i>
-                                <span>Book Live 1-on-1 Demo</span>
+                                <span>Book Free Live Demo ➔</span>
                             </span>
                             <span class="text-[10px] bg-orange-100 text-bikOrange px-1.5 py-0.5 rounded font-mono font-bold">15 Min</span>
                         </a>
@@ -337,9 +337,9 @@
 
                 <!-- Drawer Bottom Actions -->
                 <div class="p-5 border-t border-slate-100 bg-slate-50 space-y-2.5">
-                    <button onclick="window.FC_AUTH.openTrialModal(); window.FC_WIDGETS.toggleMobileDrawer();" class="w-full py-2.5 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-xs uppercase tracking-wider transition shadow-md shadow-orange-500/20">
-                        Claim 14-Day Free Pilot
-                    </button>
+                    <a href="demo.html" onclick="window.FC_WIDGETS.toggleMobileDrawer();" class="w-full py-2.5 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-xs uppercase tracking-wider transition shadow-md shadow-orange-500/20 text-center block">
+                        Book Free Live Demo ➔
+                    </a>
                     <div class="flex items-center justify-center gap-3 text-[11px] text-slate-400 pt-1">
                         <a href="privacy-policy.html" class="hover:underline">Privacy</a>
                         <span>•</span>

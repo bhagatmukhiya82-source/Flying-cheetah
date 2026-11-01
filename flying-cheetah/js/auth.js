@@ -336,7 +336,7 @@
 
                         <button type="submit" id="fcTrialSubmitBtn" class="w-full py-3.5 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-xs uppercase tracking-wider transition shadow-lg shadow-orange-500/25 flex items-center justify-center gap-2 mt-4 cursor-pointer">
                             <i class="fa-solid fa-rocket text-xs"></i>
-                            <span>Claim 14-Day Free Trial</span>
+                            <span>Book Free Live Demo ➔</span>
                         </button>
                     </form>
 
@@ -489,7 +489,7 @@
                         <div class="text-center pt-2">
                             <p class="text-[11px] text-slate-500">
                                 Don't have an account yet? 
-                                <button type="button" id="fcSwitchToTrialLink" class="text-bikOrange font-bold hover:underline cursor-pointer">Start 14-Day Free Trial</button>
+                                <button type="button" id="fcSwitchToTrialLink" class="text-bikOrange font-bold hover:underline cursor-pointer">Book Free Live Demo ➔</button>
                             </p>
                         </div>
                     </div>
@@ -2120,7 +2120,10 @@
                     trialForm.reset();
                     updatePasswordUI();
                     closeAuthModal();
-                    showAuthToast(`🎉 Welcome ${name}! Your 14-Day Free Pilot has been activated.`);
+                    showAuthToast(`🎉 Welcome ${name}! Your account has been activated. Redirecting to demo scheduler...`);
+                    setTimeout(() => {
+                        window.location.href = 'demo.html';
+                    }, 1200);
 
                     // Global event
                     window.dispatchEvent(new CustomEvent('fc:auth-state-changed', {
@@ -3040,16 +3043,29 @@
         syncModalTabVisibility();
     }
 
-    // 7. GLOBAL INTERCEPTOR FOR "START FOR FREE" BUTTONS
+    // 7. GLOBAL INTERCEPTOR FOR "START FOR FREE" / "BOOK FREE LIVE DEMO" BUTTONS
     function setupTrialClickInterceptors() {
         document.addEventListener('click', (e) => {
             const target = e.target.closest('a, button');
             if (!target) return;
 
+            // Do not intercept any clicks inside the Auth Modal itself
+            if (target.closest('#fcAuthModal')) {
+                return;
+            }
+
+            // If already pointing to demo.html, allow normal browser navigation
+            if (target.tagName === 'A' && target.getAttribute('href') && target.getAttribute('href').includes('demo.html')) {
+                return;
+            }
+
             // Check if element has explicit trial trigger
             if (target.hasAttribute('data-fc-trial') || target.classList.contains('fc-trial-btn')) {
+                if (target.getAttribute('href') && target.getAttribute('href').includes('demo.html')) {
+                    return;
+                }
                 e.preventDefault();
-                openTrialModal();
+                window.location.href = 'demo.html';
                 return;
             }
 
@@ -3059,11 +3075,23 @@
                                    text === 'start free' || 
                                    text === 'start free trial' || 
                                    text === 'claim free trial' ||
+                                   text === 'claim 14-day free trial' ||
+                                   text === 'claim 14-day free pilot' ||
+                                   text === 'start free pilot' ||
+                                   text === 'start store build' ||
+                                   text === 'start your store build' ||
                                    text === 'get started free';
 
             if (isStartFreeBtn) {
                 e.preventDefault();
-                openTrialModal();
+                window.location.href = 'demo.html';
+                return;
+            }
+
+            // If any button with "book free live demo" is clicked without an anchor href, route to demo.html
+            if (text.includes('book free live demo') && target.tagName === 'BUTTON') {
+                e.preventDefault();
+                window.location.href = 'demo.html';
             }
         });
     }
