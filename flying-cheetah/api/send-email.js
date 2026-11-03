@@ -13,6 +13,10 @@ const RESEND_API_KEY = process.env.RESEND_API_KEY || '';
 const OFFICIAL_AGENCY_EMAIL = process.env.FOUNDER_NOTIFY_EMAIL || 'flyingcheetah.agency@gmail.com';
 const FROM_EMAIL = process.env.FROM_EMAIL || 'Flying Cheetah <onboarding@resend.dev>';
 
+// Supabase Cloud Configuration for Server-Verified Password Reset & Update
+const SUPABASE_URL = process.env.SUPABASE_URL || 'https://txqtkpxdyoatzdgkcsry.supabase.co';
+const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR4cXRrcHhkeW9hdHpkZ2tjc3J5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI4Mzk5NDksImV4cCI6MjEwODQxNTk0OX0.TuGGpGZKHOhvkcpv02W_R-2wwuXykBTdL1iXa9G1qFE';
+
 // Native Zero-Dependency TLS SMTP Configuration (Gmail SSL Port 465)
 const SMTP_USER = process.env.SMTP_USER || 'bhagatmukhiya82@gmail.com';
 const SMTP_PASS = process.env.SMTP_PASSWORD || 'sryzptfthzfeeeco';
@@ -140,6 +144,60 @@ module.exports = async function handler(req, res) {
         let emailText = '';
         let recipientEmail = OFFICIAL_AGENCY_EMAIL;
 
+        if (type === 'update_password') {
+            // SERVER-VERIFIED PASSWORD RESET OR CHANGE IN SUPABASE AUTH
+            const { email, otp_code, new_password, current_password } = body || {};
+            if (!email || !new_password) {
+                const errResp = JSON.stringify({ error: 'Missing required parameters (email, new_password).' });
+                if (res.writeHead) {
+                    res.writeHead(400, headers);
+                    res.end(errResp);
+                    return;
+                }
+                return { statusCode: 400, headers, body: errResp };
+            }
+
+            const rpcResp = await fetch(`${SUPABASE_URL}/rest/v1/rpc/fc_verify_and_update_password`, {
+                method: 'POST',
+                headers: {
+                    'apikey': SUPABASE_ANON_KEY,
+                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    p_email: String(email).trim().toLowerCase(),
+                    p_otp: otp_code ? String(otp_code).trim() : '',
+                    p_new_password: String(new_password),
+                    p_current_password: current_password ? String(current_password) : null
+                })
+            });
+
+            const rpcData = await rpcResp.json().catch(() => ({}));
+            if (!rpcResp.ok || !rpcData || rpcData.success === false) {
+                const errMsg = (rpcData && (rpcData.error || rpcData.message)) || 'Failed to verify OTP and update password.';
+                const errResp = JSON.stringify({ success: false, error: errMsg, detail: errMsg });
+                if (res.writeHead) {
+                    res.writeHead(400, headers);
+                    res.end(errResp);
+                    return;
+                }
+                return { statusCode: 400, headers, body: errResp };
+            }
+
+            const okBody = JSON.stringify({
+                success: true,
+                email: rpcData.email,
+                user_id: rpcData.user_id,
+                message: 'Password updated in Supabase Cloud.'
+            });
+            if (res.writeHead) {
+                res.writeHead(200, headers);
+                res.end(okBody);
+                return;
+            }
+            return { statusCode: 200, headers, body: okBody };
+        }
+
         if (type === 'otp_verification') {
             // CLIENT OTP SECURITY EMAIL (Password Reset / Password Change)
             const { email, otp_code, action } = body || {};
@@ -156,6 +214,25 @@ module.exports = async function handler(req, res) {
             }
 
             recipientEmail = String(email).trim().toLowerCase();
+
+            // Persist OTP in Supabase Cloud for server-verified password update
+            try {
+                await fetch(`${SUPABASE_URL}/rest/v1/rpc/fc_store_password_otp`, {
+                    method: 'POST',
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        p_email: recipientEmail,
+                        p_otp: String(otp_code).trim()
+                    })
+                });
+            } catch (sbOtpErr) {
+                console.error('[Supabase OTP Store Notice]:', sbOtpErr.message);
+            }
+
             emailSubject = `Flying Cheetah Verification Code: ${otp_code}`;
             emailText = `Your Flying Cheetah ${actionLabel} verification code is: ${otp_code}. Valid for 10 minutes. Do not share this code with anyone.`;
             emailHtml = `

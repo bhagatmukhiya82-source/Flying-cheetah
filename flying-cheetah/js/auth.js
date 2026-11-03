@@ -1186,6 +1186,12 @@
                         expiresAt: Date.now() + 10 * 60 * 1000
                     }));
 
+                    try {
+                        if (typeof client.rpc === 'function') {
+                            await client.rpc('fc_store_password_otp', { p_email: userEmail, p_otp: generatedOtp });
+                        }
+                    } catch (_) {}
+
                     if (!backendSent) {
                         const emailResp = await fetch('/api/send-email', {
                             method: 'POST',
@@ -1299,10 +1305,56 @@
                                 throw new Error('Invalid 6-digit OTP code. Please check your email inbox.');
                             }
                         }
-                        localStorage.removeItem('fc_active_change_pass_otp');
                     }
 
-                    // Also update Supabase if available
+                    // Update Supabase Auth password via server-verified /api/send-email & RPC
+                    const userEmail = (currentUser?.email || currentProfile?.email || document.getElementById('fcSecEmailTxt')?.textContent || '').trim().toLowerCase();
+                    if (userEmail) {
+                        let cloudUpdated = false;
+                        try {
+                            const cloudResp = await fetch('/api/send-email', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+                                    type: 'update_password',
+                                    email: userEmail,
+                                    otp_code: otpVal || undefined,
+                                    current_password: currPass || undefined,
+                                    new_password: newPass
+                                })
+                            });
+                            if (cloudResp.ok) {
+                                cloudUpdated = true;
+                            } else {
+                                const cloudErr = await cloudResp.json().catch(() => ({}));
+                                if (!updatedViaBackend && cloudErr.error) {
+                                    throw new Error(cloudErr.error);
+                                }
+                            }
+                        } catch (cErr) {
+                            if (!updatedViaBackend && cErr.message && !cErr.message.includes('fetch') && !cErr.message.includes('NetworkError')) {
+                                throw cErr;
+                            }
+                        }
+
+                        if (!cloudUpdated && typeof client.rpc === 'function') {
+                            try {
+                                const { data: rpcRes } = await client.rpc('fc_verify_and_update_password', {
+                                    p_email: userEmail,
+                                    p_otp: otpVal || '',
+                                    p_new_password: newPass,
+                                    p_current_password: currPass || null
+                                });
+                                if (rpcRes && rpcRes.success === false && !updatedViaBackend) {
+                                    throw new Error(rpcRes.error || 'Failed to update password.');
+                                }
+                            } catch (_) {}
+                        }
+                    }
+
+                    localStorage.removeItem('fc_active_change_pass_otp');
+
+                    // Also update active Supabase session if available
                     try {
                         if (typeof client.auth.updateUser === 'function') {
                             await client.auth.updateUser({ password: newPass });
@@ -1851,6 +1903,11 @@
                     expiresAt: Date.now() + 10 * 60 * 1000
                 };
                 localStorage.setItem('fc_active_password_reset', JSON.stringify(activeReset));
+                try {
+                    if (typeof client.rpc === 'function') {
+                        await client.rpc('fc_store_password_otp', { p_email: email, p_otp: generatedOtp });
+                    }
+                } catch (_) {}
 
                 // Reveal clean OTP confirmation banner (no code leaked on screen)
                 if (forgotOtpBanner) forgotOtpBanner.classList.remove('hidden');
@@ -1892,6 +1949,11 @@
                     otp: newOtp,
                     expiresAt: Date.now() + 10 * 60 * 1000
                 }));
+                try {
+                    if (typeof client.rpc === 'function') {
+                        await client.rpc('fc_store_password_otp', { p_email: email, p_otp: newOtp });
+                    }
+                } catch (_) {}
 
                 try {
                     await fetch('/api/send-email', {
@@ -1972,20 +2034,64 @@
                 submitBtn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin text-xs"></i> <span>Updating password...</span>`;
 
                 try {
-                    // 1. Call Backend API
+                    // 1. Call Backend API (if local server running)
+                    let backendUpdated = false;
                     try {
                         const apiBase = window.location.port === '8000' ? '' : 'http://localhost:8000';
-                        await fetch(`${apiBase}/api/v1/auth/reset-password`, {
+                        const bRes = await fetch(`${apiBase}/api/v1/auth/reset-password`, {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify({ email, otp, new_password: newPass })
                         });
+                        if (bRes.ok) backendUpdated = true;
                     } catch (_) {}
 
-                    // 2. Call Supabase or Mock client
-                    if (typeof client.auth.updateUser === 'function') {
-                        await client.auth.updateUser({ password: newPass });
+                    // 2. Call Vercel Serverless & Supabase Cloud RPC to actually update password in Supabase Auth!
+                    let cloudUpdated = false;
+                    try {
+                        const cloudResp = await fetch('/api/send-email', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                type: 'update_password',
+                                email,
+                                otp_code: otp,
+                                new_password: newPass
+                            })
+                        });
+                        if (cloudResp.ok) {
+                            cloudUpdated = true;
+                        } else {
+                            const errJson = await cloudResp.json().catch(() => ({}));
+                            if (!backendUpdated && errJson.error) {
+                                throw new Error(errJson.error);
+                            }
+                        }
+                    } catch (cErr) {
+                        if (!backendUpdated && cErr.message && !cErr.message.includes('fetch') && !cErr.message.includes('NetworkError')) {
+                            throw cErr;
+                        }
                     }
+
+                    if (!cloudUpdated && typeof client.rpc === 'function') {
+                        try {
+                            const { data: rpcRes } = await client.rpc('fc_verify_and_update_password', {
+                                p_email: email,
+                                p_otp: otp,
+                                p_new_password: newPass
+                            });
+                            if (rpcRes && rpcRes.success === false && !backendUpdated) {
+                                throw new Error(rpcRes.error || 'Failed to update password.');
+                            }
+                        } catch (_) {}
+                    }
+
+                    // 3. Call Supabase session update if logged in
+                    try {
+                        if (typeof client.auth.updateUser === 'function') {
+                            await client.auth.updateUser({ password: newPass });
+                        }
+                    } catch (_) {}
 
                     // 3. Update localStorage mock profiles if present
                     const mockProfiles = JSON.parse(localStorage.getItem('fc_mock_profiles') || '[]');
