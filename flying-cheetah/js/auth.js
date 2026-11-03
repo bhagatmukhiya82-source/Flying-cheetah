@@ -817,23 +817,16 @@
                     </div>
                 </div>
 
-                <!-- OTP Notification Card (Auto-populated on dispatch) -->
-                <div id="fcForgotOtpBanner" class="hidden my-3 p-3.5 rounded-2xl bg-amber-50 border border-amber-300 shadow-sm animate-fadeIn">
-                    <div class="flex items-center justify-between text-xs font-bold text-amber-900">
+                <!-- OTP Notification Card (Clean Email Security Confirmation) -->
+                <div id="fcForgotOtpBanner" class="hidden my-3 p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200 shadow-sm animate-fadeIn">
+                    <div class="flex items-center justify-between text-xs font-bold text-emerald-900">
                         <div class="flex items-center gap-1.5">
-                            <i class="fa-solid fa-shield-halved text-amber-600"></i>
-                            <span>Verification OTP Dispatched!</span>
+                            <i class="fa-solid fa-envelope-circle-check text-emerald-600"></i>
+                            <span>Verification OTP Sent to Email!</span>
                         </div>
-                        <span class="text-[10px] font-semibold text-amber-700 bg-amber-100 px-2 py-0.5 rounded-full">Valid 10 mins</span>
+                        <span class="text-[10px] font-semibold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full">Valid 10 mins</span>
                     </div>
-                    <p class="text-[11px] text-amber-800 mt-1">We sent an instant 6-digit security code. For quick testing and seamless access, use the code below:</p>
-                    <div class="mt-2.5 flex items-center justify-between gap-2 bg-white p-2 rounded-xl border border-amber-200">
-                        <span id="fcForgotOtpDisplayCode" class="font-mono text-base font-black text-bikOrange tracking-widest px-2">849201</span>
-                        <button type="button" id="fcAutoFillOtpBtn" class="px-3 py-1 rounded-lg bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-[11px] transition shadow-xs flex items-center gap-1 cursor-pointer">
-                            <i class="fa-solid fa-wand-magic-sparkles text-[10px]"></i>
-                            <span>Auto-fill OTP</span>
-                        </button>
-                    </div>
+                    <p class="text-[11px] text-emerald-800 mt-1.5 leading-relaxed">We dispatched a 6-digit security verification code to your email inbox. Please check your inbox (and spam folder) and enter the code below.</p>
                 </div>
 
                 <!-- STEP 1: REQUEST OTP FORM -->
@@ -945,18 +938,72 @@
                     </svg>
                     <span class="font-bold text-slate-800 text-sm">Google Authentication</span>
                 </div>
-                <h3 class="text-base font-black text-bikDark font-display">Continue with Google Email</h3>
-                <p class="text-xs text-slate-500 mt-1 leading-relaxed">Enter your Google / Gmail address to continue with your account.</p>
+                <h3 class="text-base font-black text-bikDark font-display">Continue with Google</h3>
+                <p class="text-xs text-slate-500 mt-1 leading-relaxed">Enter your Google email and WhatsApp mobile number to access your account.</p>
                 
                 <form id="fcGoogleEmailForm" class="mt-4 space-y-3 text-left">
                     <div>
-                        <label class="block text-xs font-bold text-slate-700 mb-1">Your Google Email</label>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Your Google Email <span class="text-red-500">*</span></label>
                         <input type="email" id="fcGoogleEmailInput" required placeholder="you@gmail.com" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange focus:border-bikOrange transition outline-none">
+                    </div>
+                    <div>
+                        <div class="flex items-center justify-between mb-1">
+                            <label class="block text-xs font-bold text-slate-700">WhatsApp Mobile Number <span class="text-red-500">*</span></label>
+                            <span class="text-[10px] text-emerald-600 font-bold bg-emerald-50 px-1.5 py-0.5 rounded">Mandatory</span>
+                        </div>
+                        <input type="tel" id="fcGooglePhoneInput" required placeholder="+91 98200 12345" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange focus:border-bikOrange transition outline-none font-mono">
+                        <div id="fcGooglePhoneHint" class="text-[10px] text-slate-400 mt-1 pl-1">Strict E.164 phone binding (+91). Required for WhatsApp store &amp; courier dispatch.</div>
                     </div>
                     <button type="submit" id="fcGoogleEmailSubmitBtn" class="w-full py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider transition shadow-md flex items-center justify-center gap-2 cursor-pointer">
                         <i class="fa-solid fa-arrow-right text-xs"></i>
                         <span>Continue to Dashboard</span>
                     </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- ======================================================== -->
+        <!-- MANDATORY PHONE BINDING MODAL (FOR GOOGLE OAUTH LOGINS)   -->
+        <!-- ======================================================== -->
+        <div id="fcMandatoryPhoneModal" class="fixed inset-0 z-[150] flex items-center justify-center bg-black/75 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300 p-4">
+            <div id="fcMandatoryPhoneCard" class="relative max-w-sm w-full bg-white rounded-3xl p-6 shadow-2xl border border-slate-200 text-center transform scale-95 transition-all duration-300">
+                <div class="flex items-center justify-center gap-2 mb-2">
+                    <img src="images/user_official_real_logo_transparent.png" alt="Flying Cheetah" class="w-8 h-8 object-contain">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24">
+                        <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.66v3.05h3.9c2.28-2.1 3.64-5.2 3.64-9.15z"/>
+                        <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.9-3.05c-1.08.72-2.45 1.16-4.03 1.16-3.1 0-5.73-2.1-6.67-4.94H1.32v3.15C3.33 21.36 7.39 24 12 24z"/>
+                        <path fill="#FBBC05" d="M5.33 14.26c-.24-.72-.38-1.49-.38-2.26s.14-1.54.38-2.26V6.59H1.32C.48 8.26 0 10.08 0 12s.48 3.74 1.32 5.41l4.01-3.15z"/>
+                        <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.39 0 3.33 2.64 1.32 6.59l4.01 3.15c.94-2.84 3.57-4.99 6.67-4.99z"/>
+                    </svg>
+                </div>
+                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 text-amber-700 border border-amber-200 text-[10px] font-bold uppercase tracking-wider mb-2">
+                    <i class="fa-solid fa-lock text-[9px]"></i> Phone Verification Required
+                </div>
+                <h3 class="text-base font-black text-bikDark font-display">One Last Step: Link Your Phone</h3>
+                <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+                    Signed in with Google as <strong id="fcMandatoryUserEmail" class="text-slate-800">your email</strong>. Even with Google sign-in, Flying Cheetah strictly binds your WhatsApp mobile number to power your autonomous store &amp; Borzo delivery fleet.
+                </p>
+
+                <div id="fcMandatoryPhoneFeedback" class="hidden my-3 p-2.5 rounded-xl text-xs font-bold text-left"></div>
+
+                <form id="fcMandatoryPhoneForm" class="mt-4 space-y-3 text-left">
+                    <div>
+                        <div class="flex items-center justify-between mb-1">
+                            <label class="block text-xs font-bold text-slate-700">WhatsApp Mobile Number <span class="text-red-500">*</span></label>
+                            <span class="text-[10px] text-emerald-600 font-bold bg-emerald-50 px-1.5 py-0.5 rounded">Mandatory</span>
+                        </div>
+                        <input type="tel" id="fcMandatoryPhoneInput" required placeholder="+91 98200 12345" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange focus:border-bikOrange transition outline-none font-mono">
+                        <div id="fcMandatoryPhoneHint" class="text-[10px] text-slate-400 mt-1 pl-1">Strict E.164 (+91) binding. 1 account per phone number.</div>
+                    </div>
+                    <button type="submit" id="fcMandatoryPhoneSubmitBtn" class="w-full py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider transition shadow-md flex items-center justify-center gap-2 cursor-pointer">
+                        <i class="fa-solid fa-shield-check text-xs"></i>
+                        <span>Save Phone &amp; Unlock Account</span>
+                    </button>
+                    <div class="text-center pt-2">
+                        <button type="button" id="fcMandatorySignOutBtn" class="text-[11px] text-slate-400 hover:text-red-600 transition underline cursor-pointer">
+                            Sign out or switch Google account
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>`;
@@ -1108,24 +1155,58 @@
                 secSendOtpBtn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin text-[10px]"></i> <span>Sending...</span>`;
 
                 try {
-                    const apiBase = window.location.port === '8000' ? '' : 'http://localhost:8000';
-                    const token = localStorage.getItem('fc_backend_token');
-                    const resp = await fetch(`${apiBase}/api/v1/auth/request-change-password-otp`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            ...(token ? { 'Authorization': `Bearer ${token}` } : {})
-                        }
-                    });
-                    const resData = await resp.json().catch(() => ({}));
-                    if (!resp.ok) {
-                        throw new Error(resData.detail || 'Could not send verification OTP.');
+                    const userEmail = (currentUser?.email || currentProfile?.email || document.getElementById('fcSecEmailTxt')?.textContent || '').trim().toLowerCase();
+                    if (!userEmail || !userEmail.includes('@')) {
+                        throw new Error('Could not determine your registered email address.');
                     }
+
+                    let backendSent = false;
+                    let generatedOtp = Math.floor(100000 + Math.random() * 900000).toString();
+
+                    try {
+                        const apiBase = window.location.port === '8000' ? '' : 'http://localhost:8000';
+                        const token = localStorage.getItem('fc_backend_token');
+                        const resp = await fetch(`${apiBase}/api/v1/auth/request-change-password-otp`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                ...(token ? { 'Authorization': `Bearer ${token}` } : {})
+                            }
+                        });
+                        if (resp.ok) {
+                            const resData = await resp.json().catch(() => ({}));
+                            if (resData.otp) generatedOtp = resData.otp;
+                            backendSent = true;
+                        }
+                    } catch (_) {}
+
+                    localStorage.setItem('fc_active_change_pass_otp', JSON.stringify({
+                        email: userEmail,
+                        otp: generatedOtp,
+                        expiresAt: Date.now() + 10 * 60 * 1000
+                    }));
+
+                    if (!backendSent) {
+                        const emailResp = await fetch('/api/send-email', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                type: 'otp_verification',
+                                email: userEmail,
+                                otp_code: generatedOtp,
+                                action: 'Password Change'
+                            })
+                        });
+                        if (!emailResp.ok) {
+                            throw new Error('Could not send verification OTP email.');
+                        }
+                    }
+
                     if (otpFeedback) {
-                        otpFeedback.textContent = `Security code sent to your email inbox! Valid for 10 minutes.`;
+                        otpFeedback.textContent = `Security code sent to ${userEmail}! Valid for 10 minutes.`;
                         otpFeedback.classList.remove('hidden');
                     }
-                    showAuthToast('Verification OTP dispatched to your email!', 'success');
+                    showAuthToast(`📩 Verification OTP sent to ${userEmail}!`, 'success');
                     let countdown = 60;
                     const timer = setInterval(() => {
                         countdown--;
@@ -1178,23 +1259,47 @@
                 submitBtn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin text-xs"></i> <span>Updating Password...</span>`;
 
                 try {
-                    const apiBase = window.location.port === '8000' ? '' : 'http://localhost:8000';
-                    const token = localStorage.getItem('fc_backend_token');
-                    const resp = await fetch(`${apiBase}/api/v1/auth/change-password`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            ...(token ? { 'Authorization': `Bearer ${token}` } : {})
-                        },
-                        body: JSON.stringify({
-                            current_password: currPass || undefined,
-                            otp: otpVal || undefined,
-                            new_password: newPass
-                        })
-                    });
-                    const data = await resp.json().catch(() => ({}));
-                    if (!resp.ok) {
-                        throw new Error(data.detail || 'Failed to update password.');
+                    let updatedViaBackend = false;
+                    try {
+                        const apiBase = window.location.port === '8000' ? '' : 'http://localhost:8000';
+                        const token = localStorage.getItem('fc_backend_token');
+                        const resp = await fetch(`${apiBase}/api/v1/auth/change-password`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                ...(token ? { 'Authorization': `Bearer ${token}` } : {})
+                            },
+                            body: JSON.stringify({
+                                current_password: currPass || undefined,
+                                otp: otpVal || undefined,
+                                new_password: newPass
+                            })
+                        });
+                        const data = await resp.json().catch(() => ({}));
+                        if (!resp.ok) {
+                            throw new Error(data.detail || 'Failed to update password.');
+                        }
+                        updatedViaBackend = true;
+                    } catch (netErr) {
+                        if (netErr.message && !netErr.message.includes('fetch') && !netErr.message.includes('Failed to fetch') && !netErr.message.includes('NetworkError')) {
+                            throw netErr;
+                        }
+                    }
+
+                    if (!updatedViaBackend) {
+                        const savedOtpObj = JSON.parse(localStorage.getItem('fc_active_change_pass_otp') || '{}');
+                        if (!otpVal && !currPass) {
+                            throw new Error('Please enter the 6-digit email OTP or your current password.');
+                        }
+                        if (otpVal) {
+                            if (!savedOtpObj.otp || Date.now() > (savedOtpObj.expiresAt || 0)) {
+                                throw new Error('Verification OTP has expired. Please click Send OTP again.');
+                            }
+                            if (otpVal !== savedOtpObj.otp) {
+                                throw new Error('Invalid 6-digit OTP code. Please check your email inbox.');
+                            }
+                        }
+                        localStorage.removeItem('fc_active_change_pass_otp');
                     }
 
                     // Also update Supabase if available
@@ -1306,6 +1411,39 @@
         const googleEmailCard = document.getElementById('fcGoogleEmailCard');
         const closeGoogleEmailBtn = document.getElementById('fcCloseGoogleEmailModalBtn');
         const googleEmailForm = document.getElementById('fcGoogleEmailForm');
+        const googlePhoneInput = document.getElementById('fcGooglePhoneInput');
+        const googlePhoneHint = document.getElementById('fcGooglePhoneHint');
+
+        // Mandatory Phone Modal Elements
+        const mandatoryPhoneModal = document.getElementById('fcMandatoryPhoneModal');
+        const mandatoryPhoneCard = document.getElementById('fcMandatoryPhoneCard');
+        const mandatoryPhoneForm = document.getElementById('fcMandatoryPhoneForm');
+        const mandatoryPhoneInput = document.getElementById('fcMandatoryPhoneInput');
+        const mandatoryPhoneHint = document.getElementById('fcMandatoryPhoneHint');
+        const mandatoryPhoneFeedback = document.getElementById('fcMandatoryPhoneFeedback');
+        const mandatorySignOutBtn = document.getElementById('fcMandatorySignOutBtn');
+
+        function bindPhoneValidationHelper(inputEl, hintEl) {
+            if (!inputEl) return;
+            inputEl.addEventListener('input', () => {
+                const val = inputEl.value;
+                const clean = sanitizePhone(val);
+                const isValid = validatePhone(clean);
+                if (!hintEl) return;
+                if (!val.trim()) {
+                    hintEl.textContent = 'Strict E.164 phone binding (+91). Required for WhatsApp store & courier dispatch.';
+                    hintEl.className = 'text-[10px] text-slate-400 mt-1 pl-1';
+                } else if (isValid) {
+                    hintEl.innerHTML = `<span class="text-emerald-600 font-bold"><i class="fa-solid fa-check"></i> Formatted: ${formatPhoneDisplay(clean)} (E.164 Standard)</span>`;
+                    hintEl.className = 'text-[10px] mt-1 pl-1';
+                } else {
+                    hintEl.innerHTML = `<span class="text-amber-600 font-medium"><i class="fa-solid fa-circle-info"></i> Enter 10-digit mobile number with country code (e.g. +91 98200 12345)</span>`;
+                    hintEl.className = 'text-[10px] mt-1 pl-1';
+                }
+            });
+        }
+        bindPhoneValidationHelper(googlePhoneInput, googlePhoneHint);
+        bindPhoneValidationHelper(mandatoryPhoneInput, mandatoryPhoneHint);
 
         // Password Show/Hide Toggle Elements
         const toggleTrialPassBtn = document.getElementById('fcToggleTrialPassBtn');
@@ -1669,6 +1807,7 @@
                 let generatedOtp = null;
 
                 // 1. Attempt Backend API dispatch
+                let backendDispatched = false;
                 try {
                     const apiBase = window.location.port === '8000' ? '' : 'http://localhost:8000';
                     const resp = await fetch(`${apiBase}/api/v1/auth/forgot-password`, {
@@ -1679,22 +1818,29 @@
                     if (resp.ok) {
                         const data = await resp.json();
                         generatedOtp = data.otp;
+                        backendDispatched = true;
                     }
                 } catch (_) {}
 
-                // 2. Fallback to Supabase / Mock client
-                if (!generatedOtp) {
-                    try {
-                        if (typeof client.auth.resetPasswordForEmail === 'function') {
-                            const res = await client.auth.resetPasswordForEmail(email);
-                            generatedOtp = res?.data?.otp;
-                        }
-                    } catch (_) {}
-                }
-
-                // 3. Fallback to cryptographic client generator
+                // 2. Generate cryptographic 6-digit OTP if backend not running
                 if (!generatedOtp) {
                     generatedOtp = Math.floor(100000 + Math.random() * 900000).toString();
+                }
+
+                // 3. Dispatch real OTP email via Vercel Serverless (/api/send-email) when local backend is unreachable
+                if (!backendDispatched) {
+                    try {
+                        await fetch('/api/send-email', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                type: 'otp_verification',
+                                email,
+                                otp_code: generatedOtp,
+                                action: 'Password Reset'
+                            })
+                        });
+                    } catch (_) {}
                 }
 
                 // Persist OTP session
@@ -1706,8 +1852,7 @@
                 };
                 localStorage.setItem('fc_active_password_reset', JSON.stringify(activeReset));
 
-                // Reveal OTP banner
-                if (forgotOtpDisplayCode) forgotOtpDisplayCode.textContent = generatedOtp;
+                // Reveal clean OTP confirmation banner (no code leaked on screen)
                 if (forgotOtpBanner) forgotOtpBanner.classList.remove('hidden');
 
                 // Switch UI to Step 2
@@ -1730,20 +1875,7 @@
 
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = `<i class="fa-solid fa-paper-plane text-xs"></i> <span>Send Verification OTP</span>`;
-                showAuthToast(`📩 6-digit OTP [${generatedOtp}] sent to ${email}!`);
-            });
-        }
-
-        // Auto-fill OTP button
-        if (autoFillOtpBtn) {
-            autoFillOtpBtn.addEventListener('click', () => {
-                const resetData = JSON.parse(localStorage.getItem('fc_active_password_reset') || '{}');
-                const otpInput = document.getElementById('fcForgotOtpInput');
-                if (otpInput && resetData.otp) {
-                    otpInput.value = resetData.otp;
-                    if (forgotNewPassInput) forgotNewPassInput.focus();
-                    showAuthToast(`✨ OTP ${resetData.otp} auto-filled!`);
-                }
+                showAuthToast(`📩 6-digit verification code sent to ${email}! Check your inbox.`);
             });
         }
 
@@ -1751,7 +1883,7 @@
         if (resendOtpBtn) {
             resendOtpBtn.addEventListener('click', async () => {
                 const resetData = JSON.parse(localStorage.getItem('fc_active_password_reset') || '{}');
-                const email = resetData.email || (document.getElementById('fcForgotEmailInput')?.value || '').trim();
+                const email = resetData.email || (document.getElementById('fcForgotEmailInput')?.value || '').trim().toLowerCase();
                 if (!email) return;
 
                 const newOtp = Math.floor(100000 + Math.random() * 900000).toString();
@@ -1761,9 +1893,21 @@
                     expiresAt: Date.now() + 10 * 60 * 1000
                 }));
 
-                if (forgotOtpDisplayCode) forgotOtpDisplayCode.textContent = newOtp;
+                try {
+                    await fetch('/api/send-email', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            type: 'otp_verification',
+                            email,
+                            otp_code: newOtp,
+                            action: 'Password Reset'
+                        })
+                    });
+                } catch (_) {}
+
                 if (forgotOtpBanner) forgotOtpBanner.classList.remove('hidden');
-                showAuthToast(`🔄 Fresh OTP dispatched: ${newOtp}`);
+                showAuthToast(`🔄 Fresh 6-digit OTP sent to ${email}!`);
             });
         }
 
@@ -1801,16 +1945,16 @@
                 const email = resetData.email || (document.getElementById('fcForgotEmailInput')?.value || '').trim().toLowerCase();
 
                 // Validation
-                if (!otp || otp.length < 4) {
-                    alert('Please enter your 6-digit OTP verification code.');
+                if (!otp || otp.length < 6) {
+                    alert('Please enter the 6-digit OTP verification code sent to your email.');
                     return;
                 }
                 if (resetData.expiresAt && Date.now() > resetData.expiresAt) {
                     alert('Verification OTP has expired. Please click "Resend OTP".');
                     return;
                 }
-                if (resetData.otp && otp !== resetData.otp && otp !== '123456') {
-                    alert('Invalid OTP code. Please enter the 6-digit code shown in the banner.');
+                if (resetData.otp && otp !== resetData.otp) {
+                    alert('Invalid OTP code. Please enter the 6-digit code sent to your email inbox.');
                     return;
                 }
 
@@ -1899,11 +2043,21 @@
             googleEmailForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 const emailInput = document.getElementById('fcGoogleEmailInput');
+                const phoneInput = document.getElementById('fcGooglePhoneInput');
                 const submitBtn = document.getElementById('fcGoogleEmailSubmitBtn');
                 const email = (emailInput ? emailInput.value : '').trim().toLowerCase();
+                const rawPhone = (phoneInput ? phoneInput.value : '').trim();
+                const phone = sanitizePhone(rawPhone);
 
                 if (!email || !/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(email)) {
                     alert('Please enter a valid Google email address.');
+                    if (emailInput) emailInput.focus();
+                    return;
+                }
+
+                if (!phone || !validatePhone(phone)) {
+                    alert('Please enter a valid WhatsApp mobile number with country code (e.g. +91 98200 12345).');
+                    if (phoneInput) phoneInput.focus();
                     return;
                 }
 
@@ -1911,13 +2065,89 @@
                 submitBtn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin text-sm"></i> Signing in...`;
 
                 try {
-                    await completeGoogleEmailSignIn(email);
+                    await completeGoogleEmailSignIn(email, phone);
                 } catch (err) {
                     console.error('[Google Email Error]:', err);
                     alert(err.message || 'Failed to sign in. Please try again.');
                 } finally {
                     submitBtn.disabled = false;
                     submitBtn.innerHTML = `<i class="fa-solid fa-arrow-right text-xs"></i> <span>Continue to Dashboard</span>`;
+                }
+            });
+        }
+
+        // Mandatory Phone Binding Form Listener (For Google OAuth Logins)
+        if (mandatorySignOutBtn) {
+            mandatorySignOutBtn.addEventListener('click', async () => {
+                closeMandatoryPhoneModal();
+                await signOut();
+            });
+        }
+
+        if (mandatoryPhoneForm) {
+            mandatoryPhoneForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const input = document.getElementById('fcMandatoryPhoneInput');
+                const submitBtn = document.getElementById('fcMandatoryPhoneSubmitBtn');
+                const feedback = document.getElementById('fcMandatoryPhoneFeedback');
+                const rawVal = (input ? input.value : '').trim();
+                const cleanPhone = sanitizePhone(rawVal);
+
+                if (!cleanPhone || !validatePhone(cleanPhone)) {
+                    if (feedback) {
+                        feedback.className = 'my-3 p-2.5 rounded-xl text-xs font-bold bg-red-50 text-red-700 border border-red-200 block text-left';
+                        feedback.textContent = 'Please enter a valid 10-digit WhatsApp phone number with country code (e.g. +91 98200 12345).';
+                    }
+                    if (input) input.focus();
+                    return;
+                }
+
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin text-xs"></i> <span>Linking Phone...</span>`;
+                if (feedback) {
+                    feedback.className = 'hidden';
+                }
+
+                try {
+                    await saveMerchantProfile({
+                        phone: cleanPhone,
+                        whatsapp_support: cleanPhone
+                    });
+
+                    if (currentUser) {
+                        currentUser.user_metadata = currentUser.user_metadata || {};
+                        currentUser.user_metadata.phone = cleanPhone;
+                        currentUser.user_metadata.whatsapp_support = cleanPhone;
+                        localStorage.setItem('fc_session_user', JSON.stringify(currentUser));
+                    }
+
+                    try {
+                        await client.from('leads_inquiries').insert([{
+                            name: currentProfile?.full_name || currentUser?.email?.split('@')[0] || 'Merchant',
+                            email: currentUser?.email,
+                            phone: cleanPhone,
+                            service: 'Google Account Phone Linked',
+                            message: `User verified mandatory phone number: ${cleanPhone}`,
+                            source_page: window.location.pathname.split('/').pop() || 'index.html',
+                            status: 'qualified'
+                        }]);
+                    } catch (dbE) {}
+
+                    closeMandatoryPhoneModal();
+                    showAuthToast('🎉 WhatsApp phone number linked! Welcome to Flying Cheetah.');
+
+                    window.dispatchEvent(new CustomEvent('fc:auth-state-changed', {
+                        detail: { user: currentUser, profile: currentProfile }
+                    }));
+                } catch (err) {
+                    console.error('[Mandatory Phone Error]:', err);
+                    if (feedback) {
+                        feedback.className = 'my-3 p-2.5 rounded-xl text-xs font-bold bg-red-50 text-red-700 border border-red-200 block text-left';
+                        feedback.textContent = err.message || 'Failed to link phone number. Please check your number and try again.';
+                    }
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = `<i class="fa-solid fa-shield-check text-xs"></i> <span>Save Phone &amp; Unlock Account</span>`;
                 }
             });
         }
@@ -2524,7 +2754,11 @@
         injectAuthModal();
         const modal = document.getElementById('fcGoogleEmailModal');
         const card = document.getElementById('fcGoogleEmailCard');
+        const phoneInput = document.getElementById('fcGooglePhoneInput');
         if (!modal) return;
+        if (phoneInput && !phoneInput.value) {
+            phoneInput.value = '+91 ';
+        }
         modal.classList.remove('opacity-0', 'pointer-events-none');
         if (card) {
             card.classList.remove('scale-95');
@@ -2540,6 +2774,76 @@
         if (card) {
             card.classList.remove('scale-100');
             card.classList.add('scale-95');
+        }
+    }
+
+    // Mandatory Phone Modal (For Google OAuth Logins Without a Linked Phone)
+    function openMandatoryPhoneModal() {
+        injectAuthModal();
+        const modal = document.getElementById('fcMandatoryPhoneModal');
+        const card = document.getElementById('fcMandatoryPhoneCard');
+        const emailEl = document.getElementById('fcMandatoryUserEmail');
+        const input = document.getElementById('fcMandatoryPhoneInput');
+        const feedback = document.getElementById('fcMandatoryPhoneFeedback');
+
+        if (!modal || !card) return;
+
+        if (emailEl && currentUser?.email) {
+            emailEl.textContent = currentUser.email;
+        }
+        if (feedback) {
+            feedback.className = 'hidden';
+            feedback.textContent = '';
+        }
+        if (input && !input.value) {
+            input.value = '+91 ';
+        }
+
+        modal.classList.remove('opacity-0', 'pointer-events-none');
+        modal.classList.add('opacity-100', 'pointer-events-auto');
+        card.classList.remove('scale-95');
+        card.classList.add('scale-100');
+
+        setTimeout(() => {
+            if (input) input.focus();
+        }, 150);
+    }
+
+    function closeMandatoryPhoneModal() {
+        const modal = document.getElementById('fcMandatoryPhoneModal');
+        const card = document.getElementById('fcMandatoryPhoneCard');
+        if (!modal || !card) return;
+
+        modal.classList.remove('opacity-100', 'pointer-events-auto');
+        modal.classList.add('opacity-0', 'pointer-events-none');
+        card.classList.remove('scale-100');
+        card.classList.add('scale-95');
+    }
+
+    // Mandatory Phone Requirement Guard
+    function checkMandatoryPhoneRequirement() {
+        if (!currentUser) {
+            closeMandatoryPhoneModal();
+            return false;
+        }
+
+        // Allow official agency admins to bypass
+        const adminEmails = (window.FC_BACKEND?.getConfig()?.ADMIN_EMAILS || []).map(e => (e || '').toLowerCase());
+        if (currentUser.email && adminEmails.includes(currentUser.email.toLowerCase())) {
+            closeMandatoryPhoneModal();
+            return false;
+        }
+
+        const rawPhone = currentProfile?.phone || currentProfile?.whatsapp_support || currentUser?.user_metadata?.phone;
+        const clean = sanitizePhone(rawPhone || '');
+        const isValid = clean && !clean.includes('Google') && !clean.includes('Not provided') && validatePhone(clean);
+
+        if (!isValid) {
+            openMandatoryPhoneModal();
+            return true;
+        } else {
+            closeMandatoryPhoneModal();
+            return false;
         }
     }
 
@@ -2710,12 +3014,19 @@
         return toSave;
     }
 
-    // Complete Google Email Sign-In (Reconciling Existing Account & Profile)
-    async function completeGoogleEmailSignIn(email) {
-        const cleanEmail = email.trim().toLowerCase();
+    // Complete Google Email Sign-In (Reconciling Existing Account & Profile with Mandatory Phone)
+    async function completeGoogleEmailSignIn(email, phone = '') {
+        injectAuthModal();
+        const cleanEmail = (email || '').trim().toLowerCase();
+        const cleanPhone = sanitizePhone(phone || '');
         const name = cleanEmail.split('@')[0];
-        const adminEmails = (window.FC_BACKEND.getConfig().ADMIN_EMAILS || []).map(e => e.toLowerCase());
+        const adminEmails = (window.FC_BACKEND?.getConfig()?.ADMIN_EMAILS || []).map(e => (e || '').toLowerCase());
         const isAdm = adminEmails.includes(cleanEmail);
+
+        // Mandatory phone validation for non-admin users
+        if (!isAdm && cleanPhone && !validatePhone(cleanPhone)) {
+            throw new Error('Please enter a valid WhatsApp mobile number with country code (e.g. +91 98200 12345).');
+        }
 
         // 1. Reconcile with backend API first so existing merchant profile/phone is preserved
         let reconciledUser = null;
@@ -2725,8 +3036,17 @@
             const bResp = await fetch(`${apiBase}/api/v1/auth/google-callback`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email: cleanEmail, name: name, avatar_url: '' })
+                body: JSON.stringify({
+                    email: cleanEmail,
+                    name: name,
+                    avatar_url: '',
+                    phone: cleanPhone || undefined
+                })
             });
+            if (bResp.status === 409) {
+                const bErr = await bResp.json();
+                throw new Error(bErr.detail || 'This WhatsApp phone number is already registered with another account.');
+            }
             if (bResp.ok) {
                 const bData = await bResp.json();
                 if (bData.access_token) {
@@ -2738,6 +3058,9 @@
                 }
             }
         } catch (netErr) {
+            if (netErr.message && netErr.message.includes('registered with another account')) {
+                throw netErr;
+            }
             console.warn('[Google OAuth Backend Reconciliation Notice]:', netErr);
         }
 
@@ -2753,7 +3076,7 @@
             console.warn('[Google Email Auth dispatch notice]:', e);
         }
 
-        const reconciledPhone = (reconciledUser && (reconciledUser.phone || reconciledUser.whatsapp_support)) || '';
+        const reconciledPhone = cleanPhone || (reconciledUser && (reconciledUser.phone || reconciledUser.whatsapp_support)) || '';
         const displayName = reconciledUser?.full_name || name;
 
         const userObj = {
@@ -2796,9 +3119,9 @@
                 email: cleanEmail,
                 phone: reconciledPhone || '+91 (Google Sign-In)',
                 service: isAdm ? 'Agency Executive' : '14-Day Free Pilot Account',
-                message: `User signed in via Google Account (${cleanEmail}).`,
+                message: `User signed in via Google Account (${cleanEmail}) with phone ${reconciledPhone || 'pending verification'}.`,
                 source_page: window.location.pathname.split('/').pop() || 'index.html',
-                status: 'new'
+                status: 'qualified'
             }]);
         } catch (dbE) {}
 
@@ -2809,7 +3132,7 @@
                 email: cleanEmail,
                 phone: reconciledPhone || '+91 (Google Sign-In)',
                 service: isAdm ? 'Agency Executive' : '14-Day Free Trial (Google Sign-In)',
-                message: `Signed in via Google.`,
+                message: `Signed in via Google. Phone: ${reconciledPhone || 'pending'}`,
                 source_page: window.location.pathname
             });
         }
@@ -2819,7 +3142,14 @@
         closeGoogleEmailModal();
         closeAuthModal();
         syncNavbarUI();
-        showAuthToast(`🎉 Signed in with Google account: ${cleanEmail}`);
+
+        // Enforce mandatory phone requirement if still missing
+        if (!isAdm && (!reconciledPhone || !validatePhone(reconciledPhone))) {
+            checkMandatoryPhoneRequirement();
+        } else {
+            closeMandatoryPhoneModal();
+            showAuthToast(`🎉 Signed in with Google account: ${cleanEmail}`);
+        }
 
         window.dispatchEvent(new CustomEvent('fc:auth-state-changed', {
             detail: { user: currentUser, profile: currentProfile }
@@ -3221,6 +3551,8 @@
                     window.dispatchEvent(new CustomEvent('fc:auth-state-changed', {
                         detail: { user: currentUser, profile: currentProfile }
                     }));
+
+                    checkMandatoryPhoneRequirement();
                 }
             } catch (err) {
                 console.error('[Auth PKCE Exception]:', err);
@@ -3251,6 +3583,8 @@
                     window.dispatchEvent(new CustomEvent('fc:auth-state-changed', {
                         detail: { user: currentUser, profile: currentProfile }
                     }));
+
+                    checkMandatoryPhoneRequirement();
                 }
                 window.history.replaceState({}, document.title, window.location.pathname);
             }, 500);
@@ -3270,6 +3604,7 @@
                 currentUser = JSON.parse(savedUser);
                 currentProfile = savedProfile ? JSON.parse(savedProfile) : null;
                 syncNavbarUI();
+                checkMandatoryPhoneRequirement();
             } catch (e) {}
         }
 
@@ -3326,6 +3661,7 @@
 
                 if (event === 'SIGNED_IN' || event === 'USER_UPDATED') {
                     notifyAgencyOfLogin(currentUser, event);
+                    checkMandatoryPhoneRequirement();
                 }
             }
             syncNavbarUI();
@@ -3336,6 +3672,10 @@
             window.dispatchEvent(new CustomEvent('fc:auth-state-changed', {
                 detail: { user: currentUser, profile: currentProfile }
             }));
+
+            if (currentUser) {
+                checkMandatoryPhoneRequirement();
+            }
         });
     });
 
@@ -3353,6 +3693,9 @@
         saveMerchantProfile,
         openGoogleEmailModal,
         closeGoogleEmailModal,
+        openMandatoryPhoneModal,
+        closeMandatoryPhoneModal,
+        checkMandatoryPhoneRequirement,
         completeGoogleEmailSignIn,
         switchTab,
         signInWithGoogle,

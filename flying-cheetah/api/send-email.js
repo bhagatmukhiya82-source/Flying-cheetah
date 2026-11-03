@@ -1,12 +1,102 @@
 /**
  * FLYING CHEETAH LABS - SERVERLESS TRANSACTIONAL EMAIL FUNCTION
  * Official Business Recipient: flyingcheetah.agency@gmail.com
- * Handles: Lead Submissions, 14-Day Trial Registrations & User Login Alerts ($0/mo via Resend API).
+ * Handles:
+ *  - Client OTP Security Verification Emails (Password Reset & Password Change)
+ *  - Lead Submissions
+ *  - User Login Alerts
  */
+
+const tls = require('tls');
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY || '';
 const OFFICIAL_AGENCY_EMAIL = process.env.FOUNDER_NOTIFY_EMAIL || 'flyingcheetah.agency@gmail.com';
 const FROM_EMAIL = process.env.FROM_EMAIL || 'Flying Cheetah <onboarding@resend.dev>';
+
+// Native Zero-Dependency TLS SMTP Configuration (Gmail SSL Port 465)
+const SMTP_USER = process.env.SMTP_USER || 'bhagatmukhiya82@gmail.com';
+const SMTP_PASS = process.env.SMTP_PASSWORD || 'sryzptfthzfeeeco';
+const SMTP_FROM_NAME = process.env.SMTP_FROM_NAME || 'Flying Cheetah Security';
+
+function sendGmailSmtp({ user = SMTP_USER, pass = SMTP_PASS, fromName = SMTP_FROM_NAME, to, subject, html, text }) {
+    return new Promise((resolve, reject) => {
+        if (!user || !pass || !to) {
+            return reject(new Error('Missing SMTP configuration or recipient email'));
+        }
+
+        const socket = tls.connect(465, 'smtp.gmail.com', { rejectUnauthorized: false });
+        let step = 0;
+        let buffer = '';
+
+        const timeout = setTimeout(() => {
+            socket.destroy();
+            reject(new Error('SMTP Connection Timeout'));
+        }, 12000);
+
+        const boundary = '----=_Part_FC_' + Date.now();
+        const message = [
+            `From: "${fromName}" <${user}>`,
+            `To: <${to}>`,
+            `Subject: ${subject}`,
+            `MIME-Version: 1.0`,
+            `Content-Type: multipart/alternative; boundary="${boundary}"`,
+            ``,
+            `--${boundary}`,
+            `Content-Type: text/plain; charset="UTF-8"`,
+            ``,
+            text || subject,
+            ``,
+            `--${boundary}`,
+            `Content-Type: text/html; charset="UTF-8"`,
+            ``,
+            html,
+            ``,
+            `--${boundary}--`,
+            `.`
+        ].join('\r\n');
+
+        const commands = [
+            `EHLO flyingcheetah.agency`,
+            `AUTH LOGIN`,
+            Buffer.from(user).toString('base64'),
+            Buffer.from(pass).toString('base64'),
+            `MAIL FROM:<${user}>`,
+            `RCPT TO:<${to}>`,
+            `DATA`,
+            message,
+            `QUIT`
+        ];
+
+        socket.on('data', (chunk) => {
+            buffer += chunk.toString();
+            const lines = buffer.split('\r\n');
+            buffer = lines.pop();
+
+            for (const line of lines) {
+                if (line.length >= 4 && line[3] === '-') continue;
+                const code = parseInt(line.slice(0, 3), 10);
+                if (code >= 400) {
+                    clearTimeout(timeout);
+                    socket.destroy();
+                    return reject(new Error(`SMTP Error ${code}: ${line}`));
+                }
+                if (step < commands.length) {
+                    const cmd = commands[step++];
+                    socket.write(cmd + '\r\n');
+                } else {
+                    clearTimeout(timeout);
+                    socket.end();
+                    resolve(true);
+                }
+            }
+        });
+
+        socket.on('error', (err) => {
+            clearTimeout(timeout);
+            reject(err);
+        });
+    });
+}
 
 module.exports = async function handler(req, res) {
     // 1. CORS Headers
@@ -47,13 +137,61 @@ module.exports = async function handler(req, res) {
 
         let emailSubject = '';
         let emailHtml = '';
+        let emailText = '';
+        let recipientEmail = OFFICIAL_AGENCY_EMAIL;
 
-        if (type === 'login_alert') {
+        if (type === 'otp_verification') {
+            // CLIENT OTP SECURITY EMAIL (Password Reset / Password Change)
+            const { email, otp_code, action } = body || {};
+            const actionLabel = action || 'Password Reset';
+
+            if (!email || !otp_code) {
+                const errResp = JSON.stringify({ error: 'Missing required OTP parameters (email, otp_code).' });
+                if (res.writeHead) {
+                    res.writeHead(400, headers);
+                    res.end(errResp);
+                    return;
+                }
+                return { statusCode: 400, headers, body: errResp };
+            }
+
+            recipientEmail = String(email).trim().toLowerCase();
+            emailSubject = `Flying Cheetah Verification Code: ${otp_code}`;
+            emailText = `Your Flying Cheetah ${actionLabel} verification code is: ${otp_code}. Valid for 10 minutes. Do not share this code with anyone.`;
+            emailHtml = `
+            <!DOCTYPE html>
+            <html>
+            <body style="font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif; background-color: #f8fafc; padding: 32px 16px; margin: 0;">
+                <div style="max-width: 480px; margin: 0 auto; background: #ffffff; border-radius: 20px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);">
+                    <div style="background: #121624; padding: 24px 32px; text-align: center;">
+                        <div style="color: #ff6838; font-weight: 800; font-size: 18px; letter-spacing: 0.5px;">FLYING CHEETAH</div>
+                        <div style="color: #94a3b8; font-size: 12px; margin-top: 4px;">Security Verification</div>
+                    </div>
+                    <div style="padding: 32px;">
+                        <h2 style="margin: 0 0 12px 0; color: #0f172a; font-size: 20px; font-weight: 800;">${actionLabel} Verification</h2>
+                        <p style="color: #475569; font-size: 14px; line-height: 1.6; margin: 0 0 24px 0;">
+                            Use the one-time security code below to complete your ${actionLabel.toLowerCase()}. This code is valid for <strong>10 minutes</strong>.
+                        </p>
+                        <div style="background: #fff7ed; border: 2px dashed #fdba74; border-radius: 16px; padding: 20px; text-align: center; margin-bottom: 24px;">
+                            <div style="font-family: monospace; font-size: 32px; font-weight: 900; letter-spacing: 8px; color: #ea580c;">${otp_code}</div>
+                        </div>
+                        <p style="color: #64748b; font-size: 12px; line-height: 1.5; margin: 0;">
+                            If you did not request this verification code, you can safely ignore this email. Your account remains secure.
+                        </p>
+                    </div>
+                    <div style="background: #f1f5f9; padding: 16px 32px; text-align: center; color: #64748b; font-size: 11px;">
+                        &copy; 2026 Flying Cheetah Revenue Engine &bull; Automated Security Dispatch
+                    </div>
+                </div>
+            </body>
+            </html>`;
+        } else if (type === 'login_alert') {
             // USER LOGIN / REGISTRATION NOTIFICATION
             const { name, email, auth_method, role, trial_active, source_page } = body || {};
             const userName = name || email?.split('@')[0] || 'User';
 
             emailSubject = body.subject || `🔐 User Login Alert: ${userName} (${email})`;
+            emailText = `User Login Alert: ${userName} (${email}) via ${auth_method || 'Auth'} at ${timestamp}`;
             emailHtml = `
             <!DOCTYPE html>
             <html>
@@ -86,7 +224,7 @@ module.exports = async function handler(req, res) {
                             <tr style="border-top: 1px solid #f1f5f9;">
                                 <td style="padding: 10px 0; color: #64748b; font-weight: 600;">Account Status:</td>
                                 <td style="padding: 10px 0; color: #16a34a; font-weight: bold;">
-                                    ${trial_active ? '✨ 14-Day Free Trial Active' : (role === 'admin' ? '🛡️ Administrator' : 'Client Account')}
+                                    ${trial_active ? '✨ Live Sandbox Active' : (role === 'admin' ? '🛡️ Administrator' : 'Client Account')}
                                 </td>
                             </tr>
                             <tr style="border-top: 1px solid #f1f5f9;">
@@ -100,7 +238,7 @@ module.exports = async function handler(req, res) {
                         </table>
 
                         <div style="margin-top: 30px; text-align: center;">
-                            <a href="https://flyingcheetah.com/admin.html" style="display: inline-block; background-color: #121624; color: #ffffff; padding: 14px 28px; border-radius: 12px; font-weight: bold; font-size: 14px; text-decoration: none;">
+                            <a href="https://flying-cheetah.vercel.app/admin.html" style="display: inline-block; background-color: #121624; color: #ffffff; padding: 14px 28px; border-radius: 12px; font-weight: bold; font-size: 14px; text-decoration: none;">
                                 Open Flying Cheetah Admin Dashboard →
                             </a>
                         </div>
@@ -131,6 +269,7 @@ module.exports = async function handler(req, res) {
             const waLink = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(`Hi ${name}, this is Flying Cheetah following up on your ${chosenService} inquiry.`)}`;
 
             emailSubject = `🚨 New Lead from Flying Cheetah: ${name}`;
+            emailText = `New Lead from Flying Cheetah: ${name} (${email}, ${phone}) - Service: ${chosenService}`;
             emailHtml = `
             <!DOCTYPE html>
             <html>
@@ -197,9 +336,28 @@ module.exports = async function handler(req, res) {
             </html>`;
         }
 
-        // Dispatch via Resend API (if API Key provided)
         let dispatched = false;
-        if (RESEND_API_KEY) {
+
+        // 1. Primary Dispatch via Gmail TLS SMTP (works 24/7 for any client recipient email)
+        if (SMTP_USER && SMTP_PASS) {
+            try {
+                await sendGmailSmtp({
+                    user: SMTP_USER,
+                    pass: SMTP_PASS,
+                    fromName: type === 'otp_verification' ? 'Flying Cheetah Security' : 'Flying Cheetah Engine',
+                    to: recipientEmail,
+                    subject: emailSubject,
+                    html: emailHtml,
+                    text: emailText
+                });
+                dispatched = true;
+            } catch (smtpErr) {
+                console.error('[Gmail SMTP Error]:', smtpErr.message);
+            }
+        }
+
+        // 2. Fallback Dispatch via Resend API (if configured and not yet dispatched)
+        if (!dispatched && RESEND_API_KEY) {
             try {
                 const response = await fetch('https://api.resend.com/emails', {
                     method: 'POST',
@@ -209,7 +367,7 @@ module.exports = async function handler(req, res) {
                     },
                     body: JSON.stringify({
                         from: FROM_EMAIL,
-                        to: [OFFICIAL_AGENCY_EMAIL],
+                        to: [recipientEmail],
                         subject: emailSubject,
                         html: emailHtml
                     })
@@ -223,7 +381,7 @@ module.exports = async function handler(req, res) {
         const successBody = JSON.stringify({ 
             success: true, 
             dispatched, 
-            recipient: OFFICIAL_AGENCY_EMAIL,
+            recipient: recipientEmail,
             type 
         });
 

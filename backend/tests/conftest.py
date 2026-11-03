@@ -14,11 +14,21 @@ from app.core.config import settings
 TEST_DB_URL = "sqlite+aiosqlite:///:memory:"
 
 @pytest.fixture(autouse=True)
-def mock_external_services():
+def mock_external_services(monkeypatch):
     orig_token = settings.META_WA_TOKEN
+    orig_pass = settings.SMTP_PASSWORD
     settings.META_WA_TOKEN = "MOCK_META_WA_TOKEN"
+    settings.SMTP_PASSWORD = "mock_test_password"
+    
+    # Mock email service so automated tests never send real emails or trigger mailer-daemon bounces
+    from app.services.email_service import email_service
+    async def mock_send_otp(*args, **kwargs):
+        return True
+    monkeypatch.setattr(email_service, "send_otp_email", mock_send_otp)
+    
     yield
     settings.META_WA_TOKEN = orig_token
+    settings.SMTP_PASSWORD = orig_pass
 
 test_engine = create_async_engine(TEST_DB_URL, echo=False)
 TestingSessionLocal = async_sessionmaker(bind=test_engine, class_=AsyncSession, expire_on_commit=False)
