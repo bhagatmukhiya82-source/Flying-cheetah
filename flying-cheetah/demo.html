@@ -536,8 +536,150 @@
             }
         }
 
+        let isVoicePlaying = false;
+        function showDemoToast(title, message, color = 'purple') {
+            let container = document.getElementById('fcDemoToastContainer');
+            if (!container) {
+                container = document.createElement('div');
+                container.id = 'fcDemoToastContainer';
+                container.className = 'fixed bottom-5 right-5 z-[200] flex flex-col gap-2 max-w-sm w-full pointer-events-none px-4';
+                document.body.appendChild(container);
+            }
+
+            const toast = document.createElement('div');
+            const colorBorder = {
+                purple: 'border-purple-400/60 shadow-purple-950/40',
+                emerald: 'border-emerald-400/60 shadow-emerald-950/40',
+                orange: 'border-orange-400/60 shadow-orange-950/40',
+                blue: 'border-blue-400/60 shadow-blue-950/40'
+            }[color] || 'border-slate-400/60';
+
+            toast.className = `p-4 rounded-2xl shadow-2xl border ${colorBorder} bg-slate-900/95 text-white pointer-events-auto transform translate-y-4 opacity-0 transition-all duration-300 flex items-start gap-3 backdrop-blur-md`;
+            toast.innerHTML = `
+                <div class="flex-1">
+                    <div class="text-xs font-black uppercase tracking-wider text-amber-400 flex items-center gap-1.5 mb-1">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                        <span>${title}</span>
+                    </div>
+                    <div class="text-[11px] text-slate-200 leading-relaxed">${message}</div>
+                </div>
+                <button onclick="this.parentElement.remove()" class="text-slate-400 hover:text-white text-xs p-1 cursor-pointer">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            `;
+
+            container.appendChild(toast);
+            requestAnimationFrame(() => {
+                toast.classList.remove('translate-y-4', 'opacity-0');
+            });
+
+            setTimeout(() => {
+                toast.classList.add('translate-y-4', 'opacity-0');
+                setTimeout(() => toast.remove(), 300);
+            }, 6000);
+        }
+
         function triggerSandboxSim(type) {
-            alert(`⚡ Live Simulation Triggered: Flying Cheetah autonomous ${type} pipeline executed in 1.4s! Book a demo below to see it connected to your store.`);
+            if (type === 'voice') {
+                const voiceBtn = document.querySelector('#sandbox-voice button');
+                
+                if (isVoicePlaying) {
+                    if (window.speechSynthesis) window.speechSynthesis.cancel();
+                    isVoicePlaying = false;
+                    if (voiceBtn) {
+                        voiceBtn.innerHTML = '<i class="fa-solid fa-volume-high text-[10px]"></i> Listen to Voice Simulation';
+                        voiceBtn.className = 'px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs transition flex items-center gap-1.5 shadow-md cursor-pointer';
+                    }
+                    showDemoToast('⏸️ Voice Agent Stopped', 'Simulated call ended by user.', 'purple');
+                    return;
+                }
+
+                isVoicePlaying = true;
+                if (voiceBtn) {
+                    voiceBtn.innerHTML = '<i class="fa-solid fa-volume-xmark text-[10px]"></i> Stop Voice Call (Agent Priya)';
+                    voiceBtn.className = 'px-4 py-2 rounded-xl bg-pink-600 hover:bg-pink-500 text-white font-bold text-xs transition flex items-center gap-1.5 shadow-md animate-pulse cursor-pointer';
+                }
+
+                showDemoToast('🎙️ Exotel SIP Trunk Active (142ms Latency)', 'Agent Priya calling Rahul: "Namaste Rahul ji! Main Flying Cheetah store se call kar rahi hoon. Aapka ₹1,899 ka order confirm karna tha..."', 'purple');
+
+                if ('speechSynthesis' in window) {
+                    window.speechSynthesis.cancel();
+                    const text = "Namaste Rahul ji! Main Flying Cheetah store se call kar rahi hoon. Aapka unnis sau rupaye ka order confirm karna tha, delivery Charni Road hai na?";
+                    const utterance = new SpeechSynthesisUtterance(text);
+                    utterance.rate = 1.0;
+                    utterance.pitch = 1.15;
+                    
+                    const voices = window.speechSynthesis.getVoices();
+                    const inVoice = voices.find(v => v.lang.includes('hi') || v.lang.includes('IN') || v.name.includes('India'));
+                    if (inVoice) utterance.voice = inVoice;
+
+                    utterance.onend = () => {
+                        isVoicePlaying = false;
+                        if (voiceBtn) {
+                            voiceBtn.innerHTML = '<i class="fa-solid fa-volume-high text-[10px]"></i> Listen to Voice Simulation';
+                            voiceBtn.className = 'px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs transition flex items-center gap-1.5 shadow-md cursor-pointer';
+                        }
+                        showDemoToast('✅ COD Verification Successful', 'Rahul confirmed: "Kal dopahar tak bhej dijiye." • Order #9021 verified, anti-fraud check cleared!', 'emerald');
+                    };
+
+                    utterance.onerror = () => {
+                        isVoicePlaying = false;
+                        if (voiceBtn) {
+                            voiceBtn.innerHTML = '<i class="fa-solid fa-volume-high text-[10px]"></i> Listen to Voice Simulation';
+                            voiceBtn.className = 'px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs transition flex items-center gap-1.5 shadow-md cursor-pointer';
+                        }
+                    };
+
+                    window.speechSynthesis.speak(utterance);
+                } else {
+                    setTimeout(() => {
+                        isVoicePlaying = false;
+                        if (voiceBtn) {
+                            voiceBtn.innerHTML = '<i class="fa-solid fa-volume-high text-[10px]"></i> Listen to Voice Simulation';
+                            voiceBtn.className = 'px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs transition flex items-center gap-1.5 shadow-md cursor-pointer';
+                        }
+                        showDemoToast('✅ COD Verification Successful', 'Rahul confirmed order #9021 • Anti-fraud check cleared!', 'emerald');
+                    }, 4000);
+                }
+            } else if (type === 'whatsapp') {
+                const waBtn = document.querySelector('#sandbox-whatsapp button');
+                if (waBtn) {
+                    const orig = waBtn.innerHTML;
+                    waBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin text-[10px]"></i> Dispatched in 1.1s...';
+                    setTimeout(() => {
+                        waBtn.innerHTML = '<i class="fa-solid fa-check text-[10px]"></i> Sent to WhatsApp (+91 98200 12345)';
+                        setTimeout(() => waBtn.innerHTML = orig, 3000);
+                    }, 1000);
+                }
+                showDemoToast('⚡ WhatsApp Cart Recovery', 'Sent high-converting checkout link (10% OFF coupon applied) directly to customer WhatsApp.', 'emerald');
+            } else if (type === 'fleet') {
+                const fleetBtn = document.querySelector('#sandbox-fleet button');
+                const bar = document.querySelector('#sandbox-fleet .bg-gradient-to-r');
+                if (bar) {
+                    bar.style.width = '10%';
+                    setTimeout(() => bar.style.width = '100%', 200);
+                }
+                if (fleetBtn) {
+                    const orig = fleetBtn.innerHTML;
+                    fleetBtn.innerHTML = '<i class="fa-solid fa-motorcycle fa-bounce text-[10px]"></i> Matching Borzo Rider...';
+                    setTimeout(() => {
+                        fleetBtn.innerHTML = '<i class="fa-solid fa-check text-[10px]"></i> Driver Assigned (Santosh K.)';
+                        setTimeout(() => fleetBtn.innerHTML = orig, 3000);
+                    }, 1200);
+                }
+                showDemoToast('🏍️ Borzo & Porter API Dispatch', 'Order #9021 routed. Rider Santosh K. (1.2 km away) confirmed for doorstep delivery in 22 mins.', 'orange');
+            } else if (type === 'support') {
+                const supBtn = document.querySelector('#sandbox-support button');
+                if (supBtn) {
+                    const orig = supBtn.innerHTML;
+                    supBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin text-[10px]"></i> Resolving via LLM...';
+                    setTimeout(() => {
+                        supBtn.innerHTML = '<i class="fa-solid fa-check text-[10px]"></i> Auto-Resolved (0.42s)';
+                        setTimeout(() => supBtn.innerHTML = orig, 3000);
+                    }, 800);
+                }
+                showDemoToast('💬 Omnichannel AI Helpdesk', 'Diwali address change handled and synced across courier manifest. CSAT: 5.0 ⭐', 'blue');
+            }
         }
 
         // Form Submission

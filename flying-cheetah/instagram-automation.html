@@ -230,22 +230,56 @@
                             <div class="text-[11px] font-bold text-slate-600 mt-0.5">ROAS Multiplier</div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Right Visual: Generated UI Mockup -->
-                <div class="lg:col-span-5 relative">
-                    <div class="rounded-3xl border border-pink-200/80 bg-white p-3 shadow-2xl bik-mega-shadow fc-card-glow relative overflow-hidden group">
-                        <div class="relative overflow-hidden rounded-2xl">
-                            <img src="images/instagram_automation_dashboard.jpg" alt="Instagram Automation Comment to DM Purchase Pipeline" class="w-full h-auto object-cover transform group-hover:scale-[1.02] transition duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent pointer-events-none"></div>
-                        </div>
-                        <div class="p-3.5 bg-slate-50/90 border border-slate-200/80 rounded-xl mt-2 flex items-center justify-between text-xs font-semibold text-slate-700 shadow-xs">
-                            <span class="flex items-center gap-2 font-medium text-slate-800"><span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Active Reel Trigger: 'Price Please'</span>
-                            <span class="text-pink-700 font-mono text-[11px] bg-pink-50 px-2 py-0.5 rounded-md border border-pink-200 font-bold">Auto-DM Dispatched</span>
-                        </div>
+                    <!-- Voiceover Audio Hint -->
+                    <div class="flex items-center gap-2 p-3 rounded-xl bg-pink-50/80 border border-pink-200 text-pink-900 text-xs font-medium max-w-lg mt-4">
+                        <i class="fa-solid fa-volume-high text-pink-600 text-sm"></i>
+                        <span>Includes official AI voiceover narration. Tap the speaker button to listen!</span>
                     </div>
                 </div>
 
+                <!-- Right Visual: Live Realistic Instagram AI Chatbot Demo Video -->
+                <div class="lg:col-span-5 relative">
+                    <div class="rounded-3xl border border-pink-200/80 bg-white p-3.5 shadow-2xl bik-mega-shadow fc-card-glow relative overflow-hidden group">
+                        
+                        <!-- Top Video Header Controls -->
+                        <div class="flex items-center justify-between pb-3 px-1 text-xs border-b border-slate-100">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                                <span class="font-bold text-slate-800 font-display flex items-center gap-1.5">
+                                    <i class="fa-brands fa-instagram text-pink-600"></i>
+                                    <span>Live Instagram AI Chatbot</span>
+                                </span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="px-2 py-0.5 rounded-full bg-pink-50 border border-pink-200 text-pink-700 text-[10px] font-mono font-bold">
+                                    1.4s Auto-DM
+                                </span>
+                                <button onclick="toggleIgVideoMute()" id="igMuteBtn" class="px-2.5 py-1 rounded-lg bg-pink-600 hover:bg-pink-700 text-white flex items-center gap-1.5 transition text-xs font-bold shadow-xs" title="Toggle Voiceover Sound">
+                                    <i class="fa-solid fa-volume-xmark" id="igMuteIcon"></i>
+                                    <span id="igMuteText" class="text-[10px]">Unmute Voice</span>
+                                </button>
+                                <button onclick="toggleIgVideoPlay()" id="igPlayBtn" class="w-7 h-7 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center transition text-xs shadow-xs" title="Pause / Play">
+                                    <i class="fa-solid fa-pause" id="igPlayIcon"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Video Player Canvas -->
+                        <div class="relative overflow-hidden rounded-2xl bg-white aspect-[9/16] max-h-[620px] flex items-center justify-center mt-3 border border-slate-100 shadow-inner">
+                            <video id="igChatbotVideo" src="videos/instagram_ai_chatbot_demo.mp4" autoplay loop muted playsinline preload="metadata" class="w-full h-full object-contain rounded-2xl block"></video>
+                        </div>
+
+                        <!-- Bottom Telemetry Status Bar -->
+                        <div class="p-3 bg-slate-50/90 border border-slate-200/80 rounded-xl mt-3 flex items-center justify-between text-xs font-semibold text-slate-700 shadow-xs">
+                            <span class="flex items-center gap-2 font-medium text-slate-800 truncate">
+                                <i class="fa-solid fa-bolt text-amber-500"></i>
+                                <span>Reel Comment ➔ Instant DM ➔ Size &amp; FAQ Resolution</span>
+                            </span>
+                            <span class="text-emerald-700 font-mono text-[11px] bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200 font-bold whitespace-nowrap">100% Automated</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -369,6 +403,35 @@
                 });
             }
         });
-    </script>
+    
+        // Instagram Video Controls
+        function toggleIgVideoMute() {
+            const video = document.getElementById('igChatbotVideo');
+            const icon = document.getElementById('igMuteIcon');
+            const text = document.getElementById('igMuteText');
+            if (!video) return;
+            video.muted = !video.muted;
+            if (icon) {
+                icon.className = video.muted ? 'fa-solid fa-volume-xmark' : 'fa-solid fa-volume-high';
+            }
+            if (text) {
+                text.textContent = video.muted ? 'Unmute Voice' : 'Mute';
+            }
+        }
+
+        function toggleIgVideoPlay() {
+            const video = document.getElementById('igChatbotVideo');
+            const icon = document.getElementById('igPlayIcon');
+            if (!video) return;
+            if (video.paused) {
+                video.play();
+                if (icon) icon.className = 'fa-solid fa-pause';
+            } else {
+                video.pause();
+                if (icon) icon.className = 'fa-solid fa-play';
+            }
+        }
+    
+</script>
 </body>
 </html>

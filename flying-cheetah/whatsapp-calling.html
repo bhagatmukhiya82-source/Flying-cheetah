@@ -641,7 +641,9 @@
             fb.classList.remove('hidden');
         }
         function triggerBorzo() {
-            alert("✓ Borzo Courier Dispatch Triggered! Driver assigned: Ganesh K. (Delivery by 5:15 PM)");
+            if (window.FC_AUTH && window.FC_AUTH.showAuthToast) {
+                window.FC_AUTH.showAuthToast("⚡ Borzo Courier Dispatch Triggered! Driver assigned: Ganesh K. (Delivery by 5:15 PM)");
+            }
         }
 
         // Dual Hover + Click Dropdown support for Home

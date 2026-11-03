@@ -581,9 +581,9 @@
                 const successful = document.execCommand('copy');
                 document.body.removeChild(tempTextArea);
                 if (successful && successCb) successCb();
-                else alert('UPI ID: ' + text);
+                else if (window.FC_AUTH && window.FC_AUTH.showAuthToast) window.FC_AUTH.showAuthToast('UPI ID: ' + text);
             } catch (err) {
-                alert('UPI ID: ' + text);
+                if (window.FC_AUTH && window.FC_AUTH.showAuthToast) window.FC_AUTH.showAuthToast('UPI ID: ' + text);
             }
         }
 
