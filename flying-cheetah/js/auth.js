@@ -3241,7 +3241,7 @@
         } catch (dbE) {}
 
         // 5-Minute Delayed WhatsApp Follow-up Chatbot Hook (Local n8n workflow)
-        const userPhone = user.phone || user.user_metadata?.phone || currentProfile?.phone || currentProfile?.whatsapp_support || '';
+        const userPhone = userObj.phone || userObj.user_metadata?.phone || currentProfile?.phone || currentProfile?.whatsapp_support || '';
         if (userPhone && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
             try {
                 fetch('http://localhost:5678/webhook/user-login-whatsapp', {
@@ -3249,9 +3249,9 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         event: 'user_logged_in',
-                        name: name,
+                        name: displayName,
                         phone: userPhone,
-                        email: user.email,
+                        email: userObj.email,
                         login_time: new Date().toISOString()
                     })
                 }).catch(function() {});
