@@ -394,10 +394,10 @@
 
         function unlockFounderDevAccess() {
             const founderUser = {
-                id: 'founder-bhagat-001',
+                id: 'fc-admin-001',
                 email: 'flyingcheetah.agency@gmail.com',
                 user_metadata: {
-                    full_name: 'Bhagat Mukhiya (Founder)',
+                    full_name: 'Flying Cheetah Admin',
                     avatar_url: 'images/flying_cheetah_logo_one_tail.png'
                 }
             };
@@ -407,7 +407,7 @@
             if (unauthorized) unauthorized.classList.add('hidden');
             const overlay = document.getElementById('authGuardOverlay');
             if (overlay) overlay.classList.add('opacity-0', 'pointer-events-none');
-            document.getElementById('adminNameTxt').textContent = 'Bhagat Mukhiya (Founder)';
+            document.getElementById('adminNameTxt').textContent = 'Flying Cheetah Admin';
             document.getElementById('adminEmailTxt').textContent = 'flyingcheetah.agency@gmail.com';
             fetchDashboardData();
         }
@@ -458,7 +458,7 @@
             if (overlay) overlay.classList.add('opacity-0', 'pointer-events-none');
 
             const profile = window.FC_AUTH.getProfile();
-            document.getElementById('adminNameTxt').textContent = profile?.full_name || user.user_metadata?.full_name || 'Bhagat Mukhiya (Founder)';
+            document.getElementById('adminNameTxt').textContent = profile?.full_name || user.user_metadata?.full_name || 'Flying Cheetah Admin';
             document.getElementById('adminEmailTxt').textContent = user.email;
             if (user.user_metadata?.avatar_url) {
                 document.getElementById('adminAvatarImg').src = user.user_metadata.avatar_url;

@@ -296,7 +296,7 @@
                         </a>
                         <button onclick="window.FC_LEADS.openAuditModal('Flagship Commerce Suite')" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl border border-slate-300 hover:border-bikOrange text-slate-800 font-bold text-sm bg-white hover:bg-orange-50/50 transition shadow-sm">
                             <i class="fa-solid fa-clipboard-check text-bikOrange"></i>
-                            <span>Store Audit</span>
+                            <span>Growth &amp; Tech Audit</span>
                         </button>
                     </div>
 
@@ -621,7 +621,7 @@
                         </span>
                     </div>
                     <a href="demo.html" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-xs transition shadow-md shadow-orange-500/20 group/btn">
-                        <span>Deploy for Your Store</span>
+                        <span>Deploy for Your Brand</span>
                         <i class="fa-solid fa-arrow-right text-[10px] group-hover/btn:translate-x-1 transition"></i>
                     </a>
                 </div>
@@ -641,17 +641,20 @@
             <!-- 5 Columns / Cards Grid -->
             <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
                 
-                <!-- 1. Store Automation Card -->
-                <a href="store-automation.html" class="p-6 rounded-2xl bg-white border border-slate-200 card-anim block flex flex-col justify-between group hover:border-bikOrange transition">
+                <!-- 1. Web & App Development Card -->
+                <a href="web-development.html" class="p-6 rounded-2xl bg-white border border-slate-200 card-anim block flex flex-col justify-between group hover:border-orange-500 transition">
                     <div>
-                        <div class="w-12 h-12 rounded-xl bg-orange-100 text-bikOrange flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition"><i class="fa-solid fa-shop"></i></div>
-                        <h3 class="font-bold text-base text-bikDark mb-1 group-hover:text-bikOrange transition">Store Automation</h3>
-                        <p class="text-xs text-slate-500 leading-relaxed">Website activity-based triggers that recover 24% more browsing leads before drop-off.</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-orange-100 text-bikOrange flex items-center justify-center text-xl group-hover:scale-110 transition"><i class="fa-solid fa-code"></i></div>
+                            <span class="px-2 py-0.5 rounded-full bg-orange-50 border border-orange-200 text-bikOrange text-[10px] font-bold"><i class="fa-solid fa-bolt text-[8px] mr-1 text-bikOrange"></i> Sub-100ms</span>
+                        </div>
+                        <h3 class="font-bold text-base text-bikDark mb-1 group-hover:text-bikOrange transition">Web &amp; App Development</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed">Headless Next.js storefronts &amp; bespoke web apps with sub-100ms load times, Day-1 SEO, and custom APIs.</p>
                         <div class="mt-4 rounded-xl overflow-hidden border border-slate-100 shadow-inner">
-                            <img src="images/store_automation_ui_mockup.jpg" alt="Store Automation Journey" class="w-full h-24 object-cover">
+                            <img src="images/high_speed_store_dev_mockup.jpg" alt="High Speed Web Engineering" class="w-full h-24 object-cover">
                         </div>
                     </div>
-                    <span class="text-xs font-bold text-bikOrange mt-4 inline-flex items-center gap-1">Explore Automation <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+                    <span class="text-xs font-bold text-bikOrange mt-4 inline-flex items-center gap-1">Explore Web Development <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
                 </a>
 
                 <!-- 2. Instagram Automation Card -->
@@ -715,6 +718,500 @@
             </div>
         </div>
     </section>
+
+
+    <!-- 3-PILLAR INTERACTIVE CAPABILITIES MATRIX (AUTOMATION • MARKETING • WEB DEV) -->
+    <section id="capabilities-matrix" class="py-20 bg-white border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-bikOrange font-bold text-xs uppercase tracking-widest bg-orange-100 px-3.5 py-1 rounded-full">Core Specializations</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark mt-3 font-display">Our 3 Core Pillars of Brand Growth</h2>
+                <p class="text-slateText text-sm mt-2">Flying Cheetah combines autonomous workflow automations, high-converting Meta marketing, and ultra-fast web development under one roof.</p>
+                
+                <!-- 3 Interactive Tabs -->
+                <div class="flex items-center justify-center gap-2 sm:gap-3 mt-8 p-1.5 bg-slate-100 rounded-2xl max-w-xl mx-auto">
+                    <button type="button" onclick="switchPillarTab('automation')" id="pillar-tab-btn-automation" class="pillar-tab-btn flex-1 py-2.5 px-3 rounded-xl font-bold text-xs sm:text-sm transition flex items-center justify-center gap-2 bg-white text-bikDark shadow-sm cursor-pointer">
+                        <i class="fa-solid fa-bolt text-bikOrange"></i>
+                        <span>AI Automations</span>
+                    </button>
+                    <button type="button" onclick="switchPillarTab('marketing')" id="pillar-tab-btn-marketing" class="pillar-tab-btn flex-1 py-2.5 px-3 rounded-xl font-semibold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition flex items-center justify-center gap-2 cursor-pointer">
+                        <i class="fa-solid fa-bullhorn text-emerald-600"></i>
+                        <span>Marketing</span>
+                    </button>
+                    <button type="button" onclick="switchPillarTab('webdev')" id="pillar-tab-btn-webdev" class="pillar-tab-btn flex-1 py-2.5 px-3 rounded-xl font-semibold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition flex items-center justify-center gap-2 cursor-pointer">
+                        <i class="fa-solid fa-code text-blue-600"></i>
+                        <span>Web Development</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- TAB CONTENT 1: AI AUTOMATIONS -->
+            <div id="pillar-content-automation" class="pillar-content-block transition-all duration-300">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-slate-50/70 p-6 sm:p-10 rounded-3xl border border-slate-200">
+                    <div class="lg:col-span-7 space-y-5">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-100 text-bikOrange text-xs font-bold">
+                            <i class="fa-solid fa-robot"></i> 24/7 Autonomous Operations
+                        </div>
+                        <h3 class="text-2xl sm:text-3xl font-extrabold text-bikDark font-display leading-tight">
+                            Replace Repetitive Tasks with Autonomous AI Agents &amp; Real-Time Workflows
+                        </h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Stop losing customers to slow manual operations. Our autonomous AI pipelines verify COD orders in natural Hinglish, trigger instant WhatsApp cart recovery, and dispatch Mumbai delivery riders automatically.
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                            <div class="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs">
+                                <div class="font-bold text-xs text-bikDark flex items-center gap-2 mb-1">
+                                    <i class="fa-solid fa-phone-volume text-purple-600"></i> AI Voice Calling Agents
+                                </div>
+                                <div class="text-[11px] text-slate-500">Sub-180ms voice latency in Hindi &amp; English for instant COD verification and cart recovery.</div>
+                            </div>
+                            <div class="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs">
+                                <div class="font-bold text-xs text-bikDark flex items-center gap-2 mb-1">
+                                    <i class="fa-brands fa-whatsapp text-emerald-600"></i> WhatsApp Commerce Bots
+                                </div>
+                                <div class="text-[11px] text-slate-500">24/7 catalog browsing, automated UPI payment collection, and live tracking dispatch.</div>
+                            </div>
+                            <div class="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs">
+                                <div class="font-bold text-xs text-bikDark flex items-center gap-2 mb-1">
+                                    <i class="fa-solid fa-motorcycle text-orange-600"></i> Hyperlocal Fleet Dispatch
+                                </div>
+                                <div class="text-[11px] text-slate-500">Direct Borzo &amp; Porter API integration for 25-minute South/Central Mumbai courier routing.</div>
+                            </div>
+                            <div class="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs">
+                                <div class="font-bold text-xs text-bikDark flex items-center gap-2 mb-1">
+                                    <i class="fa-solid fa-diagram-project text-blue-600"></i> n8n &amp; Python Pipelines
+                                </div>
+                                <div class="text-[11px] text-slate-500">Bespoke multi-step automations syncing Shopify, WooCommerce, CRM, ERP, and WhatsApp.</div>
+                            </div>
+                        </div>
+                        <div class="pt-2 flex flex-wrap gap-3">
+                            <a href="demo.html" class="px-6 py-3 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-xs transition shadow-md flex items-center gap-2">
+                                <i class="fa-solid fa-play text-[10px]"></i> Test Live Automation Demo
+                            </a>
+                            <a href="ai-voice-agents.html" class="px-6 py-3 rounded-xl border border-slate-300 hover:border-bikOrange bg-white text-slate-800 font-bold text-xs transition">
+                                Explore Voice Agents ↗
+                            </a>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-5">
+                        <div class="rounded-2xl border border-slate-200 bg-slate-900 p-5 text-white space-y-4 shadow-xl">
+                            <div class="flex items-center justify-between border-b border-slate-800 pb-3 text-xs">
+                                <span class="font-mono text-emerald-400 flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> Active Automation Mesh
+                                </span>
+                                <span class="text-slate-400 font-mono text-[11px]">SLA: 99.98%</span>
+                            </div>
+                            <div class="space-y-3 font-mono text-xs">
+                                <div class="p-3 rounded-xl bg-slate-800/80 border border-slate-700/80">
+                                    <div class="text-slate-400 text-[10px]">TRIGGER: CART DROP-OFF (₹2,199)</div>
+                                    <div class="text-emerald-300 font-bold mt-1">⚡ WhatsApp Bot Sent in 1.2s</div>
+                                    <div class="text-slate-300 text-[11px] mt-0.5">"Rahul ji, aapka cart ready hai with 10% OFF coupon!"</div>
+                                </div>
+                                <div class="p-3 rounded-xl bg-slate-800/80 border border-slate-700/80">
+                                    <div class="text-slate-400 text-[10px]">ANTI-FRAUD COD VERIFY (EXOTEL SIP)</div>
+                                    <div class="text-purple-300 font-bold mt-1">🎙️ AI Priya Calling Buyer...</div>
+                                    <div class="text-slate-300 text-[11px] mt-0.5">Order #9021 confirmed • Anti-Fraud passed!</div>
+                                </div>
+                                <div class="p-3 rounded-xl bg-slate-800/80 border border-slate-700/80">
+                                    <div class="text-slate-400 text-[10px]">FLEET DISPATCH (BORZO API)</div>
+                                    <div class="text-orange-300 font-bold mt-1">🏍️ Rider Santosh K. Assigned</div>
+                                    <div class="text-slate-300 text-[11px] mt-0.5">Doorstep delivery ETA: 22 Mins • ₹0 Commission</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB CONTENT 2: PERFORMANCE MARKETING -->
+            <div id="pillar-content-marketing" class="pillar-content-block hidden transition-all duration-300">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-slate-50/70 p-6 sm:p-10 rounded-3xl border border-slate-200">
+                    <div class="lg:col-span-7 space-y-5">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold">
+                            <i class="fa-solid fa-bullseye"></i> High-Converting Customer Acquisition
+                        </div>
+                        <h3 class="text-2xl sm:text-3xl font-extrabold text-bikDark font-display leading-tight">
+                            Scale Ad ROAS with Click-to-WhatsApp Funnels &amp; 98% Open Rate Broadcasts
+                        </h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Traditional landing pages leak up to 80% of ad clicks. We direct Meta ad traffic straight into interactive WhatsApp buying journeys with 1-click checkouts, boosting your ROAS by an average of 28% to 42%.
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                            <div class="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs">
+                                <div class="font-bold text-xs text-bikDark flex items-center gap-2 mb-1">
+                                    <i class="fa-solid fa-bullseye text-blue-600"></i> Click-to-WhatsApp (CTWA) Ads
+                                </div>
+                                <div class="text-[11px] text-slate-500">Convert cold Facebook &amp; Instagram traffic into instant buyers with zero website friction.</div>
+                            </div>
+                            <div class="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs">
+                                <div class="font-bold text-xs text-bikDark flex items-center gap-2 mb-1">
+                                    <i class="fa-solid fa-bullhorn text-emerald-600"></i> High-Volume WhatsApp Broadcasts
+                                </div>
+                                <div class="text-[11px] text-slate-500">Official Meta BSP broadcast engine with personalized product carousels &amp; zero ban risk.</div>
+                            </div>
+                            <div class="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs">
+                                <div class="font-bold text-xs text-bikDark flex items-center gap-2 mb-1">
+                                    <i class="fa-solid fa-comment-nodes text-purple-600"></i> RCS Rich Interactive Messaging
+                                </div>
+                                <div class="text-[11px] text-slate-500">Verified Google sender badges, rich carousels, and one-tap action chips directly inside SMS apps.</div>
+                            </div>
+                            <div class="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs">
+                                <div class="font-bold text-xs text-bikDark flex items-center gap-2 mb-1">
+                                    <i class="fa-solid fa-database text-amber-600"></i> Omnichannel CDP 360
+                                </div>
+                                <div class="text-[11px] text-slate-500">Unified customer profiles, RFM segmenting, and automated VIP re-engagement triggers.</div>
+                            </div>
+                        </div>
+                        <div class="pt-2 flex flex-wrap gap-3">
+                            <a href="ctwa-automation.html" class="px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition shadow-md flex items-center gap-2">
+                                <i class="fa-solid fa-chart-line text-[10px]"></i> Explore CTWA Ads
+                            </a>
+                            <a href="whatsapp-marketing.html" class="px-6 py-3 rounded-xl border border-slate-300 hover:border-emerald-600 bg-white text-slate-800 font-bold text-xs transition">
+                                WhatsApp Broadcasts ↗
+                            </a>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-5">
+                        <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-xl space-y-4">
+                            <div class="flex items-center justify-between pb-3 border-b border-slate-100 text-xs">
+                                <span class="font-bold text-slate-800 flex items-center gap-2">
+                                    <i class="fa-solid fa-chart-pie text-emerald-600"></i> Campaign Performance Telemetry
+                                </span>
+                                <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 text-[10px] font-bold">+3.1x ROAS</span>
+                            </div>
+                            <div class="space-y-3 text-xs">
+                                <div class="flex justify-between items-center p-3 rounded-xl bg-slate-50">
+                                    <span class="text-slate-600">WhatsApp Open Rate</span>
+                                    <span class="font-black text-emerald-600 font-mono text-sm">94.8%</span>
+                                </div>
+                                <div class="flex justify-between items-center p-3 rounded-xl bg-slate-50">
+                                    <span class="text-slate-600">Click-Through Rate (CTR)</span>
+                                    <span class="font-black text-blue-600 font-mono text-sm">31.4%</span>
+                                </div>
+                                <div class="flex justify-between items-center p-3 rounded-xl bg-slate-50">
+                                    <span class="text-slate-600">Abandoned Cart Recovery</span>
+                                    <span class="font-black text-bikOrange font-mono text-sm">24.2%</span>
+                                </div>
+                                <div class="flex justify-between items-center p-3 rounded-xl bg-slate-50">
+                                    <span class="text-slate-600">Avg Cost Per Acquisition (CPA)</span>
+                                    <span class="font-black text-slate-800 font-mono text-sm">-38% vs Meta Solo</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB CONTENT 3: WEB DEVELOPMENT -->
+            <div id="pillar-content-webdev" class="pillar-content-block hidden transition-all duration-300">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-slate-50/70 p-6 sm:p-10 rounded-3xl border border-slate-200">
+                    <div class="lg:col-span-7 space-y-5">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-bold">
+                            <i class="fa-solid fa-code"></i> High-Speed Web &amp; App Development
+                        </div>
+                        <h3 class="text-2xl sm:text-3xl font-extrabold text-bikDark font-display leading-tight">
+                            Sub-100ms Storefronts &amp; Bespoke Web Applications Engineered to Convert
+                        </h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Slow websites kill sales. We build custom Next.js, Vite, and Headless Shopify web applications that load in under 1.2 seconds, hit 99+ Google Lighthouse scores, and come pre-wired with WhatsApp checkout and instant courier dispatch.
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                            <div class="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs">
+                                <div class="font-bold text-xs text-bikDark flex items-center gap-2 mb-1">
+                                    <i class="fa-solid fa-gauge-high text-emerald-600"></i> Sub-100ms Server Response
+                                </div>
+                                <div class="text-[11px] text-slate-500">Edge-cached static pages with zero layout shift and instant tap responsiveness.</div>
+                            </div>
+                            <div class="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs">
+                                <div class="font-bold text-xs text-bikDark flex items-center gap-2 mb-1">
+                                    <i class="fa-brands fa-shopify text-emerald-500"></i> Headless Shopify &amp; Custom Storefronts
+                                </div>
+                                <div class="text-[11px] text-slate-500">Unrestricted UI flexibility with native checkout, Razorpay, UPI, and inventory sync.</div>
+                            </div>
+                            <div class="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs">
+                                <div class="font-bold text-xs text-bikDark flex items-center gap-2 mb-1">
+                                    <i class="fa-solid fa-magnifying-glass text-blue-600"></i> Day-1 Technical SEO &amp; Schema
+                                </div>
+                                <div class="text-[11px] text-slate-500">Structured product schemas, OpenGraph meta, canonical links, and automated sitemaps.</div>
+                            </div>
+                            <div class="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs">
+                                <div class="font-bold text-xs text-bikDark flex items-center gap-2 mb-1">
+                                    <i class="fa-solid fa-server text-purple-600"></i> Custom SaaS Portals &amp; APIs
+                                </div>
+                                <div class="text-[11px] text-slate-500">FastAPI, Supabase, and Redis backend pipelines for custom merchant portals and lead CRM.</div>
+                            </div>
+                        </div>
+                        <div class="pt-2 flex flex-wrap gap-3">
+                            <a href="web-development.html" class="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs transition shadow-md flex items-center gap-2">
+                                <i class="fa-solid fa-laptop-code text-[10px]"></i> View Web Dev Showcase
+                            </a>
+                            <a href="web-development.html#pricing" class="px-6 py-3 rounded-xl border border-slate-300 hover:border-blue-600 bg-white text-slate-800 font-bold text-xs transition">
+                                Web Dev Packages ↗
+                            </a>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-5">
+                        <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-xl space-y-4">
+                            <div class="flex items-center justify-between pb-3 border-b border-slate-100 text-xs">
+                                <span class="font-bold text-slate-800 flex items-center gap-2">
+                                    <i class="fa-solid fa-trophy text-amber-500"></i> Google Lighthouse Benchmark
+                                </span>
+                                <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 text-[10px] font-bold">PERFECT 100</span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3 text-center">
+                                <div class="p-3.5 rounded-xl bg-emerald-50/80 border border-emerald-200">
+                                    <div class="text-2xl font-black text-emerald-700 font-mono">100</div>
+                                    <div class="text-[10px] font-bold text-emerald-800 mt-0.5 uppercase tracking-wider">Performance</div>
+                                </div>
+                                <div class="p-3.5 rounded-xl bg-emerald-50/80 border border-emerald-200">
+                                    <div class="text-2xl font-black text-emerald-700 font-mono">100</div>
+                                    <div class="text-[10px] font-bold text-emerald-800 mt-0.5 uppercase tracking-wider">Accessibility</div>
+                                </div>
+                                <div class="p-3.5 rounded-xl bg-emerald-50/80 border border-emerald-200">
+                                    <div class="text-2xl font-black text-emerald-700 font-mono">100</div>
+                                    <div class="text-[10px] font-bold text-emerald-800 mt-0.5 uppercase tracking-wider">Best Practices</div>
+                                </div>
+                                <div class="p-3.5 rounded-xl bg-emerald-50/80 border border-emerald-200">
+                                    <div class="text-2xl font-black text-emerald-700 font-mono">100</div>
+                                    <div class="text-[10px] font-bold text-emerald-800 mt-0.5 uppercase tracking-wider">SEO Score</div>
+                                </div>
+                            </div>
+                            <div class="pt-2 text-center text-[11px] text-slate-400 font-medium">
+                                Tech Stack: Next.js 15 • Tailwind CSS • Python FastAPI • Supabase • Vercel Edge
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE SERVICE & ROI PACKAGE ESTIMATOR -->
+    <section id="roi-estimator" class="py-20 bg-slate-950 text-white relative overflow-hidden border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="text-brandGold font-bold text-xs uppercase tracking-widest bg-amber-500/10 border border-amber-500/20 px-3.5 py-1 rounded-full">Interactive ROI Calculator</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold mt-3 font-display">Calculate Your Projected Growth &amp; Time Saved</h2>
+                <p class="text-slate-400 text-sm mt-2">Select your business scale and desired capabilities to generate your custom automation roadmap.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+                <!-- Left: Configuration Controls -->
+                <div class="lg:col-span-7 bg-slate-900/90 border border-slate-800 p-6 sm:p-8 rounded-3xl space-y-6">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Step 1: Your Business Monthly Revenue</label>
+                        <div class="grid grid-cols-3 gap-3">
+                            <button type="button" onclick="setBusinessScale('startup', 1.0)" id="scale-btn-startup" class="scale-btn p-3 rounded-xl border border-slate-700 bg-slate-800/80 hover:border-bikOrange text-left transition cursor-pointer">
+                                <div class="text-xs font-bold text-white">Under ₹5L/mo</div>
+                                <div class="text-[10px] text-slate-400 mt-0.5">Boutique / Early</div>
+                            </button>
+                            <button type="button" onclick="setBusinessScale('scaling', 2.4)" id="scale-btn-scaling" class="scale-btn p-3 rounded-xl border border-bikOrange bg-orange-500/10 text-left transition cursor-pointer">
+                                <div class="text-xs font-bold text-amber-400">₹5L – ₹25L/mo</div>
+                                <div class="text-[10px] text-slate-400 mt-0.5">Scaling Brand</div>
+                            </button>
+                            <button type="button" onclick="setBusinessScale('enterprise', 5.2)" id="scale-btn-enterprise" class="scale-btn p-3 rounded-xl border border-slate-700 bg-slate-800/80 hover:border-bikOrange text-left transition cursor-pointer">
+                                <div class="text-xs font-bold text-white">₹25L+/mo</div>
+                                <div class="text-[10px] text-slate-400 mt-0.5">Enterprise</div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-3">Step 2: Select Services &amp; Capabilities Needed</label>
+                        <div class="space-y-2.5">
+                            <label class="flex items-center justify-between p-3.5 rounded-xl border border-slate-800 bg-slate-800/50 hover:bg-slate-800 cursor-pointer transition select-none">
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" id="svc-voice" onchange="calculateProjectedROI()" checked class="w-4 h-4 rounded text-bikOrange accent-orange-500 cursor-pointer">
+                                    <div>
+                                        <div class="text-xs font-bold text-slate-200">AI Voice Calling Agents (COD Verification &amp; Cart Recovery)</div>
+                                        <div class="text-[10px] text-slate-400">Automates 100% of order confirmation calls in Hindi/English</div>
+                                    </div>
+                                </div>
+                                <span class="text-xs font-mono font-bold text-purple-400">+₹45k/mo</span>
+                            </label>
+
+                            <label class="flex items-center justify-between p-3.5 rounded-xl border border-slate-800 bg-slate-800/50 hover:bg-slate-800 cursor-pointer transition select-none">
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" id="svc-wa" onchange="calculateProjectedROI()" checked class="w-4 h-4 rounded text-bikOrange accent-orange-500 cursor-pointer">
+                                    <div>
+                                        <div class="text-xs font-bold text-slate-200">WhatsApp &amp; Instagram Conversational Sales Bot</div>
+                                        <div class="text-[10px] text-slate-400">24/7 checkout on chat, automated DMs, and catalog ordering</div>
+                                    </div>
+                                </div>
+                                <span class="text-xs font-mono font-bold text-emerald-400">+₹58k/mo</span>
+                            </label>
+
+                            <label class="flex items-center justify-between p-3.5 rounded-xl border border-slate-800 bg-slate-800/50 hover:bg-slate-800 cursor-pointer transition select-none">
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" id="svc-mkt" onchange="calculateProjectedROI()" checked class="w-4 h-4 rounded text-bikOrange accent-orange-500 cursor-pointer">
+                                    <div>
+                                        <div class="text-xs font-bold text-slate-200">Performance Marketing (Click-to-WhatsApp Meta Ads)</div>
+                                        <div class="text-[10px] text-slate-400">Direct-to-chat ad funnels boosting ROAS by up to 35%</div>
+                                    </div>
+                                </div>
+                                <span class="text-xs font-mono font-bold text-blue-400">+₹65k/mo</span>
+                            </label>
+
+                            <label class="flex items-center justify-between p-3.5 rounded-xl border border-slate-800 bg-slate-800/50 hover:bg-slate-800 cursor-pointer transition select-none">
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" id="svc-web" onchange="calculateProjectedROI()" checked class="w-4 h-4 rounded text-bikOrange accent-orange-500 cursor-pointer">
+                                    <div>
+                                        <div class="text-xs font-bold text-slate-200">High-Speed Custom Web Development (Sub-100ms)</div>
+                                        <div class="text-[10px] text-slate-400">Headless storefront engineering, perfect Lighthouse 100, Day-1 SEO</div>
+                                    </div>
+                                </div>
+                                <span class="text-xs font-mono font-bold text-amber-400">+₹72k/mo</span>
+                            </label>
+
+                            <label class="flex items-center justify-between p-3.5 rounded-xl border border-slate-800 bg-slate-800/50 hover:bg-slate-800 cursor-pointer transition select-none">
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" id="svc-fleet" onchange="calculateProjectedROI()" class="w-4 h-4 rounded text-bikOrange accent-orange-500 cursor-pointer">
+                                    <div>
+                                        <div class="text-xs font-bold text-slate-200">Hyperlocal Fleet Protocol (Borzo &amp; Porter API)</div>
+                                        <div class="text-[10px] text-slate-400">Automated 25-minute Mumbai courier delivery with 0% aggregator cut</div>
+                                    </div>
+                                </div>
+                                <span class="text-xs font-mono font-bold text-orange-400">+₹30k/mo</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Live Calculated Value Box -->
+                <div class="lg:col-span-5 bg-gradient-to-b from-slate-900 to-slate-950 border-2 border-orange-500/30 p-6 sm:p-8 rounded-3xl space-y-6 shadow-2xl relative">
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                        <span class="text-xs font-bold text-amber-400 uppercase tracking-widest flex items-center gap-1.5">
+                            <i class="fa-solid fa-sparkles text-brandGold"></i> Projected Impact
+                        </span>
+                        <span class="text-[10px] text-slate-400 font-mono">Turnaround: 48-72h</span>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="p-4 rounded-2xl bg-slate-800/60 border border-slate-700/60">
+                            <div class="text-xs text-slate-400 font-medium">Estimated Monthly Revenue Saved / Recovered</div>
+                            <div class="text-3xl sm:text-4xl font-black text-emerald-400 font-display mt-1" id="roi-calc-rev">₹1,85,000 / mo</div>
+                            <div class="text-[11px] text-slate-400 mt-0.5">Based on reduced RTO, instant cart recovery &amp; higher Meta ROAS.</div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="p-3.5 rounded-xl bg-slate-800/60 border border-slate-700/60">
+                                <div class="text-[11px] text-slate-400">Manual Hours Saved</div>
+                                <div class="text-2xl font-black text-amber-400 font-mono mt-1" id="roi-calc-hours">140 hrs</div>
+                                <div class="text-[10px] text-slate-400 mt-0.5">Staff payroll saved</div>
+                            </div>
+                            <div class="p-3.5 rounded-xl bg-slate-800/60 border border-slate-700/60">
+                                <div class="text-[11px] text-slate-400">Speed to Deploy</div>
+                                <div class="text-2xl font-black text-blue-400 font-mono mt-1">48 Hrs</div>
+                                <div class="text-[10px] text-slate-400 mt-0.5">Turnkey configuration</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-2 space-y-3">
+                        <a id="roi-whatsapp-cta" href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah,%20I%20used%20your%20ROI%20Calculator%20for%20Scaling%20Brand%20and%20want%20to%20discuss%20Automations%2C%20Marketing%20and%20Web%20Dev." target="_blank" rel="noopener noreferrer" class="w-full py-4 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-xs uppercase tracking-wider transition shadow-lg shadow-orange-500/25 flex items-center justify-center gap-2 text-center cursor-pointer">
+                            <i class="fa-brands fa-whatsapp text-base"></i>
+                            <span>Get Custom Proposal on WhatsApp</span>
+                        </a>
+                        <button onclick="window.FC_LEADS.openAuditModal('Growth &amp; Tech Audit')" class="w-full py-3 rounded-xl border border-slate-700 hover:border-slate-500 bg-slate-800 text-slate-200 font-bold text-xs transition text-center cursor-pointer">
+                            Book Free 1-on-1 Strategy Call
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JAVASCRIPT FOR CAPABILITIES MATRIX & ROI ESTIMATOR -->
+    <script>
+        function switchPillarTab(tabKey) {
+            const tabs = ['automation', 'marketing', 'webdev'];
+            tabs.forEach(k => {
+                const btn = document.getElementById('pillar-tab-btn-' + k);
+                const content = document.getElementById('pillar-content-' + k);
+                if (k === tabKey) {
+                    if (btn) {
+                        btn.className = 'pillar-tab-btn flex-1 py-2.5 px-3 rounded-xl font-bold text-xs sm:text-sm transition flex items-center justify-center gap-2 bg-white text-bikDark shadow-sm cursor-pointer';
+                    }
+                    if (content) content.classList.remove('hidden');
+                } else {
+                    if (btn) {
+                        btn.className = 'pillar-tab-btn flex-1 py-2.5 px-3 rounded-xl font-semibold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition flex items-center justify-center gap-2 cursor-pointer';
+                    }
+                    if (content) content.classList.add('hidden');
+                }
+            });
+        }
+
+        let currentScaleMultiplier = 2.4;
+        let currentScaleName = 'Scaling Brand (₹5L - ₹25L/mo)';
+
+        function setBusinessScale(scaleKey, multiplier) {
+            currentScaleMultiplier = multiplier;
+            const buttons = {
+                startup: 'Under ₹5L/mo (Boutique)',
+                scaling: '₹5L – ₹25L/mo (Scaling Brand)',
+                enterprise: '₹25L+/mo (Enterprise)'
+            };
+            currentScaleName = buttons[scaleKey] || scaleKey;
+
+            ['startup', 'scaling', 'enterprise'].forEach(k => {
+                const btn = document.getElementById('scale-btn-' + k);
+                if (k === scaleKey) {
+                    if (btn) btn.className = 'scale-btn p-3 rounded-xl border border-bikOrange bg-orange-500/10 text-left transition cursor-pointer';
+                } else {
+                    if (btn) btn.className = 'scale-btn p-3 rounded-xl border border-slate-700 bg-slate-800/80 hover:border-bikOrange text-left transition cursor-pointer';
+                }
+            });
+
+            calculateProjectedROI();
+        }
+
+        function calculateProjectedROI() {
+            let baseRecovery = 0;
+            let baseHours = 0;
+            const selectedServices = [];
+
+            if (document.getElementById('svc-voice')?.checked) {
+                baseRecovery += 45000;
+                baseHours += 45;
+                selectedServices.push('AI Voice Calling');
+            }
+            if (document.getElementById('svc-wa')?.checked) {
+                baseRecovery += 58000;
+                baseHours += 35;
+                selectedServices.push('WhatsApp Bot');
+            }
+            if (document.getElementById('svc-mkt')?.checked) {
+                baseRecovery += 65000;
+                baseHours += 30;
+                selectedServices.push('Meta CTWA Marketing');
+            }
+            if (document.getElementById('svc-web')?.checked) {
+                baseRecovery += 72000;
+                baseHours += 40;
+                selectedServices.push('High-Speed Web Dev');
+            }
+            if (document.getElementById('svc-fleet')?.checked) {
+                baseRecovery += 30000;
+                baseHours += 25;
+                selectedServices.push('Fleet Protocol');
+            }
+
+            const totalRecovery = Math.round(baseRecovery * currentScaleMultiplier);
+            const totalHours = Math.round(baseHours * (currentScaleMultiplier > 2 ? 1.6 : 1.0));
+
+            const revEl = document.getElementById('roi-calc-rev');
+            const hoursEl = document.getElementById('roi-calc-hours');
+            if (revEl) revEl.textContent = '₹' + totalRecovery.toLocaleString('en-IN') + ' / mo';
+            if (hoursEl) hoursEl.textContent = totalHours + ' hrs';
+
+            const waBtn = document.getElementById('roi-whatsapp-cta');
+            if (waBtn) {
+                const text = encodeURIComponent(`Hi Flying Cheetah team! I used your ROI Estimator for ${currentScaleName}. Selected services: ${selectedServices.join(', ')}. Projected recovery: ₹${totalRecovery.toLocaleString('en-IN')}/mo. Can we discuss a tailored proposal?`);
+                waBtn.href = `https://wa.me/919920386421?text=${text}`;
+            }
+        }
+    </script>
 
     <!-- LIVE RECOVERY & ROAS PERFORMANCE TELEMETRY SECTION -->
     <section class="py-20 bg-white border-b border-slate-100">
@@ -836,16 +1333,16 @@
             </div>
             
             <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark font-display">
-                Meet the Founders Behind Flying Cheetah
+                Flying Cheetah Leadership & Technical Divisions
             </h2>
             
             <p class="text-slateText text-base mt-3 max-w-2xl mx-auto leading-relaxed">
-                No faceless support tickets, overseas call centers, or generic bots. You have direct personal access to both technical founders right here across South Mumbai, BKC, Bandra, and MMR.
+                No faceless support tickets, overseas call centers, or generic bots. You have direct personal access to our leadership team right here across South Mumbai, BKC, Bandra, and MMR.
             </p>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12 text-left">
                 
-                <!-- FOUNDER 1: BHAGAT MUKHIYA -->
+                <!-- DIVISION 1: CORE SYSTEMS & ENGINEERING -->
                 <div class="relative bg-white rounded-3xl border-2 border-slate-200/80 p-8 shadow-xl hover:border-bikOrange transition-all duration-300 flex flex-col justify-between group">
                     <div class="absolute -top-3.5 right-6 px-3.5 py-1 rounded-full bg-bikOrange text-white text-[10px] font-black uppercase tracking-wider shadow-md">
                         Technical Architect
@@ -854,11 +1351,11 @@
                     <div>
                         <div class="flex items-center gap-4 mb-6">
                             <div class="relative w-20 h-20 rounded-2xl overflow-hidden border-2 border-bikOrange/60 shadow-lg shadow-orange-500/20 group-hover:scale-105 transition duration-300 shrink-0 bg-slate-100">
-                                <img src="images/founder_bhagat_mukhiya.jpg" alt="Bhagat Mukhiya - Co-Founder & Head of Engineering" class="w-full h-full object-cover object-top">
+                                <img src="images/founder_bhagat_mukhiya.jpg" alt="Flying Cheetah Core Systems & Engineering Lead" class="w-full h-full object-cover object-top">
                             </div>
                             <div>
-                                <h3 class="text-2xl font-black text-bikDark font-display">Bhagat Mukhiya</h3>
-                                <p class="text-xs font-bold text-bikOrange">Co-Founder & Head of Engineering</p>
+                                <h3 class="text-2xl font-black text-bikDark font-display">Core Systems &amp; Engineering</h3>
+                                <p class="text-xs font-bold text-bikOrange">Lead Architecture Division</p>
                                 <div class="flex items-center gap-2 mt-1">
                                     <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                                     <span class="text-[11px] font-semibold text-slate-500">Live Architecture Telemetry • Mumbai</span>
@@ -886,7 +1383,7 @@
                         </a>
                         <a href="https://www.linkedin.com/in/bhagat-mukhiya-b74683380" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#0A66C2] hover:bg-[#004182] text-white font-bold text-xs transition shadow-md shadow-blue-600/20 group/btn">
                             <i class="fa-brands fa-linkedin text-base group-hover/btn:scale-110 transition"></i>
-                            <span>Connect with Bhagat Mukhiya on LinkedIn</span>
+                            <span>Connect on LinkedIn</span>
                             <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-1 opacity-80"></i>
                         </a>
                         <a href="https://github.com/bhagatmukhiya82-source" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-slate-900 hover:bg-black text-white font-bold text-xs transition shadow-md shadow-slate-900/20 border border-slate-800 group/btn">
@@ -897,7 +1394,7 @@
                     </div>
                 </div>
 
-                <!-- FOUNDER 2: YASH GAIKWAD -->
+                <!-- DIVISION 2: GROWTH & CLIENT OPERATIONS -->
                 <div class="relative bg-white rounded-3xl border-2 border-slate-200/80 p-8 shadow-xl hover:border-emerald-500 transition-all duration-300 flex flex-col justify-between group">
                     <div class="absolute -top-3.5 right-6 px-3.5 py-1 rounded-full bg-emerald-600 text-white text-[10px] font-black uppercase tracking-wider shadow-md">
                         Growth & Operations
@@ -906,11 +1403,11 @@
                     <div>
                         <div class="flex items-center gap-4 mb-6">
                             <div class="relative w-20 h-20 rounded-2xl overflow-hidden border-2 border-emerald-500/60 shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition duration-300 shrink-0 bg-slate-100">
-                                <img src="images/founder_yash_gaikwad.jpg" alt="Yash Gaikwad - Co-Founder & Head of Growth" class="w-full h-full object-cover object-top">
+                                <img src="images/founder_yash_gaikwad.jpg" alt="Flying Cheetah Growth & Operations Lead" class="w-full h-full object-cover object-top">
                             </div>
                             <div>
-                                <h3 class="text-2xl font-black text-bikDark font-display">Yash Gaikwad</h3>
-                                <p class="text-xs font-bold text-emerald-600">Co-Founder & Head of Growth</p>
+                                <h3 class="text-2xl font-black text-bikDark font-display">Growth &amp; Client Operations</h3>
+                                <p class="text-xs font-bold text-emerald-600">Lead Strategy Division</p>
                                 <div class="flex items-center gap-2 mt-1">
                                     <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                                     <span class="text-[11px] font-semibold text-slate-500">In-Person Merchant Audits • MMR</span>
@@ -933,7 +1430,7 @@
                     <div class="pt-6">
                         <a href="https://www.linkedin.com/in/yash-gaikwad-1669b0397" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#0A66C2] hover:bg-[#004182] text-white font-bold text-xs transition shadow-md shadow-blue-600/20 group/btn">
                             <i class="fa-brands fa-linkedin text-base group-hover/btn:scale-110 transition"></i>
-                            <span>Connect with Yash Gaikwad on LinkedIn</span>
+                            <span>Connect on LinkedIn</span>
                             <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-1 opacity-80"></i>
                         </a>
                     </div>

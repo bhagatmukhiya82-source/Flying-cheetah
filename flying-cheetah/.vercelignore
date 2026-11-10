@@ -1,4 +1,7 @@
 /*.mp4
+*.mkv
+*.docx
+*.py
 *.pdf
 .vercel_backup
 .git

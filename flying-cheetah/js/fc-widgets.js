@@ -37,7 +37,7 @@
 
         const path = (window.location.pathname || '').toLowerCase();
         const isHome = path.endsWith('index.html') || path.endsWith('/') || path.endsWith('home.html') || path === '';
-        const isStore = path.includes('store');
+        const isAutomations = path.includes('solutions') || path.includes('automation') || path.includes('voice') || path.includes('delivery');
         const isDemo = path.includes('demo');
 
         const nav = document.createElement('nav');
@@ -46,7 +46,7 @@
         nav.className = 'fixed bottom-0 left-0 right-0 z-[145] block md:hidden bg-white/95 backdrop-blur-xl border-t border-slate-200/90 shadow-[0_-4px_20px_rgba(0,0,0,0.06)] transition-all duration-300 select-none';
         nav.style.paddingBottom = 'max(env(safe-area-inset-bottom, 0px), 8px)';
 
-        const waText = encodeURIComponent("Hi Flying Cheetah team, I'm exploring your website on mobile and would like to learn more about your AI commerce agents.");
+        const waText = encodeURIComponent("Hi Flying Cheetah team, I'm exploring your website on mobile and would like to learn more about your AI automation, marketing, and web development services.");
         const waUrl = `https://wa.me/919920386421?text=${waText}`;
 
         nav.innerHTML = `
@@ -57,16 +57,16 @@
                     <span class="text-[10px] tracking-tight mt-0.5 font-medium">Home</span>
                 </a>
 
-                <!-- Tab 2: Store -->
-                <a href="store.html" class="flex flex-col items-center justify-center py-1 transition group touch-target-44 ${isStore ? 'fc-nav-active text-bikOrange font-bold' : 'text-slate-500 hover:text-slate-800'}">
-                    <i class="fa-solid fa-bag-shopping text-base transition-transform group-active:scale-90"></i>
-                    <span class="text-[10px] tracking-tight mt-0.5 font-medium">Store</span>
+                <!-- Tab 2: Automations (Replaces old retail store tab) -->
+                <a href="solutions.html" class="flex flex-col items-center justify-center py-1 transition group touch-target-44 ${isAutomations ? 'fc-nav-active text-bikOrange font-bold' : 'text-slate-500 hover:text-slate-800'}">
+                    <i class="fa-solid fa-bolt text-base transition-transform group-active:scale-90"></i>
+                    <span class="text-[10px] tracking-tight mt-0.5 font-medium">Automations</span>
                 </a>
 
                 <!-- Tab 3: Center Elevated Demo Action -->
                 <a href="demo.html" class="flex flex-col items-center justify-center py-1 relative group touch-target-44">
                     <div class="w-11 h-11 -mt-5 rounded-full bg-gradient-to-tr from-bikOrange to-amber-500 text-white flex items-center justify-center shadow-lg shadow-orange-500/35 border-2 border-white transition-transform group-active:scale-90">
-                        <i class="fa-solid fa-bolt text-base animate-pulse"></i>
+                        <i class="fa-solid fa-play text-sm ml-0.5 animate-pulse"></i>
                     </div>
                     <span class="text-[10px] font-bold tracking-tight mt-0.5 ${isDemo ? 'text-bikOrange' : 'text-slate-600'}">Demo</span>
                 </a>
@@ -140,60 +140,72 @@
 
                 <!-- Navigation Links List -->
                 <div class="p-4 space-y-4 flex-1 text-sm overflow-y-auto">
-                    <!-- Core Portals -->
+                    <!-- Core Quick Links -->
                     <div>
-                        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest px-2 mb-1.5">Core Portals</div>
+                        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest px-2 mb-1.5">Quick Links</div>
                         <div class="space-y-1">
-                            <a href="index.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-700 hover:text-bikOrange hover:bg-orange-50 font-bold transition">
+                            <a href="index.html" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-700 hover:text-bikOrange hover:bg-orange-50 font-bold transition">
                                 <i class="fa-solid fa-house text-bikOrange w-4 text-center"></i>
                                 <span>Main Site</span>
                             </a>
-                            <a href="home.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-700 hover:text-bikOrange hover:bg-orange-50 font-bold transition">
-                                <i class="fa-solid fa-compass text-bikOrange w-4 text-center"></i>
-                                <span>Executive Hub</span>
+                            <a href="demo.html" class="flex items-center gap-3 px-3 py-2 rounded-xl text-bikOrange bg-orange-50/60 hover:bg-orange-100/80 font-bold transition">
+                                <i class="fa-solid fa-play text-bikOrange w-4 text-center animate-pulse"></i>
+                                <span>Live Interactive Sandbox</span>
                             </a>
-                            <a href="store.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-700 hover:text-bikOrange hover:bg-orange-50 font-bold transition">
-                                <i class="fa-solid fa-bag-shopping text-emerald-600 w-4 text-center"></i>
-                                <span>Store &amp; Modules</span>
-                            </a>
-                            <a href="demo.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-bikOrange bg-orange-50/60 hover:bg-orange-100/80 font-bold transition">
-                                <i class="fa-solid fa-bolt text-bikOrange w-4 text-center animate-pulse"></i>
-                                <span>Interactive Demo Portal</span>
-                            </a>
-                            <a href="web-development.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-700 hover:text-bikOrange hover:bg-orange-50 font-bold transition">
-                                <i class="fa-solid fa-code text-orange-600 w-4 text-center"></i>
-                                <span>Web Development</span>
-                            </a>
-                            <a href="delivery.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-700 hover:text-emerald-600 hover:bg-emerald-50 font-bold transition">
-                                <i class="fa-solid fa-motorcycle text-emerald-600 w-4 text-center"></i>
-                                <span>Fleet Protocol (Borzo &amp; Porter)</span>
-                            </a>
-                            <a href="about.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-700 hover:text-bikOrange hover:bg-orange-50 font-bold transition">
+                            <a href="about.html" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-700 hover:text-bikOrange hover:bg-orange-50 font-bold transition">
                                 <i class="fa-solid fa-circle-info text-slate-400 w-4 text-center"></i>
-                                <span>About Founders</span>
+                                <span>About Us &amp; Founders</span>
                             </a>
                         </div>
                     </div>
 
-                    <!-- AI Commerce Modules -->
+                    <!-- 1. AI AUTOMATION SYSTEMS -->
                     <div class="pt-2 border-t border-slate-100">
-                        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest px-2 mb-1.5">AI Commerce Modules</div>
+                        <div class="text-[10px] font-bold text-bikOrange uppercase tracking-widest px-2 mb-1.5 flex items-center gap-1.5">
+                            <i class="fa-solid fa-bolt text-[10px]"></i> AI Automation Systems
+                        </div>
                         <div class="space-y-1 text-xs">
-                            <a href="store-automation.html" class="flex items-center justify-between px-3 py-2 rounded-xl text-slate-600 hover:text-bikOrange hover:bg-orange-50 transition">
-                                <span>Store Automation &amp; Cart Recovery</span>
-                                <span class="text-[9px] bg-orange-100 text-bikOrange font-bold px-1.5 py-0.5 rounded">Core</span>
+                            <a href="ai-voice-agents.html" class="flex items-center justify-between px-3 py-2 rounded-xl text-slate-700 hover:text-purple-600 hover:bg-purple-50 transition">
+                                <span>AI Voice Calling Agents (COD/RTO)</span>
+                                <span class="text-[9px] bg-purple-100 text-purple-700 font-bold px-1.5 py-0.5 rounded">Sub-180ms</span>
                             </a>
-                            <a href="ai-voice-agents.html" class="flex items-center justify-between px-3 py-2 rounded-xl text-slate-600 hover:text-purple-600 hover:bg-purple-50 transition">
-                                <span>AI Voice Calling Agents</span>
-                                <span class="text-[9px] bg-purple-100 text-purple-700 font-bold px-1.5 py-0.5 rounded">New</span>
+                            <a href="whatsapp-automation.html" class="block px-3 py-2 rounded-xl text-slate-700 hover:text-emerald-600 hover:bg-emerald-50 transition font-medium">WhatsApp Conversational Commerce</a>
+                            <a href="instagram-automation.html" class="block px-3 py-2 rounded-xl text-slate-700 hover:text-pink-600 hover:bg-pink-50 transition font-medium">Instagram DM &amp; Reel Auto-Sell</a>
+                            <a href="delivery.html" class="block px-3 py-2 rounded-xl text-slate-700 hover:text-orange-600 hover:bg-orange-50 transition font-medium">Hyperlocal Fleet Protocol (Borzo &amp; Porter)</a>
+                            <a href="customer-support.html" class="block px-3 py-2 rounded-xl text-slate-700 hover:text-blue-600 hover:bg-blue-50 transition font-medium">24/7 AI Omnichannel Helpdesk</a>
+                            <a href="solutions.html" class="block px-3 py-2 rounded-xl text-bikOrange font-bold hover:bg-orange-50 transition">View All Automation Solutions ↗</a>
+                        </div>
+                    </div>
+
+                    <!-- 2. PERFORMANCE MARKETING & GROWTH -->
+                    <div class="pt-2 border-t border-slate-100">
+                        <div class="text-[10px] font-bold text-emerald-600 uppercase tracking-widest px-2 mb-1.5 flex items-center gap-1.5">
+                            <i class="fa-solid fa-bullhorn text-[10px]"></i> Performance Marketing
+                        </div>
+                        <div class="space-y-1 text-xs">
+                            <a href="ctwa-automation.html" class="flex items-center justify-between px-3 py-2 rounded-xl text-slate-700 hover:text-emerald-600 hover:bg-emerald-50 transition">
+                                <span>Click-to-WhatsApp (CTWA) Meta Ads</span>
+                                <span class="text-[9px] bg-emerald-100 text-emerald-700 font-bold px-1.5 py-0.5 rounded">+28% ROAS</span>
                             </a>
-                            <a href="instagram-automation.html" class="block px-3 py-2 rounded-xl text-slate-600 hover:text-pink-600 hover:bg-pink-50 transition">Instagram DMs &amp; CTWA</a>
-                            <a href="whatsapp-automation.html" class="block px-3 py-2 rounded-xl text-slate-600 hover:text-emerald-600 hover:bg-emerald-50 transition">WhatsApp Auto-Checkouts</a>
-                            <a href="whatsapp-calling.html" class="block px-3 py-2 rounded-xl text-slate-600 hover:text-emerald-600 hover:bg-emerald-50 transition">WhatsApp VoIP Calling</a>
-                            <a href="whatsapp-marketing.html" class="block px-3 py-2 rounded-xl text-slate-600 hover:text-emerald-600 hover:bg-emerald-50 transition">WhatsApp Broadcasts</a>
-                            <a href="customer-data-platform.html" class="block px-3 py-2 rounded-xl text-slate-600 hover:text-blue-600 hover:bg-blue-50 transition">Customer Data (CDP 360)</a>
-                            <a href="customer-support.html" class="block px-3 py-2 rounded-xl text-slate-600 hover:text-blue-600 hover:bg-blue-50 transition">Omnichannel Helpdesk</a>
-                            <a href="solutions.html" class="block px-3 py-2 rounded-xl text-slate-600 hover:text-bikOrange hover:bg-orange-50 transition">All 8 Automated Solutions</a>
+                            <a href="whatsapp-marketing.html" class="block px-3 py-2 rounded-xl text-slate-700 hover:text-emerald-600 hover:bg-emerald-50 transition font-medium">WhatsApp Broadcast Campaigns</a>
+                            <a href="sms-marketing.html" class="block px-3 py-2 rounded-xl text-slate-700 hover:text-blue-600 hover:bg-blue-50 transition font-medium">DLT-Compliant SMS Marketing</a>
+                            <a href="rcs-messaging.html" class="block px-3 py-2 rounded-xl text-slate-700 hover:text-purple-600 hover:bg-purple-50 transition font-medium">RCS Rich Interactive Messaging</a>
+                            <a href="customer-data-platform.html" class="block px-3 py-2 rounded-xl text-slate-700 hover:text-indigo-600 hover:bg-indigo-50 transition font-medium">Customer Data Platform (CDP 360)</a>
+                        </div>
+                    </div>
+
+                    <!-- 3. WEB & APP ENGINEERING -->
+                    <div class="pt-2 border-t border-slate-100">
+                        <div class="text-[10px] font-bold text-blue-600 uppercase tracking-widest px-2 mb-1.5 flex items-center gap-1.5">
+                            <i class="fa-solid fa-code text-[10px]"></i> Web &amp; App Development
+                        </div>
+                        <div class="space-y-1 text-xs">
+                            <a href="web-development.html" class="flex items-center justify-between px-3 py-2 rounded-xl text-slate-700 hover:text-blue-600 hover:bg-blue-50 transition font-bold">
+                                <span>High-Speed Storefronts &amp; Web Apps</span>
+                                <span class="text-[9px] bg-blue-100 text-blue-700 font-bold px-1.5 py-0.5 rounded">&lt; 100ms</span>
+                            </a>
+                            <a href="web-development.html#tech-stack" class="block px-3 py-2 rounded-xl text-slate-600 hover:text-slate-900 transition">Headless Shopify &amp; Next.js Architecture</a>
+                            <a href="web-development.html#pricing" class="block px-3 py-2 rounded-xl text-slate-600 hover:text-slate-900 transition">Web Engineering Packages &amp; SEO</a>
                         </div>
                     </div>
                 </div>
