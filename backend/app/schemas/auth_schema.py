@@ -29,6 +29,7 @@ class GoogleCallbackRequest(BaseModel):
     name: Optional[str] = Field(None, examples=["Bhagat Mukhiya"])
     avatar_url: Optional[str] = None
     access_token: Optional[str] = None
+    phone: Optional[str] = Field(None, examples=["+91 98200 12345"])
 
 class TokenResponse(BaseModel):
     access_token: str

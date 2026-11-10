@@ -68,6 +68,7 @@
             box-shadow: 0 16px 32px -8px rgba(0,0,0,0.08);
         }
     </style>
+    <link rel="stylesheet" href="css/mobile-app.css">
 </head>
 <body class="bg-white text-slate-800 font-sans antialiased selection:bg-orange-100 selection:text-bikOrange">
 
@@ -474,7 +475,7 @@
             <!-- INTERACTIVE INBOX TABS -->
             <div class="max-w-4xl mx-auto bg-white rounded-3xl border border-slate-200 shadow-xl overflow-hidden">
                 <!-- Channel Selector Bar -->
-                <div class="flex items-center border-b border-slate-100 bg-slate-50/80 px-6 pt-3 gap-2">
+                <div class="flex items-center border-b border-slate-100 bg-slate-50/80 px-3 sm:px-6 pt-3 gap-2 overflow-x-auto no-scrollbar max-w-full touch-pan-x">
                     <button onclick="switchTab('wa')" id="tab-wa" class="px-5 py-3 rounded-t-xl font-bold text-xs flex items-center gap-2 border-b-2 border-emerald-500 bg-white text-emerald-600 shadow-sm transition">
                         <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp (14)
                     </button>
@@ -487,7 +488,7 @@
                 </div>
 
                 <!-- Tab Content -->
-                <div class="p-8">
+                <div class="p-4 sm:p-8">
                     <!-- WA CONTENT -->
                     <div id="content-wa" class="space-y-4">
                         <div class="flex items-center justify-between pb-3 border-b border-slate-100">

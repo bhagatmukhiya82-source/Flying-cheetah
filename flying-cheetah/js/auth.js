@@ -951,7 +951,7 @@
                             <label class="block text-xs font-bold text-slate-700">WhatsApp Mobile Number <span class="text-red-500">*</span></label>
                             <span class="text-[10px] text-emerald-600 font-bold bg-emerald-50 px-1.5 py-0.5 rounded">Mandatory</span>
                         </div>
-                        <input type="tel" id="fcGooglePhoneInput" required placeholder="+91 98200 12345" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange focus:border-bikOrange transition outline-none font-mono">
+                        <input type="tel" id="fcGooglePhoneInput" required placeholder="+91 98200 12345" inputmode="tel" autocomplete="tel" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange focus:border-bikOrange transition outline-none font-mono">
                         <div id="fcGooglePhoneHint" class="text-[10px] text-slate-400 mt-1 pl-1">Strict E.164 phone binding (+91). Required for WhatsApp store &amp; courier dispatch.</div>
                     </div>
                     <button type="submit" id="fcGoogleEmailSubmitBtn" class="w-full py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider transition shadow-md flex items-center justify-center gap-2 cursor-pointer">
@@ -992,7 +992,7 @@
                             <label class="block text-xs font-bold text-slate-700">WhatsApp Mobile Number <span class="text-red-500">*</span></label>
                             <span class="text-[10px] text-emerald-600 font-bold bg-emerald-50 px-1.5 py-0.5 rounded">Mandatory</span>
                         </div>
-                        <input type="tel" id="fcMandatoryPhoneInput" required placeholder="+91 98200 12345" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange focus:border-bikOrange transition outline-none font-mono">
+                        <input type="tel" id="fcMandatoryPhoneInput" required placeholder="+91 98200 12345" inputmode="tel" autocomplete="tel" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange focus:border-bikOrange transition outline-none font-mono">
                         <div id="fcMandatoryPhoneHint" class="text-[10px] text-slate-400 mt-1 pl-1">Strict E.164 (+91) binding. 1 account per phone number.</div>
                     </div>
                     <button type="submit" id="fcMandatoryPhoneSubmitBtn" class="w-full py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider transition shadow-md flex items-center justify-center gap-2 cursor-pointer">
@@ -3230,6 +3230,24 @@
                 status: 'qualified'
             }]);
         } catch (dbE) {}
+
+        // 5-Minute Delayed WhatsApp Follow-up Chatbot Hook
+        const userPhone = user.phone || user.user_metadata?.phone || currentProfile?.phone || currentProfile?.whatsapp_support || '';
+        if (userPhone) {
+            try {
+                fetch('http://localhost:5678/webhook/user-login-whatsapp', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        event: 'user_logged_in',
+                        name: name,
+                        phone: userPhone,
+                        email: user.email,
+                        login_time: new Date().toISOString()
+                    })
+                }).catch(function() {});
+            } catch (_) {}
+        }
 
         // Forward to webhook
         if (window.FC_LEADS && typeof window.FC_LEADS.triggerN8nWebhook === 'function') {

@@ -54,6 +54,7 @@
         .dropdown-parent:hover > .mega-menu,
         .dropdown-parent.active > .mega-menu { display: block; }
     </style>
+    <link rel="stylesheet" href="css/mobile-app.css">
 </head>
 <body class="bg-slate-50 text-slate-900 font-sans antialiased selection:bg-bikOrange selection:text-white min-h-screen flex flex-col">
 
@@ -208,12 +209,12 @@
                 
                 <!-- LEFT COLUMN: INTERACTIVE DEMO SANDBOX (7 COLS) -->
                 <div class="lg:col-span-7 space-y-6">
-                    <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-xl space-y-6">
+                    <div class="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 p-4 sm:p-8 shadow-xl space-y-6">
                         
                         <!-- Module Selector Tabs -->
                         <div class="flex items-center justify-between border-b border-slate-100 pb-4 flex-wrap gap-2">
                             <span class="text-xs font-black uppercase text-slate-400 tracking-wider">Interactive Live Sandboxes:</span>
-                            <div class="flex items-center gap-1.5 bg-slate-100 p-1 rounded-xl text-xs font-bold">
+                            <div class="flex items-center gap-1.5 bg-slate-100 p-1 rounded-xl text-xs font-bold overflow-x-auto no-scrollbar max-w-full touch-pan-x">
                                 <button onclick="setSandbox('whatsapp')" id="tab-whatsapp" class="px-3 py-1.5 rounded-lg bg-bikOrange text-white shadow-sm transition">
                                     <i class="fa-brands fa-whatsapp mr-1 text-emerald-500"></i> WhatsApp
                                 </button>
@@ -393,7 +394,7 @@
 
                 <!-- RIGHT COLUMN: 1-ON-1 DEMO SCHEDULER & VIP FORM (5 COLS) -->
                 <div class="lg:col-span-5">
-                    <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-2xl bik-mega-shadow space-y-6 relative">
+                    <div class="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 p-4 sm:p-8 shadow-2xl bik-mega-shadow space-y-6 relative">
                         
                         <!-- Header -->
                         <div class="border-b border-slate-100 pb-4">
@@ -407,7 +408,7 @@
                             <!-- Full Name -->
                             <div class="space-y-1">
                                 <label class="text-slate-700 block">Your Name / Founder Name *</label>
-                                <input type="text" id="demoName" required placeholder="e.g. Rahul Sharma" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:border-bikOrange focus:ring-2 focus:ring-orange-100 outline-none text-slate-800 text-xs transition">
+                                <input type="text" id="demoName" required placeholder="e.g. Rahul Sharma" autocomplete="name" class="w-full px-3.5 py-3 sm:py-2.5 rounded-xl border border-slate-200 focus:border-bikOrange focus:ring-2 focus:ring-orange-100 outline-none text-slate-800 text-sm transition">
                             </div>
 
                             <!-- WhatsApp Number -->
@@ -415,14 +416,14 @@
                                 <label class="text-slate-700 block">WhatsApp Phone Number *</label>
                                 <div class="flex items-center">
                                     <span class="px-3 py-2.5 bg-slate-100 border border-r-0 border-slate-200 rounded-l-xl text-slate-500 text-xs font-bold">+91</span>
-                                    <input type="tel" id="demoPhone" required placeholder="98765 43210" maxlength="10" class="w-full px-3.5 py-2.5 rounded-r-xl border border-slate-200 focus:border-bikOrange focus:ring-2 focus:ring-orange-100 outline-none text-slate-800 text-xs transition">
+                                    <input type="tel" id="demoPhone" required placeholder="98765 43210" maxlength="10" inputmode="tel" autocomplete="tel" class="w-full px-3.5 py-3 sm:py-2.5 rounded-r-xl border border-slate-200 focus:border-bikOrange focus:ring-2 focus:ring-orange-100 outline-none text-slate-800 text-sm transition font-mono">
                                 </div>
                             </div>
 
                             <!-- Store URL -->
                             <div class="space-y-1">
                                 <label class="text-slate-700 block">Store URL / Brand Name *</label>
-                                <input type="text" id="demoStore" required placeholder="e.g. myfashionbrand.com or Shopify handle" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:border-bikOrange focus:ring-2 focus:ring-orange-100 outline-none text-slate-800 text-xs transition">
+                                <input type="text" id="demoStore" required placeholder="e.g. myfashionbrand.com or Shopify handle" class="w-full px-3.5 py-3 sm:py-2.5 rounded-xl border border-slate-200 focus:border-bikOrange focus:ring-2 focus:ring-orange-100 outline-none text-slate-800 text-sm transition">
                             </div>
 
                             <!-- Honeypot anti-spam -->

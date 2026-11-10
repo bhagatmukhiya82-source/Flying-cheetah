@@ -1,4 +1,5 @@
 import pytest
+import uuid
 from httpx import AsyncClient
 
 @pytest.mark.asyncio
@@ -340,6 +341,42 @@ async def test_google_oauth_reconciliation_preserves_phone_and_profile(client: A
     assert google_data["user"]["pickup_address"] == "404 Colaba Causeway, Mumbai 400005"
     assert google_data["user"]["merchant_upi_id"] == "reconciled@okhdfcbank"
     assert google_data["user"]["avatar_url"] == "https://lh3.googleusercontent.com/a/mock-avatar-123"
+
+@pytest.mark.asyncio
+async def test_google_oauth_mandatory_phone_binding_and_conflict(client: AsyncClient):
+    # 1. New Google sign-in with phone provided
+    email = f"google.newuser.{uuid.uuid4().hex[:6]}@gmail.com"
+    phone = "+91 98205 11223"
+
+    resp = await client.post("/api/v1/auth/google-callback", json={
+        "email": email,
+        "name": "New Google User",
+        "avatar_url": "https://lh3.googleusercontent.com/a/mock",
+        "phone": phone
+    })
+    assert resp.status_code == 200
+    data = resp.json()
+    assert data["user"]["email"] == email
+    assert data["user"]["phone"] == "+919820511223"
+
+    # 2. Another Google sign-in attempting to claim the same phone
+    email2 = f"google.another.{uuid.uuid4().hex[:6]}@gmail.com"
+    conflict_resp = await client.post("/api/v1/auth/google-callback", json={
+        "email": email2,
+        "name": "Second User",
+        "phone": phone
+    })
+    assert conflict_resp.status_code == 409
+    assert "already linked" in conflict_resp.json()["detail"].lower()
+
+    # 3. Google sign-in with invalid phone format
+    invalid_resp = await client.post("/api/v1/auth/google-callback", json={
+        "email": f"google.badphone.{uuid.uuid4().hex[:6]}@gmail.com",
+        "name": "Bad Phone User",
+        "phone": "1234"
+    })
+    assert invalid_resp.status_code == 400
+    assert "valid phone number" in invalid_resp.json()["detail"].lower()
 
 @pytest.mark.asyncio
 async def test_authenticated_change_password(client: AsyncClient):

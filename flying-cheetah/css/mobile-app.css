@@ -1,0 +1,99 @@
+/* ==========================================================================
+   FLYING CHEETAH LABS - MOBILE-FIRST APP EXPERIENCE STYLESHEET
+   Active strictly for Phone Aspect Ratios (< 768px / max-width: 767px)
+   Preserves 100% of Desktop & Laptop Interfaces Unaltered
+   ========================================================================== */
+
+/* 1. Global Viewport & Horizontal Overflow Lock (Fixes mobile screen wobble) */
+html, body {
+    overflow-x: hidden !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* 2. Mobile Thumb-Ergonomics & Touch Target Safety */
+@media (max-width: 767px) {
+    /* Touch tap highlight cleanup */
+    * {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Prevent unwanted auto-zoom on iOS Safari when tapping inputs */
+    input, select, textarea {
+        font-size: 16px !important;
+    }
+
+    /* Dynamic safe-area padding for notched iPhones and modern Android navigation bars */
+    .fc-mobile-safe-bottom {
+        padding-bottom: max(env(safe-area-inset-bottom, 0px), 12px) !important;
+    }
+
+    .fc-mobile-safe-top {
+        padding-top: max(env(safe-area-inset-top, 0px), 12px) !important;
+    }
+
+    /* Standard touch target minimum (44x44px) */
+    .touch-target-44 {
+        min-height: 44px;
+        min-width: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Automatic body clearance for the mobile bottom navigation bar */
+    body {
+        padding-bottom: 5.5rem !important; /* ~88px */
+    }
+
+    /* Floating WhatsApp widget repositioning above bottom nav */
+    #fcFloatingWhatsAppWrapper {
+        bottom: 5.25rem !important; /* 84px above screen bottom */
+        right: 1rem !important;
+    }
+
+    #fcWhatsAppPopup {
+        bottom: 5.25rem !important;
+        right: 0.5rem !important;
+        max-width: calc(100vw - 1rem) !important;
+    }
+}
+
+/* 3. Utility: Smooth Hide Scrollbar for Horizontal Touch Swiping */
+.no-scrollbar::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+.no-scrollbar {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+}
+
+/* 4. Native Mobile Bottom Navigation Animations */
+#fcMobileBottomNav {
+    will-change: transform, opacity;
+    box-shadow: 0 -4px 24px rgba(15, 23, 42, 0.08);
+}
+
+#fcMobileBottomNav .fc-nav-active {
+    color: #FF5500 !important;
+    font-weight: 800 !important;
+}
+
+#fcMobileBottomNav .fc-nav-active i {
+    transform: scale(1.12);
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* 5. Mobile 9:16 Video Canvas Ratio Helper */
+@media (max-width: 767px) {
+    .fc-reel-ratio-box {
+        width: 100% !important;
+        max-width: 350px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        aspect-ratio: 9 / 16 !important;
+    }
+}

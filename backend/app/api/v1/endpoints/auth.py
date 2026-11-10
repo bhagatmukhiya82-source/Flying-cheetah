@@ -213,6 +213,16 @@ async def login(req: LoginRequest, db: AsyncSession = Depends(get_db)):
 async def google_callback(req: GoogleCallbackRequest, db: AsyncSession = Depends(get_db)):
     """Handles Google OAuth token exchange. Reconciles existing profile or auto-provisions new."""
     email_clean = req.email.lower().strip()
+    phone_clean = None
+    if req.phone:
+        p_clean = sanitize_phone(req.phone)
+        if not p_clean or not validate_phone(p_clean):
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Please enter a valid phone number (e.g., +91 98200 12345)."
+            )
+        phone_clean = p_clean
+
     stmt = select(Profile).where(Profile.email == email_clean)
     result = await db.execute(stmt)
     profile = result.scalar_one_or_none()
@@ -220,10 +230,20 @@ async def google_callback(req: GoogleCallbackRequest, db: AsyncSession = Depends
     is_admin = email_clean == settings.OFFICIAL_ADMIN_EMAIL.lower() or email_clean in [e.lower() for e in settings.ADMIN_EMAILS]
 
     if not profile:
+        if phone_clean:
+            conflict = await check_phone_conflict(db, phone_clean)
+            if conflict:
+                raise HTTPException(
+                    status_code=status.HTTP_409_CONFLICT,
+                    detail="This phone number is already linked to an existing account. Please sign in."
+                )
+
         profile = Profile(
             email=email_clean,
             full_name=req.name or email_clean.split("@")[0],
             avatar_url=req.avatar_url,
+            phone=phone_clean,
+            whatsapp_support=phone_clean,
             role="admin" if is_admin else "client",
             trial_active=True,
             trial_days_left=14
@@ -234,6 +254,17 @@ async def google_callback(req: GoogleCallbackRequest, db: AsyncSession = Depends
     else:
         # Reconcile existing account!
         # Preserve linked phone, business name, GSTIN, UPI, warehouse address across both Google and Password sign-in
+        if phone_clean and not profile.phone:
+            conflict = await check_phone_conflict(db, phone_clean, exclude_profile_id=profile.id)
+            if conflict:
+                raise HTTPException(
+                    status_code=status.HTTP_409_CONFLICT,
+                    detail="This phone number is already linked to an existing account. Please sign in."
+                )
+            profile.phone = phone_clean
+            if not profile.whatsapp_support:
+                profile.whatsapp_support = phone_clean
+
         if req.avatar_url and not profile.avatar_url:
             profile.avatar_url = req.avatar_url
         if req.name and (not profile.full_name or profile.full_name == email_clean.split("@")[0]):

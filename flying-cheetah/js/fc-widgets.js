@@ -2,239 +2,93 @@
  * FLYING CHEETAH LABS - OMNICHANNEL CONVERSION & UX WIDGETS
  * Official Number: +91 99203 86421 | Official Email: flyingcheetah.agency@gmail.com
  * Features:
- *   1. Dynamic Favicon Injection (All 20+ Pages)
- *   2. Responsive Mobile Drawer Navigation (< 1024px)
- *   3. Floating WhatsApp Instant Conversion Widget
+ *   1. Dynamic Favicon & Mobile App Stylesheet Injection (All 24 Pages)
+ *   2. Native Mobile Bottom Navigation Bar (Thumb-Ergonomic, < 768px)
+ *   3. Responsive Mobile Drawer Navigation (< 1024px)
  *   4. Legal & Regulatory Footer Compliance Ingestion
+ *   5. Interactive 3D Hero Revenue Chart (Desktop / Laptop)
  */
 
 (function (window, document) {
     'use strict';
 
-    // 1. INJECT FAVICON ACROSS ALL PAGES
-    function injectFavicon() {
+    // 1. INJECT FAVICON & MOBILE-APP STYLESHEET ACROSS ALL PAGES
+    function injectFaviconAndStyles() {
         if (!document.querySelector("link[rel*='icon']")) {
             const link = document.createElement('link');
-            link.type = 'image/jpeg';
+            link.type = 'image/png';
             link.rel = 'shortcut icon';
             link.href = 'images/flying_cheetah_logo_one_tail.png';
-            document.getElementsByTagName('head')[0].appendChild(link);
+            document.head.appendChild(link);
+        }
+
+        if (!document.getElementById('fcMobileAppStyles')) {
+            const cssLink = document.createElement('link');
+            cssLink.id = 'fcMobileAppStyles';
+            cssLink.rel = 'stylesheet';
+            cssLink.href = 'css/mobile-app.css';
+            document.head.appendChild(cssLink);
         }
     }
 
-    // 2. INJECT FLOATING WHATSAPP CHAT WIDGET & SMART PROACTIVE SUGGESTION POPUP
-    function injectWhatsAppWidget() {
-        if (document.getElementById('fcFloatingWhatsAppWrapper')) return;
+    // 2. INJECT NATIVE MOBILE BOTTOM NAVIGATION BAR (< 768px)
+    function injectMobileBottomNav() {
+        if (document.getElementById('fcMobileBottomNav')) return;
 
         const path = (window.location.pathname || '').toLowerCase();
-        let contextualGreeting = '👋 Welcome to Flying Cheetah! Ready to boost your store revenue with AI commerce agents, WhatsApp checkouts, and automated fleet dispatch?';
-        let contextualTag = 'General Inquiry';
+        const isHome = path.endsWith('index.html') || path.endsWith('/') || path.endsWith('home.html') || path === '';
+        const isStore = path.includes('store');
+        const isDemo = path.includes('demo');
 
-        if (path.includes('store-automation') || path.includes('cart')) {
-            contextualGreeting = '⚡ **Recover Abandoned Carts!** We help retail stores recover up to 18.6% of abandoned checkouts autonomously via WhatsApp. Want a 15-minute live teardown?';
-            contextualTag = 'Store Automation';
-        } else if (path.includes('delivery') || path.includes('fleet')) {
-            contextualGreeting = '🛵 **Hyperlocal Fleet Dispatch!** Automate on-demand order dispatch with Borzo & Porter APIs with zero dispatch payroll. How can we help your operations?';
-            contextualTag = 'Fleet Protocol';
-        } else if (path.includes('demo')) {
-            contextualGreeting = '🎯 **Live 1-on-1 Store Audit!** Connect directly with technical founders Bhagat Mukhiya & Yash Gaikwad. We will audit your store live.';
-            contextualTag = 'Demo Booking';
-        } else if (path.includes('web-development')) {
-            contextualGreeting = '💻 **High-Conversion Web Architecture!** Fast, bespoke retail stores built for extreme speed and sub-second checkout conversion.';
-            contextualTag = 'Web Development';
-        }
+        const nav = document.createElement('nav');
+        nav.id = 'fcMobileBottomNav';
+        nav.setAttribute('aria-label', 'Mobile Bottom Navigation');
+        nav.className = 'fixed bottom-0 left-0 right-0 z-[145] block md:hidden bg-white/95 backdrop-blur-xl border-t border-slate-200/90 shadow-[0_-4px_20px_rgba(0,0,0,0.06)] transition-all duration-300 select-none';
+        nav.style.paddingBottom = 'max(env(safe-area-inset-bottom, 0px), 8px)';
 
-        const now = new Date();
-        const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        const waText = encodeURIComponent("Hi Flying Cheetah team, I'm exploring your website on mobile and would like to learn more about your AI commerce agents.");
+        const waUrl = `https://wa.me/919920386421?text=${waText}`;
 
-        // Container
-        const widgetContainer = document.createElement('div');
-        widgetContainer.id = 'fcFloatingWhatsAppWrapper';
-        widgetContainer.className = 'fixed bottom-6 right-6 z-[140] flex flex-col items-end pointer-events-none select-none';
+        nav.innerHTML = `
+            <div class="grid grid-cols-5 items-center h-14 text-center px-1">
+                <!-- Tab 1: Home -->
+                <a href="index.html" class="flex flex-col items-center justify-center py-1 transition group touch-target-44 ${isHome ? 'fc-nav-active text-bikOrange font-bold' : 'text-slate-500 hover:text-slate-800'}">
+                    <i class="fa-solid fa-house text-base transition-transform group-active:scale-90"></i>
+                    <span class="text-[10px] tracking-tight mt-0.5 font-medium">Home</span>
+                </a>
 
-        widgetContainer.innerHTML = `
-            <!-- CONVERSATIONAL WHATSAPP POPUP CARD -->
-            <div id="fcWhatsAppPopup" class="pointer-events-auto mb-3 w-[340px] max-w-[calc(100vw-2.5rem)] bg-[#ECE5DD] rounded-2xl shadow-2xl border border-slate-200/80 overflow-hidden transform opacity-0 translate-y-4 scale-95 pointer-events-none transition-all duration-300 ease-out font-sans">
-                <!-- Popup Header -->
-                <div class="bg-[#075E54] text-white p-3.5 flex items-center justify-between shadow-md">
-                    <div class="flex items-center gap-2.5">
-                        <div class="relative">
-                            <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah Avatar" class="w-10 h-10 rounded-full object-cover border-2 border-white/80 shadow-xs">
-                            <span class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-400 border-2 border-[#075E54] rounded-full"></span>
-                        </div>
-                        <div class="text-left leading-tight">
-                            <div class="flex items-center gap-1.5">
-                                <h4 class="font-bold text-xs text-white font-display">Flying Cheetah Labs</h4>
-                                <span class="text-[9px] bg-emerald-600/90 text-white px-1.5 py-0.5 rounded-full font-semibold">Verified</span>
-                            </div>
-                            <p class="text-[10px] text-emerald-100 font-medium">Bhagat &amp; Yash • Replies in &lt; 45s</p>
-                        </div>
+                <!-- Tab 2: Store -->
+                <a href="store.html" class="flex flex-col items-center justify-center py-1 transition group touch-target-44 ${isStore ? 'fc-nav-active text-bikOrange font-bold' : 'text-slate-500 hover:text-slate-800'}">
+                    <i class="fa-solid fa-bag-shopping text-base transition-transform group-active:scale-90"></i>
+                    <span class="text-[10px] tracking-tight mt-0.5 font-medium">Store</span>
+                </a>
+
+                <!-- Tab 3: Center Elevated Demo Action -->
+                <a href="demo.html" class="flex flex-col items-center justify-center py-1 relative group touch-target-44">
+                    <div class="w-11 h-11 -mt-5 rounded-full bg-gradient-to-tr from-bikOrange to-amber-500 text-white flex items-center justify-center shadow-lg shadow-orange-500/35 border-2 border-white transition-transform group-active:scale-90">
+                        <i class="fa-solid fa-bolt text-base animate-pulse"></i>
                     </div>
-                    <button type="button" id="fcWaCloseBtn" aria-label="Close Chat Popup" class="w-7 h-7 rounded-full bg-black/20 hover:bg-black/40 text-white/90 hover:text-white flex items-center justify-center transition cursor-pointer">
-                        <i class="fa-solid fa-xmark text-xs"></i>
-                    </button>
-                </div>
+                    <span class="text-[10px] font-bold tracking-tight mt-0.5 ${isDemo ? 'text-bikOrange' : 'text-slate-600'}">Demo</span>
+                </a>
 
-                <!-- Chat Body with WhatsApp Pattern Style -->
-                <div class="p-3.5 space-y-3 max-h-[380px] overflow-y-auto" style="background-image: radial-gradient(#d4cbbe 1px, transparent 1px); background-size: 16px 16px;">
-                    <!-- Message Bubble from Flying Cheetah -->
-                    <div class="bg-white rounded-2xl rounded-tl-sm p-3 shadow-sm border border-slate-200/60 text-slate-800 text-xs leading-relaxed space-y-2 relative">
-                        <div class="flex items-center justify-between text-[10px] text-slate-400 pb-1 border-b border-slate-100">
-                            <span class="font-bold text-emerald-700 uppercase tracking-wider text-[9px]"><i class="fa-brands fa-whatsapp text-emerald-600"></i> AI Assistant</span>
-                            <span>${timeStr}</span>
-                        </div>
-                        <p class="text-slate-700 text-xs">${contextualGreeting}</p>
-                        <p class="text-[11px] text-slate-500 font-medium">Where would you like to explore first?</p>
+                <!-- Tab 4: Direct WhatsApp Chat -->
+                <a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center justify-center py-1 text-emerald-600 hover:text-emerald-700 transition group touch-target-44">
+                    <div class="relative">
+                        <i class="fa-brands fa-whatsapp text-xl transition-transform group-active:scale-90"></i>
+                        <span class="absolute -top-0.5 -right-1 w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
                     </div>
+                    <span class="text-[10px] tracking-tight mt-0.5 font-medium">Chat</span>
+                </a>
 
-                    <!-- Interactive Suggestion Chips / Quick Actions -->
-                    <div class="space-y-1.5 pt-1">
-                        <div class="text-[10px] font-bold text-slate-500 uppercase tracking-wider px-1">Suggested Destinations:</div>
-                        
-                        <a href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah%20team%2C%20I%20explored%20the%20platform%20and%20I%27m%20looking%20forward%20to%20working%20with%20you.%20I%27d%20love%20to%20discuss%20${encodeURIComponent(contextualTag)}." 
-                           target="_blank" rel="noopener noreferrer"
-                           class="flex items-center justify-between px-3 py-2 bg-emerald-50 hover:bg-emerald-100/80 border border-emerald-200/80 rounded-xl text-emerald-900 text-xs font-bold transition shadow-xs group">
-                            <span class="flex items-center gap-2">
-                                <i class="fa-solid fa-rocket text-emerald-600 group-hover:scale-110 transition"></i>
-                                <span>Chat with Flying Cheetah</span>
-                            </span>
-                            <i class="fa-brands fa-whatsapp text-emerald-600 text-sm"></i>
-                        </a>
-
-                        <a href="demo.html" 
-                           class="flex items-center justify-between px-3 py-2 bg-white hover:bg-orange-50 border border-slate-200/80 hover:border-bikOrange rounded-xl text-slate-700 hover:text-bikOrange text-xs font-bold transition shadow-xs group">
-                            <span class="flex items-center gap-2">
-                                <i class="fa-solid fa-calendar-check text-bikOrange group-hover:scale-110 transition"></i>
-                                <span>Book Free Live Demo ➔</span>
-                            </span>
-                            <span class="text-[10px] bg-orange-100 text-bikOrange px-1.5 py-0.5 rounded font-mono font-bold">15 Min</span>
-                        </a>
-
-                        <a href="store-automation.html" 
-                           class="flex items-center justify-between px-3 py-2 bg-white hover:bg-slate-50 border border-slate-200/80 rounded-xl text-slate-700 hover:text-slate-900 text-xs font-semibold transition shadow-xs">
-                            <span class="flex items-center gap-2">
-                                <i class="fa-solid fa-shop text-amber-500"></i>
-                                <span>Store &amp; Cart Automation</span>
-                            </span>
-                            <i class="fa-solid fa-arrow-right text-[10px] text-slate-400"></i>
-                        </a>
-
-                        <a href="delivery.html" 
-                           class="flex items-center justify-between px-3 py-2 bg-white hover:bg-slate-50 border border-slate-200/80 rounded-xl text-slate-700 hover:text-slate-900 text-xs font-semibold transition shadow-xs">
-                            <span class="flex items-center gap-2">
-                                <i class="fa-solid fa-motorcycle text-emerald-600"></i>
-                                <span>Fleet Protocol (Borzo/Porter)</span>
-                            </span>
-                            <i class="fa-solid fa-arrow-right text-[10px] text-slate-400"></i>
-                        </a>
-                    </div>
-
-                    <!-- Quick WhatsApp Direct Message Composer -->
-                    <form id="fcWaQuickForm" class="pt-1 flex items-center gap-1.5">
-                        <input type="text" id="fcWaQuickInput" placeholder="Type a message or question..." 
-                               class="flex-1 px-3 py-2 bg-white border border-slate-200 rounded-xl text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-emerald-500 shadow-inner">
-                        <button type="submit" aria-label="Send via WhatsApp" class="w-9 h-9 shrink-0 bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-xl flex items-center justify-center shadow-md transition transform active:scale-95 cursor-pointer">
-                            <i class="fa-solid fa-paper-plane text-xs"></i>
-                        </button>
-                    </form>
-                </div>
-            </div>
-
-            <!-- FLOATING TOGGLE BUTTON -->
-            <div id="fcFloatingWhatsApp" class="pointer-events-auto flex items-center group">
-                <button type="button"
-                   id="fcWaToggleBtn"
-                   aria-label="Open WhatsApp Support and Automation Menu"
-                   class="relative flex items-center gap-3 px-4 py-3 bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-full shadow-2xl hover:shadow-emerald-500/30 transition-all duration-300 transform hover:scale-105 cursor-pointer">
-                    <!-- Pulse indicator -->
-                    <span class="absolute -top-1 -right-1 flex h-4 w-4">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-4 w-4 bg-emerald-500 border-2 border-white"></span>
-                    </span>
-                    <i class="fa-brands fa-whatsapp text-2xl"></i>
-                    <div class="hidden sm:flex flex-col text-left pr-1">
-                        <span class="text-[10px] uppercase font-bold tracking-wider opacity-90 leading-tight">Instant Support</span>
-                        <span class="text-xs font-black tracking-tight leading-tight">Chat on WhatsApp</span>
-                    </div>
+                <!-- Tab 5: Mobile Drawer Menu -->
+                <button type="button" onclick="window.FC_WIDGETS.toggleMobileDrawer()" aria-label="Open Navigation Menu" class="flex flex-col items-center justify-center py-1 text-slate-500 hover:text-slate-800 transition group touch-target-44 cursor-pointer">
+                    <i class="fa-solid fa-bars text-base transition-transform group-active:scale-90"></i>
+                    <span class="text-[10px] tracking-tight mt-0.5 font-medium">Menu</span>
                 </button>
             </div>
         `;
 
-        document.body.appendChild(widgetContainer);
-
-        const popup = document.getElementById('fcWhatsAppPopup');
-        const toggleBtn = document.getElementById('fcWaToggleBtn');
-        const closeBtn = document.getElementById('fcWaCloseBtn');
-        const quickForm = document.getElementById('fcWaQuickForm');
-        const quickInput = document.getElementById('fcWaQuickInput');
-
-        let isOpen = false;
-
-        function openPopup() {
-            if (isOpen || !popup) return;
-            popup.classList.remove('opacity-0', 'translate-y-4', 'scale-95', 'pointer-events-none');
-            popup.classList.add('opacity-100', 'translate-y-0', 'scale-100');
-            isOpen = true;
-        }
-
-        function closePopup(manual = false) {
-            if (!isOpen || !popup) return;
-            popup.classList.remove('opacity-100', 'translate-y-0', 'scale-100');
-            popup.classList.add('opacity-0', 'translate-y-4', 'scale-95', 'pointer-events-none');
-            isOpen = false;
-            if (manual) {
-                try {
-                    sessionStorage.setItem('fc_wa_popup_dismissed', '1');
-                } catch (e) {}
-            }
-        }
-
-        function togglePopup() {
-            if (isOpen) {
-                closePopup(false);
-            } else {
-                openPopup();
-            }
-        }
-
-        if (toggleBtn) {
-            toggleBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                togglePopup();
-            });
-        }
-
-        if (closeBtn) {
-            closeBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                closePopup(true);
-            });
-        }
-
-        if (quickForm && quickInput) {
-            quickForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const msg = quickInput.value.trim() || `Hi Flying Cheetah, I\'m visiting the website and would like to learn more about ${contextualTag}.`;
-                const waUrl = `https://wa.me/919920386421?text=${encodeURIComponent(msg)}`;
-                window.open(waUrl, '_blank', 'noopener,noreferrer');
-                quickInput.value = '';
-                closePopup(false);
-            });
-        }
-
-        // Automatic 5-second gentle trigger if not previously dismissed in this session
-        try {
-            const dismissed = sessionStorage.getItem('fc_wa_popup_dismissed');
-            if (!dismissed) {
-                setTimeout(() => {
-                    openPopup();
-                }, 5000);
-            }
-        } catch (e) {
-            setTimeout(openPopup, 5000);
-        }
+        document.body.appendChild(nav);
     }
 
     // 3. INJECT MOBILE HAMBURGER & SLIDE-OUT DRAWER
@@ -242,22 +96,20 @@
         const header = document.querySelector('header');
         if (!header) return;
 
-        // A. Add Hamburger Toggle Button to Header Actions
+        // A. Add Hamburger Toggle Button to Header Actions if missing
         const headerContainer = header.querySelector('.max-w-7xl') || header.firstElementChild;
         if (headerContainer && !document.getElementById('fcMobileMenuBtn')) {
-            // Find the right-side actions container (last element child of header container)
             const actionsDiv = headerContainer.lastElementChild;
             if (actionsDiv) {
-                // Ensure actions container uses gap and doesn't wrap awkwardly
                 actionsDiv.classList.add('flex', 'items-center', 'gap-2');
 
                 const burgerBtn = document.createElement('button');
                 burgerBtn.id = 'fcMobileMenuBtn';
                 burgerBtn.type = 'button';
                 burgerBtn.setAttribute('aria-label', 'Toggle Mobile Menu');
-                burgerBtn.className = 'lg:hidden p-2 rounded-xl border border-slate-200 hover:border-bikOrange bg-white text-slate-700 hover:text-bikOrange transition flex items-center justify-center shrink-0 w-9 h-9 shadow-sm';
+                burgerBtn.className = 'lg:hidden p-2 rounded-xl border border-slate-200 hover:border-bikOrange bg-white text-slate-700 hover:text-bikOrange transition flex items-center justify-center shrink-0 w-10 h-10 shadow-xs cursor-pointer touch-target-44';
                 burgerBtn.innerHTML = '<i class="fa-solid fa-bars text-sm"></i>';
-                burgerBtn.onclick = function(e) {
+                burgerBtn.onclick = function (e) {
                     e.preventDefault();
                     e.stopPropagation();
                     toggleMobileDrawer();
@@ -271,74 +123,90 @@
 
         const drawerHtml = `
         <div id="fcMobileDrawerOverlay" class="fixed inset-0 z-[200] bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 lg:hidden">
-            <div id="fcMobileDrawer" class="fixed top-0 right-0 w-[300px] sm:w-[340px] h-full bg-white shadow-2xl flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-out overflow-y-auto">
+            <div id="fcMobileDrawer" class="fixed top-0 right-0 w-[300px] sm:w-[350px] max-w-[85vw] h-full bg-white shadow-2xl flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-out overflow-y-auto">
                 <!-- Top Brand & Close -->
-                <div class="p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50/70">
+                <div class="p-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/80 sticky top-0 z-10 backdrop-blur-md">
                     <a href="index.html" class="flex items-center gap-2.5">
-                        <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah Logo" class="w-8 h-8 rounded-full object-cover border border-slate-200">
-                        <span class="font-black text-sm tracking-tight font-display text-bikDark">FLYING CHEETAH</span>
+                        <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah Logo" class="w-8 h-8 rounded-full object-cover border border-slate-200 shadow-xs">
+                        <div class="flex flex-col text-left">
+                            <span class="font-black text-xs tracking-tight font-display text-bikDark leading-none">FLYING CHEETAH</span>
+                            <span class="text-[8px] text-bikOrange font-bold tracking-widest uppercase mt-0.5">AI COMMERCE</span>
+                        </div>
                     </a>
-                    <button onclick="window.FC_WIDGETS.toggleMobileDrawer()" class="w-8 h-8 rounded-full flex items-center justify-center text-slate-400 hover:text-slate-800 hover:bg-slate-200/50 transition">
+                    <button type="button" onclick="window.FC_WIDGETS.toggleMobileDrawer()" aria-label="Close Menu" class="w-9 h-9 rounded-xl flex items-center justify-center text-slate-400 hover:text-slate-800 hover:bg-slate-200/50 transition cursor-pointer touch-target-44">
                         <i class="fa-solid fa-xmark text-sm"></i>
                     </button>
                 </div>
 
                 <!-- Navigation Links List -->
-                <div class="p-5 space-y-4 flex-1 text-sm">
+                <div class="p-4 space-y-4 flex-1 text-sm overflow-y-auto">
                     <!-- Core Portals -->
                     <div>
-                        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest px-2 mb-2">Core Portals</div>
+                        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest px-2 mb-1.5">Core Portals</div>
                         <div class="space-y-1">
-                            <a href="index.html" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-700 hover:text-bikOrange hover:bg-orange-50 font-bold transition">
-                                <i class="fa-solid fa-house text-bikOrange w-4"></i>
+                            <a href="index.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-700 hover:text-bikOrange hover:bg-orange-50 font-bold transition">
+                                <i class="fa-solid fa-house text-bikOrange w-4 text-center"></i>
                                 <span>Main Site</span>
                             </a>
-                            <a href="home.html" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-700 hover:text-bikOrange hover:bg-orange-50 font-bold transition">
-                                <i class="fa-solid fa-compass text-bikOrange w-4"></i>
+                            <a href="home.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-700 hover:text-bikOrange hover:bg-orange-50 font-bold transition">
+                                <i class="fa-solid fa-compass text-bikOrange w-4 text-center"></i>
                                 <span>Executive Hub</span>
                             </a>
-                            <a href="web-development.html" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-700 hover:text-bikOrange hover:bg-orange-50 font-bold transition">
-                                <i class="fa-solid fa-code text-orange-600 w-4"></i>
+                            <a href="store.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-700 hover:text-bikOrange hover:bg-orange-50 font-bold transition">
+                                <i class="fa-solid fa-bag-shopping text-emerald-600 w-4 text-center"></i>
+                                <span>Store &amp; Modules</span>
+                            </a>
+                            <a href="demo.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-bikOrange bg-orange-50/60 hover:bg-orange-100/80 font-bold transition">
+                                <i class="fa-solid fa-bolt text-bikOrange w-4 text-center animate-pulse"></i>
+                                <span>Interactive Demo Portal</span>
+                            </a>
+                            <a href="web-development.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-700 hover:text-bikOrange hover:bg-orange-50 font-bold transition">
+                                <i class="fa-solid fa-code text-orange-600 w-4 text-center"></i>
                                 <span>Web Development</span>
                             </a>
-                            <a href="delivery.html" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-700 hover:text-emerald-600 hover:bg-emerald-50 font-bold transition">
-                                <i class="fa-solid fa-motorcycle text-emerald-600 w-4"></i>
-                                <span>Fleet Protocol</span>
+                            <a href="delivery.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-700 hover:text-emerald-600 hover:bg-emerald-50 font-bold transition">
+                                <i class="fa-solid fa-motorcycle text-emerald-600 w-4 text-center"></i>
+                                <span>Fleet Protocol (Borzo &amp; Porter)</span>
                             </a>
-                            <a href="demo.html" class="flex items-center gap-3 px-3 py-2 rounded-xl text-emerald-700 hover:bg-emerald-50 font-bold transition">
-                                <i class="fa-solid fa-calendar-check text-emerald-600 w-4"></i>
-                                <span>Book Live Demo</span>
-                            </a>
-                            <a href="about.html" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-700 hover:text-bikOrange hover:bg-orange-50 font-bold transition">
-                                <i class="fa-solid fa-circle-info text-slate-400 w-4"></i>
+                            <a href="about.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-700 hover:text-bikOrange hover:bg-orange-50 font-bold transition">
+                                <i class="fa-solid fa-circle-info text-slate-400 w-4 text-center"></i>
                                 <span>About Founders</span>
                             </a>
                         </div>
                     </div>
 
-                    <!-- Products & Solutions -->
+                    <!-- AI Commerce Modules -->
                     <div class="pt-2 border-t border-slate-100">
-                        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest px-2 mb-2">AI Commerce Modules</div>
+                        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest px-2 mb-1.5">AI Commerce Modules</div>
                         <div class="space-y-1 text-xs">
-                            <a href="store-automation.html" class="flex items-center justify-between px-3 py-1.5 rounded-lg text-slate-600 hover:text-bikOrange hover:bg-orange-50 transition">
-                                <span>Store Automation & WhatsApp</span>
+                            <a href="store-automation.html" class="flex items-center justify-between px-3 py-2 rounded-xl text-slate-600 hover:text-bikOrange hover:bg-orange-50 transition">
+                                <span>Store Automation &amp; Cart Recovery</span>
                                 <span class="text-[9px] bg-orange-100 text-bikOrange font-bold px-1.5 py-0.5 rounded">Core</span>
                             </a>
-                            <a href="ai-voice-agents.html" class="flex items-center justify-between px-3 py-1.5 rounded-lg text-slate-600 hover:text-purple-600 hover:bg-purple-50 transition">
+                            <a href="ai-voice-agents.html" class="flex items-center justify-between px-3 py-2 rounded-xl text-slate-600 hover:text-purple-600 hover:bg-purple-50 transition">
                                 <span>AI Voice Calling Agents</span>
                                 <span class="text-[9px] bg-purple-100 text-purple-700 font-bold px-1.5 py-0.5 rounded">New</span>
                             </a>
-                            <a href="instagram-automation.html" class="block px-3 py-1.5 rounded-lg text-slate-600 hover:text-pink-600 hover:bg-pink-50 transition">Instagram DMs & CTWA</a>
-                            <a href="whatsapp-marketing.html" class="block px-3 py-1.5 rounded-lg text-slate-600 hover:text-emerald-600 hover:bg-emerald-50 transition">WhatsApp Broadcasts</a>
-                            <a href="customer-data-platform.html" class="block px-3 py-1.5 rounded-lg text-slate-600 hover:text-blue-600 hover:bg-blue-50 transition">Customer Data (CDP 360)</a>
+                            <a href="instagram-automation.html" class="block px-3 py-2 rounded-xl text-slate-600 hover:text-pink-600 hover:bg-pink-50 transition">Instagram DMs &amp; CTWA</a>
+                            <a href="whatsapp-automation.html" class="block px-3 py-2 rounded-xl text-slate-600 hover:text-emerald-600 hover:bg-emerald-50 transition">WhatsApp Auto-Checkouts</a>
+                            <a href="whatsapp-calling.html" class="block px-3 py-2 rounded-xl text-slate-600 hover:text-emerald-600 hover:bg-emerald-50 transition">WhatsApp VoIP Calling</a>
+                            <a href="whatsapp-marketing.html" class="block px-3 py-2 rounded-xl text-slate-600 hover:text-emerald-600 hover:bg-emerald-50 transition">WhatsApp Broadcasts</a>
+                            <a href="customer-data-platform.html" class="block px-3 py-2 rounded-xl text-slate-600 hover:text-blue-600 hover:bg-blue-50 transition">Customer Data (CDP 360)</a>
+                            <a href="customer-support.html" class="block px-3 py-2 rounded-xl text-slate-600 hover:text-blue-600 hover:bg-blue-50 transition">Omnichannel Helpdesk</a>
+                            <a href="solutions.html" class="block px-3 py-2 rounded-xl text-slate-600 hover:text-bikOrange hover:bg-orange-50 transition">All 8 Automated Solutions</a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Drawer Bottom Actions -->
-                <div class="p-5 border-t border-slate-100 bg-slate-50 space-y-2.5">
-                    <a href="demo.html" onclick="window.FC_WIDGETS.toggleMobileDrawer();" class="w-full py-2.5 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-xs uppercase tracking-wider transition shadow-md shadow-orange-500/20 text-center block">
-                        Book Free Live Demo ➔
+                <div class="p-4 border-t border-slate-100 bg-slate-50 space-y-2 sticky bottom-0 z-10">
+                    <a href="demo.html" onclick="window.FC_WIDGETS.toggleMobileDrawer();" class="w-full py-3 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-xs uppercase tracking-wider transition shadow-md shadow-orange-500/20 text-center flex items-center justify-center gap-2">
+                        <span>Book 1-on-1 Free Live Demo</span>
+                        <span>➔</span>
+                    </a>
+                    <a href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah%20team%2C%20I%20am%20interested%20in%20a%20pilot%20for%20my%20store." target="_blank" rel="noopener noreferrer" class="w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider transition shadow-sm text-center flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
+                        <span>Chat With Founders</span>
                     </a>
                     <div class="flex items-center justify-center gap-3 text-[11px] text-slate-400 pt-1">
                         <a href="privacy-policy.html" class="hover:underline">Privacy</a>
@@ -353,6 +221,16 @@
         `;
 
         document.body.insertAdjacentHTML('beforeend', drawerHtml);
+
+        // Close on backdrop tap
+        const overlay = document.getElementById('fcMobileDrawerOverlay');
+        if (overlay) {
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    toggleMobileDrawer();
+                }
+            });
+        }
     }
 
     function toggleMobileDrawer() {
@@ -394,7 +272,7 @@
         });
     }
 
-    // INTERACTIVE HERO REVENUE GRAPH & 3D TILT
+    // 5. INTERACTIVE HERO REVENUE GRAPH & 3D TILT (DESKTOP)
     function initHeroInteractiveGraph() {
         const card = document.getElementById('fcHeroCard');
         const container = document.getElementById('heroInteractiveContainer');
@@ -422,6 +300,7 @@
         // 3D Perspective Tilt on Card Hover
         if (container) {
             container.addEventListener('mousemove', (e) => {
+                if (window.innerWidth < 768) return; // Skip on mobile
                 const rect = container.getBoundingClientRect();
                 const x = e.clientX - rect.left - rect.width / 2;
                 const y = e.clientY - rect.top - rect.height / 2;
@@ -445,7 +324,6 @@
             const index = Math.min(29, Math.max(0, Math.floor(pct * 30)));
             const item = telemetryData[index];
 
-            // Map index to SVG coordinates (x from 50 to 480)
             const svgX = 50 + (index / 29) * 430;
             const norm = index / 29;
             const svgY = 140 - Math.pow(norm, 0.85) * 105;
@@ -472,8 +350,7 @@
                 if (subEl) {
                     subEl.innerHTML = `<span><i class="fa-solid fa-box text-orange-400 text-[9px]"></i> ${item.orders} Orders</span><span>•</span><span class="text-blue-300 font-bold">₹${item.recovered.toLocaleString('en-IN')} Recovered</span>`;
                 }
-                
-                // Position tooltip dynamically to avoid overflowing
+
                 const tipX = mouseX > rect.width * 0.55 ? mouseX - 180 : mouseX + 15;
                 tooltip.style.left = `${Math.max(10, tipX)}px`;
                 tooltip.style.top = `15px`;
@@ -486,11 +363,77 @@
         });
     }
 
+    // 6. GLOBAL BRANDED TOAST NOTIFICATION SYSTEM (Replaces native browser alert())
+    function createToastContainer() {
+        let container = document.getElementById('fcUniversalToastContainer');
+        if (!container) {
+            container = document.createElement('div');
+            container.id = 'fcUniversalToastContainer';
+            container.className = 'fixed top-5 right-5 z-[9999] flex flex-col gap-2.5 max-w-sm w-[90%] sm:w-auto pointer-events-none transition-all';
+            document.body.appendChild(container);
+        }
+        return container;
+    }
+
+    function showUniversalToast(message, type = 'info', title = null) {
+        if (!document.body) return;
+        const container = createToastContainer();
+        const toast = document.createElement('div');
+        
+        const typeStyles = {
+            success: 'border-emerald-500/50 bg-slate-900/95 text-emerald-300 shadow-emerald-950/40',
+            error: 'border-rose-500/50 bg-slate-900/95 text-rose-300 shadow-rose-950/40',
+            warning: 'border-amber-500/50 bg-slate-900/95 text-amber-300 shadow-amber-950/40',
+            info: 'border-purple-500/50 bg-slate-900/95 text-purple-300 shadow-purple-950/40'
+        }[type] || 'border-slate-700 bg-slate-900/95 text-slate-200';
+
+        const icon = {
+            success: 'fa-circle-check text-emerald-400',
+            error: 'fa-circle-exclamation text-rose-400',
+            warning: 'fa-triangle-exclamation text-amber-400',
+            info: 'fa-bolt text-purple-400'
+        }[type] || 'fa-bell text-amber-400';
+
+        const headerTitle = title || (type === 'error' ? 'Notice' : 'Flying Cheetah');
+
+        toast.className = `p-3.5 px-4 rounded-2xl border ${typeStyles} shadow-2xl pointer-events-auto backdrop-blur-xl flex items-start gap-3 transition-all duration-300 transform -translate-y-2 opacity-0 select-none`;
+        toast.innerHTML = `
+            <div class="mt-0.5 text-sm shrink-0">
+                <i class="fa-solid ${icon}"></i>
+            </div>
+            <div class="flex-1 text-xs">
+                <div class="font-bold text-[11px] uppercase tracking-wider text-white mb-0.5">${headerTitle}</div>
+                <div class="text-slate-200 leading-snug">${message}</div>
+            </div>
+            <button onclick="this.parentElement.remove()" class="text-slate-400 hover:text-white text-xs p-1 cursor-pointer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        `;
+
+        container.appendChild(toast);
+        requestAnimationFrame(() => {
+            toast.classList.remove('-translate-y-2', 'opacity-0');
+        });
+
+        setTimeout(() => {
+            toast.classList.add('-translate-y-2', 'opacity-0');
+            setTimeout(() => toast.remove(), 300);
+        }, 5000);
+    }
+
+    // Intercept native browser alert across all pages to prevent ugly OS popups
+    if (typeof window !== 'undefined') {
+        window.fcToast = showUniversalToast;
+        window.alert = function (msg) {
+            showUniversalToast(msg, 'info', 'Flying Cheetah');
+        };
+    }
+
     // INITIALIZATION
     function initWidgets() {
-        injectFavicon();
-        // injectWhatsAppWidget(); // Chat popup widget removed
+        injectFaviconAndStyles();
         injectMobileNavigation();
+        injectMobileBottomNav();
         ensureComplianceFooterLinks();
         initHeroInteractiveGraph();
     }
@@ -503,6 +446,7 @@
 
     window.FC_WIDGETS = {
         toggleMobileDrawer,
+        injectMobileBottomNav,
         initWidgets
     };
 

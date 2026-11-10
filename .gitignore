@@ -67,3 +67,22 @@ logo_on_white.jpg
 
 # Google OAuth Client Secrets
 client_secret*.json
+
+# Scratch and media temp
+scratch/
+videos_archive/
+temp_*.*
+*.mkv
+~$*
+test_frontend_auth.js
+clean_demo.py
+fix_demo_frontend.py
+inject_advisor_to_demo.py
+test_hero_crop.png
+scratch_tail_crop.png
+user_logo_crop.png
+*.docx
+flying-cheetah/*.docx
+flying-cheetah/*.jpeg
+flying-cheetah/*.jpg
+!flying-cheetah/images/*
