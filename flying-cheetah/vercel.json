@@ -25,5 +25,18 @@
         { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
       ]
     }
+  ],
+  "rewrites": [
+    { "source": "/health", "destination": "/api/health" },
+    { "source": "/api/v1/auth/:path*", "destination": "/api/auth?action=:path*" },
+    { "source": "/api/v1/auth", "destination": "/api/auth" },
+    { "source": "/api/v1/leads/:path*", "destination": "/api/leads?action=:path*" },
+    { "source": "/api/v1/leads", "destination": "/api/leads" },
+    { "source": "/api/v1/demos/:path*", "destination": "/api/demos?action=:path*" },
+    { "source": "/api/v1/demos", "destination": "/api/demos" },
+    { "source": "/api/v1/fleet/:path*", "destination": "/api/fleet?action=:path*" },
+    { "source": "/api/v1/fleet", "destination": "/api/fleet" },
+    { "source": "/api/v1/telemetry/:path*", "destination": "/api/telemetry?action=:path*" },
+    { "source": "/api/v1/telemetry", "destination": "/api/telemetry" }
   ]
 }

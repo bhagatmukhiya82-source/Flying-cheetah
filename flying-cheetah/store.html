@@ -349,12 +349,12 @@
                 <div>
                     <label class="text-slate-700 block mb-1">Payment Method</label>
                     <div class="grid grid-cols-2 gap-2">
-                        <label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 hover:border-bikOrange cursor-pointer">
-                            <input type="radio" name="payMethod" value="COD" checked onchange="onPaymentMethodChange()" class="text-bikOrange">
+                        <label for="payMethodCOD" class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 hover:border-bikOrange cursor-pointer">
+                            <input type="radio" id="payMethodCOD" name="payMethod" value="COD" aria-label="Cash on Delivery" checked onchange="onPaymentMethodChange()" class="text-bikOrange">
                             <span class="text-xs">Cash on Delivery</span>
                         </label>
-                        <label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 hover:border-bikOrange cursor-pointer">
-                            <input type="radio" name="payMethod" value="UPI" onchange="onPaymentMethodChange()" class="text-bikOrange">
+                        <label for="payMethodUPI" class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 hover:border-bikOrange cursor-pointer">
+                            <input type="radio" id="payMethodUPI" name="payMethod" value="UPI" aria-label="UPI 1-Click QR" onchange="onPaymentMethodChange()" class="text-bikOrange">
                             <span class="text-xs">UPI 1-Click QR</span>
                         </label>
                     </div>

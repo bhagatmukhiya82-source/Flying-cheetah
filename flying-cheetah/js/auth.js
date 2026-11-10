@@ -30,6 +30,15 @@
     let currentProfile = null;
     let activeTab = 'trial'; // 'trial' | 'signin'
 
+    // Resilient API base detection across localhost, custom remote, and live serverless production
+    function getApiBase() {
+        if (window.FC_API_BASE) return window.FC_API_BASE;
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            return window.location.port === '8000' ? '' : 'http://localhost:8000';
+        }
+        return '';
+    }
+
     // Helper: Toast notification
     function showAuthToast(message, type = 'success') {
         if (window.FC_LEADS && typeof window.FC_LEADS.showToast === 'function') {
@@ -1164,7 +1173,7 @@
                     let generatedOtp = Math.floor(100000 + Math.random() * 900000).toString();
 
                     try {
-                        const apiBase = window.location.port === '8000' ? '' : 'http://localhost:8000';
+                        const apiBase = getApiBase();
                         const token = localStorage.getItem('fc_backend_token');
                         const resp = await fetch(`${apiBase}/api/v1/auth/request-change-password-otp`, {
                             method: 'POST',
@@ -1267,7 +1276,7 @@
                 try {
                     let updatedViaBackend = false;
                     try {
-                        const apiBase = window.location.port === '8000' ? '' : 'http://localhost:8000';
+                        const apiBase = getApiBase();
                         const token = localStorage.getItem('fc_backend_token');
                         const resp = await fetch(`${apiBase}/api/v1/auth/change-password`, {
                             method: 'POST',
@@ -1861,7 +1870,7 @@
                 // 1. Attempt Backend API dispatch
                 let backendDispatched = false;
                 try {
-                    const apiBase = window.location.port === '8000' ? '' : 'http://localhost:8000';
+                    const apiBase = getApiBase();
                     const resp = await fetch(`${apiBase}/api/v1/auth/forgot-password`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
@@ -2037,7 +2046,7 @@
                     // 1. Call Backend API (if local server running)
                     let backendUpdated = false;
                     try {
-                        const apiBase = window.location.port === '8000' ? '' : 'http://localhost:8000';
+                        const apiBase = getApiBase();
                         const bRes = await fetch(`${apiBase}/api/v1/auth/reset-password`, {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
@@ -2311,7 +2320,7 @@
 
                 try {
                     // 1. Call Backend API first to enforce 1-Account = 1-Email & 1-Phone uniqueness
-                    const apiBase = window.location.port === '8000' ? '' : 'http://localhost:8000';
+                    const apiBase = getApiBase();
                     let backendUserData = null;
                     try {
                         const bResp = await fetch(`${apiBase}/api/v1/auth/register-trial`, {
@@ -2495,7 +2504,7 @@
 
                     // 1. Authenticate with backend API first (supports email or phone number)
                     try {
-                        const apiBase = window.location.port === '8000' ? '' : 'http://localhost:8000';
+                        const apiBase = getApiBase();
                         const bResp = await fetch(`${apiBase}/api/v1/auth/login`, {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
@@ -3058,7 +3067,7 @@
                 } catch (_) {}
             }
             if (token) {
-                const apiBase = window.location.port === '8000' ? '' : 'http://localhost:8000';
+                const apiBase = getApiBase();
                 const bResp = await fetch(`${apiBase}/api/v1/auth/profile`, {
                     method: 'PUT',
                     headers: {
@@ -3138,7 +3147,7 @@
         let reconciledUser = null;
         let backendToken = null;
         try {
-            const apiBase = window.location.port === '8000' ? '' : 'http://localhost:8000';
+            const apiBase = getApiBase();
             const bResp = await fetch(`${apiBase}/api/v1/auth/google-callback`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -3368,7 +3377,7 @@
             try {
                 const bToken = localStorage.getItem('fc_backend_token');
                 if (bToken) {
-                    const apiBase = window.location.port === '8000' ? '' : 'http://localhost:8000';
+                    const apiBase = getApiBase();
                     const meResp = await fetch(`${apiBase}/api/v1/auth/me`, {
                         headers: { 'Authorization': `Bearer ${bToken}` }
                     });
