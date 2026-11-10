@@ -3240,9 +3240,9 @@
             }]);
         } catch (dbE) {}
 
-        // 5-Minute Delayed WhatsApp Follow-up Chatbot Hook
+        // 5-Minute Delayed WhatsApp Follow-up Chatbot Hook (Local n8n workflow)
         const userPhone = user.phone || user.user_metadata?.phone || currentProfile?.phone || currentProfile?.whatsapp_support || '';
-        if (userPhone) {
+        if (userPhone && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
             try {
                 fetch('http://localhost:5678/webhook/user-login-whatsapp', {
                     method: 'POST',

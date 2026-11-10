@@ -156,7 +156,7 @@ module.exports = async function handler(req, res) {
     const headers = {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, PATCH, DELETE, OPTIONS',
         'Content-Type': 'application/json'
     };
 
@@ -288,26 +288,108 @@ module.exports = async function handler(req, res) {
         // -------------------------------------------------------------
         if (action === 'login' && req.method === 'POST') {
             const { email, password } = body;
-            if (!email) {
-                return sendJson(400, { error: 'Email address is required.' });
+            if (!email || !password) {
+                return sendJson(400, { error: 'Email and password are required.' });
             }
 
             const cleanEmail = String(email).trim().toLowerCase();
             const isAdmin = ADMIN_EMAILS.includes(cleanEmail);
+            const passwordHashed = hashPassword(password);
 
             let user = USER_STORE.get(cleanEmail);
-            if (!user) {
-                // Auto-provision merchant profile if authenticating for first time
-                user = {
-                    id: `usr_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`,
-                    email: cleanEmail,
-                    full_name: cleanEmail.split('@')[0],
-                    role: isAdmin ? 'admin' : 'client',
-                    trial_active: !isAdmin,
-                    phone: '',
-                    created_at: new Date().toISOString()
-                };
-                USER_STORE.set(cleanEmail, user);
+
+            if (user) {
+                // Verify password against stored hash
+                if (user.password_hash && user.password_hash !== passwordHashed) {
+                    return sendJson(401, { error: 'Invalid email or password.' });
+                }
+            } else {
+                // Check Supabase Auth for valid credentials
+                let authenticatedViaSupabase = false;
+                try {
+                    const sbAuthResp = await fetch(`${SUPABASE_URL}/auth/v1/token?grant_type=password`, {
+                        method: 'POST',
+                        headers: {
+                            'apikey': SUPABASE_ANON_KEY,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ email: cleanEmail, password: password })
+                    });
+                    if (sbAuthResp.ok) {
+                        const sbData = await sbAuthResp.json();
+                        authenticatedViaSupabase = true;
+                        user = {
+                            id: sbData.user?.id || `usr_${Date.now()}`,
+                            email: cleanEmail,
+                            full_name: sbData.user?.user_metadata?.full_name || cleanEmail.split('@')[0],
+                            role: isAdmin ? 'admin' : 'client',
+                            trial_active: !isAdmin,
+                            password_hash: passwordHashed,
+                            phone: sbData.user?.phone || '',
+                            store_url: '',
+                            created_at: sbData.user?.created_at || new Date().toISOString()
+                        };
+                        USER_STORE.set(cleanEmail, user);
+                    }
+                } catch (_) {}
+
+                // Check Supabase profiles table
+                if (!authenticatedViaSupabase) {
+                    try {
+                        const profResp = await fetch(`${SUPABASE_URL}/rest/v1/profiles?email=eq.${encodeURIComponent(cleanEmail)}&select=*&limit=1`, {
+                            headers: {
+                                'apikey': SUPABASE_ANON_KEY,
+                                'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                            }
+                        });
+                        if (profResp.ok) {
+                            const profs = await profResp.json();
+                            if (profs && profs.length > 0) {
+                                const prof = profs[0];
+                                if (prof.password_hash && prof.password_hash !== passwordHashed) {
+                                    return sendJson(401, { error: 'Invalid email or password.' });
+                                }
+                                user = {
+                                    id: prof.id || `usr_${Date.now()}`,
+                                    email: cleanEmail,
+                                    full_name: prof.full_name || cleanEmail.split('@')[0],
+                                    role: prof.role || (isAdmin ? 'admin' : 'client'),
+                                    trial_active: prof.trial_active !== undefined ? prof.trial_active : !isAdmin,
+                                    password_hash: passwordHashed,
+                                    phone: prof.phone || '',
+                                    store_url: prof.store_url || '',
+                                    created_at: prof.created_at || new Date().toISOString()
+                                };
+                                USER_STORE.set(cleanEmail, user);
+                            }
+                        }
+                    } catch (_) {}
+                }
+
+                // Fallback for default admin account
+                if (!user && isAdmin) {
+                    if (password === 'AdminPass2026!' || passwordHashed === hashPassword('AdminPass2026!')) {
+                        user = {
+                            id: 'usr_admin_fc',
+                            email: cleanEmail,
+                            full_name: 'Agency Admin',
+                            role: 'admin',
+                            trial_active: false,
+                            password_hash: hashPassword('AdminPass2026!'),
+                            phone: '+91 99203 86421',
+                            store_url: '',
+                            created_at: new Date().toISOString()
+                        };
+                        USER_STORE.set(cleanEmail, user);
+                    } else {
+                        return sendJson(401, { error: 'Invalid email or password.' });
+                    }
+                }
+
+                // If user not found anywhere and credentials invalid
+                if (!user) {
+                    return sendJson(401, { error: 'Invalid email or password.' });
+                }
             }
 
             const token = signJwt({
@@ -488,9 +570,17 @@ module.exports = async function handler(req, res) {
         // -------------------------------------------------------------
         // 8. PROFILE UPDATE
         // -------------------------------------------------------------
-        if (action === 'profile' && req.method === 'POST') {
+        if (action === 'profile' && (req.method === 'POST' || req.method === 'PUT' || req.method === 'PATCH')) {
+            const authHeader = req.headers.authorization || '';
+            const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7).trim() : null;
+            const payload = verifyJwt(token);
+
             const { email, full_name, phone, store_url, gstin, upi_id } = body;
-            const cleanEmail = String(email || '').trim().toLowerCase();
+            const cleanEmail = String(email || (payload && payload.email) || '').trim().toLowerCase();
+            if (!cleanEmail) {
+                return sendJson(400, { error: 'Email or valid authentication token is required.' });
+            }
+
             let user = USER_STORE.get(cleanEmail) || { email: cleanEmail };
 
             if (full_name) user.full_name = full_name;
@@ -500,6 +590,27 @@ module.exports = async function handler(req, res) {
             if (upi_id) user.upi_id = upi_id;
 
             USER_STORE.set(cleanEmail, user);
+
+            // Persist to Supabase profiles table
+            try {
+                await fetch(`${SUPABASE_URL}/rest/v1/profiles?email=eq.${encodeURIComponent(cleanEmail)}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'Content-Type': 'application/json',
+                        'Prefer': 'return=representation'
+                    },
+                    body: JSON.stringify({
+                        full_name: user.full_name,
+                        phone: user.phone,
+                        store_url: user.store_url,
+                        gstin: user.gstin,
+                        upi_id: user.upi_id
+                    })
+                });
+            } catch (_) {}
+
             return sendJson(200, { success: true, user });
         }
 

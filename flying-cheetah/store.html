@@ -322,28 +322,28 @@
                     <h3 class="text-base font-black text-bikDark font-display">Confirm Doorstep Delivery</h3>
                     <p class="text-[11px] text-slate-500" id="modalProductTitle">Oversized Pure Linen Shirt</p>
                 </div>
-                <button onclick="closeCheckoutModal()" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-500 transition touch-target-44">
+                <button onclick="closeCheckoutModal()" aria-label="Close Checkout Modal" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-500 transition touch-target-44">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
 
             <form onsubmit="handleOrderSubmission(event)" class="space-y-3 text-xs font-semibold">
                 <div>
-                    <label class="text-slate-700 block mb-1">Your Full Name *</label>
-                    <input type="text" id="custName" required value="Rahul Sharma" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 focus:border-bikOrange outline-none text-slate-800">
+                    <label for="custName" class="text-slate-700 block mb-1">Your Full Name *</label>
+                    <input type="text" id="custName" required value="Rahul Sharma" aria-label="Full Name" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 focus:border-bikOrange outline-none text-slate-800">
                 </div>
 
                 <div>
-                    <label class="text-slate-700 block mb-1">WhatsApp Mobile (For GPS Alerts) *</label>
+                    <label for="custPhone" class="text-slate-700 block mb-1">WhatsApp Mobile (For GPS Alerts) *</label>
                     <div class="flex items-center">
                         <span class="px-3 py-2 bg-slate-100 border border-r-0 border-slate-200 rounded-l-xl text-slate-500 text-xs font-bold">+91</span>
-                        <input type="tel" id="custPhone" required value="99203 86421" maxlength="10" inputmode="tel" autocomplete="tel" class="w-full px-3.5 py-2.5 sm:py-2 rounded-r-xl border border-slate-200 focus:border-bikOrange outline-none text-slate-800 text-sm font-mono">
+                        <input type="tel" id="custPhone" required value="99203 86421" maxlength="10" inputmode="tel" autocomplete="tel" aria-label="10-digit WhatsApp Mobile Phone Number" class="w-full px-3.5 py-2.5 sm:py-2 rounded-r-xl border border-slate-200 focus:border-bikOrange outline-none text-slate-800 text-sm font-mono">
                     </div>
                 </div>
 
                 <div>
-                    <label class="text-slate-700 block mb-1">Doorstep Delivery Address in Mumbai *</label>
-                    <input type="text" id="custAddress" required value="Flat 302, Sea Green Apts, Worli Sea Face, Mumbai" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 focus:border-bikOrange outline-none text-slate-800">
+                    <label for="custAddress" class="text-slate-700 block mb-1">Doorstep Delivery Address in Mumbai *</label>
+                    <input type="text" id="custAddress" required value="Flat 302, Sea Green Apts, Worli Sea Face, Mumbai" aria-label="Doorstep Delivery Address in Mumbai" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 focus:border-bikOrange outline-none text-slate-800">
                 </div>
 
                 <div>
@@ -383,7 +383,7 @@
                         <p class="text-[11px] text-slate-500">Zero-commission Instant UPI Payment</p>
                     </div>
                 </div>
-                <button onclick="closeUpiModal()" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-500 transition touch-target-44">
+                <button onclick="closeUpiModal()" aria-label="Close UPI Payment Modal" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-500 transition touch-target-44">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
@@ -438,11 +438,11 @@
 
             <!-- Optional 12-digit UTR Verification Field -->
             <div class="space-y-1">
-                <label class="text-[11px] text-slate-600 font-semibold block flex items-center justify-between">
+                <label for="upiUtrInput" class="text-[11px] text-slate-600 font-semibold block flex items-center justify-between">
                     <span>UPI Reference / UTR Number</span>
                     <span class="text-[10px] text-slate-400 font-normal">Optional (12 Digits)</span>
                 </label>
-                <input type="text" id="upiUtrInput" maxlength="12" placeholder="e.g. 428190382910" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 focus:border-bikOrange outline-none text-slate-800 text-xs font-mono tracking-wider">
+                <input type="text" id="upiUtrInput" maxlength="12" placeholder="e.g. 428190382910" aria-label="12-digit UPI UTR Reference Number" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 focus:border-bikOrange outline-none text-slate-800 text-xs font-mono tracking-wider">
             </div>
 
             <!-- Submit / Confirm Dispatch Button -->

@@ -280,7 +280,7 @@
                     <!-- Search Input -->
                     <div class="relative w-full sm:w-64">
                         <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
-                        <input type="text" id="searchInput" oninput="handleSearch()" placeholder="Search name, phone, email..." class="w-full pl-9 pr-3.5 py-2 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange focus:border-bikOrange outline-none transition bg-slate-50/50">
+                        <input type="text" id="searchInput" oninput="handleSearch()" placeholder="Search name, phone, email..." aria-label="Search inquiries by name, phone, or email" class="w-full pl-9 pr-3.5 py-2 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange focus:border-bikOrange outline-none transition bg-slate-50/50">
                     </div>
 
                     <!-- 1-Click CSV Export Button -->
@@ -342,26 +342,26 @@
                         <p class="text-[11px] text-slate-400">Manage database connection & automation webhooks</p>
                     </div>
                 </div>
-                <button onclick="closeConfigModal()" class="text-slate-400 hover:text-slate-600">
+                <button onclick="closeConfigModal()" aria-label="Close Cloud Integrations Modal" class="text-slate-400 hover:text-slate-600">
                     <i class="fa-solid fa-xmark text-lg"></i>
                 </button>
             </div>
 
             <div class="space-y-3 text-left">
                 <div>
-                    <label class="block text-xs font-bold text-slate-700 mb-1">Supabase Project URL</label>
-                    <input type="text" id="cfgSupabaseUrl" placeholder="https://your-ref.supabase.co" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange outline-none">
+                    <label for="cfgSupabaseUrl" class="block text-xs font-bold text-slate-700 mb-1">Supabase Project URL</label>
+                    <input type="text" id="cfgSupabaseUrl" placeholder="https://your-ref.supabase.co" aria-label="Supabase Project URL" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange outline-none">
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-slate-700 mb-1">Supabase Anon Public Key</label>
-                    <input type="password" id="cfgSupabaseKey" placeholder="eyJhbGciOiJIUz..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange outline-none">
+                    <label for="cfgSupabaseKey" class="block text-xs font-bold text-slate-700 mb-1">Supabase Anon Public Key</label>
+                    <input type="password" id="cfgSupabaseKey" placeholder="eyJhbGciOiJIUz..." aria-label="Supabase Anon Public Key" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange outline-none">
                 </div>
                 <div class="pt-2 border-t border-slate-100">
                     <div class="flex items-center gap-1.5 mb-1">
-                        <label class="block text-xs font-bold text-slate-700">Cloud Automation Webhook URL</label>
+                        <label for="cfgAutomationWebhook" class="block text-xs font-bold text-slate-700">Cloud Automation Webhook URL</label>
                         <span class="px-1.5 py-0.5 rounded bg-orange-100 text-bikOrange text-[9px] font-black uppercase">Instant Alert</span>
                     </div>
-                    <input type="url" id="cfgAutomationWebhook" placeholder="https://api.yourdomain.com/webhook/flying-cheetah-leads" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange outline-none">
+                    <input type="url" id="cfgAutomationWebhook" placeholder="https://api.yourdomain.com/webhook/flying-cheetah-leads" aria-label="Cloud Automation Webhook URL" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange outline-none">
                     <p class="text-[10px] text-slate-400 mt-1">Every lead form submission automatically POSTs to this webhook for instant WhatsApp & Telegram routing.</p>
                 </div>
             </div>
@@ -566,14 +566,35 @@
             const client = window.FC_BACKEND.getClient();
 
             try {
-                // Fetch Leads
-                const { data: leadsData, error: leadsErr } = await client
-                    .from('leads_inquiries')
-                    .select('*')
-                    .order('created_at', { ascending: false });
+                // Fetch Leads via Supabase Client
+                let loaded = false;
+                try {
+                    const { data: leadsData, error: leadsErr } = await client
+                        .from('leads_inquiries')
+                        .select('*')
+                        .order('created_at', { ascending: false });
 
-                if (leadsErr) throw leadsErr;
-                allLeads = leadsData || [];
+                    if (!leadsErr && leadsData) {
+                        allLeads = leadsData;
+                        loaded = true;
+                    }
+                } catch (cErr) {
+                    console.warn('[Admin] Direct Supabase query error:', cErr);
+                }
+
+                // Fallback to Serverless /api/v1/leads if direct connection blocked
+                if (!loaded) {
+                    try {
+                        const sResp = await fetch('/api/v1/leads');
+                        if (sResp.ok) {
+                            const sJson = await sResp.json();
+                            allLeads = sJson.items || [];
+                            loaded = true;
+                        }
+                    } catch (sErr) {
+                        console.warn('[Admin] Serverless fallback error:', sErr);
+                    }
+                }
 
                 // Fetch Profiles (for Registered Users KPI)
                 try {

@@ -636,10 +636,10 @@
                 <div class="lg:col-span-7 space-y-6">
                     <div>
                         <div class="flex justify-between items-center mb-2">
-                            <label class="text-xs font-bold text-slate-300 uppercase tracking-wider">Monthly Orders</label>
+                            <label for="orderSlider" class="text-xs font-bold text-slate-300 uppercase tracking-wider">Monthly Orders</label>
                             <span id="orderCountDisplay" class="font-mono text-emerald-400 font-bold text-base">1,500 orders</span>
                         </div>
-                        <input type="range" id="orderSlider" min="100" max="10000" step="100" value="1500" oninput="updateRoiCalc()" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-bikOrange">
+                        <input type="range" id="orderSlider" min="100" max="10000" step="100" value="1500" oninput="updateRoiCalc()" aria-label="Monthly Orders" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-bikOrange">
                         <div class="flex justify-between text-[10px] text-slate-500 font-mono mt-1">
                             <span>100</span>
                             <span>5,000</span>
@@ -649,10 +649,10 @@
 
                     <div>
                         <div class="flex justify-between items-center mb-2">
-                            <label class="text-xs font-bold text-slate-300 uppercase tracking-wider">Average Order Value (AOV)</label>
+                            <label for="aovSlider" class="text-xs font-bold text-slate-300 uppercase tracking-wider">Average Order Value (AOV)</label>
                             <span id="aovDisplay" class="font-mono text-emerald-400 font-bold text-base">₹1,400</span>
                         </div>
-                        <input type="range" id="aovSlider" min="300" max="8000" step="100" value="1400" oninput="updateRoiCalc()" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-bikOrange">
+                        <input type="range" id="aovSlider" min="300" max="8000" step="100" value="1400" oninput="updateRoiCalc()" aria-label="Average Order Value (AOV)" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-bikOrange">
                         <div class="flex justify-between text-[10px] text-slate-500 font-mono mt-1">
                             <span>₹300</span>
                             <span>₹4,000</span>
