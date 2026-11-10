@@ -3133,6 +3133,9 @@
     async function completeGoogleEmailSignIn(email, phone = '') {
         injectAuthModal();
         const cleanEmail = (email || '').trim().toLowerCase();
+        if (!cleanEmail) {
+            throw new Error('Please enter a valid Google email address.');
+        }
         const cleanPhone = sanitizePhone(phone || '');
         const name = cleanEmail.split('@')[0];
         const adminEmails = (window.FC_BACKEND?.getConfig()?.ADMIN_EMAILS || []).map(e => (e || '').toLowerCase());
@@ -3192,11 +3195,12 @@
         }
 
         const reconciledPhone = cleanPhone || (reconciledUser && (reconciledUser.phone || reconciledUser.whatsapp_support)) || '';
-        const displayName = reconciledUser?.full_name || name;
+        const displayName = reconciledUser?.full_name || name || 'Merchant Founder';
 
         const userObj = {
             id: reconciledUser?.id || (isAdm ? 'admin-fc' : 'client-' + Date.now()),
             email: cleanEmail,
+            phone: reconciledPhone,
             user_metadata: {
                 full_name: displayName,
                 name: displayName,

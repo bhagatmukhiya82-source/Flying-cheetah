@@ -618,17 +618,26 @@ module.exports = async function handler(req, res) {
         // 9. GOOGLE CALLBACK
         // -------------------------------------------------------------
         if (action === 'google-callback' && req.method === 'POST') {
-            const { email, name } = body;
+            const { email, name, phone } = body;
             const cleanEmail = String(email || 'google_user@flyingcheetah.agency').trim().toLowerCase();
             const isAdmin = ADMIN_EMAILS.includes(cleanEmail);
 
-            const user = {
-                id: `usr_g_${Date.now()}`,
-                email: cleanEmail,
-                full_name: name || cleanEmail.split('@')[0],
-                role: isAdmin ? 'admin' : 'client',
-                trial_active: !isAdmin
-            };
+            let existing = USER_STORE.get(cleanEmail);
+            let user;
+            if (existing) {
+                if (phone && !existing.phone) existing.phone = String(phone).trim();
+                user = { ...existing };
+            } else {
+                user = {
+                    id: `usr_g_${Date.now()}`,
+                    email: cleanEmail,
+                    full_name: name || cleanEmail.split('@')[0],
+                    phone: phone ? String(phone).trim() : '',
+                    role: isAdmin ? 'admin' : 'client',
+                    trial_active: !isAdmin
+                };
+                USER_STORE.set(cleanEmail, user);
+            }
 
             const token = signJwt({ sub: user.id, email: user.email, role: user.role, full_name: user.full_name });
             return sendJson(200, { access_token: token, token_type: 'bearer', user });
