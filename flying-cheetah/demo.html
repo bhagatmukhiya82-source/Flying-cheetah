@@ -194,275 +194,98 @@
             <!-- Hero Title & Context -->
             <div class="text-center max-w-3xl mx-auto space-y-4">
                 <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-orange-100 border border-orange-200 text-bikOrange text-xs font-bold uppercase tracking-wider">
-                    <i class="fa-solid fa-bolt"></i> Interactive 1-on-1 Product Demonstration
+                    <i class="fa-solid fa-calendar-check"></i> VIP 1-on-1 Architecture Walkthrough
                 </div>
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-bikDark tracking-tight font-display leading-[1.08]">
                     Experience <span class="text-bikOrange">Flying Cheetah</span> in Action.
                 </h1>
                 <p class="text-base sm:text-lg text-slateText leading-relaxed">
-                    Test-drive our autonomous AI commerce engines below, or book a personalized 20-minute live architectural walk-through with our engineering founders.
+                    Book a personalized 20-minute live architectural walk-through with our engineering founders to audit your store, review tech requirements, and unlock automated growth.
                 </p>
             </div>
 
-            <!-- DUAL COLUMN LAYOUT: INTERACTIVE SANDBOX (LEFT) + BOOKING ENGINE (RIGHT) -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-                
-                <!-- LEFT COLUMN: INTERACTIVE DEMO SANDBOX (7 COLS) -->
-                <div class="lg:col-span-7 space-y-6">
-                    <div class="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 p-4 sm:p-8 shadow-xl space-y-6">
-                        
-                        <!-- Module Selector Tabs -->
-                        <div class="flex items-center justify-between border-b border-slate-100 pb-4 flex-wrap gap-2">
-                            <span class="text-xs font-black uppercase text-slate-400 tracking-wider">Interactive Live Sandboxes:</span>
-                            <div class="flex items-center gap-1.5 bg-slate-100 p-1 rounded-xl text-xs font-bold overflow-x-auto no-scrollbar max-w-full touch-pan-x">
-                                <button onclick="setSandbox('whatsapp')" id="tab-whatsapp" class="px-3 py-1.5 rounded-lg bg-bikOrange text-white shadow-sm transition">
-                                    <i class="fa-brands fa-whatsapp mr-1 text-emerald-500"></i> WhatsApp
-                                </button>
-                                <button onclick="setSandbox('voice')" id="tab-voice" class="px-3 py-1.5 rounded-lg text-slate-600 hover:text-bikDark transition">
-                                    <i class="fa-solid fa-microphone mr-1"></i> AI Voice
-                                </button>
-                                <button onclick="setSandbox('fleet')" id="tab-fleet" class="px-3 py-1.5 rounded-lg text-slate-600 hover:text-bikDark transition">
-                                    <i class="fa-solid fa-motorcycle mr-1"></i> Fleet
-                                </button>
-                                <button onclick="setSandbox('support')" id="tab-support" class="px-3 py-1.5 rounded-lg text-slate-600 hover:text-bikDark transition">
-                                    <i class="fa-solid fa-headset mr-1"></i> Helpdesk
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- SANDBOX 1: WHATSAPP AUTOMATION (DEFAULT) -->
-                        <div id="sandbox-whatsapp" class="space-y-4">
-                            <div class="flex items-center justify-between">
-                                <div>
-                                    <h3 class="text-lg font-black text-bikDark font-display">15s Abandoned Cart Recovery &amp; 1-Tap UPI</h3>
-                                    <p class="text-xs text-slate-500">Live simulation of cart drop-off to verified sale on WhatsApp</p>
-                                </div>
-                                <span class="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-[10px] font-bold">
-                                    85% Open Rate
-                                </span>
-                            </div>
-
-                            <div class="rounded-2xl border border-slate-200 bg-slate-900 p-4 text-white space-y-3 font-sans shadow-inner">
-                                <div class="flex items-center justify-between border-b border-slate-800 pb-2 text-[11px] text-slate-400">
-                                    <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> WhatsApp Business API v21.0</span>
-                                    <span class="text-emerald-400 font-mono">Response Time: 1.8s</span>
-                                </div>
-                                
-                                <div class="space-y-2 text-xs">
-                                    <div class="p-2.5 rounded-xl bg-slate-800 text-slate-200">
-                                        <p><strong>AI Trigger:</strong> "Hi Rahul! 👋 You left <strong>Festive Silk Kurta (₹1,899)</strong> in your cart. Complete checkout in 15 mins to get free express Borzo delivery!"</p>
-                                    </div>
-                                    <div class="p-2.5 rounded-xl bg-emerald-950/80 border border-emerald-700/50 text-emerald-300">
-                                        <p><strong>Customer Taps:</strong> [⚡ 1-Tap UPI Payment - ₹1,709 with 10% OFF]</p>
-                                    </div>
-                                    <div class="p-2.5 rounded-xl bg-purple-950/80 border border-purple-700/50 text-purple-200 flex items-center justify-between">
-                                        <span><strong>Automated Result:</strong> Order Confirmed • Borzo Dispatch Scheduled</span>
-                                        <span class="font-bold text-emerald-400 font-mono">+₹1,709 Deposited</span>
-                                    </div>
-                                </div>
-
-                                <div class="pt-2 flex items-center justify-end">
-                                    <button onclick="triggerSandboxSim('whatsapp')" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition flex items-center gap-1.5 shadow-md">
-                                        <i class="fa-solid fa-play text-[10px]"></i> Test Live Cart Trigger
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- SANDBOX 2: AI VOICE CALLING (HIDDEN BY DEFAULT) -->
-                        <div id="sandbox-voice" class="space-y-4 hidden">
-                            <div class="flex items-center justify-between">
-                                <div>
-                                    <h3 class="text-lg font-black text-bikDark font-display">Autonomous COD Verification &amp; Anti-Fraud</h3>
-                                    <p class="text-xs text-slate-500">Phone-based calling agent verifying orders in natural Hinglish</p>
-                                </div>
-                                <span class="px-2.5 py-1 rounded-full bg-purple-50 text-purple-700 border border-purple-200 text-[10px] font-bold">
-                                    22% RTO Slashed
-                                </span>
-                            </div>
-
-                            <div class="rounded-2xl border border-slate-200 bg-slate-900 p-4 text-white space-y-3 font-sans shadow-inner">
-                                <div class="flex items-center justify-between border-b border-slate-800 pb-2 text-[11px] text-slate-400">
-                                    <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> Exotel HD SIP Cloud Trunk</span>
-                                    <span class="text-purple-300 font-mono">Sub-second Latency Engine</span>
-                                </div>
-
-                                <div class="flex items-center justify-center gap-1.5 h-8 py-1">
-                                    <span class="w-1 bg-cyan-400 rounded-full h-3 animate-pulse"></span>
-                                    <span class="w-1.5 bg-purple-400 rounded-full h-7 animate-pulse"></span>
-                                    <span class="w-2 bg-pink-500 rounded-full h-8 animate-pulse"></span>
-                                    <span class="w-1.5 bg-orange-400 rounded-full h-5 animate-pulse"></span>
-                                    <span class="w-1 bg-emerald-400 rounded-full h-6 animate-pulse"></span>
-                                </div>
-
-                                <div class="p-3 bg-slate-800/80 rounded-xl text-xs space-y-1.5 border border-slate-700 text-slate-200">
-                                    <p><strong class="text-purple-400">AI Agent (Priya):</strong> "Namaste Rahul ji! Main Flying Cheetah store se call kar rahi hoon. Aapka ₹1,899 ka order confirm karna tha, delivery Charni Road hai na?"</p>
-                                    <p><strong class="text-emerald-400">Buyer:</strong> "Haan ji, confirm hai. Kal dopahar tak bhej dijiye."</p>
-                                    <p><strong class="text-purple-400">AI Agent:</strong> "Dhanyawaad Rahul ji! Order confirm kar diya hai aur WhatsApp par live tracking bhej di hai."</p>
-                                </div>
-
-                                <div class="pt-2 flex items-center justify-end">
-                                    <button onclick="triggerSandboxSim('voice')" class="px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs transition flex items-center gap-1.5 shadow-md">
-                                        <i class="fa-solid fa-volume-high text-[10px]"></i> Listen to Voice Simulation
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- SANDBOX 3: FLEET PROTOCOL (HIDDEN BY DEFAULT) -->
-                        <div id="sandbox-fleet" class="space-y-4 hidden">
-                            <div class="flex items-center justify-between">
-                                <div>
-                                    <h3 class="text-lg font-black text-bikDark font-display">Hyperlocal Dispatch API (Borzo &amp; Porter)</h3>
-                                    <p class="text-xs text-slate-500">Autonomous courier assignment from Bandra to South Mumbai</p>
-                                </div>
-                                <span class="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-[10px] font-bold">
-                                    14.5m Avg Arrival
-                                </span>
-                            </div>
-
-                            <div class="rounded-2xl border border-slate-200 bg-slate-900 p-4 text-white space-y-3 font-sans shadow-inner">
-                                <div class="flex items-center justify-between border-b border-slate-800 pb-2 text-[11px] text-slate-400">
-                                    <span>Mumbai MMR Real-Time GPS Mesh</span>
-                                    <span class="text-emerald-400 font-mono">Borzo Active: 450+ 2-Wheelers</span>
-                                </div>
-                                <div class="p-3 bg-slate-800/80 rounded-xl text-xs space-y-2 border border-slate-700 text-slate-200">
-                                    <div class="flex items-center justify-between">
-                                        <span>Order #9021 • South Mumbai Hub</span>
-                                        <span class="text-emerald-400 font-bold">Rider: Santosh K. (1.2 km away)</span>
-                                    </div>
-                                    <div class="w-full bg-slate-700 h-2 rounded-full overflow-hidden">
-                                        <div class="bg-gradient-to-r from-emerald-500 to-orange-500 h-full w-3/4 animate-pulse"></div>
-                                    </div>
-                                    <p class="text-[11px] text-slate-400">Estimated delivery: 22 minutes to customer doorstep.</p>
-                                </div>
-                                <div class="pt-2 flex items-center justify-end">
-                                    <button onclick="triggerSandboxSim('fleet')" class="px-4 py-2 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs transition flex items-center gap-1.5 shadow-md">
-                                        <i class="fa-solid fa-motorcycle text-[10px]"></i> Simulate Rider Dispatch
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- SANDBOX 4: SUPPORT DESK (HIDDEN BY DEFAULT) -->
-                        <div id="sandbox-support" class="space-y-4 hidden">
-                            <div class="flex items-center justify-between">
-                                <div>
-                                    <h3 class="text-lg font-black text-bikDark font-display">Omnichannel AI Helpdesk &amp; Sub-Minute SLA</h3>
-                                    <p class="text-xs text-slate-500">Unified inbox handling WhatsApp, Instagram &amp; Web chats</p>
-                                </div>
-                                <span class="px-2.5 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200 text-[10px] font-bold">
-                                    ~45s Avg Resolution
-                                </span>
-                            </div>
-
-                            <div class="rounded-2xl border border-slate-200 bg-slate-900 p-4 text-white space-y-3 font-sans shadow-inner">
-                                <div class="flex items-center justify-between border-b border-slate-800 pb-2 text-[11px] text-slate-400">
-                                    <span>Omnichannel Routing Engine</span>
-                                    <span class="text-blue-400 font-mono">CSAT: 4.8 / 5.0</span>
-                                </div>
-                                <div class="p-3 bg-slate-800/80 rounded-xl text-xs space-y-2 border border-slate-700 text-slate-200">
-                                    <p><strong class="text-blue-400">Inbound Query:</strong> "Where is my Diwali order? Delivery address change karna hai."</p>
-                                    <p><strong class="text-emerald-400">AI Response (00:22s):</strong> "Hello! We fetched your order #8921. Address updated to Dadar East. The rider will arrive by 4:30 PM today!"</p>
-                                </div>
-                                <div class="pt-2 flex items-center justify-end">
-                                    <button onclick="triggerSandboxSim('support')" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs transition flex items-center gap-1.5 shadow-md">
-                                        <i class="fa-solid fa-headset text-[10px]"></i> Test Fast Ticket Auto-Resolve
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
+            <!-- CENTERED 1-ON-1 DEMO SCHEDULER & VIP FORM -->
+            <div class="max-w-2xl mx-auto w-full">
+                <div class="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-2xl bik-mega-shadow space-y-6 relative">
+                    
+                    <!-- Header -->
+                    <div class="border-b border-slate-100 pb-5 text-center">
+                        <span class="text-[10px] font-black text-bikOrange uppercase tracking-wider inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-50 border border-orange-200">
+                            <i class="fa-solid fa-bolt text-xs"></i> Exclusive 20-Min Live Session
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-black text-bikDark font-display mt-2">Book Your Live 1-on-1 Demo</h2>
+                        <p class="text-xs sm:text-sm text-slateText mt-1.5 max-w-lg mx-auto">Talk directly with Flying Cheetah Technical Architects. We'll audit your workflows, tech stack, and growth opportunities live.</p>
                     </div>
 
-                    <!-- Client Trust & Stats Grid -->
-                    <div class="grid grid-cols-3 gap-4 text-center">
-                        <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm">
-                            <div class="text-2xl font-black text-bikOrange font-display fc-num">15+</div>
-                            <div class="text-[11px] font-bold text-slate-500 mt-0.5">Pre-Trained AI Agents</div>
+                    <!-- Form -->
+                    <form id="demoBookingForm" onsubmit="handleDemoSubmit(event)" class="space-y-4 text-xs font-semibold">
+                        <!-- Full Name -->
+                        <div class="space-y-1">
+                            <label for="demoName" class="text-slate-700 block">Your Name / Founder Name *</label>
+                            <input type="text" id="demoName" required placeholder="e.g. Rahul Sharma" autocomplete="name" aria-label="Your Name or Founder Name" class="w-full px-3.5 py-3 sm:py-2.5 rounded-xl border border-slate-200 focus:border-bikOrange focus:ring-2 focus:ring-orange-100 outline-none text-slate-800 text-sm transition">
                         </div>
-                        <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm">
-                            <div class="text-2xl font-black text-emerald-600 font-display fc-num">19%</div>
-                            <div class="text-[11px] font-bold text-slate-500 mt-0.5">Avg Cart Recovery</div>
+
+                        <!-- WhatsApp Number -->
+                        <div class="space-y-1">
+                            <label for="demoPhone" class="text-slate-700 block">WhatsApp Phone Number *</label>
+                            <div class="flex items-center">
+                                <span class="px-3 py-2.5 bg-slate-100 border border-r-0 border-slate-200 rounded-l-xl text-slate-500 text-xs font-bold">+91</span>
+                                <input type="tel" id="demoPhone" required placeholder="98765 43210" maxlength="10" inputmode="tel" autocomplete="tel" aria-label="10-digit WhatsApp Phone Number" class="w-full px-3.5 py-3 sm:py-2.5 rounded-r-xl border border-slate-200 focus:border-bikOrange focus:ring-2 focus:ring-orange-100 outline-none text-slate-800 text-sm transition font-mono">
+                            </div>
                         </div>
-                        <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm">
-                            <div class="text-2xl font-black text-blue-600 font-display fc-num">&lt; 45s</div>
-                            <div class="text-[11px] font-bold text-slate-500 mt-0.5">Automated First Reply</div>
+
+                        <!-- Store URL -->
+                        <div class="space-y-1">
+                            <label for="demoStore" class="text-slate-700 block">Store URL / Brand Name *</label>
+                            <input type="text" id="demoStore" required placeholder="e.g. myfashionbrand.com or Shopify handle" aria-label="Store URL or Brand Name" class="w-full px-3.5 py-3 sm:py-2.5 rounded-xl border border-slate-200 focus:border-bikOrange focus:ring-2 focus:ring-orange-100 outline-none text-slate-800 text-sm transition">
                         </div>
+
+                        <!-- Primary Focus Area -->
+                        <div class="space-y-1">
+                            <label for="demoFocus" class="text-slate-700 block">Primary Focus Area</label>
+                            <select id="demoFocus" aria-label="Primary Focus Area" class="w-full px-3.5 py-3 sm:py-2.5 rounded-xl border border-slate-200 focus:border-bikOrange focus:ring-2 focus:ring-orange-100 outline-none text-slate-800 text-sm transition bg-white">
+                                <option value="automation">AI Automations (WhatsApp, Voice, Workflow Ops)</option>
+                                <option value="marketing">Performance Marketing (Meta, Google, ROAS Scaling)</option>
+                                <option value="webdev">High-Speed Web Development (Shopify, Custom Web Apps)</option>
+                                <option value="fullstack">Full-Stack Commerce Transformation</option>
+                            </select>
+                        </div>
+
+                        <!-- Honeypot anti-spam -->
+                        <input type="text" id="demoHoneypot" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true" aria-label="Security Trap">
+
+                        <!-- Submit Button -->
+                        <div class="pt-2">
+                            <button type="submit" id="demoSubmitBtn" class="w-full py-3.5 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-sm transition shadow-lg shadow-orange-500/25 flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-calendar-check"></i>
+                                <span>Confirm Demo Booking</span>
+                            </button>
+                        </div>
+
+                        <p class="text-[10px] text-slate-400 text-center">
+                            Zero spam • Instant WhatsApp confirmation • Direct access to Flying Cheetah Leadership
+                        </p>
+                    </form>
+
+                    <!-- SUCCESS CARD (HIDDEN INITIALLY) -->
+                    <div id="demoSuccessState" class="hidden text-center py-6 space-y-4">
+                        <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-3xl mx-auto shadow-inner">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-black text-bikDark font-display">Demo Confirmed!</h3>
+                            <p class="text-xs text-slate-500 mt-1" id="successMsg">Our founders have received your store audit request.</p>
+                        </div>
+                        <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-left text-xs text-emerald-800 space-y-1">
+                            <p><strong>Next Step:</strong> Click below to connect on WhatsApp directly with Flying Cheetah Leadership to confirm your slot immediately.</p>
+                        </div>
+                        <a id="successWhatsAppBtn" href="https://wa.me/919920386421" target="_blank" class="w-full py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs uppercase tracking-wider transition shadow-lg shadow-emerald-600/25 flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-base"></i>
+                            <span>Open WhatsApp VIP Chat</span>
+                        </a>
                     </div>
+
                 </div>
-
-                <!-- RIGHT COLUMN: 1-ON-1 DEMO SCHEDULER & VIP FORM (5 COLS) -->
-                <div class="lg:col-span-5">
-                    <div class="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 p-4 sm:p-8 shadow-2xl bik-mega-shadow space-y-6 relative">
-                        
-                        <!-- Header -->
-                        <div class="border-b border-slate-100 pb-4">
-                            <span class="text-[10px] font-black text-bikOrange uppercase tracking-wider block">Exclusive 20-Min Session</span>
-                            <h2 class="text-2xl font-black text-bikDark font-display mt-0.5">Book Your Live 1-on-1 Demo</h2>
-                            <p class="text-xs text-slateText mt-1">Talk directly with Flying Cheetah Technical Architects. We'll audit your store live.</p>
-                        </div>
-
-                        <!-- Form -->
-                        <form id="demoBookingForm" onsubmit="handleDemoSubmit(event)" class="space-y-4 text-xs font-semibold">
-                            <!-- Full Name -->
-                            <div class="space-y-1">
-                                <label for="demoName" class="text-slate-700 block">Your Name / Founder Name *</label>
-                                <input type="text" id="demoName" required placeholder="e.g. Rahul Sharma" autocomplete="name" aria-label="Your Name or Founder Name" class="w-full px-3.5 py-3 sm:py-2.5 rounded-xl border border-slate-200 focus:border-bikOrange focus:ring-2 focus:ring-orange-100 outline-none text-slate-800 text-sm transition">
-                            </div>
-
-                            <!-- WhatsApp Number -->
-                            <div class="space-y-1">
-                                <label for="demoPhone" class="text-slate-700 block">WhatsApp Phone Number *</label>
-                                <div class="flex items-center">
-                                    <span class="px-3 py-2.5 bg-slate-100 border border-r-0 border-slate-200 rounded-l-xl text-slate-500 text-xs font-bold">+91</span>
-                                    <input type="tel" id="demoPhone" required placeholder="98765 43210" maxlength="10" inputmode="tel" autocomplete="tel" aria-label="10-digit WhatsApp Phone Number" class="w-full px-3.5 py-3 sm:py-2.5 rounded-r-xl border border-slate-200 focus:border-bikOrange focus:ring-2 focus:ring-orange-100 outline-none text-slate-800 text-sm transition font-mono">
-                                </div>
-                            </div>
-
-                            <!-- Store URL -->
-                            <div class="space-y-1">
-                                <label for="demoStore" class="text-slate-700 block">Store URL / Brand Name *</label>
-                                <input type="text" id="demoStore" required placeholder="e.g. myfashionbrand.com or Shopify handle" aria-label="Store URL or Brand Name" class="w-full px-3.5 py-3 sm:py-2.5 rounded-xl border border-slate-200 focus:border-bikOrange focus:ring-2 focus:ring-orange-100 outline-none text-slate-800 text-sm transition">
-                            </div>
-
-                            <!-- Honeypot anti-spam -->
-                            <input type="text" id="demoHoneypot" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true" aria-label="Security Trap">
-
-                            <!-- Submit Button -->
-                            <div class="pt-2">
-                                <button type="submit" id="demoSubmitBtn" class="w-full py-3.5 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-sm transition shadow-lg shadow-orange-500/25 flex items-center justify-center gap-2">
-                                    <i class="fa-solid fa-calendar-check"></i>
-                                    <span>Confirm Demo Booking</span>
-                                </button>
-                            </div>
-
-                            <p class="text-[10px] text-slate-400 text-center">
-                                Zero spam • Instant WhatsApp confirmation • Direct access to Flying Cheetah Leadership
-                            </p>
-                        </form>
-
-                        <!-- SUCCESS CARD (HIDDEN INITIALLY) -->
-                        <div id="demoSuccessState" class="hidden text-center py-6 space-y-4">
-                            <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-3xl mx-auto shadow-inner">
-                                <i class="fa-solid fa-check"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-black text-bikDark font-display">Demo Confirmed!</h3>
-                                <p class="text-xs text-slate-500 mt-1" id="successMsg">Our founders have received your store audit request.</p>
-                            </div>
-                            <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-left text-xs text-emerald-800 space-y-1">
-                                <p><strong>Next Step:</strong> Click below to connect on WhatsApp directly with Flying Cheetah Leadership to confirm your slot immediately.</p>
-                            </div>
-                            <a id="successWhatsAppBtn" href="https://wa.me/919920386421" target="_blank" class="w-full py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs uppercase tracking-wider transition shadow-lg shadow-emerald-600/25 flex items-center justify-center gap-2">
-                                <i class="fa-brands fa-whatsapp text-base"></i>
-                                <span>Open WhatsApp VIP Chat</span>
-                            </a>
-                        </div>
-
-                    </div>
-                </div>
-
             </div>
 
         </div>
@@ -509,35 +332,7 @@
                 dropdownParents.forEach(p => p.classList.remove('active'));
             });
 
-            // Check URL param ?module=...
-            const urlParams = new URLSearchParams(window.location.search);
-            const mod = urlParams.get('module');
-            if (mod && ['whatsapp', 'voice', 'fleet', 'support'].includes(mod)) {
-                setSandbox(mod);
-            }
-        });
-
-        // Sandbox Switcher
-        function setSandbox(name) {
-            const tabs = ['whatsapp', 'voice', 'fleet', 'support'];
-            tabs.forEach(t => {
-                const box = document.getElementById(`sandbox-${t}`);
-                const tabBtn = document.getElementById(`tab-${t}`);
-                if (box) box.classList.add('hidden');
-                if (tabBtn) {
-                    tabBtn.className = 'px-3 py-1.5 rounded-lg text-slate-600 hover:text-bikDark transition';
-                }
-            });
-
-            const activeBox = document.getElementById(`sandbox-${name}`);
-            const activeBtn = document.getElementById(`tab-${name}`);
-            if (activeBox) activeBox.classList.remove('hidden');
-            if (activeBtn) {
-                activeBtn.className = 'px-3 py-1.5 rounded-lg bg-bikOrange text-white shadow-sm transition';
-            }
-        }
-
-        let isVoicePlaying = false;
+            
         function showDemoToast(title, message, color = 'purple') {
             let container = document.getElementById('fcDemoToastContainer');
             if (!container) {
@@ -580,109 +375,6 @@
             }, 6000);
         }
 
-        function triggerSandboxSim(type) {
-            if (type === 'voice') {
-                const voiceBtn = document.querySelector('#sandbox-voice button');
-                
-                if (isVoicePlaying) {
-                    if (window.speechSynthesis) window.speechSynthesis.cancel();
-                    isVoicePlaying = false;
-                    if (voiceBtn) {
-                        voiceBtn.innerHTML = '<i class="fa-solid fa-volume-high text-[10px]"></i> Listen to Voice Simulation';
-                        voiceBtn.className = 'px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs transition flex items-center gap-1.5 shadow-md cursor-pointer';
-                    }
-                    showDemoToast('⏸️ Voice Agent Stopped', 'Simulated call ended by user.', 'purple');
-                    return;
-                }
-
-                isVoicePlaying = true;
-                if (voiceBtn) {
-                    voiceBtn.innerHTML = '<i class="fa-solid fa-volume-xmark text-[10px]"></i> Stop Voice Call (Agent Priya)';
-                    voiceBtn.className = 'px-4 py-2 rounded-xl bg-pink-600 hover:bg-pink-500 text-white font-bold text-xs transition flex items-center gap-1.5 shadow-md animate-pulse cursor-pointer';
-                }
-
-                showDemoToast('🎙️ Exotel SIP Trunk Active (142ms Latency)', 'Agent Priya calling Rahul: "Namaste Rahul ji! Main Flying Cheetah store se call kar rahi hoon. Aapka ₹1,899 ka order confirm karna tha..."', 'purple');
-
-                if ('speechSynthesis' in window) {
-                    window.speechSynthesis.cancel();
-                    const text = "Namaste Rahul ji! Main Flying Cheetah store se call kar rahi hoon. Aapka unnis sau rupaye ka order confirm karna tha, delivery Charni Road hai na?";
-                    const utterance = new SpeechSynthesisUtterance(text);
-                    utterance.rate = 1.0;
-                    utterance.pitch = 1.15;
-                    
-                    const voices = window.speechSynthesis.getVoices();
-                    const inVoice = voices.find(v => v.lang.includes('hi') || v.lang.includes('IN') || v.name.includes('India'));
-                    if (inVoice) utterance.voice = inVoice;
-
-                    utterance.onend = () => {
-                        isVoicePlaying = false;
-                        if (voiceBtn) {
-                            voiceBtn.innerHTML = '<i class="fa-solid fa-volume-high text-[10px]"></i> Listen to Voice Simulation';
-                            voiceBtn.className = 'px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs transition flex items-center gap-1.5 shadow-md cursor-pointer';
-                        }
-                        showDemoToast('✅ COD Verification Successful', 'Rahul confirmed: "Kal dopahar tak bhej dijiye." • Order #9021 verified, anti-fraud check cleared!', 'emerald');
-                    };
-
-                    utterance.onerror = () => {
-                        isVoicePlaying = false;
-                        if (voiceBtn) {
-                            voiceBtn.innerHTML = '<i class="fa-solid fa-volume-high text-[10px]"></i> Listen to Voice Simulation';
-                            voiceBtn.className = 'px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs transition flex items-center gap-1.5 shadow-md cursor-pointer';
-                        }
-                    };
-
-                    window.speechSynthesis.speak(utterance);
-                } else {
-                    setTimeout(() => {
-                        isVoicePlaying = false;
-                        if (voiceBtn) {
-                            voiceBtn.innerHTML = '<i class="fa-solid fa-volume-high text-[10px]"></i> Listen to Voice Simulation';
-                            voiceBtn.className = 'px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs transition flex items-center gap-1.5 shadow-md cursor-pointer';
-                        }
-                        showDemoToast('✅ COD Verification Successful', 'Rahul confirmed order #9021 • Anti-fraud check cleared!', 'emerald');
-                    }, 4000);
-                }
-            } else if (type === 'whatsapp') {
-                const waBtn = document.querySelector('#sandbox-whatsapp button');
-                if (waBtn) {
-                    const orig = waBtn.innerHTML;
-                    waBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin text-[10px]"></i> Dispatched in 1.1s...';
-                    setTimeout(() => {
-                        waBtn.innerHTML = '<i class="fa-solid fa-check text-[10px]"></i> Sent to WhatsApp (+91 98200 12345)';
-                        setTimeout(() => waBtn.innerHTML = orig, 3000);
-                    }, 1000);
-                }
-                showDemoToast('⚡ WhatsApp Cart Recovery', 'Sent high-converting checkout link (10% OFF coupon applied) directly to customer WhatsApp.', 'emerald');
-            } else if (type === 'fleet') {
-                const fleetBtn = document.querySelector('#sandbox-fleet button');
-                const bar = document.querySelector('#sandbox-fleet .bg-gradient-to-r');
-                if (bar) {
-                    bar.style.width = '10%';
-                    setTimeout(() => bar.style.width = '100%', 200);
-                }
-                if (fleetBtn) {
-                    const orig = fleetBtn.innerHTML;
-                    fleetBtn.innerHTML = '<i class="fa-solid fa-motorcycle fa-bounce text-[10px]"></i> Matching Borzo Rider...';
-                    setTimeout(() => {
-                        fleetBtn.innerHTML = '<i class="fa-solid fa-check text-[10px]"></i> Driver Assigned (Santosh K.)';
-                        setTimeout(() => fleetBtn.innerHTML = orig, 3000);
-                    }, 1200);
-                }
-                showDemoToast('🏍️ Borzo & Porter API Dispatch', 'Order #9021 routed. Rider Santosh K. (1.2 km away) confirmed for doorstep delivery in 22 mins.', 'orange');
-            } else if (type === 'support') {
-                const supBtn = document.querySelector('#sandbox-support button');
-                if (supBtn) {
-                    const orig = supBtn.innerHTML;
-                    supBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin text-[10px]"></i> Resolving via LLM...';
-                    setTimeout(() => {
-                        supBtn.innerHTML = '<i class="fa-solid fa-check text-[10px]"></i> Auto-Resolved (0.42s)';
-                        setTimeout(() => supBtn.innerHTML = orig, 3000);
-                    }, 800);
-                }
-                showDemoToast('💬 Omnichannel AI Helpdesk', 'Diwali address change handled and synced across courier manifest. CSAT: 5.0 ⭐', 'blue');
-            }
-        }
-
         // Form Submission
         async function handleDemoSubmit(e) {
             e.preventDefault();
@@ -692,6 +384,7 @@
             const name = document.getElementById('demoName').value.trim();
             const phone = document.getElementById('demoPhone').value.trim();
             const store = document.getElementById('demoStore').value.trim();
+            const focus = document.getElementById('demoFocus')?.value || 'automation';
             const volume = document.getElementById('demoVolume')?.value || 'Standard';
             const slot = document.querySelector('input[name="demoSlot"]:checked')?.value || 'Flexible';
             const btn = document.getElementById('demoSubmitBtn');
@@ -725,7 +418,7 @@
                             email: `${cleanPhone}@demo.flyingcheetah.agency`,
                             company: store,
                             modules: [slot],
-                            notes: `Booked via Live Demo Sandbox (${slot})`
+                            notes: `Booked via VIP Demo Walkthrough (${focus} - ${slot})`
                         })
                     });
                 } catch (_) {}
