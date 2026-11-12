@@ -5,3 +5,10 @@
 *.pdf
 .vercel_backup
 .git
+
+*.msi
+*.exe
+*.zip
+*.tar
+*.gz
+blender*
