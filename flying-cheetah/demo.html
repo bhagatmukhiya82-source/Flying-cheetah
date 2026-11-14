@@ -7,6 +7,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book a Live Demo - Experience Flying Cheetah in Action</title>
+    <meta property="og:title" content="Book a Live Demo - Experience Flying Cheetah in Action">
+    <meta property="og:description" content="Book a Live Demo - Experience Flying Cheetah in Action - Flying Cheetah Labs Autonomous AI Commerce &amp; Omnichannel Marketing Suite.">
+    <meta property="og:image" content="https://flying-cheetah.vercel.app/images/flying_cheetah_logo_one_tail.png">
+    <meta property="og:type" content="website">
+
     <meta name="description" content="Book a Live Demo - Experience Flying Cheetah in Action - Flying Cheetah Labs Autonomous AI Commerce & Omnichannel Marketing Suite.">
     <link rel="canonical" href="https://flying-cheetah.vercel.app/demo">
     <meta property="og:url" content="https://flying-cheetah.vercel.app/demo">
@@ -180,9 +185,10 @@
 
             <div class="flex items-center space-x-3">
                 <div class="fc-auth-slot"></div>
-                <a href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah%20team,%20I%20want%20to%20schedule%20an%20urgent%201-on-1%20demo." target="_blank" class="inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-xs sm:text-sm transition shadow-md shadow-orange-500/20">
+                <a href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah%20team,%20I%20want%20to%20schedule%20an%20urgent%201-on-1%20demo." target="_blank" class="hidden sm:inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-xs sm:text-sm transition shadow-md shadow-orange-500/20">
                     <i class="fa-brands fa-whatsapp mr-1.5 text-base"></i> WhatsApp VIP Booking
                 </a>
+                <button id="fcMobileMenuBtn" type="button" aria-label="Toggle Mobile Menu" onclick="window.FC_WIDGETS && window.FC_WIDGETS.toggleMobileDrawer ? window.FC_WIDGETS.toggleMobileDrawer() : null" class="lg:hidden p-2 rounded-xl border border-slate-200 hover:border-bikOrange bg-white text-slate-700 hover:text-bikOrange transition flex items-center justify-center shrink-0 w-10 h-10 shadow-xs cursor-pointer touch-target-44"><i class="fa-solid fa-bars text-sm"></i></button>
             </div>
         </div>
     </header>

@@ -97,3 +97,47 @@ html, body {
         aspect-ratio: 9 / 16 !important;
     }
 }
+
+
+/* ==========================================================================
+   6. Mobile Header Responsive Layout (390px Viewport Stability)
+   Guarantees brand stability, prevents flex-shrink collapse, and ensures hamburger visibility
+   ========================================================================== */
+@media (max-width: 767px) {
+    /* Safe container padding on narrow viewports */
+    header .max-w-7xl {
+        padding-left: 0.75rem !important; /* 12px */
+        padding-right: 0.75rem !important; /* 12px */
+    }
+
+    /* Prevent brand container, logo image, and text from collapsing or wrapping destructively */
+    header .max-w-7xl > a:first-child,
+    header .max-w-7xl > div:first-child {
+        flex-shrink: 0 !important;
+        min-width: 0 !important;
+    }
+
+    /* Ensure actions container never shrinks or pushes buttons off-screen */
+    header .max-w-7xl > div:last-child {
+        flex-shrink: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+    }
+
+    /* Guarantee mobile hamburger button is visible, ergonomic, and never shrunk */
+    #fcMobileMenuBtn {
+        display: inline-flex !important;
+        flex-shrink: 0 !important;
+    }
+
+    /* Keep auth button compact on small screens */
+    header .fc-auth-slot button {
+        padding-left: 0.6rem !important;
+        padding-right: 0.6rem !important;
+    }
+
+    /* Defensive fallback: Ensure admin header email subtitle never renders on mobile */
+    header .max-w-7xl div h1 + span {
+        display: none !important;
+    }
+}

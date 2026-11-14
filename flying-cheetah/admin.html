@@ -7,6 +7,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Executive Agency Admin Dashboard — Flying Cheetah</title>
+    <meta property="og:title" content="Executive Agency Admin Dashboard — Flying Cheetah">
+    <meta property="og:description" content="Executive Agency Admin Dashboard — Flying Cheetah - Flying Cheetah Labs Autonomous AI Commerce &amp; Omnichannel Marketing Suite.">
+    <meta property="og:image" content="https://flying-cheetah.vercel.app/images/flying_cheetah_logo_one_tail.png">
+    <meta property="og:type" content="website">
+
     <meta name="description" content="Executive Agency Admin Dashboard — Flying Cheetah - Flying Cheetah Labs Autonomous AI Commerce & Omnichannel Marketing Suite.">
     <meta name="robots" content="noindex, nofollow" />
     <link rel="canonical" href="https://flying-cheetah.vercel.app/admin">
@@ -116,7 +121,7 @@
                         <span class="font-display font-black text-xl tracking-tight text-bikDark leading-none">Flying Cheetah</span>
                         <span class="px-2 py-0.5 rounded-full bg-slate-900 text-white text-[9px] font-black uppercase tracking-wider">Agency Portal</span>
                     </h1>
-                    <span class="text-[11px] text-slate-400 font-semibold">Official Admin Desk • flyingcheetah.agency@gmail.com</span>
+                    <span class="hidden sm:block text-[11px] text-slate-400 font-semibold">Official Admin Desk • flyingcheetah.agency@gmail.com</span>
                 </div>
             </div>
 
@@ -129,13 +134,13 @@
                 </div>
 
                 <!-- Webhook Config Button -->
-                <button onclick="openConfigModal()" class="px-3.5 py-2 rounded-xl border border-slate-200 hover:border-slate-300 bg-white text-slate-700 text-xs font-bold hover:bg-slate-50 transition shadow-sm flex items-center gap-2">
+                <button onclick="openConfigModal()" class="hidden sm:inline-flex px-3.5 py-2 rounded-xl border border-slate-200 hover:border-slate-300 bg-white text-slate-700 text-xs font-bold hover:bg-slate-50 transition shadow-sm items-center gap-2">
                     <i class="fa-solid fa-sliders text-slate-400"></i>
                     <span>Cloud Integrations</span>
                 </button>
 
                 <!-- Merchant Store Profile Button -->
-                <button onclick="window.FC_AUTH.openProfileModal()" class="px-3.5 py-2 rounded-xl border border-orange-200 hover:border-bikOrange bg-orange-50/60 hover:bg-orange-100/70 text-bikOrange font-bold text-xs transition shadow-sm flex items-center gap-2 cursor-pointer" title="Edit Merchant Profile, GSTIN, UPI & Pickup Address">
+                <button onclick="window.FC_AUTH.openProfileModal()" class="hidden sm:inline-flex px-3.5 py-2 rounded-xl border border-orange-200 hover:border-bikOrange bg-orange-50/60 hover:bg-orange-100/70 text-bikOrange font-bold text-xs transition shadow-sm items-center gap-2 cursor-pointer" title="Edit Merchant Profile, GSTIN, UPI & Pickup Address">
                     <i class="fa-solid fa-store text-bikOrange"></i>
                     <span>Merchant Profile</span>
                 </button>
@@ -147,7 +152,7 @@
                         <div id="adminNameTxt" class="text-xs font-black text-bikDark leading-tight">Agency Admin</div>
                         <div id="adminEmailTxt" class="text-[10px] text-slate-400 font-semibold">flyingcheetah.agency@gmail.com</div>
                     </div>
-                    <button onclick="event.stopPropagation(); window.FC_AUTH.signOut();" class="w-8 h-8 rounded-lg text-slate-400 hover:text-red-600 hover:bg-red-50 flex items-center justify-center transition ml-1" title="Sign Out">
+                    <button onclick="event.stopPropagation(); window.FC_AUTH.signOut();" class="hidden sm:flex w-8 h-8 rounded-lg text-slate-400 hover:text-red-600 hover:bg-red-50 items-center justify-center transition ml-1" title="Sign Out">
                         <i class="fa-solid fa-arrow-right-from-bracket text-xs"></i>
                     </button>
                 </div>
@@ -378,7 +383,7 @@
     </div>
 
     <!-- CORE SCRIPTS -->
-    <script src="js/supabase-config.js"></script>
+    <script src="js/supabase-client.js"></script>
     <script src="js/auth.js"></script>
     <script src="js/leads.js"></script>
     <script src="js/fc-widgets.js"></script>
@@ -672,7 +677,11 @@
             tbody.innerHTML = filtered.map(lead => {
                 const cleanPhone = (lead.phone || '').replace(/[^0-9]/g, '');
                 const chosenService = lead.service || lead.service_interested || 'Operations Audit';
-                const waLink = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(`Hi ${lead.name}, this is Flying Cheetah following up on your ${chosenService} inquiry.`)}`;
+                const leadName = lead.name || 'there';
+                const hasValidPhone = cleanPhone.length >= 7;
+                const waLink = hasValidPhone
+                    ? `https://wa.me/${cleanPhone}?text=${encodeURIComponent(`Hi ${leadName}, this is Flying Cheetah following up on your ${chosenService} inquiry.`)}`
+                    : '';
                 
                 const dateRaw = lead.created_at || lead.submitted_at || new Date().toISOString();
                 const timeAgo = formatTimeAgo(new Date(dateRaw));
@@ -687,15 +696,22 @@
                         <div class="text-[10px] text-slate-400">${dateFormatted}</div>
                     </td>
                     <td class="py-4 px-6">
-                        <div class="font-bold text-bikDark">${lead.name}</div>
-                        <a href="mailto:${lead.email}" class="text-slate-400 hover:text-bikOrange transition">${lead.email}</a>
+                        <div class="font-bold text-bikDark">${lead.name || 'Anonymous Lead'}</div>
+                        ${lead.email ? `
+                        <a href="mailto:${encodeURIComponent(lead.email)}" class="text-slate-400 hover:text-bikOrange transition">${lead.email}</a>` : `
+                        <span class="text-slate-400 italic text-xs">No email</span>`}
                     </td>
                     <td class="py-4 px-6 whitespace-nowrap">
-                        <div class="font-bold text-slate-800">${lead.phone}</div>
-                        <a href="${waLink}" target="_blank" class="inline-flex items-center gap-1.5 text-emerald-600 hover:text-emerald-700 font-bold text-[11px] mt-0.5">
+                        <div class="font-bold text-slate-800">${lead.phone || '<span class="text-slate-400 font-normal italic">No phone</span>'}</div>
+                        ${hasValidPhone ? `
+                        <a href="${waLink}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-emerald-600 hover:text-emerald-700 font-bold text-[11px] mt-0.5">
                             <i class="fa-brands fa-whatsapp text-xs"></i>
                             <span>Chat on WhatsApp</span>
-                        </a>
+                        </a>` : `
+                        <span class="inline-flex items-center gap-1.5 text-slate-400 font-normal text-[11px] mt-0.5">
+                            <i class="fa-brands fa-whatsapp text-xs text-slate-300"></i>
+                            <span>No WhatsApp</span>
+                        </span>`}
                     </td>
                     <td class="py-4 px-6">
                         <span class="inline-block px-2.5 py-1 rounded-lg bg-orange-50 border border-orange-100 text-bikOrange font-bold text-[11px]">
@@ -831,17 +847,23 @@
             // 2. Registered trial users / Google sign-ins
             const profileRows = (allProfiles || [])
                 .filter(p => !allLeads.some(l => l.email && l.email.toLowerCase() === (p.email || '').toLowerCase()))
-                .map(p => [
-                    'Registered User',
-                    p.created_at || new Date().toISOString(),
-                    `"${(p.full_name || p.email.split('@')[0]).replace(/"/g, '""')}"`,
-                    `"${p.phone || '+91 (Google Auth)'}"`,
-                    p.email || '',
-                    '14-Day Free Trial Active',
-                    p.role || 'client',
-                    `"Store: ${p.store_url || 'Direct'}"`,
-                    'Google Sign-In / Auth Modal'
-                ]);
+                .map(p => {
+                    const emailPrefix = (p.email && typeof p.email === 'string' && p.email.includes('@'))
+                        ? p.email.split('@')[0]
+                        : 'Merchant';
+                    const userName = p.full_name || emailPrefix;
+                    return [
+                        'Registered User',
+                        p.created_at || new Date().toISOString(),
+                        `"${userName.replace(/"/g, '""')}"`,
+                        `"${p.phone || '+91 (Google Auth)'}"`,
+                        p.email || '',
+                        '14-Day Free Trial Active',
+                        p.role || 'client',
+                        `"Store: ${p.store_url || 'Direct'}"`,
+                        'Google Sign-In / Auth Modal'
+                    ];
+                });
 
             const allRows = [...leadRows, ...profileRows];
             const csvContent = '\uFEFF' + [headers.join(','), ...allRows.map(r => r.join(','))].join('\n');

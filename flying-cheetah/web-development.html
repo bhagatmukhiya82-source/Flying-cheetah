@@ -182,7 +182,8 @@
 
             <div class="flex items-center space-x-3">
                 <div class="fc-auth-slot"></div>
-                <a href="demo.html" class="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-sm transition shadow-md shadow-orange-500/20 cursor-pointer"><span>Book Free Live Demo</span> <span class="text-base leading-none">➔</span></a>
+                <a href="demo.html" class="hidden sm:inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-sm transition shadow-md shadow-orange-500/20 cursor-pointer"><span>Book Free Live Demo</span> <span class="text-base leading-none">➔</span></a>
+                <button id="fcMobileMenuBtn" type="button" aria-label="Toggle Mobile Menu" onclick="window.FC_WIDGETS && window.FC_WIDGETS.toggleMobileDrawer ? window.FC_WIDGETS.toggleMobileDrawer() : null" class="lg:hidden p-2 rounded-xl border border-slate-200 hover:border-bikOrange bg-white text-slate-700 hover:text-bikOrange transition flex items-center justify-center shrink-0 w-10 h-10 shadow-xs cursor-pointer touch-target-44"><i class="fa-solid fa-bars text-sm"></i></button>
             </div>
         </div>
     </header>
@@ -531,7 +532,7 @@
     </section>
 
     <!-- FULL SERVICES MATRIX (SCALEDELIGHT INSPIRED) -->
-    <section class="py-24 bg-slate-50 border-t border-slate-200">
+    <section id="tech-stack" class="scroll-mt-20 py-24 bg-slate-50 border-t border-slate-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
             
             <div class="text-center max-w-3xl mx-auto space-y-3">
@@ -776,7 +777,7 @@
     <!-- FOOTER -->
     
     <!-- TURNKEY E-COMMERCE & HYPERLOCAL DISPATCH PACKAGES -->
-    <section class="py-20 bg-slate-900 text-white relative border-t border-slate-800">
+    <section id="pricing" class="scroll-mt-20 py-20 bg-slate-900 text-white relative border-t border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16">
                 <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-bikOrange/10 border border-bikOrange/20 text-bikOrange text-xs font-mono uppercase tracking-wider mb-3">

@@ -98,23 +98,34 @@
 
         // A. Add Hamburger Toggle Button to Header Actions if missing
         const headerContainer = header.querySelector('.max-w-7xl') || header.firstElementChild;
-        if (headerContainer && !document.getElementById('fcMobileMenuBtn')) {
-            const actionsDiv = headerContainer.lastElementChild;
-            if (actionsDiv) {
-                actionsDiv.classList.add('flex', 'items-center', 'gap-2');
+        if (headerContainer) {
+            const existingBurger = document.getElementById('fcMobileMenuBtn');
+            if (existingBurger) {
+                if (!existingBurger.onclick) {
+                    existingBurger.onclick = function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        toggleMobileDrawer();
+                    };
+                }
+            } else {
+                const actionsDiv = headerContainer.lastElementChild;
+                if (actionsDiv) {
+                    actionsDiv.classList.add('flex', 'items-center', 'gap-2');
 
-                const burgerBtn = document.createElement('button');
-                burgerBtn.id = 'fcMobileMenuBtn';
-                burgerBtn.type = 'button';
-                burgerBtn.setAttribute('aria-label', 'Toggle Mobile Menu');
-                burgerBtn.className = 'lg:hidden p-2 rounded-xl border border-slate-200 hover:border-bikOrange bg-white text-slate-700 hover:text-bikOrange transition flex items-center justify-center shrink-0 w-10 h-10 shadow-xs cursor-pointer touch-target-44';
-                burgerBtn.innerHTML = '<i class="fa-solid fa-bars text-sm"></i>';
-                burgerBtn.onclick = function (e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    toggleMobileDrawer();
-                };
-                actionsDiv.appendChild(burgerBtn);
+                    const burgerBtn = document.createElement('button');
+                    burgerBtn.id = 'fcMobileMenuBtn';
+                    burgerBtn.type = 'button';
+                    burgerBtn.setAttribute('aria-label', 'Toggle Mobile Menu');
+                    burgerBtn.className = 'lg:hidden p-2 rounded-xl border border-slate-200 hover:border-bikOrange bg-white text-slate-700 hover:text-bikOrange transition flex items-center justify-center shrink-0 w-10 h-10 shadow-xs cursor-pointer touch-target-44';
+                    burgerBtn.innerHTML = '<i class="fa-solid fa-bars text-sm"></i>';
+                    burgerBtn.onclick = function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        toggleMobileDrawer();
+                    };
+                    actionsDiv.appendChild(burgerBtn);
+                }
             }
         }
 
@@ -148,6 +159,10 @@
                                 <i class="fa-solid fa-house text-bikOrange w-4 text-center"></i>
                                 <span>Main Site</span>
                             </a>
+                            <a href="store.html" class="flex items-center gap-3 px-3 py-2 rounded-xl text-emerald-700 hover:text-emerald-800 hover:bg-emerald-50 font-bold transition">
+                                <i class="fa-solid fa-cart-shopping text-emerald-600 w-4 text-center"></i>
+                                <span>Live Storefront Demo</span>
+                            </a>
                             <a href="demo.html" class="flex items-center gap-3 px-3 py-2 rounded-xl text-bikOrange bg-orange-50/60 hover:bg-orange-100/80 font-bold transition">
                                 <i class="fa-solid fa-play text-bikOrange w-4 text-center animate-pulse"></i>
                                 <span>Live Interactive Sandbox</span>
@@ -165,6 +180,10 @@
                             <i class="fa-solid fa-bolt text-[10px]"></i> AI Automation Systems
                         </div>
                         <div class="space-y-1 text-xs">
+                            <a href="store-automation.html" class="flex items-center justify-between px-3 py-2 rounded-xl text-slate-700 hover:text-bikOrange hover:bg-orange-50 transition font-medium">
+                                <span>Shopify &amp; Storefront Automation</span>
+                                <span class="text-[9px] bg-orange-100 text-bikOrange font-bold px-1.5 py-0.5 rounded">Auto-Upsell</span>
+                            </a>
                             <a href="ai-voice-agents.html" class="flex items-center justify-between px-3 py-2 rounded-xl text-slate-700 hover:text-purple-600 hover:bg-purple-50 transition">
                                 <span>AI Voice Calling Agents (COD/RTO)</span>
                                 <span class="text-[9px] bg-purple-100 text-purple-700 font-bold px-1.5 py-0.5 rounded">Sub-180ms</span>

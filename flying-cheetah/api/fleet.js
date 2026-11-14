@@ -4,8 +4,8 @@
  * Endpoints: /api/v1/fleet/* or /api/fleet
  */
 
-const SUPABASE_URL = process.env.SUPABASE_URL || 'https://txqtkpxdyoatzdgkcsry.supabase.co';
-const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR4cXRrcHhkeW9hdHpkZ2tjc3J5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI4Mzk5NDksImV4cCI6MjEwODQxNTk0OX0.TuGGpGZKHOhvkcpv02W_R-2wwuXykBTdL1iXa9G1qFE';
+const SUPABASE_URL = process.env.SUPABASE_URL;
+const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY;
 
 const MUMBAI_RIDERS = [
     { name: 'Ramesh Shinde', phone: '+91 98200 11998', vehicle: 'Honda Activa (MH-02-CD-4421)', lat: 19.0600, lng: 72.8360 },
@@ -49,7 +49,8 @@ module.exports = async function handler(req, res) {
 
         const url = req.url || '';
         const orderRefFromUrl = (url.match(/track\/([A-Za-z0-9_-]+)/) || [])[1];
-        const orderRef = req.query?.order_ref || orderRefFromUrl || body.order_ref || `FC-MUM-${Date.now().toString().slice(-6)}`;
+        const rawOrderRef = req.query?.order_ref || orderRefFromUrl || body.order_ref || `FC-MUM-${Date.now().toString().slice(-6)}`;
+        const orderRef = String(rawOrderRef).trim();
 
         // 1. DISPATCH / CREATE COURIER ORDER (POST)
         if (req.method === 'POST') {
@@ -80,19 +81,23 @@ module.exports = async function handler(req, res) {
                 delivery_otp: otp
             };
 
-            // Ingest to Supabase fleet_orders table
-            try {
-                await fetch(`${SUPABASE_URL}/rest/v1/fleet_orders`, {
-                    method: 'POST',
-                    headers: {
-                        'apikey': SUPABASE_ANON_KEY,
-                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                        'Content-Type': 'application/json',
-                        'Prefer': 'return=representation'
-                    },
-                    body: JSON.stringify(fleetPayload)
-                });
-            } catch (_) {}
+            // Ingest to Supabase fleet_orders table if environment configured
+            if (SUPABASE_URL && SUPABASE_ANON_KEY) {
+                try {
+                    await fetch(`${SUPABASE_URL}/rest/v1/fleet_orders`, {
+                        method: 'POST',
+                        headers: {
+                            'apikey': SUPABASE_ANON_KEY,
+                            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                            'Content-Type': 'application/json',
+                            'Prefer': 'return=representation'
+                        },
+                        body: JSON.stringify(fleetPayload)
+                    });
+                } catch (sbErr) {
+                    console.warn('[Fleet API Supabase notice]:', sbErr.message);
+                }
+            }
 
             return sendJson(201, {
                 is_successful: true,
@@ -107,19 +112,22 @@ module.exports = async function handler(req, res) {
         if (req.method === 'GET') {
             let orderData = null;
 
-            try {
-                const sbResp = await fetch(`${SUPABASE_URL}/rest/v1/fleet_orders?order_ref=eq.${orderRef}&limit=1`, {
-                    headers: {
-                        'apikey': SUPABASE_ANON_KEY,
-                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+            if (SUPABASE_URL && SUPABASE_ANON_KEY) {
+                try {
+                    const sbResp = await fetch(`${SUPABASE_URL}/rest/v1/fleet_orders?order_ref=eq.${encodeURIComponent(orderRef)}&limit=1`, {
+                        headers: {
+                            'apikey': SUPABASE_ANON_KEY,
+                            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                        }
+                    });
+                    if (sbResp.ok) {
+                        const data = await sbResp.json();
+                        if (data && data.length > 0) orderData = data[0];
                     }
-                });
-                if (sbResp.ok) {
-                    const data = await sbResp.json();
-                    if (data && data.length > 0) orderData = data[0];
-                }
-            } catch (_) {}
+                } catch (_) {}
+            }
 
+            // Simulation Fallback for Hyperlocal Map Demo
             if (!orderData) {
                 const rider = MUMBAI_RIDERS[0];
                 orderData = {

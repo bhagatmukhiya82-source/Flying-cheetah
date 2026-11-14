@@ -8,7 +8,7 @@
     'use strict';
 
     if (window.FC_BACKEND && window.FC_BACKEND.getClient) {
-        return; // Already initialized by supabase-config.js
+        return; // Already initialized (idempotent guard)
     }
 
     const cleanStorage = (key) => {
@@ -356,6 +356,16 @@
                             ...r
                         }));
                         localStorage.setItem('fc_mock_estimates', JSON.stringify([...created, ...existing]));
+                        return { data: created, error: null };
+                    }
+                    if (tableName === 'fleet_orders') {
+                        const existing = JSON.parse(localStorage.getItem('fc_mock_fleet_orders') || '[]');
+                        const created = rows.map(r => ({
+                            id: 'fleet-' + Date.now() + '-' + Math.random().toString(36).substr(2, 4),
+                            created_at: new Date().toISOString(),
+                            ...r
+                        }));
+                        localStorage.setItem('fc_mock_fleet_orders', JSON.stringify([...created, ...existing]));
                         return { data: created, error: null };
                     }
                     return { data: rows, error: null };

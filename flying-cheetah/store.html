@@ -6,6 +6,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Autonomous AI Storefront & WhatsApp Commerce Demo — Flying Cheetah</title>
+    <meta property="og:title" content="Autonomous AI Storefront &amp; WhatsApp Commerce Demo — Flying Cheetah">
+    <meta property="og:description" content="Shop Clothes &amp; Electronics with Instant WhatsApp Ordering, UPI/COD Payment &amp; 25-Minute Borzo Courier Doorstep Delivery.">
+    <meta property="og:image" content="https://flying-cheetah.vercel.app/images/flying_cheetah_logo_one_tail.png">
+    <meta property="og:type" content="website">
+
     <meta name="description" content="Shop Clothes & Electronics with Instant WhatsApp Ordering, UPI/COD Payment & 25-Minute Borzo Courier Doorstep Delivery.">
     <link rel="canonical" href="https://flying-cheetah.vercel.app/store">
     <meta property="og:url" content="https://flying-cheetah.vercel.app/store">
@@ -84,10 +89,11 @@
 
             <div class="flex items-center space-x-3">
                 <div class="fc-auth-slot"></div>
-                <a id="connectWhatsAppStoreBtn" href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah%20team,%20I%20want%20this%20exact%20WhatsApp%20Store%20and%20Borzo%20delivery%20for%20my%20shop!" target="_blank" class="inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-waGreen hover:bg-emerald-600 text-white font-bold text-xs transition shadow-md shadow-emerald-500/20 gap-2">
+                <a id="connectWhatsAppStoreBtn" href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah%20team,%20I%20want%20this%20exact%20WhatsApp%20Store%20and%20Borzo%20delivery%20for%20my%20shop!" target="_blank" class="hidden sm:inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-waGreen hover:bg-emerald-600 text-white font-bold text-xs transition shadow-md shadow-emerald-500/20 gap-2">
                     <i class="fa-brands fa-whatsapp text-sm"></i>
                     <span>Connect WhatsApp Store</span>
                 </a>
+                <button id="fcMobileMenuBtn" type="button" aria-label="Toggle Mobile Menu" onclick="window.FC_WIDGETS && window.FC_WIDGETS.toggleMobileDrawer ? window.FC_WIDGETS.toggleMobileDrawer() : null" class="lg:hidden p-2 rounded-xl border border-slate-200 hover:border-bikOrange bg-white text-slate-700 hover:text-bikOrange transition flex items-center justify-center shrink-0 w-10 h-10 shadow-xs cursor-pointer touch-target-44"><i class="fa-solid fa-bars text-sm"></i></button>
             </div>
         </div>
     </header>
@@ -690,55 +696,58 @@
                 };
             }
 
-            // 2. Direct cloud write to Supabase
+            // 2. Direct cloud write to Supabase via canonical client abstraction
             try {
-                const SUPABASE_URL = "https://txqtkpxdyoatzdgkcsry.supabase.co";
-                const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR4cXRrcHhkeW9hdHpkZ2tjc3J5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI4Mzk5NDksImV4cCI6MjEwODQxNTk0OX0.TuGGpGZKHOhvkcpv02W_R-2wwuXykBTdL1iXa9G1qFE";
+                const client = (window.FC_BACKEND && window.FC_BACKEND.getClient)
+                    ? window.FC_BACKEND.getClient()
+                    : null;
 
-                const paymentNote = orderData.payMethod + (utr ? ' (UTR: ' + utr + ')' : '');
+                if (!client) {
+                    console.warn('[Store] Supabase client not initialized; skipping cloud sync.');
+                } else {
+                    const paymentNote = orderData.payMethod + (utr ? ' (UTR: ' + utr + ')' : '');
 
-                await fetch(SUPABASE_URL + '/rest/v1/leads_inquiries', {
-                    method: 'POST',
-                    headers: {
-                        'apikey': SUPABASE_KEY,
-                        'Authorization': 'Bearer ' + SUPABASE_KEY,
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        name: orderData.name,
-                        email: 'shopper@mumbai.in',
-                        phone: internationalPhone,
-                        service: 'Storefront Order: ' + orderData.item.name + ' (' + paymentNote + ')',
-                        message: 'Drop: ' + orderData.address,
-                        source_page: 'store.html',
-                        status: 'new'
-                    })
-                });
+                    // Insert storefront inquiry record into leads_inquiries
+                    const { data: leadData, error: leadError } = await client
+                        .from('leads_inquiries')
+                        .insert([{
+                            name: orderData.name,
+                            email: 'shopper@mumbai.in',
+                            phone: internationalPhone,
+                            service: 'Storefront Order: ' + orderData.item.name + ' (' + paymentNote + ')',
+                            message: 'Drop: ' + orderData.address,
+                            source_page: 'store.html',
+                            status: 'new'
+                        }]);
 
-                await fetch(SUPABASE_URL + '/rest/v1/fleet_orders', {
-                    method: 'POST',
-                    headers: {
-                        'apikey': SUPABASE_KEY,
-                        'Authorization': 'Bearer ' + SUPABASE_KEY,
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        order_ref: orderData.orderRef,
-                        courier: 'borzo',
-                        courier_order_id: dispatchRes.order_id || ('borzo_ord_' + orderData.orderRef.toLowerCase()),
-                        tracking_number: dispatchRes.tracking_number || ('BORZO-MUM-' + orderData.orderRef.split('-')[2]),
-                        tracking_url: dispatchRes.tracking_url || ('https://borzodelivery.com/in/tracking/' + orderData.orderRef),
-                        pickup_address: { address: storePickupAddr },
-                        delivery_address: { address: orderData.address },
-                        rider_name: dispatchRes.rider?.name || 'Ramesh Shinde',
-                        rider_phone: dispatchRes.rider?.phone || '+91 98200 11998',
-                        eta_minutes: dispatchRes.eta_minutes || 24,
-                        status: 'rider_assigned',
-                        delivery_fee_inr: dispatchRes.delivery_fee_inr || 65.0
-                    })
-                });
+                    if (leadError) {
+                        console.warn('[Store] Supabase leads_inquiries insert error:', leadError.message || leadError);
+                    }
+
+                    // Insert courier dispatch record into fleet_orders
+                    const { data: fleetData, error: fleetError } = await client
+                        .from('fleet_orders')
+                        .insert([{
+                            order_ref: orderData.orderRef,
+                            courier: 'borzo',
+                            courier_order_id: dispatchRes.order_id || ('borzo_ord_' + orderData.orderRef.toLowerCase()),
+                            tracking_number: dispatchRes.tracking_number || ('BORZO-MUM-' + orderData.orderRef.split('-')[2]),
+                            tracking_url: dispatchRes.tracking_url || ('https://borzodelivery.com/in/tracking/' + orderData.orderRef),
+                            pickup_address: { address: storePickupAddr },
+                            delivery_address: { address: orderData.address },
+                            rider_name: dispatchRes.rider?.name || 'Ramesh Shinde',
+                            rider_phone: dispatchRes.rider?.phone || '+91 98200 11998',
+                            eta_minutes: dispatchRes.eta_minutes || 24,
+                            status: 'rider_assigned',
+                            delivery_fee_inr: dispatchRes.delivery_fee_inr || 65.0
+                        }]);
+
+                    if (fleetError) {
+                        console.warn('[Store] Supabase fleet_orders insert error:', fleetError.message || fleetError);
+                    }
+                }
             } catch (err) {
-                console.warn('Cloud sync offline fallback:', err);
+                console.warn('[Store] Cloud sync offline fallback:', err);
             }
 
             // 3. Display the live dispatch card on screen
@@ -827,7 +836,7 @@
         }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="js/supabase-config.js"></script>
+    <script src="js/supabase-client.js"></script>
     <script src="js/auth.js"></script>
     <script src="js/leads.js"></script>
     <script src="js/fc-widgets.js"></script>

@@ -1,0 +1,10 @@
+{
+  "name": "flying-cheetah",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Flying Cheetah Labs — AI Automation, Performance Marketing & High-Speed Web Development Platform",
+  "scripts": {
+    "test": "node --test tests/*.test.js tests/e2e/*.test.js"
+  },
+  "dependencies": {}
+}

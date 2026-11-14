@@ -7,6 +7,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us | Flying Cheetah - Autonomous Commerce Labs</title>
+    <meta property="og:title" content="About Us | Flying Cheetah - Autonomous Commerce Labs">
+    <meta property="og:description" content="About Us | Flying Cheetah - Autonomous Commerce Labs - Flying Cheetah Labs Autonomous AI Commerce &amp; Omnichannel Marketing Suite.">
+    <meta property="og:image" content="https://flying-cheetah.vercel.app/images/founder_bhagat_mukhiya.jpg">
+    <meta property="og:type" content="website">
+
     <meta name="description" content="About Us | Flying Cheetah - Autonomous Commerce Labs - Flying Cheetah Labs Autonomous AI Commerce & Omnichannel Marketing Suite.">
     <link rel="canonical" href="https://flying-cheetah.vercel.app/about">
     <meta property="og:url" content="https://flying-cheetah.vercel.app/about">
@@ -184,6 +189,7 @@
                     </div>
                 </div>
 
+                <a href="store.html" class="hover:text-bikOrange transition font-medium">Live Store Demo</a>
                 <a href="delivery.html" class="hover:text-bikOrange transition">Fleet Dispatch</a>
                 <a href="web-development.html" class="hover:text-bikOrange transition">Web Development</a>
                 <a href="about.html" class="text-bikOrange font-bold transition">About Us</a>
@@ -191,7 +197,8 @@
 
             <div class="flex items-center space-x-3">
                 <div class="fc-auth-slot"></div>
-                <a href="demo.html" class="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-sm transition shadow-md shadow-orange-500/20 cursor-pointer"><span>Book Free Live Demo</span> <span class="text-base leading-none">➔</span></a>
+                <a href="demo.html" class="hidden sm:inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-sm transition shadow-md shadow-orange-500/20 cursor-pointer"><span>Book Free Live Demo</span> <span class="text-base leading-none">➔</span></a>
+                <button id="fcMobileMenuBtn" type="button" aria-label="Toggle Mobile Menu" onclick="window.FC_WIDGETS && window.FC_WIDGETS.toggleMobileDrawer ? window.FC_WIDGETS.toggleMobileDrawer() : null" class="lg:hidden p-2 rounded-xl border border-slate-200 hover:border-bikOrange bg-white text-slate-700 hover:text-bikOrange transition flex items-center justify-center shrink-0 w-10 h-10 shadow-xs cursor-pointer touch-target-44"><i class="fa-solid fa-bars text-sm"></i></button>
             </div>
         </div>
     </header>
@@ -427,11 +434,11 @@
                     <div>
                         <div class="flex items-center gap-4 mb-6">
                             <div class="relative w-20 h-20 rounded-2xl overflow-hidden border-2 border-bikOrange/60 shadow-lg shadow-orange-500/20 group-hover:scale-105 transition duration-300 shrink-0 bg-slate-100">
-                                <img src="images/founder_bhagat_mukhiya.jpg" alt="Flying Cheetah Core Systems & Engineering Lead" class="w-full h-full object-cover object-top">
+                                <img src="images/founder_bhagat_mukhiya.jpg" alt="Bhagat Mukhiya - Co-Founder & Technical Architect at Flying Cheetah" class="w-full h-full object-cover object-top">
                             </div>
                             <div>
-                                <h3 class="text-2xl font-black text-bikDark font-display">Core Systems &amp; Engineering</h3>
-                                <p class="text-xs font-bold text-bikOrange">Lead Architecture Division</p>
+                                <h3 class="text-2xl font-black text-bikDark font-display">Bhagat Mukhiya</h3>
+                                <p class="text-xs font-bold text-bikOrange">Co-Founder &amp; Technical Architect • Core Systems</p>
                                 <div class="flex items-center gap-2 mt-1">
                                     <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                                     <span class="text-[11px] font-semibold text-slate-500">Live Architecture Telemetry • Mumbai</span>
@@ -479,11 +486,11 @@
                     <div>
                         <div class="flex items-center gap-4 mb-6">
                             <div class="relative w-20 h-20 rounded-2xl overflow-hidden border-2 border-emerald-500/60 shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition duration-300 shrink-0 bg-slate-100">
-                                <img src="images/founder_yash_gaikwad.jpg" alt="Flying Cheetah Growth & Operations Lead" class="w-full h-full object-cover object-top">
+                                <img src="images/founder_yash_gaikwad.jpg" alt="Yash Gaikwad - Co-Founder & Growth Operations Lead at Flying Cheetah" class="w-full h-full object-cover object-top">
                             </div>
                             <div>
-                                <h3 class="text-2xl font-black text-bikDark font-display">Growth &amp; Client Operations</h3>
-                                <p class="text-xs font-bold text-emerald-600">Lead Strategy Division</p>
+                                <h3 class="text-2xl font-black text-bikDark font-display">Yash Gaikwad</h3>
+                                <p class="text-xs font-bold text-emerald-600">Co-Founder &amp; Growth Operations</p>
                                 <div class="flex items-center gap-2 mt-1">
                                     <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                                     <span class="text-[11px] font-semibold text-slate-500">In-Person Merchant Audits • MMR</span>
@@ -503,10 +510,15 @@
                         </div>
                     </div>
 
-                    <div class="pt-6">
+                    <div class="pt-6 space-y-2.5">
                         <a href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah%20team,%20I%20explored%20Flying%20Cheetah%20and%20I'm%20looking%20forward%20to%20working%20with%20you.%20I'd%20like%20to%20discuss%20a%20growth%20audit%20for%20my%20store." target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition shadow-md shadow-emerald-600/20 group/btn">
                             <i class="fa-brands fa-whatsapp text-base group-hover/btn:scale-110 transition"></i>
                             <span>Chat with Flying Cheetah on WhatsApp</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-1 opacity-80"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/yash-gaikwad-1669b0397" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#0A66C2] hover:bg-[#004182] text-white font-bold text-xs transition shadow-md shadow-blue-600/20 group/btn">
+                            <i class="fa-brands fa-linkedin text-base group-hover/btn:scale-110 transition"></i>
+                            <span>Connect on LinkedIn</span>
                             <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-1 opacity-80"></i>
                         </a>
                     </div>

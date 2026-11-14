@@ -7,6 +7,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enterprise Automation Module Specification — Flying Cheetah</title>
+    <meta property="og:title" content="Enterprise Automation Module Specification — Flying Cheetah">
+    <meta property="og:description" content="Enterprise Automation Module Specification — Flying Cheetah - Flying Cheetah Labs Autonomous AI Commerce &amp; Omnichannel Marketing Suite.">
+    <meta property="og:image" content="https://flying-cheetah.vercel.app/images/flying_cheetah_logo_one_tail.png">
+    <meta property="og:type" content="website">
+
     <meta name="description" content="Enterprise Automation Module Specification — Flying Cheetah - Flying Cheetah Labs Autonomous AI Commerce & Omnichannel Marketing Suite.">
     <link rel="canonical" href="https://flying-cheetah.vercel.app/solutions">
     <meta property="og:url" content="https://flying-cheetah.vercel.app/solutions">
@@ -173,9 +178,10 @@
 
             <div class="flex items-center space-x-3">
                 <div class="fc-auth-slot"></div>
-                <a href="store-automation.html" class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-sm transition shadow-md shadow-orange-500/20">
+                <a href="store-automation.html" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-sm transition shadow-md shadow-orange-500/20">
                     Explore Platform
                 </a>
+                <button id="fcMobileMenuBtn" type="button" aria-label="Toggle Mobile Menu" onclick="window.FC_WIDGETS && window.FC_WIDGETS.toggleMobileDrawer ? window.FC_WIDGETS.toggleMobileDrawer() : null" class="lg:hidden p-2 rounded-xl border border-slate-200 hover:border-bikOrange bg-white text-slate-700 hover:text-bikOrange transition flex items-center justify-center shrink-0 w-10 h-10 shadow-xs cursor-pointer touch-target-44"><i class="fa-solid fa-bars text-sm"></i></button>
             </div>
         </div>
     </header>
@@ -426,7 +432,7 @@
         document.getElementById('moduleDetailText').textContent = data.detail;
         document.getElementById('moduleHeroImg').src = data.img || 'images/whatsapp_automation_journey_ui.jpg';
         document.getElementById('moduleIcon').innerHTML = `<i class="${data.icon.includes('fa-') ? data.icon : 'fa-solid ' + data.icon}"></i>`;
-        document.getElementById('consultBtn').href = `https://wa.me/919920386421?text=Hi%20Flying%20Cheetah%20team,%20I%20am%20interested%20in%20deploying%20the%20"${encodeURIComponent(data.name)}"%20module.`;
+        document.getElementById('consultBtn').href = `https://wa.me/919920386421?text=${encodeURIComponent(`Hi Flying Cheetah team, I am interested in deploying the "${data.name}" module.`)}`;
     </script>
     <script>
         // Toggle dropdowns on click & close when clicking outside
