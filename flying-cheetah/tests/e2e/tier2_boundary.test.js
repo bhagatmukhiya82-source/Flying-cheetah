@@ -103,7 +103,7 @@ describe('Class B1: Auth & Security Boundaries', () => {
         });
     });
 
-    it('T2.B1.4 Unconfigured JWT_SECRET returns safe sandbox token from POST /api/auth?action=google-callback', async () => {
+    it('T2.B1.4 Unverified POST /api/auth?action=google-callback is rejected with 403', async () => {
         const authHandler = require(authHandlerPath);
         await withEnv({ JWT_SECRET: undefined, SECRET_KEY: undefined }, async () => {
             const res = await invokeHandler(authHandler, {
@@ -113,8 +113,8 @@ describe('Class B1: Auth & Security Boundaries', () => {
                     credential: 'dummy_google_credential_payload'
                 }
             });
-            assert.equal(res.statusCode, 200, `Expected 200 on google-callback without JWT_SECRET, got ${res.statusCode}`);
-            assert.ok(res.json?.access_token, 'Must return token');
+            assert.equal(res.statusCode, 403, `Expected 403 on unverified google-callback, got ${res.statusCode}`);
+            assert.ok(!res.json?.access_token, 'Must NOT issue access_token for unverified google-callback');
         });
     });
 

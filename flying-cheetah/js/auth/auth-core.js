@@ -157,169 +157,13 @@
 
 
     async function completeGoogleEmailSignIn(email, phone = '') {
-        injectAuthModal();
-        const cleanEmail = (email || '').trim().toLowerCase();
-        if (!cleanEmail) {
-            throw new Error('Please enter a valid Google email address.');
-        }
-        const cleanPhone = sanitizePhone(phone || '');
-        const name = cleanEmail.split('@')[0];
-        const adminEmails = (window.FC_BACKEND?.getConfig()?.ADMIN_EMAILS || []).map(e => (e || '').toLowerCase());
-        const isAdm = adminEmails.includes(cleanEmail);
-
-        // Mandatory phone validation for non-admin users
-        if (!isAdm && cleanPhone && !validatePhone(cleanPhone)) {
-            throw new Error('Please enter a valid WhatsApp mobile number with country code (e.g. +91 98200 12345).');
-        }
-
-        // 1. Reconcile with backend API first so existing merchant profile/phone is preserved
-        let reconciledUser = null;
-        let backendToken = null;
-        try {
-            const apiBase = getApiBase();
-            const bResp = await fetch(`${apiBase}/api/v1/auth/google-callback`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    email: cleanEmail,
-                    name: name,
-                    avatar_url: '',
-                    phone: cleanPhone || undefined
-                })
-            });
-            if (bResp.status === 409) {
-                const bErr = await bResp.json();
-                throw new Error(bErr.detail || 'This WhatsApp phone number is already registered with another account.');
-            }
-            if (bResp.ok) {
-                const bData = await bResp.json();
-                if (bData.access_token) {
-                    backendToken = bData.access_token;
-                    localStorage.setItem('fc_backend_token', backendToken);
-                }
-                if (bData.user) {
-                    reconciledUser = bData.user;
-                }
-            }
-        } catch (netErr) {
-            if (netErr.message && netErr.message.includes('registered with another account')) {
-                throw netErr;
-            }
-            console.warn('[Google OAuth Backend Reconciliation Notice]:', netErr);
-        }
-
-        try {
-            // Optional Supabase OTP dispatch
-            await client.auth.signInWithOtp({
-                email: cleanEmail,
-                options: {
-                    emailRedirectTo: window.location.origin + window.location.pathname
-                }
-            });
-        } catch (e) {
-            console.warn('[Google Email Auth dispatch notice]:', e);
-        }
-
-        const reconciledPhone = cleanPhone || (reconciledUser && (reconciledUser.phone || reconciledUser.whatsapp_support)) || '';
-        const displayName = reconciledUser?.full_name || name || 'Merchant Founder';
-
-        const userObj = {
-            id: reconciledUser?.id || (isAdm ? 'admin-fc' : 'client-' + Date.now()),
-            email: cleanEmail,
-            phone: reconciledPhone,
-            user_metadata: {
-                full_name: displayName,
-                name: displayName,
-                phone: reconciledPhone,
-                role: reconciledUser?.role || (isAdm ? 'admin' : 'client'),
-                trial_active: true,
-                trial_days_left: 14
-            },
-            app_metadata: { provider: 'Google Authentication' }
-        };
-
-        currentUser = userObj;
-        currentProfile = {
-            id: userObj.id,
-            email: cleanEmail,
-            full_name: displayName,
-            phone: reconciledPhone,
-            whatsapp_support: reconciledPhone,
-            role: reconciledUser?.role || (isAdm ? 'admin' : 'client'),
-            trial_active: true,
-            trial_days_left: 14,
-            ...(reconciledUser || {})
-        };
-
-        localStorage.setItem('fc_session_user', JSON.stringify(userObj));
-        localStorage.setItem('fc_session_profile', JSON.stringify(currentProfile));
-        if (reconciledUser) {
-            localStorage.setItem('fc_merchant_profile', JSON.stringify(reconciledUser));
-        }
-
-        // Save lead in Supabase (preserving real phone number when available)
-        try {
-            await client.from('leads_inquiries').insert([{
-                name: displayName,
-                email: cleanEmail,
-                phone: reconciledPhone || '+91 (Google Sign-In)',
-                service: isAdm ? 'Agency Executive' : '14-Day Free Pilot Account',
-                message: `User signed in via Google Account (${cleanEmail}) with phone ${reconciledPhone || 'pending verification'}.`,
-                source_page: window.location.pathname.split('/').pop() || 'index.html',
-                status: 'qualified'
-            }]);
-        } catch (dbE) {}
-
-        // 5-Minute Delayed WhatsApp Follow-up Chatbot Hook (Local n8n workflow)
-        const userPhone = userObj.phone || userObj.user_metadata?.phone || currentProfile?.phone || currentProfile?.whatsapp_support || '';
-        if (userPhone && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
-            try {
-                fetch('http://localhost:5678/webhook/user-login-whatsapp', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        event: 'user_logged_in',
-                        name: displayName,
-                        phone: userPhone,
-                        email: userObj.email,
-                        login_time: new Date().toISOString()
-                    })
-                }).catch(function() {});
-            } catch (_) {}
-        }
-
-        // Forward to webhook
-        if (window.FC_LEADS && typeof window.FC_LEADS.triggerN8nWebhook === 'function') {
-            window.FC_LEADS.triggerN8nWebhook({
-                name: displayName,
-                email: cleanEmail,
-                phone: reconciledPhone || '+91 (Google Sign-In)',
-                service: isAdm ? 'Agency Executive' : '14-Day Free Trial (Google Sign-In)',
-                message: `Signed in via Google. Phone: ${reconciledPhone || 'pending'}`,
-                source_page: window.location.pathname
-            });
-        }
-
-        notifyAgencyOfLogin(userObj, 'GOOGLE_SIGNIN');
-
         closeGoogleEmailModal();
-        closeAuthModal();
-        syncNavbarUI();
-
-        // Enforce mandatory phone requirement if still missing
-        if (!isAdm && (!reconciledPhone || !validatePhone(reconciledPhone))) {
-            checkMandatoryPhoneRequirement();
-        } else {
-            closeMandatoryPhoneModal();
-            showAuthToast(`🎉 Signed in with Google account: ${cleanEmail}`);
-        }
-
-        window.dispatchEvent(new CustomEvent('fc:auth-state-changed', {
-            detail: { user: currentUser, profile: currentProfile }
-        }));
+        showAuthToast('Unverified email authentication is disabled. Please sign in with your password.', 'notice');
+        openAuthModal('signin');
+        return { success: false, error: 'Unverified email authentication is disabled.' };
     }
 
-    // 4. SIGN IN WITH GOOGLE (OFFICIAL SUPABASE PKCE OAUTH + IN-APP EMAIL FALLBACK)
+    // 4. SIGN IN WITH GOOGLE (OFFICIAL SUPABASE PKCE OAUTH)
     async function signInWithGoogle(context = 'signin') {
         try {
             const redirectUrl = window.location.origin + window.location.pathname;
@@ -334,11 +178,13 @@
 
             if (error) {
                 console.warn('[Google OAuth Notice]:', error.message);
-                openGoogleEmailModal();
+                showAuthToast('Google Sign-In is currently unavailable. Please sign in with your email and password.', 'notice');
+                openAuthModal('signin');
             }
         } catch (err) {
             console.warn('[Google OAuth Catch]:', err);
-            openGoogleEmailModal();
+            showAuthToast('Google Sign-In is currently unavailable. Please sign in with your email and password.', 'notice');
+            openAuthModal('signin');
         }
     }
 

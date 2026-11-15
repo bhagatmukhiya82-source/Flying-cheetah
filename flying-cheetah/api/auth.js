@@ -72,6 +72,171 @@ if (!USER_STORE.has('flyingcheetah.agency@gmail.com')) {
     });
 }
 
+function supabaseTimeoutSignal(ms = 2500) {
+    return typeof AbortSignal !== 'undefined' && AbortSignal.timeout ? AbortSignal.timeout(ms) : undefined;
+}
+
+/**
+ * Persists an OTP code in both in-memory cache and Supabase `password_reset_otps`
+ * so verification survives serverless cold starts.
+ */
+async function storeOtpRecord(cleanEmail, otp, expiresAt) {
+    ACTIVE_OTPS.set(cleanEmail, { otp, expiresAt });
+    try {
+        await fetch(`${SUPABASE_URL}/rest/v1/rpc/fc_store_password_otp`, {
+            method: 'POST',
+            signal: supabaseTimeoutSignal(2500),
+            headers: {
+                'apikey': SUPABASE_ANON_KEY,
+                'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                p_email: cleanEmail,
+                p_otp: String(otp).trim()
+            })
+        });
+    } catch (_) {}
+}
+
+/**
+ * Verifies a 6-digit OTP against memory cache or Supabase `password_reset_otps`
+ * and marks it consumed on match.
+ */
+async function verifyAndConsumeOtp(cleanEmail, otp) {
+    const cleanOtp = String(otp || '').trim();
+    if (!cleanOtp) return false;
+
+    const cached = ACTIVE_OTPS.get(cleanEmail);
+    if (cached && cached.otp === cleanOtp && Date.now() <= cached.expiresAt) {
+        ACTIVE_OTPS.delete(cleanEmail);
+        try {
+            await fetch(`${SUPABASE_URL}/rest/v1/password_reset_otps?email=eq.${encodeURIComponent(cleanEmail)}&otp_code=eq.${encodeURIComponent(cleanOtp)}`, {
+                method: 'PATCH',
+                signal: supabaseTimeoutSignal(2500),
+                headers: {
+                    'apikey': SUPABASE_ANON_KEY,
+                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ used: true })
+            });
+        } catch (_) {}
+        return true;
+    }
+
+    try {
+        const resp = await fetch(
+            `${SUPABASE_URL}/rest/v1/password_reset_otps?email=eq.${encodeURIComponent(cleanEmail)}&otp_code=eq.${encodeURIComponent(cleanOtp)}&used=eq.false&order=created_at.desc&limit=1`,
+            {
+                signal: supabaseTimeoutSignal(2500),
+                headers: {
+                    'apikey': SUPABASE_ANON_KEY,
+                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                }
+            }
+        );
+        if (resp.ok) {
+            const rows = await resp.json();
+            if (Array.isArray(rows) && rows.length > 0) {
+                const row = rows[0];
+                if (row.expires_at && new Date(row.expires_at).getTime() >= Date.now()) {
+                    await fetch(`${SUPABASE_URL}/rest/v1/password_reset_otps?email=eq.${encodeURIComponent(cleanEmail)}&otp_code=eq.${encodeURIComponent(cleanOtp)}`, {
+                        method: 'PATCH',
+                        signal: supabaseTimeoutSignal(2500),
+                        headers: {
+                            'apikey': SUPABASE_ANON_KEY,
+                            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ used: true })
+                    }).catch(() => {});
+                    return true;
+                }
+            }
+        }
+    } catch (_) {}
+
+    return false;
+}
+
+/**
+ * Retrieves an existing password hash from memory store or Supabase `profiles`.
+ */
+async function fetchStoredPasswordHash(cleanEmail) {
+    const user = USER_STORE.get(cleanEmail);
+    if (user && user.password_hash) return user.password_hash;
+
+    try {
+        const resp = await fetch(
+            `${SUPABASE_URL}/rest/v1/profiles?email=eq.${encodeURIComponent(cleanEmail)}&select=password_hash&limit=1`,
+            {
+                signal: supabaseTimeoutSignal(2500),
+                headers: {
+                    'apikey': SUPABASE_ANON_KEY,
+                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                }
+            }
+        );
+        if (resp.ok) {
+            const rows = await resp.json();
+            if (Array.isArray(rows) && rows[0]?.password_hash) {
+                return rows[0].password_hash;
+            }
+        }
+    } catch (_) {}
+
+    return null;
+}
+
+/**
+ * Awaits persistence of an updated scrypt password hash to Supabase `profiles`.
+ */
+async function persistPasswordHashToSupabase(cleanEmail, upgradedHash, bearerToken) {
+    const authToken = bearerToken || SUPABASE_ANON_KEY;
+    try {
+        await fetch(`${SUPABASE_URL}/rest/v1/profiles?email=eq.${encodeURIComponent(cleanEmail)}`, {
+            method: 'PATCH',
+            signal: supabaseTimeoutSignal(2500),
+            headers: {
+                'apikey': SUPABASE_ANON_KEY,
+                'Authorization': `Bearer ${authToken}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ password_hash: upgradedHash, updated_at: new Date().toISOString() })
+        });
+    } catch (_) {}
+}
+
+/**
+ * Calls Supabase `fc_verify_and_update_password` RPC to verify OTP or current password
+ * and update `auth.users.encrypted_password` across serverless invocations.
+ */
+async function callSupabasePasswordRpc(cleanEmail, otp, newPassword, currentPassword) {
+    try {
+        const resp = await fetch(`${SUPABASE_URL}/rest/v1/rpc/fc_verify_and_update_password`, {
+            method: 'POST',
+            signal: supabaseTimeoutSignal(3000),
+            headers: {
+                'apikey': SUPABASE_ANON_KEY,
+                'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                p_email: cleanEmail,
+                p_otp: otp ? String(otp).trim() : '',
+                p_new_password: String(newPassword),
+                p_current_password: currentPassword ? String(currentPassword) : null
+            })
+        });
+        if (!resp.ok) return { reachable: false };
+        const data = await resp.json();
+        return { reachable: true, ...data };
+    } catch (_) {
+        return { reachable: false };
+    }
+}
+
 module.exports = async function handler(req, res) {
     const headers = {
         'Access-Control-Allow-Origin': '*',
@@ -143,6 +308,7 @@ module.exports = async function handler(req, res) {
 
             const cleanEmail = String(email).trim().toLowerCase();
             const isAdmin = ADMIN_EMAILS.some(e => e.toLowerCase() === cleanEmail);
+            const rawPassword = password || 'TrialPass2026!';
             const userObj = {
                 id: `usr_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`,
                 email: cleanEmail,
@@ -151,35 +317,64 @@ module.exports = async function handler(req, res) {
                 store_url: store_url ? String(store_url).trim() : '',
                 role: isAdmin ? 'admin' : 'client',
                 trial_active: !isAdmin,
-                password_hash: hashPasswordScrypt(password || 'TrialPass2026!'),
+                password_hash: hashPasswordScrypt(rawPassword),
                 created_at: new Date().toISOString()
             };
 
-            USER_STORE.set(cleanEmail, userObj);
-
-            // Sync with Supabase profiles table if available
+            // Sync with Supabase Auth (which triggers handle_new_user -> public.profiles)
+            let sbAccessToken = null;
             try {
-                await fetch(`${SUPABASE_URL}/rest/v1/profiles`, {
+                const sbSignupResp = await fetch(`${SUPABASE_URL}/auth/v1/signup`, {
                     method: 'POST',
-                    signal: typeof AbortSignal !== 'undefined' && AbortSignal.timeout ? AbortSignal.timeout(2500) : undefined,
+                    signal: supabaseTimeoutSignal(3000),
                     headers: {
                         'apikey': SUPABASE_ANON_KEY,
-                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                        'Content-Type': 'application/json',
-                        'Prefer': 'resolution=merge-duplicates'
+                        'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        id: userObj.id,
                         email: cleanEmail,
-                        full_name: userObj.full_name,
-                        phone: userObj.phone,
-                        store_url: userObj.store_url,
-                        role: userObj.role,
-                        trial_active: userObj.trial_active,
-                        created_at: userObj.created_at
+                        password: rawPassword,
+                        data: {
+                            full_name: userObj.full_name,
+                            phone: userObj.phone,
+                            store_url: userObj.store_url,
+                            trial_active: userObj.trial_active
+                        }
                     })
                 });
+                if (sbSignupResp.ok) {
+                    const sbData = await sbSignupResp.json();
+                    if (sbData.user?.id) userObj.id = sbData.user.id;
+                    sbAccessToken = sbData.access_token || sbData.session?.access_token || null;
+                }
             } catch (_) {}
+
+            USER_STORE.set(cleanEmail, userObj);
+
+            // Patch extra metadata fields on public.profiles when authenticated session was issued
+            if (sbAccessToken && userObj.id) {
+                try {
+                    await fetch(`${SUPABASE_URL}/rest/v1/profiles?id=eq.${encodeURIComponent(userObj.id)}`, {
+                        method: 'PATCH',
+                        signal: supabaseTimeoutSignal(2500),
+                        headers: {
+                            'apikey': SUPABASE_ANON_KEY,
+                            'Authorization': `Bearer ${sbAccessToken}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            full_name: userObj.full_name,
+                            phone: userObj.phone,
+                            password_hash: userObj.password_hash,
+                            metadata: {
+                                store_url: userObj.store_url,
+                                trial_active: userObj.trial_active
+                            },
+                            updated_at: new Date().toISOString()
+                        })
+                    });
+                } catch (_) {}
+            }
 
             const token = safeSignJwt({
                 sub: userObj.id,
@@ -217,30 +412,24 @@ module.exports = async function handler(req, res) {
             const isAdmin = ADMIN_EMAILS.some(e => e.toLowerCase() === cleanEmail);
 
             let user = USER_STORE.get(cleanEmail);
+            let verifiedLocally = false;
 
             if (user && user.password_hash) {
                 // Verify password against stored hash with auto-migration
                 const { verified, needsRehash } = verifyPassword(password, user.password_hash);
-                if (!verified) {
+                if (verified) {
+                    verifiedLocally = true;
+                    if (needsRehash) {
+                        const upgradedHash = hashPasswordScrypt(password);
+                        user.password_hash = upgradedHash;
+                        USER_STORE.set(cleanEmail, user);
+                    }
+                } else if (user.id !== 'usr_admin_fc') {
                     return sendJson(401, { error: 'Invalid email or password.' });
                 }
-                if (needsRehash) {
-                    const upgradedHash = hashPasswordScrypt(password);
-                    user.password_hash = upgradedHash;
-                    USER_STORE.set(cleanEmail, user);
-                    try {
-                        fetch(`${SUPABASE_URL}/rest/v1/profiles?email=eq.${encodeURIComponent(cleanEmail)}`, {
-                            method: 'PATCH',
-                            headers: {
-                                'apikey': SUPABASE_ANON_KEY,
-                                'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({ password_hash: upgradedHash })
-                        }).catch(() => {});
-                    } catch (_) {}
-                }
-            } else {
+            }
+
+            if (!verifiedLocally) {
                 // Check Supabase Auth for valid credentials
                 let authenticatedViaSupabase = false;
                 try {
@@ -251,7 +440,7 @@ module.exports = async function handler(req, res) {
                             'Content-Type': 'application/json'
                         },
                         body: JSON.stringify({ email: cleanEmail, password: password }),
-                        signal: typeof AbortSignal !== 'undefined' && AbortSignal.timeout ? AbortSignal.timeout(400) : undefined
+                        signal: supabaseTimeoutSignal(2500)
                     });
                     if (sbAuthResp.ok) {
                         const sbData = await sbAuthResp.json();
@@ -261,57 +450,46 @@ module.exports = async function handler(req, res) {
                             email: cleanEmail,
                             full_name: sbData.user?.user_metadata?.full_name || cleanEmail.split('@')[0],
                             role: isAdmin ? 'admin' : 'client',
-                            trial_active: !isAdmin,
+                            trial_active: sbData.user?.user_metadata?.trial_active !== undefined ? sbData.user.user_metadata.trial_active : !isAdmin,
                             password_hash: hashPasswordScrypt(password),
-                            phone: sbData.user?.phone || '',
-                            store_url: '',
+                            phone: sbData.user?.user_metadata?.phone || sbData.user?.phone || '',
+                            store_url: sbData.user?.user_metadata?.store_url || '',
                             created_at: sbData.user?.created_at || new Date().toISOString()
                         };
                         USER_STORE.set(cleanEmail, user);
                     }
                 } catch (_) {}
 
-                // Check Supabase profiles table
+                // Check Supabase profiles table if needed
                 if (!authenticatedViaSupabase) {
+                    let profileMatched = false;
                     try {
                         const profResp = await fetch(`${SUPABASE_URL}/rest/v1/profiles?email=eq.${encodeURIComponent(cleanEmail)}&select=*&limit=1`, {
                             headers: {
                                 'apikey': SUPABASE_ANON_KEY,
                                 'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
                             },
-                            signal: typeof AbortSignal !== 'undefined' && AbortSignal.timeout ? AbortSignal.timeout(400) : undefined
+                            signal: supabaseTimeoutSignal(2500)
                         });
                         if (profResp.ok) {
                             const profs = await profResp.json();
                             if (profs && profs.length > 0) {
                                 const prof = profs[0];
                                 if (prof.password_hash) {
-                                    const { verified, needsRehash } = verifyPassword(password, prof.password_hash);
+                                    const { verified } = verifyPassword(password, prof.password_hash);
                                     if (!verified) {
                                         return sendJson(401, { error: 'Invalid email or password.' });
                                     }
-                                    let activeHash = prof.password_hash;
-                                    if (needsRehash) {
-                                        activeHash = hashPasswordScrypt(password);
-                                        fetch(`${SUPABASE_URL}/rest/v1/profiles?email=eq.${encodeURIComponent(cleanEmail)}`, {
-                                            method: 'PATCH',
-                                            headers: {
-                                                'apikey': SUPABASE_ANON_KEY,
-                                                'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                                                'Content-Type': 'application/json'
-                                            },
-                                            body: JSON.stringify({ password_hash: activeHash })
-                                        }).catch(() => {});
-                                    }
+                                    profileMatched = true;
                                     user = {
                                         id: prof.id || `usr_${Date.now()}`,
                                         email: cleanEmail,
                                         full_name: prof.full_name || cleanEmail.split('@')[0],
                                         role: prof.role || (isAdmin ? 'admin' : 'client'),
-                                        trial_active: prof.trial_active !== undefined ? prof.trial_active : !isAdmin,
-                                        password_hash: activeHash,
+                                        trial_active: prof.metadata?.trial_active !== undefined ? prof.metadata.trial_active : !isAdmin,
+                                        password_hash: hashPasswordScrypt(password),
                                         phone: prof.phone || '',
-                                        store_url: prof.store_url || '',
+                                        store_url: prof.metadata?.store_url || '',
                                         created_at: prof.created_at || new Date().toISOString()
                                     };
                                     USER_STORE.set(cleanEmail, user);
@@ -319,11 +497,10 @@ module.exports = async function handler(req, res) {
                             }
                         }
                     } catch (_) {}
-                }
 
-                // If user not found anywhere and credentials invalid
-                if (!user) {
-                    return sendJson(401, { error: 'Invalid email or password.' });
+                    if (!profileMatched) {
+                        return sendJson(401, { error: 'Invalid email or password.' });
+                    }
                 }
             }
 
@@ -392,11 +569,12 @@ module.exports = async function handler(req, res) {
             const otp = Math.floor(100000 + Math.random() * 900000).toString();
             const expiresAt = Date.now() + 10 * 60 * 1000; // 10 minutes
 
-            ACTIVE_OTPS.set(cleanEmail, { otp, expiresAt });
+            await storeOtpRecord(cleanEmail, otp, expiresAt);
 
             // Send email via secure mailer
+            let emailSent = false;
             try {
-                await sendMail({
+                const mailRes = await sendMail({
                     to: cleanEmail,
                     subject: `Flying Cheetah Verification Code: ${otp}`,
                     fromName: 'Flying Cheetah Security',
@@ -409,13 +587,19 @@ module.exports = async function handler(req, res) {
                         <p style="font-size: 12px; color: #64748b;">Valid for 10 minutes. If you did not request this, please ignore.</p>
                     </div>`
                 });
+                if (mailRes && mailRes.success) {
+                    emailSent = true;
+                }
             } catch (smtpErr) {
                 console.error('[Auth SMTP Warning]:', smtpErr.message);
             }
 
             return sendJson(200, {
                 success: true,
-                message: 'Password reset OTP dispatched to registered email.',
+                dispatched: emailSent,
+                message: emailSent
+                    ? 'Password reset OTP dispatched to registered email.'
+                    : 'OTP generated. Note: Email delivery service is not configured on this server.',
                 email: cleanEmail
             });
         }
@@ -430,20 +614,27 @@ module.exports = async function handler(req, res) {
             }
 
             const cleanEmail = String(email).trim().toLowerCase();
-            const cached = ACTIVE_OTPS.get(cleanEmail);
+            const rpcResult = await callSupabasePasswordRpc(cleanEmail, otp, new_password, null);
+            let verified = Boolean(rpcResult.reachable && rpcResult.success);
 
-            if (!cached || cached.otp !== String(otp).trim() || Date.now() > cached.expiresAt) {
-                return sendJson(400, { error: 'Invalid or expired OTP code.' });
+            if (verified) {
+                ACTIVE_OTPS.delete(cleanEmail);
+            } else if (!rpcResult.reachable || ACTIVE_OTPS.has(cleanEmail)) {
+                verified = await verifyAndConsumeOtp(cleanEmail, otp);
             }
 
-            // OTP is valid - update password
-            ACTIVE_OTPS.delete(cleanEmail);
+            if (!verified) {
+                return sendJson(400, { error: rpcResult.error || 'Invalid or expired OTP code.' });
+            }
 
-            let user = USER_STORE.get(cleanEmail);
+            const upgradedHash = hashPasswordScrypt(new_password);
+            const user = USER_STORE.get(cleanEmail);
             if (user) {
-                user.password_hash = hashPasswordScrypt(new_password);
+                user.password_hash = upgradedHash;
                 USER_STORE.set(cleanEmail, user);
             }
+
+            await persistPasswordHashToSupabase(cleanEmail, upgradedHash);
 
             return sendJson(200, {
                 success: true,
@@ -464,41 +655,87 @@ module.exports = async function handler(req, res) {
 
             const cleanEmail = String(email).trim().toLowerCase();
             const otp = Math.floor(100000 + Math.random() * 900000).toString();
-            ACTIVE_OTPS.set(cleanEmail, { otp, expiresAt: Date.now() + 10 * 60 * 1000 });
+            const expiresAt = Date.now() + 10 * 60 * 1000;
+            await storeOtpRecord(cleanEmail, otp, expiresAt);
 
+            let emailSent = false;
             try {
-                await sendMail({
+                const mailRes = await sendMail({
                     to: cleanEmail,
                     subject: `Flying Cheetah Security: Password Change Code ${otp}`,
                     fromName: 'Flying Cheetah Security',
                     text: `Your password change verification code is: ${otp}.`,
                     html: `<p>Your password change verification code is: <b>${escapeHtml(otp)}</b> (Valid 10 mins).</p>`
                 });
+                if (mailRes && mailRes.success) {
+                    emailSent = true;
+                }
             } catch (_) {}
 
-            return sendJson(200, { success: true, message: 'OTP sent to registered email address.' });
+            return sendJson(200, {
+                success: true,
+                dispatched: emailSent,
+                message: emailSent ? 'OTP sent to registered email address.' : 'OTP generated. Note: Email service is not configured on this server.'
+            });
         }
 
         // -------------------------------------------------------------
         // 7. CHANGE PASSWORD
         // -------------------------------------------------------------
         if (action === 'change-password' && req.method === 'POST') {
-            const { email, otp, new_password } = body;
-            const cleanEmail = String(email || '').trim().toLowerCase();
-            const cached = ACTIVE_OTPS.get(cleanEmail);
+            const authHeader = req.headers?.authorization || req.headers?.Authorization || '';
+            const token = authHeader.toLowerCase().startsWith('bearer ') ? authHeader.slice(7).trim() : null;
+            const payload = verifyJwt(token);
 
-            if (otp && cached) {
-                if (cached.otp !== String(otp).trim() || Date.now() > cached.expiresAt) {
-                    return sendJson(400, { error: 'Invalid or expired OTP.' });
-                }
-                ACTIVE_OTPS.delete(cleanEmail);
+            const { email, otp, new_password, current_password } = body;
+            const cleanEmail = String(email || (payload && payload.email) || '').trim().toLowerCase();
+            if (!cleanEmail || !new_password) {
+                return sendJson(400, { error: 'Email and new password are required.' });
             }
 
-            let user = USER_STORE.get(cleanEmail);
+            if (otp) {
+                const rpcResult = await callSupabasePasswordRpc(cleanEmail, otp, new_password, null);
+                let otpValid = Boolean(rpcResult.reachable && rpcResult.success);
+                if (otpValid) {
+                    ACTIVE_OTPS.delete(cleanEmail);
+                } else if (!rpcResult.reachable || ACTIVE_OTPS.has(cleanEmail)) {
+                    otpValid = await verifyAndConsumeOtp(cleanEmail, otp);
+                }
+                if (!otpValid) {
+                    return sendJson(400, { error: rpcResult.error || 'Invalid or expired OTP.' });
+                }
+            } else {
+                const jwtMatchesUser = Boolean(payload && payload.email && String(payload.email).trim().toLowerCase() === cleanEmail);
+                if (!jwtMatchesUser) {
+                    return sendJson(401, { error: 'Authentication required to change password.' });
+                }
+                if (!current_password) {
+                    return sendJson(400, { error: 'Current password or OTP verification is required.' });
+                }
+
+                const rpcResult = await callSupabasePasswordRpc(cleanEmail, '', new_password, current_password);
+                let verified = Boolean(rpcResult.reachable && rpcResult.success);
+
+                if (!verified) {
+                    const storedHash = await fetchStoredPasswordHash(cleanEmail);
+                    if (storedHash && verifyPassword(String(current_password), storedHash).verified) {
+                        verified = true;
+                    }
+                }
+
+                if (!verified) {
+                    return sendJson(401, { error: rpcResult.error || 'Current password is incorrect.' });
+                }
+            }
+
+            const upgradedHash = hashPasswordScrypt(new_password);
+            const user = USER_STORE.get(cleanEmail);
             if (user) {
-                user.password_hash = hashPasswordScrypt(new_password);
+                user.password_hash = upgradedHash;
                 USER_STORE.set(cleanEmail, user);
             }
+
+            await persistPasswordHashToSupabase(cleanEmail, upgradedHash);
 
             return sendJson(200, { success: true, message: 'Password updated successfully.' });
         }
@@ -517,6 +754,14 @@ module.exports = async function handler(req, res) {
                 return sendJson(400, { error: 'Email or valid authentication token is required.' });
             }
 
+            const jwtAuthorized = Boolean(
+                payload && payload.email &&
+                (String(payload.email).trim().toLowerCase() === cleanEmail || payload.role === 'admin')
+            );
+            if (!jwtAuthorized) {
+                return sendJson(401, { error: 'Authentication required to update profile.' });
+            }
+
             let user = USER_STORE.get(cleanEmail) || { email: cleanEmail };
 
             if (full_name) user.full_name = full_name;
@@ -527,10 +772,11 @@ module.exports = async function handler(req, res) {
 
             USER_STORE.set(cleanEmail, user);
 
-            // Persist to Supabase profiles table
+            // Persist to Supabase profiles table using canonical schema columns
             try {
                 await fetch(`${SUPABASE_URL}/rest/v1/profiles?email=eq.${encodeURIComponent(cleanEmail)}`, {
                     method: 'PATCH',
+                    signal: supabaseTimeoutSignal(2500),
                     headers: {
                         'apikey': SUPABASE_ANON_KEY,
                         'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
@@ -540,43 +786,25 @@ module.exports = async function handler(req, res) {
                     body: JSON.stringify({
                         full_name: user.full_name,
                         phone: user.phone,
-                        store_url: user.store_url,
-                        gstin: user.gstin,
-                        upi_id: user.upi_id
+                        gstin_udyam: user.gstin,
+                        merchant_upi_id: user.upi_id,
+                        metadata: { store_url: user.store_url || '', trial_active: user.trial_active !== false },
+                        updated_at: new Date().toISOString()
                     })
                 });
             } catch (_) {}
 
-            return sendJson(200, { success: true, user });
+            const { password_hash: _omit, ...safeUser } = user;
+            return sendJson(200, { success: true, user: safeUser });
         }
 
         // -------------------------------------------------------------
         // 9. GOOGLE CALLBACK
         // -------------------------------------------------------------
         if (action === 'google-callback' && req.method === 'POST') {
-            const { email, name, phone } = body;
-            const cleanEmail = String(email || 'google_user@flyingcheetah.agency').trim().toLowerCase();
-            const isAdmin = ADMIN_EMAILS.some(e => e.toLowerCase() === cleanEmail);
-
-            let existing = USER_STORE.get(cleanEmail);
-            let user;
-            if (existing) {
-                if (phone && !existing.phone) existing.phone = String(phone).trim();
-                user = { ...existing };
-            } else {
-                user = {
-                    id: `usr_g_${Date.now()}`,
-                    email: cleanEmail,
-                    full_name: name || cleanEmail.split('@')[0],
-                    phone: phone ? String(phone).trim() : '',
-                    role: isAdmin ? 'admin' : 'client',
-                    trial_active: !isAdmin
-                };
-                USER_STORE.set(cleanEmail, user);
-            }
-
-            const token = safeSignJwt({ sub: user.id, email: user.email, role: user.role, full_name: user.full_name });
-            return sendJson(200, { access_token: token, token_type: 'bearer', user });
+            return sendJson(403, {
+                error: 'Unverified Google OAuth callback is rejected. Please sign in with email and password or use verified Google OAuth.'
+            });
         }
 
         return sendJson(404, { error: `Endpoint not found: action '${action}' on /api/auth` });

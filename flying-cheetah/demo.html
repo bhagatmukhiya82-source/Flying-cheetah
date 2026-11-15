@@ -223,6 +223,12 @@
                             <input type="text" id="demoName" required placeholder="e.g. Rahul Sharma" autocomplete="name" aria-label="Your Name or Founder Name" class="w-full px-3.5 py-3 sm:py-2.5 rounded-xl border border-slate-200 focus:border-bikOrange focus:ring-2 focus:ring-orange-100 outline-none text-slate-800 text-sm transition">
                         </div>
 
+                        <!-- Work/Brand Email -->
+                        <div class="space-y-1">
+                            <label for="demoEmail" class="text-slate-700 block">Work / Brand Email *</label>
+                            <input type="email" id="demoEmail" required placeholder="e.g. founder@yourbrand.com" autocomplete="email" aria-label="Work or Brand Email" class="w-full px-3.5 py-3 sm:py-2.5 rounded-xl border border-slate-200 focus:border-bikOrange focus:ring-2 focus:ring-orange-100 outline-none text-slate-800 text-sm transition">
+                        </div>
+
                         <!-- WhatsApp Number -->
                         <div class="space-y-1">
                             <label for="demoPhone" class="text-slate-700 block">WhatsApp Phone Number *</label>
@@ -246,6 +252,17 @@
                                 <option value="marketing">Performance Marketing (Meta, Google, ROAS Scaling)</option>
                                 <option value="webdev">High-Speed Web Development (Shopify, Custom Web Apps)</option>
                                 <option value="fullstack">Full-Stack Commerce Transformation</option>
+                            </select>
+                        </div>
+
+                        <!-- Monthly Order Volume -->
+                        <div class="space-y-1">
+                            <label for="demoVolume" class="text-slate-700 block">Monthly Order Volume</label>
+                            <select id="demoVolume" aria-label="Monthly Order Volume" class="w-full px-3.5 py-3 sm:py-2.5 rounded-xl border border-slate-200 focus:border-bikOrange focus:ring-2 focus:ring-orange-100 outline-none text-slate-800 text-sm transition bg-white">
+                                <option value="under_500">Under 500 orders/mo</option>
+                                <option value="500_2000" selected>500 - 2,000 orders/mo</option>
+                                <option value="2000_10000">2,000 - 10,000 orders/mo</option>
+                                <option value="10000_plus">10,000+ orders/mo</option>
                             </select>
                         </div>
 
@@ -329,8 +346,8 @@
             document.addEventListener('click', function(e) {
                 dropdownParents.forEach(p => p.classList.remove('active'));
             });
+        });
 
-            
         function showDemoToast(title, message, color = 'purple') {
             let container = document.getElementById('fcDemoToastContainer');
             if (!container) {
@@ -380,10 +397,12 @@
             if (honeypot) return false;
 
             const name = document.getElementById('demoName').value.trim();
+            const email = document.getElementById('demoEmail')?.value.trim() || '';
             const phone = document.getElementById('demoPhone').value.trim();
+            const cleanPhone = phone.replace(/\D/g, '');
             const store = document.getElementById('demoStore').value.trim();
             const focus = document.getElementById('demoFocus')?.value || 'automation';
-            const volume = document.getElementById('demoVolume')?.value || 'Standard';
+            const volume = document.getElementById('demoVolume')?.value || '500_2000';
             const slot = document.querySelector('input[name="demoSlot"]:checked')?.value || 'Flexible';
             const btn = document.getElementById('demoSubmitBtn');
 
@@ -392,9 +411,11 @@
 
             const payload = {
                 name,
-                phone: '+91' + phone,
+                email,
+                phone: '+91' + cleanPhone,
                 store,
                 volume,
+                business_type: focus,
                 slot,
                 source: 'demo_portal',
                 created_at: new Date().toISOString()
@@ -413,10 +434,12 @@
                         body: JSON.stringify({
                             name: name,
                             phone: '+91' + cleanPhone,
-                            email: `${cleanPhone}@demo.flyingcheetah.agency`,
+                            email: email,
                             company: store,
+                            volume: volume,
+                            business_type: focus,
                             modules: [slot],
-                            notes: `Booked via VIP Demo Walkthrough (${focus} - ${slot})`
+                            notes: `Booked via VIP Demo Walkthrough (${focus} - ${slot} - ${volume})`
                         })
                     });
                 } catch (_) {}

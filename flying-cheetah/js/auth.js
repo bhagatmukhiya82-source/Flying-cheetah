@@ -1497,7 +1497,7 @@
                     }
 
                     let backendSent = false;
-                    let generatedOtp = Math.floor(100000 + Math.random() * 900000).toString();
+                    let emailDispatched = true;
 
                     try {
                         const apiBase = getApiBase();
@@ -1507,48 +1507,39 @@
                             headers: {
                                 'Content-Type': 'application/json',
                                 ...(token ? { 'Authorization': `Bearer ${token}` } : {})
-                            }
+                            },
+                            body: JSON.stringify({ email: userEmail })
                         });
                         if (resp.ok) {
                             const resData = await resp.json().catch(() => ({}));
-                            if (resData.otp) generatedOtp = resData.otp;
                             backendSent = true;
+                            if (resData.dispatched === false) {
+                                emailDispatched = false;
+                            }
+                        } else {
+                            const errData = await resp.json().catch(() => ({}));
+                            throw new Error(errData.error || 'Failed to request password change OTP.');
                         }
-                    } catch (_) {}
-
-                    localStorage.setItem('fc_active_change_pass_otp', JSON.stringify({
-                        email: userEmail,
-                        otp: generatedOtp,
-                        expiresAt: Date.now() + 10 * 60 * 1000
-                    }));
-
-                    try {
-                        if (typeof client.rpc === 'function') {
-                            await client.rpc('fc_store_password_otp', { p_email: userEmail, p_otp: generatedOtp });
-                        }
-                    } catch (_) {}
-
-                    if (!backendSent) {
-                        const emailResp = await fetch('/api/send-email', {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({
-                                type: 'otp_verification',
-                                email: userEmail,
-                                otp_code: generatedOtp,
-                                action: 'Password Change'
-                            })
-                        });
-                        if (!emailResp.ok) {
-                            throw new Error('Could not send verification OTP email.');
-                        }
+                    } catch (err) {
+                        secSendOtpBtn.disabled = false;
+                        secSendOtpBtn.innerHTML = origHtml;
+                        alert(err.message || 'Failed to send OTP to email.');
+                        return;
                     }
 
-                    if (otpFeedback) {
-                        otpFeedback.textContent = `Security code sent to ${userEmail}! Valid for 10 minutes.`;
-                        otpFeedback.classList.remove('hidden');
+                    if (emailDispatched) {
+                        if (otpFeedback) {
+                            otpFeedback.textContent = `Security code sent to ${userEmail}! Valid for 10 minutes.`;
+                            otpFeedback.classList.remove('hidden');
+                        }
+                        showAuthToast(`📩 Verification OTP sent to ${userEmail}!`, 'success');
+                    } else {
+                        if (otpFeedback) {
+                            otpFeedback.textContent = `Security code generated, but email service is unconfigured.`;
+                            otpFeedback.classList.remove('hidden');
+                        }
+                        showAuthToast(`⚠️ OTP generated, but email delivery is unconfigured.`, 'notice');
                     }
-                    showAuthToast(`📩 Verification OTP sent to ${userEmail}!`, 'success');
                     let countdown = 60;
                     const timer = setInterval(() => {
                         countdown--;
@@ -1602,6 +1593,7 @@
 
                 try {
                     let updatedViaBackend = false;
+                    const userEmail = (currentUser?.email || currentProfile?.email || document.getElementById('fcSecEmailTxt')?.textContent || '').trim().toLowerCase();
                     try {
                         const apiBase = getApiBase();
                         const token = localStorage.getItem('fc_backend_token');
@@ -1612,79 +1604,38 @@
                                 ...(token ? { 'Authorization': `Bearer ${token}` } : {})
                             },
                             body: JSON.stringify({
+                                email: userEmail,
                                 current_password: currPass || undefined,
                                 otp: otpVal || undefined,
                                 new_password: newPass
                             })
                         });
                         const data = await resp.json().catch(() => ({}));
-                        if (!resp.ok) {
-                            throw new Error(data.detail || 'Failed to update password.');
+                        if (resp.ok) {
+                            updatedViaBackend = true;
+                        } else {
+                            throw new Error(data.error || data.detail || 'Failed to update password.');
                         }
-                        updatedViaBackend = true;
                     } catch (netErr) {
                         if (netErr.message && !netErr.message.includes('fetch') && !netErr.message.includes('Failed to fetch') && !netErr.message.includes('NetworkError')) {
                             throw netErr;
                         }
                     }
 
-                    if (!updatedViaBackend) {
-                        const savedOtpObj = JSON.parse(localStorage.getItem('fc_active_change_pass_otp') || '{}');
-                        if (!otpVal && !currPass) {
-                            throw new Error('Please enter the 6-digit email OTP or your current password.');
-                        }
-                        if (otpVal) {
-                            if (!savedOtpObj.otp || Date.now() > (savedOtpObj.expiresAt || 0)) {
-                                throw new Error('Verification OTP has expired. Please click Send OTP again.');
-                            }
-                            if (otpVal !== savedOtpObj.otp) {
-                                throw new Error('Invalid 6-digit OTP code. Please check your email inbox.');
-                            }
-                        }
-                    }
-
-                    // Update Supabase Auth password via server-verified /api/send-email & RPC
-                    const userEmail = (currentUser?.email || currentProfile?.email || document.getElementById('fcSecEmailTxt')?.textContent || '').trim().toLowerCase();
-                    if (userEmail) {
-                        let cloudUpdated = false;
+                    // Direct Supabase RPC update with 4 parameters: { p_email, p_otp, p_new_password, p_current_password }
+                    if (userEmail && typeof client.rpc === 'function') {
                         try {
-                            const cloudResp = await fetch('/api/send-email', {
-                                method: 'POST',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify({
-                                    type: 'update_password',
-                                    email: userEmail,
-                                    otp_code: otpVal || undefined,
-                                    current_password: currPass || undefined,
-                                    new_password: newPass
-                                })
+                            const { data: rpcRes, error: rpcErr } = await client.rpc('fc_verify_and_update_password', {
+                                p_email: userEmail,
+                                p_otp: otpVal || '',
+                                p_new_password: newPass,
+                                p_current_password: currPass || null
                             });
-                            if (cloudResp.ok) {
-                                cloudUpdated = true;
-                            } else {
-                                const cloudErr = await cloudResp.json().catch(() => ({}));
-                                if (!updatedViaBackend && cloudErr.error) {
-                                    throw new Error(cloudErr.error);
-                                }
+                            if (!updatedViaBackend && (rpcErr || (rpcRes && rpcRes.success === false))) {
+                                throw new Error((rpcRes && rpcRes.error) || (rpcErr && rpcErr.message) || 'Failed to update password.');
                             }
-                        } catch (cErr) {
-                            if (!updatedViaBackend && cErr.message && !cErr.message.includes('fetch') && !cErr.message.includes('NetworkError')) {
-                                throw cErr;
-                            }
-                        }
-
-                        if (!cloudUpdated && typeof client.rpc === 'function') {
-                            try {
-                                const { data: rpcRes } = await client.rpc('fc_verify_and_update_password', {
-                                    p_email: userEmail,
-                                    p_otp: otpVal || '',
-                                    p_new_password: newPass,
-                                    p_current_password: currPass || null
-                                });
-                                if (rpcRes && rpcRes.success === false && !updatedViaBackend) {
-                                    throw new Error(rpcRes.error || 'Failed to update password.');
-                                }
-                            } catch (_) {}
+                        } catch (rpcErr) {
+                            if (!updatedViaBackend) throw rpcErr;
                         }
                     }
 
@@ -2190,12 +2141,12 @@
                 }
 
                 submitBtn.disabled = true;
-                submitBtn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin text-xs"></i> <span>Generating OTP...</span>`;
+                submitBtn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin text-xs"></i> <span>Requesting OTP...</span>`;
 
-                let generatedOtp = null;
-
-                // 1. Attempt Backend API dispatch
                 let backendDispatched = false;
+                let emailDispatched = true;
+
+                // 1. Request real OTP from backend API
                 try {
                     const apiBase = getApiBase();
                     const resp = await fetch(`${apiBase}/api/v1/auth/forgot-password`, {
@@ -2205,47 +2156,30 @@
                     });
                     if (resp.ok) {
                         const data = await resp.json();
-                        generatedOtp = data.otp;
                         backendDispatched = true;
+                        if (data.dispatched === false) {
+                            emailDispatched = false;
+                        }
+                    } else {
+                        const err = await resp.json().catch(() => ({}));
+                        throw new Error(err.error || 'Failed to request password reset OTP.');
                     }
-                } catch (_) {}
-
-                // 2. Generate cryptographic 6-digit OTP if backend not running
-                if (!generatedOtp) {
-                    generatedOtp = Math.floor(100000 + Math.random() * 900000).toString();
+                } catch (netErr) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = `<i class="fa-solid fa-paper-plane text-xs"></i> <span>Send Verification OTP</span>`;
+                    alert(netErr.message || 'Failed to request password reset OTP.');
+                    return;
                 }
 
-                // 3. Dispatch real OTP email via Vercel Serverless (/api/send-email) when local backend is unreachable
-                if (!backendDispatched) {
-                    try {
-                        await fetch('/api/send-email', {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({
-                                type: 'otp_verification',
-                                email,
-                                otp_code: generatedOtp,
-                                action: 'Password Reset'
-                            })
-                        });
-                    } catch (_) {}
-                }
-
-                // Persist OTP session
+                // Persist reset session without inventing a fake OTP
                 const activeReset = {
                     email,
                     phone,
-                    otp: generatedOtp,
                     expiresAt: Date.now() + 10 * 60 * 1000
                 };
                 localStorage.setItem('fc_active_password_reset', JSON.stringify(activeReset));
-                try {
-                    if (typeof client.rpc === 'function') {
-                        await client.rpc('fc_store_password_otp', { p_email: email, p_otp: generatedOtp });
-                    }
-                } catch (_) {}
 
-                // Reveal clean OTP confirmation banner (no code leaked on screen)
+                // Reveal clean OTP confirmation banner
                 if (forgotOtpBanner) forgotOtpBanner.classList.remove('hidden');
 
                 // Switch UI to Step 2
@@ -2268,7 +2202,15 @@
 
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = `<i class="fa-solid fa-paper-plane text-xs"></i> <span>Send Verification OTP</span>`;
-                showAuthToast(`📩 6-digit verification code sent to ${email}! Check your inbox.`);
+
+                if (emailDispatched) {
+                    showAuthToast(`📩 6-digit verification code sent to ${email}! Check your inbox.`);
+                } else {
+                    showAuthToast(`⚠️ OTP generated, but email delivery is unconfigured.`, 'notice');
+                    if (forgotOtpBanner) {
+                        forgotOtpBanner.innerHTML = `<span class="text-amber-800 font-semibold">⚠️ Notice: Email delivery is currently unconfigured. Enter the security code generated on your server to proceed.</span>`;
+                    }
+                }
             });
         }
 
@@ -2279,33 +2221,36 @@
                 const email = resetData.email || (document.getElementById('fcForgotEmailInput')?.value || '').trim().toLowerCase();
                 if (!email) return;
 
-                const newOtp = Math.floor(100000 + Math.random() * 900000).toString();
-                localStorage.setItem('fc_active_password_reset', JSON.stringify({
-                    email,
-                    otp: newOtp,
-                    expiresAt: Date.now() + 10 * 60 * 1000
-                }));
-                try {
-                    if (typeof client.rpc === 'function') {
-                        await client.rpc('fc_store_password_otp', { p_email: email, p_otp: newOtp });
-                    }
-                } catch (_) {}
+                resendOtpBtn.disabled = true;
+                resendOtpBtn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin text-xs"></i> Resending...`;
 
                 try {
-                    await fetch('/api/send-email', {
+                    const apiBase = getApiBase();
+                    const resp = await fetch(`${apiBase}/api/v1/auth/forgot-password`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            type: 'otp_verification',
-                            email,
-                            otp_code: newOtp,
-                            action: 'Password Reset'
-                        })
+                        body: JSON.stringify({ email })
                     });
-                } catch (_) {}
-
-                if (forgotOtpBanner) forgotOtpBanner.classList.remove('hidden');
-                showAuthToast(`🔄 Fresh 6-digit OTP sent to ${email}!`);
+                    const data = await resp.json().catch(() => ({}));
+                    if (resp.ok) {
+                        localStorage.setItem('fc_active_password_reset', JSON.stringify({
+                            email,
+                            expiresAt: Date.now() + 10 * 60 * 1000
+                        }));
+                        if (data.dispatched === false) {
+                            showAuthToast(`⚠️ Fresh OTP generated, but email delivery is unconfigured.`, 'notice');
+                        } else {
+                            showAuthToast(`🔄 Fresh 6-digit OTP sent to ${email}!`);
+                        }
+                    } else {
+                        alert(data.error || 'Failed to resend OTP.');
+                    }
+                } catch (e) {
+                    alert('Network error requesting OTP.');
+                } finally {
+                    resendOtpBtn.disabled = false;
+                    resendOtpBtn.innerHTML = `<i class="fa-solid fa-rotate-right text-xs"></i> Resend Code`;
+                }
             });
         }
 
@@ -2351,10 +2296,6 @@
                     alert('Verification OTP has expired. Please click "Resend OTP".');
                     return;
                 }
-                if (resetData.otp && otp !== resetData.otp) {
-                    alert('Invalid OTP code. Please enter the 6-digit code sent to your email inbox.');
-                    return;
-                }
 
                 const evalRes = evaluatePassword(newPass);
                 if (!evalRes.isValid) {
@@ -2370,7 +2311,7 @@
                 submitBtn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin text-xs"></i> <span>Updating password...</span>`;
 
                 try {
-                    // 1. Call Backend API (if local server running)
+                    // 1. Call Backend API for server-side verification and password update
                     let backendUpdated = false;
                     try {
                         const apiBase = getApiBase();
@@ -2379,47 +2320,35 @@
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify({ email, otp, new_password: newPass })
                         });
-                        if (bRes.ok) backendUpdated = true;
-                    } catch (_) {}
-
-                    // 2. Call Vercel Serverless & Supabase Cloud RPC to actually update password in Supabase Auth!
-                    let cloudUpdated = false;
-                    try {
-                        const cloudResp = await fetch('/api/send-email', {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({
-                                type: 'update_password',
-                                email,
-                                otp_code: otp,
-                                new_password: newPass
-                            })
-                        });
-                        if (cloudResp.ok) {
-                            cloudUpdated = true;
+                        if (bRes.ok) {
+                            backendUpdated = true;
                         } else {
-                            const errJson = await cloudResp.json().catch(() => ({}));
-                            if (!backendUpdated && errJson.error) {
-                                throw new Error(errJson.error);
+                            const errJson = await bRes.json().catch(() => ({}));
+                            if (bRes.status < 500) {
+                                throw new Error(errJson.error || 'Invalid or expired OTP code.');
                             }
                         }
-                    } catch (cErr) {
-                        if (!backendUpdated && cErr.message && !cErr.message.includes('fetch') && !cErr.message.includes('NetworkError')) {
-                            throw cErr;
+                    } catch (bErr) {
+                        if (bErr.message && !bErr.message.includes('fetch') && !bErr.message.includes('Failed to fetch') && !bErr.message.includes('NetworkError')) {
+                            throw bErr;
                         }
                     }
 
-                    if (!cloudUpdated && typeof client.rpc === 'function') {
+                    // 2. Direct Supabase RPC with 4 parameters: { p_email, p_otp, p_new_password, p_current_password: null }
+                    if (typeof client.rpc === 'function') {
                         try {
-                            const { data: rpcRes } = await client.rpc('fc_verify_and_update_password', {
+                            const { data: rpcRes, error: rpcErr } = await client.rpc('fc_verify_and_update_password', {
                                 p_email: email,
                                 p_otp: otp,
-                                p_new_password: newPass
+                                p_new_password: newPass,
+                                p_current_password: null
                             });
-                            if (rpcRes && rpcRes.success === false && !backendUpdated) {
-                                throw new Error(rpcRes.error || 'Failed to update password.');
+                            if (!backendUpdated && (rpcErr || (rpcRes && rpcRes.success === false))) {
+                                throw new Error((rpcRes && rpcRes.error) || (rpcErr && rpcErr.message) || 'Failed to update password.');
                             }
-                        } catch (_) {}
+                        } catch (rpcErr) {
+                            if (!backendUpdated) throw rpcErr;
+                        }
                     }
 
                     // 3. Call Supabase session update if logged in
@@ -3209,21 +3138,12 @@
         }
     }
 
-    // Google Email Modal
+    // Google Email Modal - Redirect to email/password signin
     function openGoogleEmailModal() {
         injectAuthModal();
-        const modal = document.getElementById('fcGoogleEmailModal');
-        const card = document.getElementById('fcGoogleEmailCard');
-        const phoneInput = document.getElementById('fcGooglePhoneInput');
-        if (!modal) return;
-        if (phoneInput && !phoneInput.value) {
-            phoneInput.value = '+91 ';
-        }
-        modal.classList.remove('opacity-0', 'pointer-events-none');
-        if (card) {
-            card.classList.remove('scale-95');
-            card.classList.add('scale-100');
-        }
+        closeGoogleEmailModal();
+        showAuthToast('Google Sign-In is unavailable. Please sign in with email and password.', 'notice');
+        openAuthModal('signin');
     }
 
     function closeGoogleEmailModal() {

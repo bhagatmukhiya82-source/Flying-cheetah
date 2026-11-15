@@ -376,26 +376,6 @@
         let currentFilter = 'all';
         let searchQuery = '';
 
-        function unlockFounderDevAccess() {
-            const founderUser = {
-                id: 'fc-admin-001',
-                email: 'flyingcheetah.agency@gmail.com',
-                user_metadata: {
-                    full_name: 'Flying Cheetah Admin',
-                    avatar_url: 'images/flying_cheetah_logo_one_tail.png'
-                }
-            };
-            localStorage.setItem('fc_founder_unlocked', 'true');
-            localStorage.setItem('fc_mock_session', JSON.stringify({ user: founderUser }));
-            const unauthorized = document.getElementById('unauthorizedCard');
-            if (unauthorized) unauthorized.classList.add('hidden');
-            const overlay = document.getElementById('authGuardOverlay');
-            if (overlay) overlay.classList.add('opacity-0', 'pointer-events-none');
-            document.getElementById('adminNameTxt').textContent = 'Flying Cheetah Admin';
-            document.getElementById('adminEmailTxt').textContent = 'flyingcheetah.agency@gmail.com';
-            fetchDashboardData();
-        }
-
         // 1. SECURITY GUARD ENFORCEMENT
         async function runAuthGuard() {
             const overlay = document.getElementById('authGuardOverlay');
@@ -569,7 +549,11 @@
                 // Fallback to Serverless /api/v1/leads if direct connection blocked
                 if (!loaded) {
                     try {
-                        const sResp = await fetch('/api/v1/leads');
+                        const token = localStorage.getItem('fc_backend_token') ||
+                            (await client?.auth?.getSession?.())?.data?.session?.access_token || '';
+                        const sResp = await fetch('/api/v1/leads', {
+                            headers: token ? { 'Authorization': `Bearer ${token}` } : {}
+                        });
                         if (sResp.ok) {
                             const sJson = await sResp.json();
                             allLeads = sJson.items || [];

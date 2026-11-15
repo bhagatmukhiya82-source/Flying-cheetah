@@ -312,7 +312,7 @@
         showSuccessModal(leadRecord);
         showToast(`🚀 Inquiry sent! Confirmation dispatched to ${OFFICIAL_EMAIL}.`);
 
-        return { success: true, data };
+        return { success: true, data: insertData };
     }
 
     // 7. INJECT OPERATIONS AUDIT LEAD CAPTURE MODAL
