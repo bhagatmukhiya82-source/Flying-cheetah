@@ -23,6 +23,14 @@ env/
 *.sqlite
 *.sqlite3
 
+# Large Installer Binaries & Agent State
+*.msi
+*.exe
+*.zip
+*.iso
+blender*
+.agents/
+
 # Node / Frontend / Vercel
 node_modules/
 .vercel/

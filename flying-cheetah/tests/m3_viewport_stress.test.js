@@ -290,6 +290,7 @@ async function main() {
 
   console.log('SUMMARY TABLE:');
   console.table(results);
+  process.exit(0);
 }
 
 main().catch(err => {

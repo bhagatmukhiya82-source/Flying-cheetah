@@ -17,7 +17,7 @@
     <meta property="og:site_name" content="Flying Cheetah">
 
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/styles.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <!-- QRCode JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
@@ -27,29 +27,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/fx.css">
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['"Inter"', 'sans-serif'],
-                        display: ['"Plus Jakarta Sans"', '"Outfit"', 'sans-serif'],
-                        tech: ['"Space Grotesk"', 'monospace']
-                    },
-                    colors: {
-                        bikOrange: '#FF6838',
-                        bikOrangeDark: '#E04A1B',
-                        bikDark: '#0B0F19',
-                        bikBg: '#FFF9F6',
-                        brandGold: '#F59E0B',
-                        slateText: '#475569',
-                        emeraldNeon: '#10B981',
-                        waGreen: '#25D366'
-                    }
-                }
-            }
-        }
-    </script>
     <style>
         .bik-mega-shadow { box-shadow: 0 25px 60px -15px rgba(255, 104, 56, 0.15), 0 0 1px 1px rgba(0, 0, 0, 0.05); }
         .chat-bubble { animation: popIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
@@ -59,6 +36,20 @@
         }
     </style>
     <link rel="stylesheet" href="css/mobile-app.css">
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Autonomous AI Storefront & WhatsApp Commerce Demo — Flying Cheetah",
+      "url": "https://flying-cheetah.vercel.app/store",
+      "description": "Shop Clothes & Electronics with Instant WhatsApp Ordering, UPI/COD Payment & 25-Minute Borzo Courier Doorstep Delivery.",
+      "publisher": {
+            "@type": "Organization",
+            "name": "Flying Cheetah",
+            "url": "https://flying-cheetah.vercel.app"
+      }
+}
+    </script>
 </head>
 <body class="bg-slate-50 text-slate-900 font-sans antialiased selection:bg-bikOrange selection:text-white">
 
@@ -424,7 +415,7 @@
 
             <!-- 1-Tap Mobile Intent Deep-link -->
             <div>
-                <a id="upiMobilePayBtn" href="upi://pay?pa=flyingcheetah@hdfcbank&amp;pn=Flying%20Cheetah%20Boutique&amp;am=1499&amp;cu=INR" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition shadow-md shadow-emerald-600/20 flex items-center justify-center gap-2">
+                <a id="upiMobilePayBtn" href="javascript:void(0)" onclick="if(window.FC_AUTH && window.FC_AUTH.showAuthToast) window.FC_AUTH.showAuthToast('Demo Mode: Configure UPI in profile', 'notice');" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition shadow-md shadow-emerald-600/20 flex items-center justify-center gap-2">
                     <i class="fa-solid fa-bolt"></i>
                     <span>Pay via Mobile UPI App (1-Tap Intent)</span>
                 </a>
@@ -434,7 +425,7 @@
             <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200/80 flex items-center justify-between text-xs">
                 <div>
                     <span class="text-[10px] text-slate-400 block font-semibold">UPI ID / VPA</span>
-                    <span id="upiIdText" class="font-mono font-bold text-slate-800">flyingcheetah@hdfcbank</span>
+                    <span id="upiIdText" class="font-mono font-bold text-slate-800"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-amber-50 text-amber-800 border border-amber-200/60 text-[10px]"><i class="fa-solid fa-flask"></i> Interactive Sandbox Demo Mode</span></span>
                 </div>
                 <button type="button" onclick="copyUpiId()" id="copyUpiBtn" class="px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700 hover:border-bikOrange hover:text-bikOrange font-bold text-[11px] transition flex items-center gap-1">
                     <i class="fa-regular fa-copy"></i>
@@ -515,14 +506,39 @@
             document.getElementById('upiModalAmount').textContent = '₹' + orderData.item.price;
             document.getElementById('upiUtrInput').value = '';
 
-            const upiId = 'flyingcheetah@hdfcbank';
-            const payeeName = 'Flying Cheetah Boutique';
-            const upiUri = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(payeeName)}&am=${orderData.item.price}&cu=INR&tn=${encodeURIComponent('Order ' + orderData.orderRef)}`;
+            const merchantProf = (window.FC_AUTH && typeof window.FC_AUTH.getMerchantProfile === 'function')
+                ? window.FC_AUTH.getMerchantProfile() : {};
+            const configuredUpi = merchantProf.merchant_upi_id || merchantProf.upi_id || '';
+            const isDemoSandbox = !configuredUpi;
+            const upiId = configuredUpi || 'sandbox-demo@upi';
+            const payeeName = merchantProf.business_name || 'Flying Cheetah Boutique (Demo Sandbox)';
+            const upiUri = `upi://pay?pa=${encodeURIComponent(upiId)}&pn=${encodeURIComponent(payeeName)}&am=${orderData.item.price}&cu=INR&tn=${encodeURIComponent('Order ' + orderData.orderRef)}`;
+
+            const upiIdTextEl = document.getElementById('upiIdText');
+            if (upiIdTextEl) {
+                if (isDemoSandbox) {
+                    upiIdTextEl.innerHTML = '<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-amber-50 text-amber-800 border border-amber-200/60 text-[10px]"><i class="fa-solid fa-flask"></i> Interactive Sandbox Demo Mode</span>';
+                } else {
+                    upiIdTextEl.textContent = upiId;
+                }
+            }
 
             // Wire 1-tap mobile intent deep-link
             const mobileBtn = document.getElementById('upiMobilePayBtn');
             if (mobileBtn) {
-                mobileBtn.href = upiUri;
+                mobileBtn.href = isDemoSandbox ? 'javascript:void(0)' : upiUri;
+                if (isDemoSandbox) {
+                    mobileBtn.onclick = (e) => {
+                        e.preventDefault();
+                        if (window.FC_AUTH && typeof window.FC_AUTH.showAuthToast === 'function') {
+                            window.FC_AUTH.showAuthToast('Interactive Demo Mode: Configure your UPI in Merchant Profile to activate live payments.', 'notice');
+                        } else {
+                            alert('Demo Sandbox Mode: Configure your UPI ID in Merchant Store Profile to enable direct 1-tap UPI app payment.');
+                        }
+                    };
+                } else {
+                    mobileBtn.onclick = null;
+                }
             }
 
             // Dynamically generate QR code
@@ -556,7 +572,9 @@
         }
 
         function copyUpiId() {
-            const upiId = 'flyingcheetah@hdfcbank';
+            const merchantProf = (window.FC_AUTH && typeof window.FC_AUTH.getMerchantProfile === 'function')
+                ? window.FC_AUTH.getMerchantProfile() : {};
+            const upiId = merchantProf.merchant_upi_id || merchantProf.upi_id || 'sandbox-demo@upi';
             const triggerCopiedFeedback = () => {
                 const lbl = document.getElementById('copyBtnLabel');
                 if (lbl) {

@@ -116,7 +116,7 @@ module.exports = async function handler(req, res) {
                 try { body = JSON.parse(body); } catch (_) { body = {}; }
             }
 
-            if (body.honeypot) {
+            if (body.honeypot || body.company_url) {
                 return sendJson(201, {
                     id: 'hp-bot',
                     name: body.name,
@@ -125,14 +125,18 @@ module.exports = async function handler(req, res) {
             }
 
             const { name, email, phone, company, modules, scheduled_time, notes } = body;
-            if (!name || !email || !phone) {
+            const cleanName = name ? String(name).trim() : '';
+            const cleanEmail = email ? String(email).trim().toLowerCase() : '';
+            const cleanPhone = phone ? String(phone).trim() : '';
+
+            if (!cleanName || !cleanEmail || !cleanPhone) {
                 return sendJson(400, { error: 'Name, email, and phone are required.' });
             }
 
             const record = {
-                name: String(name).trim(),
-                email: String(email).trim().toLowerCase(),
-                phone: String(phone).trim(),
+                name: cleanName,
+                email: cleanEmail,
+                phone: cleanPhone,
                 company: company ? String(company).trim() : '',
                 modules: Array.isArray(modules) ? modules : [modules || 'All Automation Suites'],
                 scheduled_time: scheduled_time || new Date().toISOString(),

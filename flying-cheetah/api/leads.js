@@ -116,7 +116,7 @@ module.exports = async function handler(req, res) {
             }
 
             // Honeypot anti-spam check
-            if (body.honeypot) {
+            if (body.honeypot || body.website_url) {
                 return sendJson(201, {
                     id: 'bot-filtered',
                     name: body.name,
@@ -126,17 +126,20 @@ module.exports = async function handler(req, res) {
             }
 
             const { name, email, phone, service, service_interested, message, source_page } = body;
-            if (!name || !email || !phone) {
+            const cleanName = name ? String(name).trim() : '';
+            const cleanEmail = email ? String(email).trim().toLowerCase() : '';
+            const cleanPhone = phone ? String(phone).trim() : '';
+
+            if (!cleanName || !cleanEmail || !cleanPhone) {
                 return sendJson(400, { error: 'Name, email, and phone are required.' });
             }
 
             const chosenService = service || service_interested || 'General Consultation';
             const leadRecord = {
-                name: String(name).trim(),
-                email: String(email).trim().toLowerCase(),
-                phone: String(phone).trim(),
+                name: cleanName,
+                email: cleanEmail,
+                phone: cleanPhone,
                 service: chosenService,
-                service_interested: chosenService,
                 message: message ? String(message).trim() : '',
                 source_page: source_page || 'website',
                 status: 'new'

@@ -16,9 +16,48 @@
     <link rel="canonical" href="https://flying-cheetah.vercel.app/about">
     <meta property="og:url" content="https://flying-cheetah.vercel.app/about">
     <meta property="og:site_name" content="Flying Cheetah">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "AboutPage",
+          "name": "About Us | Flying Cheetah - Autonomous Commerce Labs",
+          "url": "https://flying-cheetah.vercel.app/about",
+          "mainEntity": {
+            "@type": "Organization",
+            "name": "Flying Cheetah",
+            "url": "https://flying-cheetah.vercel.app",
+            "logo": "https://flying-cheetah.vercel.app/images/flying_cheetah_logo_one_tail.png",
+            "founder": [
+              {
+                "@type": "Person",
+                "name": "Bhagat Mukhiya",
+                "jobTitle": "Co-Founder & Lead Systems Architect",
+                "image": "https://flying-cheetah.vercel.app/images/founder_bhagat_mukhiya.jpg",
+                "sameAs": [
+                  "https://www.linkedin.com/in/bhagat-mukhiya-b74683380",
+                  "https://github.com/bhagatmukhiya82-source"
+                ]
+              },
+              {
+                "@type": "Person",
+                "name": "Yash Gaikwad",
+                "jobTitle": "Co-Founder & Growth Operations",
+                "image": "https://flying-cheetah.vercel.app/images/founder_yash_gaikwad.jpg",
+                "sameAs": [
+                  "https://www.linkedin.com/in/yash-gaikwad-1669b0397"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+    </script>
 
     <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/styles.min.css">
     <!-- FontAwesome 6 CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
@@ -27,28 +66,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/fx.css">
     
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        bikOrange: '#FF6838',
-                        bikOrangeDark: '#E04D1F',
-                        bikDark: '#121624',
-                        bikBg: '#FAFAFB',
-                        slateText: '#64748B',
-                        brandGold: '#D97706',
-                        waGreen: '#25D366'
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['"Plus Jakarta Sans"', '"Outfit"', 'sans-serif'],
-                        tech: ['"Space Grotesk"', 'monospace']
-                    }
-                }
-            }
-        }
-    </script>
     <style>
         .dropdown-parent:hover .mega-menu {
             opacity: 1;
@@ -112,7 +129,7 @@
                     <div class="mega-menu home-menu absolute top-full left-0 w-72 bg-white rounded-2xl border border-slate-200 p-4 shadow-2xl bik-mega-shadow z-50">
                         <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-3 pb-2 border-b border-slate-100 flex items-center justify-between">
                             <span>Core Portals</span>
-                            <a href="home.html" class="text-bikOrange hover:underline font-bold">Executive Hub ↗</a>
+                            <a href="index.html" class="text-bikOrange hover:underline font-bold">Executive Hub ↗</a>
                         </div>
                         <div class="space-y-1.5 pt-2">
                             <a href="index.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">

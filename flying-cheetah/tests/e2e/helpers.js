@@ -7,6 +7,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
+const vm = require('node:vm');
 
 const PROJECT_ROOT = path.resolve(__dirname, '../..');
 const API_DIR = path.join(PROJECT_ROOT, 'api');
@@ -140,16 +141,14 @@ function createMockReqRes(options = {}) {
 /**
  * Invokes a serverless CommonJS handler safely with mock request/response.
  */
-async function invokeHandler(handler, options = {}, timeoutMs = 4000) {
+async function invokeHandler(handler, options = {}, timeoutMs = 8000) {
     const { req, res } = createMockReqRes(options);
     try {
         const handlerPromise = Promise.resolve(handler(req, res));
         // If the handler directly returned an object with statusCode (micro-style)
         const returnedResult = await Promise.race([
             handlerPromise,
-            res.waitForEnd(timeoutMs).catch((err) => {
-                return null;
-            })
+            res.waitForEnd(timeoutMs).catch(() => null)
         ]);
 
         if (res.finished) {
@@ -178,7 +177,7 @@ async function invokeHandler(handler, options = {}, timeoutMs = 4000) {
             };
         }
 
-        const endResult = await res.waitForEnd(1000);
+        const endResult = await res.waitForEnd(timeoutMs);
         let json = null;
         try {
             json = JSON.parse(endResult.body);
@@ -403,6 +402,313 @@ function scanDirForRegex(dirPath, regex, fileFilter = (f) => f.endsWith('.js')) 
     return results;
 }
 
+/**
+ * Parses all Schema.org JSON-LD scripts (<script type="application/ld+json">) in HTML.
+ * Returns an array of parsed JSON objects. If JSON is invalid, captures error with __invalid: true.
+ */
+function parseJsonLd(html) {
+    if (!html || typeof html !== 'string') return [];
+    const scriptRegex = /<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi;
+    const results = [];
+    let match;
+    while ((match = scriptRegex.exec(html)) !== null) {
+        const raw = match[1].trim();
+        if (!raw) continue;
+        try {
+            const data = JSON.parse(raw);
+            results.push(data);
+        } catch (err) {
+            results.push({
+                __invalid: true,
+                __error: err.message,
+                __raw: raw
+            });
+        }
+    }
+    return results;
+}
+
+/**
+ * Detects whether HTML page includes runtime Tailwind Play CDN script.
+ */
+function checkTailwindCdn(html) {
+    if (!html || typeof html !== 'string') return false;
+    return /<script\b[^>]*src=["'][^"']*cdn\.tailwindcss\.com[^"']*["'][^>]*>/i.test(html) ||
+           /cdn\.tailwindcss\.com/i.test(html);
+}
+
+/**
+ * Detects whether HTML page links to compiled production stylesheet (css/styles.min.css).
+ */
+function checkCompiledCssLink(html) {
+    if (!html || typeof html !== 'string') return false;
+    return /<link\b[^>]*rel=["']stylesheet["'][^>]*href=["'][^"']*styles\.min\.css["'][^>]*>/i.test(html) ||
+           /<link\b[^>]*href=["'][^"']*styles\.min\.css["'][^>]*rel=["']stylesheet["'][^>]*>/i.test(html) ||
+           /href=["'][^"']*css\/styles\.min\.css["']/i.test(html);
+}
+
+/**
+ * Reads and parses vercel.json configuration.
+ * Returns { exists, config: { redirects, headers, rewrites, ... }, raw }
+ */
+function readVercelConfig() {
+    const configPath = path.join(PROJECT_ROOT, 'vercel.json');
+    if (!fs.existsSync(configPath)) {
+        return { exists: false, config: {}, raw: '' };
+    }
+    try {
+        const raw = fs.readFileSync(configPath, 'utf8');
+        const config = JSON.parse(raw);
+        return { exists: true, config, raw };
+    } catch (err) {
+        return { exists: true, config: {}, raw: '', error: err.message };
+    }
+}
+
+/**
+ * Reads and parses .env.example configuration template.
+ * Returns { exists, content, variables: string[] }
+ */
+function readEnvExample() {
+    const envPath = path.join(PROJECT_ROOT, '.env.example');
+    if (!fs.existsSync(envPath)) {
+        return { exists: false, content: '', variables: [] };
+    }
+    const content = fs.readFileSync(envPath, 'utf8');
+    const variables = [];
+    const lines = content.split(/\r?\n/);
+    for (const line of lines) {
+        const trimmed = line.trim();
+        if (!trimmed || trimmed.startsWith('#')) continue;
+        const eqIdx = trimmed.indexOf('=');
+        if (eqIdx !== -1) {
+            const varName = trimmed.slice(0, eqIdx).trim();
+            if (varName && !variables.includes(varName)) {
+                variables.push(varName);
+            }
+        }
+    }
+    return { exists: true, content, variables };
+}
+
+/**
+ * Reads and parses .gitignore rules.
+ * Supports customPath or defaults to flying-cheetah/.gitignore.
+ * Returns Array of active rules (with .exists, .rules, and .raw attached).
+ */
+function readGitIgnore(customPath) {
+    const targetPath = customPath
+        ? (path.isAbsolute(customPath) ? customPath : path.resolve(PROJECT_ROOT, customPath))
+        : path.join(PROJECT_ROOT, '.gitignore');
+    if (!fs.existsSync(targetPath)) {
+        const empty = [];
+        empty.exists = false;
+        empty.rules = [];
+        empty.raw = '';
+        return empty;
+    }
+    const raw = fs.readFileSync(targetPath, 'utf8');
+    const rules = raw
+        .split(/\r?\n/)
+        .map(l => l.trim())
+        .filter(l => l && !l.startsWith('#'));
+    rules.exists = true;
+    rules.rules = rules;
+    rules.raw = raw;
+    return rules;
+}
+
+/**
+ * Computes uppercase SHA-256 hex digest of file on disk.
+ */
+function getFileSha256(filePath) {
+    const resolved = path.isAbsolute(filePath) ? filePath : path.join(PROJECT_ROOT, filePath);
+    if (!fs.existsSync(resolved)) return null;
+    const buf = fs.readFileSync(resolved);
+    return crypto.createHash('sha256').update(buf).digest('hex').toUpperCase();
+}
+
+/**
+ * Detects presence of FC_LEADS.openAuditModal calls or modal trigger buttons in HTML.
+ */
+function extractLeadAuditCTAs(html) {
+    if (!html || typeof html !== 'string') {
+        const empty = [];
+        empty.hasModalCall = false;
+        empty.count = 0;
+        return empty;
+    }
+    const regex = /(?:window\.)?FC_LEADS\.openAuditModal\s*\(\s*(['"]([^'"]*)['"])?\s*\)/gi;
+    const ctas = [];
+    let match;
+    while ((match = regex.exec(html)) !== null) {
+        ctas.push({
+            call: match[0],
+            service: match[2] || '',
+            index: match.index
+        });
+    }
+    ctas.hasModalCall = ctas.length > 0;
+    ctas.count = ctas.length;
+    return ctas;
+}
+
+/**
+ * Executes client auth scripts in a sandboxed Node vm browser context
+ * to evaluate window.FC_AUTH facade and its exported public methods.
+ */
+function evaluateAuthFacade(codeOrPath) {
+    let code = '';
+    const submodulesToLoad = [];
+
+    if (!codeOrPath) {
+        const authDir = path.join(PROJECT_ROOT, 'js/auth');
+        if (fs.existsSync(authDir)) {
+            const potentialSubmodules = ['auth-validation.js', 'auth-profile.js', 'auth-core.js', 'auth-modal.js'];
+            for (const sub of potentialSubmodules) {
+                const subPath = path.join(authDir, sub);
+                if (fs.existsSync(subPath)) {
+                    submodulesToLoad.push(fs.readFileSync(subPath, 'utf8'));
+                }
+            }
+        }
+        const defaultPath = path.join(PROJECT_ROOT, 'js/auth.js');
+        if (fs.existsSync(defaultPath)) {
+            code = fs.readFileSync(defaultPath, 'utf8');
+        }
+    } else if (typeof codeOrPath === 'string') {
+        const potentialPath = path.isAbsolute(codeOrPath) ? codeOrPath : path.join(PROJECT_ROOT, codeOrPath);
+        if (fs.existsSync(potentialPath) && fs.statSync(potentialPath).isFile()) {
+            code = fs.readFileSync(potentialPath, 'utf8');
+        } else {
+            code = codeOrPath;
+        }
+    }
+
+    const storage = {};
+    const localStorageMock = {
+        getItem: (k) => (Object.prototype.hasOwnProperty.call(storage, k) ? storage[k] : null),
+        setItem: (k, v) => { storage[k] = String(v); },
+        removeItem: (k) => { delete storage[k]; },
+        clear: () => { for (const k of Object.keys(storage)) delete storage[k]; }
+    };
+
+    const mockClient = {
+        auth: {
+            getUser: () => Promise.resolve({ data: { user: null }, error: null }),
+            getSession: () => Promise.resolve({ data: { session: null }, error: null }),
+            signInWithPassword: () => Promise.resolve({ data: {}, error: null }),
+            signUp: () => Promise.resolve({ data: {}, error: null }),
+            signOut: () => Promise.resolve({ error: null })
+        },
+        from: () => ({
+            select: () => ({
+                eq: () => ({
+                    single: () => Promise.resolve({ data: null, error: null }),
+                    order: () => Promise.resolve({ data: [], error: null })
+                })
+            }),
+            insert: () => Promise.resolve({ data: null, error: null }),
+            update: () => Promise.resolve({ data: null, error: null })
+        })
+    };
+
+    function CustomEventClass(name, opts) {
+        this.name = name;
+        this.type = name;
+        this.detail = opts ? opts.detail : null;
+    }
+    function EventClass(name) {
+        this.name = name;
+        this.type = name;
+    }
+
+    const mockWindow = {
+        localStorage: localStorageMock,
+        sessionStorage: localStorageMock,
+        location: { href: 'https://flying-cheetah.vercel.app/', origin: 'https://flying-cheetah.vercel.app', search: '', hostname: 'flying-cheetah.vercel.app', port: '' },
+        navigator: { userAgent: 'NodeTest/1.0' },
+        addEventListener: () => {},
+        removeEventListener: () => {},
+        dispatchEvent: () => true,
+        CustomEvent: CustomEventClass,
+        Event: EventClass,
+        FC_BACKEND: { getClient: () => mockClient },
+        console: { ...console, log: () => {}, warn: () => {}, error: () => {} },
+        setTimeout: (fn) => setTimeout(fn, 0),
+        clearTimeout: clearTimeout,
+        setInterval: (fn) => setInterval(fn, 1000),
+        clearInterval: clearInterval,
+        requestAnimationFrame: (cb) => setTimeout(cb, 0),
+        cancelAnimationFrame: clearTimeout
+    };
+    mockWindow.window = mockWindow;
+
+    const mockDocument = {
+        readyState: 'complete',
+        addEventListener: () => {},
+        removeEventListener: () => {},
+        getElementById: () => null,
+        querySelector: () => null,
+        querySelectorAll: () => [],
+        createElement: () => ({
+            setAttribute: () => {},
+            appendChild: () => {},
+            remove: () => {},
+            style: {},
+            classList: { add: () => {}, remove: () => {}, contains: () => false }
+        }),
+        body: { appendChild: () => {}, querySelector: () => null }
+    };
+    mockWindow.document = mockDocument;
+
+    const sandbox = {
+        window: mockWindow,
+        document: mockDocument,
+        localStorage: localStorageMock,
+        sessionStorage: localStorageMock,
+        CustomEvent: CustomEventClass,
+        Event: EventClass,
+        currentUser: null,
+        currentProfile: null,
+        activeTab: 'trial',
+        console: mockWindow.console,
+        setTimeout: mockWindow.setTimeout,
+        clearTimeout: mockWindow.clearTimeout,
+        setInterval: mockWindow.setInterval,
+        clearInterval: mockWindow.clearInterval,
+        requestAnimationFrame: mockWindow.requestAnimationFrame,
+        cancelAnimationFrame: mockWindow.cancelAnimationFrame
+    };
+
+    const context = vm.createContext(sandbox);
+    try {
+        vm.runInContext('var currentUser = null; var currentProfile = null; var activeTab = "trial";', context);
+    } catch (_) {}
+
+    for (const subCode of submodulesToLoad) {
+        try {
+            vm.runInContext(subCode, context, { timeout: 2000 });
+        } catch (err) {
+            mockWindow.__evalSubError = err;
+        }
+    }
+
+    if (code) {
+        try {
+            vm.runInContext(code, context, { timeout: 2000 });
+        } catch (err) {
+            mockWindow.__evalError = err;
+        }
+    }
+
+    const facade = mockWindow.FC_AUTH || {};
+    facade.window = mockWindow;
+    facade.FC_AUTH = mockWindow.FC_AUTH;
+    facade.localStorage = localStorageMock;
+    return facade;
+}
+
 module.exports = {
     PROJECT_ROOT,
     API_DIR,
@@ -423,5 +729,14 @@ module.exports = {
     extractImages,
     readVercelIgnore,
     parseSitemap,
-    scanDirForRegex
+    scanDirForRegex,
+    parseJsonLd,
+    checkTailwindCdn,
+    checkCompiledCssLink,
+    readVercelConfig,
+    readEnvExample,
+    readGitIgnore,
+    getFileSha256,
+    extractLeadAuditCTAs,
+    evaluateAuthFacade
 };

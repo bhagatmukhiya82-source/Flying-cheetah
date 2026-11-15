@@ -602,4 +602,244 @@ describe('Tier 3: Cross-Feature & Pairwise Interactions', () => {
         }
     });
 
+    // =========================================================================
+    // 15. Dynamic Store UPI Sandbox + Client Auth Session
+    // =========================================================================
+    it('T3.15 Dynamic Store UPI Sandbox + Client Auth Session: Store checkout checks merchant profile in auth session; defaults to sandbox mode if unconfigured', () => {
+        const storeHtml = readHtmlPage('store.html');
+        assert.ok(storeHtml, 'store.html must exist and be readable');
+
+        // 1. Verify zero occurrences of obsolete hardcoded UPI VPA across store.html
+        assert.doesNotMatch(
+            storeHtml,
+            /flyingcheetah@hdfcbank/i,
+            'store.html must not contain hardcoded "flyingcheetah@hdfcbank" VPA'
+        );
+
+        // 2. Verify store.html script checks window.FC_AUTH.getMerchantProfile
+        assert.match(
+            storeHtml,
+            /window\.FC_AUTH\s*&&\s*typeof\s+window\.FC_AUTH\.getMerchantProfile\s*===?\s*['"]function['"]/,
+            'store.html must integrate with window.FC_AUTH.getMerchantProfile'
+        );
+
+        // 3. Verify presence of interactive sandbox fallback UI in store.html
+        assert.ok(
+            storeHtml.includes('Interactive Sandbox Demo Mode') || storeHtml.includes('sandbox-demo@upi'),
+            'store.html must include interactive sandbox demo fallback'
+        );
+        assert.ok(
+            storeHtml.includes('id="upiMobilePayBtn"'),
+            'store.html must contain mobile UPI 1-tap intent button'
+        );
+        assert.ok(
+            storeHtml.includes('id="upiModal"'),
+            'store.html must contain dynamic UPI modal'
+        );
+
+        // 4. Test sandbox logic execution: unconfigured merchant profile vs configured profile
+        const vm = require('node:vm');
+        const domContext = {
+            window: {},
+            document: {
+                elements: {},
+                getElementById(id) {
+                    if (!this.elements[id]) {
+                        this.elements[id] = {
+                            textContent: '',
+                            innerHTML: '',
+                            value: '',
+                            href: '',
+                            classList: {
+                                classes: new Set(['hidden']),
+                                add(c) { this.classes.add(c); },
+                                remove(c) { this.classes.delete(c); },
+                                contains(c) { return this.classes.has(c); }
+                            }
+                        };
+                    }
+                    return this.elements[id];
+                }
+            },
+            console: { log: () => {}, warn: () => {}, error: () => {} }
+        };
+        domContext.window = domContext;
+
+        // Extract script logic from store.html for openUpiModal
+        const openUpiModalCodeMatch = storeHtml.match(/function\s+openUpiModal\s*\([\s\S]*?\n\s*function\s+closeUpiModal/);
+        assert.ok(openUpiModalCodeMatch, 'openUpiModal function must be present in store.html');
+        const openUpiModalCode = openUpiModalCodeMatch[0].replace(/function\s+closeUpiModal[\s\S]*$/, '');
+
+        // Evaluate in VM without configured merchant profile (Sandbox state)
+        vm.createContext(domContext);
+        domContext.window.FC_AUTH = {
+            getMerchantProfile: () => ({})
+        };
+        vm.runInContext(openUpiModalCode, domContext);
+
+        const orderData = { item: { name: 'Pure Linen Shirt', price: 1499 }, orderRef: 'FC-TEST-001' };
+        domContext.openUpiModal(orderData);
+
+        const upiIdTextEl = domContext.document.getElementById('upiIdText');
+        const mobilePayBtnEl = domContext.document.getElementById('upiMobilePayBtn');
+        const upiModalEl = domContext.document.getElementById('upiModal');
+
+        assert.ok(
+            upiIdTextEl.innerHTML.includes('Interactive Sandbox Demo Mode'),
+            'Unconfigured merchant profile must display Sandbox Demo Mode badge'
+        );
+        assert.equal(
+            mobilePayBtnEl.href,
+            'javascript:void(0)',
+            'Mobile 1-tap pay link must be javascript:void(0) in sandbox demo mode'
+        );
+        assert.ok(
+            !upiModalEl.classList.contains('hidden'),
+            'UPI modal must be unhidden after openUpiModal call'
+        );
+
+        // Evaluate in VM with configured merchant profile (Live payment intent state)
+        domContext.window.FC_AUTH = {
+            getMerchantProfile: () => ({
+                merchant_upi_id: 'merchant@okaxis',
+                business_name: 'Cheetah Elite Boutique'
+            })
+        };
+        domContext.openUpiModal(orderData);
+
+        assert.equal(
+            upiIdTextEl.textContent,
+            'merchant@okaxis',
+            'Configured merchant profile must display live merchant UPI ID'
+        );
+        assert.ok(
+            mobilePayBtnEl.href.startsWith('upi://pay?'),
+            'Configured merchant profile must construct upi://pay URI'
+        );
+        assert.ok(
+            mobilePayBtnEl.href.includes('pa=merchant%40okaxis'),
+            'Constructed URI must contain encoded payee address'
+        );
+        assert.ok(
+            mobilePayBtnEl.href.includes('am=1499'),
+            'Constructed URI must contain payable amount'
+        );
+    });
+
+    // =========================================================================
+    // 16. Service Page Lead Form + Postgres Generated Column Compatibility
+    // =========================================================================
+    it('T3.16 Service Page Lead Form + Postgres Generated Column Compatibility: Lead submitted from service audit modal persists into Supabase without PostgreSQL 428C9 column collision', async () => {
+        // 1. Verify service pages wire lead capture modal via js/leads.js
+        const servicePages = [
+            'store-automation.html',
+            'ai-voice-agents.html',
+            'solutions.html',
+            'web-development.html'
+        ];
+
+        for (const pageName of servicePages) {
+            const html = readHtmlPage(pageName);
+            assert.match(
+                html,
+                /<script\s+[^>]*src=["']js\/leads\.js["']/i,
+                `${pageName} must load js/leads.js`
+            );
+            assert.match(
+                html,
+                /(?:FC_LEADS\.openAuditModal|openAuditModal)/,
+                `${pageName} must wire CTAs to openAuditModal`
+            );
+        }
+
+        // 2. Invoke POST /api/leads with a service audit modal payload (including service and backward-compat service_interested)
+        const leadsHandlerPath = path.join(API_DIR, 'leads.js');
+        const leadsHandler = require(leadsHandlerPath);
+
+        const originalFetch = global.fetch;
+        let interceptedUrl = null;
+        let interceptedBody = null;
+        let interceptedHeaders = null;
+
+        try {
+            global.fetch = async (url, options = {}) => {
+                interceptedUrl = String(url);
+                interceptedHeaders = options.headers || {};
+                if (options.body) {
+                    try {
+                        interceptedBody = JSON.parse(options.body);
+                    } catch (_) {
+                        interceptedBody = options.body;
+                    }
+                }
+
+                // Simulate PostgreSQL / Supabase REST response with generated column computed
+                return {
+                    ok: true,
+                    status: 201,
+                    json: async () => ([{
+                        id: 'lead_supabase_789',
+                        name: 'Aditya Mehta',
+                        email: 'aditya@mumbai-retail.com',
+                        phone: '+91 99203 55443',
+                        service: 'Store Automation & Cart Recovery',
+                        // In Postgres, service_interested is GENERATED ALWAYS AS (service) STORED
+                        service_interested: 'Store Automation & Cart Recovery',
+                        message: 'Need 25-minute automated courier dispatch for our store',
+                        source_page: 'store-automation.html',
+                        status: 'new',
+                        created_at: new Date().toISOString()
+                    }])
+                };
+            };
+
+            await withEnv({
+                SUPABASE_URL: 'https://fc-test-project.supabase.co',
+                SUPABASE_ANON_KEY: 'fc-test-anon-key-valid-token'
+            }, async () => {
+                const res = await invokeHandler(leadsHandler, {
+                    method: 'POST',
+                    url: '/api/leads',
+                    body: {
+                        name: 'Aditya Mehta',
+                        email: 'aditya@mumbai-retail.com',
+                        phone: '+91 99203 55443',
+                        service: 'Store Automation & Cart Recovery',
+                        service_interested: 'Store Automation & Cart Recovery', // legacy / alias field from client
+                        message: 'Need 25-minute automated courier dispatch for our store',
+                        source_page: 'store-automation.html'
+                    }
+                });
+
+                assert.equal(res.statusCode, 201, `Lead creation must succeed with HTTP 201, got ${res.statusCode}`);
+                assert.ok(res.json, 'Response must return parsed JSON body');
+                assert.equal(res.json.id, 'lead_supabase_789', 'Must return persisted lead ID');
+                assert.equal(res.json.service, 'Store Automation & Cart Recovery');
+
+                // 3. Verify outgoing Supabase payload strictly excludes service_interested
+                assert.ok(interceptedUrl, 'fetch must have been called with Supabase REST URL');
+                assert.ok(
+                    interceptedUrl.includes('/rest/v1/leads_inquiries'),
+                    `Target URL must be leads_inquiries table, got: ${interceptedUrl}`
+                );
+                assert.ok(interceptedBody, 'fetch body must be provided');
+                assert.equal(interceptedBody.service, 'Store Automation & Cart Recovery');
+
+                // Critical check for PostgreSQL error 428C9 avoidance:
+                assert.strictEqual(
+                    interceptedBody.service_interested,
+                    undefined,
+                    'Outgoing Supabase insert payload must strictly exclude "service_interested" column to prevent PostgreSQL 428C9 (cannot insert a non-DEFAULT value into column "service_interested")'
+                );
+
+                assert.equal(interceptedBody.name, 'Aditya Mehta');
+                assert.equal(interceptedBody.email, 'aditya@mumbai-retail.com');
+                assert.equal(interceptedBody.phone, '+91 99203 55443');
+                assert.equal(interceptedBody.status, 'new');
+            });
+        } finally {
+            global.fetch = originalFetch;
+        }
+    });
+
 });

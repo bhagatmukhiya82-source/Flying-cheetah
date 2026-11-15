@@ -17,35 +17,13 @@
     <meta property="og:url" content="https://flying-cheetah.vercel.app/store-automation">
     <meta property="og:site_name" content="Flying Cheetah">
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/styles.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/fx.css">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['"Inter"', 'sans-serif'],
-                        display: ['"Plus Jakarta Sans"', '"Outfit"', 'sans-serif'],
-                        tech: ['"Space Grotesk"', 'monospace']
-                    },
-                    colors: {
-                        bikOrange: '#FF6838',
-                        bikOrangeDark: '#E04A1B',
-                        bikDark: '#0B0F19',
-                        bikBg: '#FFF9F6',
-                        brandGold: '#F59E0B',
-                        slateText: '#475569',
-                        waGreen: '#10B981'
-                    }
-                }
-            }
-        }
-    </script>
     <style>
         .bik-mega-shadow {
             box-shadow: 0 25px 60px -15px rgba(255, 104, 56, 0.15), 0 0 1px 1px rgba(0, 0, 0, 0.05);
@@ -67,6 +45,23 @@
         .dropdown-parent.active > .mega-menu { display: block; }
     </style>
     <link rel="stylesheet" href="css/mobile-app.css">
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Store Automation & WhatsApp Journeys",
+      "serviceType": "Store Automation & WhatsApp Journeys",
+      "url": "https://flying-cheetah.vercel.app/store-automation",
+      "description": "Never lose a high-intent lead again. Instantly engage with browsing visitors and convert them into paid orders via automated WhatsApp journeys and hyperlocal fleet dispatch.",
+      "areaServed": "IN",
+      "provider": {
+            "@type": "Organization",
+            "name": "Flying Cheetah",
+            "url": "https://flying-cheetah.vercel.app",
+            "logo": "https://flying-cheetah.vercel.app/images/flying_cheetah_logo_one_tail.png"
+      }
+}
+    </script>
 </head>
 <body class="bg-white text-slate-900 font-sans antialiased selection:bg-bikOrange selection:text-white">
 
@@ -102,7 +97,7 @@
                     <div class="mega-menu home-menu absolute top-full left-0 w-72 bg-white rounded-2xl border border-slate-200 p-4 shadow-2xl bik-mega-shadow z-50">
                         <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-3 pb-2 border-b border-slate-100 flex items-center justify-between">
                             <span>Core Portals</span>
-                            <a href="home.html" class="text-bikOrange hover:underline font-bold">Executive Hub ↗</a>
+                            <a href="index.html" class="text-bikOrange hover:underline font-bold">Executive Hub ↗</a>
                         </div>
                         <div class="space-y-1.5 pt-2">
                             <!-- 1. Main Site -->
@@ -256,7 +251,7 @@
 
                     <!-- Dual CTA Buttons -->
                     <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
-                        <a href="demo.html" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-sm transition shadow-lg shadow-orange-500/25">
+                        <a href="demo.html" onclick="if(window.FC_LEADS){window.FC_LEADS.openAuditModal('Store Automation & Cart Recovery');return false;}" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-sm transition shadow-lg shadow-orange-500/25">
                             <span>Book Free Live Demo</span> <span class="text-base leading-none">➔</span>
                         </a>
                         <a href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah,%20I%20want%20to%20learn%20more%20about%20Store%20Automation." target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl border border-slate-300 hover:border-bikOrange text-slate-800 font-bold text-sm bg-white hover:bg-orange-50/50 transition">

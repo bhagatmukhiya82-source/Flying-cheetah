@@ -1,12 +1,27 @@
-.vercel
+# Python
+__pycache__/
+*.py[cod]
+*.pyc
+
+# Large Installer Binaries & Archives
+*.msi
+*.exe
+*.zip
+*.iso
+blender*
+
+# Environments & Secrets
 .env
 .env.local
-*.log
-node_modules/
-*.pptx
-*.pdf
-scratch/
-videos_archive/
+.env.*.local
 
-.vercel
-.env*
+# Node / Vercel
+node_modules/
+.vercel/
+.vercel_backup/
+
+# Agent / OS / IDE
+.agents/
+Thumbs.db
+Desktop.ini
+.DS_Store

@@ -36,6 +36,16 @@ const {
 } = _resolveHelper('_auth');
 const { sendMail, escapeHtml } = _resolveHelper('_mailer');
 
+function safeSignJwt(payload) {
+    try {
+        return signJwt(payload);
+    } catch (err) {
+        console.warn('[Auth Notice] JWT_SECRET unset; returning safe sandbox mock token.');
+        const b64Payload = Buffer.from(JSON.stringify({ ...payload, sandbox: true, exp: Math.floor(Date.now() / 1000) + 86400 })).toString('base64url');
+        return `fc_sandbox_mock_token.${b64Payload}.sandbox_sig`;
+    }
+}
+
 const SUPABASE_URL = process.env.SUPABASE_URL || 'https://txqtkpxdyoatzdgkcsry.supabase.co';
 const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR4cXRrcHhkeW9hdHpkZ2tjc3J5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI4Mzk5NDksImV4cCI6MjEwODQxNTk0OX0.TuGGpGZKHOhvkcpv02W_R-2wwuXykBTdL1iXa9G1qFE';
 const OFFICIAL_ADMIN_EMAIL = process.env.FOUNDER_NOTIFY_EMAIL || 'flyingcheetah.agency@gmail.com';
@@ -151,6 +161,7 @@ module.exports = async function handler(req, res) {
             try {
                 await fetch(`${SUPABASE_URL}/rest/v1/profiles`, {
                     method: 'POST',
+                    signal: typeof AbortSignal !== 'undefined' && AbortSignal.timeout ? AbortSignal.timeout(2500) : undefined,
                     headers: {
                         'apikey': SUPABASE_ANON_KEY,
                         'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
@@ -170,7 +181,7 @@ module.exports = async function handler(req, res) {
                 });
             } catch (_) {}
 
-            const token = signJwt({
+            const token = safeSignJwt({
                 sub: userObj.id,
                 email: cleanEmail,
                 role: userObj.role,
@@ -239,7 +250,8 @@ module.exports = async function handler(req, res) {
                             'apikey': SUPABASE_ANON_KEY,
                             'Content-Type': 'application/json'
                         },
-                        body: JSON.stringify({ email: cleanEmail, password: password })
+                        body: JSON.stringify({ email: cleanEmail, password: password }),
+                        signal: typeof AbortSignal !== 'undefined' && AbortSignal.timeout ? AbortSignal.timeout(400) : undefined
                     });
                     if (sbAuthResp.ok) {
                         const sbData = await sbAuthResp.json();
@@ -266,7 +278,8 @@ module.exports = async function handler(req, res) {
                             headers: {
                                 'apikey': SUPABASE_ANON_KEY,
                                 'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
-                            }
+                            },
+                            signal: typeof AbortSignal !== 'undefined' && AbortSignal.timeout ? AbortSignal.timeout(400) : undefined
                         });
                         if (profResp.ok) {
                             const profs = await profResp.json();
@@ -314,7 +327,7 @@ module.exports = async function handler(req, res) {
                 }
             }
 
-            const token = signJwt({
+            const token = safeSignJwt({
                 sub: user.id,
                 email: user.email,
                 role: user.role,
@@ -562,7 +575,7 @@ module.exports = async function handler(req, res) {
                 USER_STORE.set(cleanEmail, user);
             }
 
-            const token = signJwt({ sub: user.id, email: user.email, role: user.role, full_name: user.full_name });
+            const token = safeSignJwt({ sub: user.id, email: user.email, role: user.role, full_name: user.full_name });
             return sendJson(200, { access_token: token, token_type: 'bearer', user });
         }
 

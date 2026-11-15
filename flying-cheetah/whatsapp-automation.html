@@ -18,36 +18,43 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "Flying Cheetah WhatsApp Automation Suite",
-      "applicationCategory": "BusinessApplication",
-      "operatingSystem": "Cloud-based",
-      "offers": {
-        "@type": "Offer",
-        "priceCurrency": "INR",
-        "price": "1499"
-      },
-      "description": "WhatsApp Conversational Commerce, Abandoned Cart Recovery, and Automated Fleet Dispatch engine."
+      "@graph": [
+        {
+          "@type": "Service",
+          "name": "WhatsApp Automation & Conversational Commerce",
+          "serviceType": "WhatsApp Business API & Autonomous Commerce Automation",
+          "provider": {
+            "@type": "Organization",
+            "name": "Flying Cheetah",
+            "url": "https://flying-cheetah.vercel.app"
+          },
+          "areaServed": "IN",
+          "url": "https://flying-cheetah.vercel.app/whatsapp-automation",
+          "description": "WhatsApp Conversational Commerce, Abandoned Cart Recovery, and Automated Fleet Dispatch engine."
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "Flying Cheetah WhatsApp Automation Suite",
+          "applicationCategory": "BusinessApplication",
+          "operatingSystem": "Cloud-based",
+          "offers": {
+            "@type": "Offer",
+            "priceCurrency": "INR",
+            "price": "1499"
+          },
+          "description": "WhatsApp Conversational Commerce, Abandoned Cart Recovery, and Automated Fleet Dispatch engine."
+        }
+      ]
     }
     </script>
 
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/styles.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/fx.css">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['"Inter"', 'sans-serif'], display: ['"Plus Jakarta Sans"', 'sans-serif'], outfit: ['"Outfit"', 'sans-serif'], mono: ['"Space Grotesk"', 'monospace'] },
-                    colors: { bikOrange: '#FF6838', bikOrangeDark: '#E04A1B', bikDark: '#121624', bikBg: '#FFF9F6', brandGold: '#E5A93C', slateText: '#4E5A71' }
-                }
-            }
-        }
-    </script>
     <style>
         .bik-mega-shadow { box-shadow: 0 25px 60px -15px rgba(255, 104, 56, 0.15), 0 0 1px 1px rgba(0, 0, 0, 0.05); }
         .mega-menu { display: none; }
@@ -97,7 +104,7 @@
                     <div class="mega-menu home-menu absolute top-full left-0 w-72 bg-white rounded-2xl border border-slate-200 p-4 shadow-2xl bik-mega-shadow z-50">
                         <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-3 pb-2 border-b border-slate-100 flex items-center justify-between">
                             <span>Core Portals</span>
-                            <a href="home.html" class="text-bikOrange hover:underline font-bold">Executive Hub ↗</a>
+                            <a href="index.html" class="text-bikOrange hover:underline font-bold">Executive Hub ↗</a>
                         </div>
                         <div class="space-y-1.5 pt-2">
                             <!-- 1. Main Site -->
@@ -192,7 +199,7 @@
             </nav>
 
             <div class="flex items-center space-x-4">
-                <a href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah%20team,%20I%20want%20to%20deploy%20WhatsApp%20Automation." target="_blank" class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-sm transition shadow-md shadow-orange-500/20">
+                <a href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah%20team,%20I%20want%20to%20deploy%20WhatsApp%20Automation." target="_blank" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-sm transition shadow-md shadow-orange-500/20">
                     Deploy on WhatsApp
                 </a>
             </div>
@@ -216,7 +223,7 @@
                     </p>
 
                     <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
-                        <a href="demo.html" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-sm transition shadow-lg shadow-orange-500/25">
+                        <a href="demo.html" onclick="if(window.FC_LEADS){window.FC_LEADS.openAuditModal('WhatsApp Automation');return false;}" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-sm transition shadow-lg shadow-orange-500/25">
                             <span>Book Free Live Demo</span> <span class="text-base leading-none">➔</span>
                         </a>
                         <a href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah,%20I%20want%20to%20learn%20more%20about%20WhatsApp%20Automation." target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl border border-slate-300 hover:border-bikOrange text-slate-800 font-bold text-sm bg-white hover:bg-orange-50/50 transition">
