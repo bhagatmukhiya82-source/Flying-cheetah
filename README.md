@@ -1,431 +1,123 @@
 <div align="center">
 
-  <img src="docs/assets/logo_heraldic.jpg" alt="Flying Cheetah Labs Emblem" width="160" style="border-radius: 50%; box-shadow: 0 10px 30px rgba(255, 230, 0, 0.4); border: 2px solid #FFE600;" />
+  <a href="https://flying-cheetah.vercel.app">
+    <img src="flying-cheetah/images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah Labs Emblem" width="120" />
+  </a>
 
-  # 🐆 FLYING CHEETAH LABS
-  ### **Autonomous Artificial Intelligence Commerce, Hyperlocal Logistics & Real-Time Telemetry Platform**
+  <h1>FLYING CHEETAH LABS</h1>
+  <p><strong>AI Marketing Automation, High-Speed Storefronts &amp; Hyperlocal Commerce Platform</strong></p>
 
-  <p align="center">
-    <b>Empowering modern eCommerce brands to scale revenue with human-like targeted marketing, zero-payroll courier dispatch, and multi-modal Artificial Intelligence agents.</b>
+  <p>
+    <a href="https://flying-cheetah.vercel.app"><img src="https://img.shields.io/badge/Live_Production-flying--cheetah.vercel.app-FF6838?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Production" /></a>
+    <a href="#system-architecture"><img src="https://img.shields.io/badge/Serverless_API-Vercel_Node.js-121624?style=for-the-badge&logo=vercel&logoColor=white" alt="Vercel Serverless API" /></a>
+    <a href="#database--auth"><img src="https://img.shields.io/badge/Database_%26_Auth-Supabase_PostgreSQL-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white" alt="Supabase" /></a>
+    <a href="#local-development--testing"><img src="https://img.shields.io/badge/UI-25_Pages_%7C_Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind CSS" /></a>
+    <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-7C3AED?style=for-the-badge" alt="MIT License" /></a>
   </p>
 
-  <!-- SHIELDS / BADGES -->
-  <p align="center">
-    <a href="https://flying-cheetah.vercel.app"><img src="https://img.shields.io/badge/Live_Production-flying--cheetah.vercel.app-10B981?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Demo" /></a>
-    <a href="#-architecture--system-blueprint"><img src="https://img.shields.io/badge/Architecture-FastAPI_%7C_Redis_%7C_Celery-0284C7?style=for-the-badge&logo=fastapi&logoColor=white" alt="Architecture" /></a>
-    <a href="#-database--cloud-integration"><img src="https://img.shields.io/badge/Database-Supabase_PostgreSQL-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white" alt="Supabase" /></a>
-    <a href="#-database--cloud-integration"><img src="https://img.shields.io/badge/Real--Time_Sync-Google_Sheets_API-34A853?style=for-the-badge&logo=googlesheets&logoColor=white" alt="Google Sheets" /></a>
-    <img src="https://img.shields.io/badge/Frontend-23_Pages_%7C_TailwindCSS-F59E0B?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind CSS" />
-    <img src="https://img.shields.io/badge/Autonomous_AI-Neural_Engine-FFE600?style=for-the-badge&logo=openai&logoColor=black" alt="Autonomous AI" />
-    <img src="https://img.shields.io/badge/License-MIT-purple?style=for-the-badge" alt="License" />
+  <p>
+    <a href="https://flying-cheetah.vercel.app"><strong>Live Platform</strong></a> &bull;
+    <a href="https://flying-cheetah.vercel.app/demo"><strong>Book 1-on-1 Demo</strong></a> &bull;
+    <a href="https://wa.me/919920386421"><strong>WhatsApp Desk</strong></a> &bull;
+    <a href="mailto:flyingcheetah.agency@gmail.com"><strong>Agency Email</strong></a>
   </p>
 
-  <p align="center">
-    <a href="https://flying-cheetah.vercel.app"><b>🌐 Visit Live Platform</b></a> •
-    <a href="https://wa.me/919920386421"><b>💬 WhatsApp Direct Desk</b></a> •
-    <a href="mailto:flyingcheetah.agency@gmail.com"><b>📧 Agency Inquiries</b></a> •
-    <a href="#-table-of-contents"><b>📖 Documentation</b></a>
-  </p>
+  <br />
 
-  <br/>
-
-  <!-- VIBRANT NANO BANANA PANORAMIC HEADER BANNER -->
   <a href="https://flying-cheetah.vercel.app">
-    <img src="docs/assets/banner_quantum_growth.png" alt="Flying Cheetah 3D Autonomous Commerce Architecture" width="980" style="border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);" />
+    <img src="docs/assets/banner_quantum_growth.png" alt="Flying Cheetah Labs Studio Architecture Banner" width="960" />
   </a>
-  <p><i><b>Flying Cheetah 3D Autonomous Commerce Architecture</b>: 1-Click conversational WhatsApp storefront, event-driven Supabase mesh, and automated 20-min Borzo doorstep delivery.</i></p>
+  <p><em>Unified AI commerce workflows, sub-second headless storefronts, and zero-payroll Mumbai hyperlocal dispatch.</em></p>
 
 </div>
 
 ---
 
-## 📑 Table of Contents
-1. [🌟 Executive Overview](#-executive-overview)
-2. [🖥️ Live Platform Webpage Showcase (Screenshots)](#️-live-platform-webpage-showcase-screenshots)
-3. [✨ Core Capabilities & Platform Features](#-core-capabilities--platform-features)
-4. [📊 Visual Benchmarks, Flowcharts & Flywheel](#-visual-benchmarks-flowcharts--flywheel)
-5. [🏛️ Architecture & System Blueprint](#️-architecture--system-blueprint)
-6. [🎯 Strategic Roadmap, Execution Plan & Goals (2026–2027)](#-strategic-roadmap-execution-plan--goals-20262027)
-7. [💻 Technology Stack Matrix](#-technology-stack-matrix)
-8. [🚀 Quick Start & Installation](#-quick-start--installation)
-9. [🔌 REST API & WebSocket Telemetry](#-rest-api--websocket-telemetry)
-10. [🗄️ Database & Cloud Integration](#️-database--cloud-integration)
-11. [🛡️ Security, Privacy & Legal Compliance](#️-security-privacy--legal-compliance)
-12. [👥 Leadership & Foundational Team](#-leadership--foundational-team)
+## Table of Contents
+
+1. [Executive Overview](#executive-overview)
+2. [Live Platform Showcase](#live-platform-showcase)
+3. [Core Capabilities](#core-capabilities)
+4. [System Architecture](#system-architecture)
+5. [Serverless API & Routes](#serverless-api--routes)
+6. [Database & Auth](#database--auth)
+7. [Repository Structure](#repository-structure)
+8. [Local Development & Testing](#local-development--testing)
+9. [Founders & Leadership](#founders--leadership)
 
 ---
 
-## 🌟 Executive Overview
+## Executive Overview
 
-**Flying Cheetah Labs** is an enterprise-grade full-stack platform engineered from the ground up for high-velocity direct-to-consumer (D2C) brands, omnichannel retailers, and retail merchants.
+**Flying Cheetah Labs** is an end-to-end eCommerce engineering and automation platform built for direct-to-consumer (D2C) retail brands across Mumbai MMR and India.
 
-Traditional commerce infrastructure suffers from crippling operational fragmentation:
-* 🔴 **High Customer Acquisition Costs (CAC)** with advertising fatigue across standard channels.
-* 🔴 **Aggregator Commission Drag** (25% to 32% margins surrendered on food, grocery, and local deliveries).
-* 🔴 **Manual Data Entry Bottlenecks** across GST invoicing, Tally ledgers, and inventory reconciliation.
+It brings together three core pillars under one unified architecture:
 
-**Flying Cheetah solves this with an autonomous 3-pillar ecosystem:**
-1. ⚡ **Human-Like Artificial Intelligence Conversational Commerce**: WhatsApp storefronts, Instagram DM automation, Click-to-WhatsApp (CTWA) ads, and Autonomous AI Voice Calling agents.
-2. 🛵 **Zero-Payroll Hyperlocal Logistics**: Real-time integration with Borzo and Porter APIs for automated 2-wheeler courier dispatch (< 5.8 min rider pickup).
-3. 🗄️ **End-to-End Enterprise Data Pipelines**: Dual-sync to cloud PostgreSQL (Supabase) and formatted spreadsheets (Google Sheets Apps Script), unified under a high-throughput Python FastAPI core.
+- **Conversational Commerce & Retention:** WhatsApp Cloud storefronts, Instagram Reel-to-DM automation, Click-to-WhatsApp (CTWA) funnels, AI Voice Calling agents, RCS rich carousels, DLT-compliant SMS failover, and automated email journeys.
+- **High-Speed Web Engineering:** Clean, pre-compiled Tailwind CSS storefronts (`25` dedicated HTML pages including landing flows, interactive modules, storefront demo, and admin console) with Core Web Vitals focus.
+- **Hyperlocal Logistics & Telemetry:** Zero-commission Borzo/Porter dispatch workflows, real-time analytics telemetry, and instant lead streaming to Supabase PostgreSQL, Google Sheets, and transactional mailers.
 
 ---
 
-## 🖥️ Live Platform Webpage Showcase (Screenshots)
+## Live Platform Showcase
 
-Below are production captures of the live **Flying Cheetah** web application deployed at [flying-cheetah.vercel.app](https://flying-cheetah.vercel.app):
+> Captures below are rendered directly from the live `flying-cheetah/` build.
 
-### 1. Live Telemetry & Interactive 3D Profit Analytics
-Real-time merchant revenue tracking, 30-day profit margin curves, active courier counts, and live hover tooltips:
+### 1. Flagship Hero & Interactive Telemetry Console
+Single-line responsive chrome, conversion-focused hero copy, and an interactive hover SVG profit telemetry widget (`3.1x` ROAS, `84.6%` WhatsApp open rate, `0%` commission model).
 
 <div align="center">
   <a href="https://flying-cheetah.vercel.app">
-    <img src="docs/assets/screenshots/screenshot_hero_telemetry.png" alt="Live Telemetry Dashboard Screenshot" width="900" style="border-radius: 12px; border: 1px solid #10B981; box-shadow: 0 15px 35px rgba(16, 185, 129, 0.2);" />
+    <img src="docs/assets/screenshots/screenshot_hero_telemetry.png" alt="Flying Cheetah Hero & Live Telemetry Console" width="900" />
   </a>
 </div>
 
-<br/>
-
-### 2. Autonomous Solutions Matrix
-Comprehensive modular overview of WhatsApp Storefronts, Hyperlocal Borzo Dispatch, AI Voice Agents, and Omnichannel Marketing:
+### 2. Core Product Ecosystem
+Cohesive bespoke studio product showcases across Web & App Development, Instagram Auto-DM, WhatsApp Commerce, Click-to-WhatsApp Ads, and AI Voice Calling.
 
 <div align="center">
   <a href="https://flying-cheetah.vercel.app">
-    <img src="docs/assets/screenshots/screenshot_solutions_matrix.png" alt="Autonomous Solutions Matrix Screenshot" width="900" style="border-radius: 12px; border: 1px solid #00F0FF; box-shadow: 0 15px 35px rgba(0, 240, 255, 0.2);" />
+    <img src="docs/assets/screenshots/screenshot_solutions_matrix.png" alt="Flying Cheetah 5-Card Product Ecosystem" width="900" />
   </a>
 </div>
 
-<br/>
-
-### 3. Hyperlocal Courier Fleet & Dispatch Map
-Live geospatial routing protocol showing active rider density, ETA guarantees, and zero-commission 2-wheeler dispatch across South Mumbai & MMR:
-
-<div align="center">
-  <a href="https://flying-cheetah.vercel.app">
-    <img src="docs/assets/screenshots/screenshot_fleet_dispatch.png" alt="Hyperlocal Fleet Dispatch Screenshot" width="900" style="border-radius: 12px; border: 1px solid #FFE600; box-shadow: 0 15px 35px rgba(255, 230, 0, 0.2);" />
-  </a>
-</div>
-
-<br/>
-
-### 4. WhatsApp Conversational Commerce & 1-Click Checkout
-Native catalog browsing, interactive cart building, UPI QR generation, and automated abandoned cart recovery:
-
-<div align="center">
-  <a href="https://flying-cheetah.vercel.app">
-    <img src="docs/assets/screenshots/screenshot_whatsapp_commerce.png" alt="WhatsApp Commerce Screenshot" width="900" style="border-radius: 12px; border: 1px solid #25D366; box-shadow: 0 15px 35px rgba(37, 211, 102, 0.2);" />
-  </a>
-</div>
-
-<br/>
-
-### 5. Multi-Agent Customer Support & Lead Routing Desk
-Unified triage dashboard routing WhatsApp inquiries, Instagram direct messages, and merchant audit requests with sub-minute resolution:
-
-<div align="center">
-  <a href="https://flying-cheetah.vercel.app">
-    <img src="docs/assets/screenshots/screenshot_customer_support.png" alt="Multi-Agent Support Desk Screenshot" width="900" style="border-radius: 12px; border: 1px solid #A855F7; box-shadow: 0 15px 35px rgba(168, 85, 247, 0.2);" />
-  </a>
-</div>
-
----
-
-## ✨ Core Capabilities & Platform Features
-
-| Capability | Module & Implementation | Business Impact |
-| ---------- | ----------------------- | --------------- |
-| **📈 Live Telemetry Dashboard** | Interactive SVG Area & Line Chart with 3D perspective hover tilt & data inspection | **+42.5% Profit Surge** with 4.8x ROAS tracking |
-| **💬 WhatsApp Commerce** | Catalog chat, automated cart checkout & UPI QR generation via Meta Cloud API v21 | **98.4% Message Open Rate** with zero app downloads |
-| **🛒 Abandoned Cart Recovery** | Distributed Celery worker scheduling personalized 15m & 60m discount nudges | **₹8,40,000 GMV Recovered** across 280+ orders |
-| **🛵 Hyperlocal Dispatch** | Instant Borzo & Porter API dispatch with live GPS buyer tracking links | **0% Commission** (Saves ₹1,48,500/mo vs Swiggy) |
-| **🤖 Artificial Intelligence OCR & Ledger** | Multi-modal vision receipt extraction syncing GSTIN to Tally & Google Sheets | **15+ Hours Saved Weekly** on manual accounting |
-| **🎙️ AI Voice Agents** | Autonomous inbound/outbound WebRTC calling for COD order verification | **Zero RTO Fraud** on Cash-On-Delivery shipments |
-| **📱 Omnichannel Customer Support** | Unified ticketing desk for WhatsApp, Instagram, and web chat inquiries | **1.2 Min Average Response Time** |
-
----
-
-## 📊 Visual Benchmarks, Flowcharts & Flywheel
-
-### 1. Performance Telemetry: Legacy Manual vs. Flying Cheetah AI
-Direct comparative benchmark between conventional manual commerce operations and our autonomous Artificial Intelligence pipeline:
-
-<div align="center">
-  <img src="docs/assets/nano_banana_speed_metrics.png" alt="Benchmark Telemetry Comparison" width="920" style="border-radius: 14px; border: 1px solid #E2E8F0; box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);" />
-</div>
-
-<br/>
-
-### 2. Autonomous Commerce Flywheel Architecture
-Continuous self-reinforcing flywheel accelerating acquisition, neural qualification, instant dispatch, and predictive repeat retention:
-
-<div align="center">
-  <img src="docs/assets/nano_banana_ecosystem_flywheel.png" alt="Autonomous Commerce Flywheel" width="920" style="border-radius: 14px; border: 1px solid #E2E8F0; box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);" />
-</div>
-
-<br/>
-
-### 3. Agency Lifecycle & Delivery Architecture
-Comprehensive lifecycle mapping merchant onboarding, WhatsApp mini-store deployment, Borzo courier dispatch, and automated GST reconciliation:
-
-<div align="center">
-  <img src="docs/assets/flowchart_agency_lifecycle.png" alt="Agency Lifecycle Flowchart" width="850" style="border-radius: 12px; border: 1px solid #CBD5E1;" />
-</div>
-
-<br/>
-
-### 4. Inbound Client Acquisition & Retention Funnel
-Step-by-step conversion engine from Click-to-WhatsApp ads to 1-click UPI checkout, automated delivery tracking, and 5-star Google review collection:
-
-<div align="center">
-  <img src="docs/assets/flowchart_client_funnel.png" alt="Client Conversion Funnel" width="850" style="border-radius: 12px; border: 1px solid #CBD5E1;" />
-</div>
-
-<br/>
-
-### 5. Hyperlocal Dispatch Radar & Live Fleet Telemetry
-Sub-6 minute rider arrival protocol across South Mumbai & MMR retail hubs:
-
-<div align="center">
-  <img src="docs/assets/hyperlocal_dispatch_map.jpg" alt="Hyperlocal Dispatch Map" width="920" style="border-radius: 14px; border: 1px solid #E2E8F0; box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);" />
-</div>
-
----
-
-## 🏛️ Architecture & System Blueprint
-
-### High-Level Neural Matrix
-<div align="center">
-  <img src="docs/assets/ai_commerce_neural_matrix.png" alt="AI Commerce Neural Architecture Matrix" width="920" style="border-radius: 14px; border: 1px solid #E2E8F0; box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);" />
-</div>
-
-<br/>
-
-### Real-Time Event Sequence
-```mermaid
-sequenceDiagram
-    autonumber
-    actor Shopper as 🛍️ Online Shopper
-    participant WA as 💬 WhatsApp / Instagram
-    participant API as ⚡ FastAPI Core Gateway
-    participant DB as 🗄️ Supabase PostgreSQL
-    participant Sheet as 📊 Google Sheets Webhook
-    participant Redis as ⚙️ Celery & Redis Pool
-    participant Courier as 🛵 Borzo / Porter Fleet
-
-    Shopper->>WA: Discovers product & chats / taps ad
-    WA->>API: Inbound webhook payload (Meta Cloud API)
-    API->>DB: Record session & user profile
-    API->>Sheet: Stream lead to Google Sheets (200 OK)
-    WA-->>Shopper: Sends interactive catalog & UPI Payment link
-    Shopper->>WA: Completes UPI Payment / Confirms COD
-    WA->>API: Payment confirmation event
-    API->>Redis: Enqueue dispatch task (Zero Delay)
-    Redis->>Courier: Call Borzo / Porter API with pickup & delivery GPS
-    Courier-->>API: Rider assigned (ETA: 4.8 mins)
-    API-->>WA: Send live GPS rider tracking link to Shopper
-    API->>DB: Update order status to DISPATCHED
-```
-
----
-
-## 🎯 Strategic Roadmap, Execution Plan & Goals (2026–2027)
-
-Our engineering execution strategy follows structured quarterly milestones combining deep algorithmic automation, infrastructure scale, and geographic expansion:
-
-```
-2026 Q1 [FOUNDATION] ────► 2026 Q2 [COGNITION] ────► 2026 Q3 [OMNICHANNEL] ────► 2026 Q4-2027 [QUANTUM]
-  (Complete 100%)            (In Flight 85%)            (Target 45%)               (Planned 15%)
-```
-
-### 🟢 Phase 1: Hyperlocal Foundation & Core AI Engine (Q1 2026)
-![Progress](https://geps.dev/progress/100?color=10B981) **Status: COMPLETE & VERIFIED**
-* [x] **Production Storefront Deployment**: Launched 23 responsive pages with Tailwind CSS on Vercel Anycast Edge.
-* [x] **Borzo & Porter API Integration**: Sub-6 minute courier dispatch with automated SLA fallback.
-* [x] **Meta Cloud API v21 Webhooks**: Ingest WhatsApp messaging events with zero-drop queuing.
-* [x] **Dual Persistence Streaming**: Real-time parallel sync across Supabase PostgreSQL and Google Sheets.
-* [x] **Interactive SVG Telemetry**: 3D perspective dashboard with hover tooltip data points.
-
-### 🔵 Phase 2: Autonomous Multi-Modal Artificial Intelligence & Voice Agents (Q2 2026)
-![Progress](https://geps.dev/progress/85?color=00F0FF) **Status: IN FLIGHT (85% Achieved)**
-* [x] **Conversational Cart Recovery**: Staggered Celery workers recovering ₹8.4L GMV across 280+ orders.
-* [x] **Multi-Modal Receipt OCR**: Vision-based GST invoice parsing into structured spreadsheet columns.
-* [ ] **Autonomous WebRTC Voice Agent**: Natural speech COD order confirmation calls to eliminate return-to-origin (RTO).
-* [ ] **Sub-Second Intent Classifier**: Real-time neural query router directing shoppers to tailored product bundles.
-* [ ] **South Mumbai Pilot Expansion**: Expand merchant network across Opera House, Colaba, Bandra, and Andheri.
-
-### 🟡 Phase 3: Omnichannel Commerce Mesh & Multi-Region Expansion (Q3 2026)
-![Progress](https://geps.dev/progress/45?color=FFE600) **Status: UPCOMING EXECUTION**
-* [ ] **RCS Rich Messaging Gateway**: Native Android Google Messages carousels with 1-tap checkout.
-* [ ] **Instagram DM Commerce Automation**: Automated story reply triggers, catalog links, and discount claims.
-* [ ] **Multi-Tenant Merchant SaaS Portal**: Self-serve dashboard for merchants to connect custom domains and WhatsApp numbers.
-* [ ] **Pan-India Hub Rollout**: Launch fleet integrations across Bengaluru, Delhi NCR, Hyderabad, and Pune.
-* [ ] **Dynamic Pricing Engine**: Algorithmic surge & weather-adaptive delivery fee balancing.
-
-### 🟣 Phase 4: Autonomous Predictive Supply Chain & Global Scale (Q4 2026 – Q1 2027)
-![Progress](https://geps.dev/progress/15?color=A855F7) **Status: STRATEGIC VISION**
-* [ ] **Predictive Stock Replenishment**: Machine learning inventory forecasting predicting dark store stock-outs 48h in advance.
-* [ ] **Decentralized Micro-Hub Routing**: Multi-drop routing optimization reducing average order delivery time to < 18 mins.
-* [ ] **Cross-Border Multi-Currency Gateway**: Seamless global checkout supporting Stripe, UPI International, and Apple Pay.
-* [ ] **Enterprise Scale Target**: ₹250,000,000+ ($3,000,000+ USD) monthly GMV run-rate processed through the ecosystem.
-
----
-
-## 💻 Technology Stack Matrix
-
-```text
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                            FLYING CHEETAH LABS                              │
-├───────────────────────┬─────────────────────────────────────────────────────┤
-│ 🌐 Frontend Layer      │ 23 Responsive Pages, HTML5 Semantic, Tailwind CSS,  │
-│                       │ SVG Telemetry Charts, Vanilla JS (fc-widgets.js)    │
-├───────────────────────┼─────────────────────────────────────────────────────┤
-│ ⚡ Backend Framework  │ Python 3.11+, FastAPI (ASGI), Uvicorn, Pydantic v2 │
-├───────────────────────┼─────────────────────────────────────────────────────┤
-│ ⚙️ Async Worker Engine │ Celery 5.4, Redis In-Memory Broker, Celery Beat     │
-├───────────────────────┼─────────────────────────────────────────────────────┤
-│ 🗄️ Persistence Layer  │ Supabase (PostgreSQL 15), Row-Level Security (RLS)  │
-├───────────────────────┼─────────────────────────────────────────────────────┤
-│ 📊 Real-Time Sync     │ Google Apps Script Webhooks, Google Sheets API      │
-├───────────────────────┼─────────────────────────────────────────────────────┤
-│ 🚀 Cloud CDN & Edge   │ Vercel Anycast Edge Network, Custom SSL Automation  │
-├───────────────────────┼─────────────────────────────────────────────────────┤
-│ 🛵 Logistics APIs     │ Borzo API (2-Wheeler Fleet), Porter API (Logistics) │
-├───────────────────────┼─────────────────────────────────────────────────────┤
-│ 🧠 Multi-Modal AI     │ Autonomous Artificial Intelligence Cognition & OCR  │
-└───────────────────────┴─────────────────────────────────────────────────────┘
-```
-
----
-
-## 🚀 Quick Start & Installation
-
-### 1. Clone the Repository
-```bash
-git clone https://github.com/bhagatmukhiya82-source/Flying-cheetah.git
-cd Flying-cheetah
-```
-
-### 2. Frontend Local Preview
-The frontend runs without heavy dependencies. You can serve it using Python's built-in HTTP server:
-```bash
-cd flying-cheetah
-python -m http.server 8080
-```
-Open **`http://localhost:8080`** in your browser.
-
-### 3. Backend Setup
-```bash
-cd backend
-python -m venv venv
-
-# Windows
-venv\Scripts\activate
-# Linux / macOS
-source venv/bin/activate
-
-pip install -r requirements.txt
-cp .env.example .env
-
-# Start FastAPI Server
-uvicorn app.main:app --reload --port 8000
-```
-Visit API Documentation: **`http://localhost:8000/docs`** (Interactive Swagger UI).
-
-### 4. Running Distributed Workers (Docker)
-```bash
-cd backend
-docker-compose up --build -d
-```
-
-### 5. Running Automated Test Suite
-```bash
-cd backend
-pytest -v
-```
-
----
-
-## 🔌 REST API & WebSocket Telemetry
-
-* **Interactive Swagger UI**: `http://localhost:8000/docs`
-* **Redoc UI**: `http://localhost:8000/redoc`
-
-```bash
-# Example: Submit Merchant Lead Audit
-curl -X POST "https://flying-cheetah.vercel.app/api/v1/leads" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "name": "Karan Singhal",
-    "email": "karan@bombaycraft.com",
-    "phone": "+91 99203 86421",
-    "company": "Bombay Craft Studio",
-    "service": "Hyperlocal Courier & WhatsApp Commerce"
-  }'
-```
-
-* **Live WebSocket Telemetry**:
-  Connect to `ws://localhost:8000/ws/telemetry` for high-speed ticker updates streaming GMV, active couriers, and Artificial Intelligence cart recoveries.
-
----
-
-## 🗄️ Database & Cloud Integration
-
-### Supabase Tables
-1. **`profiles`**: Multi-tenant merchant accounts with 14-day zero-cost trial tracking.
-2. **`leads_inquiries`**: Inbound client discovery records and marketing audit bookings.
-3. **`demo_bookings`**: Executive demo scheduling with Google Calendar sync.
-4. **`fleet_orders`**: Real-time courier dispatch logs with Borzo tracking IDs.
-
-### Google Sheets Real-Time Sync
-Every lead submitted on any frontend page is instantly streamed to the Google Apps Script Webhook:
-* **Response Status**: `200 OK`
-* **Auto-Formatting Script**: `formatMySheet()` applies zebra striping, Inter font, and padded headers automatically.
-
----
-
-## 🛡️ Security, Privacy & Legal Compliance
-
-Flying Cheetah Labs complies with strict international and domestic data regulations:
-* **DPDP Act 2023**: Indian Digital Personal Data Protection Act compliance.
-* **GDPR**: European General Data Protection Regulation compliance.
-* **Meta Business Partner Policy**: Strict consent-based opt-in verification for WhatsApp and Instagram messaging.
-* **Zero-Spam Guarantee**: Granular opt-out handlers (`STOP` / `UNSUBSCRIBE`) enforced at the API layer.
-
-Full legal documents available in the repository:
-* [Privacy Policy](flying-cheetah/privacy-policy.html)
-* [Terms of Service](flying-cheetah/terms-of-service.html)
-* [Refund Policy](flying-cheetah/refund-policy.html)
-
----
-
-## 👥 Leadership & Foundational Team
+### 3. Web Engineering & Omnichannel Support Workbench
 
 <div align="center">
   <table>
     <tr>
-      <td width="50%" align="center" style="padding: 24px; background: #0B091A; border: 2px solid #00F0FF; border-radius: 16px;">
-        <h3 style="color: #00F0FF; margin-bottom: 4px;">⚡ Bhagat Mukhiya</h3>
-        <p style="color: #FFE600; font-weight: bold; font-size: 14px; margin-top: 0;">Co-Founder & AI Systems Architect</p>
-        <p style="color: #CBD5E1; font-size: 13px; line-height: 1.6; text-align: left;">
-          Architecting distributed asynchronous systems, Python FastAPI backends, Celery worker clusters, and multi-modal Artificial Intelligence cognition pipelines for high-throughput enterprise commerce.
-        </p>
-        <div style="margin-top: 14px;">
-          <a href="https://www.linkedin.com/in/bhagat-mukhiya-b74683380"><img src="https://img.shields.io/badge/LinkedIn-Bhagat_Mukhiya-0A66C2?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
-          <a href="https://github.com/bhagatmukhiya82-source"><img src="https://img.shields.io/badge/GitHub-bhagatmukhiya82--source-181717?style=flat-square&logo=github&logoColor=white" alt="GitHub" /></a>
-          <a href="mailto:bhagatmukhiya82@gmail.com"><img src="https://img.shields.io/badge/Email-bhagatmukhiya82%40gmail.com-EA4335?style=flat-square&logo=gmail&logoColor=white" alt="Email" /></a>
-        </div>
+      <td width="50%" align="center">
+        <a href="https://flying-cheetah.vercel.app/web-development">
+          <img src="docs/assets/screenshots/screenshot_web_development.png" alt="High-Speed Web Development Showcase" width="440" />
+        </a>
+        <br /><sub><strong>Web Engineering Showcase</strong> — <code>web-development.html</code></sub>
       </td>
-      <td width="50%" align="center" style="padding: 24px; background: #0B091A; border: 2px solid #FFE600; border-radius: 16px;">
-        <h3 style="color: #FFE600; margin-bottom: 4px;">🚀 Yash Gaikwad</h3>
-        <p style="color: #00F0FF; font-weight: bold; font-size: 14px; margin-top: 0;">Co-Founder & Head of Growth Operations</p>
-        <p style="color: #CBD5E1; font-size: 13px; line-height: 1.6; text-align: left;">
-          Spearheading merchant acquisition, high-impact brand outreach, courier fleet dispatch logistics, and enterprise client partnerships across Mumbai MMR and pan-India retail corridors.
-        </p>
-        <div style="margin-top: 14px;">
-          <a href="https://www.linkedin.com/in/yash-gaikwad-1669b0397"><img src="https://img.shields.io/badge/LinkedIn-Yash_Gaikwad-0A66C2?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
-          <a href="https://wa.me/919920386421"><img src="https://img.shields.io/badge/WhatsApp-+91_99203_86421-25D366?style=flat-square&logo=whatsapp&logoColor=white" alt="WhatsApp" /></a>
-          <a href="mailto:flyingcheetah.agency@gmail.com"><img src="https://img.shields.io/badge/Email-flyingcheetah.agency%40gmail.com-0078D4?style=flat-square&logo=microsoftoutlook&logoColor=white" alt="Email" /></a>
-        </div>
+      <td width="50%" align="center">
+        <a href="https://flying-cheetah.vercel.app/customer-support">
+          <img src="docs/assets/screenshots/screenshot_customer_support.png" alt="Omnichannel Support Inbox Showcase" width="440" />
+        </a>
+        <br /><sub><strong>Omnichannel Support Desk</strong> — <code>customer-support.html</code></sub>
+      </td>
+    </tr>
+  </table>
+</div>
+
+### 4. WhatsApp Commerce & Hyperlocal Fleet Protocol
+
+<div align="center">
+  <table>
+    <tr>
+      <td width="50%" align="center">
+        <a href="https://flying-cheetah.vercel.app/whatsapp-marketing">
+          <img src="docs/assets/screenshots/screenshot_whatsapp_commerce.png" alt="WhatsApp Broadcast & Catalog Studio" width="440" />
+        </a>
+        <br /><sub><strong>WhatsApp Broadcast Studio</strong> — <code>whatsapp-marketing.html</code></sub>
+      </td>
+      <td width="50%" align="center">
+        <a href="https://flying-cheetah.vercel.app/delivery">
+          <img src="docs/assets/screenshots/screenshot_fleet_dispatch.png" alt="Hyperlocal Fleet Dispatch Protocol" width="440" />
+        </a>
+        <br /><sub><strong>Hyperlocal Fleet Protocol</strong> — <code>delivery.html</code></sub>
       </td>
     </tr>
   </table>
@@ -433,7 +125,128 @@ Full legal documents available in the repository:
 
 ---
 
+## Core Capabilities
+
+| Capability | Primary Pages | Key Features |
+| :--- | :--- | :--- |
+| **Web & Storefront Engineering** | [`web-development.html`](flying-cheetah/web-development.html) | Pre-compiled Tailwind CSS, 95+ Vitals targeting, SEO JSON-LD schema, sub-second routing |
+| **WhatsApp Commerce & Marketing** | [`whatsapp-automation.html`](flying-cheetah/whatsapp-automation.html), [`whatsapp-marketing.html`](flying-cheetah/whatsapp-marketing.html), [`store.html`](flying-cheetah/store.html) | Conversational catalog flows, interactive cart recovery, UPI checkout simulation |
+| **Instagram & CTWA Acquisition** | [`instagram-automation.html`](flying-cheetah/instagram-automation.html), [`ctwa-automation.html`](flying-cheetah/ctwa-automation.html) | Automated Reel comment-to-DM workflows & Meta ad funnel routing |
+| **AI Voice & Calling Helpdesk** | [`ai-voice-agents.html`](flying-cheetah/ai-voice-agents.html), [`whatsapp-calling.html`](flying-cheetah/whatsapp-calling.html), [`customer-support.html`](flying-cheetah/customer-support.html) | COD confirmation calling, acoustic telemetry UI, unified multi-channel inbox |
+| **Omnichannel CDP, RCS, SMS & Email** | [`customer-data-platform.html`](flying-cheetah/customer-data-platform.html), [`rcs-messaging.html`](flying-cheetah/rcs-messaging.html), [`sms-marketing.html`](flying-cheetah/sms-marketing.html), [`email-marketing.html`](flying-cheetah/email-marketing.html) | 360-degree shopper profiles, verified rich Android carousels, DLT failover routes |
+| **Hyperlocal Logistics & Admin CRM** | [`delivery.html`](flying-cheetah/delivery.html), [`demo.html`](flying-cheetah/demo.html), [`admin.html`](flying-cheetah/admin.html) | Borzo/Porter dispatch APIs, VIP walkthrough scheduler, JWT-protected admin dashboard |
+
+---
+
+## System Architecture
+
+```mermaid
+flowchart LR
+    Visitor["Web & Mobile Storefront\n(25 HTML Pages + Tailwind CSS)"] --> Edge["Vercel Anycast Edge\nClean URLs & Security Headers"]
+    Edge --> API["Vercel Serverless Functions\n(flying-cheetah/api/*.js)"]
+    API --> Auth["Supabase Auth & RPCs\n(JWT + Scrypt + OTP Reset)"]
+    API --> DB["Supabase PostgreSQL (RLS)\n(profiles, leads_inquiries, demo_bookings, fleet_orders)"]
+    API --> Courier["Logistics Gateways\n(Borzo & Porter Dispatch APIs)"]
+    API --> Mail["Notification Pipeline\n(TLS SMTP / Resend / Apps Script)"]
+```
+
+---
+
+## Serverless API & Routes
+
+Production rewrites in [`flying-cheetah/vercel.json`](flying-cheetah/vercel.json) expose clean REST endpoints under both `/api/*` and `/api/v1/*`:
+
+| Endpoint | Methods | Purpose |
+| :--- | :--- | :--- |
+| `/api/health` | `GET` | Service readiness, cluster region (`mumbai-central-1`), and uptime telemetry |
+| `/api/auth` | `GET`, `POST`, `PATCH` | Trial signup, password login, `me`, OTP forgot/reset flow, profile updates, and `403` guard on unverified OAuth payloads |
+| `/api/leads` | `GET`, `POST`, `PATCH`, `DELETE` | Public lead capture with honeypot spam filtering + JWT-authenticated (`401` guarded) admin CRM read/update |
+| `/api/demos` | `GET`, `POST` | 1-on-1 architecture demo scheduling and authenticated admin retrieval |
+| `/api/telemetry` | `GET` | Real-time agency benchmark counters with database-backed fallback |
+| `/api/fleet` | `GET` | Live hyperlocal courier telemetry stream for `delivery.html` |
+| `/api/borzo-dispatch` | `POST` | Hyperlocal delivery dispatch handler (sandbox mode when `BORZO_AUTH_TOKEN` is unset) |
+| `/api/send-email` | `POST` | Sanitized TLS SMTP (`_mailer.js`) / Resend email notifications and OTP dispatch |
+
+> **Optional Legacy/Extended Python Service:** The root [`backend/`](backend/) directory also contains an optional standalone Python FastAPI service (`Dockerfile`, `docker-compose.yml`, `pytest` suite) for extended worker experiments, while production (`flying-cheetah.vercel.app`) runs directly on Vercel Serverless Functions + Supabase.
+
+---
+
+## Database & Auth
+
+Backed by **Supabase (PostgreSQL + GoTrue Auth + Row-Level Security)**:
+
+- **Tables:** `profiles`, `leads_inquiries`, `demo_bookings`, `fleet_orders`, `password_reset_otps`
+- **Serverless Cold-Start Resilience:** OTP password resets and changes invoke `fc_store_password_otp` and `fc_verify_and_update_password` RPCs alongside `auth.users`, keeping resets consistent across serverless cold starts.
+- **Security Headers & Secrets Hygiene:** Strict `X-Content-Type-Options`, `X-Frame-Options`, `X-XSS-Protection`, and `Referrer-Policy` headers enforced in [`vercel.json`](flying-cheetah/vercel.json); all API secrets live strictly in Vercel environment variables ([`.env.example`](flying-cheetah/.env.example)).
+
+---
+
+## Repository Structure
+
+```text
+.
+├── flying-cheetah/                 # Production web application (Vercel root)
+│   ├── *.html                      # 25 semantic HTML pages (index, service pages, store, demo, admin, 404)
+│   ├── api/                        # Vercel Serverless Node handlers + shared auth/mailer helpers
+│   ├── css/                        # input.css, fx.css, mobile-app.css, compiled styles.min.css
+│   ├── js/                         # auth modules, leads capture, Supabase client, mobile UI widgets
+│   ├── images/                     # Bespoke 3D studio renders, founder photos, logos & product photography
+│   ├── videos/                     # Hero commercial & chatbot showcase MP4s
+│   ├── tests/                      # Security, boundary, E2E, viewport & branding audit suites
+│   ├── package.json                # Tailwind build & Node --test runner
+│   └── vercel.json                 # Clean URLs, headers & API rewrites
+├── docs/assets/                    # GitHub README studio banner & live screenshots
+├── backend/                        # Optional FastAPI + Docker experimental service
+├── README.md                       # Repository documentation
+└── LICENSE                         # MIT License
+```
+
+---
+
+## Local Development & Testing
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/bhagatmukhiya82-source/Flying-cheetah.git
+cd Flying-cheetah/flying-cheetah
+
+# 2. Install dev dependencies (Tailwind CSS CLI) & compile stylesheet
+npm install
+npm run build
+
+# 3. Preview locally in your browser
+npx http-server -p 8080
+```
+
+### Automated Test Suites
+
+Run from inside `flying-cheetah/`:
+
+```bash
+# Core security, adversarial challenger & Tier 3/4 E2E scenarios
+npm test
+
+# Feature & boundary E2E test suites
+node --test tests/e2e/tier1_feature.test.js tests/e2e/tier2_boundary.test.js
+
+# 404, founder branding & empirical security audits
+node tests/challenger1_404_test.js
+node tests/challenger1_founder_branding_test.js
+node tests/challenger1_empirical_audit.js
+```
+
+---
+
+## Founders & Leadership
+
+| Founder | Role & Focus | Connect |
+| :--- | :--- | :--- |
+| **Bhagat Mukhiya** | **Co-Founder & Technical Architect** — Serverless backend engineering, Supabase security/RLS, performance storefronts, and AI workflows | [![LinkedIn](https://img.shields.io/badge/LinkedIn-Bhagat_Mukhiya-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/bhagat-mukhiya-b74683380) [![GitHub](https://img.shields.io/badge/GitHub-bhagatmukhiya82--source-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/bhagatmukhiya82-source) [![Email](https://img.shields.io/badge/Email-bhagatmukhiya82%40gmail.com-EA4335?style=flat-square&logo=gmail&logoColor=white)](mailto:bhagatmukhiya82@gmail.com) |
+| **Yash Gaikwad** | **Co-Founder & Growth Operations** — D2C client acquisition, Meta & WhatsApp campaign operations, and hyperlocal logistics partnerships | [![LinkedIn](https://img.shields.io/badge/LinkedIn-Yash_Gaikwad-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/yash-gaikwad-1669b0397) [![WhatsApp](https://img.shields.io/badge/WhatsApp-+91_99203_86421-25D366?style=flat-square&logo=whatsapp&logoColor=white)](https://wa.me/919920386421) [![Email](https://img.shields.io/badge/Email-flyingcheetah.agency%40gmail.com-FF6838?style=flat-square&logo=gmail&logoColor=white)](mailto:flyingcheetah.agency@gmail.com) |
+
+---
+
 <div align="center">
-  <sub>Built with pride for high-growth commerce brands across India and the globe.</sub><br/>
-  <b>© 2026 Flying Cheetah Labs. All rights reserved.</b>
+  <sub>Engineered in Mumbai &bull; Live at <a href="https://flying-cheetah.vercel.app">flying-cheetah.vercel.app</a></sub><br />
+  <strong>&copy; 2026 Flying Cheetah Labs. Released under the MIT License.</strong>
 </div>

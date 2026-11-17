@@ -406,3 +406,68 @@
 .path-beam-glow {
     filter: drop-shadow(0 0 6px #10B981) drop-shadow(0 0 12px rgba(16, 185, 129, 0.6));
 }
+
+/* 5. STUDIO HEADER STABILITY & EDITORIAL IMAGE FRAMES */
+header .max-w-7xl > a:first-child {
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+header nav a,
+header nav button,
+header .max-w-7xl > div:last-child a {
+    white-space: nowrap;
+}
+
+@media (min-width: 1024px) {
+    header nav {
+        gap: 0.95rem !important;
+    }
+    header nav > * + * {
+        margin-left: 0 !important;
+    }
+}
+
+@media (min-width: 1280px) {
+    header nav {
+        gap: 1.5rem !important;
+    }
+}
+
+.fc-showcase-frame {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1.25rem;
+    background: linear-gradient(145deg, #FFF9F6 0%, #F8FAFC 100%);
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    box-shadow: 0 20px 45px -18px rgba(15, 23, 42, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.fc-showcase-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.group:hover .fc-showcase-img,
+.fc-showcase-frame:hover .fc-showcase-img {
+    transform: scale(1.03);
+}
+
+/* 6. ACCESSIBILITY: RESPECT PREFERS-REDUCED-MOTION */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    .marquee-content {
+        animation: none !important;
+        transform: none !important;
+    }
+}
