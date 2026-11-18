@@ -56,9 +56,9 @@
 <body class="bg-slate-50 text-slate-900 font-sans antialiased selection:bg-bikOrange selection:text-white min-h-screen flex flex-col">
 
     <!-- TOP PROMO BANNER -->
-    <div class="bg-bikDark text-white py-2 px-4 text-center text-xs font-medium">
+    <div class="bg-gradient-to-r from-orange-50 via-amber-50/70 to-emerald-50 border-b border-orange-200/70 text-bikDark py-2 px-4 text-center text-xs font-medium">
         <span>⚡ Experience Autonomous eCommerce: 18% cart recovery, 15-minute fleet dispatch & in-chat UPI payments.</span>
-        <a href="https://wa.me/919920386421" target="_blank" class="underline ml-2 text-brandGold font-bold hover:text-white transition">Chat with Flying Cheetah ↗</a>
+        <a href="https://wa.me/919920386421" target="_blank" class="underline ml-2 text-bikOrange font-bold hover:text-bikOrangeDark transition">Chat with Flying Cheetah ↗</a>
     </div>
 
     <!-- MAIN NAVBAR -->
@@ -370,16 +370,16 @@
                 blue: 'border-blue-400/60 shadow-blue-950/40'
             }[color] || 'border-slate-400/60';
 
-            toast.className = `p-4 rounded-2xl shadow-2xl border ${colorBorder} bg-slate-900/95 text-white pointer-events-auto transform translate-y-4 opacity-0 transition-all duration-300 flex items-start gap-3 backdrop-blur-md`;
+            toast.className = `p-4 rounded-2xl shadow-2xl border-2 ${colorBorder} bg-white/95 text-bikDark pointer-events-auto transform translate-y-4 opacity-0 transition-all duration-300 flex items-start gap-3 backdrop-blur-md`;
             toast.innerHTML = `
                 <div class="flex-1">
-                    <div class="text-xs font-black uppercase tracking-wider text-amber-400 flex items-center gap-1.5 mb-1">
-                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                    <div class="text-xs font-black uppercase tracking-wider text-bikOrangeDark flex items-center gap-1.5 mb-1">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
                         <span>${title}</span>
                     </div>
-                    <div class="text-[11px] text-slate-200 leading-relaxed">${message}</div>
+                    <div class="text-[11px] text-slate-600 leading-relaxed">${message}</div>
                 </div>
-                <button onclick="this.parentElement.remove()" aria-label="Dismiss notification" class="text-slate-400 hover:text-white text-xs p-1 cursor-pointer">
+                <button onclick="this.parentElement.remove()" aria-label="Dismiss notification" class="text-slate-400 hover:text-bikDark text-xs p-1 cursor-pointer">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             `;

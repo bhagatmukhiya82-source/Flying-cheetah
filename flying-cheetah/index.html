@@ -106,9 +106,9 @@
 <body class="bg-white text-slate-900 font-sans antialiased selection:bg-bikOrange selection:text-white">
 
     <!-- TOP PROMO BANNER -->
-    <div class="bg-bikDark text-white py-2 px-4 text-center text-xs font-medium">
-        <span><i class="fa-solid fa-bolt text-brandGold mr-1.5"></i>Increase your revenue with human-like targeted marketing at scale.</span>
-        <a href="demo.html" class="underline ml-2 text-brandGold font-bold hover:text-white transition whitespace-nowrap">Book Live Demo ↗</a>
+    <div class="bg-gradient-to-r from-orange-50 via-amber-50/70 to-emerald-50 border-b border-orange-200/70 text-bikDark py-2 px-4 text-center text-xs font-semibold">
+        <span><i class="fa-solid fa-bolt text-bikOrange mr-1.5"></i>Increase your revenue with human-like targeted marketing at scale.</span>
+        <a href="demo.html" class="underline ml-2 text-bikOrange font-extrabold hover:text-bikOrangeDark transition whitespace-nowrap">Book Live Demo ↗</a>
     </div>
 
     <!-- MAIN NAVBAR WITH ACTIVE MEGA-MENU -->
@@ -413,13 +413,13 @@
                                 </svg>
 
                                 <!-- Floating Live Data Tooltip (follows mouse or active point) -->
-                                <div id="fcChartTooltip" class="absolute pointer-events-none bg-slate-900/95 backdrop-blur-md text-white px-3 py-2 rounded-xl shadow-xl border border-slate-700/80 transition-all duration-75 text-xs z-20" style="left: 60%; top: 15px;">
-                                    <div class="text-[10px] text-slate-400 font-medium" id="fcTooltipDate">Dec 24, 2026 • Day 24</div>
-                                    <div class="font-black text-emerald-400 text-sm" id="fcTooltipRevenue">₹7,420 <span class="text-[10px] text-emerald-300 font-bold">(+28.4%)</span></div>
-                                    <div class="text-[10px] text-slate-300 mt-0.5 flex items-center gap-1.5" id="fcTooltipSub">
-                                        <span><i class="fa-solid fa-box text-orange-400 text-[9px]"></i> 5 Orders</span>
+                                <div id="fcChartTooltip" class="absolute pointer-events-none bg-white/95 backdrop-blur-md text-bikDark px-3.5 py-2.5 rounded-xl shadow-xl border-2 border-emerald-200 transition-all duration-75 text-xs z-20 whitespace-nowrap" style="left: 46%; top: 12px;">
+                                    <div class="text-[10px] text-slate-500 font-semibold" id="fcTooltipDate">Dec 24, 2026 • Day 24</div>
+                                    <div class="font-black text-emerald-600 text-sm" id="fcTooltipRevenue">₹7,420 <span class="text-[10px] text-bikOrange font-bold">(+28.4%)</span></div>
+                                    <div class="text-[10px] text-slate-600 mt-0.5 flex items-center gap-1.5 font-semibold whitespace-nowrap" id="fcTooltipSub">
+                                        <span><i class="fa-solid fa-box text-bikOrange text-[9px]"></i> 5 Orders</span>
                                         <span>•</span>
-                                        <span class="text-blue-300 font-bold">₹1,180 Recovered</span>
+                                        <span class="text-blue-600 font-bold">₹1,180 Recovered</span>
                                     </div>
                                 </div>
                             </div>
@@ -545,30 +545,29 @@
     </section>
 
     <!-- AUTONOMOUS COMMERCE MOTION SHOWCASE VIDEO -->
-    <section class="py-16 sm:py-20 bg-slate-950 text-white relative overflow-hidden border-b border-slate-800" id="brandVideoSection">
-        <!-- Ambient background radial glow -->
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-full w-[700px] h-[400px] bg-bikOrange/15 blur-[130px] rounded-full pointer-events-none"></div>
-        <div class="absolute -top-24 -right-24 w-72 h-72 bg-purple-600/10 blur-[100px] rounded-full pointer-events-none"></div>
+    <section class="py-16 sm:py-20 bg-white text-bikDark relative overflow-hidden border-y border-slate-100" id="brandVideoSection">
+        <!-- Ambient background radial pastel glow -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-full w-[760px] h-[420px] bg-gradient-to-r from-orange-100/70 via-emerald-100/50 to-purple-100/60 blur-[110px] rounded-full pointer-events-none"></div>
 
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center max-w-3xl mx-auto mb-10">
-                <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-bikOrange/20 border border-bikOrange/30 text-bikOrange text-xs font-mono uppercase tracking-wider mb-3.5 shadow-sm">
+                <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-100 border border-orange-200 text-bikOrange text-xs font-mono font-bold uppercase tracking-wider mb-3.5 shadow-xs">
                     <i class="fa-solid fa-clapperboard"></i> Autonomous Commerce in Motion
                 </span>
-                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight font-display">
-                    Experience Flying Cheetah at Full Speed
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-bikDark tracking-tight font-display">
+                    Experience <span class="text-bikOrange">Flying Cheetah</span> at Full Speed
                 </h2>
-                <p class="mt-3.5 text-slate-400 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
+                <p class="mt-3.5 text-slateText text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
                     Watch how sub-second AI commerce agents, 1-click WhatsApp checkouts, and automated Borzo fleet dispatches drive steady revenue growth.
                 </p>
             </div>
 
-            <!-- Cinema Frame Container -->
-            <div class="relative mx-auto rounded-3xl overflow-hidden border-2 border-slate-700/80 shadow-2xl bg-black group shadow-orange-500/10">
+            <!-- Bright White Studio Video Showcase Container -->
+            <div class="relative mx-auto rounded-3xl overflow-hidden border-2 border-slate-200 shadow-2xl bg-white group">
 
 
                 <!-- Video Element with Play/Pause Overlay & Auto-resume -->
-                <div class="relative aspect-video w-full bg-black flex items-center justify-center overflow-hidden" id="videoWrapper">
+                <div class="relative aspect-video w-full bg-white flex items-center justify-center overflow-hidden" id="videoWrapper">
                     <video id="heroShowcaseVideo"
                            class="w-full h-full object-cover"
                            controls
@@ -584,29 +583,29 @@
                     </video>
 
                     <!-- Interactive Play/Pause Overlay -->
-                    <div id="videoPlayOverlay" class="absolute inset-0 bg-black/40 flex items-center justify-center transition-all duration-300 opacity-0 pointer-events-none" onclick="toggleHeroVideo()">
-                        <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-bikOrange/90 hover:bg-bikOrange text-white flex items-center justify-center shadow-2xl backdrop-blur-sm transform transition hover:scale-110 active:scale-95 pointer-events-auto cursor-pointer">
+                    <div id="videoPlayOverlay" class="absolute inset-0 bg-white/35 flex items-center justify-center transition-all duration-300 opacity-0 pointer-events-none" onclick="toggleHeroVideo()">
+                        <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-bikOrange hover:bg-bikOrangeDark text-white flex items-center justify-center shadow-2xl transform transition hover:scale-110 active:scale-95 pointer-events-auto cursor-pointer">
                             <i id="videoPlayIcon" class="fa-solid fa-play text-2xl sm:text-3xl ml-1"></i>
                         </div>
                     </div>
                 </div>
 
                 <!-- Video Control / Feature Highlights Bar -->
-                <div class="bg-slate-900/95 px-5 sm:px-6 py-4 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+                <div class="bg-gradient-to-r from-orange-50/70 via-white to-emerald-50/70 px-5 sm:px-6 py-4 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-600">
                     <div class="flex flex-wrap items-center justify-center sm:justify-start gap-4">
-                        <span class="flex items-center gap-1.5 text-white font-medium">
+                        <span class="flex items-center gap-1.5 text-bikDark font-bold">
                             <i class="fa-solid fa-bolt text-bikOrange"></i> ~1.2s Agent Latency
                         </span>
-                        <span class="hidden sm:inline-block text-slate-600">•</span>
-                        <span class="flex items-center gap-1.5 text-white font-medium">
-                            <i class="fa-brands fa-whatsapp text-emerald-400"></i> Zero-Polling Webhooks
+                        <span class="hidden sm:inline-block text-slate-300">•</span>
+                        <span class="flex items-center gap-1.5 text-emerald-700 font-bold">
+                            <i class="fa-brands fa-whatsapp text-emerald-600"></i> Zero-Polling Webhooks
                         </span>
-                        <span class="hidden sm:inline-block text-slate-600">•</span>
-                        <span class="flex items-center gap-1.5 text-white font-medium">
-                            <i class="fa-solid fa-motorcycle text-amber-400"></i> 25-Min Dispatch
+                        <span class="hidden sm:inline-block text-slate-300">•</span>
+                        <span class="flex items-center gap-1.5 text-purple-700 font-bold">
+                            <i class="fa-solid fa-motorcycle text-purple-600"></i> 25-Min Dispatch
                         </span>
                     </div>
-                    <a href="demo.html" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-xs transition shadow-md shadow-orange-500/20 group/btn">
+                    <a href="demo.html" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-xs transition shadow-md shadow-orange-500/20 group/btn whitespace-nowrap">
                         <span>Deploy for Your Brand</span>
                         <i class="fa-solid fa-arrow-right text-[10px] group-hover/btn:translate-x-1 transition"></i>
                     </a>
@@ -786,28 +785,28 @@
                         </div>
                     </div>
                     <div class="lg:col-span-5">
-                        <div class="rounded-2xl border border-slate-200 bg-slate-900 p-5 text-white space-y-4 shadow-xl">
-                            <div class="flex items-center justify-between border-b border-slate-800 pb-3 text-xs">
-                                <span class="font-mono text-emerald-400 flex items-center gap-2">
-                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> Active Automation Mesh
+                        <div class="rounded-2xl border-2 border-orange-200/80 bg-white p-5 text-bikDark space-y-4 shadow-xl">
+                            <div class="flex items-center justify-between border-b border-slate-100 pb-3 text-xs">
+                                <span class="font-mono font-bold text-emerald-600 flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span> Active Automation Mesh
                                 </span>
-                                <span class="text-slate-400 font-mono text-[11px]">SLA: 99.98%</span>
+                                <span class="text-slate-500 font-mono text-[11px] font-semibold">SLA: 99.98%</span>
                             </div>
                             <div class="space-y-3 font-mono text-xs">
-                                <div class="p-3 rounded-xl bg-slate-800/80 border border-slate-700/80">
-                                    <div class="text-slate-400 text-[10px]">TRIGGER: CART DROP-OFF (₹2,199)</div>
-                                    <div class="text-emerald-300 font-bold mt-1">⚡ WhatsApp Bot Sent in 1.2s</div>
-                                    <div class="text-slate-300 text-[11px] mt-0.5">"Rahul ji, aapka cart ready hai with 10% OFF coupon!"</div>
+                                <div class="p-3 rounded-xl bg-emerald-50/70 border border-emerald-200">
+                                    <div class="text-emerald-700 font-semibold text-[10px]">TRIGGER: CART DROP-OFF (₹2,199)</div>
+                                    <div class="text-emerald-800 font-bold mt-1 flex items-center gap-1.5"><i class="fa-solid fa-bolt text-emerald-600"></i> WhatsApp Bot Sent in 1.2s</div>
+                                    <div class="text-slate-600 text-[11px] mt-0.5">"Rahul ji, aapka cart ready hai with 10% OFF coupon!"</div>
                                 </div>
-                                <div class="p-3 rounded-xl bg-slate-800/80 border border-slate-700/80">
-                                    <div class="text-slate-400 text-[10px]">ANTI-FRAUD COD VERIFY (EXOTEL SIP)</div>
-                                    <div class="text-purple-300 font-bold mt-1">🎙️ AI Priya Calling Buyer...</div>
-                                    <div class="text-slate-300 text-[11px] mt-0.5">Order #9021 confirmed • Anti-Fraud passed!</div>
+                                <div class="p-3 rounded-xl bg-purple-50/70 border border-purple-200">
+                                    <div class="text-purple-700 font-semibold text-[10px]">ANTI-FRAUD COD VERIFY (VOICE AI)</div>
+                                    <div class="text-purple-800 font-bold mt-1 flex items-center gap-1.5"><i class="fa-solid fa-phone-volume text-purple-600"></i> AI Agent Calling Buyer...</div>
+                                    <div class="text-slate-600 text-[11px] mt-0.5">Order #9021 confirmed • Anti-Fraud passed!</div>
                                 </div>
-                                <div class="p-3 rounded-xl bg-slate-800/80 border border-slate-700/80">
-                                    <div class="text-slate-400 text-[10px]">FLEET DISPATCH (BORZO API)</div>
-                                    <div class="text-orange-300 font-bold mt-1">🏍️ Rider Santosh K. Assigned</div>
-                                    <div class="text-slate-300 text-[11px] mt-0.5">Doorstep delivery ETA: 22 Mins • ₹0 Commission</div>
+                                <div class="p-3 rounded-xl bg-orange-50/70 border border-orange-200">
+                                    <div class="text-bikOrange font-semibold text-[10px]">FLEET DISPATCH (BORZO API)</div>
+                                    <div class="text-orange-800 font-bold mt-1 flex items-center gap-1.5"><i class="fa-solid fa-motorcycle text-bikOrange"></i> Rider Santosh K. Assigned</div>
+                                    <div class="text-slate-600 text-[11px] mt-0.5">Doorstep delivery ETA: 22 Mins • ₹0 Commission</div>
                                 </div>
                             </div>
                         </div>
@@ -978,123 +977,259 @@
         </div>
     </section>
 
+    <!-- COLORFUL DATA REPRESENTATION & BENCHMARK VISUALIZATION -->
+    <section id="data-visualization" class="py-20 bg-white border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            <div class="text-center max-w-3xl mx-auto">
+                <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-gradient-to-r from-orange-100 via-purple-100 to-emerald-100 border border-orange-200/70 text-bikDark text-xs font-extrabold uppercase tracking-widest">
+                    <i class="fa-solid fa-chart-pie text-bikOrange"></i> Live Channel Performance &amp; Data Telemetry
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark mt-3 font-display">
+                    Real Conversion Numbers Across Every Automated Channel
+                </h2>
+                <p class="text-slateText text-sm mt-2">Clean multi-channel engagement, response latency, and revenue attribution metrics benchmarked on white-surface visual cards.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-7">
+                <!-- Chart 1: Channel Engagement Colorful Bar Chart -->
+                <div class="p-6 rounded-3xl bg-white border border-slate-200 shadow-lg space-y-5 card-anim">
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                        <div>
+                            <h3 class="text-sm font-extrabold text-bikDark font-display">Channel Open &amp; Interaction Rates</h3>
+                            <span class="text-[11px] text-slate-400">30-Day Active Storefront Benchmark</span>
+                        </div>
+                        <span class="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-sm"><i class="fa-solid fa-chart-bar"></i></span>
+                    </div>
+                    <div class="space-y-4 text-xs">
+                        <div>
+                            <div class="flex justify-between font-bold text-bikDark mb-1"><span>WhatsApp Cloud API</span><span class="text-emerald-600 font-mono">84.6%</span></div>
+                            <div class="h-3 rounded-full bg-slate-100 overflow-hidden"><div class="h-full rounded-full bg-gradient-to-r from-emerald-400 to-emerald-600" style="width: 84.6%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between font-bold text-bikDark mb-1"><span>Google RCS Carousels</span><span class="text-blue-600 font-mono">52.4%</span></div>
+                            <div class="h-3 rounded-full bg-slate-100 overflow-hidden"><div class="h-full rounded-full bg-gradient-to-r from-cyan-400 to-blue-600" style="width: 52.4%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between font-bold text-bikDark mb-1"><span>AI Personalized Email</span><span class="text-bikOrange font-mono">35.0%</span></div>
+                            <div class="h-3 rounded-full bg-slate-100 overflow-hidden"><div class="h-full rounded-full bg-gradient-to-r from-amber-400 to-bikOrange" style="width: 35.0%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between font-bold text-bikDark mb-1"><span>Instagram Reel Auto-DM</span><span class="text-igPink font-mono">18.0% Conv</span></div>
+                            <div class="h-3 rounded-full bg-slate-100 overflow-hidden"><div class="h-full rounded-full bg-gradient-to-r from-pink-400 to-purple-600" style="width: 28%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between font-semibold text-slate-500 mb-1"><span>Manual Static Forms</span><span class="text-slate-500 font-mono">8.5%</span></div>
+                            <div class="h-3 rounded-full bg-slate-100 overflow-hidden"><div class="h-full rounded-full bg-slate-300" style="width: 8.5%"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chart 2: Attribution SVG Multi-Color Donut -->
+                <div class="p-6 rounded-3xl bg-white border border-slate-200 shadow-lg space-y-5 card-anim">
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                        <div>
+                            <h3 class="text-sm font-extrabold text-bikDark font-display">Blended Revenue Attribution Mix</h3>
+                            <span class="text-[11px] text-slate-400">3.1x Target ROAS Composition</span>
+                        </div>
+                        <span class="w-8 h-8 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center text-sm"><i class="fa-solid fa-chart-pie"></i></span>
+                    </div>
+                    <div class="flex items-center justify-center gap-6 py-2">
+                        <svg viewBox="0 0 120 120" class="w-32 h-32 shrink-0" role="img" aria-label="Revenue Attribution Donut Chart">
+                            <circle cx="60" cy="60" r="46" fill="none" stroke="#F1F5F9" stroke-width="16"></circle>
+                            <!-- 38% Emerald -->
+                            <circle cx="60" cy="60" r="46" fill="none" stroke="#10B981" stroke-width="16" stroke-dasharray="109.8 289.0" stroke-dashoffset="0" transform="rotate(-90 60 60)"></circle>
+                            <!-- 32% Cobalt Blue -->
+                            <circle cx="60" cy="60" r="46" fill="none" stroke="#0866FF" stroke-width="16" stroke-dasharray="92.5 289.0" stroke-dashoffset="-109.8" transform="rotate(-90 60 60)"></circle>
+                            <!-- 18% Violet -->
+                            <circle cx="60" cy="60" r="46" fill="none" stroke="#7C3AED" stroke-width="16" stroke-dasharray="52.0 289.0" stroke-dashoffset="-202.3" transform="rotate(-90 60 60)"></circle>
+                            <!-- 12% Orange -->
+                            <circle cx="60" cy="60" r="46" fill="none" stroke="#FF6838" stroke-width="16" stroke-dasharray="34.7 289.0" stroke-dashoffset="-254.3" transform="rotate(-90 60 60)"></circle>
+                            <text x="60" y="56" text-anchor="middle" fill="#121624" font-size="16" font-weight="800" font-family="sans-serif">3.1x</text>
+                            <text x="60" y="71" text-anchor="middle" fill="#64748B" font-size="8" font-weight="700" font-family="sans-serif">BLENDED ROAS</text>
+                        </svg>
+                        <div class="space-y-2.5 text-xs font-semibold flex-1">
+                            <div class="flex items-center justify-between"><span class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>WhatsApp Chat</span><span class="font-mono font-bold text-bikDark">38%</span></div>
+                            <div class="flex items-center justify-between"><span class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-[#0866FF]"></span>CTWA Meta Ads</span><span class="font-mono font-bold text-bikDark">32%</span></div>
+                            <div class="flex items-center justify-between"><span class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-purple-600"></span>AI Voice COD</span><span class="font-mono font-bold text-bikDark">18%</span></div>
+                            <div class="flex items-center justify-between"><span class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-bikOrange"></span>Email &amp; RCS</span><span class="font-mono font-bold text-bikDark">12%</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chart 3: Speed & Margin Economics -->
+                <div class="p-6 rounded-3xl bg-white border border-slate-200 shadow-lg space-y-5 card-anim">
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                        <div>
+                            <h3 class="text-sm font-extrabold text-bikDark font-display">Latency &amp; Margin Economics</h3>
+                            <span class="text-[11px] text-slate-400">Flying Cheetah vs Aggregators</span>
+                        </div>
+                        <span class="w-8 h-8 rounded-xl bg-orange-100 text-bikOrange flex items-center justify-center text-sm"><i class="fa-solid fa-gauge-high"></i></span>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="p-3.5 rounded-2xl bg-gradient-to-r from-emerald-50 to-white border border-emerald-200 flex items-center justify-between">
+                            <div>
+                                <div class="text-[10px] font-bold uppercase text-emerald-700">Platform Commission Cut</div>
+                                <div class="text-lg font-black text-emerald-600 font-display">0% Fee Retained</div>
+                            </div>
+                            <span class="text-[11px] font-bold px-2.5 py-1 rounded-full bg-white border border-emerald-200 text-slate-500">vs 25–30% apps</span>
+                        </div>
+                        <div class="p-3.5 rounded-2xl bg-gradient-to-r from-orange-50 to-white border border-orange-200 flex items-center justify-between">
+                            <div>
+                                <div class="text-[10px] font-bold uppercase text-bikOrange">Lead-to-Reply Speed</div>
+                                <div class="text-lg font-black text-bikDark font-display">&lt; 15 Seconds</div>
+                            </div>
+                            <span class="text-[11px] font-bold px-2.5 py-1 rounded-full bg-white border border-orange-200 text-slate-500">vs 45m queue</span>
+                        </div>
+                        <div class="p-3.5 rounded-2xl bg-gradient-to-r from-blue-50 to-white border border-blue-200 flex items-center justify-between">
+                            <div>
+                                <div class="text-[10px] font-bold uppercase text-blue-700">Rider Dispatch Pickup</div>
+                                <div class="text-lg font-black text-blue-700 font-display">12–18 Mins</div>
+                            </div>
+                            <span class="text-[11px] font-bold px-2.5 py-1 rounded-full bg-white border border-blue-200 text-slate-500">Zero Payroll</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- INTERACTIVE SERVICE & ROI PACKAGE ESTIMATOR -->
-    <section id="roi-estimator" class="py-20 bg-slate-950 text-white relative overflow-hidden border-b border-slate-800">
+    <section id="roi-estimator" class="py-20 bg-gradient-to-b from-orange-50/40 via-white to-emerald-50/30 text-bikDark relative overflow-hidden border-b border-slate-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center max-w-3xl mx-auto mb-14">
-                <span class="text-brandGold font-bold text-xs uppercase tracking-widest bg-amber-500/10 border border-amber-500/20 px-3.5 py-1 rounded-full">Interactive ROI Calculator</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold mt-3 font-display">Calculate Your Projected Growth &amp; Time Saved</h2>
-                <p class="text-slate-400 text-sm mt-2">Select your business scale and desired capabilities to generate your custom automation roadmap.</p>
+                <span class="text-bikOrange font-bold text-xs uppercase tracking-widest bg-orange-100 border border-orange-200 px-3.5 py-1 rounded-full">Interactive ROI Calculator</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold mt-3 font-display text-bikDark">Calculate Your Projected Growth &amp; Time Saved</h2>
+                <p class="text-slateText text-sm mt-2">Select your business scale and desired capabilities to generate your custom automation roadmap.</p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
                 <!-- Left: Configuration Controls -->
-                <div class="lg:col-span-7 bg-slate-900/90 border border-slate-800 p-6 sm:p-8 rounded-3xl space-y-6">
+                <div class="lg:col-span-7 bg-white border border-slate-200 p-6 sm:p-8 rounded-3xl space-y-6 shadow-xl">
                     <div>
-                        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Step 1: Your Business Monthly Revenue</label>
+                        <label class="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-2">Step 1: Your Business Monthly Revenue</label>
                         <div class="grid grid-cols-3 gap-3">
-                            <button type="button" onclick="setBusinessScale('startup', 1.0)" id="scale-btn-startup" class="scale-btn p-3 rounded-xl border border-slate-700 bg-slate-800/80 hover:border-bikOrange text-left transition cursor-pointer">
-                                <div class="text-xs font-bold text-white">Under ₹5L/mo</div>
-                                <div class="text-[10px] text-slate-400 mt-0.5">Boutique / Early</div>
+                            <button type="button" onclick="setBusinessScale('startup', 1.0)" id="scale-btn-startup" class="scale-btn p-3 rounded-xl border border-slate-200 bg-slate-50 hover:border-bikOrange text-left transition cursor-pointer">
+                                <div class="text-xs font-bold text-bikDark">Under ₹5L/mo</div>
+                                <div class="text-[10px] text-slate-500 mt-0.5">Boutique / Early</div>
                             </button>
-                            <button type="button" onclick="setBusinessScale('scaling', 2.4)" id="scale-btn-scaling" class="scale-btn p-3 rounded-xl border border-bikOrange bg-orange-500/10 text-left transition cursor-pointer">
-                                <div class="text-xs font-bold text-amber-400">₹5L – ₹25L/mo</div>
-                                <div class="text-[10px] text-slate-400 mt-0.5">Scaling Brand</div>
+                            <button type="button" onclick="setBusinessScale('scaling', 2.4)" id="scale-btn-scaling" class="scale-btn p-3 rounded-xl border-2 border-bikOrange bg-orange-50 text-left transition cursor-pointer">
+                                <div class="text-xs font-bold text-bikOrange">₹5L – ₹25L/mo</div>
+                                <div class="text-[10px] text-slate-600 mt-0.5">Scaling Brand</div>
                             </button>
-                            <button type="button" onclick="setBusinessScale('enterprise', 5.2)" id="scale-btn-enterprise" class="scale-btn p-3 rounded-xl border border-slate-700 bg-slate-800/80 hover:border-bikOrange text-left transition cursor-pointer">
-                                <div class="text-xs font-bold text-white">₹25L+/mo</div>
-                                <div class="text-[10px] text-slate-400 mt-0.5">Enterprise</div>
+                            <button type="button" onclick="setBusinessScale('enterprise', 5.2)" id="scale-btn-enterprise" class="scale-btn p-3 rounded-xl border border-slate-200 bg-slate-50 hover:border-bikOrange text-left transition cursor-pointer">
+                                <div class="text-xs font-bold text-bikDark">₹25L+/mo</div>
+                                <div class="text-[10px] text-slate-500 mt-0.5">Enterprise</div>
                             </button>
                         </div>
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-3">Step 2: Select Services &amp; Capabilities Needed</label>
+                        <label class="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-3">Step 2: Select Services &amp; Capabilities Needed</label>
                         <div class="space-y-2.5">
-                            <label for="svc-voice" class="flex items-center justify-between p-3.5 rounded-xl border border-slate-800 bg-slate-800/50 hover:bg-slate-800 cursor-pointer transition select-none">
+                            <label for="svc-voice" class="flex items-center justify-between p-3.5 rounded-xl border border-purple-200/70 bg-purple-50/40 hover:bg-purple-50 cursor-pointer transition select-none">
                                 <div class="flex items-center gap-3">
                                     <input type="checkbox" id="svc-voice" onchange="calculateProjectedROI()" checked aria-label="AI Voice Calling Agents" class="w-4 h-4 rounded text-bikOrange accent-orange-500 cursor-pointer">
                                     <div>
-                                        <div class="text-xs font-bold text-slate-200">AI Voice Calling Agents (COD Verification &amp; Cart Recovery)</div>
-                                        <div class="text-[10px] text-slate-400">Automates 100% of order confirmation calls in Hindi/English</div>
+                                        <div class="text-xs font-bold text-bikDark">AI Voice Calling Agents (COD Verification &amp; Cart Recovery)</div>
+                                        <div class="text-[10px] text-slate-500">Automates 100% of order confirmation calls in Hindi/English</div>
                                     </div>
                                 </div>
-                                <span class="text-xs font-mono font-bold text-purple-400">+₹45k/mo</span>
+                                <span class="text-xs font-mono font-bold text-purple-600 shrink-0 ml-2">+₹45k/mo</span>
                             </label>
 
-                            <label for="svc-wa" class="flex items-center justify-between p-3.5 rounded-xl border border-slate-800 bg-slate-800/50 hover:bg-slate-800 cursor-pointer transition select-none">
+                            <label for="svc-wa" class="flex items-center justify-between p-3.5 rounded-xl border border-emerald-200/70 bg-emerald-50/40 hover:bg-emerald-50 cursor-pointer transition select-none">
                                 <div class="flex items-center gap-3">
                                     <input type="checkbox" id="svc-wa" onchange="calculateProjectedROI()" checked aria-label="WhatsApp and Instagram Conversational Sales Bot" class="w-4 h-4 rounded text-bikOrange accent-orange-500 cursor-pointer">
                                     <div>
-                                        <div class="text-xs font-bold text-slate-200">WhatsApp &amp; Instagram Conversational Sales Bot</div>
-                                        <div class="text-[10px] text-slate-400">24/7 checkout on chat, automated DMs, and catalog ordering</div>
+                                        <div class="text-xs font-bold text-bikDark">WhatsApp &amp; Instagram Conversational Sales Bot</div>
+                                        <div class="text-[10px] text-slate-500">24/7 checkout on chat, automated DMs, and catalog ordering</div>
                                     </div>
                                 </div>
-                                <span class="text-xs font-mono font-bold text-emerald-400">+₹58k/mo</span>
+                                <span class="text-xs font-mono font-bold text-emerald-600 shrink-0 ml-2">+₹58k/mo</span>
                             </label>
 
-                            <label for="svc-mkt" class="flex items-center justify-between p-3.5 rounded-xl border border-slate-800 bg-slate-800/50 hover:bg-slate-800 cursor-pointer transition select-none">
+                            <label for="svc-mkt" class="flex items-center justify-between p-3.5 rounded-xl border border-blue-200/70 bg-blue-50/40 hover:bg-blue-50 cursor-pointer transition select-none">
                                 <div class="flex items-center gap-3">
                                     <input type="checkbox" id="svc-mkt" onchange="calculateProjectedROI()" checked aria-label="Performance Marketing Click to WhatsApp Meta Ads" class="w-4 h-4 rounded text-bikOrange accent-orange-500 cursor-pointer">
                                     <div>
-                                        <div class="text-xs font-bold text-slate-200">Performance Marketing (Click-to-WhatsApp Meta Ads)</div>
-                                        <div class="text-[10px] text-slate-400">Direct-to-chat ad funnels boosting ROAS by up to 35%</div>
+                                        <div class="text-xs font-bold text-bikDark">Performance Marketing (Click-to-WhatsApp Meta Ads)</div>
+                                        <div class="text-[10px] text-slate-500">Direct-to-chat ad funnels boosting ROAS by up to 35%</div>
                                     </div>
                                 </div>
-                                <span class="text-xs font-mono font-bold text-blue-400">+₹65k/mo</span>
+                                <span class="text-xs font-mono font-bold text-blue-600 shrink-0 ml-2">+₹65k/mo</span>
                             </label>
 
-                            <label for="svc-web" class="flex items-center justify-between p-3.5 rounded-xl border border-slate-800 bg-slate-800/50 hover:bg-slate-800 cursor-pointer transition select-none">
+                            <label for="svc-web" class="flex items-center justify-between p-3.5 rounded-xl border border-amber-200/70 bg-amber-50/40 hover:bg-amber-50 cursor-pointer transition select-none">
                                 <div class="flex items-center gap-3">
                                     <input type="checkbox" id="svc-web" onchange="calculateProjectedROI()" checked aria-label="High-Speed Custom Web Development" class="w-4 h-4 rounded text-bikOrange accent-orange-500 cursor-pointer">
                                     <div>
-                                        <div class="text-xs font-bold text-slate-200">High-Speed Custom Web Development (Sub-100ms)</div>
-                                        <div class="text-[10px] text-slate-400">Headless storefront engineering, perfect Lighthouse 100, Day-1 SEO</div>
+                                        <div class="text-xs font-bold text-bikDark">High-Speed Custom Web Development (Sub-100ms)</div>
+                                        <div class="text-[10px] text-slate-500">Headless storefront engineering, strict Core Web Vitals, Day-1 SEO</div>
                                     </div>
                                 </div>
-                                <span class="text-xs font-mono font-bold text-amber-400">+₹72k/mo</span>
+                                <span class="text-xs font-mono font-bold text-amber-700 shrink-0 ml-2">+₹72k/mo</span>
                             </label>
 
-                            <label for="svc-fleet" class="flex items-center justify-between p-3.5 rounded-xl border border-slate-800 bg-slate-800/50 hover:bg-slate-800 cursor-pointer transition select-none">
+                            <label for="svc-fleet" class="flex items-center justify-between p-3.5 rounded-xl border border-orange-200/70 bg-orange-50/40 hover:bg-orange-50 cursor-pointer transition select-none">
                                 <div class="flex items-center gap-3">
                                     <input type="checkbox" id="svc-fleet" onchange="calculateProjectedROI()" aria-label="Hyperlocal Fleet Protocol Borzo and Porter" class="w-4 h-4 rounded text-bikOrange accent-orange-500 cursor-pointer">
                                     <div>
-                                        <div class="text-xs font-bold text-slate-200">Hyperlocal Fleet Protocol (Borzo &amp; Porter API)</div>
-                                        <div class="text-[10px] text-slate-400">Automated 25-minute Mumbai courier delivery with 0% aggregator cut</div>
+                                        <div class="text-xs font-bold text-bikDark">Hyperlocal Fleet Protocol (Borzo &amp; Porter API)</div>
+                                        <div class="text-[10px] text-slate-500">Automated 25-minute Mumbai courier delivery with 0% aggregator cut</div>
                                     </div>
                                 </div>
-                                <span class="text-xs font-mono font-bold text-orange-400">+₹30k/mo</span>
+                                <span class="text-xs font-mono font-bold text-bikOrange shrink-0 ml-2">+₹30k/mo</span>
                             </label>
                         </div>
                     </div>
                 </div>
 
                 <!-- Right: Live Calculated Value Box -->
-                <div class="lg:col-span-5 bg-gradient-to-b from-slate-900 to-slate-950 border-2 border-orange-500/30 p-6 sm:p-8 rounded-3xl space-y-6 shadow-2xl relative">
-                    <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-                        <span class="text-xs font-bold text-amber-400 uppercase tracking-widest flex items-center gap-1.5">
+                <div class="lg:col-span-5 bg-white border-2 border-orange-200 p-6 sm:p-8 rounded-3xl space-y-6 shadow-2xl bik-mega-shadow relative">
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                        <span class="text-xs font-bold text-bikOrange uppercase tracking-widest flex items-center gap-1.5">
                             <i class="fa-solid fa-sparkles text-brandGold"></i> Projected Impact
                         </span>
-                        <span class="text-[10px] text-slate-400 font-mono">Turnaround: 48-72h</span>
+                        <span class="text-[10px] text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full font-mono font-bold">Turnaround: 48-72h</span>
                     </div>
 
                     <div class="space-y-4">
-                        <div class="p-4 rounded-2xl bg-slate-800/60 border border-slate-700/60">
-                            <div class="text-xs text-slate-400 font-medium">Estimated Monthly Revenue Saved / Recovered</div>
-                            <div class="text-3xl sm:text-4xl font-black text-emerald-400 font-display mt-1" id="roi-calc-rev">₹1,85,000 / mo</div>
-                            <div class="text-[11px] text-slate-400 mt-0.5">Based on reduced RTO, instant cart recovery &amp; higher Meta ROAS.</div>
+                        <div class="p-4 rounded-2xl bg-gradient-to-r from-emerald-50 to-teal-50/60 border border-emerald-200">
+                            <div class="text-xs text-emerald-800 font-semibold">Estimated Monthly Revenue Saved / Recovered</div>
+                            <div class="text-3xl sm:text-4xl font-black text-emerald-600 font-display mt-1" id="roi-calc-rev">₹1,85,000 / mo</div>
+                            <div class="text-[11px] text-slate-600 mt-0.5">Based on reduced RTO, instant cart recovery &amp; higher Meta ROAS.</div>
+                        </div>
+
+                        <!-- Live Mini Colorful Breakdown Chart -->
+                        <div class="p-4 rounded-2xl bg-slate-50/80 border border-slate-200 space-y-2.5 text-xs">
+                            <div class="font-bold text-bikDark flex items-center justify-between">
+                                <span>Projected Contribution Mix</span>
+                                <span class="text-[10px] text-slate-500 font-mono">Monthly Breakdown</span>
+                            </div>
+                            <div class="w-full h-3 rounded-full bg-slate-200 overflow-hidden flex">
+                                <div class="h-full bg-purple-500" style="width: 22%"></div>
+                                <div class="h-full bg-emerald-500" style="width: 26%"></div>
+                                <div class="h-full bg-[#0866FF]" style="width: 27%"></div>
+                                <div class="h-full bg-bikOrange" style="width: 25%"></div>
+                            </div>
+                            <div class="flex flex-wrap gap-3 text-[10px] font-semibold text-slate-600 pt-0.5">
+                                <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-purple-500"></span>Voice COD</span>
+                                <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-500"></span>WhatsApp</span>
+                                <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-[#0866FF]"></span>CTWA Ads</span>
+                                <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-bikOrange"></span>Storefront</span>
+                            </div>
                         </div>
 
                         <div class="grid grid-cols-2 gap-3">
-                            <div class="p-3.5 rounded-xl bg-slate-800/60 border border-slate-700/60">
-                                <div class="text-[11px] text-slate-400">Manual Hours Saved</div>
-                                <div class="text-2xl font-black text-amber-400 font-mono mt-1" id="roi-calc-hours">140 hrs</div>
-                                <div class="text-[10px] text-slate-400 mt-0.5">Staff payroll saved</div>
+                            <div class="p-3.5 rounded-xl bg-amber-50/70 border border-amber-200">
+                                <div class="text-[11px] text-slate-600 font-semibold">Manual Hours Saved</div>
+                                <div class="text-2xl font-black text-amber-600 font-mono mt-1" id="roi-calc-hours">140 hrs</div>
+                                <div class="text-[10px] text-slate-500 mt-0.5">Staff payroll saved</div>
                             </div>
-                            <div class="p-3.5 rounded-xl bg-slate-800/60 border border-slate-700/60">
-                                <div class="text-[11px] text-slate-400">Speed to Deploy</div>
-                                <div class="text-2xl font-black text-blue-400 font-mono mt-1">48 Hrs</div>
-                                <div class="text-[10px] text-slate-400 mt-0.5">Turnkey configuration</div>
+                            <div class="p-3.5 rounded-xl bg-blue-50/70 border border-blue-200">
+                                <div class="text-[11px] text-slate-600 font-semibold">Speed to Deploy</div>
+                                <div class="text-2xl font-black text-blue-600 font-mono mt-1">48 Hrs</div>
+                                <div class="text-[10px] text-slate-500 mt-0.5">Turnkey configuration</div>
                             </div>
                         </div>
                     </div>
@@ -1104,7 +1239,7 @@
                             <i class="fa-brands fa-whatsapp text-base"></i>
                             <span>Get Custom Proposal on WhatsApp</span>
                         </a>
-                        <button onclick="window.FC_LEADS.openAuditModal('Growth &amp; Tech Audit')" class="w-full py-3 rounded-xl border border-slate-700 hover:border-slate-500 bg-slate-800 text-slate-200 font-bold text-xs transition text-center cursor-pointer">
+                        <button onclick="window.FC_LEADS.openAuditModal('Growth &amp; Tech Audit')" class="w-full py-3 rounded-xl border border-slate-300 hover:border-bikOrange bg-white text-bikDark font-bold text-xs transition text-center cursor-pointer">
                             Book Free 1-on-1 Strategy Call
                         </button>
                     </div>
@@ -1149,9 +1284,9 @@
             ['startup', 'scaling', 'enterprise'].forEach(k => {
                 const btn = document.getElementById('scale-btn-' + k);
                 if (k === scaleKey) {
-                    if (btn) btn.className = 'scale-btn p-3 rounded-xl border border-bikOrange bg-orange-500/10 text-left transition cursor-pointer';
+                    if (btn) btn.className = 'scale-btn p-3 rounded-xl border-2 border-bikOrange bg-orange-50 text-bikDark text-left transition cursor-pointer shadow-sm';
                 } else {
-                    if (btn) btn.className = 'scale-btn p-3 rounded-xl border border-slate-700 bg-slate-800/80 hover:border-bikOrange text-left transition cursor-pointer';
+                    if (btn) btn.className = 'scale-btn p-3 rounded-xl border border-slate-200 bg-white text-bikDark hover:border-bikOrange hover:bg-orange-50/40 text-left transition cursor-pointer';
                 }
             });
 
@@ -1246,8 +1381,8 @@
                     </div>
 
                     <div class="pt-2">
-                        <a href="store-automation.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-bikDark text-white hover:bg-slate-800 font-bold text-xs transition shadow">
-                            <i class="fa-solid fa-bolt text-brandGold"></i> Explore Store Automation
+                        <a href="store-automation.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-bikOrange text-white hover:bg-bikOrangeDark font-bold text-xs transition shadow">
+                            <i class="fa-solid fa-bolt text-amber-200"></i> Explore Store Automation
                         </a>
                     </div>
                 </div>

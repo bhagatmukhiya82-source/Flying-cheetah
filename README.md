@@ -37,13 +37,14 @@
 
 1. [Executive Overview](#executive-overview)
 2. [Live Platform Showcase](#live-platform-showcase)
-3. [Core Capabilities](#core-capabilities)
-4. [System Architecture](#system-architecture)
-5. [Serverless API & Routes](#serverless-api--routes)
-6. [Database & Auth](#database--auth)
-7. [Repository Structure](#repository-structure)
-8. [Local Development & Testing](#local-development--testing)
-9. [Founders & Leadership](#founders--leadership)
+3. [Visual Benchmarks & Data Flow](#visual-benchmarks--data-flow)
+4. [Core Capabilities](#core-capabilities)
+5. [System Architecture](#system-architecture)
+6. [Serverless API & Routes](#serverless-api--routes)
+7. [Database & Auth](#database--auth)
+8. [Repository Structure](#repository-structure)
+9. [Local Development & Testing](#local-development--testing)
+10. [Founders & Leadership](#founders--leadership)
 
 ---
 
@@ -64,7 +65,7 @@ It brings together three core pillars under one unified architecture:
 > Captures below are rendered directly from the live `flying-cheetah/` build.
 
 ### 1. Flagship Hero & Interactive Telemetry Console
-Single-line responsive chrome, conversion-focused hero copy, and an interactive hover SVG profit telemetry widget (`3.1x` ROAS, `84.6%` WhatsApp open rate, `0%` commission model).
+Pure-white editorial chrome, single-line responsive navbar, conversion-focused hero copy, and an interactive hover SVG profit telemetry widget (`3.1x` ROAS, `84.6%` WhatsApp open rate, `0%` commission model).
 
 <div align="center">
   <a href="https://flying-cheetah.vercel.app">
@@ -72,8 +73,17 @@ Single-line responsive chrome, conversion-focused hero copy, and an interactive 
   </a>
 </div>
 
-### 2. Core Product Ecosystem
-Cohesive bespoke studio product showcases across Web & App Development, Instagram Auto-DM, WhatsApp Commerce, Click-to-WhatsApp Ads, and AI Voice Calling.
+### 2. Multi-Channel Data Visualization & Revenue Attribution
+Live interactive benchmark bars, SVG blended revenue attribution donut (`3.1x`), latency/margin telemetry, and per-service ROI breakdown on `index.html#data-visualization`.
+
+<div align="center">
+  <a href="https://flying-cheetah.vercel.app/#data-visualization">
+    <img src="docs/assets/screenshots/screenshot_data_visualization.png" alt="Flying Cheetah Live Multi-Channel Data Visualization" width="900" />
+  </a>
+</div>
+
+### 3. Core Product Ecosystem
+Cohesive pure-white bespoke 3D product showcases across Web & App Development, Instagram Auto-DM, WhatsApp Commerce, Click-to-WhatsApp Ads, and AI Voice Calling.
 
 <div align="center">
   <a href="https://flying-cheetah.vercel.app">
@@ -81,7 +91,7 @@ Cohesive bespoke studio product showcases across Web & App Development, Instagra
   </a>
 </div>
 
-### 3. Web Engineering & Omnichannel Support Workbench
+### 4. Web Engineering & Omnichannel Support Workbench
 
 <div align="center">
   <table>
@@ -102,7 +112,7 @@ Cohesive bespoke studio product showcases across Web & App Development, Instagra
   </table>
 </div>
 
-### 4. WhatsApp Commerce & Hyperlocal Fleet Protocol
+### 5. WhatsApp Commerce & Hyperlocal Fleet Protocol
 
 <div align="center">
   <table>
@@ -121,6 +131,50 @@ Cohesive bespoke studio product showcases across Web & App Development, Instagra
       </td>
     </tr>
   </table>
+</div>
+
+---
+
+## Visual Benchmarks & Data Flow
+
+All architecture diagrams, funnel telemetry charts, and deployment blueprints below use clean pure-white high-DPI canvases with vivid color coding for crisp readability across both Light and Dark GitHub themes.
+
+### Operational Speed & Performance Lift
+
+<div align="center">
+  <img src="docs/assets/nano_banana_speed_metrics.png" alt="Manual D2C Stack vs Flying Cheetah AI Performance Benchmark" width="920" />
+  <br /><sub><strong>5-Pillar Production Benchmark</strong> — sub-second voice/chat response, 18.6% cart recovery, 78% RTO shielding, and 4.4x CTWA ROAS.</sub>
+</div>
+
+### Omnichannel Neural Commerce Architecture
+
+<div align="center">
+  <img src="docs/assets/ai_commerce_neural_matrix.png" alt="Flying Cheetah Neural Commerce Event Bus Architecture" width="920" />
+  <br /><sub><strong>End-to-End Event Bus</strong> — unifying Meta CTWA, Instagram DM, Webhooks, 24kHz Voice, and RCS into automated UPI checkout &amp; courier dispatch.</sub>
+</div>
+
+### Growth Flywheel & Conversion Funnel Telemetry
+
+<div align="center">
+  <table>
+    <tr>
+      <td width="50%" align="center">
+        <img src="docs/assets/nano_banana_ecosystem_flywheel.png" alt="Flying Cheetah Autonomous Commerce Flywheel" width="440" />
+        <br /><sub><strong>Autonomous Commerce Flywheel</strong> — compounding D2C acquisition &amp; retention loops</sub>
+      </td>
+      <td width="50%" align="center">
+        <img src="docs/assets/flowchart_client_funnel.png" alt="Autonomous Client Conversion & Recovery Funnel" width="440" />
+        <br /><sub><strong>Client Funnel Telemetry</strong> — 15m cart rescue, AI COD shield, &amp; repeat re-order cadence</sub>
+      </td>
+    </tr>
+  </table>
+</div>
+
+### 48-Hour Autonomous Deployment Pipeline
+
+<div align="center">
+  <img src="docs/assets/flowchart_agency_lifecycle.png" alt="48-Hour Autonomous Deployment Pipeline" width="920" />
+  <br /><sub><strong>Day-0 to Live Production</strong> — audit, Meta WABA wiring, Hinglish voice training, Borzo API hook, and CAPI telemetry.</sub>
 </div>
 
 ---
@@ -195,7 +249,7 @@ Backed by **Supabase (PostgreSQL + GoTrue Auth + Row-Level Security)**:
 │   ├── tests/                      # Security, boundary, E2E, viewport & branding audit suites
 │   ├── package.json                # Tailwind build & Node --test runner
 │   └── vercel.json                 # Clean URLs, headers & API rewrites
-├── docs/assets/                    # GitHub README studio banner & live screenshots
+├── docs/assets/                    # GitHub README studio banner, white HiDPI infographics & live screenshots
 ├── backend/                        # Optional FastAPI + Docker experimental service
 ├── README.md                       # Repository documentation
 └── LICENSE                         # MIT License

@@ -54,8 +54,8 @@
 <body class="bg-slate-50 text-slate-900 font-sans antialiased selection:bg-bikOrange selection:text-white">
 
     <!-- Top Announcement -->
-    <div class="bg-bikDark text-white py-2 px-4 text-center text-xs font-medium flex items-center justify-center gap-2">
-        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+    <div class="bg-gradient-to-r from-orange-50 via-amber-50/70 to-emerald-50 border-b border-orange-200/70 text-bikDark text-xs py-2 px-4 text-center font-medium flex items-center justify-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
         <span>⚡ Live Simulation: Order on Web or WhatsApp &rarr; Automated UPI/COD &rarr; 25-Min Borzo Courier Dispatch to your door.</span>
     </div>
 
@@ -176,7 +176,7 @@
 
                     <!-- ITEM 3: ANC EARBUDS -->
                     <div class="product-card bg-white rounded-2xl border border-slate-200 p-4 shadow-sm hover:shadow-lg transition space-y-3 group" data-category="electronics">
-                        <div class="h-48 rounded-xl bg-slate-900 relative overflow-hidden">
+                        <div class="h-48 rounded-xl bg-slate-50 border border-slate-100 relative overflow-hidden">
                             <img src="images/product_sonicpods_anc.jpg" alt="SonicPods Pro ANC Wireless" class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500">
                             <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-emerald-500/95 backdrop-blur-xs text-white font-tech text-[10px] font-bold shadow-xs">BORZO DISPATCH</span>
                         </div>
@@ -223,36 +223,36 @@
                 </div>
 
                 <!-- LIVE DISPATCH STATUS BANNER (APPEARS AFTER ORDER) -->
-                <div id="activeDispatchCard" class="hidden bg-slate-900 text-white rounded-3xl p-6 border border-emerald-500/40 shadow-2xl space-y-4">
-                    <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                <div id="activeDispatchCard" class="hidden bg-gradient-to-br from-emerald-50/90 via-white to-teal-50/60 text-bikDark rounded-3xl p-6 border-2 border-emerald-300 shadow-xl space-y-4">
+                    <div class="flex items-center justify-between border-b border-emerald-200/70 pb-3">
                         <div class="flex items-center gap-2">
-                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
-                            <span class="text-xs font-mono font-bold text-emerald-400">BORZO RIDER ON THE ROAD</span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
+                            <span class="text-xs font-mono font-bold text-emerald-700">BORZO RIDER ON THE ROAD</span>
                         </div>
-                        <span id="orderRefDisplay" class="text-xs font-mono text-slate-400">ORDER #FC-MUM-4491</span>
+                        <span id="orderRefDisplay" class="text-xs font-mono text-slate-500">ORDER #FC-MUM-4491</span>
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
-                        <div class="p-3 rounded-xl bg-slate-800/80 border border-slate-700">
-                            <div class="text-slate-400 text-[10px]">Assigned Rider</div>
-                            <div id="riderNameDisplay" class="font-bold text-white text-sm mt-0.5">Ramesh Shinde</div>
-                            <div id="riderVehicleDisplay" class="text-slate-400 text-[10px]">Honda Activa (MH-02-CD-4421)</div>
+                        <div class="p-3 rounded-xl bg-white border border-emerald-200/80 shadow-sm">
+                            <div class="text-slate-500 text-[10px]">Assigned Rider</div>
+                            <div id="riderNameDisplay" class="font-bold text-bikDark text-sm mt-0.5">Ramesh Shinde</div>
+                            <div id="riderVehicleDisplay" class="text-slate-500 text-[10px]">Honda Activa (MH-02-CD-4421)</div>
                         </div>
-                        <div class="p-3 rounded-xl bg-slate-800/80 border border-slate-700">
-                            <div class="text-slate-400 text-[10px]">Doorstep Arrival</div>
-                            <div id="riderEtaDisplay" class="font-bold text-emerald-400 text-sm mt-0.5">24 Minutes</div>
-                            <div class="text-slate-400 text-[10px]">Zero Aggregator Commission</div>
+                        <div class="p-3 rounded-xl bg-white border border-emerald-200/80 shadow-sm">
+                            <div class="text-slate-500 text-[10px]">Doorstep Arrival</div>
+                            <div id="riderEtaDisplay" class="font-bold text-emerald-600 text-sm mt-0.5">24 Minutes</div>
+                            <div class="text-slate-500 text-[10px]">Zero Aggregator Commission</div>
                         </div>
-                        <div class="p-3 rounded-xl bg-slate-800/80 border border-slate-700">
-                            <div class="text-slate-400 text-[10px]">Payment Status</div>
-                            <div id="paymentStatusDisplay" class="font-bold text-amber-400 text-sm mt-0.5">Cash On Delivery (COD)</div>
-                            <div id="paymentSubtextDisplay" class="text-slate-400 text-[10px]">Pay to Rider at Door</div>
+                        <div class="p-3 rounded-xl bg-white border border-emerald-200/80 shadow-sm">
+                            <div class="text-slate-500 text-[10px]">Payment Status</div>
+                            <div id="paymentStatusDisplay" class="font-bold text-amber-600 text-sm mt-0.5">Cash On Delivery (COD)</div>
+                            <div id="paymentSubtextDisplay" class="text-slate-500 text-[10px]">Pay to Rider at Door</div>
                         </div>
                     </div>
 
                     <div class="flex items-center justify-between pt-2">
-                        <span class="text-xs text-slate-400">Saved live to Supabase PostgreSQL database.</span>
-                        <a id="liveTrackingBtn" href="https://borzodelivery.com" target="_blank" class="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-black text-xs transition flex items-center gap-1.5">
+                        <span class="text-xs text-slate-600">Saved live to Supabase PostgreSQL database.</span>
+                        <a id="liveTrackingBtn" href="https://borzodelivery.com" target="_blank" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs transition flex items-center gap-1.5 shadow-sm">
                             <i class="fa-solid fa-location-dot"></i>
                             <span>Track Rider GPS Live</span>
                         </a>
