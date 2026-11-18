@@ -1,18 +1,18 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-        <link rel="icon" type="image/png" href="images/user_official_real_logo_transparent.png">
+    <link rel="icon" type="image/png" href="images/user_official_real_logo_transparent.png">
     <link rel="apple-touch-icon" href="images/user_official_real_logo_transparent.png">
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer Data Platform (CDP 360°) — Flying Cheetah</title>
-    <meta property="og:title" content="Customer Data Platform (CDP 360°) — Flying Cheetah">
-    <meta property="og:description" content="Customer Data Platform (CDP 360°) — Flying Cheetah - Flying Cheetah Labs Autonomous AI Commerce &amp; Omnichannel Marketing Suite.">
+    <title>Customer Data Platform (CDP 360Â°) â€” Flying Cheetah</title>
+    <meta property="og:title" content="Customer Data Platform (CDP 360Â°) â€” Flying Cheetah">
+    <meta property="og:description" content="Unify Shopify orders, Meta ads, WhatsApp threads, and voice call outcomes into 360-degree shopper profiles with real-time RFM segmentation.">
     <meta property="og:image" content="https://flying-cheetah.vercel.app/images/flying_cheetah_logo_one_tail.png">
     <meta property="og:type" content="website">
 
-    <meta name="description" content="Customer Data Platform (CDP 360°) — Flying Cheetah - Flying Cheetah Labs Autonomous AI Commerce & Omnichannel Marketing Suite.">
+    <meta name="description" content="Customer Data Platform (CDP 360Â°) â€” Unify Shopify, Meta Ads, WhatsApp, and AI Voice signals into live deterministic shopper profiles with automated RFM cohorts.">
     <link rel="canonical" href="https://flying-cheetah.vercel.app/customer-data-platform">
     <meta property="og:url" content="https://flying-cheetah.vercel.app/customer-data-platform">
     <meta property="og:site_name" content="Flying Cheetah">
@@ -27,532 +27,927 @@
     <style>
         .bik-mega-shadow { box-shadow: 0 25px 60px -15px rgba(67, 56, 202, 0.15), 0 0 1px 1px rgba(0, 0, 0, 0.05); }
         .mega-menu { display: none; }
-        .dropdown-parent:hover .mega-menu { display: block; }
-        .card-anim { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
-        .card-anim:hover { transform: translateY(-4px); box-shadow: 0 20px 35px -10px rgba(0,0,0,0.08); }
-    
         .home-menu { display: none; }
         .home-dropdown-parent:hover > .home-menu,
         .home-dropdown-parent.active > .home-menu { display: block; }
-        .mega-menu { display: none; }
         .products-dropdown-parent:hover > .mega-menu,
         .products-dropdown-parent.active > .mega-menu { display: block; }
         .dropdown-parent:hover > .mega-menu,
         .dropdown-parent.active > .mega-menu { display: block; }
+        .card-anim { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .card-anim:hover { transform: translateY(-4px); box-shadow: 0 20px 35px -10px rgba(0,0,0,0.08); }
+        #cdpNode1.opacity-40, #cdpNode2.opacity-40, #cdpNode3.opacity-40, #cdpNode4.opacity-40 { opacity: 0.95 !important; background-color: #F8FAFC; }
     </style>
     <link rel="stylesheet" href="css/mobile-app.css">
     <script type="application/ld+json">
-{
+    {
       "@context": "https://schema.org",
       "@type": "Service",
       "name": "Customer Data Platform (CDP 360)",
       "serviceType": "Customer Data Platform (CDP 360)",
       "url": "https://flying-cheetah.vercel.app/customer-data-platform",
-      "description": "Customer Data Platform (CDP 360°) — Flying Cheetah - Flying Cheetah Labs Autonomous AI Commerce & Omnichannel Marketing Suite.",
+      "description": "Deterministic identity resolution, live RFM cohort scoring, and omnichannel behavioral activation for Indian D2C brands.",
       "areaServed": "IN",
       "provider": {
-            "@type": "Organization",
-            "name": "Flying Cheetah",
-            "url": "https://flying-cheetah.vercel.app",
-            "logo": "https://flying-cheetah.vercel.app/images/flying_cheetah_logo_one_tail.png"
+        "@type": "Organization",
+        "name": "Flying Cheetah",
+        "url": "https://flying-cheetah.vercel.app",
+        "logo": "https://flying-cheetah.vercel.app/images/flying_cheetah_logo_one_tail.png"
       }
-}
+    }
     </script>
 </head>
-<body class="bg-white text-slate-900 font-sans antialiased selection:bg-cdpIndigo selection:text-white">
+<body class="bg-white text-slate-900 font-sans antialiased selection:bg-indigo-100 selection:text-indigo-800">
 
-    <!-- TOP PROMO BANNER -->
-    <div class="bg-gradient-to-r from-orange-50 via-amber-50/70 to-emerald-50 border-b border-orange-200/70 text-bikDark py-2 px-4 text-center text-xs font-medium">
-        <span>📊 Centralize social data, Shopify store data, and WhatsApp chats into 360° customer profiles.</span>
-        <a href="demo.html" class="underline ml-2 text-bikOrange font-bold hover:text-bikOrangeDark transition">Book Live Demo ↗</a>
+    <!-- TOP ANNOUNCEMENT BANNER -->
+    <div class="bg-gradient-to-r from-indigo-50 via-purple-50/70 to-emerald-50 border-b border-indigo-200/70 text-bikDark py-2 px-4 text-center text-xs font-medium">
+        <span><i class="fa-solid fa-database text-indigo-700 mr-1.5" aria-hidden="true"></i>CDP 360Â° Identity Engine: Centralize Meta Ads, Shopify orders &amp; WhatsApp chats in &lt;150ms.</span>
+        <a href="demo.html" onclick="if(window.FC_LEADS){window.FC_LEADS.openAuditModal('Customer Data Platform');return false;}" class="underline ml-2 text-indigo-700 font-bold hover:text-indigo-900 transition whitespace-nowrap">Book Live Demo â†—</a>
     </div>
 
-    <!-- MAIN NAVBAR -->
+    <!-- CANONICAL STICKY HEADER -->
     <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
             <a href="index.html" class="flex items-center space-x-3 shrink-0 whitespace-nowrap">
                 <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah Logo" class="h-11 w-11 rounded-full object-cover border border-slate-200 shadow-sm">
                 <div class="flex flex-col">
-                    <span class="text-xl font-black tracking-tight font-display text-bikDark">FLYING CHEETAH</span>
-                    <span class="text-[9px] text-indigo-600 font-bold tracking-widest uppercase -mt-1">CUSTOMER DATA PLATFORM</span>
+                    <span class="text-lg xl:text-xl font-black tracking-tight font-display text-bikDark">FLYING CHEETAH</span>
+                    <span class="text-[9px] text-indigo-700 font-bold tracking-widest uppercase -mt-1">CUSTOMER DATA PLATFORM</span>
                 </div>
             </a>
 
-            <!-- CENTER NAV -->
-            <nav class="hidden lg:flex items-center gap-5 xl:gap-7 text-[13px] xl:text-sm font-semibold text-slate-700 whitespace-nowrap">
-
-                <a href="index.html" class="hover:text-bikOrange transition text-bikOrange font-bold">Home Hub</a>
-                <!-- HOME DROPDOWN (NEXT TO PRODUCTS) -->
-                <div class="relative home-dropdown-parent py-6">
-                    <button class="home-btn flex items-center gap-1.5 hover:text-bikOrange transition focus:outline-none text-slate-800 hover:text-bikOrange font-bold text-sm">
-                        <i class="fa-solid fa-house text-xs text-bikOrange"></i>
+            <nav aria-label="Primary Navigation" class="hidden lg:flex items-center gap-5 xl:gap-7 text-[13px] xl:text-sm font-semibold text-slate-700 whitespace-nowrap">
+                <!-- HOME DROPDOWN -->
+                <div class="relative home-dropdown-parent dropdown-parent py-6">
+                    <button type="button" aria-expanded="false" aria-controls="fcHomeMenu" class="home-btn flex items-center gap-1.5 hover:text-orange-700 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange rounded-lg px-1 text-slate-800 font-bold text-sm">
+                        <i class="fa-solid fa-house text-xs text-bikOrange" aria-hidden="true"></i>
                         <span>Home</span>
-                        <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200"></i>
+                        <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200" aria-hidden="true"></i>
                     </button>
-                    <!-- Dropdown Menu with the 4 items from user image -->
-                    <div class="mega-menu home-menu absolute top-full left-0 w-72 bg-white rounded-2xl border border-slate-200 p-4 shadow-2xl bik-mega-shadow z-50">
-                        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-3 pb-2 border-b border-slate-100 flex items-center justify-between">
+                    <div id="fcHomeMenu" class="mega-menu home-menu absolute top-full left-0 w-72 bg-white rounded-2xl border border-slate-200 p-4 shadow-2xl bik-mega-shadow z-50">
+                        <div class="text-[10px] font-bold text-slate-600 uppercase tracking-wider px-3 pb-2 border-b border-slate-100 flex items-center justify-between">
                             <span>Core Portals</span>
-                            <a href="index.html" class="text-bikOrange hover:underline font-bold">Executive Hub ↗</a>
+                            <a href="index.html" class="text-orange-700 hover:underline font-bold">Executive Hub â†—</a>
                         </div>
                         <div class="space-y-1.5 pt-2">
-                            <!-- 1. Main Site -->
-                            <a href="index.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
-                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-bikOrange flex items-center justify-center text-sm group-hover:scale-110 transition">
-                                    <i class="fa-solid fa-store"></i>
+                            <a href="index.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-orange-700 transition group">
+                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-orange-700 flex items-center justify-center text-sm group-hover:scale-110 transition">
+                                    <i class="fa-solid fa-store" aria-hidden="true"></i>
                                 </div>
                                 <div>
-                                    <div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">Main Site</div>
-                                    <div class="text-[10px] text-slate-400">Flagship AI Commerce Suite</div>
+                                    <div class="text-xs font-bold text-bikDark group-hover:text-orange-700">Main Site</div>
+                                    <div class="text-[10px] text-slate-600">Flagship AI Commerce Suite</div>
                                 </div>
                             </a>
-
-<!-- 3. Fleet Protocol -->
-                                                        <a href="web-development.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
-                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-bikOrange flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-code"></i></div>
-                                <div><div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">Web Development</div><div class="text-[10px] text-slate-400">Next.js &amp; Shopify Stores &bull; Mumbai</div></div>
-                            </a>
-<a href="delivery.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-emerald-50 text-slate-700 hover:text-emerald-600 transition group">
-                                <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center text-sm group-hover:scale-110 transition">
-                                    <i class="fa-solid fa-motorcycle"></i>
+                            <a href="web-development.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-orange-700 transition group">
+                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-orange-700 flex items-center justify-center text-sm group-hover:scale-110 transition">
+                                    <i class="fa-solid fa-code" aria-hidden="true"></i>
                                 </div>
                                 <div>
-                                    <div class="text-xs font-bold text-bikDark group-hover:text-emerald-600">Fleet Protocol</div>
-                                    <div class="text-[10px] text-slate-400">Hyperlocal Borzo/Porter API</div>
+                                    <div class="text-xs font-bold text-bikDark group-hover:text-orange-700">Web Development</div>
+                                    <div class="text-[10px] text-slate-600">Next.js &amp; Shopify Stores &bull; Mumbai</div>
                                 </div>
                             </a>
-
-                                                        <a href="about.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
-                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-bikOrange flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-circle-info"></i></div>
-                                <div><div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">About Us</div><div class="text-[10px] text-slate-400">Company Motive & Founders</div></div>
+                            <a href="delivery.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-emerald-50 text-slate-700 hover:text-emerald-700 transition group">
+                                <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center text-sm group-hover:scale-110 transition">
+                                    <i class="fa-solid fa-motorcycle" aria-hidden="true"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs font-bold text-bikDark group-hover:text-emerald-700">Fleet Protocol</div>
+                                    <div class="text-[10px] text-slate-600">Hyperlocal Borzo/Porter API</div>
+                                </div>
+                            </a>
+                            <a href="about.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-orange-700 transition group">
+                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-orange-700 flex items-center justify-center text-sm group-hover:scale-110 transition">
+                                    <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs font-bold text-bikDark group-hover:text-orange-700">About Us</div>
+                                    <div class="text-[10px] text-slate-600">Company Motive &amp; Founders</div>
+                                </div>
                             </a>
                         </div>
                     </div>
                 </div>
 
-
-
-                                <!-- Dropdown -->
+                <!-- PRODUCTS & AUTOMATIONS MEGA-MENU -->
                 <div class="relative products-dropdown-parent dropdown-parent py-6">
-                    <button class="flex items-center gap-1.5 hover:text-bikOrange transition focus:outline-none text-bikOrange font-bold">
-                        <span>Products & Automations</span>
-                        <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                    <button type="button" aria-expanded="false" aria-controls="fcProductsMenu" class="flex items-center gap-1.5 hover:text-indigo-700 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange rounded-lg px-1 text-indigo-700 font-bold">
+                        <span>Products &amp; Automations</span>
+                        <i class="fa-solid fa-chevron-down text-[10px]" aria-hidden="true"></i>
                     </button>
-                    <!-- Mega Menu -->
-                    <div class="mega-menu absolute top-full -left-28 w-[760px] bg-white rounded-2xl border border-slate-200 p-8 shadow-2xl bik-mega-shadow z-50">
+                    <div id="fcProductsMenu" class="mega-menu absolute top-full -left-28 w-[760px] bg-white rounded-2xl border border-slate-200 p-8 shadow-2xl bik-mega-shadow z-50">
                         <div class="grid grid-cols-4 gap-6 text-xs">
-                            <div class="space-y-3 bg-orange-50/50 p-3 -m-3 rounded-xl border border-orange-100">
-                                <div class="flex items-center gap-2 text-bikOrange font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-bullhorn"></i> CAMPAIGNS</div>
+                            <div class="space-y-3 bg-indigo-50/50 p-3 -m-3 rounded-xl border border-indigo-100">
+                                <div class="flex items-center gap-2 text-indigo-700 font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-bullhorn" aria-hidden="true"></i> CAMPAIGNS</div>
                                 <ul class="space-y-2.5 text-slate-700 font-medium">
-                                    <li><a href="email-marketing.html" class="hover:text-bikOrange transition block">Email marketing ↗</a></li>
-                                    <li><a href="whatsapp-marketing.html" class="hover:text-bikOrange transition block font-bold text-emerald-600">WhatsApp marketing ↗</a></li>
-                                    <li><a href="sms-marketing.html" class="hover:text-bikOrange transition block font-bold text-blue-600">SMS marketing ↗</a></li>
-                                    <li><a href="customer-data-platform.html" class="hover:text-bikOrange transition block font-bold text-indigo-600">Customer data platform ↗</a></li>
-                                    <li><a href="rcs-messaging.html" class="hover:text-bikOrange transition block font-bold text-cyan-600">RCS messaging ↗</a></li>
+                                    <li><a href="email-marketing.html" class="hover:text-orange-700 transition block">Email marketing</a></li>
+                                    <li><a href="whatsapp-marketing.html" class="hover:text-emerald-700 transition block">WhatsApp marketing</a></li>
+                                    <li><a href="sms-marketing.html" class="hover:text-blue-700 transition block">SMS marketing</a></li>
+                                    <li><a href="customer-data-platform.html" class="text-indigo-700 font-bold hover:underline block">Customer data platform â†—</a></li>
+                                    <li><a href="rcs-messaging.html" class="hover:text-blue-700 transition block">RCS messaging</a></li>
                                 </ul>
                             </div>
                             <div class="space-y-3">
-                                <div class="flex items-center gap-2 text-bikOrange font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-gear"></i> AUTOMATIONS</div>
+                                <div class="flex items-center gap-2 text-orange-700 font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-gear" aria-hidden="true"></i> AUTOMATIONS</div>
                                 <ul class="space-y-2.5 text-slate-700 font-medium">
-                                    <li><a href="store-automation.html" class="hover:text-bikOrange transition block font-bold text-bikOrange">Store automation ↗</a></li>
-                                    <li><a href="instagram-automation.html" class="hover:text-pink-600 transition block font-semibold text-pink-600">Instagram automation ↗</a></li>
-                                    <li><a href="whatsapp-automation.html" class="hover:text-emerald-600 transition block font-semibold text-emerald-600">WhatsApp automation ↗</a></li>
-                                    <li><a href="ctwa-automation.html" class="hover:text-blue-600 transition block font-semibold text-blue-600">Click to WhatsApp ads ↗</a></li>
-                                    <li><a href="ai-voice-agents.html" class="hover:text-purple-600 transition block font-semibold text-purple-600">AI Voice Agents ↗</a></li>
+                                    <li><a href="store-automation.html" class="hover:text-orange-700 transition block">Store automation</a></li>
+                                    <li><a href="instagram-automation.html" class="hover:text-pink-700 transition block">Instagram automation</a></li>
+                                    <li><a href="whatsapp-automation.html" class="hover:text-emerald-700 transition block">WhatsApp automation</a></li>
+                                    <li><a href="ctwa-automation.html" class="hover:text-blue-700 transition block">Click to WhatsApp ads</a></li>
+                                    <li><a href="ai-voice-agents.html" class="hover:text-purple-700 transition block">AI Voice Agents</a></li>
                                 </ul>
                             </div>
                             <div class="space-y-3 bg-emerald-50/50 p-3 -m-3 rounded-xl border border-emerald-100">
-                                <div class="flex items-center gap-2 text-emerald-700 font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-headset"></i> HELPDESK</div>
+                                <div class="flex items-center gap-2 text-emerald-700 font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-headset" aria-hidden="true"></i> HELPDESK</div>
                                 <ul class="space-y-2.5 text-slate-700 font-medium">
-                                    <li><a href="customer-support.html" class="hover:text-emerald-600 transition block">Customer support</a></li>
-                                    <li><a href="whatsapp-calling.html" class="hover:text-emerald-600 transition block font-bold text-emerald-700">WhatsApp calling ↗</a></li>
+                                    <li><a href="customer-support.html" class="hover:text-emerald-700 transition block">Customer support</a></li>
+                                    <li><a href="whatsapp-calling.html" class="hover:text-emerald-700 transition block font-bold text-emerald-700">WhatsApp calling â†—</a></li>
                                 </ul>
                             </div>
                             <div class="space-y-4">
                                 <div class="space-y-2">
-                                    <div class="text-bikOrange font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-comment-dots"></i> POPUPS</div>
-                                    <a href="solutions.html?module=gamification" class="hover:text-bikOrange transition block text-slate-600">Gamification</a>
+                                    <div class="text-orange-700 font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-comment-dots" aria-hidden="true"></i> POPUPS</div>
+                                    <a href="solutions.html?module=gamification" class="hover:text-orange-700 transition block text-slate-700">Gamification</a>
                                 </div>
                                 <div class="space-y-2 border-t border-slate-100 pt-3">
-                                    <div class="text-bikOrange font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-robot"></i> CHATBOTS</div>
-                                    <a href="solutions.html?module=whatsapp-chatbot" class="hover:text-bikOrange transition block text-slate-600">WhatsApp chatbot</a>
-                                    <a href="solutions.html?module=instagram-chatbot" class="hover:text-bikOrange transition block text-slate-600 mt-1">Instagram chatbot</a>
+                                    <div class="text-orange-700 font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-robot" aria-hidden="true"></i> CHATBOTS</div>
+                                    <a href="solutions.html?module=whatsapp-chatbot" class="hover:text-orange-700 transition block text-slate-700">WhatsApp chatbot</a>
+                                    <a href="solutions.html?module=instagram-chatbot" class="hover:text-orange-700 transition block text-slate-700 mt-1">Instagram chatbot</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <a href="delivery.html" class="hover:text-bikOrange transition">Fleet Dispatch</a>
-                <a href="web-development.html" class="hover:text-bikOrange transition">Web Development</a>
-                <a href="about.html" class="hover:text-bikOrange transition">About Us</a>
+
+                <a href="delivery.html" class="hover:text-orange-700 transition">Fleet Dispatch</a>
+                <a href="web-development.html" class="hover:text-orange-700 transition">Web Development</a>
+                <a href="about.html" class="hover:text-orange-700 transition">About Us</a>
             </nav>
 
-            <div class="flex items-center space-x-4">
-                <a href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah%20team,%20I%20want%20to%20deploy%20the%20Customer%20Data%20Platform." target="_blank" class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm transition shadow-md shadow-indigo-500/20">
+            <div class="flex items-center space-x-2.5 shrink-0">
+                <div class="fc-auth-slot"></div>
+                <a href="demo.html" onclick="if(window.FC_LEADS){window.FC_LEADS.openAuditModal('Customer Data Platform');return false;}" class="hidden sm:inline-flex items-center justify-center px-4 xl:px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs xl:text-sm transition shadow-md shadow-indigo-500/20 whitespace-nowrap shrink-0">
                     Connect Your Data
                 </a>
+                <button id="fcMobileMenuBtn" type="button" aria-label="Toggle Mobile Menu" aria-expanded="false" aria-controls="fcMobileDrawer" onclick="window.FC_WIDGETS && window.FC_WIDGETS.toggleMobileDrawer ? window.FC_WIDGETS.toggleMobileDrawer() : null" class="lg:hidden p-2 rounded-xl border border-slate-200 hover:border-indigo-600 bg-white text-slate-700 hover:text-indigo-700 transition flex items-center justify-center shrink-0 w-10 h-10 shadow-sm cursor-pointer touch-target-44 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange focus-visible:ring-offset-2">
+                    <i class="fa-solid fa-bars text-sm" aria-hidden="true"></i>
+                </button>
             </div>
         </div>
     </header>
 
-    <!-- HERO SECTION (Flying Cheetah CDP COPY) -->
-    <section class="pt-16 pb-20 md:pt-24 md:pb-28 bg-gradient-to-b from-indigo-50/30 via-white to-white overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                
-                <div class="lg:col-span-6 space-y-6 text-center lg:text-left">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-100 border border-indigo-200 text-indigo-800 text-xs font-bold uppercase tracking-wide">
-                        <i class="fa-solid fa-database"></i> Unified 360° eCommerce Customer Intelligence
-                    </div>
-                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-bikDark tracking-tight leading-[1.08] font-display">
-                        Precision Audience Targeting with <span class="text-indigo-600">Centralized Customer Data</span>.
-                    </h1>
-                    <p class="text-lg text-slateText max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal">
-                        Consolidate social interactions, Shopify store orders, and WhatsApp messages into a unified profile. Build high-converting segments like "VIP Champions" and "At-Risk Churn" in seconds with automated RFM modeling.
-                    </p>
+    <main id="main-content">
 
-                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
-                        <a href="demo.html" onclick="if(window.FC_LEADS){window.FC_LEADS.openAuditModal('Customer Data Platform');return false;}" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm transition shadow-lg shadow-indigo-500/25">
-                            <span>Book Free Live Demo</span> <span class="text-base leading-none">➔</span>
-                        </a>
-                        <a href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah,%20I%20want%20to%20learn%20more%20about%20Customer%20Data%20Platform." target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl border border-slate-300 hover:border-indigo-600 text-slate-800 font-bold text-sm bg-white hover:bg-indigo-50/50 transition">
-                            <i class="fa-brands fa-whatsapp text-emerald-500 text-base"></i> <span>Chat on WhatsApp</span>
-                        </a>
-                    </div>
+        <!-- HERO SECTION WITH FLOWCHART CONSOLE PLAYER -->
+        <section class="pt-14 pb-20 md:pt-20 md:pb-24 bg-gradient-to-b from-indigo-50/40 via-white to-white overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
-                    <div class="grid grid-cols-3 gap-6 pt-6 border-t border-slate-100 max-w-lg mx-auto lg:mx-0 text-left">
-                        <div>
-                            <div class="text-3xl font-black text-indigo-600 font-display">360°</div>
-                            <div class="text-xs font-semibold text-slate-500 mt-0.5">Unified Profile View</div>
+                    <div class="lg:col-span-6 space-y-6 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-100 border border-indigo-200 text-indigo-800 text-xs font-bold uppercase tracking-wide">
+                            <i class="fa-solid fa-database" aria-hidden="true"></i> Unified 360Â° eCommerce Customer Intelligence
                         </div>
-                        <div>
-                            <div class="text-3xl font-black text-emerald-600 font-display">Real-Time</div>
-                            <div class="text-xs font-semibold text-slate-500 mt-0.5">Event Stream Sync</div>
-                        </div>
-                        <div>
-                            <div class="text-3xl font-black text-bikOrange font-display">RFM</div>
-                            <div class="text-xs font-semibold text-slate-500 mt-0.5">Instant Smart Segments</div>
-                        </div>
-                    </div>
-                </div>
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-bikDark tracking-tight leading-[1.08] font-display">
+                            Precision Audience Targeting with <span class="text-indigo-700">Centralized Customer Data</span>.
+                        </h1>
+                        <p class="text-lg text-slate-700 max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal">
+                            Consolidate Instagram DM interactions, Shopify storefront sessions, WhatsApp threads, and COD voice verification outcomes into one deterministic shopper graph. Build high-converting RFM segments in seconds and activate them automatically across every channel.
+                        </p>
 
-                <!-- Right Visual: ANIMATED FLOWCHART VIDEO CONSOLE -->
-                <div class="lg:col-span-6 relative">
-                    <div class="rounded-3xl border-2 border-slate-200/90 bg-white shadow-2xl bik-mega-shadow fc-card-glow relative overflow-hidden text-slate-800">
-                        
-                        <!-- Top Video Progress Bar -->
-                        <div class="w-full h-1 bg-slate-100 relative overflow-hidden">
-                            <div id="cdpProgressBar" class="h-full bg-gradient-to-r from-indigo-500 via-purple-400 to-emerald-400 transition-all duration-300 w-0"></div>
+                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                            <a href="demo.html" onclick="if(window.FC_LEADS){window.FC_LEADS.openAuditModal('Customer Data Platform');return false;}" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm transition shadow-lg shadow-indigo-500/25">
+                                <span>Book Free Live Demo</span> <span class="text-base leading-none" aria-hidden="true">âž”</span>
+                            </a>
+                            <a href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah,%20I%20want%20to%20learn%20more%20about%20Customer%20Data%20Platform." target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl border border-slate-300 hover:border-indigo-600 text-slate-800 font-bold text-sm bg-white hover:bg-indigo-50/50 transition">
+                                <i class="fa-brands fa-whatsapp text-emerald-700 text-base" aria-hidden="true"></i> <span>Chat on WhatsApp</span>
+                            </a>
                         </div>
 
-                        <!-- Video Player Header Chrome -->
-                        <div class="px-5 py-3 border-b border-slate-200/80 flex items-center justify-between bg-slate-50/90 backdrop-blur-md">
-                            <div class="flex items-center gap-2">
-                                <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
-                                <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span>
-                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></span>
-                                <span class="text-[11px] font-bold text-slate-700 ml-1 font-mono flex items-center gap-1.5">
-                                    <i class="fa-solid fa-play text-indigo-500 text-[10px]"></i>
-                                    <span>CDP 360° Identity Resolution & Event Stream</span>
-                                </span>
+                        <div class="grid grid-cols-3 gap-4 pt-6 border-t border-slate-100 max-w-lg mx-auto lg:mx-0 text-left">
+                            <div class="p-3 rounded-2xl bg-indigo-50 border border-indigo-200">
+                                <div class="text-2xl sm:text-3xl font-black text-indigo-700 font-display">94.8%</div>
+                                <div class="text-[11px] font-bold text-slate-700 mt-0.5">Identity Stitch Rate</div>
                             </div>
-
-                            <div class="flex items-center gap-2">
-                                <span id="cdpStepBadge" class="px-2.5 py-0.5 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700 text-[10px] font-mono font-bold">
-                                    Step 1: Ingest
-                                </span>
-                                <button onclick="toggleCdpVideo()" id="cdpPlayPauseBtn" class="w-7 h-7 rounded-lg bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 flex items-center justify-center transition text-xs shadow-xs" title="Pause / Play">
-                                    <i class="fa-solid fa-pause" id="cdpPlayPauseIcon"></i>
-                                </button>
-                                <button onclick="restartCdpVideo()" class="w-7 h-7 rounded-lg bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 flex items-center justify-center transition text-xs shadow-xs" title="Replay">
-                                    <i class="fa-solid fa-rotate-right"></i>
-                                </button>
+                            <div class="p-3 rounded-2xl bg-emerald-50 border border-emerald-200">
+                                <div class="text-2xl sm:text-3xl font-black text-emerald-700 font-display">&lt;150 ms</div>
+                                <div class="text-[11px] font-bold text-slate-700 mt-0.5">Event Stream Sync</div>
+                            </div>
+                            <div class="p-3 rounded-2xl bg-orange-50 border border-orange-200">
+                                <div class="text-2xl sm:text-3xl font-black text-orange-700 font-display">+3.2x</div>
+                                <div class="text-[11px] font-bold text-slate-700 mt-0.5">Cohort Repeat LTV</div>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- Video Visual Canvas -->
-                        <div class="p-5 sm:p-6 grid grid-cols-1 sm:grid-cols-12 gap-5 items-center relative bg-gradient-to-b from-white via-slate-50/40 to-white">
-                            
-                            <!-- Left: Connected Flowchart Road Map (7 cols) -->
-                            <div class="sm:col-span-7 space-y-3 relative">
-                                
-                                <!-- Background Animated Beam Line -->
-                                <div class="absolute left-6 top-7 bottom-7 w-1 -translate-x-1/2 z-0 pointer-events-none">
-                                    <div class="w-full h-full bg-slate-200 rounded-full"></div>
-                                    <div id="cdpBeamActive" class="absolute top-0 left-0 w-full bg-gradient-to-b from-indigo-400 via-purple-300 to-emerald-400 rounded-full transition-all duration-500 shadow-[0_0_12px_#6366f1] h-0"></div>
+                    <!-- Right Visual: ANIMATED FLOWCHART CONSOLE PLAYER (Preserved IDs, Accessible Buttons) -->
+                    <div class="lg:col-span-6 relative">
+                        <div class="rounded-3xl border-2 border-slate-200/90 bg-white shadow-2xl bik-mega-shadow fc-card-glow relative overflow-hidden text-slate-800">
+                            <div class="w-full h-1 bg-slate-100 relative overflow-hidden">
+                                <div id="cdpProgressBar" class="h-full bg-gradient-to-r from-indigo-500 via-purple-400 to-emerald-400 transition-all duration-300 w-0"></div>
+                            </div>
+
+                            <div class="px-5 py-3 border-b border-slate-200/80 flex items-center justify-between bg-slate-50">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-red-500/80" aria-hidden="true"></span>
+                                    <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80" aria-hidden="true"></span>
+                                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80" aria-hidden="true"></span>
+                                    <span class="text-[11px] font-bold text-slate-700 ml-1 font-mono flex items-center gap-1.5">
+                                        <i class="fa-solid fa-play text-indigo-700 text-[10px]" aria-hidden="true"></i>
+                                        <span>CDP 360Â° Identity Resolution &amp; Event Stream</span>
+                                    </span>
                                 </div>
 
-                                <!-- Node 1: Multi-Source Webhook Ingestion -->
-                                <div id="cdpNode1" onclick="jumpCdpStep(0)" class="relative z-10 p-2.5 rounded-2xl bg-white border border-indigo-500/80 shadow-xs flex items-center gap-3 transition-all duration-300 cursor-pointer node-glow-indigo">
-                                    <div class="w-8 h-8 rounded-xl bg-indigo-500/20 text-indigo-500 flex items-center justify-center text-sm font-bold border border-indigo-500/30 transition shadow-sm">
-                                        <i class="fa-solid fa-network-wired"></i>
-                                    </div>
-                                    <div class="flex-1 min-w-0">
-                                        <div class="flex items-center justify-between">
-                                            <span class="text-xs font-black text-slate-900 block">1. Multi-Source Ingest</span>
-                                            <span class="text-[9px] font-mono text-indigo-600 bg-indigo-50 px-1.5 py-0.5 rounded border border-indigo-200 font-bold">4 Sources</span>
-                                        </div>
-                                        <span class="text-[10px] text-slate-500 block truncate">Shopify + WhatsApp + Meta Ads + POS</span>
-                                    </div>
+                                <div class="flex items-center gap-2">
+                                    <span id="cdpStepBadge" class="px-2.5 py-0.5 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700 text-[10px] font-mono font-bold">Step 1: Ingest</span>
+                                    <button type="button" onclick="toggleCdpVideo()" id="cdpPlayPauseBtn" aria-label="Pause or play CDP identity resolution simulation" class="w-7 h-7 rounded-lg bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 flex items-center justify-center transition text-xs shadow-sm cursor-pointer">
+                                        <i class="fa-solid fa-pause" id="cdpPlayPauseIcon" aria-hidden="true"></i>
+                                    </button>
+                                    <button type="button" onclick="restartCdpVideo()" aria-label="Replay CDP simulation from step 1" class="w-7 h-7 rounded-lg bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 flex items-center justify-center transition text-xs shadow-sm cursor-pointer">
+                                        <i class="fa-solid fa-rotate-right" aria-hidden="true"></i>
+                                    </button>
                                 </div>
+                            </div>
 
-                                <!-- Node 2: Identity Stitching Engine -->
-                                <div id="cdpNode2" onclick="jumpCdpStep(1)" class="relative z-10 p-2.5 rounded-2xl bg-white border border-slate-200 shadow-xs flex items-center gap-3 transition-all duration-300 cursor-pointer opacity-40">
-                                    <div class="w-8 h-8 rounded-xl bg-purple-500/20 text-purple-500 flex items-center justify-center text-sm font-bold border border-purple-500/30 transition shadow-sm">
-                                        <i class="fa-solid fa-fingerprint text-xs"></i>
+                            <div class="p-5 sm:p-6 grid grid-cols-1 sm:grid-cols-12 gap-5 items-center relative bg-gradient-to-b from-white via-slate-50/40 to-white">
+                                <!-- Left: Accessible Flowchart Buttons -->
+                                <div class="sm:col-span-7 space-y-3 relative">
+                                    <div class="absolute left-6 top-7 bottom-7 w-1 -translate-x-1/2 z-0 pointer-events-none" aria-hidden="true">
+                                        <div class="w-full h-full bg-slate-200 rounded-full"></div>
+                                        <div id="cdpBeamActive" class="absolute top-0 left-0 w-full bg-gradient-to-b from-indigo-400 via-purple-300 to-emerald-400 rounded-full transition-all duration-500 h-0"></div>
                                     </div>
-                                    <div class="flex-1 min-w-0">
-                                        <div class="flex items-center justify-between">
-                                            <span class="text-xs font-black text-slate-900 block">2. Identity Resolution</span>
-                                            <span class="text-[9px] font-mono text-purple-600 bg-purple-50 px-1.5 py-0.5 rounded border border-purple-200 font-semibold">&lt; 150ms Lag</span>
-                                        </div>
-                                        <span class="text-[10px] text-slate-500 block truncate">Phone + Cookie unified into 1 ID</span>
-                                    </div>
-                                </div>
 
-                                <!-- Node 3: Predictive RFM & LTV Scoring -->
-                                <div id="cdpNode3" onclick="jumpCdpStep(2)" class="relative z-10 p-2.5 rounded-2xl bg-white border border-slate-200 shadow-xs flex items-center gap-3 transition-all duration-300 cursor-pointer opacity-40">
-                                    <div class="w-8 h-8 rounded-xl bg-cyan-500/20 text-cyan-600 flex items-center justify-center text-sm font-bold border border-cyan-500/30 transition shadow-sm">
-                                        <i class="fa-solid fa-chart-line text-xs"></i>
-                                    </div>
-                                    <div class="flex-1 min-w-0">
-                                        <div class="flex items-center justify-between">
-                                            <span class="text-xs font-black text-slate-900 block">3. Predictive LTV & RFM</span>
-                                            <span class="text-[9px] font-mono text-cyan-700 bg-cyan-50 px-1.5 py-0.5 rounded border border-cyan-200 font-semibold">Champion Tier</span>
-                                        </div>
-                                        <span class="text-[10px] text-slate-500 block truncate">LTV ₹18,200 &bull; 82% Repurchase Score</span>
-                                    </div>
-                                </div>
-
-                                <!-- Node 4: Actionable High-AOV Upsell -->
-                                <div id="cdpNode4" onclick="jumpCdpStep(3)" class="relative z-10 p-3 rounded-2xl bg-white border border-slate-200 shadow-xs flex items-center gap-3 transition-all duration-300 cursor-pointer opacity-40">
-                                    <div class="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-600 flex items-center justify-center text-base font-bold border border-emerald-500/30 transition shadow-sm">
-                                        <i class="fa-solid fa-bolt"></i>
-                                    </div>
-                                    <div class="flex-1 min-w-0">
-                                        <div class="flex items-center justify-between">
-                                            <span class="text-xs font-black text-slate-900 block flex items-center gap-1.5">
-                                                <span>4. Automated VIP Upsell</span>
-                                                <i class="fa-solid fa-gem text-emerald-500 text-xs"></i>
+                                    <button type="button" id="cdpNode1" onclick="jumpCdpStep(0)" class="w-full text-left relative z-10 p-2.5 rounded-2xl bg-white border border-indigo-500/80 shadow-sm flex items-center gap-3 transition-all duration-300 cursor-pointer node-glow-indigo">
+                                        <span class="w-8 h-8 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center text-sm font-bold border border-indigo-200 shrink-0">
+                                            <i class="fa-solid fa-network-wired" aria-hidden="true"></i>
+                                        </span>
+                                        <span class="flex-1 min-w-0 block">
+                                            <span class="flex items-center justify-between">
+                                                <span class="text-xs font-black text-slate-900">1. Multi-Source Ingest</span>
+                                                <span class="text-[9px] font-mono text-indigo-700 bg-indigo-50 px-1.5 py-0.5 rounded border border-indigo-200 font-bold">4 Sources</span>
                                             </span>
-                                            <span class="text-[9px] font-mono text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200 font-bold">+₹1,850</span>
-                                        </div>
-                                        <span class="text-[10px] text-emerald-600 font-semibold block truncate">WhatsApp Concierge triggered instantly</span>
-                                    </div>
+                                            <span class="text-[10px] text-slate-600 block truncate">Shopify + WhatsApp + Meta Ads + POS</span>
+                                        </span>
+                                    </button>
+
+                                    <button type="button" id="cdpNode2" onclick="jumpCdpStep(1)" class="w-full text-left relative z-10 p-2.5 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-center gap-3 transition-all duration-300 cursor-pointer opacity-40">
+                                        <span class="w-8 h-8 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center text-sm font-bold border border-purple-200 shrink-0">
+                                            <i class="fa-solid fa-fingerprint text-xs" aria-hidden="true"></i>
+                                        </span>
+                                        <span class="flex-1 min-w-0 block">
+                                            <span class="flex items-center justify-between">
+                                                <span class="text-xs font-black text-slate-900">2. Identity Resolution</span>
+                                                <span class="text-[9px] font-mono text-purple-700 bg-purple-50 px-1.5 py-0.5 rounded border border-purple-200 font-semibold">&lt; 150ms Lag</span>
+                                            </span>
+                                            <span class="text-[10px] text-slate-600 block truncate">Phone + Cookie unified into 1 ID</span>
+                                        </span>
+                                    </button>
+
+                                    <button type="button" id="cdpNode3" onclick="jumpCdpStep(2)" class="w-full text-left relative z-10 p-2.5 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-center gap-3 transition-all duration-300 cursor-pointer opacity-40">
+                                        <span class="w-8 h-8 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center text-sm font-bold border border-blue-200 shrink-0">
+                                            <i class="fa-solid fa-chart-line text-xs" aria-hidden="true"></i>
+                                        </span>
+                                        <span class="flex-1 min-w-0 block">
+                                            <span class="flex items-center justify-between">
+                                                <span class="text-xs font-black text-slate-900">3. Predictive LTV &amp; RFM</span>
+                                                <span class="text-[9px] font-mono text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded border border-blue-200 font-semibold">Champion Tier</span>
+                                            </span>
+                                            <span class="text-[10px] text-slate-600 block truncate">LTV â‚¹18,200 &bull; 82% Repurchase Score</span>
+                                        </span>
+                                    </button>
+
+                                    <button type="button" id="cdpNode4" onclick="jumpCdpStep(3)" class="w-full text-left relative z-10 p-3 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-center gap-3 transition-all duration-300 cursor-pointer opacity-40">
+                                        <span class="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-base font-bold border border-emerald-200 shrink-0">
+                                            <i class="fa-solid fa-bolt" aria-hidden="true"></i>
+                                        </span>
+                                        <span class="flex-1 min-w-0 block">
+                                            <span class="flex items-center justify-between">
+                                                <span class="text-xs font-black text-slate-900 flex items-center gap-1.5">
+                                                    <span>4. Automated VIP Upsell</span>
+                                                </span>
+                                                <span class="text-[9px] font-mono text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200 font-bold">+â‚¹1,850</span>
+                                            </span>
+                                            <span class="text-[10px] text-emerald-800 font-semibold block truncate">WhatsApp Concierge triggered instantly</span>
+                                        </span>
+                                    </button>
                                 </div>
 
-                            </div>
-
-                            <!-- Right: Live Synchronized CDP 360 Profile Screen (5 cols) -->
-                            <div class="sm:col-span-5 relative">
-                                <div class="rounded-2xl border border-slate-200 bg-slate-50/90 p-3.5 space-y-3 shadow-md">
-                                    
-                                    <!-- CDP Profile Bar -->
-                                    <div class="flex items-center justify-between border-b border-slate-200 pb-2">
-                                        <div class="flex items-center gap-2">
-                                            <span class="w-2.5 h-2.5 rounded-full bg-indigo-500 animate-pulse"></span>
-                                            <span class="text-[10px] font-bold text-slate-700">Unified 360° Profile</span>
+                                <!-- Right: Live Synchronized CDP 360 Profile Screen -->
+                                <div class="sm:col-span-5 relative">
+                                    <div class="rounded-2xl border border-slate-200 bg-slate-50 p-3.5 space-y-3 shadow-md">
+                                        <div class="flex items-center justify-between border-b border-slate-200 pb-2">
+                                            <div class="flex items-center gap-2">
+                                                <span class="w-2.5 h-2.5 rounded-full bg-indigo-500 animate-pulse" aria-hidden="true"></span>
+                                                <span class="text-[10px] font-bold text-slate-700">Unified 360Â° Profile</span>
+                                            </div>
+                                            <span class="text-[10px] font-mono text-indigo-700 font-bold" id="cdpProfileId">#CDP-7729</span>
                                         </div>
-                                        <span class="text-[10px] font-mono text-indigo-600 font-bold" id="cdpProfileId">#CDP-7729</span>
+
+                                        <div class="text-center space-y-1 py-1">
+                                            <div class="w-12 h-12 mx-auto rounded-full bg-gradient-to-tr from-indigo-600 to-purple-500 flex items-center justify-center text-white text-lg shadow-md">
+                                                <i class="fa-solid fa-gem" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="text-xs font-black text-slate-900" id="cdpShopperName">Rhea Kapoor</div>
+                                            <p class="text-[9px] text-indigo-700 font-mono font-semibold" id="cdpShopperTier">Champion Tier (Top 1% VIP)</p>
+                                        </div>
+
+                                        <div class="p-2.5 rounded-xl bg-white border border-slate-200 space-y-1.5 text-[10px]">
+                                            <div class="flex items-center justify-between">
+                                                <span class="text-slate-600">Predicted LTV:</span>
+                                                <span class="text-emerald-700 font-bold font-mono" id="cdpLtvDisplay">â‚¹18,200</span>
+                                            </div>
+                                            <div class="text-[9px] text-slate-700 border-t border-slate-100 pt-1 leading-snug" id="cdpEventLog">
+                                                â€¢ 10:14 AM: Visited Silk Kurti Collection<br>
+                                                â€¢ 10:18 AM: WhatsApp VIP Chat Started<br>
+                                                â€¢ 10:21 AM: Paid â‚¹1,850 via UPI
+                                            </div>
+                                            <button type="button" id="cdpActionBtn" onclick="jumpCdpStep(3)" class="w-full py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-[9px] flex items-center justify-center gap-1 transition shadow-sm cursor-pointer">
+                                                <i class="fa-solid fa-fingerprint mr-1" aria-hidden="true"></i> Sync Identity Graph
+                                            </button>
+                                        </div>
                                     </div>
-
-                                    <!-- Customer Profile Details -->
-                                    <div class="text-center space-y-1 py-1">
-                                        <div class="w-12 h-12 mx-auto rounded-full bg-gradient-to-tr from-indigo-600 to-purple-500 flex items-center justify-center text-white text-lg shadow-md shadow-indigo-500/20">
-                                            <i class="fa-solid fa-gem"></i>
-                                        </div>
-                                        <h5 class="text-xs font-black text-slate-900" id="cdpShopperName">Rhea Kapoor</h5>
-                                        <p class="text-[9px] text-indigo-600 font-mono font-semibold" id="cdpShopperTier">Champion Tier (Top 1% VIP)</p>
-                                    </div>
-
-                                    <!-- Metrics & Live Event Stream -->
-                                    <div class="p-2.5 rounded-xl bg-white border border-slate-200 space-y-1.5 text-[10px] shadow-xs">
-                                        <div class="flex items-center justify-between">
-                                            <span class="text-slate-500">Predicted LTV:</span>
-                                            <span class="text-emerald-600 font-bold font-mono" id="cdpLtvDisplay">₹18,200</span>
-                                        </div>
-                                        <div class="text-[9px] text-slate-600 border-t border-slate-100 pt-1 leading-snug" id="cdpEventLog">
-                                            • 10:14 AM: Visited Silk Kurti Collection<br>
-                                             • 10:18 AM: WhatsApp VIP Chat Started<br>
-                                             • 10:21 AM: Paid ₹1,850 via UPI
-                                        </div>
-                                        <button id="cdpActionBtn" class="w-full py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-[9px] flex items-center justify-center gap-1 transition shadow-sm">
-                                            <i class="fa-solid fa-fingerprint mr-1"></i> Sync Identity Graph
-                                        </button>
-                                    </div>
-
                                 </div>
                             </div>
 
-                        </div>
-
-                        <!-- Video Footer Status Bar -->
-                        <div class="px-5 py-2.5 bg-slate-50/90 border-t border-slate-200/80 flex items-center justify-between text-[11px] text-slate-600 font-mono">
-                            <span class="flex items-center gap-2">
-                                <span class="w-2 h-2 rounded-full bg-indigo-500 animate-ping"></span>
-                                <span id="cdpStatusText">Step 1: Ingesting Webhooks Across Shopify & Meta</span>
-                            </span>
-                            <span class="text-indigo-600 font-bold">Zero Data Silos Assured</span>
+                            <div class="px-5 py-2.5 bg-slate-50 border-t border-slate-200/80 flex items-center justify-between text-[11px] text-slate-700 font-mono">
+                                <span class="flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-indigo-500 animate-ping" aria-hidden="true"></span>
+                                    <span id="cdpStatusText">Step 1: Ingesting Webhooks Across Shopify &amp; Meta</span>
+                                </span>
+                                <span class="text-indigo-700 font-bold">Zero Data Silos Assured</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- OFFICIAL LOGOS STRIP -->
-    <section class="py-8 bg-indigo-50/40 border-y border-indigo-100/60">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs font-bold text-slate-500">
-                <span class="uppercase tracking-wider text-[11px] text-indigo-700 flex items-center gap-1.5"><i class="fa-solid fa-layer-group text-indigo-600 text-base"></i> Real-Time Data Pipeline:</span>
-                <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-lime-800"><i class="fa-brands fa-shopify text-lg text-[#96bf48]"></i> Shopify Webhooks</span>
-                <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-emerald-700"><i class="fa-brands fa-whatsapp text-lg text-emerald-500"></i> WhatsApp Events</span>
-                <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-pink-600"><i class="fa-brands fa-instagram text-lg text-[#E1306C]"></i> Meta Social Activity</span>
-                <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-blue-700"><i class="fa-solid fa-bolt text-lg text-blue-600"></i> Enterprise Automation Mesh</span>
-                <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-amber-700"><i class="fa-solid fa-table text-lg text-amber-600"></i> Google Sheets / BigQuery</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- CDP 360 ARCHITECTURE VISUAL SHOWCASE -->
-    <section class="py-16 bg-gradient-to-b from-white to-indigo-50/30 border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            <div class="lg:col-span-6 space-y-4">
-                <span class="text-xs font-bold uppercase tracking-widest text-indigo-700 bg-indigo-100 px-3.5 py-1 rounded-full border border-indigo-200">Unified Data Graph</span>
-                <h2 class="text-2xl sm:text-3xl font-extrabold text-bikDark font-display">Every Ad Touchpoint, Order &amp; Chat Stitched Live</h2>
-                <p class="text-sm text-slateText leading-relaxed">Automatically resolve phone numbers, Shopify checkouts, Meta ad attribution, and Borzo delivery outcomes into live buyer profiles with RFM affinity scores.</p>
-            </div>
-            <div class="lg:col-span-6">
-                <div class="fc-showcase-frame aspect-[16/10]">
-                    <img src="images/cdp_unified_hub_3d.jpg" alt="Customer Data Platform 360 Identity Graph connecting Ads, Storefront, Chat and Delivery" loading="lazy" class="fc-showcase-img">
+        <!-- REAL-TIME DATA PIPELINE STRIP -->
+        <section class="py-8 bg-indigo-50/40 border-y border-indigo-100/80" aria-label="CDP Data Ingestion Sources">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs font-bold text-slate-700">
+                    <span class="uppercase tracking-wider text-[11px] text-indigo-700 flex items-center gap-1.5"><i class="fa-solid fa-layer-group text-indigo-700 text-base" aria-hidden="true"></i> Real-Time Data Pipeline:</span>
+                    <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-slate-800"><i class="fa-brands fa-shopify text-base text-emerald-700" aria-hidden="true"></i> Shopify Webhooks</span>
+                    <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-emerald-700"><i class="fa-brands fa-whatsapp text-base text-emerald-700" aria-hidden="true"></i> WhatsApp Events</span>
+                    <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-pink-700"><i class="fa-brands fa-instagram text-base text-pink-700" aria-hidden="true"></i> Meta Social Activity</span>
+                    <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-blue-700"><i class="fa-solid fa-bolt text-base text-blue-700" aria-hidden="true"></i> Meta CAPI Sync</span>
+                    <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-orange-700"><i class="fa-solid fa-table text-base text-orange-700" aria-hidden="true"></i> BigQuery / Warehouse</span>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- CORE 4 FEATURES -->
-    <section class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-            <div class="text-center max-w-2xl mx-auto">
-                <span class="text-xs font-bold uppercase tracking-widest text-indigo-600 bg-indigo-100 px-3 py-1 rounded-full">Core Capabilities</span>
-                <h2 class="text-3xl font-extrabold text-bikDark mt-3 font-display">Transform Disconnected Clicks into Actionable Growth</h2>
+        <!-- CDP 360 ARCHITECTURE VISUAL SHOWCASE (Bespoke Identity Graph + 3D Hub) -->
+        <section class="py-20 bg-white border-b border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                    <div class="lg:col-span-5 space-y-5">
+                        <span class="inline-block text-xs font-bold uppercase tracking-widest text-indigo-700 bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-200">Deterministic Identity Graph</span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark font-display leading-tight">Every Ad Touchpoint, Order &amp; Chat Stitched Live</h2>
+                        <p class="text-base text-slate-700 leading-relaxed">
+                            Indian shoppers rarely convert on a single device. They click an Instagram Reel on mobile, browse on desktop, ask sizing questions on WhatsApp, and check out via COD or UPI. Flying Cheetah CDP resolves phone numbers, cookies, email hashes, and delivery pincodes into one golden customer record in under 150ms.
+                        </p>
+                        <div class="grid grid-cols-2 gap-4 pt-2">
+                            <div class="p-4 rounded-2xl bg-indigo-50/70 border border-indigo-200">
+                                <h3 class="text-sm font-bold text-bikDark">Zero Duplicate Records</h3>
+                                <p class="text-xs text-slate-700 mt-1">Normalizes +91 phone variations and aliases into one canonical ID.</p>
+                            </div>
+                            <div class="p-4 rounded-2xl bg-emerald-50/70 border border-emerald-200">
+                                <h3 class="text-sm font-bold text-bikDark">First-Party Ownership</h3>
+                                <p class="text-xs text-slate-700 mt-1">100% encrypted Indian data residency with instant CSV &amp; SQL export.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="fc-showcase-frame p-3 bg-white sm:col-span-2">
+                            <img src="images/cdp_identity_graph_light.png" alt="Flying Cheetah CDP 360 Identity Graph unifying Shopify, WhatsApp, Meta Ads, and AI Voice signals on pure white canvas" class="rounded-xl w-full h-auto object-cover border border-slate-100">
+                        </div>
+                        <div class="fc-showcase-frame p-3 bg-white">
+                            <img src="images/cdp_customer_profile_dashboard.jpg" alt="Unified 360 Customer Profile Dashboard with RFM scoring and event timeline" class="rounded-xl w-full h-44 object-cover border border-slate-100">
+                        </div>
+                        <div class="fc-showcase-frame p-3 bg-white">
+                            <img src="images/cdp_unified_hub_3d.jpg" alt="3D Unified CDP Data Hub connecting omnichannel retail channels" class="rounded-xl w-full h-44 object-cover border border-slate-100">
+                        </div>
+                    </div>
+                </div>
             </div>
+        </section>
 
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                <div class="p-6 rounded-2xl border border-slate-200 bg-slate-50/60 card-anim">
-                    <div class="w-12 h-12 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-address-book"></i></div>
-                    <h3 class="font-bold text-base text-bikDark mb-2">Centralized Data Lake</h3>
-                    <p class="text-xs text-slateText leading-relaxed">No more fragmented spreadsheets. View purchase history, cart drop-offs, and WhatsApp chats in one unified timeline.</p>
+        <!-- INTERACTIVE RFM COHORT & IDENTITY RESOLUTION EXPLORER -->
+        <section class="py-20 bg-indigo-50/30 border-b border-slate-100" id="rfmExplorerSection">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-10">
+                    <span class="inline-block text-xs font-bold uppercase tracking-widest text-indigo-700 bg-indigo-100 border border-indigo-200 px-3.5 py-1 rounded-full">Live Cohort Segmentation</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark mt-3 font-display">Interactive RFM Cohort &amp; Identity Explorer</h2>
+                    <p class="mt-3 text-slate-700 text-sm sm:text-base">
+                        Switch cohorts to inspect the exact behavioral rules, stitched identity attributes, and automated revenue plays executed by Flying Cheetah CDP.
+                    </p>
                 </div>
 
-                <div class="p-6 rounded-2xl border border-slate-200 bg-slate-50/60 card-anim">
-                    <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-chart-pie"></i></div>
-                    <h3 class="font-bold text-base text-bikDark mb-2">RFM Smart Cohorts</h3>
-                    <p class="text-xs text-slateText leading-relaxed">Automatically calculates Recency, Frequency, and Monetary scores to isolate high-AOV VIP buyers from inactive window shoppers.</p>
+                <div role="tablist" aria-label="RFM Customer Cohorts" class="flex flex-wrap items-center justify-center gap-2.5 mb-8">
+                    <button type="button" role="tab" id="rfmTab-new" aria-selected="true" aria-controls="rfmPanel-new" onclick="switchRfmCohort('new')" class="px-4 py-2.5 rounded-xl text-xs font-bold border transition cursor-pointer bg-indigo-600 text-white border-indigo-600 shadow-sm">
+                        New Visitors
+                    </button>
+                    <button type="button" role="tab" id="rfmTab-abandoners" aria-selected="false" aria-controls="rfmPanel-abandoners" onclick="switchRfmCohort('abandoners')" class="px-4 py-2.5 rounded-xl text-xs font-bold border transition cursor-pointer bg-white text-slate-700 border-slate-200 hover:border-indigo-300">
+                        Cart Abandoners
+                    </button>
+                    <button type="button" role="tab" id="rfmTab-codrisk" aria-selected="false" aria-controls="rfmPanel-codrisk" onclick="switchRfmCohort('codrisk')" class="px-4 py-2.5 rounded-xl text-xs font-bold border transition cursor-pointer bg-white text-slate-700 border-slate-200 hover:border-indigo-300">
+                        COD-Risk Cohort
+                    </button>
+                    <button type="button" role="tab" id="rfmTab-vips" aria-selected="false" aria-controls="rfmPanel-vips" onclick="switchRfmCohort('vips')" class="px-4 py-2.5 rounded-xl text-xs font-bold border transition cursor-pointer bg-white text-slate-700 border-slate-200 hover:border-indigo-300">
+                        High-LTV VIPs
+                    </button>
                 </div>
 
-                <div class="p-6 rounded-2xl border border-slate-200 bg-slate-50/60 card-anim">
-                    <div class="w-12 h-12 rounded-xl bg-orange-100 text-bikOrange flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-bolt"></i></div>
-                    <h3 class="font-bold text-base text-bikDark mb-2">Real-Time Event Triggers</h3>
-                    <p class="text-xs text-slateText leading-relaxed">When a buyer drops into the "At-Risk" bucket, our system automatically triggers a personalized WhatsApp discount nudge.</p>
-                </div>
+                <div class="max-w-4xl mx-auto">
+                    <div id="rfmPanel-new" role="tabpanel" aria-labelledby="rfmTab-new" class="p-6 sm:p-8 rounded-3xl bg-white border-2 border-indigo-200 shadow-lg space-y-5">
+                        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-4">
+                            <div>
+                                <h3 class="text-lg font-extrabold text-bikDark">Cohort 01: High-Intent New Visitors (0 Orders, 3+ PDP Views)</h3>
+                                <p class="text-xs text-slate-600 font-mono">Rule: sessions_7d &gt;= 2 AND orders_count == 0 AND opted_in == true</p>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs font-bold">+24% First-Order Conversion</span>
+                        </div>
+                        <p class="text-sm text-slate-700 leading-relaxed">
+                            Stitches anonymous Meta CTWA click IDs and storefront browsing events with WhatsApp phone numbers captured via interactive spin-to-win or catalog inquiriesâ€”replacing generic blasts with tailored first-order welcomes.
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+                            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200"><strong class="block text-bikDark">Stitched Signals</strong><span class="text-indigo-700 font-semibold">FBCLID + Phone + Viewed SKU</span></div>
+                            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200"><strong class="block text-bikDark">Triggered Action</strong><span class="text-emerald-700 font-semibold">WhatsApp Social Proof Carousel</span></div>
+                            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200"><strong class="block text-bikDark">Ad Spend Impact</strong><span class="text-orange-700 font-semibold">-28% Retargeting CAC</span></div>
+                        </div>
+                    </div>
 
-                <div class="p-6 rounded-2xl border border-slate-200 bg-slate-50/60 card-anim">
-                    <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-lock"></i></div>
-                    <h3 class="font-bold text-base text-bikDark mb-2">Zero Third-Party Dependency</h3>
-                    <p class="text-xs text-slateText leading-relaxed">Your data remains 100% under your ownership with encrypted local storage and privacy-first Indian server compliance.</p>
+                    <div id="rfmPanel-abandoners" role="tabpanel" aria-labelledby="rfmTab-abandoners" class="hidden p-6 sm:p-8 rounded-3xl bg-white border-2 border-orange-200 shadow-lg space-y-5">
+                        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-4">
+                            <div>
+                                <h3 class="text-lg font-extrabold text-bikDark">Cohort 02: Dynamic Cart Abandoners (Checkout Drop &lt; 15m)</h3>
+                                <p class="text-xs text-slate-600 font-mono">Rule: cart_updated_at &lt; 15m AND checkout_completed == false</p>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-orange-50 border border-orange-200 text-orange-700 text-xs font-bold">16â€“19% Cart Recovery</span>
+                        </div>
+                        <p class="text-sm text-slate-700 leading-relaxed">
+                            Routes carts below â‚¹2,500 to instant WhatsApp 1-tap UPI checkout cards, while automatically escalating â‚¹3,000+ abandoned baskets to the AI Voice Concierge within 12 minutes.
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+                            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200"><strong class="block text-bikDark">Stitched Signals</strong><span class="text-indigo-700 font-semibold">Cart Value + Size + Payment Drop</span></div>
+                            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200"><strong class="block text-bikDark">Triggered Action</strong><span class="text-emerald-700 font-semibold">Tiered WhatsApp / AI Voice Call</span></div>
+                            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200"><strong class="block text-bikDark">Sync Latency</strong><span class="text-orange-700 font-semibold">Under 120ms Webhook</span></div>
+                        </div>
+                    </div>
+
+                    <div id="rfmPanel-codrisk" role="tabpanel" aria-labelledby="rfmTab-codrisk" class="hidden p-6 sm:p-8 rounded-3xl bg-white border-2 border-purple-200 shadow-lg space-y-5">
+                        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-4">
+                            <div>
+                                <h3 class="text-lg font-extrabold text-bikDark">Cohort 03: COD-Risk Cohort (Historical Return / High-RTO Pin)</h3>
+                                <p class="text-xs text-slate-600 font-mono">Rule: payment_method == "COD" AND (rto_history &gt; 0 OR pincode_risk == "HIGH")</p>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-purple-50 border border-purple-200 text-purple-700 text-xs font-bold">-22% RTO Loss</span>
+                        </div>
+                        <p class="text-sm text-slate-700 leading-relaxed">
+                            Flags repeat RTO phone numbers and incomplete addresses in real time before fulfillment labels are printedâ€”triggering an automated Voice AI verification call and prepaid UPI discount nudge.
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+                            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200"><strong class="block text-bikDark">Stitched Signals</strong><span class="text-indigo-700 font-semibold">Prior NDRs + Pincode Score</span></div>
+                            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200"><strong class="block text-bikDark">Triggered Action</strong><span class="text-emerald-700 font-semibold">Voice Verification + Hold Tag</span></div>
+                            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200"><strong class="block text-bikDark">Prepaid Shift</strong><span class="text-orange-700 font-semibold">18% Switch to UPI</span></div>
+                        </div>
+                    </div>
+
+                    <div id="rfmPanel-vips" role="tabpanel" aria-labelledby="rfmTab-vips" class="hidden p-6 sm:p-8 rounded-3xl bg-white border-2 border-emerald-200 shadow-lg space-y-5">
+                        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-4">
+                            <div>
+                                <h3 class="text-lg font-extrabold text-bikDark">Cohort 04: High-LTV VIP Champions (RFM Score 5-5-5)</h3>
+                                <p class="text-xs text-slate-600 font-mono">Rule: orders_count &gt;= 4 AND ltv_inr &gt;= 12000 AND recency_days &lt;= 45</p>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-bold">3.2x Repeat Velocity</span>
+                        </div>
+                        <p class="text-sm text-slate-700 leading-relaxed">
+                            Automatically syncs your top 5% spenders to Meta Custom Audiences for high-ROAS lookalike acquisition while granting VIP early access drops on WhatsApp and zero-wait support routing.
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+                            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200"><strong class="block text-bikDark">Stitched Signals</strong><span class="text-indigo-700 font-semibold">LTV + Category Affinity + NPS</span></div>
+                            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200"><strong class="block text-bikDark">Triggered Action</strong><span class="text-emerald-700 font-semibold">Meta Lookalike + VIP Concierge</span></div>
+                            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200"><strong class="block text-bikDark">Retention Lift</strong><span class="text-orange-700 font-semibold">+42% 90-Day Repurchase</span></div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-        
-    <footer class="py-12 bg-white border-t border-slate-200 text-xs text-slate-500">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <!-- INLINE SVG DATA VISUALIZATIONS -->
+        <section class="py-20 bg-white border-b border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="inline-block text-xs font-bold uppercase tracking-widest text-indigo-700 bg-indigo-50 border border-indigo-200 px-3.5 py-1 rounded-full">Data Telemetry</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark mt-3 font-display">Identity Stitch Rate &amp; LTV Lift Telemetry</h2>
+                    <p class="mt-3 text-slate-700 text-sm sm:text-base">
+                        Deterministic profile unification eliminates anonymous guest blind spots and drives higher campaign ROAS.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- SVG Chart 1: Identity Stitch Rate -->
+                    <div class="p-6 rounded-3xl bg-white border-2 border-slate-200 shadow-lg space-y-4">
+                        <div class="flex items-center justify-between gap-2 flex-wrap">
+                            <div>
+                                <h3 class="text-base font-extrabold text-bikDark">Deterministic Identity Stitch Curve</h3>
+                                <p class="text-xs text-slate-600">Unified cross-channel profile match vs legacy cookie-only tracking</p>
+                            </div>
+                            <span class="px-2.5 py-1 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700 font-mono text-[11px] font-bold">94.8% Match</span>
+                        </div>
+                        <svg viewBox="0 0 560 220" role="img" aria-label="Deterministic identity stitch rate chart reaching 94.8 percent compared to cookie-only baseline" class="w-full h-auto bg-white rounded-2xl border border-slate-100">
+                            <title>Deterministic Identity Stitch Rate Telemetry</title>
+                            <line x1="55" y1="30" x2="530" y2="30" stroke="#E2E8F0" stroke-dasharray="4 4"/>
+                            <line x1="55" y1="80" x2="530" y2="80" stroke="#E2E8F0" stroke-dasharray="4 4"/>
+                            <line x1="55" y1="130" x2="530" y2="130" stroke="#E2E8F0" stroke-dasharray="4 4"/>
+                            <line x1="55" y1="180" x2="530" y2="180" stroke="#CBD5E1"/>
+                            <text x="12" y="34" fill="#475569" font-size="11">100%</text>
+                            <text x="16" y="84" fill="#475569" font-size="11">65%</text>
+                            <text x="16" y="134" fill="#475569" font-size="11">30%</text>
+                            <text x="22" y="184" fill="#475569" font-size="11">0%</text>
+                            <!-- CDP Stitch Curve (#4338CA) -->
+                            <path d="M 65 135 C 145 90, 250 52, 370 42 T 520 34" fill="none" stroke="#4338CA" stroke-width="3.5" stroke-linecap="round"/>
+                            <circle cx="65" cy="135" r="4.5" fill="#4338CA" stroke="#FFFFFF" stroke-width="2"/>
+                            <circle cx="290" cy="54" r="4.5" fill="#4338CA" stroke="#FFFFFF" stroke-width="2"/>
+                            <circle cx="520" cy="34" r="5" fill="#10B981" stroke="#FFFFFF" stroke-width="2"/>
+                            <!-- Cookie-only baseline (#94A3B8 dashed) -->
+                            <path d="M 65 142 Q 250 138, 520 146" fill="none" stroke="#94A3B8" stroke-width="2.5" stroke-dasharray="6 5"/>
+                            <text x="65" y="202" fill="#475569" font-size="11">Week 1</text>
+                            <text x="275" y="202" fill="#475569" font-size="11">Week 4</text>
+                            <text x="488" y="202" fill="#475569" font-size="11">Week 8</text>
+                        </svg>
+                        <div class="flex flex-wrap items-center gap-4 text-xs text-slate-700 font-semibold">
+                            <span class="flex items-center gap-1.5"><span class="w-3 h-1.5 rounded-full bg-indigo-700 inline-block"></span> Flying Cheetah Identity Graph (94.8%)</span>
+                            <span class="flex items-center gap-1.5"><span class="w-3 h-1.5 rounded-full bg-slate-400 inline-block"></span> Cookie-Only Tracking (29%)</span>
+                        </div>
+                    </div>
+
+                    <!-- SVG Chart 2: RFM Cohort LTV Lift -->
+                    <div class="p-6 rounded-3xl bg-white border-2 border-slate-200 shadow-lg space-y-4">
+                        <div class="flex items-center justify-between gap-2 flex-wrap">
+                            <div>
+                                <h3 class="text-base font-extrabold text-bikDark">90-Day LTV Lift by RFM Segment</h3>
+                                <p class="text-xs text-slate-600">Generic broadcast blasts vs CDP behavioral targeting (â‚¹ average)</p>
+                            </div>
+                            <span class="px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 font-mono text-[11px] font-bold">+3.2x Champion LTV</span>
+                        </div>
+                        <svg viewBox="0 0 560 220" role="img" aria-label="90-day customer lifetime value lift across RFM cohorts bar chart" class="w-full h-auto bg-white rounded-2xl border border-slate-100">
+                            <title>90-Day LTV Lift Across RFM Cohorts</title>
+                            <line x1="50" y1="180" x2="530" y2="180" stroke="#CBD5E1"/>
+                            <!-- Group 1: New -->
+                            <rect x="80" y="140" width="28" height="40" rx="5" fill="#CBD5E1"/>
+                            <rect x="114" y="110" width="28" height="70" rx="5" fill="#4F46E5"/>
+                            <text x="82" y="200" fill="#475569" font-size="11">New Buyer</text>
+                            <!-- Group 2: Cart Drop -->
+                            <rect x="195" y="135" width="28" height="45" rx="5" fill="#CBD5E1"/>
+                            <rect x="229" y="88" width="28" height="92" rx="5" fill="#FF6838"/>
+                            <text x="196" y="200" fill="#475569" font-size="11">Cart Drop</text>
+                            <!-- Group 3: Loyal -->
+                            <rect x="310" y="115" width="28" height="65" rx="5" fill="#CBD5E1"/>
+                            <rect x="344" y="58" width="28" height="122" rx="5" fill="#7C3AED"/>
+                            <text x="314" y="200" fill="#475569" font-size="11">Repeat 2+</text>
+                            <!-- Group 4: VIP -->
+                            <rect x="425" y="96" width="28" height="84" rx="5" fill="#CBD5E1"/>
+                            <rect x="459" y="26" width="28" height="154" rx="5" fill="#10B981"/>
+                            <text x="428" y="200" fill="#475569" font-size="11">VIP 5-5-5</text>
+                        </svg>
+                        <div class="flex flex-wrap items-center gap-4 text-xs text-slate-700 font-semibold">
+                            <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded bg-slate-300 inline-block"></span> Unsegmented Blast</span>
+                            <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded bg-indigo-600 inline-block"></span> CDP Behavioral Cohort</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CORE 4 CAPABILITIES + 4 INDUSTRY USE CASES -->
+        <section class="py-20 bg-slate-50/60 border-b border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="inline-block text-xs font-bold uppercase tracking-widest text-indigo-700 bg-indigo-100 px-3 py-1 rounded-full">Core Capabilities &amp; Verticals</span>
+                    <h2 class="text-3xl font-extrabold text-bikDark mt-3 font-display">Transform Disconnected Clicks into Actionable Growth</h2>
+                    <p class="mt-3 text-slate-700 text-sm sm:text-base">
+                        Stop paying full acquisition cost twice for shoppers who already bought from your store or engaged with your Instagram Reels. Unify every order, cart, and chat into smart retention cohorts.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="p-6 rounded-2xl border border-slate-200 bg-white card-anim">
+                        <div class="w-12 h-12 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-address-book" aria-hidden="true"></i></div>
+                        <h3 class="font-bold text-base text-bikDark mb-2">Centralized Data Lake</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">Replace fragmented CSVs with a single customer timeline combining browsing, orders, WhatsApp chats, and call transcripts.</p>
+                    </div>
+                    <div class="p-6 rounded-2xl border border-slate-200 bg-white card-anim">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-chart-pie" aria-hidden="true"></i></div>
+                        <h3 class="font-bold text-base text-bikDark mb-2">RFM Smart Cohorts</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">Automatically scores Recency, Frequency, and Monetary value to isolate VIP Champions from discount-only shoppers.</p>
+                    </div>
+                    <div class="p-6 rounded-2xl border border-slate-200 bg-white card-anim">
+                        <div class="w-12 h-12 rounded-xl bg-orange-100 text-orange-700 flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-bolt" aria-hidden="true"></i></div>
+                        <h3 class="font-bold text-base text-bikDark mb-2">Real-Time Triggers</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">The moment a shopper shifts into "At-Risk Churn", the CDP triggers a personalized WhatsApp or RCS replenishment nudge.</p>
+                    </div>
+                    <div class="p-6 rounded-2xl border border-slate-200 bg-white card-anim">
+                        <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-lock" aria-hidden="true"></i></div>
+                        <h3 class="font-bold text-base text-bikDark mb-2">Meta CAPI &amp; Privacy</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">Streams hashed high-LTV purchase events back to Meta Ads Manager so ad algorithms optimize for profit, not clicks.</p>
+                    </div>
+                </div>
+
+                <!-- 4 Industry Use Cases -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <article class="p-6 rounded-2xl bg-indigo-50/40 border border-indigo-200 space-y-2">
+                        <h3 class="text-sm font-extrabold text-bikDark">1. Omnichannel Fashion</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">Unifies in-store POS phone numbers with online size affinity, fabric preferences, and cart history to send hyper-relevant seasonal drop alerts on WhatsApp.</p>
+                    </article>
+                    <article class="p-6 rounded-2xl bg-emerald-50/40 border border-emerald-200 space-y-2">
+                        <h3 class="text-sm font-extrabold text-bikDark">2. Wellness Subscriptions</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">Tracks 30-day supplement bottle depletion intervals and fires automated 1-tap UPI reorder links on Day 25 before shoppers churn to marketplaces.</p>
+                    </article>
+                    <article class="p-6 rounded-2xl bg-orange-50/40 border border-orange-200 space-y-2">
+                        <h3 class="text-sm font-extrabold text-bikDark">3. Jewelry &amp; Luxury</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">Routes high-browse VIP shoppers viewing â‚¹15,000+ collections directly to personal WhatsApp concierges and Indian English AI voice callers.</p>
+                    </article>
+                    <article class="p-6 rounded-2xl bg-purple-50/40 border border-purple-200 space-y-2">
+                        <h3 class="text-sm font-extrabold text-bikDark">4. Multi-City Electronics</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">Flags serial COD-returners across SKUs in real time, suppresses wasteful ad retargeting spend, and enforces prepaid UPI checkout on high-risk pincodes.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- IMPLEMENTATION ARCHITECTURE -->
+        <section class="py-20 bg-white border-b border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+                <div class="text-center max-w-3xl mx-auto">
+                    <span class="inline-block text-xs font-bold uppercase tracking-widest text-indigo-700 bg-indigo-50 border border-indigo-200 px-3.5 py-1 rounded-full">48-Hour Deployment</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark mt-3 font-display">4-Stage CDP Implementation Architecture</h2>
+                    <p class="mt-3 text-slate-700 text-sm sm:text-base">
+                        Zero engineering bottleneck. Connect your Shopify storefront, Meta Business Suite, WhatsApp Cloud API, and offline retail POS into a single real-time event pipeline. Every customer actionâ€”from Reel comment to COD verification and doorstep deliveryâ€”updates one golden profile instantaneously without manual CSV uploads or fragile third-party ETL scripts.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="p-6 rounded-2xl bg-indigo-50/50 border border-indigo-200 space-y-3">
+                        <div class="w-10 h-10 rounded-xl bg-indigo-600 text-white font-black flex items-center justify-center">01</div>
+                        <h3 class="text-base font-bold text-bikDark">Zero-ETL Ingestion</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">Subscribes to Shopify checkout webhooks, Meta Lead/CTWA click IDs, and WhatsApp delivery receipts without custom data pipelines.</p>
+                    </div>
+                    <div class="p-6 rounded-2xl bg-purple-50/50 border border-purple-200 space-y-3">
+                        <div class="w-10 h-10 rounded-xl bg-purple-700 text-white font-black flex items-center justify-center">02</div>
+                        <h3 class="text-base font-bold text-bikDark">Deterministic Identity Graph</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">Normalizes +91 phone formats, emails, and browser session IDs under 150ms to eliminate fragmented guest profiles.</p>
+                    </div>
+                    <div class="p-6 rounded-2xl bg-orange-50/50 border border-orange-200 space-y-3">
+                        <div class="w-10 h-10 rounded-xl bg-orange-700 text-white font-black flex items-center justify-center">03</div>
+                        <h3 class="text-base font-bold text-bikDark">Live RFM &amp; Churn Scoring</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">Recalculates Recency, Frequency, Monetary LTV, and COD-risk tiers automatically after every browse or purchase event.</p>
+                    </div>
+                    <div class="p-6 rounded-2xl bg-emerald-50/50 border border-emerald-200 space-y-3">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-500 text-bikDark font-black flex items-center justify-center">04</div>
+                        <h3 class="text-base font-bold text-bikDark">Omnichannel Activation</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">Syncs high-value cohorts instantaneously to WhatsApp journeys, AI Voice queues, and SHA-256 hashed Meta CAPI Custom Audiences.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- COMPARISON TABLE -->
+        <section class="py-20 bg-white border-b border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="inline-block text-xs font-bold uppercase tracking-widest text-indigo-700 bg-indigo-50 border border-indigo-200 px-3.5 py-1 rounded-full">Architecture Comparison</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark mt-3 font-display">Spreadsheets vs Legacy CDP vs Flying Cheetah Unified CDP</h2>
+                </div>
+
+                <div class="overflow-x-auto rounded-3xl border border-slate-200 bg-white shadow-lg">
+                    <table class="w-full text-left border-collapse min-w-[680px]">
+                        <thead>
+                            <tr class="bg-slate-50 border-b border-slate-200 text-xs uppercase tracking-wider text-slate-700">
+                                <th class="p-4 sm:p-5 font-extrabold">Dimension</th>
+                                <th class="p-4 sm:p-5 font-bold">Spreadsheets / Basic CRM</th>
+                                <th class="p-4 sm:p-5 font-bold">Legacy Enterprise CDP</th>
+                                <th class="p-4 sm:p-5 font-extrabold text-indigo-800 bg-indigo-50">Flying Cheetah CDP 360</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 text-sm text-slate-700">
+                            <tr>
+                                <td class="p-4 sm:p-5 font-bold text-bikDark">Identity Stitching</td>
+                                <td class="p-4 sm:p-5">Manual VLOOKUP by email/phone</td>
+                                <td class="p-4 sm:p-5">Requires SQL &amp; 3-month ETL setup</td>
+                                <td class="p-4 sm:p-5 font-bold text-indigo-800 bg-indigo-50/40">Instant &lt;150ms Indian phone/cookie stitch</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 sm:p-5 font-bold text-bikDark">WhatsApp, Voice &amp; Borzo Events</td>
+                                <td class="p-4 sm:p-5">Disconnected from store orders</td>
+                                <td class="p-4 sm:p-5">Paid custom connectors</td>
+                                <td class="p-4 sm:p-5 font-bold text-indigo-800 bg-indigo-50/40">Native first-party event schema</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 sm:p-5 font-bold text-bikDark">RFM &amp; COD-Risk Scoring</td>
+                                <td class="p-4 sm:p-5">Static monthly exports</td>
+                                <td class="p-4 sm:p-5">Complex BI add-on</td>
+                                <td class="p-4 sm:p-5 font-bold text-indigo-800 bg-indigo-50/40">Live real-time RFM + RTO risk flags</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 sm:p-5 font-bold text-bikDark">Time to Go Live</td>
+                                <td class="p-4 sm:p-5">Ongoing manual ops</td>
+                                <td class="p-4 sm:p-5">8â€“16 weeks engineering</td>
+                                <td class="p-4 sm:p-5 font-bold text-emerald-700 bg-indigo-50/40">48 hours turnkey Shopify/Meta sync</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- IMPLEMENTATION ARCHITECTURE + FAQ ACCORDION -->
+        <section class="py-20 bg-indigo-50/20">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+                <div class="text-center">
+                    <span class="inline-block text-xs font-bold uppercase tracking-widest text-indigo-700 bg-indigo-100 border border-indigo-200 px-3.5 py-1 rounded-full">CDP FAQ</span>
+                    <h2 class="text-3xl font-extrabold text-bikDark mt-3 font-display">Implementation &amp; Security Questions</h2>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="rounded-2xl border border-slate-200 bg-white overflow-hidden">
+                        <button type="button" aria-expanded="false" aria-controls="cdpFaq1" onclick="toggleCdpFaq(this)" class="w-full p-5 text-left flex items-center justify-between gap-4 font-bold text-sm text-bikDark hover:bg-indigo-50/40 transition cursor-pointer">
+                            <span>How long does it take to backfill our historical Shopify and WhatsApp data?</span>
+                            <i class="fa-solid fa-chevron-down text-xs text-indigo-700 transition-transform" aria-hidden="true"></i>
+                        </button>
+                        <div id="cdpFaq1" class="hidden px-5 pb-5 text-xs sm:text-sm text-slate-700 leading-relaxed border-t border-slate-100 pt-3">
+                            Historical Shopify orders, customer tags, and WhatsApp conversation metadata are backfilled within 2 hours of API authorization, immediately generating your initial RFM cohorts.
+                        </div>
+                    </div>
+
+                    <div class="rounded-2xl border border-slate-200 bg-white overflow-hidden">
+                        <button type="button" aria-expanded="false" aria-controls="cdpFaq2" onclick="toggleCdpFaq(this)" class="w-full p-5 text-left flex items-center justify-between gap-4 font-bold text-sm text-bikDark hover:bg-indigo-50/40 transition cursor-pointer">
+                            <span>Does the CDP sync segments directly back to Meta Ads Custom Audiences?</span>
+                            <i class="fa-solid fa-chevron-down text-xs text-indigo-700 transition-transform" aria-hidden="true"></i>
+                        </button>
+                        <div id="cdpFaq2" class="hidden px-5 pb-5 text-xs sm:text-sm text-slate-700 leading-relaxed border-t border-slate-100 pt-3">
+                            Yes. Any RFM segmentâ€”such as High-LTV VIPs or 60-Day Repeat Buyersâ€”syncs hourly via SHA-256 hashed identifiers to Meta Conversions API and Custom Audiences.
+                        </div>
+                    </div>
+
+                    <div class="rounded-2xl border border-slate-200 bg-white overflow-hidden">
+                        <button type="button" aria-expanded="false" aria-controls="cdpFaq3" onclick="toggleCdpFaq(this)" class="w-full p-5 text-left flex items-center justify-between gap-4 font-bold text-sm text-bikDark hover:bg-indigo-50/40 transition cursor-pointer">
+                            <span>Where is our customer PII stored and can we export it anytime?</span>
+                            <i class="fa-solid fa-chevron-down text-xs text-indigo-700 transition-transform" aria-hidden="true"></i>
+                        </button>
+                        <div id="cdpFaq3" class="hidden px-5 pb-5 text-xs sm:text-sm text-slate-700 leading-relaxed border-t border-slate-100 pt-3">
+                            All profiles remain strictly under your tenant isolation with TLS + AES-256 encryption and zero third-party data resale, with 1-click CSV, JSON, and BigQuery export.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- CANONICAL CROSS-LINKED FOOTER -->
+    <footer class="py-12 bg-white border-t border-slate-200 text-xs text-slate-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between gap-6">
             <div class="flex items-center space-x-3">
                 <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah" class="h-6 w-6 rounded-full object-cover border border-slate-300">
-                <span class="font-bold text-slate-700">FLYING CHEETAH LABS • ALL-IN-ONE AI COMMERCE SUITE © 2026.</span>
+                <span class="font-bold text-slate-800">FLYING CHEETAH LABS â€¢ CDP 360 Â© 2026.</span>
                 <span>All Rights Reserved.</span>
             </div>
-            <div class="flex flex-wrap items-center gap-4 font-medium text-slate-600">
-                <a href="index.html" class="hover:text-bikOrange transition font-bold text-bikOrange">Home Hub</a>
-                <a href="index.html" class="hover:text-bikOrange transition">Main Site</a>
-                <a href="customer-support.html" class="hover:text-bikOrange transition">Customer Support</a>
-                <a href="delivery.html" class="hover:text-bikOrange transition">Fleet Protocol</a>
-                <a href="about.html" class="hover:text-bikOrange transition">About Us</a>
+            <div class="flex flex-wrap items-center justify-center gap-4 font-medium text-slate-700">
+                <a href="index.html" class="hover:text-orange-700 transition">Main Site</a>
+                <a href="store-automation.html" class="hover:text-orange-700 transition">Store Automation</a>
+                <a href="instagram-automation.html" class="hover:text-pink-700 transition">Instagram</a>
+                <a href="whatsapp-automation.html" class="hover:text-emerald-700 transition">WhatsApp</a>
+                <a href="ctwa-automation.html" class="hover:text-blue-700 transition">CTWA Ads</a>
+                <a href="ai-voice-agents.html" class="hover:text-purple-700 transition">Voice Agents</a>
+                <a href="delivery.html" class="hover:text-emerald-700 transition">Fleet Protocol</a>
+                <a href="about.html" class="hover:text-orange-700 transition">About Us</a>
+                <a href="privacy-policy.html" class="hover:text-orange-700 transition">Privacy Policy</a>
+                <a href="terms-of-service.html" class="hover:text-orange-700 transition">Terms</a>
+                <a href="refund-policy.html" class="hover:text-orange-700 transition">Refunds</a>
             </div>
         </div>
     </footer>
+
     <!-- Flowchart Video Engine -->
     <script src="js/flowchart-player.js"></script>
     <script>
         let cdpPlayerInstance = null;
         document.addEventListener('DOMContentLoaded', function() {
-            cdpPlayerInstance = new FlowchartConsolePlayer({
-                progressBarId: 'cdpProgressBar',
-                beamId: 'cdpBeamActive',
-                stepBadgeId: 'cdpStepBadge',
-                statusTextId: 'cdpStatusText',
-                playPauseIconId: 'cdpPlayPauseIcon',
-                activeGlowClass: 'node-glow-indigo',
-                nodeIds: ['cdpNode1', 'cdpNode2', 'cdpNode3', 'cdpNode4'],
-                stepDuration: 2800,
-                steps: [
-                    {
-                        badge: 'Step 1: Ingest',
-                        status: 'Multi-Source Webhook Stream Ingested from Shopify & Meta Ads',
-                        id: '#CDP-7729',
-                        name: 'Rhea Kapoor',
-                        tier: 'Raw Events Streaming...',
-                        ltv: 'Calculating...',
-                        log: '• 10:14 AM: Visited Silk Kurti Collection (Shopify)<br>• 10:15 AM: Clicked Instagram Ad #diwali-vip',
-                        btn: 'Stitching Profile'
-                    },
-                    {
-                        badge: 'Step 2: Identity Graph',
-                        status: 'Identity Resolution Completed: Mobile, Email & Browser Merged',
-                        id: '#CDP-7729',
-                        name: 'Rhea Kapoor',
-                        tier: 'Profile Unified (Deterministic)',
-                        ltv: '₹12,400 Historical',
-                        log: '• Phone +91 98201... matched to priya@silk.in<br>• Zero duplicate records found across DB',
-                        btn: 'Scoring RFM Model'
-                    },
-                    {
-                        badge: 'Step 3: RFM & LTV',
-                        status: 'Autonomous ML Scoring: Assigned to "Champion Tier" (82% Repurchase Score)',
-                        id: '#CDP-7729',
-                        name: 'Rhea Kapoor',
-                        tier: 'Champion Tier (Top 1% VIP)',
-                        ltv: '₹18,200 Predicted',
-                        log: '• Recency: 2 days • Frequency: 6 orders<br>• Monetary: ₹18,200 High AOV',
-                        btn: 'Triggering VIP Upsell'
-                    },
-                    {
-                        badge: 'Step 4: Actionable Upsell',
-                        status: 'Automated Action: WhatsApp Concierge dispatched & ₹1,850 Upsell captured',
-                        id: '#CDP-7729 (Active)',
-                        name: 'Rhea Kapoor',
-                        tier: 'Champion Tier (Top 1% VIP)',
-                        ltv: '₹14,250 Updated',
-                        log: '• 10:21 AM: Paid ₹1,850 via 1-Tap UPI<br>• Borzo Express Delivery Dispatched to Bandra',
-                        btn: '✓ +₹1,850 Revenue Added'
+            const authSlot = document.querySelector('.fc-auth-slot');
+            if (authSlot) {
+                const ensureAuthBtnType = () => {
+                    authSlot.querySelectorAll('button:not([type])').forEach(b => b.setAttribute('type', 'button'));
+                };
+                ensureAuthBtnType();
+                new MutationObserver(ensureAuthBtnType).observe(authSlot, { childList: true, subtree: true });
+            }
+            if (typeof FlowchartConsolePlayer === 'function') {
+                cdpPlayerInstance = new FlowchartConsolePlayer({
+                    progressBarId: 'cdpProgressBar',
+                    beamId: 'cdpBeamActive',
+                    stepBadgeId: 'cdpStepBadge',
+                    statusTextId: 'cdpStatusText',
+                    playPauseIconId: 'cdpPlayPauseIcon',
+                    activeGlowClass: 'node-glow-indigo',
+                    nodeIds: ['cdpNode1', 'cdpNode2', 'cdpNode3', 'cdpNode4'],
+                    stepDuration: 2800,
+                    steps: [
+                        {
+                            badge: 'Step 1: Ingest',
+                            status: 'Multi-Source Webhook Stream Ingested from Shopify & Meta Ads',
+                            id: '#CDP-7729',
+                            name: 'Rhea Kapoor',
+                            tier: 'Raw Events Streaming...',
+                            ltv: 'Calculating...',
+                            log: 'â€¢ 10:14 AM: Visited Silk Kurti Collection (Shopify)<br>â€¢ 10:15 AM: Clicked Instagram Ad #diwali-vip',
+                            btn: 'Stitching Profile'
+                        },
+                        {
+                            badge: 'Step 2: Identity Graph',
+                            status: 'Identity Resolution Completed: Mobile, Email & Browser Merged',
+                            id: '#CDP-7729',
+                            name: 'Rhea Kapoor',
+                            tier: 'Profile Unified (Deterministic)',
+                            ltv: 'â‚¹12,400 Historical',
+                            log: 'â€¢ Phone +91 98201... matched to rhea@silk.in<br>â€¢ Zero duplicate records found across DB',
+                            btn: 'Scoring RFM Model'
+                        },
+                        {
+                            badge: 'Step 3: RFM & LTV',
+                            status: 'Autonomous ML Scoring: Assigned to "Champion Tier" (82% Repurchase Score)',
+                            id: '#CDP-7729',
+                            name: 'Rhea Kapoor',
+                            tier: 'Champion Tier (Top 1% VIP)',
+                            ltv: 'â‚¹18,200 Predicted',
+                            log: 'â€¢ Recency: 2 days â€¢ Frequency: 6 orders<br>â€¢ Monetary: â‚¹18,200 High AOV',
+                            btn: 'Triggering VIP Upsell'
+                        },
+                        {
+                            badge: 'Step 4: Actionable Upsell',
+                            status: 'Automated Action: WhatsApp Concierge dispatched & â‚¹1,850 Upsell captured',
+                            id: '#CDP-7729 (Active)',
+                            name: 'Rhea Kapoor',
+                            tier: 'Champion Tier (Top 1% VIP)',
+                            ltv: 'â‚¹14,250 Updated',
+                            log: 'â€¢ 10:21 AM: Paid â‚¹1,850 via 1-Tap UPI<br>â€¢ Borzo Express Delivery Dispatched to Bandra',
+                            btn: 'âœ“ +â‚¹1,850 Revenue Added'
+                        }
+                    ],
+                    onStepChange: function(index, step) {
+                        const id = document.getElementById('cdpProfileId');
+                        const name = document.getElementById('cdpShopperName');
+                        const tier = document.getElementById('cdpShopperTier');
+                        const ltv = document.getElementById('cdpLtvDisplay');
+                        const log = document.getElementById('cdpEventLog');
+                        const btn = document.getElementById('cdpActionBtn');
+                        if (id) id.innerText = step.id;
+                        if (name) name.innerText = step.name;
+                        if (tier) tier.innerText = step.tier;
+                        if (ltv) ltv.innerText = step.ltv;
+                        if (log) log.innerHTML = step.log;
+                        if (btn) btn.innerHTML = '<i class="fa-solid fa-fingerprint mr-1" aria-hidden="true"></i> ' + step.btn;
                     }
-                ],
-                onStepChange: function(index, step) {
-                    const id = document.getElementById('cdpProfileId');
-                    const name = document.getElementById('cdpShopperName');
-                    const tier = document.getElementById('cdpShopperTier');
-                    const ltv = document.getElementById('cdpLtvDisplay');
-                    const log = document.getElementById('cdpEventLog');
-                    const btn = document.getElementById('cdpActionBtn');
-                    if (id) id.innerText = step.id;
-                    if (name) name.innerText = step.name;
-                    if (tier) tier.innerText = step.tier;
-                    if (ltv) ltv.innerText = step.ltv;
-                    if (log) log.innerHTML = step.log;
-                    if (btn) btn.innerHTML = '<i class="fa-solid fa-fingerprint mr-1"></i> ' + step.btn;
+                });
+            }
+
+            // Header dropdown ARIA
+            const dropdownParents = document.querySelectorAll('.dropdown-parent');
+            dropdownParents.forEach(function(parent) {
+                const btn = parent.querySelector('button');
+                if (btn) {
+                    btn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        dropdownParents.forEach(p => {
+                            if (p !== parent) {
+                                p.classList.remove('active');
+                                const b = p.querySelector('button');
+                                if (b) b.setAttribute('aria-expanded', 'false');
+                            }
+                        });
+                        const isNowActive = parent.classList.toggle('active');
+                        btn.setAttribute('aria-expanded', isNowActive ? 'true' : 'false');
+                    });
+                }
+            });
+
+            document.querySelectorAll('nav > a').forEach(function(link) {
+                link.addEventListener('mouseenter', function() {
+                    dropdownParents.forEach(function(p) {
+                        p.classList.remove('active');
+                        const b = p.querySelector('button');
+                        if (b) b.setAttribute('aria-expanded', 'false');
+                    });
+                });
+            });
+
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.dropdown-parent')) {
+                    dropdownParents.forEach(function(p) {
+                        p.classList.remove('active');
+                        const b = p.querySelector('button');
+                        if (b) b.setAttribute('aria-expanded', 'false');
+                    });
                 }
             });
         });
@@ -567,50 +962,37 @@
             if (cdpPlayerInstance) cdpPlayerInstance.restart();
         }
 
-        // Toggle dropdowns on click & close when clicking outside
-        document.addEventListener('DOMContentLoaded', function() {
-            const dropdownParents = document.querySelectorAll('.dropdown-parent');
-            dropdownParents.forEach(function(parent) {
-                const btn = parent.querySelector('button');
-                if (btn) {
-                    btn.addEventListener('click', function(e) {
-                        e.stopPropagation();
-                        // Close other open dropdowns
-                        dropdownParents.forEach(p => { if (p !== parent) p.classList.remove('active'); });
-                        parent.classList.toggle('active');
-                    });
+        function switchRfmCohort(key) {
+            ['new', 'abandoners', 'codrisk', 'vips'].forEach(k => {
+                const tab = document.getElementById(`rfmTab-${k}`);
+                const panel = document.getElementById(`rfmPanel-${k}`);
+                const isSelected = k === key;
+                if (tab) {
+                    tab.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+                    tab.className = isSelected
+                        ? 'px-4 py-2.5 rounded-xl text-xs font-bold border transition cursor-pointer bg-indigo-600 text-white border-indigo-600 shadow-sm'
+                        : 'px-4 py-2.5 rounded-xl text-xs font-bold border transition cursor-pointer bg-white text-slate-700 border-slate-200 hover:border-indigo-300';
                 }
+                if (panel) panel.classList.toggle('hidden', !isSelected);
             });
+        }
 
-            document.addEventListener('click', function(e) {
-                dropdownParents.forEach(p => p.classList.remove('active'));
-            });
-        });
+        function toggleCdpFaq(btn) {
+            const ctrl = btn.getAttribute('aria-controls');
+            const panel = ctrl ? document.getElementById(ctrl) : null;
+            const expanded = btn.getAttribute('aria-expanded') === 'true';
+            btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+            if (panel) panel.classList.toggle('hidden', expanded);
+            const icon = btn.querySelector('i');
+            if (icon) icon.style.transform = expanded ? 'rotate(0deg)' : 'rotate(180deg)';
+        }
     </script>
+
     <!-- Supabase & Flying Cheetah Backend Architecture SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="js/supabase-client.js"></script>
     <script src="js/auth.js"></script>
     <script src="js/leads.js"></script>
     <script src="js/fc-widgets.js"></script>
-
-<script>
-        // Top-level nav links hover safety: immediately dismiss all dropdowns
-        document.querySelectorAll('nav > a').forEach(function(link) {
-            link.addEventListener('mouseenter', function() {
-                document.querySelectorAll('.home-dropdown-parent, .products-dropdown-parent, .dropdown-parent').forEach(function(p) {
-                    p.classList.remove('active');
-                });
-            });
-        });
-        // Click outside dismiss
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('.home-dropdown-parent') && !e.target.closest('.products-dropdown-parent') && !e.target.closest('.dropdown-parent')) {
-                document.querySelectorAll('.home-dropdown-parent, .products-dropdown-parent, .dropdown-parent').forEach(function(p) {
-                    p.classList.remove('active');
-                });
-            }
-        });
-    </script>
 </body>
 </html>

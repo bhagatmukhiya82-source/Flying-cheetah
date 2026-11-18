@@ -509,6 +509,73 @@
         return Promise.reject(new Error('Auth core not loaded'));
     }
 
+    const client = (window.FC_BACKEND && typeof window.FC_BACKEND.getClient === 'function')
+        ? window.FC_BACKEND.getClient()
+        : null;
+
+    function getApiBase() {
+        if (window.FC_AUTH_CORE && typeof window.FC_AUTH_CORE.getApiBase === 'function') {
+            return window.FC_AUTH_CORE.getApiBase();
+        }
+        if (window.FC_API_BASE) return window.FC_API_BASE;
+        if (window.location && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
+            return window.location.port === '8000' ? '' : 'http://localhost:8000';
+        }
+        return '';
+    }
+
+    function signOut() {
+        if (window.FC_AUTH_CORE && typeof window.FC_AUTH_CORE.signOut === 'function') {
+            return window.FC_AUTH_CORE.signOut();
+        }
+        if (window.FC_AUTH && typeof window.FC_AUTH.signOut === 'function') {
+            return window.FC_AUTH.signOut();
+        }
+        return Promise.resolve();
+    }
+
+    function signInWithGoogle(context) {
+        if (window.FC_AUTH_CORE && typeof window.FC_AUTH_CORE.signInWithGoogle === 'function') {
+            return window.FC_AUTH_CORE.signInWithGoogle(context);
+        }
+        if (window.FC_AUTH && typeof window.FC_AUTH.signInWithGoogle === 'function') {
+            return window.FC_AUTH.signInWithGoogle(context);
+        }
+        return Promise.reject(new Error('Auth core not loaded'));
+    }
+
+    function signInWithMagicLink(email) {
+        if (window.FC_AUTH_CORE && typeof window.FC_AUTH_CORE.signInWithMagicLink === 'function') {
+            return window.FC_AUTH_CORE.signInWithMagicLink(email);
+        }
+        if (window.FC_AUTH && typeof window.FC_AUTH.signInWithMagicLink === 'function') {
+            return window.FC_AUTH.signInWithMagicLink(email);
+        }
+        return Promise.reject(new Error('Auth core not loaded'));
+    }
+
+    function notifyAgencyOfLogin(user, eventType) {
+        if (window.FC_AUTH_CORE && typeof window.FC_AUTH_CORE.notifyAgencyOfLogin === 'function') {
+            return window.FC_AUTH_CORE.notifyAgencyOfLogin(user, eventType);
+        }
+    }
+
+    function syncNavbarUI() {
+        if (window.FC_AUTH_CORE && typeof window.FC_AUTH_CORE.syncNavbarUI === 'function') {
+            return window.FC_AUTH_CORE.syncNavbarUI();
+        }
+        if (window.FC_AUTH && typeof window.FC_AUTH.syncNavbarUI === 'function') {
+            return window.FC_AUTH.syncNavbarUI();
+        }
+    }
+
+    function loadUserProfile(user) {
+        if (window.FC_AUTH_CORE && typeof window.FC_AUTH_CORE.loadUserProfile === 'function') {
+            return window.FC_AUTH_CORE.loadUserProfile(user);
+        }
+        return Promise.resolve(null);
+    }
+
     // Modal implementation
     function injectAuthModal() {
         if (document.getElementById('fcAuthModal')) return;
@@ -518,7 +585,7 @@
             <div id="fcAuthModalCard" class="relative w-full max-w-xl bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-2xl transform scale-95 transition-all duration-300 my-8">
                 
                 <!-- Close Button -->
-                <button id="fcAuthCloseBtn" class="absolute top-5 right-5 text-slate-400 hover:text-slate-700 w-8 h-8 rounded-full flex items-center justify-center hover:bg-slate-100 transition z-10" aria-label="Close modal">
+                <button id="fcAuthCloseBtn" type="button" class="absolute top-5 right-5 text-slate-400 hover:text-slate-700 w-8 h-8 rounded-full flex items-center justify-center hover:bg-slate-100 transition z-10" aria-label="Close modal">
                     <i class="fa-solid fa-xmark text-lg"></i>
                 </button>
 
@@ -704,7 +771,7 @@
                     <div id="fcSignInActiveUserCard" class="hidden p-4 rounded-2xl bg-gradient-to-br from-orange-50/90 via-white to-amber-50/70 border border-orange-200 shadow-sm space-y-3">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center gap-2.5 min-w-0 text-left">
-                                <div id="fcSignInUserAvatar" class="w-10 h-10 rounded-2xl bg-bikDark text-white font-black text-xs flex items-center justify-center shrink-0 shadow-sm">
+                                <div id="fcSignInUserAvatar" class="w-10 h-10 rounded-2xl bg-orange-100 text-orange-800 border border-orange-200 font-black text-xs flex items-center justify-center shrink-0 shadow-sm">
                                     FC
                                 </div>
                                 <div class="min-w-0 text-left">
@@ -721,7 +788,7 @@
                         </div>
 
                         <!-- Direct Merchant Profile Overview & Manage Button -->
-                        <div class="p-3 bg-white rounded-xl border border-orange-100/90 space-y-2 shadow-xs">
+                        <div class="p-3 bg-white rounded-xl border border-orange-100/90 space-y-2 shadow-sm">
                             <div class="flex items-center justify-between gap-2">
                                 <div class="min-w-0 text-left">
                                     <div class="flex items-center gap-1.5">
@@ -745,8 +812,8 @@
 
                         <!-- Direct Hub Actions -->
                         <div class="grid grid-cols-2 gap-2 pt-1">
-                            <a href="admin.html" id="fcSignInAdminLink" class="py-2 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-[11px] text-center transition flex items-center justify-center gap-1.5">
-                                <i class="fa-solid fa-gauge-high text-[10px] text-brandGold"></i>
+                            <a href="admin.html" id="fcSignInAdminLink" class="py-2 px-3 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-[11px] text-center transition flex items-center justify-center gap-1.5 shadow-sm">
+                                <i class="fa-solid fa-gauge-high text-[10px] text-white"></i>
                                 <span>Operations Portal</span>
                             </a>
                             <a href="store.html" class="py-2 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-[11px] text-center transition flex items-center justify-center gap-1.5">
@@ -816,7 +883,7 @@
                                 </button>
                             </div>
 
-                            <button type="submit" id="fcSignInSubmitBtn" class="w-full py-3.5 rounded-xl bg-bikDark hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider transition shadow-md flex items-center justify-center gap-2 mt-4 cursor-pointer">
+                            <button type="submit" id="fcSignInSubmitBtn" class="w-full py-3.5 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-xs uppercase tracking-wider transition shadow-md flex items-center justify-center gap-2 mt-4 cursor-pointer">
                                 <i class="fa-solid fa-arrow-right-to-bracket text-xs"></i>
                                 <span>Sign In to Dashboard</span>
                             </button>
@@ -850,7 +917,7 @@
                     <!-- Live Sync Indicator -->
                     <div class="p-3 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between text-xs">
                         <div class="flex items-center gap-2.5 min-w-0 text-left">
-                            <div id="fcModalProfileAvatar" class="w-8 h-8 rounded-full bg-slate-900 text-white font-bold text-xs flex items-center justify-center shrink-0">
+                            <div id="fcModalProfileAvatar" class="w-8 h-8 rounded-full bg-orange-100 text-orange-800 border border-orange-200 font-bold text-xs flex items-center justify-center shrink-0">
                                 FC
                             </div>
                             <div class="truncate">
@@ -970,7 +1037,7 @@
                     <div class="p-4 rounded-2xl bg-gradient-to-br from-slate-50 via-white to-orange-50/40 border border-slate-200 shadow-sm space-y-3">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center gap-3 text-left">
-                                <div id="fcSecAvatar" class="w-12 h-12 rounded-2xl bg-bikDark text-white font-black text-sm flex items-center justify-center shadow-sm shrink-0">
+                                <div id="fcSecAvatar" class="w-12 h-12 rounded-2xl bg-orange-100 text-orange-800 border border-orange-200 font-black text-sm flex items-center justify-center shadow-sm shrink-0">
                                     FC
                                 </div>
                                 <div class="min-w-0">
@@ -1032,7 +1099,7 @@
                     </div>
 
                     <!-- Change Password Card -->
-                    <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-xs space-y-3 text-left">
+                    <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-3 text-left">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center gap-2">
                                 <div class="w-7 h-7 rounded-lg bg-orange-50 text-bikOrange flex items-center justify-center text-xs">
@@ -1102,7 +1169,7 @@
 
                             <div id="fcSecPassFeedback" class="hidden p-2.5 rounded-xl text-xs font-bold text-center"></div>
 
-                            <button type="submit" id="fcSecUpdatePassBtn" class="w-full py-3 rounded-xl bg-bikDark hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider transition shadow-sm flex items-center justify-center gap-2 cursor-pointer">
+                            <button type="submit" id="fcSecUpdatePassBtn" class="w-full py-3 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-xs uppercase tracking-wider transition shadow-sm flex items-center justify-center gap-2 cursor-pointer">
                                 <i class="fa-solid fa-lock text-xs"></i>
                                 <span>Update Account Password</span>
                             </button>
@@ -1154,7 +1221,7 @@
                 </div>
 
                 <!-- OTP Notification Card (Clean Email Security Confirmation) -->
-                <div id="fcForgotOtpBanner" class="hidden my-3 p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200 shadow-sm animate-fadeIn">
+                <div id="fcForgotOtpBanner" class="hidden my-3 p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200 shadow-sm transition-all duration-300">
                     <div class="flex items-center justify-between text-xs font-bold text-emerald-900">
                         <div class="flex items-center gap-1.5">
                             <i class="fa-solid fa-envelope-circle-check text-emerald-600"></i>
@@ -1236,7 +1303,7 @@
                             <div id="fcForgotMatchIndicator" class="text-[10px] text-slate-400 mt-0.5">Passwords must match</div>
                         </div>
 
-                        <button type="submit" id="fcResetPasswordSubmitBtn" class="w-full py-3.5 rounded-xl bg-bikDark hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider transition shadow-md flex items-center justify-center gap-2 cursor-pointer mt-2">
+                        <button type="submit" id="fcResetPasswordSubmitBtn" class="w-full py-3.5 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-xs uppercase tracking-wider transition shadow-md flex items-center justify-center gap-2 cursor-pointer mt-2">
                             <i class="fa-solid fa-lock text-xs"></i>
                             <span>Verify OTP & Set New Password</span>
                         </button>
@@ -1290,7 +1357,7 @@
                         <input type="tel" id="fcGooglePhoneInput" required placeholder="+91 98200 12345" inputmode="tel" autocomplete="tel" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange focus:border-bikOrange transition outline-none font-mono">
                         <div id="fcGooglePhoneHint" class="text-[10px] text-slate-400 mt-1 pl-1">Strict E.164 phone binding (+91). Required for WhatsApp store &amp; courier dispatch.</div>
                     </div>
-                    <button type="submit" id="fcGoogleEmailSubmitBtn" class="w-full py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider transition shadow-md flex items-center justify-center gap-2 cursor-pointer">
+                    <button type="submit" id="fcGoogleEmailSubmitBtn" class="w-full py-3 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-xs uppercase tracking-wider transition shadow-md flex items-center justify-center gap-2 cursor-pointer">
                         <i class="fa-solid fa-arrow-right text-xs"></i>
                         <span>Continue to Dashboard</span>
                     </button>
@@ -1331,7 +1398,7 @@
                         <input type="tel" id="fcMandatoryPhoneInput" required placeholder="+91 98200 12345" inputmode="tel" autocomplete="tel" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange focus:border-bikOrange transition outline-none font-mono">
                         <div id="fcMandatoryPhoneHint" class="text-[10px] text-slate-400 mt-1 pl-1">Strict E.164 (+91) binding. 1 account per phone number.</div>
                     </div>
-                    <button type="submit" id="fcMandatoryPhoneSubmitBtn" class="w-full py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider transition shadow-md flex items-center justify-center gap-2 cursor-pointer">
+                    <button type="submit" id="fcMandatoryPhoneSubmitBtn" class="w-full py-3 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-xs uppercase tracking-wider transition shadow-md flex items-center justify-center gap-2 cursor-pointer">
                         <i class="fa-solid fa-shield-check text-xs"></i>
                         <span>Save Phone &amp; Unlock Account</span>
                     </button>
@@ -3311,16 +3378,16 @@
             document.body.appendChild(container);
         }
         const toast = document.createElement('div');
-        toast.className = `pointer-events-auto flex items-start gap-3 p-4 rounded-2xl border shadow-2xl transition-all duration-300 transform translate-y-4 opacity-0 ${
-            type === 'success' ? 'bg-slate-900 border-slate-800 text-white' : 'bg-red-50 border-red-200 text-red-900'
+        toast.className = `pointer-events-auto flex items-start gap-3 p-4 rounded-2xl transition-all duration-300 transform translate-y-4 opacity-0 ${
+            type === 'success' ? 'bg-white text-slate-900 border border-slate-200 shadow-2xl' : 'bg-red-50 border border-red-200 text-red-900 shadow-2xl'
         }`;
         toast.innerHTML = `
             <div class="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 ${type === 'success' ? 'bg-emerald-500 text-white' : 'bg-red-500 text-white'}">
-                <i class="fa-solid ${type === 'success' ? 'fa-check' : 'fa-triangle-exclamation'} text-xs"></i>
+                <i class="fa-solid ${type === 'success' ? 'fa-check' : 'fa-triangle-exclamation'} text-xs" aria-hidden="true"></i>
             </div>
             <div class="flex-1 text-xs leading-relaxed">
-                <div class="font-bold">${type === 'success' ? 'Success' : 'Notice'}</div>
-                <div class="mt-0.5">${message}</div>
+                <div class="font-bold ${type === 'success' ? 'text-slate-900' : 'text-red-900'}">${type === 'success' ? 'Success' : 'Notice'}</div>
+                <div class="mt-0.5 ${type === 'success' ? 'text-slate-700' : 'text-red-800'}">${message}</div>
             </div>
         `;
         container.appendChild(toast);
@@ -3714,7 +3781,7 @@
             if (!currentUser) {
                 // Not logged in: Show "Sign In" button with Google mark
                 container.innerHTML = `
-                    <button onclick="window.FC_AUTH.openAuthModal('signin')" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl border border-slate-200 hover:border-bikOrange bg-white text-slate-700 hover:text-bikOrange font-bold text-xs transition shadow-sm cursor-pointer">
+                    <button type="button" onclick="window.FC_AUTH.openAuthModal('signin')" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl border border-slate-200 hover:border-bikOrange bg-white text-slate-700 hover:text-bikOrange font-bold text-xs transition shadow-sm cursor-pointer">
                         <svg class="w-3.5 h-3.5" viewBox="0 0 24 24">
                             <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.66v3.05h3.9c2.28-2.1 3.64-5.2 3.64-9.15z"/>
                             <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.9-3.05c-1.08.72-2.45 1.16-4.03 1.16-3.1 0-5.73-2.1-6.67-4.94H1.32v3.15C3.33 21.36 7.39 24 12 24z"/>
@@ -3734,9 +3801,9 @@
 
                 container.innerHTML = `
                     <div class="relative group/auth">
-                        <button class="flex items-center gap-2 p-1 rounded-full hover:ring-2 hover:ring-bikOrange/30 transition cursor-pointer">
+                        <button type="button" class="flex items-center gap-2 p-1 rounded-full hover:ring-2 hover:ring-bikOrange/30 transition cursor-pointer">
                             ${avatar ? `<img src="${avatar}" alt="${name}" class="w-8 h-8 rounded-full object-cover border border-slate-200 shadow-sm">`
-                                     : `<div class="w-8 h-8 rounded-full bg-slate-900 text-white font-bold text-xs flex items-center justify-center">${initials}</div>`}
+                                     : `<div class="w-8 h-8 rounded-full bg-orange-100 text-orange-800 border border-orange-200 font-bold text-xs flex items-center justify-center">${initials}</div>`}
                             <div class="text-left hidden md:block">
                                 <span class="text-xs font-bold text-slate-800 block leading-tight max-w-[110px] truncate">${name}</span>
                                 ${isAdmin ? `<span class="text-[9px] text-bikOrange font-black uppercase tracking-wider">Admin</span>` 
@@ -3785,7 +3852,7 @@
                                 </a>
                             </div>
                             <div class="pt-1 border-t border-slate-100">
-                                <button onclick="window.FC_AUTH.signOut()" class="w-full flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-bold text-red-600 hover:bg-red-50 transition text-left cursor-pointer">
+                                <button type="button" onclick="window.FC_AUTH.signOut()" class="w-full flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-bold text-red-600 hover:bg-red-50 transition text-left cursor-pointer">
                                     <i class="fa-solid fa-arrow-right-from-bracket"></i>
                                     <span>Sign Out</span>
                                 </button>

@@ -52,13 +52,13 @@
         nav.innerHTML = `
             <div class="grid grid-cols-5 items-center h-14 text-center px-1">
                 <!-- Tab 1: Home -->
-                <a href="index.html" class="flex flex-col items-center justify-center py-1 transition group touch-target-44 ${isHome ? 'fc-nav-active text-bikOrange font-bold' : 'text-slate-500 hover:text-slate-800'}">
+                <a href="index.html" class="flex flex-col items-center justify-center py-1 transition group touch-target-44 ${isHome ? 'fc-nav-active text-orange-700 font-bold' : 'text-slate-700 hover:text-slate-800'}">
                     <i class="fa-solid fa-house text-base transition-transform group-active:scale-90"></i>
                     <span class="text-[10px] tracking-tight mt-0.5 font-medium">Home</span>
                 </a>
 
                 <!-- Tab 2: Automations (Replaces old retail store tab) -->
-                <a href="solutions.html" class="flex flex-col items-center justify-center py-1 transition group touch-target-44 ${isAutomations ? 'fc-nav-active text-bikOrange font-bold' : 'text-slate-500 hover:text-slate-800'}">
+                <a href="solutions.html" class="flex flex-col items-center justify-center py-1 transition group touch-target-44 ${isAutomations ? 'fc-nav-active text-orange-700 font-bold' : 'text-slate-700 hover:text-slate-800'}">
                     <i class="fa-solid fa-bolt text-base transition-transform group-active:scale-90"></i>
                     <span class="text-[10px] tracking-tight mt-0.5 font-medium">Automations</span>
                 </a>
@@ -68,11 +68,11 @@
                     <div class="w-11 h-11 -mt-5 rounded-full bg-gradient-to-tr from-bikOrange to-amber-500 text-white flex items-center justify-center shadow-lg shadow-orange-500/35 border-2 border-white transition-transform group-active:scale-90">
                         <i class="fa-solid fa-play text-sm ml-0.5 animate-pulse"></i>
                     </div>
-                    <span class="text-[10px] font-bold tracking-tight mt-0.5 ${isDemo ? 'text-bikOrange' : 'text-slate-600'}">Demo</span>
+                    <span class="text-[10px] font-bold tracking-tight mt-0.5 ${isDemo ? 'fc-nav-active text-orange-700' : 'text-slate-700'}">Demo</span>
                 </a>
 
                 <!-- Tab 4: Direct WhatsApp Chat -->
-                <a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center justify-center py-1 text-emerald-600 hover:text-emerald-700 transition group touch-target-44">
+                <a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="fc-nav-wa flex flex-col items-center justify-center py-1 text-emerald-700 hover:text-emerald-800 transition group touch-target-44">
                     <div class="relative">
                         <i class="fa-brands fa-whatsapp text-xl transition-transform group-active:scale-90"></i>
                         <span class="absolute -top-0.5 -right-1 w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
@@ -81,7 +81,7 @@
                 </a>
 
                 <!-- Tab 5: Mobile Drawer Menu -->
-                <button type="button" onclick="window.FC_WIDGETS.toggleMobileDrawer()" aria-label="Open Navigation Menu" class="flex flex-col items-center justify-center py-1 text-slate-500 hover:text-slate-800 transition group touch-target-44 cursor-pointer">
+                <button type="button" onclick="window.FC_WIDGETS.toggleMobileDrawer()" aria-label="Open Navigation Menu" class="flex flex-col items-center justify-center py-1 text-slate-700 hover:text-slate-800 transition group touch-target-44 cursor-pointer">
                     <i class="fa-solid fa-bars text-base transition-transform group-active:scale-90"></i>
                     <span class="text-[10px] tracking-tight mt-0.5 font-medium">Menu</span>
                 </button>
@@ -101,6 +101,9 @@
         if (headerContainer) {
             const existingBurger = document.getElementById('fcMobileMenuBtn');
             if (existingBurger) {
+                if (!existingBurger.getAttribute('type')) {
+                    existingBurger.setAttribute('type', 'button');
+                }
                 if (!existingBurger.onclick) {
                     existingBurger.onclick = function (e) {
                         e.preventDefault();
@@ -117,8 +120,10 @@
                     burgerBtn.id = 'fcMobileMenuBtn';
                     burgerBtn.type = 'button';
                     burgerBtn.setAttribute('aria-label', 'Toggle Mobile Menu');
-                    burgerBtn.className = 'lg:hidden p-2 rounded-xl border border-slate-200 hover:border-bikOrange bg-white text-slate-700 hover:text-bikOrange transition flex items-center justify-center shrink-0 w-10 h-10 shadow-xs cursor-pointer touch-target-44';
-                    burgerBtn.innerHTML = '<i class="fa-solid fa-bars text-sm"></i>';
+                    burgerBtn.setAttribute('aria-expanded', 'false');
+                    burgerBtn.setAttribute('aria-controls', 'fcMobileDrawer');
+                    burgerBtn.className = 'lg:hidden p-2 rounded-xl border border-slate-200 hover:border-bikOrange bg-white text-slate-700 hover:text-bikOrange transition flex items-center justify-center shrink-0 w-10 h-10 shadow-sm cursor-pointer touch-target-44 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange focus-visible:ring-offset-2';
+                    burgerBtn.innerHTML = '<i class="fa-solid fa-bars text-sm" aria-hidden="true"></i>';
                     burgerBtn.onclick = function (e) {
                         e.preventDefault();
                         e.stopPropagation();
@@ -138,13 +143,13 @@
                 <!-- Top Brand & Close -->
                 <div class="p-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/80 sticky top-0 z-10 backdrop-blur-md">
                     <a href="index.html" class="flex items-center gap-2.5">
-                        <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah Logo" class="w-8 h-8 rounded-full object-cover border border-slate-200 shadow-xs">
+                        <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah Logo" class="w-8 h-8 rounded-full object-cover border border-slate-200 shadow-sm">
                         <div class="flex flex-col text-left">
                             <span class="font-black text-xs tracking-tight font-display text-bikDark leading-none">FLYING CHEETAH</span>
-                            <span class="text-[8px] text-bikOrange font-bold tracking-widest uppercase mt-0.5">AI COMMERCE</span>
+                            <span class="text-[8px] text-orange-700 font-bold tracking-widest uppercase mt-0.5">AI COMMERCE</span>
                         </div>
                     </a>
-                    <button type="button" onclick="window.FC_WIDGETS.toggleMobileDrawer()" aria-label="Close Menu" class="w-9 h-9 rounded-xl flex items-center justify-center text-slate-400 hover:text-slate-800 hover:bg-slate-200/50 transition cursor-pointer touch-target-44">
+                    <button type="button" onclick="window.FC_WIDGETS.toggleMobileDrawer()" aria-label="Close Menu" class="w-9 h-9 rounded-xl flex items-center justify-center text-slate-600 hover:text-slate-800 hover:bg-slate-200/50 transition cursor-pointer touch-target-44">
                         <i class="fa-solid fa-xmark text-sm"></i>
                     </button>
                 </div>
@@ -153,22 +158,22 @@
                 <div class="p-4 space-y-4 flex-1 text-sm overflow-y-auto">
                     <!-- Core Quick Links -->
                     <div>
-                        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest px-2 mb-1.5">Quick Links</div>
+                        <div class="text-[10px] font-bold text-slate-600 uppercase tracking-widest px-2 mb-1.5">Quick Links</div>
                         <div class="space-y-1">
                             <a href="index.html" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-700 hover:text-bikOrange hover:bg-orange-50 font-bold transition">
-                                <i class="fa-solid fa-house text-bikOrange w-4 text-center"></i>
+                                <i class="fa-solid fa-house text-orange-700 w-4 text-center"></i>
                                 <span>Main Site</span>
                             </a>
                             <a href="store.html" class="flex items-center gap-3 px-3 py-2 rounded-xl text-emerald-700 hover:text-emerald-800 hover:bg-emerald-50 font-bold transition">
-                                <i class="fa-solid fa-cart-shopping text-emerald-600 w-4 text-center"></i>
+                                <i class="fa-solid fa-cart-shopping text-emerald-700 w-4 text-center"></i>
                                 <span>Live Storefront Demo</span>
                             </a>
-                            <a href="demo.html" class="flex items-center gap-3 px-3 py-2 rounded-xl text-bikOrange bg-orange-50/60 hover:bg-orange-100/80 font-bold transition">
-                                <i class="fa-solid fa-play text-bikOrange w-4 text-center animate-pulse"></i>
+                            <a href="demo.html" class="flex items-center gap-3 px-3 py-2 rounded-xl text-orange-700 bg-orange-50/60 hover:bg-orange-100/80 font-bold transition">
+                                <i class="fa-solid fa-play text-orange-700 w-4 text-center animate-pulse"></i>
                                 <span>Live Interactive Sandbox</span>
                             </a>
                             <a href="about.html" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-700 hover:text-bikOrange hover:bg-orange-50 font-bold transition">
-                                <i class="fa-solid fa-circle-info text-slate-400 w-4 text-center"></i>
+                                <i class="fa-solid fa-circle-info text-slate-600 w-4 text-center"></i>
                                 <span>About Us &amp; Founders</span>
                             </a>
                         </div>
@@ -176,13 +181,13 @@
 
                     <!-- 1. AI AUTOMATION SYSTEMS -->
                     <div class="pt-2 border-t border-slate-100">
-                        <div class="text-[10px] font-bold text-bikOrange uppercase tracking-widest px-2 mb-1.5 flex items-center gap-1.5">
+                        <div class="text-[10px] font-bold text-orange-700 uppercase tracking-widest px-2 mb-1.5 flex items-center gap-1.5">
                             <i class="fa-solid fa-bolt text-[10px]"></i> AI Automation Systems
                         </div>
                         <div class="space-y-1 text-xs">
                             <a href="store-automation.html" class="flex items-center justify-between px-3 py-2 rounded-xl text-slate-700 hover:text-bikOrange hover:bg-orange-50 transition font-medium">
                                 <span>Shopify &amp; Storefront Automation</span>
-                                <span class="text-[9px] bg-orange-100 text-bikOrange font-bold px-1.5 py-0.5 rounded">Auto-Upsell</span>
+                                <span class="text-[9px] bg-orange-100 text-orange-800 font-bold px-1.5 py-0.5 rounded">Auto-Upsell</span>
                             </a>
                             <a href="ai-voice-agents.html" class="flex items-center justify-between px-3 py-2 rounded-xl text-slate-700 hover:text-purple-600 hover:bg-purple-50 transition">
                                 <span>AI Voice Calling Agents (COD/RTO)</span>
@@ -192,13 +197,13 @@
                             <a href="instagram-automation.html" class="block px-3 py-2 rounded-xl text-slate-700 hover:text-pink-600 hover:bg-pink-50 transition font-medium">Instagram DM &amp; Reel Auto-Sell</a>
                             <a href="delivery.html" class="block px-3 py-2 rounded-xl text-slate-700 hover:text-orange-600 hover:bg-orange-50 transition font-medium">Hyperlocal Fleet Protocol (Borzo &amp; Porter)</a>
                             <a href="customer-support.html" class="block px-3 py-2 rounded-xl text-slate-700 hover:text-blue-600 hover:bg-blue-50 transition font-medium">24/7 AI Omnichannel Helpdesk</a>
-                            <a href="solutions.html" class="block px-3 py-2 rounded-xl text-bikOrange font-bold hover:bg-orange-50 transition">View All Automation Solutions ↗</a>
+                            <a href="solutions.html" class="block px-3 py-2 rounded-xl text-orange-700 font-bold hover:bg-orange-50 transition">View All Automation Solutions ↗</a>
                         </div>
                     </div>
 
                     <!-- 2. PERFORMANCE MARKETING & GROWTH -->
                     <div class="pt-2 border-t border-slate-100">
-                        <div class="text-[10px] font-bold text-emerald-600 uppercase tracking-widest px-2 mb-1.5 flex items-center gap-1.5">
+                        <div class="text-[10px] font-bold text-emerald-700 uppercase tracking-widest px-2 mb-1.5 flex items-center gap-1.5">
                             <i class="fa-solid fa-bullhorn text-[10px]"></i> Performance Marketing
                         </div>
                         <div class="space-y-1 text-xs">
@@ -231,15 +236,15 @@
 
                 <!-- Drawer Bottom Actions -->
                 <div class="p-4 border-t border-slate-100 bg-slate-50 space-y-2 sticky bottom-0 z-10">
-                    <a href="demo.html" onclick="window.FC_WIDGETS.toggleMobileDrawer();" class="w-full py-3 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-xs uppercase tracking-wider transition shadow-md shadow-orange-500/20 text-center flex items-center justify-center gap-2">
+                    <a href="demo.html" onclick="window.FC_WIDGETS.toggleMobileDrawer();" class="w-full py-3 rounded-xl bg-orange-700 text-white font-bold text-xs uppercase tracking-wider transition shadow-md shadow-orange-500/20 text-center flex items-center justify-center gap-2">
                         <span>Book 1-on-1 Free Live Demo</span>
                         <span>➔</span>
                     </a>
-                    <a href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah%20team%2C%20I%20am%20interested%20in%20a%20pilot%20for%20my%20store." target="_blank" rel="noopener noreferrer" class="w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider transition shadow-sm text-center flex items-center justify-center gap-2">
+                    <a href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah%20team%2C%20I%20am%20interested%20in%20a%20pilot%20for%20my%20store." target="_blank" rel="noopener noreferrer" class="w-full py-2.5 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-300 font-bold text-xs uppercase tracking-wider transition shadow-sm text-center flex items-center justify-center gap-2">
                         <i class="fa-brands fa-whatsapp text-sm"></i>
                         <span>Chat With Founders</span>
                     </a>
-                    <div class="flex items-center justify-center gap-3 text-[11px] text-slate-400 pt-1">
+                    <div class="flex items-center justify-center gap-3 text-[11px] text-slate-600 pt-1">
                         <a href="privacy-policy.html" class="hover:underline">Privacy</a>
                         <span>•</span>
                         <a href="terms-of-service.html" class="hover:underline">Terms</a>
@@ -269,15 +274,18 @@
         const drawer = document.getElementById('fcMobileDrawer');
         if (!overlay || !drawer) return;
 
+        const burgerBtn = document.getElementById('fcMobileMenuBtn');
         const isOpen = !overlay.classList.contains('pointer-events-none');
         if (isOpen) {
             overlay.classList.add('opacity-0', 'pointer-events-none');
             drawer.classList.add('translate-x-full');
             document.body.style.overflow = '';
+            if (burgerBtn) burgerBtn.setAttribute('aria-expanded', 'false');
         } else {
             overlay.classList.remove('opacity-0', 'pointer-events-none');
             drawer.classList.remove('translate-x-full');
             document.body.style.overflow = 'hidden';
+            if (burgerBtn) burgerBtn.setAttribute('aria-expanded', 'true');
         }
     }
 
@@ -289,7 +297,7 @@
                 const navRow = footer.querySelector('.flex-wrap, .space-x-4, .gap-4');
                 if (navRow) {
                     const legalSpan = document.createElement('span');
-                    legalSpan.className = 'flex items-center gap-3 border-l border-slate-300 pl-3 ml-2 text-slate-400 text-[11px]';
+                    legalSpan.className = 'flex items-center gap-3 border-l border-slate-300 pl-3 ml-2 text-slate-600 text-[11px]';
                     legalSpan.innerHTML = `
                         <a href="privacy-policy.html" class="hover:text-bikOrange transition">Privacy Policy</a>
                         <span>•</span>
@@ -376,10 +384,10 @@
             if (tooltip && tooltipDate && tooltipRevenue) {
                 tooltipDate.textContent = `Dec ${item.day}, 2026 • Day ${item.day}`;
                 const surge = ((item.rev - 4600) / 4600 * 100).toFixed(1);
-                tooltipRevenue.innerHTML = `₹${item.rev.toLocaleString('en-IN')} <span class="text-[10px] text-emerald-300 font-bold">(+${surge}%)</span>`;
+                tooltipRevenue.innerHTML = `₹${item.rev.toLocaleString('en-IN')} <span class="text-[10px] text-emerald-700 font-bold">(+${surge}%)</span>`;
                 const subEl = document.getElementById('fcTooltipSub');
                 if (subEl) {
-                    subEl.innerHTML = `<span><i class="fa-solid fa-box text-orange-400 text-[9px]"></i> ${item.orders} Orders</span><span>•</span><span class="text-blue-300 font-bold">₹${item.recovered.toLocaleString('en-IN')} Recovered</span>`;
+                    subEl.innerHTML = `<span><i class="fa-solid fa-box text-orange-400 text-[9px]"></i> ${item.orders} Orders</span><span>•</span><span class="text-blue-700 font-bold">₹${item.recovered.toLocaleString('en-IN')} Recovered</span>`;
                 }
 
                 const tipX = mouseX > rect.width * 0.55 ? mouseX - 180 : mouseX + 15;
@@ -412,32 +420,32 @@
         const toast = document.createElement('div');
         
         const typeStyles = {
-            success: 'border-emerald-500/50 bg-slate-900/95 text-emerald-300 shadow-emerald-950/40',
-            error: 'border-rose-500/50 bg-slate-900/95 text-rose-300 shadow-rose-950/40',
-            warning: 'border-amber-500/50 bg-slate-900/95 text-amber-300 shadow-amber-950/40',
-            info: 'border-purple-500/50 bg-slate-900/95 text-purple-300 shadow-purple-950/40'
-        }[type] || 'border-slate-700 bg-slate-900/95 text-slate-200';
+            success: 'border-emerald-200 bg-white text-slate-900 shadow-emerald-900/10',
+            error: 'border-rose-200 bg-white text-slate-900 shadow-rose-900/10',
+            warning: 'border-amber-200 bg-white text-slate-900 shadow-amber-900/10',
+            info: 'border-purple-200 bg-white text-slate-900 shadow-purple-900/10'
+        }[type] || 'border-slate-200 bg-white text-slate-900 shadow-slate-900/10';
 
         const icon = {
-            success: 'fa-circle-check text-emerald-400',
-            error: 'fa-circle-exclamation text-rose-400',
-            warning: 'fa-triangle-exclamation text-amber-400',
-            info: 'fa-bolt text-purple-400'
-        }[type] || 'fa-bell text-amber-400';
+            success: 'fa-circle-check text-emerald-700',
+            error: 'fa-circle-exclamation text-rose-700',
+            warning: 'fa-triangle-exclamation text-amber-700',
+            info: 'fa-bolt text-purple-700'
+        }[type] || 'fa-bell text-amber-700';
 
         const headerTitle = title || (type === 'error' ? 'Notice' : 'Flying Cheetah');
 
-        toast.className = `p-3.5 px-4 rounded-2xl border ${typeStyles} shadow-2xl pointer-events-auto backdrop-blur-xl flex items-start gap-3 transition-all duration-300 transform -translate-y-2 opacity-0 select-none`;
+        toast.className = `p-3.5 px-4 rounded-2xl border ${typeStyles} shadow-xl pointer-events-auto backdrop-blur-xl flex items-start gap-3 transition-all duration-300 transform -translate-y-2 opacity-0 select-none`;
         toast.innerHTML = `
             <div class="mt-0.5 text-sm shrink-0">
-                <i class="fa-solid ${icon}"></i>
+                <i class="fa-solid ${icon}" aria-hidden="true"></i>
             </div>
             <div class="flex-1 text-xs">
-                <div class="font-bold text-[11px] uppercase tracking-wider text-white mb-0.5">${headerTitle}</div>
-                <div class="text-slate-200 leading-snug">${message}</div>
+                <div class="font-bold text-[11px] uppercase tracking-wider text-slate-900 mb-0.5">${headerTitle}</div>
+                <div class="text-slate-700 leading-snug">${message}</div>
             </div>
-            <button onclick="this.parentElement.remove()" class="text-slate-400 hover:text-white text-xs p-1 cursor-pointer">
-                <i class="fa-solid fa-xmark"></i>
+            <button type="button" aria-label="Dismiss notification" onclick="this.parentElement.remove()" class="text-slate-600 hover:text-slate-900 text-xs p-1 rounded-lg cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange">
+                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
             </button>
         `;
 

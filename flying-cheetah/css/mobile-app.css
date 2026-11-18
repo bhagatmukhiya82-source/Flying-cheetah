@@ -78,8 +78,21 @@ html, body {
 }
 
 #fcMobileBottomNav .fc-nav-active {
-    color: #FF5500 !important;
+    color: #C2410C !important;
     font-weight: 800 !important;
+}
+
+#fcMobileBottomNav .fc-nav-active:hover {
+    color: #9A3412 !important;
+}
+
+#fcMobileBottomNav a:hover,
+#fcMobileBottomNav button:hover {
+    color: #0F172A;
+}
+
+#fcMobileBottomNav .fc-nav-wa:hover {
+    color: #065F46;
 }
 
 #fcMobileBottomNav .fc-nav-active i {

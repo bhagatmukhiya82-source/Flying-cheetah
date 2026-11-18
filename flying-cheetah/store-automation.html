@@ -1,22 +1,23 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-        <link rel="icon" type="image/png" href="images/user_official_real_logo_transparent.png">
+    <link rel="icon" type="image/png" href="images/user_official_real_logo_transparent.png">
     <link rel="apple-touch-icon" href="images/user_official_real_logo_transparent.png">
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Store Automation & WhatsApp Journeys — Flying Cheetah</title>
-    <meta property="og:title" content="Store Automation &amp; WhatsApp Journeys — Flying Cheetah">
-    <meta property="og:description" content="Never lose a high-intent lead again. Instantly engage with browsing visitors and convert them into paid orders via automated WhatsApp journeys and hyperlocal fleet dispatch.">
-    <meta property="og:image" content="https://flying-cheetah.vercel.app/images/flying_cheetah_logo_one_tail.png">
+    <title>Store Automation &amp; WhatsApp Journeys â€” Flying Cheetah</title>
+    <meta property="og:title" content="Store Automation &amp; WhatsApp Journeys â€” Flying Cheetah">
+    <meta property="og:description" content="Never lose a high-intent lead again. Instantly engage with browsing visitors and convert them into paid orders via automated WhatsApp journeys, 1-tap UPI checkout, and hyperlocal fleet dispatch.">
+    <meta property="og:image" content="https://flying-cheetah.vercel.app/images/store_workflow_architecture_light.png">
     <meta property="og:type" content="website">
 
-    <meta name="description" content="Never lose a high-intent lead again. Instantly engage with browsing visitors and convert them into paid orders via automated WhatsApp journeys and hyperlocal fleet dispatch.">
+    <meta name="description" content="Never lose a high-intent lead again. Instantly engage with browsing visitors and convert them into paid orders via automated WhatsApp journeys, 1-tap UPI checkout, and hyperlocal fleet dispatch.">
     <link rel="canonical" href="https://flying-cheetah.vercel.app/store-automation">
     <meta property="og:url" content="https://flying-cheetah.vercel.app/store-automation">
     <meta property="og:site_name" content="Flying Cheetah">
-    <!-- Tailwind CSS -->
+
+    <!-- Compiled Tailwind CSS -->
     <link rel="stylesheet" href="css/styles.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <!-- Fonts -->
@@ -28,13 +29,6 @@
         .bik-mega-shadow {
             box-shadow: 0 25px 60px -15px rgba(255, 104, 56, 0.15), 0 0 1px 1px rgba(0, 0, 0, 0.05);
         }
-        .mega-menu {
-            display: none;
-        }
-        .dropdown-parent:hover .mega-menu {
-            display: block;
-        }
-    
         .home-menu { display: none; }
         .home-dropdown-parent:hover > .home-menu,
         .home-dropdown-parent.active > .home-menu { display: block; }
@@ -43,6 +37,8 @@
         .products-dropdown-parent.active > .mega-menu { display: block; }
         .dropdown-parent:hover > .mega-menu,
         .dropdown-parent.active > .mega-menu { display: block; }
+        .card-anim { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .card-anim:hover { transform: translateY(-4px); box-shadow: 0 20px 35px -10px rgba(0,0,0,0.08); }
     </style>
     <link rel="stylesheet" href="css/mobile-app.css">
     <script type="application/ld+json">
@@ -52,7 +48,7 @@
       "name": "Store Automation & WhatsApp Journeys",
       "serviceType": "Store Automation & WhatsApp Journeys",
       "url": "https://flying-cheetah.vercel.app/store-automation",
-      "description": "Never lose a high-intent lead again. Instantly engage with browsing visitors and convert them into paid orders via automated WhatsApp journeys and hyperlocal fleet dispatch.",
+      "description": "Never lose a high-intent lead again. Instantly engage with browsing visitors and convert them into paid orders via automated WhatsApp journeys, 1-tap UPI checkout, and hyperlocal fleet dispatch.",
       "areaServed": "IN",
       "provider": {
             "@type": "Organization",
@@ -63,381 +59,1101 @@
 }
     </script>
 </head>
-<body class="bg-white text-slate-900 font-sans antialiased selection:bg-bikOrange selection:text-white">
+<body class="bg-white text-slate-900 font-sans antialiased selection:bg-orange-100 selection:text-orange-700">
 
     <!-- TOP ANNOUNCEMENT BANNER -->
     <div class="bg-gradient-to-r from-orange-50 via-amber-50/70 to-emerald-50 border-b border-orange-200/70 text-bikDark py-2 px-4 text-center text-xs font-medium">
-        <span>🔥 New: Convert 24% more browsing visitors with Website Activity-based WhatsApp Automation.</span>
-        <a href="demo.html" class="underline ml-2 text-bikOrange font-bold hover:text-bikOrangeDark transition">Book Live Demo ↗</a>
+        <span><i class="fa-solid fa-bolt text-orange-700 mr-1.5" aria-hidden="true"></i>New: Convert 24% more browsing visitors with real-time Shopify &amp; WooCommerce WhatsApp Automation.</span>
+        <a href="demo.html" class="underline ml-2 text-orange-700 font-bold hover:text-orange-800 transition whitespace-nowrap">Book Live Demo â†—</a>
     </div>
 
     <!-- MAIN NAVBAR WITH ACTIVE MEGA-MENU -->
     <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            
-            <!-- Logo: 2D Minimalist Vector Cheetah Logo -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+
+            <!-- Brand Logo -->
             <a href="index.html" class="flex items-center space-x-3 shrink-0 whitespace-nowrap">
                 <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah Logo" class="h-11 w-11 rounded-full object-cover border border-slate-200 shadow-sm">
                 <div class="flex flex-col">
-                    <span class="text-xl font-black tracking-tight font-display text-bikDark">FLYING CHEETAH</span>
-                    <span class="text-[9px] text-bikOrange font-bold tracking-widest uppercase -mt-1">STORE AUTOMATION</span>
+                    <span class="text-lg xl:text-xl font-black tracking-tight font-display text-bikDark">FLYING CHEETAH</span>
+                    <span class="text-[9px] text-orange-700 font-bold tracking-widest uppercase -mt-1">STORE AUTOMATION</span>
                 </div>
             </a>
 
-            <!-- CENTER NAV WITH WORKING CLICKABLE MEGA-MENU -->
-            <nav class="hidden lg:flex items-center gap-5 xl:gap-7 text-[13px] xl:text-sm font-semibold text-slate-700 whitespace-nowrap">
-                <!-- HOME DROPDOWN (NEXT TO PRODUCTS) -->
-                <div class="relative home-dropdown-parent py-6">
-                    <button class="home-btn flex items-center gap-1.5 hover:text-bikOrange transition focus:outline-none text-slate-800 hover:text-bikOrange font-bold text-sm">
-                        <i class="fa-solid fa-house text-xs text-bikOrange"></i>
+            <!-- Center Single-Line Desktop Navigation -->
+            <nav aria-label="Primary Navigation" class="hidden lg:flex items-center gap-5 xl:gap-7 text-[13px] xl:text-sm font-semibold text-slate-700 whitespace-nowrap">
+                <!-- HOME DROPDOWN -->
+                <div class="relative home-dropdown-parent dropdown-parent py-6">
+                    <button type="button" aria-expanded="false" aria-controls="fcHomeMenu" class="home-btn flex items-center gap-1.5 text-slate-800 hover:text-orange-700 transition font-bold text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange focus-visible:ring-offset-2 rounded-lg px-1">
+                        <i class="fa-solid fa-house text-xs text-orange-700" aria-hidden="true"></i>
                         <span>Home</span>
-                        <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200"></i>
+                        <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200" aria-hidden="true"></i>
                     </button>
-                    <!-- Dropdown Menu with the 4 items from user image -->
-                    <div class="mega-menu home-menu absolute top-full left-0 w-72 bg-white rounded-2xl border border-slate-200 p-4 shadow-2xl bik-mega-shadow z-50">
-                        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-3 pb-2 border-b border-slate-100 flex items-center justify-between">
+                    <div id="fcHomeMenu" class="mega-menu home-menu absolute top-full left-0 w-72 bg-white rounded-2xl border border-slate-200 p-4 shadow-2xl bik-mega-shadow z-50">
+                        <div class="text-[10px] font-bold text-slate-600 uppercase tracking-wider px-3 pb-2 border-b border-slate-100 flex items-center justify-between">
                             <span>Core Portals</span>
-                            <a href="index.html" class="text-bikOrange hover:underline font-bold">Executive Hub ↗</a>
+                            <a href="index.html" class="text-orange-700 hover:underline font-bold">Executive Hub â†—</a>
                         </div>
                         <div class="space-y-1.5 pt-2">
-                            <!-- 1. Main Site -->
-                            <a href="index.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
-                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-bikOrange flex items-center justify-center text-sm group-hover:scale-110 transition">
-                                    <i class="fa-solid fa-store"></i>
+                            <a href="index.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-orange-700 transition group">
+                                <div class="w-8 h-8 rounded-lg bg-orange-50 text-orange-700 flex items-center justify-center text-sm">
+                                    <i class="fa-solid fa-store" aria-hidden="true"></i>
                                 </div>
                                 <div>
-                                    <div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">Main Site</div>
-                                    <div class="text-[10px] text-slate-400">Flagship AI Commerce Suite</div>
+                                    <div class="text-xs font-bold text-bikDark group-hover:text-orange-700">Main Site</div>
+                                    <div class="text-[11px] text-slate-600">Flagship AI Commerce Suite</div>
                                 </div>
                             </a>
-
-<!-- 3. Fleet Protocol -->
-                                                        <a href="web-development.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
-                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-bikOrange flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-code"></i></div>
-                                <div><div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">Web Development</div><div class="text-[10px] text-slate-400">Next.js &amp; Shopify Stores &bull; Mumbai</div></div>
-                            </a>
-<a href="delivery.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-emerald-50 text-slate-700 hover:text-emerald-600 transition group">
-                                <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center text-sm group-hover:scale-110 transition">
-                                    <i class="fa-solid fa-motorcycle"></i>
+                            <a href="web-development.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-orange-700 transition group">
+                                <div class="w-8 h-8 rounded-lg bg-orange-50 text-orange-700 flex items-center justify-center text-sm">
+                                    <i class="fa-solid fa-code" aria-hidden="true"></i>
                                 </div>
                                 <div>
-                                    <div class="text-xs font-bold text-bikDark group-hover:text-emerald-600">Fleet Protocol</div>
-                                    <div class="text-[10px] text-slate-400">Hyperlocal Borzo/Porter API</div>
+                                    <div class="text-xs font-bold text-bikDark group-hover:text-orange-700">Web Development</div>
+                                    <div class="text-[11px] text-slate-600">Next.js &amp; Shopify Stores â€¢ Mumbai</div>
                                 </div>
                             </a>
-
-                                                        <a href="about.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
-                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-bikOrange flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-circle-info"></i></div>
-                                <div><div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">About Us</div><div class="text-[10px] text-slate-400">Company Motive & Founders</div></div>
+                            <a href="delivery.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-emerald-50 text-slate-700 hover:text-emerald-700 transition group">
+                                <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center text-sm">
+                                    <i class="fa-solid fa-motorcycle" aria-hidden="true"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs font-bold text-bikDark group-hover:text-emerald-700">Fleet Protocol</div>
+                                    <div class="text-[11px] text-slate-600">Hyperlocal Borzo/Porter API</div>
+                                </div>
+                            </a>
+                            <a href="about.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-orange-700 transition group">
+                                <div class="w-8 h-8 rounded-lg bg-orange-50 text-orange-700 flex items-center justify-center text-sm">
+                                    <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs font-bold text-bikDark group-hover:text-orange-700">About Us</div>
+                                    <div class="text-[11px] text-slate-600">Company Motive &amp; Founders</div>
+                                </div>
                             </a>
                         </div>
                     </div>
                 </div>
 
-
-
-
-                
-                <!-- Mega Menu Dropdown -->
+                <!-- PRODUCTS & AUTOMATIONS MEGA MENU -->
                 <div class="relative products-dropdown-parent dropdown-parent py-6">
-                    <button class="flex items-center gap-1.5 hover:text-bikOrange transition focus:outline-none text-bikOrange font-bold">
-                        <span>Products & Automations</span>
-                        <i class="fa-solid fa-chevron-down text-[10px] transition group-hover:rotate-180"></i>
+                    <button type="button" aria-expanded="false" aria-controls="fcProductsMenu" class="flex items-center gap-1.5 text-orange-700 hover:text-orange-800 transition font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange focus-visible:ring-offset-2 rounded-lg px-1">
+                        <span>Products &amp; Automations</span>
+                        <i class="fa-solid fa-chevron-down text-[10px] transition" aria-hidden="true"></i>
                     </button>
 
-                    <!-- WORKING CLICKABLE MEGA-MENU (ALL ITEMS LINKED) -->
-                    <div class="mega-menu absolute top-full -left-28 w-[760px] bg-white rounded-2xl border border-slate-200 p-8 shadow-2xl bik-mega-shadow z-50">
+                    <div id="fcProductsMenu" class="mega-menu absolute top-full -left-28 w-[760px] bg-white rounded-2xl border border-slate-200 p-8 shadow-2xl bik-mega-shadow z-50">
                         <div class="grid grid-cols-4 gap-6 text-xs">
-                            
                             <!-- Col 1: CAMPAIGNS -->
                             <div class="space-y-3">
-                                <div class="flex items-center gap-2 text-bikOrange font-bold uppercase tracking-wider text-[11px]">
-                                    <i class="fa-solid fa-bullhorn"></i> CAMPAIGNS
+                                <div class="flex items-center gap-2 text-orange-700 font-bold uppercase tracking-wider text-[11px]">
+                                    <i class="fa-solid fa-bullhorn" aria-hidden="true"></i> CAMPAIGNS
                                 </div>
-                                <ul class="space-y-2.5 text-slate-600 font-medium">
-                                    <li><a href="email-marketing.html" class="hover:text-bikOrange transition block hover:translate-x-1">Email marketing</a></li>
-                                    <li><a href="whatsapp-marketing.html" class="hover:text-bikOrange transition block hover:translate-x-1">WhatsApp marketing</a></li>
-                                    <li><a href="sms-marketing.html" class="hover:text-bikOrange transition block hover:translate-x-1">SMS marketing</a></li>
-                                    <li><a href="customer-data-platform.html" class="hover:text-bikOrange transition block hover:translate-x-1">Customer data platform</a></li>
-                                    <li><a href="rcs-messaging.html" class="hover:text-bikOrange transition block hover:translate-x-1">RCS messaging</a></li>
+                                <ul class="space-y-2.5 text-slate-700 font-medium">
+                                    <li><a href="email-marketing.html" class="hover:text-orange-700 transition block">Email marketing</a></li>
+                                    <li><a href="whatsapp-marketing.html" class="hover:text-orange-700 transition block">WhatsApp marketing</a></li>
+                                    <li><a href="sms-marketing.html" class="hover:text-orange-700 transition block">SMS marketing</a></li>
+                                    <li><a href="customer-data-platform.html" class="hover:text-orange-700 transition block">Customer data platform</a></li>
+                                    <li><a href="rcs-messaging.html" class="hover:text-orange-700 transition block">RCS messaging</a></li>
                                 </ul>
                             </div>
 
                             <!-- Col 2: AUTOMATIONS (ACTIVE) -->
                             <div class="space-y-3 bg-orange-50/70 p-3 -m-3 rounded-xl border border-orange-100">
-                                <div class="flex items-center gap-2 text-bikOrange font-bold uppercase tracking-wider text-[11px]">
-                                    <i class="fa-solid fa-gear"></i> AUTOMATIONS
+                                <div class="flex items-center gap-2 text-orange-700 font-bold uppercase tracking-wider text-[11px]">
+                                    <i class="fa-solid fa-gear" aria-hidden="true"></i> AUTOMATIONS
                                 </div>
                                 <ul class="space-y-2.5 text-slate-700 font-medium">
-                                    <li><a href="store-automation.html" class="text-bikOrange font-bold hover:underline block flex items-center gap-1"><span>Store automation</span> <i class="fa-solid fa-arrow-right text-[9px]"></i></a></li>
-                                    <li><a href="instagram-automation.html" class="hover:text-bikOrange transition block hover:translate-x-1">Instagram automation</a></li>
-                                    <li><a href="whatsapp-automation.html" class="hover:text-bikOrange transition block hover:translate-x-1">WhatsApp automation</a></li>
-                                    <li><a href="ctwa-automation.html" class="hover:text-bikOrange transition block hover:translate-x-1">Click to WhatsApp ads</a></li>
-                                    <li><a href="ai-voice-agents.html" class="hover:text-bikOrange transition block hover:translate-x-1">AI Voice Agents</a></li>
+                                    <li><a href="store-automation.html" class="text-orange-700 font-bold hover:underline block flex items-center gap-1"><span>Store automation</span> <i class="fa-solid fa-arrow-right text-[9px]" aria-hidden="true"></i></a></li>
+                                    <li><a href="instagram-automation.html" class="hover:text-pink-700 transition block">Instagram automation</a></li>
+                                    <li><a href="whatsapp-automation.html" class="hover:text-emerald-700 transition block">WhatsApp automation</a></li>
+                                    <li><a href="ctwa-automation.html" class="hover:text-blue-700 transition block">Click to WhatsApp ads</a></li>
+                                    <li><a href="ai-voice-agents.html" class="hover:text-purple-700 transition block">AI Voice Agents</a></li>
                                 </ul>
                             </div>
 
                             <!-- Col 3: HELPDESK -->
                             <div class="space-y-3">
-                                <div class="flex items-center gap-2 text-bikOrange font-bold uppercase tracking-wider text-[11px]">
-                                    <i class="fa-solid fa-headset"></i> HELPDESK
+                                <div class="flex items-center gap-2 text-orange-700 font-bold uppercase tracking-wider text-[11px]">
+                                    <i class="fa-solid fa-headset" aria-hidden="true"></i> HELPDESK
                                 </div>
-                                <ul class="space-y-2.5 text-slate-600 font-medium">
-                                    <li><a href="customer-support.html" class="hover:text-bikOrange transition block hover:translate-x-1">Customer support</a></li>
-                                    <li><a href="whatsapp-calling.html" class="hover:text-bikOrange transition block hover:translate-x-1">WhatsApp calling</a></li>
+                                <ul class="space-y-2.5 text-slate-700 font-medium">
+                                    <li><a href="customer-support.html" class="hover:text-orange-700 transition block">Customer support</a></li>
+                                    <li><a href="whatsapp-calling.html" class="hover:text-orange-700 transition block">WhatsApp calling</a></li>
                                 </ul>
                             </div>
 
                             <!-- Col 4: POPUPS & CHATBOTS -->
                             <div class="space-y-5">
                                 <div class="space-y-2.5">
-                                    <div class="flex items-center gap-2 text-bikOrange font-bold uppercase tracking-wider text-[11px]">
-                                        <i class="fa-solid fa-comment-dots"></i> POPUPS
+                                    <div class="flex items-center gap-2 text-orange-700 font-bold uppercase tracking-wider text-[11px]">
+                                        <i class="fa-solid fa-comment-dots" aria-hidden="true"></i> POPUPS
                                     </div>
-                                    <ul class="text-slate-600 font-medium">
-                                        <li><a href="solutions.html?module=gamification" class="hover:text-bikOrange transition block hover:translate-x-1">Gamification</a></li>
+                                    <ul class="text-slate-700 font-medium">
+                                        <li><a href="solutions.html?module=gamification" class="hover:text-orange-700 transition block">Gamification</a></li>
                                     </ul>
                                 </div>
                                 <div class="space-y-2.5 border-t border-slate-100 pt-3">
-                                    <div class="flex items-center gap-2 text-bikOrange font-bold uppercase tracking-wider text-[11px]">
-                                        <i class="fa-solid fa-robot"></i> CHATBOTS
+                                    <div class="flex items-center gap-2 text-orange-700 font-bold uppercase tracking-wider text-[11px]">
+                                        <i class="fa-solid fa-robot" aria-hidden="true"></i> CHATBOTS
                                     </div>
-                                    <ul class="space-y-2 text-slate-600 font-medium">
-                                        <li><a href="solutions.html?module=whatsapp-chatbot" class="hover:text-bikOrange transition block hover:translate-x-1">WhatsApp chatbot</a></li>
-                                        <li><a href="solutions.html?module=instagram-chatbot" class="hover:text-bikOrange transition block hover:translate-x-1">Instagram chatbot</a></li>
+                                    <ul class="space-y-2 text-slate-700 font-medium">
+                                        <li><a href="solutions.html?module=whatsapp-chatbot" class="hover:text-orange-700 transition block">WhatsApp chatbot</a></li>
+                                        <li><a href="solutions.html?module=instagram-chatbot" class="hover:text-orange-700 transition block">Instagram chatbot</a></li>
                                     </ul>
                                 </div>
                             </div>
-
-                            <!-- Col 5: INTEGRATIONS & AI COMMERCE -->
                         </div>
                     </div>
                 </div>
 
-                <a href="delivery.html" class="hover:text-bikOrange transition">Fleet Dispatch</a>
-                <a href="web-development.html" class="hover:text-bikOrange transition">Web Development</a>
-                <a href="about.html" class="hover:text-bikOrange transition">About Us</a>
+                <a href="delivery.html" class="hover:text-orange-700 transition">Fleet Dispatch</a>
+                <a href="web-development.html" class="hover:text-orange-700 transition">Web Development</a>
+                <a href="about.html" class="hover:text-orange-700 transition">About Us</a>
             </nav>
 
-            <!-- ACTION CTA -->
-            <div class="flex items-center space-x-4">
-                <a href="demo.html" class="hidden sm:inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-sm transition shadow-md shadow-orange-500/20">
-                    <span>Book Free Live Demo</span> <span class="text-base leading-none">➔</span>
+            <!-- ACTION CTA & MOBILE TRIGGER -->
+            <div class="flex items-center space-x-2.5 shrink-0">
+                <div class="fc-auth-slot"></div>
+                <a href="demo.html" class="hidden sm:inline-flex items-center justify-center gap-1.5 px-4 xl:px-5 py-2.5 rounded-xl bg-orange-700 hover:bg-orange-800 text-white font-bold text-xs xl:text-sm transition shadow-md shadow-orange-500/20 whitespace-nowrap shrink-0">
+                    <span>Book Free Live Demo</span> <span class="text-base leading-none" aria-hidden="true">âž”</span>
                 </a>
+                <button id="fcMobileMenuBtn" type="button" aria-label="Toggle Mobile Menu" aria-expanded="false" aria-controls="fcMobileDrawer" onclick="window.FC_WIDGETS && window.FC_WIDGETS.toggleMobileDrawer ? window.FC_WIDGETS.toggleMobileDrawer() : null" class="lg:hidden p-2 rounded-xl border border-slate-200 hover:border-bikOrange bg-white text-slate-700 hover:text-orange-700 transition flex items-center justify-center shrink-0 w-10 h-10 shadow-sm cursor-pointer touch-target-44 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange focus-visible:ring-offset-2">
+                    <i class="fa-solid fa-bars text-sm" aria-hidden="true"></i>
+                </button>
             </div>
 
         </div>
     </header>
 
-    <!-- HERO SECTION -->
-    <section class="pt-16 pb-20 md:pt-24 md:pb-28 bg-gradient-to-b from-bikBg via-white to-white overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                
-                <!-- Left Pitch -->
-                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-100/60 border border-orange-200 text-bikOrange text-xs font-bold uppercase tracking-wide">
-                        <i class="fa-solid fa-bolt text-brandGold"></i>
-                        Next-Gen Conversational Storefront Automation
-                    </div>
+    <main id="main-content">
 
-                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-bikDark tracking-tight leading-[1.08] font-display">
-                        Never lose a high-intent lead <span class="text-bikOrange">again!</span>
-                    </h1>
+        <!-- HERO SECTION -->
+        <section class="pt-14 pb-20 md:pt-20 md:pb-24 bg-gradient-to-b from-bikBg via-white to-white overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
-                    <p class="text-lg text-slateText max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal">
-                        Instantly engage with high-intent leads as they browse your website, and convert their interest into sales before it cools off with website activity-based automation.
-                    </p>
-
-                    <!-- Dual CTA Buttons -->
-                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
-                        <a href="demo.html" onclick="if(window.FC_LEADS){window.FC_LEADS.openAuditModal('Store Automation & Cart Recovery');return false;}" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-sm transition shadow-lg shadow-orange-500/25">
-                            <span>Book Free Live Demo</span> <span class="text-base leading-none">➔</span>
-                        </a>
-                        <a href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah,%20I%20want%20to%20learn%20more%20about%20Store%20Automation." target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl border border-slate-300 hover:border-bikOrange text-slate-800 font-bold text-sm bg-white hover:bg-orange-50/50 transition">
-                            <i class="fa-brands fa-whatsapp text-emerald-500 text-base"></i> <span>Chat on WhatsApp</span>
-                        </a>
-                    </div>
-
-                    <!-- Hard Impact Metrics -->
-                    <div class="grid grid-cols-2 gap-6 pt-6 border-t border-slate-100 max-w-md mx-auto lg:mx-0 text-left">
-                        <div>
-                            <div class="text-3xl font-black text-bikOrange font-display">28%</div>
-                            <div class="text-xs font-semibold text-slate-500 mt-0.5">More lead acquisition</div>
+                    <!-- Left Pitch -->
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-50 border border-orange-200 text-orange-700 text-xs font-bold uppercase tracking-wide">
+                            <i class="fa-solid fa-bolt text-orange-700" aria-hidden="true"></i>
+                            <span>Next-Gen Conversational Storefront Automation</span>
                         </div>
-                        <div>
-                            <div class="text-3xl font-black text-emerald-600 font-display">19%</div>
-                            <div class="text-xs font-semibold text-slate-500 mt-0.5">Reduced lead drop-off</div>
+
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-bikDark tracking-tight leading-[1.08] font-display">
+                            Never lose a high-intent lead <span class="text-orange-700">again!</span>
+                        </h1>
+
+                        <p class="text-base sm:text-lg text-slate-700 max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal">
+                            Instantly detect browsing drop-offs, exit-intent signals, and abandoned checkouts across Shopify, WooCommerce, and headless storefronts. Re-engage high-intent shoppers in under 15 seconds with rich WhatsApp product carousels, dynamic inventory-checked variants, 1-tap Razorpay UPI payment links, and autonomous Borzo/Porter hyperlocal fleet dispatch across major Indian metros.
+                        </p>
+
+                        <!-- Dual CTA Buttons -->
+                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                            <a href="demo.html" onclick="if(window.FC_LEADS){window.FC_LEADS.openAuditModal('Store Automation & Cart Recovery');return false;}" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-orange-700 hover:bg-orange-800 text-white font-bold text-sm transition shadow-lg shadow-orange-500/20">
+                                <span>Book Free Live Demo</span> <span class="text-base leading-none" aria-hidden="true">âž”</span>
+                            </a>
+                            <a href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah,%20I%20want%20to%20learn%20more%20about%20Store%20Automation." target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl border border-slate-300 hover:border-emerald-600 text-slate-800 font-bold text-sm bg-white hover:bg-emerald-50/60 transition">
+                                <i class="fa-brands fa-whatsapp text-emerald-700 text-base" aria-hidden="true"></i> <span>Chat on WhatsApp</span>
+                            </a>
                         </div>
-                    </div>
-                </div>
 
-                <!-- Right Visual: High-Speed Web Dev & Store Automation Showcase -->
-                <div class="lg:col-span-5 relative">
-                    <div class="relative rounded-3xl border-2 border-slate-200/90 bg-white p-3 shadow-2xl bik-mega-shadow fc-card-interactive group">
-                        <img src="images/high_speed_store_dev_mockup.jpg" alt="Flying Cheetah High-Speed Web Development &amp; Store Automation" class="rounded-2xl w-full h-auto object-cover border border-slate-100 group-hover:scale-102 transition duration-500">
-                        
-                        <div class="p-3.5 bg-slate-50/90 rounded-xl mt-3 flex items-center justify-between text-xs font-semibold text-slate-600 font-tech">
-                            <span class="flex items-center gap-2 text-bikDark font-bold"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span> ~1.2s Fast Storefront Load</span>
-                            <span class="text-emerald-600 font-bold">Auto-Cart Recovery Active</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- OFFICIAL LOGOS & INTEGRATIONS STRIP -->
-    <section class="py-8 bg-orange-50/40 border-y border-orange-100/60">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs font-bold text-slate-500">
-                <span class="uppercase tracking-wider text-[11px] text-bikOrange flex items-center gap-1.5"><i class="fa-solid fa-bolt text-brandGold"></i> Pre-Configured For:</span>
-                <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-lime-800"><i class="fa-brands fa-shopify text-lg text-[#96bf48]"></i> Shopify</span>
-                <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-purple-800"><i class="fa-brands fa-wordpress text-lg text-[#96588a]"></i> WooCommerce</span>
-                <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-emerald-700"><i class="fa-brands fa-whatsapp text-lg text-emerald-500"></i> WhatsApp Cloud API</span>
-                <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-blue-700"><i class="fa-brands fa-meta text-lg text-[#0866FF]"></i> Meta Pixel & CAPI</span>
-                <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-violet-800"><i class="fa-solid fa-wand-magic-sparkles text-lg text-violet-500"></i> Autonomous AI</span>
-                <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-cyan-800"><i class="fa-solid fa-qrcode text-lg text-cyan-600"></i> UPI & Razorpay</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- Feature Visual Preview -->
-    <section class="py-24 bg-white border-t border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-28">
-            
-            <!-- Feature 1: Reclaim Abandoned Leads -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                <div class="lg:col-span-6 space-y-5">
-                    <span class="text-xs font-bold uppercase tracking-widest text-bikOrange bg-orange-50 px-3 py-1 rounded-full">Retention Automation</span>
-                    <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark font-display leading-tight">
-                        Reclaim Abandoned Leads Instantly
-                    </h2>
-                    <p class="text-slateText text-base leading-relaxed">
-                        Re-engage with potential customers the instant they exit your website, ensuring they don’t forget about you and encouraging them towards a purchase with personalized WhatsApp catalog pings.
-                    </p>
-                    <div class="pt-2">
-                        <a href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah,%20I%20want%20to%20set%20up%20Abandoned%20Lead%20Recovery." target="_blank" class="inline-flex items-center gap-2 text-bikOrange font-bold text-sm hover:underline">
-                            <span>Reconnect now</span>
-                            <i class="fa-solid fa-arrow-right text-xs"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="lg:col-span-6">
-                    <div class="p-3 rounded-2xl border border-slate-200 bg-slate-50 shadow-lg">
-                        <img src="images/whatsapp_commerce_checkout_mockup.jpg" alt="WhatsApp Abandonment Recovery Chat" class="rounded-xl w-full h-auto">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Feature Visual Preview -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                <div class="lg:col-span-6 order-2 lg:order-1">
-                    <div class="p-3 rounded-2xl border border-slate-200 bg-slate-50 shadow-lg">
-                        <img src="images/omnichannel_preferred_platform.jpg" alt="Reach Them On Their Preferred Platform" class="rounded-xl w-full h-auto object-cover">
-                    </div>
-                </div>
-                <div class="lg:col-span-6 order-1 lg:order-2 space-y-5">
-                    <span class="text-xs font-bold uppercase tracking-widest text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">Omni-Channel Activation</span>
-                    <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark font-display leading-tight">
-                        Reach Them On Their Preferred Platform
-                    </h2>
-                    <p class="text-slateText text-base leading-relaxed">
-                        Instantly connect with leads through their preferred channels, be it WhatsApp or Email, where they are most active. Combine direct chat checkouts with autonomous Borzo/Porter fleet dispatch in under 25 minutes.
-                    </p>
-                    <div class="pt-2">
-                        <a href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah,%20I'm%20ready%20to%20connect%20WhatsApp%20channels." target="_blank" class="inline-flex items-center gap-2 text-bikOrange font-bold text-sm hover:underline">
-                            <span>Connect now</span>
-                            <i class="fa-solid fa-arrow-right text-xs"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Feature Visual Preview -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                <div class="lg:col-span-6 space-y-5">
-                    <span class="text-xs font-bold uppercase tracking-widest text-blue-600 bg-blue-50 px-3 py-1 rounded-full">Telemetry & Impact</span>
-                    <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark font-display leading-tight">
-                        Assess Automation's Direct Impact
-                    </h2>
-                    <p class="text-slateText text-base leading-relaxed">
-                        Track the performance of your automation step by step using the Journey Builder and gain a comprehensive understanding of its effectiveness through live analytics, delivery logs, and recovered revenue dashboards.
-                    </p>
-                    <div class="pt-2">
-                        <a href="delivery.html" class="inline-flex items-center gap-2 text-bikOrange font-bold text-sm hover:underline">
-                            <span>Explore Hyperlocal Fleet Engine</span>
-                            <i class="fa-solid fa-arrow-right text-xs"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="lg:col-span-6">
-                    <div class="p-4 rounded-3xl border border-slate-200 bg-white shadow-xl space-y-4">
-                        <div class="rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
-                            <img src="images/automation_impact_dashboard.jpg" alt="Automation Direct Impact & Recovered Revenue Dashboard" class="w-full h-auto object-cover">
-                        </div>
-                        <!-- Real-time SVG Telemetry Sparkline -->
-                        <div class="p-4 rounded-2xl bg-orange-50/60 border border-orange-100 space-y-3">
-                            <div class="flex items-center justify-between text-xs font-bold text-bikDark">
-                                <span class="flex items-center gap-2"><i class="fa-solid fa-chart-line text-bikOrange"></i> Hourly Recovered Revenue Velocity</span>
-                                <span class="text-emerald-600">+₹38,500 Today</span>
+                        <!-- Hard Impact Metrics -->
+                        <div class="grid grid-cols-3 gap-4 sm:gap-6 pt-6 border-t border-slate-100 max-w-xl mx-auto lg:mx-0 text-left">
+                            <div class="p-3 rounded-2xl bg-orange-50/70 border border-orange-200/80">
+                                <div class="text-2xl sm:text-3xl font-black text-orange-700 font-display">28%</div>
+                                <div class="text-xs font-semibold text-slate-700 mt-0.5">More lead acquisition</div>
                             </div>
-                            <svg class="w-full h-16" viewBox="0 0 300 60" fill="none">
-                                <path d="M0 50 Q 50 45 100 35 T 200 20 T 300 5 L 300 60 L 0 60 Z" fill="rgba(255,104,56,0.15)"/>
-                                <path d="M0 50 Q 50 45 100 35 T 200 20 T 300 5" stroke="#FF6838" stroke-width="3" stroke-linecap="round" fill="none"/>
-                                <circle cx="300" cy="5" r="4" fill="#10B981"/>
+                            <div class="p-3 rounded-2xl bg-emerald-50/70 border border-emerald-200/80">
+                                <div class="text-2xl sm:text-3xl font-black text-emerald-700 font-display">19%</div>
+                                <div class="text-xs font-semibold text-slate-700 mt-0.5">Abandoned carts reclaimed</div>
+                            </div>
+                            <div class="p-3 rounded-2xl bg-blue-50/70 border border-blue-200/80">
+                                <div class="text-2xl sm:text-3xl font-black text-blue-700 font-display">&lt;15s</div>
+                                <div class="text-xs font-semibold text-slate-700 mt-0.5">Webhook-to-DM trigger</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Visual: High-Speed Store Automation Showcase -->
+                    <div class="lg:col-span-5 relative">
+                        <div class="relative rounded-3xl border-2 border-slate-200/90 bg-white p-3.5 shadow-2xl bik-mega-shadow fc-card-interactive group">
+                            <img src="images/high_speed_store_dev_mockup.jpg" alt="Flying Cheetah High-Speed Storefront &amp; Automated Cart Recovery Showcase" class="rounded-2xl w-full h-auto object-cover border border-slate-100">
+
+                            <div class="p-3.5 bg-slate-50 rounded-xl mt-3 flex flex-wrap items-center justify-between gap-2 text-xs font-semibold text-slate-700 font-tech border border-slate-200/70">
+                                <span class="flex items-center gap-2 text-bikDark font-bold">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" aria-hidden="true"></span>
+                                    <span>~1.2s Fast Storefront Load</span>
+                                </span>
+                                <span class="text-emerald-700 font-bold bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">Auto-Cart Recovery Active</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- OFFICIAL LOGOS & INTEGRATIONS STRIP -->
+        <section class="py-8 bg-orange-50/40 border-y border-orange-100/80">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs font-bold text-slate-700">
+                    <span class="uppercase tracking-wider text-[11px] text-orange-700 flex items-center gap-1.5">
+                        <i class="fa-solid fa-bolt text-orange-700" aria-hidden="true"></i> Pre-Configured For:
+                    </span>
+                    <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-slate-800"><i class="fa-brands fa-shopify text-lg text-[#96bf48]" aria-hidden="true"></i> Shopify &amp; Plus</span>
+                    <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-purple-700"><i class="fa-brands fa-wordpress text-lg text-[#96588a]" aria-hidden="true"></i> WooCommerce</span>
+                    <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-emerald-700"><i class="fa-brands fa-whatsapp text-lg text-emerald-700" aria-hidden="true"></i> WhatsApp Cloud API</span>
+                    <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-blue-700"><i class="fa-brands fa-meta text-lg text-[#0866FF]" aria-hidden="true"></i> Meta Pixel &amp; CAPI</span>
+                    <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-purple-700"><i class="fa-solid fa-wand-magic-sparkles text-lg text-purple-700" aria-hidden="true"></i> Autonomous AI</span>
+                    <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-slate-800"><i class="fa-solid fa-qrcode text-lg text-blue-700" aria-hidden="true"></i> UPI &amp; Razorpay</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- BESPOKE WORKFLOW ARCHITECTURE VISUAL -->
+        <section class="py-20 bg-white border-b border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-7">
+                        <div class="fc-showcase-frame p-3 bg-white">
+                            <img src="images/store_workflow_architecture_light.png" alt="Pure-white Flying Cheetah Storefront Event-to-WhatsApp Recovery Architecture showing Browse Signal, Cart Exit Webhook, 15s WhatsApp Card, 1-Tap UPI Checkout, and Borzo Dispatch" loading="lazy" class="w-full h-auto rounded-2xl border border-slate-100 block">
+                        </div>
+                    </div>
+                    <div class="lg:col-span-5 space-y-6">
+                        <span class="inline-block text-xs font-bold uppercase tracking-widest text-orange-700 bg-orange-50 border border-orange-200 px-3.5 py-1 rounded-full">Event-Driven Store Engine</span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark font-display leading-tight">
+                            Real-Time Storefront Signals Wired Directly to Conversational Checkout
+                        </h2>
+                        <p class="text-sm sm:text-base text-slate-700 leading-relaxed">
+                            Traditional email cart recovery waits 1 to 4 hoursâ€”long after buying urgency fades and competitors win the click. Flying Cheetah streams sub-second browser events and Shopify/WooCommerce webhooks into an intelligent decision engine that triggers hyper-personalized WhatsApp cards while the buyer is still on their phone.
+                        </p>
+                        <div class="space-y-4 pt-2">
+                            <div class="p-4 rounded-2xl bg-orange-50/60 border border-orange-200/80">
+                                <h3 class="font-bold text-sm text-bikDark flex items-center gap-2">
+                                    <i class="fa-solid fa-radar text-orange-700" aria-hidden="true"></i>
+                                    <span>1. Micro-Intent Session Fingerprinting</span>
+                                </h3>
+                                <p class="text-xs text-slate-700 mt-1 leading-relaxed">Captures SKU dwell time, variant selection, pincode serviceability checks, and exit-intent velocity without slowing down Core Web Vitals.</p>
+                            </div>
+                            <div class="p-4 rounded-2xl bg-emerald-50/60 border border-emerald-200/80">
+                                <h3 class="font-bold text-sm text-bikDark flex items-center gap-2">
+                                    <i class="fa-solid fa-qrcode text-emerald-700" aria-hidden="true"></i>
+                                    <span>2. Dynamic Pre-Filled UPI &amp; COD-to-Prepaid Links</span>
+                                </h3>
+                                <p class="text-xs text-slate-700 mt-1 leading-relaxed">Generates single-tap Razorpay/UPI intents or prepaid discount nudges right inside WhatsApp so shoppers never re-enter shipping addresses.</p>
+                            </div>
+                            <div class="p-4 rounded-2xl bg-blue-50/60 border border-blue-200/80">
+                                <h3 class="font-bold text-sm text-bikDark flex items-center gap-2">
+                                    <i class="fa-solid fa-motorcycle text-blue-700" aria-hidden="true"></i>
+                                    <span>3. Instant Borzo &amp; Porter Fulfillment Sync</span>
+                                </h3>
+                                <p class="text-xs text-slate-700 mt-1 leading-relaxed">Paid orders automatically book hyperlocal bike or mini-truck couriers with live GPS tracking pushed back to the customer thread.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INTERACTIVE TRIGGER-TO-CHECKOUT JOURNEY EXPLORER -->
+        <section class="py-20 bg-gradient-to-b from-orange-50/30 via-white to-white border-b border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+                <div class="text-center max-w-3xl mx-auto space-y-3">
+                    <span class="inline-block text-xs font-bold uppercase tracking-widest text-orange-700 bg-orange-50 border border-orange-200 px-3.5 py-1 rounded-full">
+                        Interactive Journey Explorer
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark font-display">
+                        Inspect Every Trigger-to-Checkout Automation Flow
+                    </h2>
+                    <p class="text-sm sm:text-base text-slate-700 leading-relaxed">
+                        Switch across the four revenue-critical storefront moments to inspect exact webhook triggers, SLA latency, live WhatsApp card copy, and UPI conversion outcomes.
+                    </p>
+                </div>
+
+                <!-- Accessible Tablist -->
+                <div role="tablist" aria-label="Storefront Automation Triggers" class="flex flex-wrap items-center justify-center gap-3">
+                    <button type="button" role="tab" id="store-tab-browse" aria-selected="true" aria-controls="store-panel-browse" onclick="switchStoreJourney('browse')" class="px-5 py-3 rounded-xl text-xs sm:text-sm font-bold transition border border-orange-700 bg-orange-700 text-white shadow-md cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange focus-visible:ring-offset-2">
+                        <i class="fa-solid fa-eye mr-1.5" aria-hidden="true"></i> Browse Drop
+                    </button>
+                    <button type="button" role="tab" id="store-tab-exit" aria-selected="false" aria-controls="store-panel-exit" onclick="switchStoreJourney('exit')" class="px-5 py-3 rounded-xl text-xs sm:text-sm font-bold transition border border-slate-200 bg-white text-slate-700 hover:border-orange-300 hover:bg-orange-50/50 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange focus-visible:ring-offset-2">
+                        <i class="fa-solid fa-door-open mr-1.5" aria-hidden="true"></i> Exit-Intent
+                    </button>
+                    <button type="button" role="tab" id="store-tab-cart" aria-selected="false" aria-controls="store-panel-cart" onclick="switchStoreJourney('cart')" class="px-5 py-3 rounded-xl text-xs sm:text-sm font-bold transition border border-slate-200 bg-white text-slate-700 hover:border-orange-300 hover:bg-orange-50/50 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange focus-visible:ring-offset-2">
+                        <i class="fa-solid fa-cart-shopping mr-1.5" aria-hidden="true"></i> Cart Abandonment
+                    </button>
+                    <button type="button" role="tab" id="store-tab-post" aria-selected="false" aria-controls="store-panel-post" onclick="switchStoreJourney('post')" class="px-5 py-3 rounded-xl text-xs sm:text-sm font-bold transition border border-slate-200 bg-white text-slate-700 hover:border-orange-300 hover:bg-orange-50/50 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange focus-visible:ring-offset-2">
+                        <i class="fa-solid fa-repeat mr-1.5" aria-hidden="true"></i> Post-Purchase Cross-Sell
+                    </button>
+                </div>
+
+                <!-- Tab Panel 1: Browse Drop -->
+                <div id="store-panel-browse" role="tabpanel" aria-labelledby="store-tab-browse" class="rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-xl">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                        <div class="lg:col-span-7 space-y-5">
+                            <div class="flex flex-wrap items-center gap-2">
+                                <span class="px-3 py-1 rounded-full bg-orange-50 border border-orange-200 text-orange-700 text-xs font-bold">Stage 01 â€¢ High-Intent PDP Dwell</span>
+                                <span class="px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-mono font-bold">SLA: 45s Idle Trigger</span>
+                            </div>
+                            <h3 class="text-2xl font-extrabold text-bikDark font-display">Turn Silent Product Browsers Into Qualified WhatsApp Threads</h3>
+                            <p class="text-sm text-slate-700 leading-relaxed">
+                                When a recognized shopper spends 45+ seconds viewing a product or toggles multiple sizes without adding to cart, Flying Cheetah checks live stock and dispatches a soft-assist WhatsApp message with size guidance, fabric details, and express Mumbai delivery availability.
+                            </p>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+                                <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200">
+                                    <div class="text-xs font-bold text-slate-600">Webhook Event</div>
+                                    <div class="text-sm font-mono font-bold text-bikDark mt-1">pdp.view_idle_45s</div>
+                                </div>
+                                <div class="p-3.5 rounded-2xl bg-emerald-50/60 border border-emerald-200">
+                                    <div class="text-xs font-bold text-slate-600">Reply Rate</div>
+                                    <div class="text-sm font-mono font-bold text-emerald-700 mt-1">41.8% Engaged</div>
+                                </div>
+                                <div class="p-3.5 rounded-2xl bg-blue-50/60 border border-blue-200">
+                                    <div class="text-xs font-bold text-slate-600">Browse-to-Cart Lift</div>
+                                    <div class="text-sm font-mono font-bold text-blue-700 mt-1">+28% Uplift</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lg:col-span-5">
+                            <div class="rounded-2xl border border-emerald-200 bg-emerald-50/50 p-5 space-y-3">
+                                <div class="flex items-center justify-between text-xs font-bold text-emerald-700 border-b border-emerald-200/70 pb-2">
+                                    <span><i class="fa-brands fa-whatsapp mr-1.5" aria-hidden="true"></i>Automated WhatsApp Preview</span>
+                                    <span class="font-mono">00:45s</span>
+                                </div>
+                                <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm space-y-2 text-xs text-slate-800">
+                                    <p class="font-bold text-bikDark">Hi Ananya! Still comparing the Indigo Linen Kurta?</p>
+                                    <p class="text-slate-700 leading-relaxed">Size M &amp; L are currently in stock at our Bandra hub. Need help picking your fit or want 25-minute Borzo trial delivery today?</p>
+                                    <div class="pt-2 flex flex-wrap gap-2">
+                                        <span class="px-3 py-1.5 rounded-lg bg-orange-50 border border-orange-200 text-orange-700 font-bold">View Size Guide</span>
+                                        <span class="px-3 py-1.5 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-700 font-bold">Reserve Size M âž”</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Panel 2: Exit-Intent -->
+                <div id="store-panel-exit" role="tabpanel" aria-labelledby="store-tab-exit" hidden class="rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-xl">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                        <div class="lg:col-span-7 space-y-5">
+                            <div class="flex flex-wrap items-center gap-2">
+                                <span class="px-3 py-1 rounded-full bg-purple-50 border border-purple-200 text-purple-700 text-xs font-bold">Stage 02 â€¢ Gamified Exit-Intent Capture</span>
+                                <span class="px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-mono font-bold">SLA: Instant (&lt;180ms)</span>
+                            </div>
+                            <h3 class="text-2xl font-extrabold text-bikDark font-display">Intercept Tab-Closing Visitors With 1-Tap WhatsApp Opt-In</h3>
+                            <p class="text-sm text-slate-700 leading-relaxed">
+                                Rather than intrusive static email popups that shoppers immediately close, our mobile-ergonomic exit drawer offers an instant WhatsApp-delivered coupon or free express shipping code. Once tapped, the shopper's phone number is verified cleanly via WhatsApp OTP-less handoff.
+                            </p>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+                                <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200">
+                                    <div class="text-xs font-bold text-slate-600">Trigger Signal</div>
+                                    <div class="text-sm font-mono font-bold text-bikDark mt-1">viewport.exit_intent</div>
+                                </div>
+                                <div class="p-3.5 rounded-2xl bg-purple-50/60 border border-purple-200">
+                                    <div class="text-xs font-bold text-slate-600">Lead Capture Rate</div>
+                                    <div class="text-sm font-mono font-bold text-purple-700 mt-1">11.4% of Traffic</div>
+                                </div>
+                                <div class="p-3.5 rounded-2xl bg-emerald-50/60 border border-emerald-200">
+                                    <div class="text-xs font-bold text-slate-600">Coupon Redemption</div>
+                                    <div class="text-sm font-mono font-bold text-emerald-700 mt-1">34.2% Within 2h</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lg:col-span-5">
+                            <div class="rounded-2xl border border-purple-200 bg-purple-50/50 p-5 space-y-3">
+                                <div class="flex items-center justify-between text-xs font-bold text-purple-700 border-b border-purple-200/70 pb-2">
+                                    <span><i class="fa-solid fa-gift mr-1.5" aria-hidden="true"></i>WhatsApp Coupon Handoff</span>
+                                    <span class="font-mono">00:02s</span>
+                                </div>
+                                <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm space-y-2 text-xs text-slate-800">
+                                    <p class="font-bold text-bikDark">Your â‚¹250 Welcome Perk Is Unlocked!</p>
+                                    <p class="text-slate-700 leading-relaxed">Code <span class="font-mono font-bold text-purple-700 bg-purple-50 px-1.5 py-0.5 rounded">CHEETAH250</span> is auto-applied to your saved cart. Tap below to complete checkout via GPay/PhonePe in 10 seconds.</p>
+                                    <div class="pt-2 flex flex-wrap gap-2">
+                                        <span class="px-3 py-1.5 rounded-lg bg-purple-50 border border-purple-200 text-purple-700 font-bold">Auto-Apply â‚¹250 Off âž”</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Panel 3: Cart Abandonment -->
+                <div id="store-panel-cart" role="tabpanel" aria-labelledby="store-tab-cart" hidden class="rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-xl">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                        <div class="lg:col-span-7 space-y-5">
+                            <div class="flex flex-wrap items-center gap-2">
+                                <span class="px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-bold">Stage 03 â€¢ Checkout Drop Recovery</span>
+                                <span class="px-3 py-1 rounded-full bg-orange-50 border border-orange-200 text-orange-700 text-xs font-mono font-bold">SLA: 15s + 4h Cascade</span>
+                            </div>
+                            <h3 class="text-2xl font-extrabold text-bikDark font-display">Recover 19%â€“24% of Abandoned Checkouts Before Intent Evaporates</h3>
+                            <p class="text-sm text-slate-700 leading-relaxed">
+                                The moment a buyer drops off at shipping or payment selection, Flying Cheetah fires a multi-step WhatsApp recovery cascade: T+15s friction check (free shipping / UPI link), T+2h social proof + low-stock nudge, and T+12h prepaid bonus incentive.
+                            </p>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+                                <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200">
+                                    <div class="text-xs font-bold text-slate-600">Webhook Event</div>
+                                    <div class="text-sm font-mono font-bold text-bikDark mt-1">checkout.abandoned</div>
+                                </div>
+                                <div class="p-3.5 rounded-2xl bg-emerald-50/60 border border-emerald-200">
+                                    <div class="text-xs font-bold text-slate-600">Recovered Orders</div>
+                                    <div class="text-sm font-mono font-bold text-emerald-700 mt-1">19.4% Avg Rate</div>
+                                </div>
+                                <div class="p-3.5 rounded-2xl bg-orange-50/60 border border-orange-200">
+                                    <div class="text-xs font-bold text-slate-600">UPI Prepaid Share</div>
+                                    <div class="text-sm font-mono font-bold text-orange-700 mt-1">68% Prepaid</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lg:col-span-5">
+                            <div class="rounded-2xl border border-orange-200 bg-orange-50/50 p-5 space-y-3">
+                                <div class="flex items-center justify-between text-xs font-bold text-orange-700 border-b border-orange-200/70 pb-2">
+                                    <span><i class="fa-solid fa-cart-arrow-down mr-1.5" aria-hidden="true"></i>1-Tap Cart Recovery Card</span>
+                                    <span class="font-mono">00:15s</span>
+                                </div>
+                                <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm space-y-2 text-xs text-slate-800">
+                                    <p class="font-bold text-bikDark">Your 2 items (â‚¹2,499) are reserved for 30 mins</p>
+                                    <p class="text-slate-700 leading-relaxed">Pay via UPI right now to unlock free 25-minute Borzo dispatch + â‚¹100 instant prepaid cashback.</p>
+                                    <div class="pt-2 flex flex-wrap gap-2">
+                                        <span class="px-3 py-1.5 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-700 font-bold">Pay â‚¹2,399 via UPI âž”</span>
+                                        <span class="px-3 py-1.5 rounded-lg bg-slate-100 border border-slate-200 text-slate-700 font-bold">Need Help?</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Panel 4: Post-Purchase Cross-Sell -->
+                <div id="store-panel-post" role="tabpanel" aria-labelledby="store-tab-post" hidden class="rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-xl">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                        <div class="lg:col-span-7 space-y-5">
+                            <div class="flex flex-wrap items-center gap-2">
+                                <span class="px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-bold">Stage 04 â€¢ LTV &amp; Repeat Order Engine</span>
+                                <span class="px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-mono font-bold">SLA: Delivery + Day 14</span>
+                            </div>
+                            <h3 class="text-2xl font-extrabold text-bikDark font-display">Compound Customer Lifetime Value With Automated Replenishment</h3>
+                            <p class="text-sm text-slate-700 leading-relaxed">
+                                Once Borzo or Delhivery marks an order delivered, Flying Cheetah sends a clean digital GST invoice, collects 1-click feedback, and schedules AI-timed cross-sell or replenishment flows matched to product consumption cycles.
+                            </p>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+                                <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200">
+                                    <div class="text-xs font-bold text-slate-600">Webhook Event</div>
+                                    <div class="text-sm font-mono font-bold text-bikDark mt-1">order.delivered_otp</div>
+                                </div>
+                                <div class="p-3.5 rounded-2xl bg-blue-50/60 border border-blue-200">
+                                    <div class="text-xs font-bold text-slate-600">Repeat Purchase Lift</div>
+                                    <div class="text-sm font-mono font-bold text-blue-700 mt-1">+31% 60-Day LTV</div>
+                                </div>
+                                <div class="p-3.5 rounded-2xl bg-emerald-50/60 border border-emerald-200">
+                                    <div class="text-xs font-bold text-slate-600">Support Ticket Drop</div>
+                                    <div class="text-sm font-mono font-bold text-emerald-700 mt-1">-64% WISMO Queries</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lg:col-span-5">
+                            <div class="rounded-2xl border border-blue-200 bg-blue-50/50 p-5 space-y-3">
+                                <div class="flex items-center justify-between text-xs font-bold text-blue-700 border-b border-blue-200/70 pb-2">
+                                    <span><i class="fa-solid fa-box-open mr-1.5" aria-hidden="true"></i>Post-Delivery Reorder Card</span>
+                                    <span class="font-mono">Day +14</span>
+                                </div>
+                                <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm space-y-2 text-xs text-slate-800">
+                                    <p class="font-bold text-bikDark">Ready for your next refill or matching pair?</p>
+                                    <p class="text-slate-700 leading-relaxed">Complete your set with the Vitamin C Night Serum (15% VIP loyalty discount pre-loaded). 1-tap reorder using saved address.</p>
+                                    <div class="pt-2 flex flex-wrap gap-2">
+                                        <span class="px-3 py-1.5 rounded-lg bg-blue-50 border border-blue-200 text-blue-700 font-bold">1-Tap Reorder â‚¹849 âž”</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INTERACTIVE REVENUE CALCULATOR + INLINE SVG DATA VISUALIZATIONS -->
+        <section id="store-roi-calculator" class="py-24 bg-white border-b border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
+                <div class="text-center max-w-3xl mx-auto space-y-3">
+                    <span class="inline-block text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 border border-emerald-200 px-3.5 py-1 rounded-full">
+                        Live Revenue &amp; Telemetry Modeling
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark font-display">
+                        Store Cart Recovery Calculator &amp; Conversion Funnel Telemetry
+                    </h2>
+                    <p class="text-sm sm:text-base text-slate-700 leading-relaxed">
+                        Adjust your monthly store traffic, cart abandonment rate, and average order value (AOV) to project net recovered monthly revenue alongside real-time recovery telemetry.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    <!-- Left: Interactive Calculator -->
+                    <div class="lg:col-span-5 rounded-3xl border border-slate-200 bg-white p-6 sm:p-7 shadow-xl space-y-6">
+                        <div class="flex flex-wrap items-center justify-between gap-2 pb-4 border-b border-slate-100">
+                            <h3 class="text-lg font-extrabold text-bikDark font-display">Cart Recovery Estimator</h3>
+                            <div class="flex items-center gap-1.5">
+                                <button type="button" onclick="applyStorePreset(25000, 70, 1450)" class="px-2.5 py-1 rounded-lg bg-orange-50 hover:bg-orange-100 border border-orange-200 text-orange-700 text-[11px] font-bold cursor-pointer">Boutique</button>
+                                <button type="button" onclick="applyStorePreset(75000, 68, 2100)" class="px-2.5 py-1 rounded-lg bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-emerald-700 text-[11px] font-bold cursor-pointer">Growth D2C</button>
+                                <button type="button" onclick="applyStorePreset(180000, 65, 2950)" class="px-2.5 py-1 rounded-lg bg-blue-50 hover:bg-blue-100 border border-blue-200 text-blue-700 text-[11px] font-bold cursor-pointer">Enterprise</button>
+                            </div>
+                        </div>
+
+                        <div class="space-y-5">
+                            <!-- Slider 1: Monthly Traffic -->
+                            <div class="space-y-2">
+                                <div class="flex items-center justify-between text-xs font-bold">
+                                    <label for="calcMonthlyTraffic" class="text-slate-700">Monthly Store Visitors</label>
+                                    <span id="calcTrafficDisplay" class="font-mono text-orange-700 bg-orange-50 px-2 py-0.5 rounded border border-orange-200">40,000</span>
+                                </div>
+                                <input id="calcMonthlyTraffic" type="range" min="5000" max="250000" step="2500" value="40000" oninput="updateStoreRecoveryCalc()" class="w-full accent-bikOrange cursor-pointer">
+                            </div>
+
+                            <!-- Slider 2: Cart Abandonment % -->
+                            <div class="space-y-2">
+                                <div class="flex items-center justify-between text-xs font-bold">
+                                    <label for="calcAbandonRate" class="text-slate-700">Current Cart Abandonment Rate (%)</label>
+                                    <span id="calcAbandonDisplay" class="font-mono text-purple-700 bg-purple-50 px-2 py-0.5 rounded border border-purple-200">68%</span>
+                                </div>
+                                <input id="calcAbandonRate" type="range" min="45" max="85" step="1" value="68" oninput="updateStoreRecoveryCalc()" class="w-full accent-bikOrange cursor-pointer">
+                            </div>
+
+                            <!-- Number Input 3: Average Order Value -->
+                            <div class="space-y-2">
+                                <label for="calcAov" class="block text-xs font-bold text-slate-700">Average Order Value (INR â‚¹)</label>
+                                <input id="calcAov" type="number" min="300" max="25000" step="50" value="1850" oninput="updateStoreRecoveryCalc()" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 bg-white text-sm font-mono font-bold text-bikDark focus:outline-none focus:ring-2 focus:ring-bikOrange">
+                            </div>
+                        </div>
+
+                        <!-- Live Output Panel -->
+                        <div class="rounded-2xl bg-gradient-to-br from-orange-50/70 via-white to-emerald-50/70 border border-orange-200/80 p-5 space-y-4">
+                            <div>
+                                <div class="text-xs font-bold uppercase tracking-wider text-slate-600">Projected Monthly Recovered Revenue</div>
+                                <div id="calcMonthlyRecovered" class="text-3xl sm:text-4xl font-black text-emerald-700 font-display mt-1">â‚¹4,38,820</div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3 pt-3 border-t border-slate-200/80 text-xs">
+                                <div class="p-3 rounded-xl bg-white border border-slate-200">
+                                    <div class="text-slate-600 font-semibold">Recovered Orders/Mo</div>
+                                    <div id="calcRecoveredOrders" class="text-base font-black text-bikDark font-mono mt-0.5">237 orders</div>
+                                </div>
+                                <div class="p-3 rounded-xl bg-white border border-slate-200">
+                                    <div class="text-slate-600 font-semibold">Annualized Uplift</div>
+                                    <div id="calcAnnualUplift" class="text-base font-black text-orange-700 font-mono mt-0.5">â‚¹52,65,840</div>
+                                </div>
+                            </div>
+                            <div class="text-xs text-slate-700 flex items-center justify-between pt-1">
+                                <span>Borzo/UPI Prepaid Lift:</span>
+                                <span id="calcPrepaidLift" class="font-bold text-blue-700 font-mono">+161 Prepaid Orders</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Two Rich Pure-White Inline SVG Telemetry Charts -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <!-- SVG Chart 1: Cart Drop-off vs Recovery Funnel -->
+                        <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-xl space-y-4">
+                            <div class="flex flex-wrap items-center justify-between gap-2">
+                                <div>
+                                    <h3 class="text-base font-extrabold text-bikDark font-display">Cart Drop-off vs Automated Recovery Funnel</h3>
+                                    <p class="text-xs text-slate-600">Benchmark conversion retention per 10,000 high-intent store sessions</p>
+                                </div>
+                                <span class="px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-bold">+19.4% Net Recovery</span>
+                            </div>
+
+                            <svg viewBox="0 0 560 210" role="img" aria-label="Store Cart Drop-off vs Flying Cheetah Automated Recovery Funnel Chart" class="w-full h-auto bg-white rounded-2xl border border-slate-100">
+                                <title>Cart Drop-off vs Automated Recovery Funnel</title>
+                                <defs>
+                                    <linearGradient id="storeFunnelOrange" x1="0" y1="0" x2="1" y2="0">
+                                        <stop offset="0%" stop-color="#FF6838"/>
+                                        <stop offset="100%" stop-color="#F59E0B"/>
+                                    </linearGradient>
+                                    <linearGradient id="storeFunnelEmerald" x1="0" y1="0" x2="1" y2="0">
+                                        <stop offset="0%" stop-color="#0866FF"/>
+                                        <stop offset="100%" stop-color="#10B981"/>
+                                    </linearGradient>
+                                </defs>
+                                <rect x="0" y="0" width="560" height="210" fill="#FFFFFF"/>
+                                <line x1="170" y1="20" x2="170" y2="185" stroke="#E2E8F0" stroke-dasharray="4 4"/>
+                                <line x1="290" y1="20" x2="290" y2="185" stroke="#E2E8F0" stroke-dasharray="4 4"/>
+                                <line x1="410" y1="20" x2="410" y2="185" stroke="#E2E8F0" stroke-dasharray="4 4"/>
+                                <line x1="520" y1="20" x2="520" y2="185" stroke="#E2E8F0" stroke-dasharray="4 4"/>
+
+                                <!-- Stage 1 -->
+                                <text x="16" y="42" fill="#121624" font-size="11" font-weight="700">1. Add-to-Cart Intent</text>
+                                <rect x="170" y="26" width="320" height="22" rx="6" fill="#FFF7ED" stroke="#FDBA74"/>
+                                <rect x="170" y="26" width="320" height="22" rx="6" fill="url(#storeFunnelOrange)"/>
+                                <text x="498" y="41" fill="#121624" font-size="11" font-weight="700">1,250</text>
+
+                                <!-- Stage 2 -->
+                                <text x="16" y="80" fill="#121624" font-size="11" font-weight="700">2. Abandoned Checkouts</text>
+                                <rect x="170" y="64" width="218" height="22" rx="6" fill="#FEF2F2" stroke="#FCA5A5"/>
+                                <rect x="170" y="64" width="218" height="22" rx="6" fill="#E1306C"/>
+                                <text x="396" y="79" fill="#121624" font-size="11" font-weight="700">850 (68%)</text>
+
+                                <!-- Stage 3 -->
+                                <text x="16" y="118" fill="#121624" font-size="11" font-weight="700">3. 15s WhatsApp Read</text>
+                                <rect x="170" y="102" width="186" height="22" rx="6" fill="#EFF6FF" stroke="#93C5FD"/>
+                                <rect x="170" y="102" width="186" height="22" rx="6" fill="#0866FF"/>
+                                <text x="364" y="117" fill="#121624" font-size="11" font-weight="700">720 (84.7%)</text>
+
+                                <!-- Stage 4 -->
+                                <text x="16" y="156" fill="#121624" font-size="11" font-weight="700">4. 1-Tap UPI Checkout</text>
+                                <rect x="170" y="140" width="96" height="22" rx="6" fill="#ECFDF5" stroke="#6EE7B7"/>
+                                <rect x="170" y="140" width="96" height="22" rx="6" fill="url(#storeFunnelEmerald)"/>
+                                <text x="274" y="155" fill="#047857" font-size="11" font-weight="700">165 Paid Orders</text>
+
+                                <text x="170" y="198" fill="#475569" font-size="10" font-weight="600">0</text>
+                                <text x="285" y="198" fill="#475569" font-size="10" font-weight="600">400</text>
+                                <text x="405" y="198" fill="#475569" font-size="10" font-weight="600">800</text>
+                                <text x="505" y="198" fill="#475569" font-size="10" font-weight="600">1,250</text>
                             </svg>
-                            <div class="flex items-center justify-between text-[11px] text-slate-500 font-semibold pt-1 border-t border-orange-100">
-                                <span>Cart triggers: 48</span>
-                                <span>WhatsApp clicks: 36</span>
-                                <span class="text-emerald-600 font-bold">UPI checkouts: 14</span>
+                        </div>
+
+                        <!-- SVG Chart 2: Hourly Recovery Telemetry -->
+                        <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-xl space-y-4">
+                            <div class="flex flex-wrap items-center justify-between gap-2">
+                                <div>
+                                    <h3 class="text-base font-extrabold text-bikDark font-display">Hourly Recovery Telemetry (24h Window)</h3>
+                                    <p class="text-xs text-slate-600">Cumulative recovered revenue curve vs legacy email batch campaigns</p>
+                                </div>
+                                <span class="text-emerald-700 font-bold text-xs bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">+â‚¹38,500 Today</span>
+                            </div>
+
+                            <svg viewBox="0 0 560 185" role="img" aria-label="24-Hour Store Cart Recovery Revenue Telemetry Chart" class="w-full h-auto bg-white rounded-2xl border border-slate-100">
+                                <title>24-Hour Automated Recovery Telemetry</title>
+                                <defs>
+                                    <linearGradient id="hourlyAreaFill" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="#10B981" stop-opacity="0.22"/>
+                                        <stop offset="100%" stop-color="#FF6838" stop-opacity="0.03"/>
+                                    </linearGradient>
+                                    <linearGradient id="hourlyLineStroke" x1="0" y1="0" x2="1" y2="0">
+                                        <stop offset="0%" stop-color="#FF6838"/>
+                                        <stop offset="50%" stop-color="#0866FF"/>
+                                        <stop offset="100%" stop-color="#10B981"/>
+                                    </linearGradient>
+                                </defs>
+                                <rect x="0" y="0" width="560" height="185" fill="#FFFFFF"/>
+                                <line x1="48" y1="30" x2="535" y2="30" stroke="#E2E8F0" stroke-dasharray="4 4"/>
+                                <line x1="48" y1="70" x2="535" y2="70" stroke="#E2E8F0" stroke-dasharray="4 4"/>
+                                <line x1="48" y1="110" x2="535" y2="110" stroke="#E2E8F0" stroke-dasharray="4 4"/>
+                                <line x1="48" y1="150" x2="535" y2="150" stroke="#E2E8F0"/>
+
+                                <!-- Legacy Email Baseline -->
+                                <path d="M48 148 L145 144 L242 136 L340 128 L438 123 L535 120" fill="none" stroke="#94A3B8" stroke-width="2" stroke-dasharray="6 4"/>
+                                <!-- Flying Cheetah Area & Curve -->
+                                <path d="M48 148 C110 112, 175 88, 242 66 C320 44, 420 34, 535 26 L535 150 L48 150 Z" fill="url(#hourlyAreaFill)"/>
+                                <path d="M48 148 C110 112, 175 88, 242 66 C320 44, 420 34, 535 26" fill="none" stroke="url(#hourlyLineStroke)" stroke-width="3.5" stroke-linecap="round"/>
+
+                                <circle cx="48" cy="148" r="4.5" fill="#FF6838" stroke="#FFFFFF" stroke-width="2"/>
+                                <circle cx="145" cy="102" r="4.5" fill="#FF6838" stroke="#FFFFFF" stroke-width="2"/>
+                                <circle cx="242" cy="66" r="4.5" fill="#0866FF" stroke="#FFFFFF" stroke-width="2"/>
+                                <circle cx="340" cy="44" r="4.5" fill="#0866FF" stroke="#FFFFFF" stroke-width="2"/>
+                                <circle cx="438" cy="33" r="4.5" fill="#10B981" stroke="#FFFFFF" stroke-width="2"/>
+                                <circle cx="535" cy="26" r="5" fill="#10B981" stroke="#FFFFFF" stroke-width="2"/>
+
+                                <text x="12" y="34" fill="#475569" font-size="10" font-weight="600">â‚¹40k</text>
+                                <text x="12" y="74" fill="#475569" font-size="10" font-weight="600">â‚¹25k</text>
+                                <text x="12" y="114" fill="#475569" font-size="10" font-weight="600">â‚¹10k</text>
+                                <text x="20" y="154" fill="#475569" font-size="10" font-weight="600">â‚¹0</text>
+
+                                <text x="42" y="170" fill="#475569" font-size="10" font-weight="600">0m</text>
+                                <text x="135" y="170" fill="#475569" font-size="10" font-weight="600">15m</text>
+                                <text x="234" y="170" fill="#475569" font-size="10" font-weight="600">2h</text>
+                                <text x="332" y="170" fill="#475569" font-size="10" font-weight="600">6h</text>
+                                <text x="428" y="170" fill="#475569" font-size="10" font-weight="600">12h</text>
+                                <text x="520" y="170" fill="#475569" font-size="10" font-weight="600">24h</text>
+                            </svg>
+                            <div class="flex flex-wrap items-center justify-between gap-2 text-xs text-slate-700 font-semibold pt-2 border-t border-slate-100">
+                                <span>Cart triggers: <strong class="text-bikDark">48</strong></span>
+                                <span>WhatsApp clicks: <strong class="text-blue-700">36</strong></span>
+                                <span>UPI checkouts: <strong class="text-emerald-700">14 (+â‚¹38,500)</strong></span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </section>
 
-        </div>
-    </section>
+        <!-- CORE PRODUCT VISUAL SHOWCASES -->
+        <section class="py-24 bg-white border-b border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24">
 
-    
-    <footer class="py-12 bg-white border-t border-slate-200 text-xs text-slate-500">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <!-- Feature 1: Multi-Trigger Store Flow -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-6 space-y-5">
+                        <span class="inline-block text-xs font-bold uppercase tracking-widest text-orange-700 bg-orange-50 border border-orange-200 px-3 py-1 rounded-full">Retention Automation</span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark font-display leading-tight">
+                            Reclaim Abandoned Leads Instantly With Visual Flow Builders
+                        </h2>
+                        <p class="text-slate-700 text-base leading-relaxed">
+                            Re-engage potential customers the instant they exit your checkout or product pages. Smart branching checks customer order history, COD eligibility, pincode delivery speed, and real-time cart value to send tailored WhatsApp catalog cards rather than generic spam blastsâ€”turning stalled sessions into confirmed prepaid orders while buying intent is highest.
+                        </p>
+                        <div class="pt-2">
+                            <a href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah,%20I%20want%20to%20set%20up%20Abandoned%20Lead%20Recovery." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-orange-700 font-bold text-sm hover:underline">
+                                <span>Reconnect your store now</span>
+                                <i class="fa-solid fa-arrow-right text-xs" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-6">
+                        <div class="fc-showcase-frame p-3 bg-white">
+                            <img src="images/store_automation_flow_v2.jpg" alt="Flying Cheetah Store Automation Multi-Trigger Flow Builder Interface" loading="lazy" class="rounded-xl w-full h-auto block">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 2: Omnichannel & Fleet Dispatch -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-6 order-2 lg:order-1">
+                        <div class="fc-showcase-frame p-3 bg-white">
+                            <img src="images/omnichannel_preferred_platform.jpg" alt="Reach Shoppers On Their Preferred Platform Including WhatsApp and Email" loading="lazy" class="rounded-xl w-full h-auto object-cover block">
+                        </div>
+                    </div>
+                    <div class="lg:col-span-6 order-1 lg:order-2 space-y-5">
+                        <span class="inline-block text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full">Omni-Channel Activation</span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark font-display leading-tight">
+                            Reach Buyers On Their Preferred Channel &amp; Dispatch in 25 Mins
+                        </h2>
+                        <p class="text-slate-700 text-base leading-relaxed">
+                            Orchestrate seamless fallback between WhatsApp Cloud API, Email, and SMS without double-messaging buyers. Combine native chat checkouts with autonomous Borzo and Porter hyperlocal rider dispatch in Mumbai, Bengaluru, and Delhi NCR.
+                        </p>
+                        <div class="pt-2">
+                            <a href="delivery.html" class="inline-flex items-center gap-2 text-emerald-700 font-bold text-sm hover:underline">
+                                <span>Explore Hyperlocal Fleet Engine</span>
+                                <i class="fa-solid fa-arrow-right text-xs" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 3: Merchant UI Mockup & Impact Dashboard -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-6 space-y-5">
+                        <span class="inline-block text-xs font-bold uppercase tracking-widest text-blue-700 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full">Telemetry &amp; Attribution</span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark font-display leading-tight">
+                            Assess Every Journey's Direct Revenue Attribution
+                        </h2>
+                        <p class="text-slate-700 text-base leading-relaxed">
+                            Audit step-by-step funnel performance across read receipts, CTA taps, UPI payment confirmations, and COD-to-prepaid conversions inside one unified merchant console with zero opaque markups. Track cohort recovery attribution by trigger type, SKU category, and city-level dispatch SLA so growth leaders know the exact ROI of every automated message.
+                        </p>
+                        <div class="pt-2">
+                            <a href="customer-data-platform.html" class="inline-flex items-center gap-2 text-blue-700 font-bold text-sm hover:underline">
+                                <span>Inspect Customer Data Platform 360</span>
+                                <i class="fa-solid fa-arrow-right text-xs" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="fc-showcase-frame p-2.5 bg-white">
+                            <img src="images/store_automation_ui_mockup.jpg" alt="Flying Cheetah Store Automation Live Cart Recovery UI Console" loading="lazy" class="rounded-xl w-full h-auto object-cover block">
+                        </div>
+                        <div class="fc-showcase-frame p-2.5 bg-white">
+                            <img src="images/automation_impact_dashboard.jpg" alt="Flying Cheetah Store Automation Direct Revenue Attribution Dashboard" loading="lazy" class="rounded-xl w-full h-auto object-cover block">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 4 INDUSTRY USE CASES -->
+        <section class="py-24 bg-gradient-to-b from-orange-50/30 via-white to-white border-b border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
+                <div class="text-center max-w-3xl mx-auto space-y-3">
+                    <span class="inline-block text-xs font-bold uppercase tracking-widest text-orange-700 bg-orange-50 border border-orange-200 px-3.5 py-1 rounded-full">
+                        4 Vertical Playbooks
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark font-display">
+                        Store Automation Engineered for 4 High-Growth Retail Verticals
+                    </h2>
+                    <p class="text-sm sm:text-base text-slate-700 leading-relaxed">
+                        Every category faces distinct cart drop-off objections. Deploy pre-tested conversational playbooks customized for your catalog structure.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Industry 1 -->
+                    <div class="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm card-anim space-y-4">
+                        <div class="w-12 h-12 rounded-2xl bg-orange-50 border border-orange-200 text-orange-700 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-shirt" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-bikDark">Fashion &amp; Apparel</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">
+                            Eliminate sizing hesitation with instant WhatsApp fit guides, automated back-in-stock size alerts, and 1-click exchange workflows that reduce returns by 22%.
+                        </p>
+                        <div class="pt-3 border-t border-slate-100 text-xs font-mono font-bold text-orange-700">+24% Size-Chart Conversion</div>
+                    </div>
+
+                    <!-- Industry 2 -->
+                    <div class="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm card-anim space-y-4">
+                        <div class="w-12 h-12 rounded-2xl bg-pink-50 border border-pink-200 text-pink-700 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-sparkles" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-bikDark">D2C Beauty &amp; Skincare</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">
+                            Resume abandoned skin-type quiz recommendations on WhatsApp, trigger 30-day serum replenishment reminders, and bundle high-margin regimens in chat.
+                        </p>
+                        <div class="pt-3 border-t border-slate-100 text-xs font-mono font-bold text-pink-700">2.4x Repeat Replenishment</div>
+                    </div>
+
+                    <!-- Industry 3 -->
+                    <div class="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm card-anim space-y-4">
+                        <div class="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-200 text-blue-700 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-headphones" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-bikDark">Consumer Electronics</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">
+                            Answer spec comparisons instantly, share no-cost EMI and UPI checkout links on high-AOV carts, and automate AI voice COD confirmation before dispatch.
+                        </p>
+                        <div class="pt-3 border-t border-slate-100 text-xs font-mono font-bold text-blue-700">-38% High-AOV RTO Loss</div>
+                    </div>
+
+                    <!-- Industry 4 -->
+                    <div class="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm card-anim space-y-4">
+                        <div class="w-12 h-12 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-700 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-basket-shopping" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-bikDark">Hyperlocal Grocery &amp; Retail</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">
+                            Validate pincode inventory in real time, offer instant 25-minute Borzo courier slots at checkout, and trigger Friday evening weekly basket reorders.
+                        </p>
+                        <div class="pt-3 border-t border-slate-100 text-xs font-mono font-bold text-emerald-700">25-Min Local Dispatch</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- COMPARISON TABLE -->
+        <section class="py-24 bg-white border-b border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+                <div class="text-center max-w-3xl mx-auto space-y-3">
+                    <span class="inline-block text-xs font-bold uppercase tracking-widest text-orange-700 bg-orange-50 border border-orange-200 px-3.5 py-1 rounded-full">
+                        Benchmark Comparison
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark font-display">
+                        Manual Email vs Legacy Popups vs Flying Cheetah Store Automation
+                    </h2>
+                    <p class="text-sm sm:text-base text-slate-700 leading-relaxed">
+                        See why modern Indian D2C brands replace slow email sequences and annoying browser overlays with real-time WhatsApp and UPI store automation.
+                    </p>
+                </div>
+
+                <div class="overflow-x-auto rounded-3xl border border-slate-200 shadow-xl bg-white">
+                    <table class="w-full text-left border-collapse text-xs sm:text-sm min-w-[680px]">
+                        <thead>
+                            <tr class="bg-gradient-to-r from-orange-50 via-amber-50/70 to-emerald-50 text-bikDark font-mono text-xs border-b border-orange-200">
+                                <th class="p-5 font-bold text-bikDark">Capability</th>
+                                <th class="p-5 font-bold text-slate-700">Manual Email Flows</th>
+                                <th class="p-5 font-bold text-slate-700">Legacy Exit Popups</th>
+                                <th class="p-5 font-bold text-orange-700 bg-orange-100/70">Flying Cheetah Store Automation</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                            <tr class="hover:bg-slate-50/70 transition">
+                                <td class="p-5 font-bold text-bikDark">Trigger-to-Message Speed</td>
+                                <td class="p-5 text-slate-700">1 to 4 hours batch delay</td>
+                                <td class="p-5 text-slate-700">On-page only (lost once tab closes)</td>
+                                <td class="p-5 font-bold text-emerald-700 bg-orange-50/30">&lt; 15 seconds via live webhook</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/70 transition">
+                                <td class="p-5 font-bold text-bikDark">Message Open Rate</td>
+                                <td class="p-5 text-slate-700">14%â€“18% (Promotions tab)</td>
+                                <td class="p-5 text-slate-700">N/A (92% immediate close rate)</td>
+                                <td class="p-5 font-bold text-emerald-700 bg-orange-50/30">84.6%â€“94% WhatsApp read rate</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/70 transition">
+                                <td class="p-5 font-bold text-bikDark">Native 1-Tap UPI Checkout</td>
+                                <td class="p-5 text-slate-700">Redirects to full web cart</td>
+                                <td class="p-5 text-slate-700">Static coupon copy-paste</td>
+                                <td class="p-5 font-bold text-emerald-700 bg-orange-50/30">Pre-filled Razorpay / UPI intent link</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/70 transition">
+                                <td class="p-5 font-bold text-bikDark">COD-to-Prepaid Nudges</td>
+                                <td class="p-5 text-slate-700">Not supported</td>
+                                <td class="p-5 text-slate-700">Not supported</td>
+                                <td class="p-5 font-bold text-emerald-700 bg-orange-50/30">Automated + AI Voice COD verification</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/70 transition">
+                                <td class="p-5 font-bold text-bikDark">Hyperlocal Rider Dispatch</td>
+                                <td class="p-5 text-slate-700">Zero logistics link</td>
+                                <td class="p-5 text-slate-700">Zero logistics link</td>
+                                <td class="p-5 font-bold text-emerald-700 bg-orange-50/30">Native Borzo &amp; Porter 25-min dispatch</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- 48-HOUR IMPLEMENTATION TIMELINE -->
+        <section class="py-24 bg-gradient-to-b from-slate-50/60 to-white border-b border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+                <div class="text-center max-w-3xl mx-auto space-y-3">
+                    <span class="inline-block text-xs font-bold uppercase tracking-widest text-blue-700 bg-blue-50 border border-blue-200 px-3.5 py-1 rounded-full">
+                        48-Hour Launch SLA
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark font-display">
+                        48-Hour Shopify &amp; WooCommerce Implementation Timeline
+                    </h2>
+                    <p class="text-sm sm:text-base text-slate-700 leading-relaxed">
+                        Zero heavy theme modifications and zero Core Web Vitals regression. Our engineers connect your store cleanly in four verifiable phases.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-3">
+                        <span class="inline-block px-3 py-1 rounded-full bg-orange-50 border border-orange-200 text-orange-700 text-xs font-mono font-bold">Hours 00 â€“ 04</span>
+                        <h3 class="text-lg font-bold text-bikDark">OAuth &amp; Webhook Handshake</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">Install our lightweight Shopify or WooCommerce connector, register `checkouts/create`, `checkouts/update`, and `orders/paid` webhooks, and verify zero-blocking async script loading across mobile and desktop product pages.</p>
+                    </div>
+                    <div class="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-3">
+                        <span class="inline-block px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-mono font-bold">Hours 04 â€“ 18</span>
+                        <h3 class="text-lg font-bold text-bikDark">Catalog &amp; Inventory Sync</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">Map SKU variants, pricing tiers, pincode serviceability rules, and Meta Commerce Manager catalog feeds so out-of-stock items never trigger recovery messages and size alternatives stay accurate in real time.</p>
+                    </div>
+                    <div class="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-3">
+                        <span class="inline-block px-3 py-1 rounded-full bg-purple-50 border border-purple-200 text-purple-700 text-xs font-mono font-bold">Hours 18 â€“ 36</span>
+                        <h3 class="text-lg font-bold text-bikDark">Templates &amp; UPI Routing</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">Approve official Meta WhatsApp utility and marketing templates, configure dynamic Razorpay and Cashfree UPI checkout links, and calibrate COD-to-prepaid incentive thresholds tailored to your margin profile.</p>
+                    </div>
+                    <div class="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-3">
+                        <span class="inline-block px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-mono font-bold">Hours 36 â€“ 48</span>
+                        <h3 class="text-lg font-bold text-bikDark">Shadow QA &amp; Live Cutover</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">Run end-to-end sandbox checkout drop tests, validate Meta CAPI purchase deduplication, activate Borzo auto-dispatch webhooks, and go live with real-time recovery telemetry monitoring.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INTERACTIVE FAQ ACCORDION -->
+        <section class="py-24 bg-white border-b border-slate-100">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+                <div class="text-center space-y-3">
+                    <span class="inline-block text-xs font-bold uppercase tracking-widest text-orange-700 bg-orange-50 border border-orange-200 px-3.5 py-1 rounded-full">
+                        Questions &amp; Answers
+                    </span>
+                    <h2 class="text-3xl font-extrabold text-bikDark font-display">
+                        Frequently Asked Questions on Store Automation
+                    </h2>
+                    <p class="text-sm text-slate-700">
+                        Everything store owners and growth teams ask before activating automated WhatsApp cart recovery and UPI flows.
+                    </p>
+                </div>
+
+                <div class="space-y-4" data-accordion="store-faq">
+                    <div class="rounded-2xl border border-slate-200 bg-slate-50/60 overflow-hidden">
+                        <h3>
+                            <button type="button" aria-expanded="false" aria-controls="store-faq-1" onclick="toggleStoreFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-bikDark hover:bg-orange-50/40 transition cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange">
+                                <span>Will the Flying Cheetah tracking snippet slow down our Shopify or WooCommerce speed?</span>
+                                <i class="fa-solid fa-chevron-down text-xs text-orange-700 transition-transform duration-200" aria-hidden="true"></i>
+                            </button>
+                        </h3>
+                        <div id="store-faq-1" hidden class="px-6 pb-5 text-xs sm:text-sm text-slate-700 leading-relaxed border-t border-slate-200/70 pt-4 bg-white">
+                            No. Our edge-cached telemetry snippet is under 4 KB gzipped, loads asynchronously after First Contentful Paint, and introduces zero render-blocking scripts. Your Lighthouse Core Web Vitals stay at 95+ while capturing browse and exit-intent events.
+                        </div>
+                    </div>
+
+                    <div class="rounded-2xl border border-slate-200 bg-slate-50/60 overflow-hidden">
+                        <h3>
+                            <button type="button" aria-expanded="false" aria-controls="store-faq-2" onclick="toggleStoreFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-bikDark hover:bg-orange-50/40 transition cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange">
+                                <span>How does WhatsApp opt-in and Meta policy compliance work for abandoned carts?</span>
+                                <i class="fa-solid fa-chevron-down text-xs text-orange-700 transition-transform duration-200" aria-hidden="true"></i>
+                            </button>
+                        </h3>
+                        <div id="store-faq-2" hidden class="px-6 pb-5 text-xs sm:text-sm text-slate-700 leading-relaxed border-t border-slate-200/70 pt-4 bg-white">
+                            Every message runs exclusively on the official Meta WhatsApp Business Cloud API with pre-approved templates, clear opt-out quick replies, and frequency caps (maximum 1 recovery thread per abandoned session) so your sender quality rating remains in the green tier.
+                        </div>
+                    </div>
+
+                    <div class="rounded-2xl border border-slate-200 bg-slate-50/60 overflow-hidden">
+                        <h3>
+                            <button type="button" aria-expanded="false" aria-controls="store-faq-3" onclick="toggleStoreFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-bikDark hover:bg-orange-50/40 transition cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange">
+                                <span>Can we convert Cash-on-Delivery (COD) checkouts to prepaid UPI orders automatically?</span>
+                                <i class="fa-solid fa-chevron-down text-xs text-orange-700 transition-transform duration-200" aria-hidden="true"></i>
+                            </button>
+                        </h3>
+                        <div id="store-faq-3" hidden class="px-6 pb-5 text-xs sm:text-sm text-slate-700 leading-relaxed border-t border-slate-200/70 pt-4 bg-white">
+                            Yes. Right after a COD order is placed, our engine evaluates pincode RTO risk scores and triggers a WhatsApp prompt offering a small prepaid perk (such as â‚¹50 cashback or priority Borzo dispatch) paired with a 1-tap UPI link.
+                        </div>
+                    </div>
+
+                    <div class="rounded-2xl border border-slate-200 bg-slate-50/60 overflow-hidden">
+                        <h3>
+                            <button type="button" aria-expanded="false" aria-controls="store-faq-4" onclick="toggleStoreFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-bikDark hover:bg-orange-50/40 transition cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange">
+                                <span>Does Store Automation sync back with Meta CAPI and Google Analytics 4?</span>
+                                <i class="fa-solid fa-chevron-down text-xs text-orange-700 transition-transform duration-200" aria-hidden="true"></i>
+                            </button>
+                        </h3>
+                        <div id="store-faq-4" hidden class="px-6 pb-5 text-xs sm:text-sm text-slate-700 leading-relaxed border-t border-slate-200/70 pt-4 bg-white">
+                            Yes. All recovered WhatsApp UPI checkouts fire server-side Meta Conversions API (`Purchase`) and GA4 measurement events with matching `event_id` deduplication keys so your ad algorithms optimize on real recovered revenue.
+                        </div>
+                    </div>
+
+                    <div class="rounded-2xl border border-slate-200 bg-slate-50/60 overflow-hidden">
+                        <h3>
+                            <button type="button" aria-expanded="false" aria-controls="store-faq-5" onclick="toggleStoreFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-bikDark hover:bg-orange-50/40 transition cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange">
+                                <span>Do we pay a percentage commission on recovered store orders?</span>
+                                <i class="fa-solid fa-chevron-down text-xs text-orange-700 transition-transform duration-200" aria-hidden="true"></i>
+                            </button>
+                        </h3>
+                        <div id="store-faq-5" hidden class="px-6 pb-5 text-xs sm:text-sm text-slate-700 leading-relaxed border-t border-slate-200/70 pt-4 bg-white">
+                            Never. You keep 100% of your retail revenue with 0% GMV cut. Plans are predictable flat monthly architecture retainers plus pass-through Meta conversation charges billed at official rates.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONVERSION CTA BANNER -->
+        <section class="py-20 bg-gradient-to-br from-orange-50 via-white to-emerald-50 text-bikDark">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+                <span class="inline-block text-xs font-bold text-orange-700 uppercase tracking-widest bg-white px-3.5 py-1 rounded-full border border-orange-200">
+                    Launch In 48 Hours
+                </span>
+                <h2 class="text-3xl sm:text-5xl font-black font-display leading-tight text-bikDark">
+                    Turn Abandoned Carts Into Paid UPI Orders On Autopilot.
+                </h2>
+                <p class="text-sm sm:text-base text-slate-700 max-w-2xl mx-auto leading-relaxed">
+                    Book a free 15-minute store funnel audit. We will benchmark your checkout drop-off, map your 48-hour Shopify/WooCommerce integration, and share custom WhatsApp templates for your catalog.
+                </p>
+                <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <button type="button" onclick="if(window.FC_LEADS){window.FC_LEADS.openAuditModal('Store Automation & Cart Recovery');}" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-orange-700 hover:bg-orange-800 text-white font-bold text-sm transition shadow-lg shadow-orange-500/20 cursor-pointer">
+                        <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>
+                        <span>Claim Free Store Automation Audit</span>
+                    </button>
+                    <a href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah%20team,%20I%20want%20to%20deploy%20Store%20Automation%20for%20my%20store." target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl border border-emerald-300 text-emerald-700 font-bold text-sm bg-white hover:bg-emerald-50 transition shadow-sm">
+                        <i class="fa-brands fa-whatsapp text-emerald-700 text-base" aria-hidden="true"></i>
+                        <span>Chat With Founders on WhatsApp</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="py-12 bg-white border-t border-slate-200 text-xs text-slate-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between gap-6">
             <div class="flex items-center space-x-3">
                 <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah" class="h-6 w-6 rounded-full object-cover border border-slate-300">
-                <span class="font-bold text-slate-700">FLYING CHEETAH STORE AUTOMATION © 2026.</span>
+                <span class="font-bold text-slate-800">FLYING CHEETAH STORE AUTOMATION Â© 2026.</span>
                 <span>All Rights Reserved.</span>
             </div>
-            <div class="flex items-center space-x-6 font-medium text-slate-600">
-                <a href="index.html" class="hover:text-bikOrange transition">Main Site</a>
-                <a href="customer-support.html" class="hover:text-bikOrange transition">Customer Support</a>
-                <a href="delivery.html" class="hover:text-bikOrange transition">Fleet Protocol</a>
-                <a href="about.html" class="hover:text-bikOrange transition">About Us</a>
+            <div class="flex flex-wrap items-center justify-center gap-4 font-medium text-slate-700">
+                <a href="index.html" class="hover:text-orange-700 transition">Main Site</a>
+                <a href="store-automation.html" class="text-orange-700 font-bold">Store Automation</a>
+                <a href="whatsapp-automation.html" class="hover:text-emerald-700 transition">WhatsApp</a>
+                <a href="instagram-automation.html" class="hover:text-pink-700 transition">Instagram</a>
+                <a href="ctwa-automation.html" class="hover:text-blue-700 transition">CTWA Ads</a>
+                <a href="ai-voice-agents.html" class="hover:text-purple-700 transition">Voice Agents</a>
+                <a href="customer-data-platform.html" class="hover:text-indigo-700 transition">CDP 360</a>
+                <a href="delivery.html" class="hover:text-orange-700 transition">Fleet Protocol</a>
+                <a href="about.html" class="hover:text-orange-700 transition">About Us</a>
+                <a href="privacy-policy.html" class="hover:text-orange-700 transition">Privacy Policy</a>
+                <a href="terms-of-service.html" class="hover:text-orange-700 transition">Terms</a>
+                <a href="refund-policy.html" class="hover:text-orange-700 transition">Refunds</a>
             </div>
         </div>
     </footer>
-    <script>
-        // Toggle dropdowns on click & close when clicking outside
-        document.addEventListener('DOMContentLoaded', function() {
-            const dropdownParents = document.querySelectorAll('.dropdown-parent');
-            dropdownParents.forEach(function(parent) {
-                const btn = parent.querySelector('button');
-                if (btn) {
-                    btn.addEventListener('click', function(e) {
-                        e.stopPropagation();
-                        // Close other open dropdowns
-                        dropdownParents.forEach(p => { if (p !== parent) p.classList.remove('active'); });
-                        parent.classList.toggle('active');
-                    });
-                }
-            });
 
-            document.addEventListener('click', function(e) {
-                dropdownParents.forEach(p => p.classList.remove('active'));
-            });
-        });
-    </script>
     <!-- Supabase & Flying Cheetah Backend Architecture SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="js/supabase-client.js"></script>
@@ -445,23 +1161,123 @@
     <script src="js/leads.js"></script>
     <script src="js/fc-widgets.js"></script>
 
-<script>
-        // Top-level nav links hover safety: immediately dismiss all dropdowns
-        document.querySelectorAll('nav > a').forEach(function(link) {
-            link.addEventListener('mouseenter', function() {
-                document.querySelectorAll('.home-dropdown-parent, .products-dropdown-parent, .dropdown-parent').forEach(function(p) {
+    <script>
+        // Accessible Header Dropdowns (Home & Products)
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdownParents = document.querySelectorAll('.home-dropdown-parent, .products-dropdown-parent, .dropdown-parent');
+            function closeAllDropdowns() {
+                dropdownParents.forEach(function(p) {
                     p.classList.remove('active');
-                });
-            });
-        });
-        // Click outside dismiss
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('.home-dropdown-parent') && !e.target.closest('.products-dropdown-parent') && !e.target.closest('.dropdown-parent')) {
-                document.querySelectorAll('.home-dropdown-parent, .products-dropdown-parent, .dropdown-parent').forEach(function(p) {
-                    p.classList.remove('active');
+                    const b = p.querySelector('button[aria-expanded]');
+                    if (b) b.setAttribute('aria-expanded', 'false');
                 });
             }
+
+            dropdownParents.forEach(function(parent) {
+                const btn = parent.querySelector('button');
+                if (btn) {
+                    btn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const willOpen = !parent.classList.contains('active');
+                        closeAllDropdowns();
+                        if (willOpen) {
+                            parent.classList.add('active');
+                            btn.setAttribute('aria-expanded', 'true');
+                        }
+                    });
+                }
+            });
+
+            document.querySelectorAll('header nav > a').forEach(function(link) {
+                link.addEventListener('mouseenter', closeAllDropdowns);
+            });
+
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.home-dropdown-parent') && !e.target.closest('.products-dropdown-parent') && !e.target.closest('.dropdown-parent')) {
+                    closeAllDropdowns();
+                }
+            });
         });
+
+        // Interactive Trigger-to-Checkout Journey Explorer Tabs
+        function switchStoreJourney(key) {
+            const keys = ['browse', 'exit', 'cart', 'post'];
+            keys.forEach(function(k) {
+                const tab = document.getElementById('store-tab-' + k);
+                const panel = document.getElementById('store-panel-' + k);
+                const isActive = (k === key);
+                if (tab) {
+                    tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+                    if (isActive) {
+                        tab.className = 'px-5 py-3 rounded-xl text-xs sm:text-sm font-bold transition border border-orange-700 bg-orange-700 text-white shadow-md cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange focus-visible:ring-offset-2';
+                    } else {
+                        tab.className = 'px-5 py-3 rounded-xl text-xs sm:text-sm font-bold transition border border-slate-200 bg-white text-slate-700 hover:border-orange-300 hover:bg-orange-50/50 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange focus-visible:ring-offset-2';
+                    }
+                }
+                if (panel) {
+                    panel.hidden = !isActive;
+                }
+            });
+        }
+
+        // Interactive Store Cart Recovery Calculator
+        function updateStoreRecoveryCalc() {
+            const trafficEl = document.getElementById('calcMonthlyTraffic');
+            const abandonEl = document.getElementById('calcAbandonRate');
+            const aovEl = document.getElementById('calcAov');
+            if (!trafficEl || !abandonEl || !aovEl) return;
+
+            const traffic = Math.max(1000, Number(trafficEl.value) || 40000);
+            const abandonPct = Math.max(10, Math.min(95, Number(abandonEl.value) || 68));
+            const aov = Math.max(100, Number(aovEl.value) || 1850);
+
+            // 4.5% of traffic initiates checkout -> abandonedPct drops -> 19.4% recovered by Flying Cheetah
+            const abandonedCarts = Math.round(traffic * 0.045 * (abandonPct / 100));
+            const recoveredOrders = Math.max(1, Math.round(abandonedCarts * 0.194));
+            const monthlyRev = recoveredOrders * aov;
+            const annualRev = monthlyRev * 12;
+            const prepaidOrders = Math.round(recoveredOrders * 0.68);
+
+            const tDisp = document.getElementById('calcTrafficDisplay');
+            const aDisp = document.getElementById('calcAbandonDisplay');
+            const mRec = document.getElementById('calcMonthlyRecovered');
+            const rOrd = document.getElementById('calcRecoveredOrders');
+            const aUpl = document.getElementById('calcAnnualUplift');
+            const pLift = document.getElementById('calcPrepaidLift');
+
+            if (tDisp) tDisp.textContent = traffic.toLocaleString('en-IN');
+            if (aDisp) aDisp.textContent = abandonPct + '%';
+            if (mRec) mRec.textContent = 'â‚¹' + monthlyRev.toLocaleString('en-IN');
+            if (rOrd) rOrd.textContent = recoveredOrders.toLocaleString('en-IN') + ' orders';
+            if (aUpl) aUpl.textContent = 'â‚¹' + annualRev.toLocaleString('en-IN');
+            if (pLift) pLift.textContent = '+' + prepaidOrders.toLocaleString('en-IN') + ' Prepaid Orders';
+        }
+
+        function applyStorePreset(traffic, abandon, aov) {
+            const trafficEl = document.getElementById('calcMonthlyTraffic');
+            const abandonEl = document.getElementById('calcAbandonRate');
+            const aovEl = document.getElementById('calcAov');
+            if (trafficEl) trafficEl.value = String(traffic);
+            if (abandonEl) abandonEl.value = String(abandon);
+            if (aovEl) aovEl.value = String(aov);
+            updateStoreRecoveryCalc();
+        }
+
+        // Interactive FAQ Accordion
+        function toggleStoreFaq(btn) {
+            const targetId = btn.getAttribute('aria-controls');
+            const panel = targetId ? document.getElementById(targetId) : null;
+            if (!panel) return;
+            const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+            btn.setAttribute('aria-expanded', isExpanded ? 'false' : 'true');
+            panel.hidden = isExpanded;
+            const icon = btn.querySelector('i');
+            if (icon) {
+                icon.style.transform = isExpanded ? 'rotate(0deg)' : 'rotate(180deg)';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', updateStoreRecoveryCalc);
     </script>
 </body>
 </html>

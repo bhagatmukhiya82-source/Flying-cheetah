@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-        <link rel="icon" type="image/png" href="images/user_official_real_logo_transparent.png">
+    <link rel="icon" type="image/png" href="images/user_official_real_logo_transparent.png">
     <link rel="apple-touch-icon" href="images/user_official_real_logo_transparent.png">
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hyperlocal Fleet Dispatch & Zero-Payroll Couriers — Flying Cheetah</title>
-    <meta name="description" content="Hyperlocal Fleet Dispatch & Zero-Payroll Couriers — Flying Cheetah - Flying Cheetah Labs Autonomous AI Commerce & Omnichannel Marketing Suite.">
+    <title>Hyperlocal Fleet Dispatch &amp; Zero-Payroll Couriers — Flying Cheetah</title>
+    <meta name="description" content="Order verified on WhatsApp to nearest Borzo or Porter 2-wheeler rider dispatched within 1 km. Arrives at your shop counter in 12-18 minutes with zero driver payroll.">
     <meta name="keywords" content="hyperlocal courier dispatch mumbai, borzo delivery api automation, porter fleet api, zero payroll couriers, mumbai same day delivery automation">
     <link rel="canonical" href="https://flying-cheetah.vercel.app/delivery">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://flying-cheetah.vercel.app/delivery">
-    <meta property="og:title" content="Hyperlocal Fleet Dispatch & Zero-Payroll Couriers — Flying Cheetah">
-    <meta property="og:description" content="Order verified on WhatsApp to Nearest Borzo or Porter bike rider dispatches within 1 km. Arrives at shop counter in 12-18 minutes.">
+    <meta property="og:title" content="Hyperlocal Fleet Dispatch &amp; Zero-Payroll Couriers — Flying Cheetah">
+    <meta property="og:description" content="Order verified on WhatsApp to nearest Borzo or Porter bike rider dispatches within 1 km. Arrives at shop counter in 12-18 minutes.">
     <meta property="og:image" content="https://flying-cheetah.vercel.app/images/hyperlocal_dispatch_map_3d.jpg">
     <script type="application/ld+json">
     {
@@ -27,523 +27,907 @@
       },
       "serviceType": "Hyperlocal Delivery Automation",
       "areaServed": "Mumbai Metropolitan Region",
-      "description": "Autonomous dispatch integration connecting retail merchants directly to Borzo and Porter 2-wheeler courier networks."
+      "description": "Autonomous multi-carrier dispatch integration connecting retail merchants directly to Borzo and Porter courier networks with live WhatsApp GPS & OTP."
     }
     </script>
 
     <!-- Tailwind CSS -->
     <link rel="stylesheet" href="css/styles.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/fx.css">
     <style>
-        .bik-mega-shadow { box-shadow: 0 25px 60px -15px rgba(255, 104, 56, 0.15), 0 0 1px 1px rgba(0, 0, 0, 0.05); }
+        .bik-mega-shadow { box-shadow: 0 25px 60px -15px rgba(16, 185, 129, 0.14), 0 0 1px 1px rgba(0, 0, 0, 0.05); }
         .mega-menu { display: none; }
-        .dropdown-parent:hover .mega-menu { display: block; }
-        .card-hover { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
-        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 35px -10px rgba(0,0,0,0.08); }
-    
         .home-menu { display: none; }
         .home-dropdown-parent:hover > .home-menu,
         .home-dropdown-parent.active > .home-menu { display: block; }
-        .mega-menu { display: none; }
         .products-dropdown-parent:hover > .mega-menu,
         .products-dropdown-parent.active > .mega-menu { display: block; }
         .dropdown-parent:hover > .mega-menu,
         .dropdown-parent.active > .mega-menu { display: block; }
+        .card-hover { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 35px -10px rgba(0,0,0,0.08); }
     </style>
     <link rel="stylesheet" href="css/mobile-app.css">
 </head>
-<body class="bg-white text-slate-900 font-sans antialiased selection:bg-bikOrange selection:text-white">
+<body class="bg-white text-slate-900 font-sans antialiased selection:bg-emerald-100 selection:text-emerald-900">
 
-    <!-- Top Announcement -->
-    <div class="bg-gradient-to-r from-orange-50 via-amber-50/70 to-emerald-50 border-b border-orange-200/70 text-bikDark py-2 px-4 text-center text-xs font-medium">
-        <span>🛵 Borzo & Porter API Gateway: Instant rider dispatch to your counter in 12-18 minutes.</span>
-        <a href="demo.html" class="underline ml-2 text-bikOrange font-bold hover:text-bikOrangeDark transition">Book Live Demo ↗</a>
+    <!-- TOP ANNOUNCEMENT BANNER -->
+    <div class="bg-gradient-to-r from-emerald-50 via-amber-50/70 to-orange-50 border-b border-emerald-200/70 text-bikDark py-2 px-4 text-center text-xs font-medium">
+        <span><i class="fa-solid fa-motorcycle text-emerald-700 mr-1.5" aria-hidden="true"></i>Borzo &amp; Porter Multi-Carrier API Gateway: Instant rider arrival at your shop counter in 12–18 minutes.</span>
+        <a href="demo.html" onclick="if(window.FC_LEADS){window.FC_LEADS.openAuditModal('Hyperlocal Borzo Fleet Protocol');return false;}" class="underline ml-2 text-emerald-700 font-bold hover:text-emerald-900 transition whitespace-nowrap">Book Live Fleet Demo ↗</a>
     </div>
 
-    <!-- NAVBAR (CONSISTENT Flying Cheetah CLEAN THEME) -->
+    <!-- CANONICAL STICKY HEADER -->
     <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
             <a href="index.html" class="flex items-center space-x-3 shrink-0 whitespace-nowrap">
-                <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah" class="h-11 w-11 rounded-full object-cover border border-slate-200 shadow-sm">
+                <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah Logo" class="h-11 w-11 rounded-full object-cover border border-slate-200 shadow-sm">
                 <div class="flex flex-col">
-                    <span class="text-xl font-black tracking-tight font-display text-bikDark">FLYING CHEETAH</span>
-                    <span class="text-[9px] text-emerald-600 font-bold tracking-widest uppercase -mt-1">FLEET PROTOCOL</span>
+                    <span class="text-lg xl:text-xl font-black tracking-tight font-display text-bikDark">FLYING CHEETAH</span>
+                    <span class="text-[9px] text-emerald-700 font-bold tracking-widest uppercase -mt-1">FLEET PROTOCOL</span>
                 </div>
             </a>
 
-            <nav class="hidden lg:flex items-center gap-5 xl:gap-7 text-[13px] xl:text-sm font-semibold text-slate-700 whitespace-nowrap">
-                <!-- HOME DROPDOWN (NEXT TO PRODUCTS) -->
-                <div class="relative home-dropdown-parent py-6">
-                    <button class="home-btn flex items-center gap-1.5 hover:text-bikOrange transition focus:outline-none text-slate-800 hover:text-bikOrange font-bold text-sm">
-                        <i class="fa-solid fa-house text-xs text-bikOrange"></i>
+            <nav aria-label="Primary Navigation" class="hidden lg:flex items-center gap-5 xl:gap-7 text-[13px] xl:text-sm font-semibold text-slate-700 whitespace-nowrap">
+                <!-- HOME DROPDOWN -->
+                <div class="relative home-dropdown-parent dropdown-parent py-6">
+                    <button type="button" aria-expanded="false" aria-controls="fcHomeMenu" class="home-btn flex items-center gap-1.5 hover:text-orange-700 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange rounded-lg px-1 text-slate-800 font-bold text-sm">
+                        <i class="fa-solid fa-house text-xs text-bikOrange" aria-hidden="true"></i>
                         <span>Home</span>
-                        <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200"></i>
+                        <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200" aria-hidden="true"></i>
                     </button>
-                    <!-- Dropdown Menu with the 4 items from user image -->
-                    <div class="mega-menu home-menu absolute top-full left-0 w-72 bg-white rounded-2xl border border-slate-200 p-4 shadow-2xl bik-mega-shadow z-50">
-                        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-3 pb-2 border-b border-slate-100 flex items-center justify-between">
+                    <div id="fcHomeMenu" class="mega-menu home-menu absolute top-full left-0 w-72 bg-white rounded-2xl border border-slate-200 p-4 shadow-2xl bik-mega-shadow z-50">
+                        <div class="text-[10px] font-bold text-slate-600 uppercase tracking-wider px-3 pb-2 border-b border-slate-100 flex items-center justify-between">
                             <span>Core Portals</span>
-                            <a href="index.html" class="text-bikOrange hover:underline font-bold">Executive Hub ↗</a>
+                            <a href="index.html" class="text-orange-700 hover:underline font-bold">Executive Hub ↗</a>
                         </div>
                         <div class="space-y-1.5 pt-2">
-                            <!-- 1. Main Site -->
-                            <a href="index.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
-                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-bikOrange flex items-center justify-center text-sm group-hover:scale-110 transition">
-                                    <i class="fa-solid fa-store"></i>
+                            <a href="index.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-orange-700 transition group">
+                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-orange-700 flex items-center justify-center text-sm group-hover:scale-110 transition">
+                                    <i class="fa-solid fa-store" aria-hidden="true"></i>
                                 </div>
                                 <div>
-                                    <div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">Main Site</div>
-                                    <div class="text-[10px] text-slate-400">Flagship AI Commerce Suite</div>
+                                    <div class="text-xs font-bold text-bikDark group-hover:text-orange-700">Main Site</div>
+                                    <div class="text-[10px] text-slate-600">Flagship AI Commerce Suite</div>
                                 </div>
                             </a>
-
-<!-- 3. Fleet Protocol -->
-                                                        <a href="web-development.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
-                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-bikOrange flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-code"></i></div>
-                                <div><div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">Web Development</div><div class="text-[10px] text-slate-400">Next.js &amp; Shopify Stores &bull; Mumbai</div></div>
-                            </a>
-<a href="delivery.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-emerald-50 text-slate-700 hover:text-emerald-600 transition group">
-                                <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center text-sm group-hover:scale-110 transition">
-                                    <i class="fa-solid fa-motorcycle"></i>
+                            <a href="web-development.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-orange-700 transition group">
+                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-orange-700 flex items-center justify-center text-sm group-hover:scale-110 transition">
+                                    <i class="fa-solid fa-code" aria-hidden="true"></i>
                                 </div>
                                 <div>
-                                    <div class="text-xs font-bold text-bikDark group-hover:text-emerald-600">Fleet Protocol</div>
-                                    <div class="text-[10px] text-slate-400">Hyperlocal Borzo/Porter API</div>
+                                    <div class="text-xs font-bold text-bikDark group-hover:text-orange-700">Web Development</div>
+                                    <div class="text-[10px] text-slate-600">Next.js &amp; Shopify Stores &bull; Mumbai</div>
                                 </div>
                             </a>
-
-                                                        <a href="about.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
-                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-bikOrange flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-circle-info"></i></div>
-                                <div><div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">About Us</div><div class="text-[10px] text-slate-400">Company Motive & Founders</div></div>
+                            <a href="delivery.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-emerald-50/70 text-emerald-700 transition group">
+                                <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center text-sm group-hover:scale-110 transition">
+                                    <i class="fa-solid fa-motorcycle" aria-hidden="true"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs font-bold text-emerald-800">Fleet Protocol</div>
+                                    <div class="text-[10px] text-slate-600">Hyperlocal Borzo/Porter API</div>
+                                </div>
+                            </a>
+                            <a href="about.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-orange-700 transition group">
+                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-orange-700 flex items-center justify-center text-sm group-hover:scale-110 transition">
+                                    <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs font-bold text-bikDark group-hover:text-orange-700">About Us</div>
+                                    <div class="text-[10px] text-slate-600">Company Motive &amp; Founders</div>
+                                </div>
                             </a>
                         </div>
                     </div>
                 </div>
 
-
-
-
-                <!-- Dropdown -->
+                <!-- PRODUCTS & AUTOMATIONS MEGA-MENU -->
                 <div class="relative products-dropdown-parent dropdown-parent py-6">
-                    <button class="flex items-center gap-1.5 hover:text-bikOrange transition focus:outline-none">
-                        <span>Products & Automations</span>
-                        <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                    <button type="button" aria-expanded="false" aria-controls="fcProductsMenu" class="flex items-center gap-1.5 hover:text-emerald-700 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange rounded-lg px-1 text-slate-700">
+                        <span>Products &amp; Automations</span>
+                        <i class="fa-solid fa-chevron-down text-[10px]" aria-hidden="true"></i>
                     </button>
-                    <!-- Mega Menu Content -->
-                    <div class="mega-menu absolute top-full -left-28 w-[760px] bg-white rounded-2xl border border-slate-200 p-8 shadow-2xl bik-mega-shadow z-50">
+                    <div id="fcProductsMenu" class="mega-menu absolute top-full -left-28 w-[760px] bg-white rounded-2xl border border-slate-200 p-8 shadow-2xl bik-mega-shadow z-50">
                         <div class="grid grid-cols-4 gap-6 text-xs">
                             <div class="space-y-3">
-                                <div class="flex items-center gap-2 text-bikOrange font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-bullhorn"></i> CAMPAIGNS</div>
-                                <ul class="space-y-2.5 text-slate-600 font-medium">
-                                    <li><a href="email-marketing.html" class="hover:text-bikOrange transition block">Email marketing</a></li>
-                                    <li><a href="whatsapp-marketing.html" class="hover:text-bikOrange transition block">WhatsApp marketing</a></li>
-                                    <li><a href="sms-marketing.html" class="hover:text-bikOrange transition block">SMS marketing</a></li>
-                                    <li><a href="customer-data-platform.html" class="hover:text-bikOrange transition block">Customer data platform</a></li>
-                                    <li><a href="rcs-messaging.html" class="hover:text-bikOrange transition block">RCS messaging</a></li>
+                                <div class="flex items-center gap-2 text-orange-700 font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-bullhorn" aria-hidden="true"></i> CAMPAIGNS</div>
+                                <ul class="space-y-2.5 text-slate-700 font-medium">
+                                    <li><a href="email-marketing.html" class="hover:text-orange-700 transition block">Email marketing</a></li>
+                                    <li><a href="whatsapp-marketing.html" class="hover:text-emerald-700 transition block">WhatsApp marketing</a></li>
+                                    <li><a href="sms-marketing.html" class="hover:text-blue-700 transition block">SMS marketing</a></li>
+                                    <li><a href="customer-data-platform.html" class="hover:text-indigo-700 transition block">Customer data platform</a></li>
+                                    <li><a href="rcs-messaging.html" class="hover:text-blue-700 transition block">RCS messaging</a></li>
                                 </ul>
                             </div>
                             <div class="space-y-3 bg-orange-50/70 p-3 -m-3 rounded-xl border border-orange-100">
-                                <div class="flex items-center gap-2 text-bikOrange font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-gear"></i> AUTOMATIONS</div>
+                                <div class="flex items-center gap-2 text-orange-700 font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-gear" aria-hidden="true"></i> AUTOMATIONS</div>
                                 <ul class="space-y-2.5 text-slate-700 font-medium">
-                                    <li><a href="store-automation.html" class="text-bikOrange font-bold hover:underline block">Store automation →</a></li>
-                                    <li><a href="instagram-automation.html" class="hover:text-bikOrange transition block">Instagram automation</a></li>
-                                    <li><a href="whatsapp-automation.html" class="hover:text-bikOrange transition block">WhatsApp automation</a></li>
-                                    <li><a href="ctwa-automation.html" class="hover:text-bikOrange transition block">Click to WhatsApp ads</a></li>
-                                    <li><a href="ai-voice-agents.html" class="hover:text-bikOrange transition block">AI Voice Agents</a></li>
+                                    <li><a href="store-automation.html" class="hover:text-orange-700 transition block">Store automation</a></li>
+                                    <li><a href="instagram-automation.html" class="hover:text-pink-700 transition block">Instagram automation</a></li>
+                                    <li><a href="whatsapp-automation.html" class="hover:text-emerald-700 transition block">WhatsApp automation</a></li>
+                                    <li><a href="ctwa-automation.html" class="hover:text-blue-700 transition block">Click to WhatsApp ads</a></li>
+                                    <li><a href="ai-voice-agents.html" class="hover:text-purple-700 transition block">AI Voice Agents</a></li>
                                 </ul>
                             </div>
                             <div class="space-y-3 bg-emerald-50/50 p-3 -m-3 rounded-xl border border-emerald-100">
-                                <div class="flex items-center gap-2 text-emerald-700 font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-headset"></i> HELPDESK</div>
+                                <div class="flex items-center gap-2 text-emerald-700 font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-headset" aria-hidden="true"></i> HELPDESK</div>
                                 <ul class="space-y-2.5 text-slate-700 font-medium">
-                                    <li><a href="customer-support.html" class="hover:text-emerald-600 transition block">Customer support</a></li>
-                                    <li><a href="whatsapp-calling.html" class="hover:text-emerald-600 transition block font-bold text-emerald-700">WhatsApp calling ↗</a></li>
+                                    <li><a href="customer-support.html" class="hover:text-emerald-700 transition block">Customer support</a></li>
+                                    <li><a href="whatsapp-calling.html" class="hover:text-emerald-700 transition block font-bold text-emerald-700">WhatsApp calling ↗</a></li>
                                 </ul>
                             </div>
                             <div class="space-y-4">
                                 <div class="space-y-2">
-                                    <div class="text-bikOrange font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-comment-dots"></i> POPUPS</div>
-                                    <a href="solutions.html?module=gamification" class="hover:text-bikOrange transition block text-slate-600">Gamification</a>
+                                    <div class="text-orange-700 font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-comment-dots" aria-hidden="true"></i> POPUPS</div>
+                                    <a href="solutions.html?module=gamification" class="hover:text-orange-700 transition block text-slate-700">Gamification</a>
                                 </div>
                                 <div class="space-y-2 border-t border-slate-100 pt-3">
-                                    <div class="text-bikOrange font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-robot"></i> CHATBOTS</div>
-                                    <a href="solutions.html?module=whatsapp-chatbot" class="hover:text-bikOrange transition block text-slate-600">WhatsApp chatbot</a>
+                                    <div class="text-orange-700 font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-robot" aria-hidden="true"></i> CHATBOTS</div>
+                                    <a href="solutions.html?module=whatsapp-chatbot" class="hover:text-orange-700 transition block text-slate-700">WhatsApp chatbot</a>
+                                    <a href="solutions.html?module=instagram-chatbot" class="hover:text-orange-700 transition block text-slate-700 mt-1">Instagram chatbot</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <a href="store.html" class="hover:text-bikOrange transition font-medium">Live Store Demo</a>
-                <a href="delivery.html" class="text-bikOrange font-bold">Fleet Dispatch</a>
-                <a href="web-development.html" class="hover:text-bikOrange transition">Web Development</a>
-                <a href="about.html" class="hover:text-bikOrange transition">About Us</a>
+                <a href="delivery.html" class="text-emerald-700 font-bold">Fleet Dispatch</a>
+                <a href="web-development.html" class="hover:text-orange-700 transition">Web Development</a>
+                <a href="about.html" class="hover:text-orange-700 transition">About Us</a>
             </nav>
 
-            <div class="flex items-center space-x-3">
+            <div class="flex items-center space-x-2.5 shrink-0">
                 <div class="fc-auth-slot"></div>
-                <a href="https://wa.me/919920386421" target="_blank" class="hidden sm:inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-xs sm:text-sm transition shadow-md shadow-orange-500/20">
+                <a href="demo.html" onclick="if(window.FC_LEADS){window.FC_LEADS.openAuditModal('Hyperlocal Borzo Fleet Protocol');return false;}" class="hidden sm:inline-flex items-center justify-center px-4 xl:px-5 py-2.5 rounded-xl bg-orange-700 hover:bg-orange-800 text-white font-bold text-xs xl:text-sm transition shadow-md shadow-orange-500/20 whitespace-nowrap shrink-0">
                     Connect Your Fleet
                 </a>
-                <button id="fcMobileMenuBtn" type="button" aria-label="Toggle Mobile Menu" onclick="window.FC_WIDGETS && window.FC_WIDGETS.toggleMobileDrawer ? window.FC_WIDGETS.toggleMobileDrawer() : null" class="lg:hidden p-2 rounded-xl border border-slate-200 hover:border-bikOrange bg-white text-slate-700 hover:text-bikOrange transition flex items-center justify-center shrink-0 w-10 h-10 shadow-xs cursor-pointer touch-target-44"><i class="fa-solid fa-bars text-sm"></i></button>
+                <button id="fcMobileMenuBtn" type="button" aria-label="Toggle Mobile Menu" aria-expanded="false" aria-controls="fcMobileDrawer" onclick="window.FC_WIDGETS && window.FC_WIDGETS.toggleMobileDrawer ? window.FC_WIDGETS.toggleMobileDrawer() : null" class="lg:hidden p-2 rounded-xl border border-slate-200 hover:border-emerald-700 bg-white text-slate-700 hover:text-emerald-700 transition flex items-center justify-center shrink-0 w-10 h-10 shadow-sm cursor-pointer touch-target-44 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange focus-visible:ring-offset-2">
+                    <i class="fa-solid fa-bars text-sm" aria-hidden="true"></i>
+                </button>
             </div>
         </div>
     </header>
 
-    <!-- HERO SECTION -->
-    <section class="pt-16 pb-20 md:pt-24 md:pb-28 bg-gradient-to-b from-emerald-50/40 via-white to-white overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                
-                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100/70 border border-emerald-200 text-emerald-800 text-xs font-bold uppercase tracking-wide">
-                        <i class="fa-solid fa-motorcycle text-emerald-600"></i> Zero Full-Time Staff Required
-                    </div>
-                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-bikDark tracking-tight leading-[1.08] font-display">
-                        Hyperlocal Courier Dispatch on <span class="text-emerald-600">Auto-Pilot</span>.
-                    </h1>
-                    <p class="text-lg text-slateText max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal">
-                        Order verified on WhatsApp &rarr; Nearest Borzo or Porter bike rider dispatches within 1 km. Arrives at your shop counter in 12-18 minutes.
-                    </p>
+    <main id="main-content">
 
-                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
-                        <a href="demo.html" onclick="if(window.FC_LEADS){window.FC_LEADS.openAuditModal('Hyperlocal Borzo Fleet Protocol');return false;}" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm transition shadow-lg shadow-emerald-600/25">
-                            Launch Fleet Protocol
-                        </a>
-                        <a href="customer-support.html" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-xl border border-slate-300 hover:border-emerald-600 text-slate-800 font-bold text-sm bg-white hover:bg-emerald-50/50 transition">
-                            Explore Support Desk
-                        </a>
-                    </div>
-
-                    <div class="grid grid-cols-3 gap-6 pt-6 border-t border-slate-100 max-w-lg mx-auto lg:mx-0 text-left">
-                        <div>
-                            <div class="text-2xl font-black text-bikDark font-display">14.2 Mins</div>
-                            <div class="text-xs font-semibold text-slate-500 mt-0.5">Average Pickup Arrival</div>
+        <!-- HERO SECTION -->
+        <section class="pt-14 pb-20 md:pt-20 md:pb-24 bg-gradient-to-b from-emerald-50/40 via-white to-white overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100 border border-emerald-200 text-emerald-800 text-xs font-bold uppercase tracking-wide">
+                            <i class="fa-solid fa-motorcycle text-emerald-700" aria-hidden="true"></i> Zero Full-Time Rider Payroll Required
                         </div>
-                        <div>
-                            <div class="text-2xl font-black text-emerald-600 font-display">0% Cut</div>
-                            <div class="text-xs font-semibold text-slate-500 mt-0.5">Keep 100% Retail Margin</div>
-                        </div>
-                        <div>
-                            <div class="text-2xl font-black text-bikOrange font-display">₹40-₹60</div>
-                            <div class="text-xs font-semibold text-slate-500 mt-0.5">Flat On-Demand Pricing</div>
-                        </div>
-                    </div>
-                </div>
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-bikDark tracking-tight leading-[1.08] font-display">
+                            Hyperlocal Courier Dispatch on <span class="text-emerald-700">Auto-Pilot</span>.
+                        </h1>
+                        <p class="text-lg text-slate-700 max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal">
+                            Order verified on WhatsApp or AI Voice &rarr; Nearest Borzo 2-wheeler or Porter mini-van dispatches within 1 km. Rider arrives at your retail counter in 12–18 minutes with live customer GPS tracking and 4-digit OTP protection.
+                        </p>
 
-                <!-- Feature Visual Preview: 3D Mumbai Dispatch Map -->
-                <div class="lg:col-span-5 relative">
-                    <div class="relative rounded-3xl border-2 border-slate-200/90 bg-white p-3 shadow-2xl bik-mega-shadow fc-card-interactive group">
-                        <img id="fleetHeroMockup" src="images/hyperlocal_dispatch_map_3d.jpg" alt="Hyperlocal Mumbai 3D Courier Dispatch Map" class="rounded-2xl w-full h-auto object-cover border border-slate-100 group-hover:scale-102 transition duration-500">
-                        
-                        <div class="p-3.5 bg-slate-50/90 rounded-xl mt-3 flex items-center justify-between text-xs font-semibold text-slate-600">
-                            <span class="flex items-center gap-2 font-tech"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span> Active Network: Borzo &amp; Porter 2-Wheelers</span>
-                            <span class="text-emerald-600 font-bold font-tech">Mumbai Coastline Live</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- TURNKEY SELLER DISPATCH WORKFLOW & COD RECONCILIATION -->
-    <section class="py-16 bg-white text-bikDark border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-14">
-                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 border border-emerald-200 text-emerald-700 text-xs font-mono uppercase tracking-wider mb-3 font-bold">
-                    <i class="fa-solid fa-store"></i> For Retail &amp; Online Sellers
-                </span>
-                <h2 class="text-3xl lg:text-4xl font-extrabold tracking-tight text-bikDark font-display">How Seller Dispatch Automation Works</h2>
-                <p class="mt-4 text-slate-600 text-sm sm:text-base leading-relaxed">
-                    You don't hire drivers or own bikes. Your online store receives the customer order, and our intelligent engine dispatches the nearest Borzo rider directly to your counter with 1 click.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Step 1 -->
-                <div class="p-6 rounded-2xl bg-gradient-to-br from-emerald-50/50 to-white border-2 border-emerald-200/80 hover:border-emerald-400 shadow-sm hover:shadow-md transition">
-                    <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-lg mb-4">1</div>
-                    <h3 class="text-lg font-bold text-bikDark mb-2">Order Ingestion</h3>
-                    <p class="text-xs text-slate-600 leading-relaxed">
-                        Customer orders on your website or WhatsApp. Customer delivery address, phone, and items are captured automatically.
-                    </p>
-                </div>
-
-                <!-- Step 2 -->
-                <div class="p-6 rounded-2xl bg-gradient-to-br from-orange-50/50 to-white border-2 border-orange-200/80 hover:border-bikOrange shadow-sm hover:shadow-md transition">
-                    <div class="w-12 h-12 rounded-xl bg-orange-100 text-bikOrangeDark flex items-center justify-center font-bold text-lg mb-4">2</div>
-                    <h3 class="text-lg font-bold text-bikDark mb-2">1-Click Counter Dispatch</h3>
-                    <p class="text-xs text-slate-600 leading-relaxed">
-                        Seller packs the box and clicks <span class="text-bikDark bg-orange-100 px-1.5 py-0.5 rounded font-mono font-semibold">[Pack &amp; Call Borzo]</span>. Nearest 2-wheeler arrives at your counter in 12-18 minutes.
-                    </p>
-                </div>
-
-                <!-- Step 3 -->
-                <div class="p-6 rounded-2xl bg-gradient-to-br from-sky-50/50 to-white border-2 border-sky-200/80 hover:border-sky-400 shadow-sm hover:shadow-md transition">
-                    <div class="w-12 h-12 rounded-xl bg-sky-100 text-sky-700 flex items-center justify-center font-bold text-lg mb-4">3</div>
-                    <h3 class="text-lg font-bold text-bikDark mb-2">Live WhatsApp GPS + OTP</h3>
-                    <p class="text-xs text-slate-600 leading-relaxed">
-                        Buyer automatically receives WhatsApp message with live rider tracking link and a 4-digit delivery security OTP. Zero missing package disputes.
-                    </p>
-                </div>
-            </div>
-
-            <!-- COD Reconciliation Highlight -->
-            <div class="mt-12 p-6 rounded-2xl bg-gradient-to-r from-emerald-50 via-white to-amber-50 border-2 border-emerald-200 flex flex-col md:flex-row items-center justify-between gap-6 shadow-md">
-                <div class="flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-xl shrink-0">
-                        <i class="fa-solid fa-indian-rupee-sign"></i>
-                    </div>
-                    <div>
-                        <h4 class="text-base font-bold text-bikDark">Automated COD Cash Collection &amp; Settlement</h4>
-                        <p class="text-xs text-slate-600 mt-1">Borzo riders collect cash at the doorstep and deposit directly into your verified bank account with automated ledger entries.</p>
-                    </div>
-                </div>
-                <div class="shrink-0 flex items-center gap-3">
-                    <span class="px-3 py-1.5 rounded-lg bg-emerald-100 text-emerald-800 border border-emerald-200 font-mono text-xs font-bold">100% Insured Fleet</span>
-                    <span class="px-3 py-1.5 rounded-lg bg-orange-100 text-bikOrangeDark border border-orange-200 font-mono text-xs font-bold">Zero Driver Payroll</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- LIVE INTERACTIVE COURIER DISPATCH TEST BENCH -->
-    <section id="dispatchSandbox" class="py-16 bg-gradient-to-b from-emerald-50/40 via-white to-slate-50 text-bikDark relative overflow-hidden border-y border-emerald-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center max-w-2xl mx-auto mb-10">
-                <span class="text-emerald-700 font-bold text-xs uppercase tracking-widest bg-emerald-100 border border-emerald-200 px-3.5 py-1.5 rounded-full inline-flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span> Live Integration Sandbox
-                </span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark mt-3 font-display">
-                    Test Real-Time Courier Dispatch
-                </h2>
-                <p class="text-xs sm:text-sm text-slate-600 mt-2">
-                    Simulate or trigger an on-demand courier dispatch in Mumbai. Connected directly to Borzo & Porter API gateways with live WhatsApp alerts.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-5xl mx-auto">
-                <!-- Dispatch Input Card -->
-                <div class="lg:col-span-6 bg-white border-2 border-slate-200 rounded-3xl p-6 sm:p-8 shadow-xl">
-                    <h3 class="text-base font-bold text-bikDark mb-4 flex items-center gap-2">
-                        <i class="fa-solid fa-motorcycle text-emerald-600"></i>
-                        <span>Configure Delivery Request</span>
-                    </h3>
-
-                    <form id="dispatchTestForm" onsubmit="executeDispatchSimulation(event)" class="space-y-4 text-xs font-semibold">
-                        <!-- Merchant Pickup Location -->
-                        <div>
-                            <label class="text-slate-700 block mb-1">Merchant Pickup Location (Mumbai)</label>
-                            <select id="pickupSelect" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-bikDark focus:bg-white focus:border-emerald-500 focus:outline-none transition">
-                                <option value="Shop 4, Ground Floor, Opera House, Girgaon, Mumbai 400004">Opera House Hub (South Mumbai)</option>
-                                <option value="Boutique 12, Pali Hill, Bandra West, Mumbai 400050">Pali Hill Hub (Bandra West)</option>
-                                <option value="Unit 5, Crawford Market, Fort, Mumbai 400001">Crawford Market Trader Corridor</option>
-                                <option value="MBC Park, Ghodbunder Road, Thane West 400615">Ghodbunder Logistics Center (Thane)</option>
-                            </select>
-                        </div>
-
-                        <!-- Customer Dropoff -->
-                        <div>
-                            <label for="dropoffInput" class="text-slate-700 block mb-1">Customer Delivery Address</label>
-                            <input type="text" id="dropoffInput" required value="Flat 302, Sea Green Apts, Worli Sea Face, Mumbai 400018" aria-label="Customer Delivery Address" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-bikDark focus:bg-white focus:border-emerald-500 focus:outline-none transition">
-                        </div>
-
-                        <!-- Customer WhatsApp Phone -->
-                        <div>
-                            <label for="customerPhoneInput" class="text-slate-700 block mb-1">Customer WhatsApp Phone (For Live GPS Alert)</label>
-                            <div class="flex items-center">
-                                <span class="px-3 py-2.5 bg-slate-100 border border-r-0 border-slate-200 rounded-l-xl text-slate-700 text-xs font-bold">+91</span>
-                                <input type="tel" id="customerPhoneInput" required value="99203 86421" aria-label="Customer WhatsApp Phone Number" class="w-full px-3.5 py-2.5 rounded-r-xl bg-slate-50 border border-slate-200 text-bikDark focus:bg-white focus:border-emerald-500 focus:outline-none transition">
-                            </div>
-                        </div>
-
-                        <!-- Courier Provider & Package Details -->
-                        <div class="grid grid-cols-2 gap-3">
-                            <div>
-                                <label class="text-slate-700 block mb-1">Courier Fleet</label>
-                                <select id="courierSelect" class="w-full px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-bikDark focus:bg-white focus:border-emerald-500 focus:outline-none transition">
-                                    <option value="borzo">Borzo 2-Wheeler (Standard)</option>
-                                    <option value="porter">Porter 3-Wheeler / Van</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="text-slate-700 block mb-1">Package Weight</label>
-                                <select id="weightSelect" class="w-full px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-bikDark focus:bg-white focus:border-emerald-500 focus:outline-none transition">
-                                    <option value="1.0">Light Parcel (1.0 kg)</option>
-                                    <option value="3.5">Medium Box (3.5 kg)</option>
-                                    <option value="15.0">Bulk Consignment (15 kg)</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <!-- Dispatch Trigger Button -->
-                        <div class="pt-3">
-                            <button type="submit" id="dispatchBtn" class="w-full py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-black text-sm transition shadow-lg shadow-emerald-500/25 flex items-center justify-center gap-2 cursor-pointer">
-                                <i class="fa-solid fa-bolt"></i>
-                                <span>Trigger On-Demand Dispatch</span>
-                            </button>
-                        </div>
-                    </form>
-                </div>
-
-                <!-- Live Dispatch Console Output -->
-                <div class="lg:col-span-6 flex flex-col justify-between bg-white border-2 border-emerald-200 rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
-                    <div>
-                        <div class="flex items-center justify-between pb-4 border-b border-slate-100">
-                            <span class="text-xs font-mono font-bold text-slate-600 flex items-center gap-2">
-                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span> FLEET TELEMETRY CONSOLE
-                            </span>
-                            <span id="dispatchBadge" class="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-600 font-bold">IDLE</span>
-                        </div>
-
-                        <!-- Status Output Display -->
-                        <div id="dispatchLog" class="mt-4 space-y-3 font-mono text-xs bg-slate-50 rounded-2xl p-4 border border-slate-100">
-                            <p class="text-slate-600">Ready for dispatch request. Press "Trigger On-Demand Dispatch" to execute the Borzo/Porter API pipeline.</p>
-                        </div>
-                    </div>
-
-                    <!-- Rider Card (Hidden until dispatched) -->
-                    <div id="riderCard" class="hidden mt-6 p-4 rounded-2xl bg-emerald-50/70 border border-emerald-200 space-y-3">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-700 border border-emerald-300 flex items-center justify-center text-lg">
-                                    <i class="fa-solid fa-helmet-safety"></i>
-                                </div>
-                                <div>
-                                    <div id="riderName" class="text-xs font-bold text-bikDark">Ramesh Shinde</div>
-                                    <div id="riderVehicle" class="text-[10px] text-slate-500">Honda Activa (MH-02-CD-4421)</div>
-                                </div>
-                            </div>
-                            <div class="text-right">
-                                <div id="riderEta" class="text-xs font-bold text-emerald-700">ETA: 14.5 mins</div>
-                                <div class="text-[10px] text-slate-500">Pickup Counter</div>
-                            </div>
-                        </div>
-
-                        <div class="pt-2 border-t border-emerald-200/70 flex items-center justify-between text-[11px]">
-                            <span class="text-slate-600">Tracking Ref: <strong id="trackingRef" class="text-bikDark">BORZO-MUM-8921</strong></span>
-                            <a id="trackingLink" href="#" target="_blank" class="text-emerald-700 hover:underline font-bold flex items-center gap-1">
-                                <span>Live GPS Map</span> <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                            <a href="demo.html" onclick="if(window.FC_LEADS){window.FC_LEADS.openAuditModal('Hyperlocal Borzo Fleet Protocol');return false;}" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-bikDark font-extrabold text-sm transition shadow-lg shadow-emerald-500/20">
+                                Launch Fleet Protocol ➔
+                            </a>
+                            <a href="customer-support.html" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-xl border border-slate-300 hover:border-emerald-700 text-slate-800 font-bold text-sm bg-white hover:bg-emerald-50/50 transition">
+                                Explore Support Desk
                             </a>
                         </div>
+
+                        <div class="grid grid-cols-3 gap-4 pt-6 border-t border-slate-100 max-w-lg mx-auto lg:mx-0 text-left">
+                            <div class="p-3 rounded-2xl bg-emerald-50 border border-emerald-200">
+                                <div class="text-xl sm:text-2xl font-black text-emerald-700 font-display">14.2 Mins</div>
+                                <div class="text-[11px] font-bold text-slate-700 mt-0.5">Avg Pickup Arrival</div>
+                            </div>
+                            <div class="p-3 rounded-2xl bg-orange-50 border border-orange-200">
+                                <div class="text-xl sm:text-2xl font-black text-orange-700 font-display">0% Cut</div>
+                                <div class="text-[11px] font-bold text-slate-700 mt-0.5">Keep 100% Margin</div>
+                            </div>
+                            <div class="p-3 rounded-2xl bg-blue-50 border border-blue-200">
+                                <div class="text-xl sm:text-2xl font-black text-blue-700 font-display">₹42–₹65</div>
+                                <div class="text-[11px] font-bold text-slate-700 mt-0.5">On-Demand Pricing</div>
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- WhatsApp Toast Preview -->
-                    <div id="waToastPreview" class="hidden mt-4 p-3 rounded-xl bg-emerald-100/80 border border-emerald-300 text-[11px] text-emerald-800 flex items-center gap-2">
-                        <i class="fa-brands fa-whatsapp text-emerald-600 text-base"></i>
-                        <span><strong>WhatsApp Alert Dispatched:</strong> Tracking link sent to customer phone.</span>
+                    <div class="lg:col-span-5 relative">
+                        <div class="relative rounded-3xl border-2 border-slate-200/90 bg-white p-3 shadow-2xl bik-mega-shadow fc-card-interactive group">
+                            <img id="fleetHeroMockup" src="images/hyperlocal_dispatch_map_3d.jpg" alt="Hyperlocal Mumbai 3D Courier Dispatch Map showing Borzo and Porter rider routing" class="rounded-2xl w-full h-auto object-cover border border-slate-100">
+                            <div class="p-3.5 bg-slate-50 rounded-xl mt-3 flex items-center justify-between gap-2 text-xs font-semibold text-slate-700">
+                                <span class="flex items-center gap-2 font-tech"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" aria-hidden="true"></span> Active Network: Borzo &amp; Porter</span>
+                                <span class="text-emerald-700 font-bold font-tech">Mumbai &amp; Metros Live</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- 4-STEP DISPATCH BLUEPRINT -->
-    <section class="py-20 bg-slate-50 border-t border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-16">
-                <span class="text-emerald-700 font-bold text-xs uppercase tracking-widest bg-emerald-100 px-3 py-1 rounded-full">Automated Pipeline</span>
-                <h2 class="text-3xl font-extrabold text-bikDark mt-3 font-display">How the Autonomous Courier Dispatch Works</h2>
+        <!-- SELLER DISPATCH WORKFLOW + COD RECONCILIATION -->
+        <section class="py-16 bg-white text-bikDark border-y border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-14">
+                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 border border-emerald-200 text-emerald-800 text-xs font-mono uppercase tracking-wider mb-3 font-bold">
+                        <i class="fa-solid fa-store" aria-hidden="true"></i> For Retail &amp; Online Sellers
+                    </span>
+                    <h2 class="text-3xl lg:text-4xl font-extrabold tracking-tight text-bikDark font-display">How Seller Dispatch Automation Works</h2>
+                    <p class="mt-4 text-slate-700 text-sm sm:text-base leading-relaxed">
+                        Never hire full-time delivery staff or lease idle bikes. Your store captures the order, and our multi-carrier router assigns the nearest insured rider directly to your shop counter with 1 click.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="p-6 rounded-2xl bg-gradient-to-br from-emerald-50/60 to-white border-2 border-emerald-200/80 shadow-sm">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-lg mb-4">1</div>
+                        <h3 class="text-lg font-bold text-bikDark mb-2">Order Ingestion</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">
+                            Customer checks out on Shopify, WhatsApp, or Instagram. Geocoded drop coordinates, apartment wing, and contact phone are captured automatically.
+                        </p>
+                    </div>
+                    <div class="p-6 rounded-2xl bg-gradient-to-br from-orange-50/60 to-white border-2 border-orange-200/80 shadow-sm">
+                        <div class="w-12 h-12 rounded-xl bg-orange-100 text-orange-800 flex items-center justify-center font-bold text-lg mb-4">2</div>
+                        <h3 class="text-lg font-bold text-bikDark mb-2">1-Click Counter Dispatch</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">
+                            Seller packs the parcel and triggers <span class="text-bikDark bg-orange-100 px-1.5 py-0.5 rounded font-mono font-semibold">[Pack &amp; Call Borzo]</span>. Nearest rider arrives at your counter within 12–18 minutes.
+                        </p>
+                    </div>
+                    <div class="p-6 rounded-2xl bg-gradient-to-br from-blue-50/60 to-white border-2 border-blue-200/80 shadow-sm">
+                        <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-800 flex items-center justify-center font-bold text-lg mb-4">3</div>
+                        <h3 class="text-lg font-bold text-bikDark mb-2">Live WhatsApp GPS + OTP</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">
+                            Buyer receives an automated WhatsApp message with live rider map tracking and a 4-digit security handover OTP—eliminating missing parcel disputes.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- COD Reconciliation Highlight (Fixed h4 -> h3!) -->
+                <div class="mt-12 p-6 rounded-2xl bg-gradient-to-r from-emerald-50 via-white to-amber-50 border-2 border-emerald-200 flex flex-col md:flex-row items-center justify-between gap-6 shadow-md">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-indian-rupee-sign" aria-hidden="true"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-bikDark">Automated COD Cash Collection &amp; Bank Settlement</h3>
+                            <p class="text-xs text-slate-700 mt-1">Borzo riders collect cash or QR UPI at the doorstep and remit directly into your verified merchant bank account with automated ledger sync.</p>
+                        </div>
+                    </div>
+                    <div class="shrink-0 flex flex-wrap items-center gap-3">
+                        <span class="px-3 py-1.5 rounded-lg bg-emerald-100 text-emerald-800 border border-emerald-200 font-mono text-xs font-bold">100% Insured Fleet</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-orange-100 text-orange-800 border border-orange-200 font-mono text-xs font-bold">Zero Driver Payroll</span>
+                    </div>
+                </div>
             </div>
+        </section>
 
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                <div class="p-6 rounded-2xl bg-white border border-slate-200 card-hover">
-                    <div class="w-12 h-12 rounded-xl bg-orange-100 text-bikOrange flex items-center justify-center font-black text-xl mb-4">1</div>
-                    <h3 class="font-bold text-base text-bikDark mb-2">WhatsApp Order Cleared</h3>
-                    <p class="text-xs text-slate-500 leading-relaxed">Customer selects items, enters their drop address, and verifies 1-tap UPI payment.</p>
+        <!-- LIVE INTERACTIVE COURIER DISPATCH TEST BENCH (Preserved Sandbox) -->
+        <section id="dispatchSandbox" class="py-16 bg-gradient-to-b from-emerald-50/40 via-white to-slate-50 text-bikDark relative overflow-hidden border-b border-emerald-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                    <span class="text-emerald-800 font-bold text-xs uppercase tracking-widest bg-emerald-100 border border-emerald-200 px-3.5 py-1.5 rounded-full inline-flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping" aria-hidden="true"></span> Live Integration Sandbox
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark mt-3 font-display">
+                        Test Real-Time Courier Dispatch
+                    </h2>
+                    <p class="text-xs sm:text-sm text-slate-700 mt-2">
+                        Simulate or trigger an on-demand courier dispatch in Mumbai. Connected directly to Borzo &amp; Porter API gateways with live WhatsApp alerts.
+                    </p>
                 </div>
-                <div class="p-6 rounded-2xl bg-white border border-slate-200 card-hover">
-                    <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center font-black text-xl mb-4">2</div>
-                    <h3 class="font-bold text-base text-bikDark mb-2">Geocoded Webhook</h3>
-                    <p class="text-xs text-slate-500 leading-relaxed">Flying Cheetah engine converts user pin into exact pickup (merchant) and drop coordinates.</p>
-                </div>
-                <div class="p-6 rounded-2xl bg-white border border-slate-200 card-hover">
-                    <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center font-black text-xl mb-4">3</div>
-                    <h3 class="font-bold text-base text-bikDark mb-2">Rider Dispatches in 1km</h3>
-                    <p class="text-xs text-slate-500 leading-relaxed">Borzo/Porter API triggers the closest rider on the road. Arrives at shop counter in 12-18 mins.</p>
-                </div>
-                <div class="p-6 rounded-2xl bg-white border border-slate-200 card-hover">
-                    <div class="w-12 h-12 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center font-black text-xl mb-4">4</div>
-                    <h3 class="font-bold text-base text-bikDark mb-2">Live Dynamic GPS Link</h3>
-                    <p class="text-xs text-slate-500 leading-relaxed">Customer receives an automated WhatsApp alert with live courier map tracking link and phone number.</p>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-5xl mx-auto">
+                    <div class="lg:col-span-6 bg-white border-2 border-slate-200 rounded-3xl p-6 sm:p-8 shadow-xl">
+                        <h3 class="text-base font-bold text-bikDark mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-motorcycle text-emerald-700" aria-hidden="true"></i>
+                            <span>Configure Delivery Request</span>
+                        </h3>
+
+                        <form id="dispatchTestForm" onsubmit="executeDispatchSimulation(event)" class="space-y-4 text-xs font-semibold">
+                            <div>
+                                <label for="pickupSelect" class="text-slate-700 block mb-1">Merchant Pickup Location (Mumbai)</label>
+                                <select id="pickupSelect" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-bikDark focus:bg-white focus:border-emerald-500 focus:outline-none transition">
+                                    <option value="Shop 4, Ground Floor, Opera House, Girgaon, Mumbai 400004">Opera House Hub (South Mumbai)</option>
+                                    <option value="Boutique 12, Pali Hill, Bandra West, Mumbai 400050">Pali Hill Hub (Bandra West)</option>
+                                    <option value="Unit 5, Crawford Market, Fort, Mumbai 400001">Crawford Market Trader Corridor</option>
+                                    <option value="MBC Park, Ghodbunder Road, Thane West 400615">Ghodbunder Logistics Center (Thane)</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="dropoffInput" class="text-slate-700 block mb-1">Customer Delivery Address</label>
+                                <input type="text" id="dropoffInput" required value="Flat 302, Sea Green Apts, Worli Sea Face, Mumbai 400018" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-bikDark focus:bg-white focus:border-emerald-500 focus:outline-none transition">
+                            </div>
+
+                            <div>
+                                <label for="customerPhoneInput" class="text-slate-700 block mb-1">Customer WhatsApp Phone (For Live GPS Alert)</label>
+                                <div class="flex items-center">
+                                    <span class="px-3 py-2.5 bg-slate-100 border border-r-0 border-slate-200 rounded-l-xl text-slate-700 text-xs font-bold">+91</span>
+                                    <input type="tel" id="customerPhoneInput" required value="99203 86421" class="w-full px-3.5 py-2.5 rounded-r-xl bg-slate-50 border border-slate-200 text-bikDark focus:bg-white focus:border-emerald-500 focus:outline-none transition">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-3">
+                                <div>
+                                    <label for="courierSelect" class="text-slate-700 block mb-1">Courier Fleet</label>
+                                    <select id="courierSelect" class="w-full px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-bikDark focus:bg-white focus:border-emerald-500 focus:outline-none transition">
+                                        <option value="borzo">Borzo 2-Wheeler (Standard)</option>
+                                        <option value="porter">Porter 3-Wheeler / Van</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="weightSelect" class="text-slate-700 block mb-1">Package Weight</label>
+                                    <select id="weightSelect" class="w-full px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-bikDark focus:bg-white focus:border-emerald-500 focus:outline-none transition">
+                                        <option value="1.0">Light Parcel (1.0 kg)</option>
+                                        <option value="3.5">Medium Box (3.5 kg)</option>
+                                        <option value="15.0">Bulk Consignment (15 kg)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="pt-3">
+                                <button type="submit" id="dispatchBtn" class="w-full py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-bikDark font-black text-sm transition shadow-lg shadow-emerald-500/20 flex items-center justify-center gap-2 cursor-pointer">
+                                    <i class="fa-solid fa-bolt" aria-hidden="true"></i>
+                                    <span>Trigger On-Demand Dispatch</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="lg:col-span-6 flex flex-col justify-between bg-white border-2 border-emerald-200 rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
+                        <div>
+                            <div class="flex items-center justify-between pb-4 border-b border-slate-100">
+                                <span class="text-xs font-mono font-bold text-slate-700 flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-500" aria-hidden="true"></span> FLEET TELEMETRY CONSOLE
+                                </span>
+                                <span id="dispatchBadge" class="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 font-bold">IDLE</span>
+                            </div>
+
+                            <div id="dispatchLog" class="mt-4 space-y-3 font-mono text-xs bg-slate-50 rounded-2xl p-4 border border-slate-200">
+                                <p class="text-slate-700">Ready for dispatch request. Press "Trigger On-Demand Dispatch" to execute the Borzo/Porter API pipeline.</p>
+                            </div>
+                        </div>
+
+                        <div id="riderCard" class="hidden mt-6 p-4 rounded-2xl bg-emerald-50 border border-emerald-200 space-y-3">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300 flex items-center justify-center text-lg">
+                                        <i class="fa-solid fa-helmet-safety" aria-hidden="true"></i>
+                                    </div>
+                                    <div>
+                                        <div id="riderName" class="text-xs font-bold text-bikDark">Ramesh Shinde</div>
+                                        <div id="riderVehicle" class="text-[10px] text-slate-700">Honda Activa (MH-02-CD-4421)</div>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <div id="riderEta" class="text-xs font-bold text-emerald-800">ETA: 14.5 mins</div>
+                                    <div class="text-[10px] text-slate-700">Pickup Counter</div>
+                                </div>
+                            </div>
+                            <div class="pt-2 border-t border-emerald-200 flex items-center justify-between text-[11px]">
+                                <span class="text-slate-700">Tracking Ref: <strong id="trackingRef" class="text-bikDark">BORZO-MUM-8921</strong></span>
+                                <a id="trackingLink" href="#" target="_blank" rel="noopener noreferrer" class="text-emerald-800 hover:underline font-bold flex items-center gap-1">
+                                    <span>Live GPS Map</span> <i class="fa-solid fa-arrow-up-right-from-square text-[9px]" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div id="waToastPreview" class="hidden mt-4 p-3 rounded-xl bg-emerald-100 border border-emerald-300 text-[11px] text-emerald-900 flex items-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-emerald-700 text-base" aria-hidden="true"></i>
+                            <span><strong>WhatsApp Alert Dispatched:</strong> Tracking link sent to customer phone.</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    
-    <footer class="py-12 bg-white border-t border-slate-200 text-xs text-slate-500">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <!-- BESPOKE ROUTING ARCHITECTURE & FLEET DASHBOARD VISUALS -->
+        <section class="py-20 bg-white border-b border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-5 space-y-5">
+                        <span class="inline-block text-xs font-bold uppercase tracking-widest text-emerald-800 bg-emerald-50 border border-emerald-200 px-3.5 py-1.5 rounded-full">Multi-Carrier AI Routing</span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark font-display leading-tight">
+                            Smart Borzo vs Porter Dispatch Routing in Real Time
+                        </h2>
+                        <p class="text-base text-slate-700 leading-relaxed">
+                            Instead of locking your store into one courier app during peak rain or festive surges, Flying Cheetah polls live rider density and spot fares across Borzo 2-wheelers and Porter 3-wheelers/vans—automatically selecting the fastest, lowest-cost carrier per parcel weight and distance.
+                        </p>
+                        <div class="grid grid-cols-2 gap-4 pt-2">
+                            <div class="p-4 rounded-2xl bg-emerald-50/70 border border-emerald-200">
+                                <h3 class="text-sm font-bold text-bikDark">Auto Failover Retry</h3>
+                                <p class="text-xs text-slate-700 mt-1">If Carrier A has no rider in 90s, routes instantly to Carrier B.</p>
+                            </div>
+                            <div class="p-4 rounded-2xl bg-orange-50/70 border border-orange-200">
+                                <h3 class="text-sm font-bold text-bikDark">NDR Proof &amp; Re-attempt</h3>
+                                <p class="text-xs text-slate-700 mt-1">Triggers AI Voice call + WhatsApp slot pin if buyer misses bell.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="fc-showcase-frame p-3 bg-white sm:col-span-2">
+                            <img src="images/delivery_hyperlocal_routing_light.png" alt="Hyperlocal Multi-Carrier Routing Architecture between Shopify, Borzo 2-Wheelers, and Porter Mini-Vans on pure white canvas" class="rounded-xl w-full h-auto object-cover border border-slate-100">
+                        </div>
+                        <div class="fc-showcase-frame p-3 bg-white sm:col-span-2">
+                            <img src="images/fleet_dispatch_dashboard.jpg" alt="Flying Cheetah Live Fleet Dispatch Control Tower Dashboard" class="rounded-xl w-full h-56 object-cover border border-slate-100">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INTERACTIVE BORZO VS PORTER COST & SLA ESTIMATOR -->
+        <section class="py-20 bg-emerald-50/30 border-b border-slate-100" id="fleetEstimatorSection">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="inline-block text-xs font-bold uppercase tracking-widest text-emerald-800 bg-emerald-100 border border-emerald-200 px-3.5 py-1 rounded-full">Logistics Economics</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark mt-3 font-display">Interactive Borzo vs Porter Cost &amp; SLA Estimator</h2>
+                    <p class="mt-3 text-slate-700 text-sm sm:text-base">
+                        Compare fixed in-house rider payroll against Flying Cheetah's on-demand multi-carrier router based on your monthly order volume and average drop radius.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-5xl mx-auto items-stretch">
+                    <div class="lg:col-span-6 p-6 sm:p-8 rounded-3xl bg-white border-2 border-slate-200 shadow-lg space-y-6">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <label for="fleetOrdersRange" class="text-xs font-bold text-slate-800 uppercase tracking-wider">Monthly Hyperlocal Deliveries</label>
+                                <span id="fleetOrdersVal" class="text-sm font-black font-mono text-emerald-700">600 deliveries</span>
+                            </div>
+                            <input type="range" id="fleetOrdersRange" min="100" max="5000" step="50" value="600" oninput="recalcFleetCost()" class="w-full accent-emerald-600 cursor-pointer">
+                            <div class="flex justify-between text-[11px] text-slate-600 mt-1"><span>100</span><span>2,500</span><span>5,000</span></div>
+                        </div>
+
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <label for="fleetDistanceInput" class="text-xs font-bold text-slate-800 uppercase tracking-wider">Average Drop Radius (km)</label>
+                                <span id="fleetDistanceVal" class="text-sm font-black font-mono text-orange-700">4.5 km</span>
+                            </div>
+                            <input type="number" id="fleetDistanceInput" min="1" max="25" step="0.5" value="4.5" oninput="recalcFleetCost()" class="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-bikDark font-bold text-sm focus:bg-white focus:border-emerald-600 focus:outline-none">
+                        </div>
+
+                        <div>
+                            <label for="fleetCargoSelect" class="text-xs font-bold text-slate-800 uppercase tracking-wider block mb-2">Vehicle Mix &amp; Weight Tier</label>
+                            <select id="fleetCargoSelect" onchange="recalcFleetCost()" class="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-bikDark font-bold text-sm focus:bg-white focus:border-emerald-600 focus:outline-none">
+                                <option value="2w">Borzo 2-Wheeler (&lt; 5 kg parcels)</option>
+                                <option value="mixed">AI Smart Split (80% Borzo 2W + 20% Porter 3W)</option>
+                                <option value="3w">Porter 3-Wheeler / Tata Ace (Bulk Cartons)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-6 p-6 sm:p-8 rounded-3xl bg-white border-2 border-emerald-200 shadow-lg flex flex-col justify-between space-y-6">
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between border-b border-emerald-100 pb-3">
+                                <h3 class="text-base font-extrabold text-bikDark">Monthly Carrier Estimate</h3>
+                                <span id="fleetSlaBadge" class="px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-[11px] font-bold">P95 SLA: 36 Mins</span>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="p-4 rounded-2xl bg-emerald-50/60 border border-emerald-200">
+                                    <span class="text-[11px] font-bold text-slate-600 block">On-Demand Cost / Order</span>
+                                    <strong id="fleetUnitCostOut" class="text-2xl font-black text-emerald-700 font-display">₹54</strong>
+                                </div>
+                                <div class="p-4 rounded-2xl bg-orange-50/60 border border-orange-200">
+                                    <span class="text-[11px] font-bold text-slate-600 block">Estimated Monthly Spend</span>
+                                    <strong id="fleetMonthlySpendOut" class="text-2xl font-black text-orange-700 font-display">₹32,400</strong>
+                                </div>
+                                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+                                    <span class="text-[11px] font-bold text-slate-600 block">In-House Payroll Equivalent</span>
+                                    <strong id="fleetPayrollOut" class="text-2xl font-black text-slate-800 font-display">₹75,000</strong>
+                                </div>
+                                <div class="p-4 rounded-2xl bg-blue-50/60 border border-blue-200">
+                                    <span class="text-[11px] font-bold text-slate-600 block">Monthly Margin Saved</span>
+                                    <strong id="fleetSavingsOut" class="text-2xl font-black text-blue-700 font-display">₹42,600</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+                            <div>
+                                <span class="text-xs text-slate-700 block font-semibold">Annual Zero-Payroll Savings</span>
+                                <strong id="fleetAnnualSavingsOut" class="text-xl font-black text-bikDark font-display">₹5,11,200 / yr</strong>
+                            </div>
+                            <button type="button" onclick="if(window.FC_LEADS){window.FC_LEADS.openAuditModal('Hyperlocal Borzo Fleet Protocol');}" class="px-5 py-3 rounded-xl bg-orange-700 hover:bg-orange-800 text-white font-bold text-xs transition shadow-md cursor-pointer whitespace-nowrap">
+                                Activate Fleet API ➔
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INLINE SVG DATA VISUALIZATIONS -->
+        <section class="py-20 bg-white border-b border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="inline-block text-xs font-bold uppercase tracking-widest text-emerald-800 bg-emerald-50 border border-emerald-200 px-3.5 py-1 rounded-full">Dispatch Telemetry</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark mt-3 font-display">Hyperlocal P95 Delivery SLA &amp; Cost Telemetry</h2>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- SVG Chart 1: P95 Delivery SLA across Zones -->
+                    <div class="p-6 rounded-3xl bg-white border-2 border-slate-200 shadow-lg space-y-4">
+                        <div class="flex items-center justify-between gap-2 flex-wrap">
+                            <div>
+                                <h3 class="text-base font-extrabold text-bikDark">Mumbai Zone P95 Pickup &amp; Drop SLA (Mins)</h3>
+                                <p class="text-xs text-slate-600">Counter arrival (12–16m) + doorstep delivery under 40 mins</p>
+                            </div>
+                            <span class="px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 font-mono text-[11px] font-bold">98.4% On-Time</span>
+                        </div>
+                        <svg viewBox="0 0 560 220" role="img" aria-label="Hyperlocal P95 pickup and delivery SLA telemetry chart across Mumbai zones" class="w-full h-auto bg-white rounded-2xl border border-slate-100">
+                            <title>Hyperlocal P95 Delivery SLA Telemetry</title>
+                            <line x1="55" y1="30" x2="530" y2="30" stroke="#E2E8F0" stroke-dasharray="4 4"/>
+                            <line x1="55" y1="80" x2="530" y2="80" stroke="#E2E8F0" stroke-dasharray="4 4"/>
+                            <line x1="55" y1="130" x2="530" y2="130" stroke="#E2E8F0" stroke-dasharray="4 4"/>
+                            <line x1="55" y1="180" x2="530" y2="180" stroke="#CBD5E1"/>
+                            <text x="12" y="34" fill="#475569" font-size="11">45m</text>
+                            <text x="12" y="84" fill="#475569" font-size="11">30m</text>
+                            <text x="12" y="134" fill="#475569" font-size="11">15m</text>
+                            <text x="20" y="184" fill="#475569" font-size="11">0m</text>
+                            <!-- Total Doorstep Drop SLA (#10B981) -->
+                            <path d="M 75 68 L 185 60 L 300 72 L 415 56 L 515 64" fill="none" stroke="#10B981" stroke-width="3.5" stroke-linecap="round"/>
+                            <circle cx="75" cy="68" r="4.5" fill="#10B981" stroke="#FFFFFF" stroke-width="2"/>
+                            <circle cx="185" cy="60" r="4.5" fill="#10B981" stroke="#FFFFFF" stroke-width="2"/>
+                            <circle cx="300" cy="72" r="4.5" fill="#10B981" stroke="#FFFFFF" stroke-width="2"/>
+                            <circle cx="415" cy="56" r="4.5" fill="#10B981" stroke="#FFFFFF" stroke-width="2"/>
+                            <circle cx="515" cy="64" r="4.5" fill="#10B981" stroke="#FFFFFF" stroke-width="2"/>
+                            <!-- Pickup Arrival SLA (#FF6838) -->
+                            <path d="M 75 134 L 185 128 L 300 138 L 415 126 L 515 132" fill="none" stroke="#FF6838" stroke-width="3" stroke-linecap="round"/>
+                            <circle cx="75" cy="134" r="4" fill="#FF6838" stroke="#FFFFFF" stroke-width="2"/>
+                            <circle cx="300" cy="138" r="4" fill="#FF6838" stroke="#FFFFFF" stroke-width="2"/>
+                            <circle cx="515" cy="132" r="4" fill="#FF6838" stroke="#FFFFFF" stroke-width="2"/>
+                            <text x="58" y="202" fill="#475569" font-size="10">South Mum</text>
+                            <text x="168" y="202" fill="#475569" font-size="10">Bandra-Worli</text>
+                            <text x="285" y="202" fill="#475569" font-size="10">Andheri</text>
+                            <text x="400" y="202" fill="#475569" font-size="10">Powai</text>
+                            <text x="498" y="202" fill="#475569" font-size="10">Thane</text>
+                        </svg>
+                        <div class="flex flex-wrap items-center gap-4 text-xs text-slate-700 font-semibold">
+                            <span class="flex items-center gap-1.5"><span class="w-3 h-1.5 rounded-full bg-emerald-500 inline-block"></span> Total Doorstep Delivery (~36m)</span>
+                            <span class="flex items-center gap-1.5"><span class="w-3 h-1.5 rounded-full bg-bikOrange inline-block"></span> Rider Counter Pickup (~14.2m)</span>
+                        </div>
+                    </div>
+
+                    <!-- SVG Chart 2: Courier Cost Per Order Comparison -->
+                    <div class="p-6 rounded-3xl bg-white border-2 border-slate-200 shadow-lg space-y-4">
+                        <div class="flex items-center justify-between gap-2 flex-wrap">
+                            <div>
+                                <h3 class="text-base font-extrabold text-bikDark">Effective Cost Per Delivery (₹)</h3>
+                                <p class="text-xs text-slate-600">Idle payroll overhead vs AI multi-carrier spot dispatch</p>
+                            </div>
+                            <span class="px-2.5 py-1 rounded-full bg-orange-50 border border-orange-200 text-orange-800 font-mono text-[11px] font-bold">Up to 62% Cheaper</span>
+                        </div>
+                        <svg viewBox="0 0 560 220" role="img" aria-label="Effective delivery cost per order comparing payroll fleet, single aggregator, and Flying Cheetah AI router" class="w-full h-auto bg-white rounded-2xl border border-slate-100">
+                            <title>Effective Cost Per Hyperlocal Delivery Comparison</title>
+                            <rect x="200" y="34" width="320" height="32" rx="8" fill="#F1F5F9"/>
+                            <rect x="200" y="34" width="290" height="32" rx="8" fill="#CBD5E1"/>
+                            <text x="16" y="55" fill="#1E293B" font-size="12" font-weight="700">Own Payroll Riders</text>
+                            <text x="496" y="55" fill="#334155" font-size="12" font-weight="700">₹145</text>
+
+                            <rect x="200" y="94" width="320" height="32" rx="8" fill="#F1F5F9"/>
+                            <rect x="200" y="94" width="184" height="32" rx="8" fill="#FF6838"/>
+                            <text x="16" y="115" fill="#1E293B" font-size="12" font-weight="700">Single Aggregator App</text>
+                            <text x="394" y="115" fill="#C2410C" font-size="12" font-weight="700">₹88</text>
+
+                            <rect x="200" y="154" width="320" height="32" rx="8" fill="#F1F5F9"/>
+                            <rect x="200" y="154" width="112" height="32" rx="8" fill="#10B981"/>
+                            <text x="16" y="175" fill="#1E293B" font-size="12" font-weight="700">Flying Cheetah Router</text>
+                            <text x="322" y="175" fill="#047857" font-size="12" font-weight="700">₹52</text>
+                        </svg>
+                        <div class="flex items-center justify-between text-xs text-slate-700 font-semibold pt-1">
+                            <span>Zero fixed salaries during lean weekdays</span>
+                            <span class="text-emerald-700 font-bold">Automatic Borzo / Porter rate comparison</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4 INDUSTRY USE CASES -->
+        <section class="py-20 bg-slate-50/70 border-b border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-14">
+                    <span class="inline-block text-emerald-800 font-bold text-xs uppercase tracking-widest bg-emerald-100 px-3 py-1 rounded-full">Industry Verticals</span>
+                    <h2 class="text-3xl font-extrabold text-bikDark mt-3 font-display">Built for High-Velocity Local Commerce</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <article class="p-6 rounded-2xl bg-white border border-slate-200 card-hover space-y-3">
+                        <div class="w-12 h-12 rounded-xl bg-orange-100 text-orange-700 flex items-center justify-center text-xl"><i class="fa-solid fa-bag-shopping" aria-hidden="true"></i></div>
+                        <h3 class="font-bold text-base text-bikDark">D2C Dark Stores</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">Fulfill intra-city apparel, footwear, and beauty orders in 45 minutes directly from flagship retail stores or micro-warehouses without waiting for next-day air cargo cutoffs.</p>
+                    </article>
+                    <article class="p-6 rounded-2xl bg-white border border-slate-200 card-hover space-y-3">
+                        <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center text-xl"><i class="fa-solid fa-cake-candles" aria-hidden="true"></i></div>
+                        <h3 class="font-bold text-base text-bikDark">Cloud Kitchens &amp; Bakeries</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">Keep 100% of direct WhatsApp order revenue without paying 25–30% aggregator marketplace commissions, while dispatching warm boxes via flat-rate Borzo 2-wheelers.</p>
+                    </article>
+                    <article class="p-6 rounded-2xl bg-white border border-slate-200 card-hover space-y-3">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center text-xl"><i class="fa-solid fa-prescription-bottle-medical" aria-hidden="true"></i></div>
+                        <h3 class="font-bold text-base text-bikDark">Pharmacy &amp; Diagnostics</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">Dispatch urgent prescription refills and cold-chain diagnostic kits with strict 4-digit OTP chain-of-custody verification and real-time WhatsApp family updates.</p>
+                    </article>
+                    <article class="p-6 rounded-2xl bg-white border border-slate-200 card-hover space-y-3">
+                        <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center text-xl"><i class="fa-solid fa-gift" aria-hidden="true"></i></div>
+                        <h3 class="font-bold text-base text-bikDark">Electronics &amp; Gifting</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">Same-day doorstep delivery for high-value gadgets and corporate hampers using insured Borzo 2-wheelers or Porter mini-vans for bulky multi-box consignments.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- WEBHOOK & NDR WORKFLOW -->
+        <section class="py-20 bg-white border-b border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+                <div class="text-center max-w-3xl mx-auto">
+                    <span class="inline-block text-xs font-bold uppercase tracking-widest text-emerald-800 bg-emerald-50 border border-emerald-200 px-3.5 py-1 rounded-full">API &amp; Exception Engine</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark mt-3 font-display">Automated Webhook &amp; NDR Resolution Workflow</h2>
+                    <p class="mt-3 text-slate-700 text-sm sm:text-base">
+                        Every delivery state transition streams over signed webhooks into your Shopify admin, WhatsApp customer thread, and AI Voice NDR fallback engine—turning failed doorstep attempts into successful deliveries.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="p-6 rounded-2xl bg-emerald-50/50 border border-emerald-200 space-y-3">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-500 text-bikDark font-black flex items-center justify-center">01</div>
+                        <h3 class="text-base font-bold text-bikDark">Order &amp; Geocode Hook</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">Validates serviceability radius, snaps rooftop lat/lng coordinates, and selects Borzo 2W or Porter 3W based on carton weight.</p>
+                    </div>
+                    <div class="p-6 rounded-2xl bg-blue-50/50 border border-blue-200 space-y-3">
+                        <div class="w-10 h-10 rounded-xl bg-blue-700 text-white font-black flex items-center justify-center">02</div>
+                        <h3 class="text-base font-bold text-bikDark">Pickup &amp; GPS Broadcast</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">When the rider scans pickup at your shop counter, WhatsApp automatically sends the live tracking URL and 4-digit security OTP.</p>
+                    </div>
+                    <div class="p-6 rounded-2xl bg-orange-50/50 border border-orange-200 space-y-3">
+                        <div class="w-10 h-10 rounded-xl bg-orange-700 text-white font-black flex items-center justify-center">03</div>
+                        <h3 class="text-base font-bold text-bikDark">Instant NDR Escalation</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">If the buyer misses the rider's call, our AI Voice Agent dials within 30 seconds to confirm gate instructions or reschedule.</p>
+                    </div>
+                    <div class="p-6 rounded-2xl bg-purple-50/50 border border-purple-200 space-y-3">
+                        <div class="w-10 h-10 rounded-xl bg-purple-700 text-white font-black flex items-center justify-center">04</div>
+                        <h3 class="text-base font-bold text-bikDark">COD Ledger &amp; POD Sync</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">Logs digital Proof-of-Delivery, updates Shopify fulfillment status to Delivered, and reconciles COD cash settlements automatically.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- COMPARISON TABLE -->
+        <section class="py-20 bg-white border-b border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="inline-block text-xs font-bold uppercase tracking-widest text-emerald-800 bg-emerald-50 border border-emerald-200 px-3.5 py-1 rounded-full">Fleet Comparison</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark mt-3 font-display">Self-Fleet vs Single Aggregator vs Flying Cheetah AI Router</h2>
+                </div>
+
+                <div class="overflow-x-auto rounded-3xl border border-slate-200 bg-white shadow-lg">
+                    <table class="w-full text-left border-collapse min-w-[680px]">
+                        <thead>
+                            <tr class="bg-slate-50 border-b border-slate-200 text-xs uppercase tracking-wider text-slate-700">
+                                <th class="p-4 sm:p-5 font-extrabold">Capability</th>
+                                <th class="p-4 sm:p-5 font-bold">In-House Payroll Fleet</th>
+                                <th class="p-4 sm:p-5 font-bold">Single Courier App</th>
+                                <th class="p-4 sm:p-5 font-extrabold text-emerald-800 bg-emerald-50">Flying Cheetah Multi-Carrier AI</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 text-sm text-slate-700">
+                            <tr>
+                                <td class="p-4 sm:p-5 font-bold text-bikDark">Fixed Monthly Payroll</td>
+                                <td class="p-4 sm:p-5">₹22,000+ per rider + fuel</td>
+                                <td class="p-4 sm:p-5">₹0 fixed (manual booking)</td>
+                                <td class="p-4 sm:p-5 font-bold text-emerald-800 bg-emerald-50/40">₹0 fixed — automated spot API</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 sm:p-5 font-bold text-bikDark">Peak Surge Resilience</td>
+                                <td class="p-4 sm:p-5">Backlogs during sales/rain</td>
+                                <td class="p-4 sm:p-5">No fallback if riders busy</td>
+                                <td class="p-4 sm:p-5 font-bold text-emerald-800 bg-emerald-50/40">Auto-routes across Borzo &amp; Porter</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 sm:p-5 font-bold text-bikDark">WhatsApp GPS &amp; OTP</td>
+                                <td class="p-4 sm:p-5">Phone calls only</td>
+                                <td class="p-4 sm:p-5">Generic SMS link</td>
+                                <td class="p-4 sm:p-5 font-bold text-emerald-800 bg-emerald-50/40">Branded WhatsApp GPS + 4-digit OTP</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 sm:p-5 font-bold text-bikDark">COD Reconciliation &amp; NDR</td>
+                                <td class="p-4 sm:p-5">Manual cash registers</td>
+                                <td class="p-4 sm:p-5">Delayed manual tickets</td>
+                                <td class="p-4 sm:p-5 font-bold text-emerald-800 bg-emerald-50/40">Auto bank ledger + AI Voice NDR call</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ ACCORDION -->
+        <section class="py-20 bg-emerald-50/20">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+                <div class="text-center">
+                    <span class="inline-block text-xs font-bold uppercase tracking-widest text-emerald-800 bg-emerald-100 border border-emerald-200 px-3.5 py-1 rounded-full">Fleet Protocol FAQ</span>
+                    <h2 class="text-3xl font-extrabold text-bikDark mt-3 font-display">Frequently Asked Questions</h2>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="rounded-2xl border border-slate-200 bg-white overflow-hidden">
+                        <button type="button" aria-expanded="false" aria-controls="delivFaq1" onclick="toggleDelivFaq(this)" class="w-full p-5 text-left flex items-center justify-between gap-4 font-bold text-sm text-bikDark hover:bg-emerald-50/40 transition cursor-pointer">
+                            <span>Which cities are supported by the Borzo &amp; Porter hyperlocal API?</span>
+                            <i class="fa-solid fa-chevron-down text-xs text-emerald-700 transition-transform" aria-hidden="true"></i>
+                        </button>
+                        <div id="delivFaq1" class="hidden px-5 pb-5 text-xs sm:text-sm text-slate-700 leading-relaxed border-t border-slate-100 pt-3">
+                            Instant 2-wheeler and 3-wheeler hyperlocal dispatch is active across Mumbai Metropolitan Region, Delhi NCR, Bengaluru, Pune, Hyderabad, Chennai, Ahmedabad, and Kolkata.
+                        </div>
+                    </div>
+
+                    <div class="rounded-2xl border border-slate-200 bg-white overflow-hidden">
+                        <button type="button" aria-expanded="false" aria-controls="delivFaq2" onclick="toggleDelivFaq(this)" class="w-full p-5 text-left flex items-center justify-between gap-4 font-bold text-sm text-bikDark hover:bg-emerald-50/40 transition cursor-pointer">
+                            <span>How does automated NDR (Non-Delivery Report) handling work if a buyer doesn't answer?</span>
+                            <i class="fa-solid fa-chevron-down text-xs text-emerald-700 transition-transform" aria-hidden="true"></i>
+                        </button>
+                        <div id="delivFaq2" class="hidden px-5 pb-5 text-xs sm:text-sm text-slate-700 leading-relaxed border-t border-slate-100 pt-3">
+                            When a rider marks an attempt unreachable, our webhook immediately triggers an AI Voice call + WhatsApp location pin request so the buyer can confirm building gate access in under 60 seconds.
+                        </div>
+                    </div>
+
+                    <div class="rounded-2xl border border-slate-200 bg-white overflow-hidden">
+                        <button type="button" aria-expanded="false" aria-controls="delivFaq3" onclick="toggleDelivFaq(this)" class="w-full p-5 text-left flex items-center justify-between gap-4 font-bold text-sm text-bikDark hover:bg-emerald-50/40 transition cursor-pointer">
+                            <span>Can we use our own negotiated Borzo or Porter corporate API keys?</span>
+                            <i class="fa-solid fa-chevron-down text-xs text-emerald-700 transition-transform" aria-hidden="true"></i>
+                        </button>
+                        <div id="delivFaq3" class="hidden px-5 pb-5 text-xs sm:text-sm text-slate-700 leading-relaxed border-t border-slate-100 pt-3">
+                            Yes. You can connect your own Borzo and Porter merchant credentials in under 15 minutes or route on our shared enterprise slab with zero commission markup.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- CANONICAL CROSS-LINKED FOOTER -->
+    <footer class="py-12 bg-white border-t border-slate-200 text-xs text-slate-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between gap-6">
             <div class="flex items-center space-x-3">
                 <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah" class="h-6 w-6 rounded-full object-cover border border-slate-300">
-                <span class="font-bold text-slate-700">FLYING CHEETAH LABS • COMMERCE AUTOMATION © 2026.</span>
+                <span class="font-bold text-slate-800">FLYING CHEETAH LABS • COMMERCE AUTOMATION © 2026.</span>
                 <span>All Rights Reserved.</span>
             </div>
-            <div class="flex flex-wrap items-center gap-4 font-medium text-slate-600">
-                <a href="index.html" class="hover:text-bikOrange transition">Main Site</a>
-                <a href="store-automation.html" class="hover:text-bikOrange transition">Store Automation</a>
-                <a href="instagram-automation.html" class="hover:text-pink-600 transition">Instagram</a>
-                <a href="whatsapp-automation.html" class="hover:text-emerald-600 transition">WhatsApp</a>
-                <a href="ctwa-automation.html" class="hover:text-blue-600 transition">CTWA Ads</a>
-                <a href="ai-voice-agents.html" class="hover:text-purple-600 transition">Voice Agents</a>
-                <a href="delivery.html" class="hover:text-bikOrange transition">Fleet Protocol</a>
-                <a href="about.html" class="hover:text-bikOrange transition">About Us</a>
+            <div class="flex flex-wrap items-center justify-center gap-4 font-medium text-slate-700">
+                <a href="index.html" class="hover:text-orange-700 transition">Main Site</a>
+                <a href="store-automation.html" class="hover:text-orange-700 transition">Store Automation</a>
+                <a href="instagram-automation.html" class="hover:text-pink-700 transition">Instagram</a>
+                <a href="whatsapp-automation.html" class="hover:text-emerald-700 transition">WhatsApp</a>
+                <a href="ctwa-automation.html" class="hover:text-blue-700 transition">CTWA Ads</a>
+                <a href="ai-voice-agents.html" class="hover:text-purple-700 transition">Voice Agents</a>
+                <a href="customer-data-platform.html" class="hover:text-indigo-700 transition">CDP 360</a>
+                <a href="about.html" class="hover:text-orange-700 transition">About Us</a>
+                <a href="privacy-policy.html" class="hover:text-orange-700 transition">Privacy Policy</a>
+                <a href="terms-of-service.html" class="hover:text-orange-700 transition">Terms</a>
+                <a href="refund-policy.html" class="hover:text-orange-700 transition">Refunds</a>
             </div>
         </div>
     </footer>
+
     <script>
-        // Toggle dropdowns on click & close when clicking outside
         document.addEventListener('DOMContentLoaded', function() {
+            recalcFleetCost();
+            const authSlot = document.querySelector('.fc-auth-slot');
+            if (authSlot) {
+                const ensureAuthBtnType = () => {
+                    authSlot.querySelectorAll('button:not([type])').forEach(b => b.setAttribute('type', 'button'));
+                };
+                ensureAuthBtnType();
+                new MutationObserver(ensureAuthBtnType).observe(authSlot, { childList: true, subtree: true });
+            }
+
             const dropdownParents = document.querySelectorAll('.dropdown-parent');
             dropdownParents.forEach(function(parent) {
                 const btn = parent.querySelector('button');
                 if (btn) {
                     btn.addEventListener('click', function(e) {
                         e.stopPropagation();
-                        // Close other open dropdowns
-                        dropdownParents.forEach(p => { if (p !== parent) p.classList.remove('active'); });
-                        parent.classList.toggle('active');
+                        dropdownParents.forEach(p => {
+                            if (p !== parent) {
+                                p.classList.remove('active');
+                                const b = p.querySelector('button');
+                                if (b) b.setAttribute('aria-expanded', 'false');
+                            }
+                        });
+                        const isNowActive = parent.classList.toggle('active');
+                        btn.setAttribute('aria-expanded', isNowActive ? 'true' : 'false');
                     });
                 }
             });
 
+            document.querySelectorAll('nav > a').forEach(function(link) {
+                link.addEventListener('mouseenter', function() {
+                    dropdownParents.forEach(function(p) {
+                        p.classList.remove('active');
+                        const b = p.querySelector('button');
+                        if (b) b.setAttribute('aria-expanded', 'false');
+                    });
+                });
+            });
+
             document.addEventListener('click', function(e) {
-                dropdownParents.forEach(p => p.classList.remove('active'));
+                if (!e.target.closest('.dropdown-parent')) {
+                    dropdownParents.forEach(function(p) {
+                        p.classList.remove('active');
+                        const b = p.querySelector('button');
+                        if (b) b.setAttribute('aria-expanded', 'false');
+                    });
+                }
             });
         });
-    </script>
-    <!-- Supabase & Flying Cheetah Backend Architecture SDK -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="js/supabase-client.js"></script>
-    <script src="js/auth.js"></script>
-    <script src="js/leads.js"></script>
-    <script src="js/fc-widgets.js"></script>
 
-<script>
-        // Top-level nav links hover safety: immediately dismiss all dropdowns
-        document.querySelectorAll('nav > a').forEach(function(link) {
-            link.addEventListener('mouseenter', function() {
-                document.querySelectorAll('.home-dropdown-parent, .products-dropdown-parent, .dropdown-parent').forEach(function(p) {
-                    p.classList.remove('active');
-                });
+        function escapeDispatchHtml(str) {
+            return String(str || '').replace(/[&<>"']/g, function(ch) {
+                return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[ch];
             });
-        });
-        // Click outside dismiss
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('.home-dropdown-parent') && !e.target.closest('.products-dropdown-parent') && !e.target.closest('.dropdown-parent')) {
-                document.querySelectorAll('.home-dropdown-parent, .products-dropdown-parent, .dropdown-parent').forEach(function(p) {
-                    p.classList.remove('active');
-                });
+        }
+
+        function recalcFleetCost() {
+            const rawOrders = parseInt(document.getElementById('fleetOrdersRange')?.value, 10);
+            const rawDist = parseFloat(document.getElementById('fleetDistanceInput')?.value);
+            const orders = Math.max(50, Number.isFinite(rawOrders) ? rawOrders : 600);
+            const dist = Math.max(1, Math.min(35, Number.isFinite(rawDist) ? rawDist : 4.5));
+            const mode = document.getElementById('fleetCargoSelect')?.value || '2w';
+
+            const ordersEl = document.getElementById('fleetOrdersVal');
+            const distEl = document.getElementById('fleetDistanceVal');
+            if (ordersEl) ordersEl.textContent = `${orders.toLocaleString('en-IN')} deliveries`;
+            if (distEl) distEl.textContent = `${dist.toFixed(1)} km`;
+
+            let baseFee = 32;
+            let perKm = 5;
+            let sla = 'P95 SLA: 36 Mins';
+            if (mode === 'mixed') {
+                baseFee = 46;
+                perKm = 6.5;
+                sla = 'P95 SLA: 42 Mins';
+            } else if (mode === '3w') {
+                baseFee = 115;
+                perKm = 14;
+                sla = 'P95 SLA: 55 Mins';
             }
-        });
-    </script>
 
-    <script>
+            const unitCost = Math.round(baseFee + dist * perKm);
+            const monthlySpend = orders * unitCost;
+            const ridersNeeded = Math.max(2, Math.ceil(orders / 220));
+            const payrollCost = ridersNeeded * 25000;
+            const monthlySavings = Math.max(0, payrollCost - monthlySpend);
+            const annualSavings = monthlySavings * 12;
+
+            const elSla = document.getElementById('fleetSlaBadge');
+            const elUnit = document.getElementById('fleetUnitCostOut');
+            const elMonthly = document.getElementById('fleetMonthlySpendOut');
+            const elPayroll = document.getElementById('fleetPayrollOut');
+            const elSave = document.getElementById('fleetSavingsOut');
+            const elAnnual = document.getElementById('fleetAnnualSavingsOut');
+
+            if (elSla) elSla.textContent = sla;
+            if (elUnit) elUnit.textContent = `₹${unitCost.toLocaleString('en-IN')}`;
+            if (elMonthly) elMonthly.textContent = `₹${monthlySpend.toLocaleString('en-IN')}`;
+            if (elPayroll) elPayroll.textContent = `₹${payrollCost.toLocaleString('en-IN')}`;
+            if (elSave) elSave.textContent = `₹${monthlySavings.toLocaleString('en-IN')}`;
+            if (elAnnual) elAnnual.textContent = `₹${annualSavings.toLocaleString('en-IN')} / yr`;
+        }
+
+        function toggleDelivFaq(btn) {
+            const ctrl = btn.getAttribute('aria-controls');
+            const panel = ctrl ? document.getElementById(ctrl) : null;
+            const expanded = btn.getAttribute('aria-expanded') === 'true';
+            btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+            if (panel) panel.classList.toggle('hidden', expanded);
+            const icon = btn.querySelector('i');
+            if (icon) icon.style.transform = expanded ? 'rotate(0deg)' : 'rotate(180deg)';
+        }
+
         async function executeDispatchSimulation(e) {
             e.preventDefault();
             const btn = document.getElementById('dispatchBtn');
@@ -559,52 +943,44 @@
             const weight = parseFloat(document.getElementById('weightSelect').value);
 
             btn.disabled = true;
-            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Contacting Fleet API...';
+            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin" aria-hidden="true"></i> Contacting Fleet API...';
             badge.className = 'text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800 font-bold';
             badge.textContent = 'ALLOCATING RIDER';
 
             log.innerHTML = `
-                <div class="text-amber-700 font-bold">⚡ [1/3] Calling ${courier.toUpperCase()} API Gateway...</div>
-                <div class="text-slate-600 text-[11px]">Pickup: ${pickup.substring(0, 35)}...</div>
-                <div class="text-slate-600 text-[11px]">Dropoff: ${dropoff.substring(0, 35)}...</div>
+                <div class="text-amber-800 font-bold">⚡ [1/3] Calling ${escapeDispatchHtml(courier.toUpperCase())} API Gateway...</div>
+                <div class="text-slate-700 text-[11px]">Pickup: ${escapeDispatchHtml(pickup.substring(0, 35))}...</div>
+                <div class="text-slate-700 text-[11px]">Dropoff: ${escapeDispatchHtml(dropoff.substring(0, 35))}...</div>
             `;
 
             const orderRef = 'FC-MUM-' + Math.floor(1000 + Math.random() * 9000);
-            const payload = {
-                order_ref: orderRef,
-                courier: courier,
-                pickup_address: { address: pickup, contact_phone: '+919820011998', contact_name: 'Store Manager' },
-                delivery_address: { address: dropoff, contact_phone: '+91' + phone, contact_name: 'Customer' },
-                package_description: 'E-commerce Parcel',
-                package_weight_kg: weight
-            };
-
             let dispatchRes = null;
 
-            // Call Live Vercel Serverless Borzo Gateway
-            try {
-                const response = await fetch('/api/borzo-dispatch', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        action: 'create',
-                        order_ref: orderRef,
-                        pickup: { address: pickup, phone: '9820011998', name: 'Store Manager' },
-                        dropoff: { address: dropoff, phone: phone.replace(/\s+/g, ''), name: 'Customer' },
-                        matter: 'E-commerce Parcel',
-                        weight: weight
-                    })
-                });
-                if (response.ok) {
-                    dispatchRes = await response.json();
+            const isLocalStaticOnly = (window.location.hostname === '127.0.0.1' && !window.location.port.startsWith('3000'));
+            if (!isLocalStaticOnly) {
+                try {
+                    const response = await fetch('/api/borzo-dispatch', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            action: 'create',
+                            order_ref: orderRef,
+                            pickup: { address: pickup, phone: '9820011998', name: 'Store Manager' },
+                            dropoff: { address: dropoff, phone: phone.replace(/\s+/g, ''), name: 'Customer' },
+                            matter: 'E-commerce Parcel',
+                            weight: weight
+                        })
+                    });
+                    if (response.ok) {
+                        dispatchRes = await response.json();
+                    }
+                } catch (err) {
+                    console.warn('Serverless endpoint fallback:', err);
                 }
-            } catch (err) {
-                console.warn('Serverless endpoint fallback:', err);
             }
 
-            // Fallback / Mock client-side result if backend not running locally
             if (!dispatchRes) {
-                await new Promise(r => setTimeout(r, 900));
+                await new Promise(r => setTimeout(r, 600));
                 dispatchRes = {
                     order_ref: orderRef,
                     tracking_number: 'BORZO-MUM-' + Math.random().toString(36).substring(2, 10).toUpperCase(),
@@ -622,8 +998,8 @@
             badge.textContent = 'DISPATCH CONFIRMED';
 
             log.innerHTML += `
-                <div class="text-emerald-700 font-bold mt-2">✓ [2/3] Rider Assigned: ${dispatchRes.rider?.name || 'Ramesh Shinde'}</div>
-                <div class="text-emerald-700 font-bold">✓ [3/3] Live GPS Tracking Link Generated (ETA: ${dispatchRes.eta_minutes || 14.5} min)</div>
+                <div class="text-emerald-800 font-bold mt-2">✓ [2/3] Rider Assigned: ${dispatchRes.rider?.name || 'Ramesh Shinde'}</div>
+                <div class="text-emerald-800 font-bold">✓ [3/3] Live GPS Tracking Link Generated (ETA: ${dispatchRes.eta_minutes || 14.5} min)</div>
             `;
 
             document.getElementById('riderName').textContent = dispatchRes.rider?.name || 'Ramesh Shinde';
@@ -636,11 +1012,18 @@
             waToast.classList.remove('hidden');
 
             btn.disabled = false;
-            btn.innerHTML = '<i class="fa-solid fa-check"></i> <span>Courier Dispatched Successfully</span>';
+            btn.innerHTML = '<i class="fa-solid fa-check" aria-hidden="true"></i> <span>Courier Dispatched Successfully</span>';
             setTimeout(() => {
-                btn.innerHTML = '<i class="fa-solid fa-bolt"></i> <span>Trigger Another Dispatch</span>';
+                btn.innerHTML = '<i class="fa-solid fa-bolt" aria-hidden="true"></i> <span>Trigger Another Dispatch</span>';
             }, 3000);
         }
     </script>
+
+    <!-- Supabase & Flying Cheetah Backend Architecture SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/leads.js"></script>
+    <script src="js/fc-widgets.js"></script>
 </body>
 </html>

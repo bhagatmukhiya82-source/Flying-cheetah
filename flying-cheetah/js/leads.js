@@ -44,19 +44,19 @@
 
         const isSuccess = type === 'success';
         const toast = document.createElement('div');
-        toast.className = `pointer-events-auto flex items-start gap-3 p-4 rounded-2xl border shadow-2xl transition-all duration-300 transform translate-y-4 opacity-0 ${
-            isSuccess ? 'bg-slate-900 border-slate-800 text-white' : 'bg-red-50 border-red-200 text-red-900'
+        toast.className = `pointer-events-auto flex items-start gap-3 p-4 rounded-2xl transition-all duration-300 transform translate-y-4 opacity-0 ${
+            isSuccess ? 'bg-white text-slate-900 border border-slate-200 shadow-2xl' : 'bg-red-50 border border-red-200 text-red-900 shadow-2xl'
         }`;
 
         toast.innerHTML = `
             <div class="w-8 h-8 rounded-xl flex items-center justify-center shrink-0 ${
                 isSuccess ? 'bg-emerald-500 text-white shadow-md shadow-emerald-500/20' : 'bg-red-500 text-white shadow-md shadow-red-500/20'
             }">
-                <i class="fa-solid ${isSuccess ? 'fa-check' : 'fa-triangle-exclamation'} text-xs"></i>
+                <i class="fa-solid ${isSuccess ? 'fa-check' : 'fa-triangle-exclamation'} text-xs" aria-hidden="true"></i>
             </div>
             <div class="flex-1 text-xs leading-relaxed">
-                <div class="font-bold ${isSuccess ? 'text-white' : 'text-red-900'}">${isSuccess ? 'Inquiry Dispatched' : 'Notice'}</div>
-                <div class="${isSuccess ? 'text-slate-300' : 'text-red-700'} mt-0.5">${message}</div>
+                <div class="font-bold ${isSuccess ? 'text-slate-900' : 'text-red-900'}">${isSuccess ? 'Inquiry Dispatched' : 'Notice'}</div>
+                <div class="${isSuccess ? 'text-slate-700' : 'text-red-800'} mt-0.5">${message}</div>
             </div>
         `;
 
@@ -76,7 +76,7 @@
             const modalHtml = `
             <div id="fcSuccessModal" class="fixed inset-0 z-[140] flex items-center justify-center bg-black/60 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300 p-4">
                 <div id="fcSuccessModalCard" class="relative max-w-md w-full bg-white rounded-3xl p-8 border border-slate-200 shadow-2xl text-center transform scale-95 transition-all duration-300">
-                    <button onclick="window.FC_LEADS.closeSuccessModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-700 w-8 h-8 rounded-full flex items-center justify-center hover:bg-slate-100 transition">
+                    <button type="button" aria-label="Close modal" onclick="window.FC_LEADS.closeSuccessModal()" class="absolute top-5 right-5 text-slate-500 hover:text-slate-700 w-8 h-8 rounded-full flex items-center justify-center hover:bg-slate-100 transition">
                         <i class="fa-solid fa-xmark text-lg"></i>
                     </button>
 
@@ -89,22 +89,22 @@
                     </span>
 
                     <h3 class="text-2xl font-black text-bikDark font-display">We're on it, <span id="fcSuccessName">Founder</span>!</h3>
-                    <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+                    <p class="text-xs text-slate-600 mt-2 leading-relaxed">
                         An instant alert has been delivered to <b>flyingcheetah.agency@gmail.com</b>. Our team will message you on WhatsApp within 15 minutes.
                     </p>
 
                     <div class="mt-6 p-4 rounded-2xl bg-slate-50 border border-slate-100 text-left text-xs space-y-2">
-                        <div class="flex justify-between"><span class="text-slate-400">Target Service:</span> <b id="fcSuccessService" class="text-slate-700">-</b></div>
-                        <div class="flex justify-between"><span class="text-slate-400">WhatsApp Phone:</span> <b id="fcSuccessPhone" class="text-slate-700">-</b></div>
-                        <div class="flex justify-between"><span class="text-slate-400">Official Alert:</span> <b class="text-emerald-600">Dispatched ✓</b></div>
+                        <div class="flex justify-between"><span class="text-slate-600">Target Service:</span> <b id="fcSuccessService" class="text-slate-800">-</b></div>
+                        <div class="flex justify-between"><span class="text-slate-600">WhatsApp Phone:</span> <b id="fcSuccessPhone" class="text-slate-800">-</b></div>
+                        <div class="flex justify-between"><span class="text-slate-600">Official Alert:</span> <b class="text-emerald-700">Dispatched ✓</b></div>
                     </div>
 
                     <div class="mt-6 space-y-2">
-                        <a id="fcSuccessWaBtn" href="#" target="_blank" class="w-full py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs uppercase tracking-wider transition shadow-lg shadow-emerald-500/25 flex items-center justify-center gap-2">
+                        <a id="fcSuccessWaBtn" href="#" target="_blank" class="w-full py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs uppercase tracking-wider transition shadow-lg shadow-emerald-500/25 flex items-center justify-center gap-2">
                             <i class="fa-brands fa-whatsapp text-sm"></i>
                             <span>Chat on WhatsApp Directly</span>
                         </a>
-                        <button onclick="window.FC_LEADS.closeSuccessModal()" class="w-full py-3 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-700 font-bold text-xs transition">
+                        <button type="button" onclick="window.FC_LEADS.closeSuccessModal()" class="w-full py-3 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-700 font-bold text-xs transition">
                             Back to Website
                         </button>
                     </div>
@@ -320,10 +320,10 @@
         if (document.getElementById('fcAuditModal')) return;
 
         const modalHtml = `
-        <div id="fcAuditModal" class="fixed inset-0 z-[110] flex items-center justify-center bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300 p-4">
+        <div id="fcAuditModal" class="fixed inset-0 z-[110] flex items-center justify-center bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 p-4">
             <div id="fcAuditModalCard" class="relative w-full max-w-lg bg-white rounded-3xl border border-slate-200 p-8 shadow-2xl transform scale-95 transition-all duration-300">
                 <!-- Close Button -->
-                <button id="fcAuditCloseBtn" class="absolute top-5 right-5 text-slate-400 hover:text-slate-700 w-8 h-8 rounded-full flex items-center justify-center hover:bg-slate-100 transition">
+                <button type="button" id="fcAuditCloseBtn" aria-label="Close modal" class="absolute top-5 right-5 text-slate-500 hover:text-slate-700 w-8 h-8 rounded-full flex items-center justify-center hover:bg-slate-100 transition">
                     <i class="fa-solid fa-xmark text-lg"></i>
                 </button>
 
@@ -338,7 +338,7 @@
                     </div>
                 </div>
 
-                <p class="text-xs text-slate-500 leading-relaxed mb-6">
+                <p class="text-xs text-slate-600 leading-relaxed mb-6">
                     Our team will personally analyze your drop-off funnel, WhatsApp checkout triggers, and AI agent automation blueprint.
                 </p>
 
@@ -387,9 +387,9 @@
                     </button>
                 </form>
 
-                <div class="mt-4 flex items-center justify-center gap-4 text-[10px] text-slate-400">
-                    <span class="flex items-center gap-1"><i class="fa-solid fa-shield-check text-emerald-500"></i> Encrypted to flyingcheetah.agency@gmail.com</span>
-                    <span class="flex items-center gap-1"><i class="fa-brands fa-whatsapp text-emerald-500"></i> Fast 15-Min Response</span>
+                <div class="mt-4 flex items-center justify-center gap-4 text-[10px] text-slate-600">
+                    <span class="flex items-center gap-1"><i class="fa-solid fa-shield-check text-emerald-600"></i> Encrypted to flyingcheetah.agency@gmail.com</span>
+                    <span class="flex items-center gap-1"><i class="fa-brands fa-whatsapp text-emerald-600"></i> Fast 15-Min Response</span>
                 </div>
             </div>
         </div>`;

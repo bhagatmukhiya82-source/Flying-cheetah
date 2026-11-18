@@ -1,23 +1,23 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-        <link rel="icon" type="image/png" href="images/user_official_real_logo_transparent.png">
+    <link rel="icon" type="image/png" href="images/user_official_real_logo_transparent.png">
     <link rel="apple-touch-icon" href="images/user_official_real_logo_transparent.png">
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instagram Automation & DM Conversational Sales — Flying Cheetah</title>
-    <meta property="og:title" content="Instagram Automation &amp; DM Conversational Sales — Flying Cheetah">
-    <meta property="og:description" content="Instagram Automation &amp; DM Conversational Sales — Flying Cheetah - Flying Cheetah Labs Autonomous AI Commerce &amp; Omnichannel Marketing Suite.">
-    <meta property="og:image" content="https://flying-cheetah.vercel.app/images/flying_cheetah_logo_one_tail.png">
+    <title>Instagram Automation &amp; DM Conversational Sales â€” Flying Cheetah</title>
+    <meta property="og:title" content="Instagram Automation &amp; DM Conversational Sales â€” Flying Cheetah">
+    <meta property="og:description" content="Convert Instagram Reel comments, Story mentions, and DM keywords into instant automated catalog carousels, 1-tap UPI checkouts, and WhatsApp order tracking on the official Meta Graph API.">
+    <meta property="og:image" content="https://flying-cheetah.vercel.app/images/instagram_reel_to_dm_flow_light.png">
     <meta property="og:type" content="website">
 
-    <meta name="description" content="Instagram Automation & DM Conversational Sales — Flying Cheetah - Flying Cheetah Labs Autonomous AI Commerce & Omnichannel Marketing Suite.">
+    <meta name="description" content="Convert Instagram Reel comments, Story mentions, and DM keywords into instant automated catalog carousels, 1-tap UPI checkouts, and WhatsApp order tracking on the official Meta Graph API.">
     <link rel="canonical" href="https://flying-cheetah.vercel.app/instagram-automation">
     <meta property="og:url" content="https://flying-cheetah.vercel.app/instagram-automation">
     <meta property="og:site_name" content="Flying Cheetah">
 
-    <!-- Tailwind CSS -->
+    <!-- Compiled Tailwind CSS -->
     <link rel="stylesheet" href="css/styles.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,16 +26,11 @@
     <link rel="stylesheet" href="css/fx.css">
     <style>
         .ig-gradient-text {
-            background: linear-gradient(45deg, #F56040, #E1306C, #C13584);
+            background: linear-gradient(45deg, #E04A1B, #E1306C, #C13584);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
         .bik-mega-shadow { box-shadow: 0 25px 60px -15px rgba(225, 48, 108, 0.15), 0 0 1px 1px rgba(0, 0, 0, 0.05); }
-        .mega-menu { display: none; }
-        .dropdown-parent:hover .mega-menu { display: block; }
-        .card-anim { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
-        .card-anim:hover { transform: translateY(-4px); box-shadow: 0 20px 35px -10px rgba(0,0,0,0.08); }
-    
         .home-menu { display: none; }
         .home-dropdown-parent:hover > .home-menu,
         .home-dropdown-parent.active > .home-menu { display: block; }
@@ -44,6 +39,8 @@
         .products-dropdown-parent.active > .mega-menu { display: block; }
         .dropdown-parent:hover > .mega-menu,
         .dropdown-parent.active > .mega-menu { display: block; }
+        .card-anim { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .card-anim:hover { transform: translateY(-4px); box-shadow: 0 20px 35px -10px rgba(0,0,0,0.08); }
     </style>
     <link rel="stylesheet" href="css/mobile-app.css">
     <script type="application/ld+json">
@@ -53,7 +50,7 @@
       "name": "Instagram Automation & DM Commerce",
       "serviceType": "Instagram Automation & DM Commerce",
       "url": "https://flying-cheetah.vercel.app/instagram-automation",
-      "description": "Instagram Automation & DM Conversational Sales — Flying Cheetah - Flying Cheetah Labs Autonomous AI Commerce & Omnichannel Marketing Suite.",
+      "description": "Convert Instagram Reel comments, Story mentions, and DM keywords into instant automated catalog carousels, 1-tap UPI checkouts, and WhatsApp order tracking on the official Meta Graph API.",
       "areaServed": "IN",
       "provider": {
             "@type": "Organization",
@@ -64,343 +61,986 @@
 }
     </script>
 </head>
-<body class="bg-white text-slate-900 font-sans antialiased selection:bg-igPink selection:text-white">
+<body class="bg-white text-slate-900 font-sans antialiased selection:bg-pink-100 selection:text-pink-700">
 
     <!-- TOP PROMO BANNER -->
-    <div class="bg-gradient-to-r from-orange-50 via-amber-50/70 to-emerald-50 border-b border-orange-200/70 text-bikDark py-2 px-4 text-center text-xs font-medium">
-        <span>📸 Turn Instagram Reel comments & Story mentions into instant WhatsApp sales with zero human delay.</span>
-        <a href="demo.html" class="underline ml-2 text-bikOrange font-bold hover:text-bikOrangeDark transition">Book Live Demo ↗</a>
+    <div class="bg-gradient-to-r from-orange-50 via-pink-50/70 to-purple-50 border-b border-pink-200/70 text-bikDark py-2 px-4 text-center text-xs font-medium">
+        <span><i class="fa-brands fa-instagram text-pink-700 mr-1.5" aria-hidden="true"></i>Turn Instagram Reel comments &amp; Story mentions into instant DM &amp; WhatsApp sales with zero human delay.</span>
+        <a href="demo.html" class="underline ml-2 text-pink-700 font-bold hover:text-pink-800 transition whitespace-nowrap">Book Live Demo â†—</a>
     </div>
 
     <!-- MAIN NAVBAR WITH ACTIVE MEGA-MENU -->
     <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
             <a href="index.html" class="flex items-center space-x-3 shrink-0 whitespace-nowrap">
                 <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah Logo" class="h-11 w-11 rounded-full object-cover border border-slate-200 shadow-sm">
                 <div class="flex flex-col">
-                    <span class="text-xl font-black tracking-tight font-display text-bikDark">FLYING CHEETAH</span>
-                    <span class="text-[9px] text-igPink font-bold tracking-widest uppercase -mt-1">INSTAGRAM AUTOMATION</span>
+                    <span class="text-lg xl:text-xl font-black tracking-tight font-display text-bikDark">FLYING CHEETAH</span>
+                    <span class="text-[9px] text-pink-700 font-bold tracking-widest uppercase -mt-1">INSTAGRAM AUTOMATION</span>
                 </div>
             </a>
 
-            <nav class="hidden lg:flex items-center gap-5 xl:gap-7 text-[13px] xl:text-sm font-semibold text-slate-700 whitespace-nowrap">
-                <!-- HOME DROPDOWN (NEXT TO PRODUCTS) -->
-                <div class="relative home-dropdown-parent py-6">
-                    <button class="home-btn flex items-center gap-1.5 hover:text-bikOrange transition focus:outline-none text-slate-800 hover:text-bikOrange font-bold text-sm">
-                        <i class="fa-solid fa-house text-xs text-bikOrange"></i>
+            <nav aria-label="Primary Navigation" class="hidden lg:flex items-center gap-5 xl:gap-7 text-[13px] xl:text-sm font-semibold text-slate-700 whitespace-nowrap">
+                <!-- HOME DROPDOWN -->
+                <div class="relative home-dropdown-parent dropdown-parent py-6">
+                    <button type="button" aria-expanded="false" aria-controls="fcHomeMenu" class="home-btn flex items-center gap-1.5 text-slate-800 hover:text-pink-700 transition font-bold text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange focus-visible:ring-offset-2 rounded-lg px-1">
+                        <i class="fa-solid fa-house text-xs text-orange-700" aria-hidden="true"></i>
                         <span>Home</span>
-                        <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200"></i>
+                        <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200" aria-hidden="true"></i>
                     </button>
-                    <!-- Dropdown Menu with the 4 items from user image -->
-                    <div class="mega-menu home-menu absolute top-full left-0 w-72 bg-white rounded-2xl border border-slate-200 p-4 shadow-2xl bik-mega-shadow z-50">
-                        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-3 pb-2 border-b border-slate-100 flex items-center justify-between">
+                    <div id="fcHomeMenu" class="mega-menu home-menu absolute top-full left-0 w-72 bg-white rounded-2xl border border-slate-200 p-4 shadow-2xl bik-mega-shadow z-50">
+                        <div class="text-[10px] font-bold text-slate-600 uppercase tracking-wider px-3 pb-2 border-b border-slate-100 flex items-center justify-between">
                             <span>Core Portals</span>
-                            <a href="index.html" class="text-bikOrange hover:underline font-bold">Executive Hub ↗</a>
+                            <a href="index.html" class="text-orange-700 hover:underline font-bold">Executive Hub â†—</a>
                         </div>
                         <div class="space-y-1.5 pt-2">
-                            <!-- 1. Main Site -->
-                            <a href="index.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
-                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-bikOrange flex items-center justify-center text-sm group-hover:scale-110 transition">
-                                    <i class="fa-solid fa-store"></i>
+                            <a href="index.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-orange-700 transition group">
+                                <div class="w-8 h-8 rounded-lg bg-orange-50 text-orange-700 flex items-center justify-center text-sm">
+                                    <i class="fa-solid fa-store" aria-hidden="true"></i>
                                 </div>
                                 <div>
-                                    <div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">Main Site</div>
-                                    <div class="text-[10px] text-slate-400">Flagship AI Commerce Suite</div>
+                                    <div class="text-xs font-bold text-bikDark group-hover:text-orange-700">Main Site</div>
+                                    <div class="text-[11px] text-slate-600">Flagship AI Commerce Suite</div>
                                 </div>
                             </a>
-
-<!-- 3. Fleet Protocol -->
-                                                        <a href="web-development.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
-                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-bikOrange flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-code"></i></div>
-                                <div><div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">Web Development</div><div class="text-[10px] text-slate-400">Next.js &amp; Shopify Stores &bull; Mumbai</div></div>
-                            </a>
-<a href="delivery.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-emerald-50 text-slate-700 hover:text-emerald-600 transition group">
-                                <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center text-sm group-hover:scale-110 transition">
-                                    <i class="fa-solid fa-motorcycle"></i>
+                            <a href="web-development.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-orange-700 transition group">
+                                <div class="w-8 h-8 rounded-lg bg-orange-50 text-orange-700 flex items-center justify-center text-sm">
+                                    <i class="fa-solid fa-code" aria-hidden="true"></i>
                                 </div>
                                 <div>
-                                    <div class="text-xs font-bold text-bikDark group-hover:text-emerald-600">Fleet Protocol</div>
-                                    <div class="text-[10px] text-slate-400">Hyperlocal Borzo/Porter API</div>
+                                    <div class="text-xs font-bold text-bikDark group-hover:text-orange-700">Web Development</div>
+                                    <div class="text-[11px] text-slate-600">Next.js &amp; Shopify Stores â€¢ Mumbai</div>
                                 </div>
                             </a>
-
-                                                        <a href="about.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
-                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-bikOrange flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-circle-info"></i></div>
-                                <div><div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">About Us</div><div class="text-[10px] text-slate-400">Company Motive & Founders</div></div>
+                            <a href="delivery.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-emerald-50 text-slate-700 hover:text-emerald-700 transition group">
+                                <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center text-sm">
+                                    <i class="fa-solid fa-motorcycle" aria-hidden="true"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs font-bold text-bikDark group-hover:text-emerald-700">Fleet Protocol</div>
+                                    <div class="text-[11px] text-slate-600">Hyperlocal Borzo/Porter API</div>
+                                </div>
+                            </a>
+                            <a href="about.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-orange-700 transition group">
+                                <div class="w-8 h-8 rounded-lg bg-orange-50 text-orange-700 flex items-center justify-center text-sm">
+                                    <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs font-bold text-bikDark group-hover:text-orange-700">About Us</div>
+                                    <div class="text-[11px] text-slate-600">Company Motive &amp; Founders</div>
+                                </div>
                             </a>
                         </div>
                     </div>
                 </div>
 
-
-
-
+                <!-- PRODUCTS & AUTOMATIONS MEGA MENU -->
                 <div class="relative products-dropdown-parent dropdown-parent py-6">
-                    <button class="flex items-center gap-1.5 hover:text-igPink transition focus:outline-none text-igPink font-bold">
-                        <span>Products & Automations</span>
-                        <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                    <button type="button" aria-expanded="false" aria-controls="fcProductsMenu" class="flex items-center gap-1.5 text-pink-700 hover:text-pink-800 transition font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange focus-visible:ring-offset-2 rounded-lg px-1">
+                        <span>Products &amp; Automations</span>
+                        <i class="fa-solid fa-chevron-down text-[10px]" aria-hidden="true"></i>
                     </button>
-                    <!-- Mega Menu -->
-                    <div class="mega-menu absolute top-full -left-28 w-[760px] bg-white rounded-2xl border border-slate-200 p-8 shadow-2xl bik-mega-shadow z-50">
+                    <div id="fcProductsMenu" class="mega-menu absolute top-full -left-28 w-[760px] bg-white rounded-2xl border border-slate-200 p-8 shadow-2xl bik-mega-shadow z-50">
                         <div class="grid grid-cols-4 gap-6 text-xs">
                             <div class="space-y-3">
-                                <div class="flex items-center gap-2 text-igPink font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-bullhorn"></i> CAMPAIGNS</div>
-                                <ul class="space-y-2.5 text-slate-600 font-medium">
-                                    <li><a href="email-marketing.html" class="hover:text-igPink transition block">Email marketing</a></li>
-                                    <li><a href="whatsapp-marketing.html" class="hover:text-igPink transition block">WhatsApp marketing</a></li>
-                                    <li><a href="sms-marketing.html" class="hover:text-igPink transition block">SMS marketing</a></li>
-                                    <li><a href="customer-data-platform.html" class="hover:text-igPink transition block">Customer data platform</a></li>
-                                    <li><a href="rcs-messaging.html" class="hover:text-igPink transition block">RCS messaging</a></li>
+                                <div class="flex items-center gap-2 text-pink-700 font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-bullhorn" aria-hidden="true"></i> CAMPAIGNS</div>
+                                <ul class="space-y-2.5 text-slate-700 font-medium">
+                                    <li><a href="email-marketing.html" class="hover:text-pink-700 transition block">Email marketing</a></li>
+                                    <li><a href="whatsapp-marketing.html" class="hover:text-pink-700 transition block">WhatsApp marketing</a></li>
+                                    <li><a href="sms-marketing.html" class="hover:text-pink-700 transition block">SMS marketing</a></li>
+                                    <li><a href="customer-data-platform.html" class="hover:text-pink-700 transition block">Customer data platform</a></li>
+                                    <li><a href="rcs-messaging.html" class="hover:text-pink-700 transition block">RCS messaging</a></li>
                                 </ul>
                             </div>
                             <div class="space-y-3 bg-pink-50/70 p-3 -m-3 rounded-xl border border-pink-100">
-                                <div class="flex items-center gap-2 text-igPink font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-gear"></i> AUTOMATIONS</div>
+                                <div class="flex items-center gap-2 text-pink-700 font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-gear" aria-hidden="true"></i> AUTOMATIONS</div>
                                 <ul class="space-y-2.5 text-slate-700 font-medium">
-                                    <li><a href="store-automation.html" class="hover:text-igPink transition block">Store automation</a></li>
-                                    <li><a href="instagram-automation.html" class="text-igPink font-bold hover:underline block flex items-center gap-1"><span>Instagram automation</span> <i class="fa-solid fa-arrow-right text-[9px]"></i></a></li>
-                                    <li><a href="whatsapp-automation.html" class="hover:text-igPink transition block">WhatsApp automation</a></li>
-                                    <li><a href="ctwa-automation.html" class="hover:text-igPink transition block">Click to WhatsApp ads</a></li>
-                                    <li><a href="ai-voice-agents.html" class="hover:text-igPink transition block">AI Voice Agents</a></li>
+                                    <li><a href="store-automation.html" class="hover:text-orange-700 transition block">Store automation</a></li>
+                                    <li><a href="instagram-automation.html" class="text-pink-700 font-bold hover:underline block flex items-center gap-1"><span>Instagram automation</span> <i class="fa-solid fa-arrow-right text-[9px]" aria-hidden="true"></i></a></li>
+                                    <li><a href="whatsapp-automation.html" class="hover:text-emerald-700 transition block">WhatsApp automation</a></li>
+                                    <li><a href="ctwa-automation.html" class="hover:text-blue-700 transition block">Click to WhatsApp ads</a></li>
+                                    <li><a href="ai-voice-agents.html" class="hover:text-purple-700 transition block">AI Voice Agents</a></li>
                                 </ul>
                             </div>
                             <div class="space-y-3">
-                                <div class="flex items-center gap-2 text-igPink font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-headset"></i> HELPDESK</div>
-                                <ul class="space-y-2.5 text-slate-600 font-medium">
-                                    <li><a href="customer-support.html" class="hover:text-igPink transition block">Customer support</a></li>
-                                    <li><a href="whatsapp-calling.html" class="hover:text-igPink transition block">WhatsApp calling</a></li>
+                                <div class="flex items-center gap-2 text-pink-700 font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-headset" aria-hidden="true"></i> HELPDESK</div>
+                                <ul class="space-y-2.5 text-slate-700 font-medium">
+                                    <li><a href="customer-support.html" class="hover:text-pink-700 transition block">Customer support</a></li>
+                                    <li><a href="whatsapp-calling.html" class="hover:text-pink-700 transition block">WhatsApp calling</a></li>
                                 </ul>
                             </div>
                             <div class="space-y-4">
                                 <div class="space-y-2">
-                                    <div class="text-igPink font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-comment-dots"></i> POPUPS</div>
-                                    <a href="solutions.html?module=gamification" class="hover:text-igPink transition block text-slate-600">Gamification</a>
+                                    <div class="text-pink-700 font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-comment-dots" aria-hidden="true"></i> POPUPS</div>
+                                    <a href="solutions.html?module=gamification" class="hover:text-pink-700 transition block text-slate-700">Gamification</a>
                                 </div>
                                 <div class="space-y-2 border-t border-slate-100 pt-3">
-                                    <div class="text-igPink font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-robot"></i> CHATBOTS</div>
-                                    <a href="solutions.html?module=whatsapp-chatbot" class="hover:text-igPink transition block text-slate-600">WhatsApp chatbot</a>
+                                    <div class="text-pink-700 font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-robot" aria-hidden="true"></i> CHATBOTS</div>
+                                    <ul class="space-y-2 text-slate-700 font-medium">
+                                        <li><a href="solutions.html?module=whatsapp-chatbot" class="hover:text-pink-700 transition block">WhatsApp chatbot</a></li>
+                                        <li><a href="solutions.html?module=instagram-chatbot" class="hover:text-pink-700 transition block">Instagram chatbot</a></li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <a href="delivery.html" class="hover:text-igPink transition">Fleet Dispatch</a>
-                <a href="web-development.html" class="hover:text-igPink transition">Web Development</a>
-                <a href="about.html" class="hover:text-igPink transition">About Us</a>
+                <a href="delivery.html" class="hover:text-pink-700 transition">Fleet Dispatch</a>
+                <a href="web-development.html" class="hover:text-pink-700 transition">Web Development</a>
+                <a href="about.html" class="hover:text-pink-700 transition">About Us</a>
             </nav>
 
-            <div class="flex items-center space-x-4">
-                <a href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah%20team,%20I%20want%20to%20deploy%20Instagram%20Automation." target="_blank" class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-gradient-to-r from-igOrange via-igPink to-igPurple text-white font-bold text-sm transition shadow-md shadow-pink-500/20">
+            <div class="flex items-center space-x-2.5 shrink-0">
+                <div class="fc-auth-slot"></div>
+                <a href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah%20team,%20I%20want%20to%20deploy%20Instagram%20Automation." target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center justify-center px-4 xl:px-5 py-2.5 rounded-xl bg-pink-700 hover:bg-pink-800 text-white font-bold text-xs xl:text-sm transition shadow-md shadow-pink-500/20 whitespace-nowrap shrink-0">
                     Connect Instagram
                 </a>
+                <button id="fcMobileMenuBtn" type="button" aria-label="Toggle Mobile Menu" aria-expanded="false" aria-controls="fcMobileDrawer" onclick="window.FC_WIDGETS && window.FC_WIDGETS.toggleMobileDrawer ? window.FC_WIDGETS.toggleMobileDrawer() : null" class="lg:hidden p-2 rounded-xl border border-slate-200 hover:border-igPink bg-white text-slate-700 hover:text-pink-700 transition flex items-center justify-center shrink-0 w-10 h-10 shadow-sm cursor-pointer touch-target-44 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange focus-visible:ring-offset-2">
+                    <i class="fa-solid fa-bars text-sm" aria-hidden="true"></i>
+                </button>
             </div>
         </div>
     </header>
 
-    <!-- HERO SECTION (Flying Cheetah INSTAGRAM EXACT COPY & VALUE PROPOSITION) -->
-    <section class="pt-16 pb-20 md:pt-24 md:pb-28 bg-gradient-to-b from-pink-50/40 via-white to-white overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                
-                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pink-100 border border-pink-200 text-igPink text-xs font-bold uppercase tracking-wide">
-                        <i class="fa-brands fa-instagram text-base"></i> Meta Official Messaging API Partner
+    <main id="main-content">
+
+        <!-- HERO SECTION -->
+        <section class="pt-14 pb-20 md:pt-20 md:pb-24 bg-gradient-to-b from-pink-50/40 via-white to-white overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-pink-50 border border-pink-200 text-pink-700 text-xs font-bold uppercase tracking-wide">
+                            <i class="fa-brands fa-instagram text-base text-pink-700" aria-hidden="true"></i>
+                            <span>Meta Official Messaging API Partner</span>
+                        </div>
+
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-bikDark tracking-tight leading-[1.08] font-display">
+                            Drive more Instagram interactions <span class="ig-gradient-text">towards transactions</span>.
+                        </h1>
+
+                        <p class="text-base sm:text-lg text-slate-700 max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal">
+                            Engage instantly with every Reel comment, Story mention, Live reaction, and DM keyword from followers and ad prospects. Turn 18%â€“22% of organic and boosted interactions into qualified buyers using automated Shopify catalog carousels, dynamic size-selection quick replies, 1-tap UPI checkout links, and seamless WhatsApp order tracking.
+                        </p>
+
+                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                            <a href="demo.html" onclick="if(window.FC_LEADS){window.FC_LEADS.openAuditModal('Instagram DM Automation');return false;}" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-pink-700 hover:bg-pink-800 text-white font-bold text-sm transition shadow-lg shadow-pink-500/25">
+                                <span>Book Free Live Demo</span> <span class="text-base leading-none" aria-hidden="true">âž”</span>
+                            </a>
+                            <a href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah,%20I%20want%20to%20learn%20more%20about%20Instagram%20Automation." target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl border border-slate-300 hover:border-igPink text-slate-800 font-bold text-sm bg-white hover:bg-pink-50/50 transition">
+                                <i class="fa-brands fa-whatsapp text-emerald-700 text-base" aria-hidden="true"></i> <span>Chat on WhatsApp</span>
+                            </a>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-4 sm:gap-6 pt-6 border-t border-slate-100 max-w-lg mx-auto lg:mx-0 text-left">
+                            <div class="p-3 rounded-2xl bg-pink-50/60 border border-pink-200/70">
+                                <div class="text-2xl sm:text-3xl font-black text-pink-700 font-display fc-num tracking-tight">18%</div>
+                                <div class="text-xs font-bold text-slate-700 mt-0.5">Comment to Buyers</div>
+                            </div>
+                            <div class="p-3 rounded-2xl bg-emerald-50/60 border border-emerald-200/70">
+                                <div class="text-2xl sm:text-3xl font-black text-emerald-700 font-display fc-num tracking-tight">3.5s</div>
+                                <div class="text-xs font-bold text-slate-700 mt-0.5">Instant Auto-DM</div>
+                            </div>
+                            <div class="p-3 rounded-2xl bg-purple-50/60 border border-purple-200/70">
+                                <div class="text-2xl sm:text-3xl font-black text-purple-700 font-display fc-num tracking-tight">2.8x</div>
+                                <div class="text-xs font-bold text-slate-700 mt-0.5">ROAS Multiplier</div>
+                            </div>
+                        </div>
+
+                        <!-- Voiceover Audio Hint -->
+                        <div class="flex items-center gap-2.5 p-3.5 rounded-xl bg-pink-50/80 border border-pink-200 text-pink-900 text-xs font-medium max-w-lg mx-auto lg:mx-0">
+                            <i class="fa-solid fa-volume-high text-pink-700 text-sm" aria-hidden="true"></i>
+                            <span>Includes official AI voiceover narration. Tap "Unmute Voice" on the demo video player to listen.</span>
+                        </div>
                     </div>
-                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-bikDark tracking-tight leading-[1.08] font-display">
-                        Drive more Instagram interactions <span class="ig-gradient-text">towards transactions</span>.
-                    </h1>
-                    <p class="text-lg text-slateText max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal">
-                        Engage instantly with every interaction from your followers and prospects and turn 18-22% of them into qualified buyers with automated Reel comment replies and DM buy-flows.
+
+                    <!-- Right Visual: Live Realistic Instagram AI Chatbot Demo Video -->
+                    <div class="lg:col-span-5 relative">
+                        <div class="rounded-3xl border border-pink-200/80 bg-white p-3.5 shadow-2xl bik-mega-shadow fc-card-glow relative overflow-hidden group">
+
+                            <!-- Top Video Header Controls -->
+                            <div class="flex items-center justify-between pb-3 px-1 text-xs border-b border-slate-100 gap-2">
+                                <div class="flex items-center gap-2 min-w-0">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shrink-0" aria-hidden="true"></span>
+                                    <span class="font-bold text-slate-800 font-display flex items-center gap-1.5 truncate">
+                                        <i class="fa-brands fa-instagram text-pink-700" aria-hidden="true"></i>
+                                        <span>Live Instagram AI Chatbot</span>
+                                    </span>
+                                </div>
+                                <div class="flex items-center gap-1.5 shrink-0">
+                                    <span class="px-2 py-0.5 rounded-full bg-pink-50 border border-pink-200 text-pink-700 text-[10px] font-mono font-bold">
+                                        1.4s Auto-DM
+                                    </span>
+                                    <button type="button" onclick="toggleIgVideoMute()" id="igMuteBtn" class="px-2.5 py-1 rounded-lg bg-pink-700 hover:bg-pink-800 text-white flex items-center gap-1.5 transition text-xs font-bold shadow-sm cursor-pointer" title="Toggle Voiceover Sound">
+                                        <i class="fa-solid fa-volume-xmark" id="igMuteIcon" aria-hidden="true"></i>
+                                        <span id="igMuteText" class="text-[10px]">Unmute Voice</span>
+                                    </button>
+                                    <button type="button" onclick="toggleIgVideoPlay()" id="igPlayBtn" aria-label="Pause or play Instagram chatbot demo video" class="w-7 h-7 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center transition text-xs shadow-sm cursor-pointer" title="Pause / Play">
+                                        <i class="fa-solid fa-pause" id="igPlayIcon" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Video Player Canvas -->
+                            <div class="relative overflow-hidden rounded-2xl bg-white aspect-[9/16] w-full max-w-[360px] mx-auto flex items-center justify-center mt-3 border border-slate-100 shadow-inner">
+                                <video id="igChatbotVideo" src="videos/instagram_ai_chatbot_demo.mp4" autoplay loop muted playsinline preload="metadata" class="w-full h-full object-contain rounded-2xl block"></video>
+                            </div>
+
+                            <!-- Bottom Telemetry Status Bar -->
+                            <div class="p-3 bg-slate-50 border border-slate-200/80 rounded-xl mt-3 flex items-center justify-between gap-2 text-xs font-semibold text-slate-700 shadow-sm">
+                                <span class="flex items-center gap-2 font-medium text-slate-800 truncate">
+                                    <i class="fa-solid fa-bolt text-orange-700" aria-hidden="true"></i>
+                                    <span>Reel Comment âž” Instant DM âž” Size &amp; FAQ Resolution</span>
+                                </span>
+                                <span class="text-emerald-700 font-mono text-[11px] bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200 font-bold whitespace-nowrap">100% Automated</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- OFFICIAL INSTAGRAM & META INTEGRATION STRIP -->
+        <section class="py-8 bg-pink-50/40 border-y border-pink-100/80">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs font-bold text-slate-700">
+                    <span class="uppercase tracking-wider text-[11px] text-pink-700 flex items-center gap-1.5"><i class="fa-brands fa-instagram text-pink-700 text-base" aria-hidden="true"></i> Meta Official Tech:</span>
+                    <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-pink-700 font-bold"><i class="fa-brands fa-instagram text-lg text-[#E1306C]" aria-hidden="true"></i> Instagram Graph API</span>
+                    <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-blue-700"><i class="fa-brands fa-meta text-lg text-[#0866FF]" aria-hidden="true"></i> Meta Business Suite</span>
+                    <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-emerald-700"><i class="fa-brands fa-whatsapp text-lg text-emerald-700" aria-hidden="true"></i> WhatsApp Cloud API</span>
+                    <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-slate-800"><i class="fa-brands fa-shopify text-lg text-[#96bf48]" aria-hidden="true"></i> Shopify Direct Sync</span>
+                    <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-blue-700"><i class="fa-solid fa-qrcode text-lg text-blue-700" aria-hidden="true"></i> UPI 1-Tap Pay</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- BESPOKE REEL-TO-DM FLOW ARCHITECTURE -->
+        <section class="py-20 bg-white border-b border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-7">
+                        <div class="fc-showcase-frame p-3 bg-white">
+                            <img src="images/instagram_reel_to_dm_flow_light.png" alt="Pure-white Instagram Reel Comment to Instant Auto-DM Carousel, Size Selection, and UPI Checkout Flow" loading="lazy" class="w-full h-auto rounded-2xl border border-slate-100 block">
+                        </div>
+                    </div>
+                    <div class="lg:col-span-5 space-y-6">
+                        <span class="inline-block text-xs font-bold uppercase tracking-widest text-pink-700 bg-pink-50 border border-pink-200 px-3.5 py-1 rounded-full">Reel-to-Checkout Pipeline</span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark font-display leading-tight">
+                            Eliminate "Link in Bio" Friction Across Every Viral Reel &amp; Story
+                        </h2>
+                        <p class="text-sm sm:text-base text-slate-700 leading-relaxed">
+                            Asking shoppers to leave a Reel, visit your profile, tap a generic Linktree, and hunt for a product loses over 88% of buying intent. Flying Cheetah replies in public comments and delivers a tappable product card straight to their Instagram DM inbox within 3.5 seconds.
+                        </p>
+                        <div class="space-y-4">
+                            <div class="p-4 rounded-2xl bg-pink-50/60 border border-pink-200/80">
+                                <h3 class="font-bold text-sm text-bikDark flex items-center gap-2">
+                                    <i class="fa-solid fa-comments text-pink-700" aria-hidden="true"></i>
+                                    <span>1. Keyword &amp; Intent-Aware Comment Triggers</span>
+                                </h3>
+                                <p class="text-xs text-slate-700 mt-1 leading-relaxed">Detects exact keywords like "PRICE", "LINK", "SIZE", or natural-language Hinglish questions ("kitne ka hai?") across organic Reels and boosted posts.</p>
+                            </div>
+                            <div class="p-4 rounded-2xl bg-purple-50/60 border border-purple-200/80">
+                                <h3 class="font-bold text-sm text-bikDark flex items-center gap-2">
+                                    <i class="fa-solid fa-layer-group text-purple-700" aria-hidden="true"></i>
+                                    <span>2. Dynamic Shopify/WooCommerce DM Carousels</span>
+                                </h3>
+                                <p class="text-xs text-slate-700 mt-1 leading-relaxed">Pulls real-time product photography, variant stock status, and sizing quick-replies directly from your catalog API.</p>
+                            </div>
+                            <div class="p-4 rounded-2xl bg-emerald-50/60 border border-emerald-200/80">
+                                <h3 class="font-bold text-sm text-bikDark flex items-center gap-2">
+                                    <i class="fa-brands fa-whatsapp text-emerald-700" aria-hidden="true"></i>
+                                    <span>3. Unified WhatsApp &amp; UPI Order Handoff</span>
+                                </h3>
+                                <p class="text-xs text-slate-700 mt-1 leading-relaxed">Captures the shopper's WhatsApp number with 1 tap to send Razorpay UPI links, GST receipts, and live Borzo delivery tracking.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INTERACTIVE REEL / STORY / DM KEYWORD TRIGGER SIMULATOR -->
+        <section id="ig-trigger-simulator" class="py-24 bg-gradient-to-b from-pink-50/30 via-white to-white border-b border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+                <div class="text-center max-w-3xl mx-auto space-y-3">
+                    <span class="inline-block text-xs font-bold uppercase tracking-widest text-pink-700 bg-pink-50 border border-pink-200 px-3.5 py-1 rounded-full">
+                        Interactive Trigger Simulator
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark font-display">
+                        Simulate Reel Comments, Story Mentions &amp; DM Keywords Live
+                    </h2>
+                    <p class="text-sm sm:text-base text-slate-700 leading-relaxed">
+                        Test how Flying Cheetah responds to different Instagram entry points, customize your brand vertical, and model your monthly DM checkout revenue.
                     </p>
-
-                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
-                        <a href="demo.html" onclick="if(window.FC_LEADS){window.FC_LEADS.openAuditModal('Instagram DM Automation');return false;}" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-igOrange via-igPink to-igPurple text-white font-bold text-sm transition shadow-lg shadow-pink-500/25">
-                            <span>Book Free Live Demo</span> <span class="text-base leading-none">➔</span>
-                        </a>
-                        <a href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah,%20I%20want%20to%20learn%20more%20about%20Instagram%20Automation." target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl border border-slate-300 hover:border-igPink text-slate-800 font-bold text-sm bg-white hover:bg-pink-50/50 transition">
-                            <i class="fa-brands fa-whatsapp text-emerald-500 text-base"></i> <span>Chat on WhatsApp</span>
-                        </a>
-                    </div>
-
-                    <div class="grid grid-cols-3 gap-6 pt-6 border-t border-slate-100 max-w-lg mx-auto lg:mx-0 text-left">
-                        <div class="p-3 rounded-2xl bg-pink-50/60 border border-pink-100">
-                            <div class="text-3xl font-black text-igPink font-display fc-num tracking-tight">18%</div>
-                            <div class="text-[11px] font-bold text-slate-600 mt-0.5">Comment to Buyers</div>
-                        </div>
-                        <div class="p-3 rounded-2xl bg-emerald-50/60 border border-emerald-100">
-                            <div class="text-3xl font-black text-emerald-600 font-display fc-num tracking-tight">3.5s</div>
-                            <div class="text-[11px] font-bold text-slate-600 mt-0.5">Instant Auto-DM</div>
-                        </div>
-                        <div class="p-3 rounded-2xl bg-purple-50/60 border border-purple-100">
-                            <div class="text-3xl font-black text-purple-600 font-display fc-num tracking-tight">2.8x</div>
-                            <div class="text-[11px] font-bold text-slate-600 mt-0.5">ROAS Multiplier</div>
-                        </div>
-                    </div>
-
-                    <!-- Voiceover Audio Hint -->
-                    <div class="flex items-center gap-2 p-3 rounded-xl bg-pink-50/80 border border-pink-200 text-pink-900 text-xs font-medium max-w-lg mt-4">
-                        <i class="fa-solid fa-volume-high text-pink-600 text-sm"></i>
-                        <span>Includes official AI voiceover narration. Tap the speaker button to listen!</span>
-                    </div>
                 </div>
 
-                <!-- Right Visual: Live Realistic Instagram AI Chatbot Demo Video -->
-                <div class="lg:col-span-5 relative">
-                    <div class="rounded-3xl border border-pink-200/80 bg-white p-3.5 shadow-2xl bik-mega-shadow fc-card-glow relative overflow-hidden group">
-                        
-                        <!-- Top Video Header Controls -->
-                        <div class="flex items-center justify-between pb-3 px-1 text-xs border-b border-slate-100">
-                            <div class="flex items-center gap-2">
-                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                                <span class="font-bold text-slate-800 font-display flex items-center gap-1.5">
-                                    <i class="fa-brands fa-instagram text-pink-600"></i>
-                                    <span>Live Instagram AI Chatbot</span>
-                                </span>
+                <!-- Accessible Tablist -->
+                <div role="tablist" aria-label="Instagram Trigger Channels" class="flex flex-wrap items-center justify-center gap-3">
+                    <button type="button" role="tab" id="ig-tab-reel" aria-selected="true" aria-controls="ig-panel-reel" onclick="switchIgTrigger('reel')" class="px-5 py-3 rounded-xl text-xs sm:text-sm font-bold transition border border-pink-700 bg-pink-700 text-white shadow-md cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange focus-visible:ring-offset-2">
+                        <i class="fa-solid fa-clapperboard mr-1.5" aria-hidden="true"></i> Reel Comment ("PRICE")
+                    </button>
+                    <button type="button" role="tab" id="ig-tab-story" aria-selected="false" aria-controls="ig-panel-story" onclick="switchIgTrigger('story')" class="px-5 py-3 rounded-xl text-xs sm:text-sm font-bold transition border border-slate-200 bg-white text-slate-700 hover:border-pink-300 hover:bg-pink-50/50 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange focus-visible:ring-offset-2">
+                        <i class="fa-solid fa-bolt mr-1.5" aria-hidden="true"></i> Story Mention (@brand)
+                    </button>
+                    <button type="button" role="tab" id="ig-tab-dm" aria-selected="false" aria-controls="ig-panel-dm" onclick="switchIgTrigger('dm')" class="px-5 py-3 rounded-xl text-xs sm:text-sm font-bold transition border border-slate-200 bg-white text-slate-700 hover:border-pink-300 hover:bg-pink-50/50 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange focus-visible:ring-offset-2">
+                        <i class="fa-regular fa-paper-plane mr-1.5" aria-hidden="true"></i> DM Keyword ("SIZE M")
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    <!-- Left: Tab Panels (Live DM & Public Reply Preview) -->
+                    <div class="lg:col-span-7">
+                        <!-- Panel 1: Reel Comment -->
+                        <div id="ig-panel-reel" role="tabpanel" aria-labelledby="ig-tab-reel" class="rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-xl space-y-6">
+                            <div class="flex flex-wrap items-center justify-between gap-2 pb-4 border-b border-slate-100">
+                                <span class="px-3 py-1 rounded-full bg-pink-50 border border-pink-200 text-pink-700 text-xs font-bold">Trigger 01 â€¢ Viral Reel Comment</span>
+                                <span class="font-mono text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">DM Latency: 1.4s</span>
                             </div>
-                            <div class="flex items-center gap-2">
-                                <span class="px-2 py-0.5 rounded-full bg-pink-50 border border-pink-200 text-pink-700 text-[10px] font-mono font-bold">
-                                    1.4s Auto-DM
-                                </span>
-                                <button onclick="toggleIgVideoMute()" id="igMuteBtn" class="px-2.5 py-1 rounded-lg bg-pink-600 hover:bg-pink-700 text-white flex items-center gap-1.5 transition text-xs font-bold shadow-xs" title="Toggle Voiceover Sound">
-                                    <i class="fa-solid fa-volume-xmark" id="igMuteIcon"></i>
-                                    <span id="igMuteText" class="text-[10px]">Unmute Voice</span>
-                                </button>
-                                <button onclick="toggleIgVideoPlay()" id="igPlayBtn" class="w-7 h-7 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center transition text-xs shadow-xs" title="Pause / Play">
-                                    <i class="fa-solid fa-pause" id="igPlayIcon"></i>
-                                </button>
+
+                            <div class="space-y-4">
+                                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+                                    <div class="text-xs font-bold text-slate-600 mb-1">1. Shopper Comments on Reel:</div>
+                                    <div class="text-sm font-bold text-bikDark">"PRICE &amp; link please!! ðŸ˜" <span class="text-xs font-mono text-pink-700 ml-2">@riya.kapoor</span></div>
+                                </div>
+
+                                <div class="p-4 rounded-2xl bg-orange-50/60 border border-orange-200">
+                                    <div class="text-xs font-bold text-orange-700 mb-1">2. Automated Public Comment Reply (Rotated Anti-Spam):</div>
+                                    <div class="text-sm text-bikDark font-medium">"Hey Riya! Just sent the direct product link + sizing details to your DMs âœ¨ Check your message requests!"</div>
+                                </div>
+
+                                <div class="p-5 rounded-2xl bg-pink-50/50 border border-pink-200 space-y-3">
+                                    <div class="flex items-center justify-between text-xs font-bold text-pink-700">
+                                        <span>3. Instant Automated Instagram DM Card + UPI Link</span>
+                                        <span class="font-mono">Meta Graph API</span>
+                                    </div>
+                                    <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm space-y-3 text-xs text-slate-800">
+                                        <div class="font-bold text-sm text-bikDark">Festive Silk Co-ord Set â€” â‚¹2,199 (15% Reel Exclusive Off)</div>
+                                        <p class="text-slate-700 leading-relaxed">In stock in XS, S, M, L. Tap your size below for an instant UPI checkout link or 25-min Mumbai express delivery:</p>
+                                        <div class="flex flex-wrap gap-2">
+                                            <span class="px-3 py-1.5 rounded-lg bg-pink-50 border border-pink-200 text-pink-700 font-bold">Select Size M</span>
+                                            <span class="px-3 py-1.5 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-700 font-bold">Pay â‚¹2,199 via UPI âž”</span>
+                                            <span class="px-3 py-1.5 rounded-lg bg-slate-100 border border-slate-200 text-slate-700 font-bold">Track on WhatsApp</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- Video Player Canvas -->
-                        <div class="relative overflow-hidden rounded-2xl bg-white aspect-[9/16] w-full max-w-[360px] mx-auto flex items-center justify-center mt-3 border border-slate-100 shadow-inner">
-                            <video id="igChatbotVideo" src="videos/instagram_ai_chatbot_demo.mp4" autoplay loop muted playsinline preload="metadata" class="w-full h-full object-contain rounded-2xl block"></video>
+                        <!-- Panel 2: Story Mention -->
+                        <div id="ig-panel-story" role="tabpanel" aria-labelledby="ig-tab-story" hidden class="rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-xl space-y-6">
+                            <div class="flex flex-wrap items-center justify-between gap-2 pb-4 border-b border-slate-100">
+                                <span class="px-3 py-1 rounded-full bg-purple-50 border border-purple-200 text-purple-700 text-xs font-bold">Trigger 02 â€¢ Story @Mention &amp; UGC Loop</span>
+                                <span class="font-mono text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">DM Latency: 1.8s</span>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+                                    <div class="text-xs font-bold text-slate-600 mb-1">1. Customer / Micro-Creator Tags Your Brand in Story:</div>
+                                    <div class="text-sm font-bold text-bikDark">"Unboxing my new serum from @yourbrand âœ¨"</div>
+                                </div>
+
+                                <div class="p-4 rounded-2xl bg-purple-50/60 border border-purple-200">
+                                    <div class="text-xs font-bold text-purple-700 mb-1">2. Instant Gratitude DM + Referral Perk:</div>
+                                    <div class="text-sm text-bikDark font-medium">"Thank you for the Story shoutout! Here is a â‚¹300 loyalty credit + your shareable friend discount code."</div>
+                                </div>
+
+                                <div class="p-5 rounded-2xl bg-pink-50/50 border border-pink-200 space-y-3">
+                                    <div class="flex items-center justify-between text-xs font-bold text-purple-700">
+                                        <span>3. UGC Rights &amp; Repeat Order Card</span>
+                                        <span class="font-mono">Story Webhook</span>
+                                    </div>
+                                    <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm space-y-3 text-xs text-slate-800">
+                                        <div class="font-bold text-sm text-bikDark">Unlock Your â‚¹300 Creator &amp; VIP Perk</div>
+                                        <p class="text-slate-700 leading-relaxed">Apply code <span class="font-mono font-bold text-purple-700 bg-purple-50 px-1.5 py-0.5 rounded">STORY300</span> on your next refill or share with friends to earn â‚¹200 store cash per order.</p>
+                                        <div class="flex flex-wrap gap-2">
+                                            <span class="px-3 py-1.5 rounded-lg bg-purple-50 border border-purple-200 text-purple-700 font-bold">Claim â‚¹300 Credit âž”</span>
+                                            <span class="px-3 py-1.5 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-700 font-bold">Get WhatsApp Updates</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
-                        <!-- Bottom Telemetry Status Bar -->
-                        <div class="p-3 bg-slate-50/90 border border-slate-200/80 rounded-xl mt-3 flex items-center justify-between text-xs font-semibold text-slate-700 shadow-xs">
-                            <span class="flex items-center gap-2 font-medium text-slate-800 truncate">
-                                <i class="fa-solid fa-bolt text-amber-500"></i>
-                                <span>Reel Comment ➔ Instant DM ➔ Size &amp; FAQ Resolution</span>
-                            </span>
-                            <span class="text-emerald-700 font-mono text-[11px] bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200 font-bold whitespace-nowrap">100% Automated</span>
+                        <!-- Panel 3: DM Keyword -->
+                        <div id="ig-panel-dm" role="tabpanel" aria-labelledby="ig-tab-dm" hidden class="rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-xl space-y-6">
+                            <div class="flex flex-wrap items-center justify-between gap-2 pb-4 border-b border-slate-100">
+                                <span class="px-3 py-1 rounded-full bg-orange-50 border border-orange-200 text-orange-700 text-xs font-bold">Trigger 03 â€¢ Direct DM Keyword &amp; AI Concierge</span>
+                                <span class="font-mono text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">DM Latency: 1.1s</span>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+                                    <div class="text-xs font-bold text-slate-600 mb-1">1. Shopper Sends DM From Ad or Profile Bio:</div>
+                                    <div class="text-sm font-bold text-bikDark">"SIZE M available? Can it reach Bandra tomorrow?"</div>
+                                </div>
+
+                                <div class="p-4 rounded-2xl bg-emerald-50/60 border border-emerald-200">
+                                    <div class="text-xs font-bold text-emerald-700 mb-1">2. AI Intent + Live Inventory Check:</div>
+                                    <div class="text-sm text-bikDark font-medium">Checks Shopify inventory for Size M + Bandra 400050 serviceability in 320ms before replying.</div>
+                                </div>
+
+                                <div class="p-5 rounded-2xl bg-orange-50/50 border border-orange-200 space-y-3">
+                                    <div class="flex items-center justify-between text-xs font-bold text-orange-700">
+                                        <span>3. Instant Stock-Verified DM Checkout</span>
+                                        <span class="font-mono">Shopify + Borzo API</span>
+                                    </div>
+                                    <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm space-y-3 text-xs text-slate-800">
+                                        <div class="font-bold text-sm text-bikDark">Yes! 4 units of Size M left â€” Ready for Today's Dispatch</div>
+                                        <p class="text-slate-700 leading-relaxed">Order within 45 minutes for same-day Bandra delivery via Borzo Express. Pay via GPay/PhonePe UPI below:</p>
+                                        <div class="flex flex-wrap gap-2">
+                                            <span class="px-3 py-1.5 rounded-lg bg-orange-50 border border-orange-200 text-orange-700 font-bold">Express Checkout (â‚¹1,899) âž”</span>
+                                            <span class="px-3 py-1.5 rounded-lg bg-slate-100 border border-slate-200 text-slate-700 font-bold">Talk to Stylist</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Interactive Instagram DM Revenue & Conversion Estimator -->
+                    <div class="lg:col-span-5 rounded-3xl border border-slate-200 bg-white p-6 sm:p-7 shadow-xl space-y-6">
+                        <div class="pb-4 border-b border-slate-100">
+                            <h3 class="text-lg font-extrabold text-bikDark font-display">Reel-to-DM Revenue Modeler</h3>
+                            <p class="text-xs text-slate-600 mt-1">Project monthly UPI sales generated from Instagram comments and DMs.</p>
+                        </div>
+
+                        <div class="space-y-5">
+                            <div class="space-y-2">
+                                <label for="igVerticalSelect" class="block text-xs font-bold text-slate-700">Brand Category Conversion Benchmark</label>
+                                <select id="igVerticalSelect" onchange="updateIgRoiCalc()" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 bg-white text-xs sm:text-sm font-semibold text-bikDark focus:outline-none focus:ring-2 focus:ring-bikOrange">
+                                    <option value="0.18">Fashion &amp; Apparel (18% Comment-to-Buyer)</option>
+                                    <option value="0.21">Skincare &amp; D2C Beauty (21% Comment-to-Buyer)</option>
+                                    <option value="0.24">Creators &amp; Digital Courses (24% Comment-to-Buyer)</option>
+                                    <option value="0.14">Fine Jewellery &amp; Luxury (14% High-AOV Close)</option>
+                                </select>
+                            </div>
+
+                            <div class="space-y-2">
+                                <div class="flex items-center justify-between text-xs font-bold">
+                                    <label for="igMonthlyComments" class="text-slate-700">Monthly Reel Comments &amp; Story Replies</label>
+                                    <span id="igCommentsDisplay" class="font-mono text-pink-700 bg-pink-50 px-2 py-0.5 rounded border border-pink-200">3,500</span>
+                                </div>
+                                <input id="igMonthlyComments" type="range" min="500" max="50000" step="500" value="3500" oninput="updateIgRoiCalc()" class="w-full accent-bikOrange cursor-pointer">
+                            </div>
+
+                            <div class="space-y-2">
+                                <label for="igAvgTicket" class="block text-xs font-bold text-slate-700">Average Product Order Value (INR â‚¹)</label>
+                                <input id="igAvgTicket" type="number" min="250" max="50000" step="50" value="1899" oninput="updateIgRoiCalc()" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 bg-white text-sm font-mono font-bold text-bikDark focus:outline-none focus:ring-2 focus:ring-bikOrange">
+                            </div>
+                        </div>
+
+                        <div class="rounded-2xl bg-gradient-to-br from-pink-50/70 via-white to-purple-50/70 border border-pink-200/80 p-5 space-y-4">
+                            <div>
+                                <div class="text-xs font-bold uppercase tracking-wider text-slate-600">Projected Monthly IG DM Revenue</div>
+                                <div id="igMonthlyRevenueOut" class="text-3xl sm:text-4xl font-black text-pink-700 font-display mt-1">â‚¹3,94,992</div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3 pt-3 border-t border-slate-200/80 text-xs">
+                                <div class="p-3 rounded-xl bg-white border border-slate-200">
+                                    <div class="text-slate-600 font-semibold">Auto-DMs Sent/Mo</div>
+                                    <div id="igAutoDmsOut" class="text-base font-black text-bikDark font-mono mt-0.5">3,500</div>
+                                </div>
+                                <div class="p-3 rounded-xl bg-white border border-slate-200">
+                                    <div class="text-slate-600 font-semibold">Paid Orders/Mo</div>
+                                    <div id="igPaidOrdersOut" class="text-base font-black text-emerald-700 font-mono mt-0.5">208 orders</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- OFFICIAL INSTAGRAM & META INTEGRATION STRIP -->
-    <section class="py-8 bg-pink-50/40 border-y border-pink-100/60">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs font-bold text-slate-500">
-                <span class="uppercase tracking-wider text-[11px] text-pink-700 flex items-center gap-1.5"><i class="fa-brands fa-instagram text-pink-600 text-base"></i> Meta Official Tech:</span>
-                <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-pink-600 font-bold"><i class="fa-brands fa-instagram text-lg text-[#E1306C]"></i> Instagram Graph API</span>
-                <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-blue-700"><i class="fa-brands fa-meta text-lg text-[#0866FF]"></i> Meta Business Suite</span>
-                <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-emerald-700"><i class="fa-brands fa-whatsapp text-lg text-emerald-500"></i> WhatsApp Cloud API</span>
-                <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-lime-800"><i class="fa-brands fa-shopify text-lg text-[#96bf48]"></i> Shopify Direct Sync</span>
-                <span class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-cyan-800"><i class="fa-solid fa-qrcode text-lg text-cyan-600"></i> UPI 1-Tap Pay</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- INSTAGRAM COUTURE REEL-TO-DM SHOWCASE -->
-    <section class="py-16 bg-gradient-to-b from-white to-pink-50/30 border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            <div class="lg:col-span-6 order-2 lg:order-1">
-                <div class="fc-showcase-frame aspect-[16/10]">
-                    <img src="images/instagram_automation_dashboard.jpg" alt="Instagram Reel Comment to Instant Auto-DM Commerce Showcase" loading="lazy" class="fc-showcase-img">
+        <!-- INLINE SVG DATA VISUALIZATIONS (PURE-WHITE CARDS) -->
+        <section class="py-24 bg-white border-b border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+                <div class="text-center max-w-3xl mx-auto space-y-3">
+                    <span class="inline-block text-xs font-bold uppercase tracking-widest text-purple-700 bg-purple-50 border border-purple-200 px-3.5 py-1 rounded-full">
+                        Conversion &amp; Velocity Analytics
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark font-display">
+                        Reel-to-UPI Funnel &amp; Engagement Telemetry
+                    </h2>
+                    <p class="text-sm sm:text-base text-slate-700 leading-relaxed">
+                        Compare legacy link-in-bio drop-off against automated Instagram DM commerce and inspect hourly checkout velocity during viral Reel spikes.
+                    </p>
                 </div>
-            </div>
-            <div class="lg:col-span-6 space-y-4 order-1 lg:order-2">
-                <span class="text-xs font-bold uppercase tracking-widest text-igPink bg-pink-100 px-3.5 py-1 rounded-full border border-pink-200">Visual Commerce Engine</span>
-                <h2 class="text-2xl sm:text-3xl font-extrabold text-bikDark font-display">Every Viral Reel &amp; Story Reply Converted Automatically</h2>
-                <p class="text-sm text-slateText leading-relaxed">Pair organic lookbook storytelling with instant Meta Graph API replies that deliver size guides, checkout links, and 1-tap WhatsApp handoff within seconds.</p>
-            </div>
-        </div>
-    </section>
 
-    <!-- CORE 4 FEATURES -->
-    <section class="py-24 bg-white border-t border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-            
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                <div class="p-6 rounded-2xl border border-slate-200 bg-slate-50/60 card-anim">
-                    <div class="w-12 h-12 rounded-xl bg-pink-100 text-igPink flex items-center justify-center text-xl mb-4">
-                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- SVG Chart 1: Reel-to-UPI Conversion Funnel -->
+                    <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-xl space-y-4">
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <div>
+                                <h3 class="text-base font-extrabold text-bikDark font-display">Reel-to-UPI Conversion Funnel</h3>
+                                <p class="text-xs text-slate-600">Per 1,000 Reel comments ("LINK" / "PRICE") â€” Auto-DM vs Link-in-Bio</p>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-pink-50 border border-pink-200 text-pink-700 text-xs font-bold">10.2x More Orders</span>
+                        </div>
+
+                        <svg viewBox="0 0 540 215" role="img" aria-label="Instagram Reel Comment to UPI Checkout Conversion Funnel Chart" class="w-full h-auto bg-white rounded-2xl border border-slate-100">
+                            <title>Reel-to-UPI Conversion Funnel</title>
+                            <defs>
+                                <linearGradient id="igFunnelPink" x1="0" y1="0" x2="1" y2="0">
+                                    <stop offset="0%" stop-color="#E04A1B"/>
+                                    <stop offset="55%" stop-color="#E1306C"/>
+                                    <stop offset="100%" stop-color="#C13584"/>
+                                </linearGradient>
+                            </defs>
+                            <rect x="0" y="0" width="540" height="215" fill="#FFFFFF"/>
+                            <line x1="165" y1="18" x2="165" y2="188" stroke="#E2E8F0" stroke-dasharray="4 4"/>
+                            <line x1="275" y1="18" x2="275" y2="188" stroke="#E2E8F0" stroke-dasharray="4 4"/>
+                            <line x1="385" y1="18" x2="385" y2="188" stroke="#E2E8F0" stroke-dasharray="4 4"/>
+                            <line x1="495" y1="18" x2="495" y2="188" stroke="#E2E8F0" stroke-dasharray="4 4"/>
+
+                            <text x="14" y="40" fill="#121624" font-size="11" font-weight="700">1. Reel Comments</text>
+                            <rect x="165" y="24" width="330" height="22" rx="6" fill="url(#igFunnelPink)"/>
+                            <text x="502" y="39" fill="#121624" font-size="11" font-weight="700">1,000</text>
+
+                            <text x="14" y="78" fill="#121624" font-size="11" font-weight="700">2. Auto-DM Opened</text>
+                            <rect x="165" y="62" width="290" height="22" rx="6" fill="#C13584"/>
+                            <text x="462" y="77" fill="#121624" font-size="11" font-weight="700">880 (88%)</text>
+
+                            <text x="14" y="116" fill="#121624" font-size="11" font-weight="700">3. Size / Card Tapped</text>
+                            <rect x="165" y="100" width="168" height="22" rx="6" fill="#0866FF"/>
+                            <text x="340" y="115" fill="#121624" font-size="11" font-weight="700">510 (51%)</text>
+
+                            <text x="14" y="154" fill="#121624" font-size="11" font-weight="700">4. UPI Order Paid</text>
+                            <rect x="165" y="138" width="68" height="22" rx="6" fill="#10B981"/>
+                            <text x="240" y="153" fill="#047857" font-size="11" font-weight="700">184 Orders (18.4%)</text>
+
+                            <!-- Legacy Link-in-Bio Comparison Marker -->
+                            <text x="14" y="182" fill="#475569" font-size="10" font-weight="700">Manual Link-in-Bio:</text>
+                            <rect x="165" y="170" width="14" height="14" rx="4" fill="#CBD5E1"/>
+                            <text x="186" y="181" fill="#475569" font-size="10" font-weight="700">18 Orders (1.8%)</text>
+
+                            <text x="162" y="203" fill="#475569" font-size="10" font-weight="600">0</text>
+                            <text x="268" y="203" fill="#475569" font-size="10" font-weight="600">330</text>
+                            <text x="378" y="203" fill="#475569" font-size="10" font-weight="600">660</text>
+                            <text x="482" y="203" fill="#475569" font-size="10" font-weight="600">1,000</text>
+                        </svg>
                     </div>
-                    <h3 class="font-bold text-base text-bikDark mb-2">Engagement on Auto-Pilot</h3>
-                    <p class="text-xs text-slateText leading-relaxed">Journeys trigger automatically when a user comments on Reels, DMs on ads, or mentions you in Stories, guiding leads to purchases.</p>
-                </div>
 
-                <div class="p-6 rounded-2xl border border-slate-200 bg-slate-50/60 card-anim">
-                    <div class="w-12 h-12 rounded-xl bg-orange-100 text-igOrange flex items-center justify-center text-xl mb-4">
-                        <i class="fa-solid fa-address-card"></i>
-                    </div>
-                    <h3 class="font-bold text-base text-bikDark mb-2">Intent-Based Lead Capture</h3>
-                    <p class="text-xs text-slateText leading-relaxed">Qualify leads based on product intent and automatically retarget them with dedicated WhatsApp catalog campaigns.</p>
-                </div>
+                    <!-- SVG Chart 2: Engagement-to-Checkout Telemetry -->
+                    <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-xl space-y-4">
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <div>
+                                <h3 class="text-base font-extrabold text-bikDark font-display">Engagement-to-Checkout Telemetry (24h Viral Spike)</h3>
+                                <p class="text-xs text-slate-600">Auto-DM throughput vs verified UPI order completions</p>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-bold">Zero Rate-Limit Drops</span>
+                        </div>
 
-                <div class="p-6 rounded-2xl border border-slate-200 bg-slate-50/60 card-anim">
-                    <div class="w-12 h-12 rounded-xl bg-purple-100 text-igPurple flex items-center justify-center text-xl mb-4">
-                        <i class="fa-solid fa-robot"></i>
-                    </div>
-                    <h3 class="font-bold text-base text-bikDark mb-2">AI Chatbot Responses</h3>
-                    <p class="text-xs text-slateText leading-relaxed">Handles 80% of routine product questions instantly in DMs, escalating high-value buyers to human staff automatically.</p>
-                </div>
+                        <svg viewBox="0 0 540 215" role="img" aria-label="24-Hour Instagram Engagement and DM Checkout Telemetry Chart" class="w-full h-auto bg-white rounded-2xl border border-slate-100">
+                            <title>Engagement-to-Checkout Telemetry</title>
+                            <defs>
+                                <linearGradient id="igSpikeArea" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#E1306C" stop-opacity="0.22"/>
+                                    <stop offset="100%" stop-color="#7C3AED" stop-opacity="0.03"/>
+                                </linearGradient>
+                            </defs>
+                            <rect x="0" y="0" width="540" height="215" fill="#FFFFFF"/>
+                            <line x1="48" y1="30" x2="515" y2="30" stroke="#E2E8F0" stroke-dasharray="4 4"/>
+                            <line x1="48" y1="75" x2="515" y2="75" stroke="#E2E8F0" stroke-dasharray="4 4"/>
+                            <line x1="48" y1="120" x2="515" y2="120" stroke="#E2E8F0" stroke-dasharray="4 4"/>
+                            <line x1="48" y1="165" x2="515" y2="165" stroke="#E2E8F0"/>
 
-                <div class="p-6 rounded-2xl border border-slate-200 bg-slate-50/60 card-anim">
-                    <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl mb-4">
-                        <i class="fa-solid fa-chart-line"></i>
+                            <!-- Auto-DM Velocity Curve -->
+                            <path d="M48 158 C120 135, 195 62, 275 40 C355 24, 435 50, 515 72 L515 165 L48 165 Z" fill="url(#igSpikeArea)"/>
+                            <path d="M48 158 C120 135, 195 62, 275 40 C355 24, 435 50, 515 72" fill="none" stroke="#E1306C" stroke-width="3.5" stroke-linecap="round"/>
+
+                            <!-- Paid UPI Checkout Curve -->
+                            <path d="M48 162 C120 152, 195 118, 275 94 C355 78, 435 90, 515 104" fill="none" stroke="#10B981" stroke-width="3" stroke-linecap="round"/>
+
+                            <circle cx="195" cy="70" r="4.5" fill="#E1306C" stroke="#FFFFFF" stroke-width="2"/>
+                            <circle cx="275" cy="40" r="5" fill="#E1306C" stroke="#FFFFFF" stroke-width="2"/>
+                            <circle cx="275" cy="94" r="5" fill="#10B981" stroke="#FFFFFF" stroke-width="2"/>
+                            <circle cx="435" cy="90" r="4.5" fill="#10B981" stroke="#FFFFFF" stroke-width="2"/>
+
+                            <text x="12" y="34" fill="#475569" font-size="10" font-weight="600">600/h</text>
+                            <text x="12" y="79" fill="#475569" font-size="10" font-weight="600">400/h</text>
+                            <text x="12" y="124" fill="#475569" font-size="10" font-weight="600">200/h</text>
+                            <text x="24" y="169" fill="#475569" font-size="10" font-weight="600">0</text>
+
+                            <text x="42" y="186" fill="#475569" font-size="10" font-weight="600">0h</text>
+                            <text x="188" y="186" fill="#475569" font-size="10" font-weight="600">6h</text>
+                            <text x="266" y="186" fill="#475569" font-size="10" font-weight="600">12h</text>
+                            <text x="426" y="186" fill="#475569" font-size="10" font-weight="600">18h</text>
+                            <text x="502" y="186" fill="#475569" font-size="10" font-weight="600">24h</text>
+
+                            <!-- Legend -->
+                            <circle cx="150" cy="204" r="4" fill="#E1306C"/>
+                            <text x="160" y="207" fill="#121624" font-size="10" font-weight="700">Auto-DMs Triggered</text>
+                            <circle cx="315" cy="204" r="4" fill="#10B981"/>
+                            <text x="325" y="207" fill="#047857" font-size="10" font-weight="700">Verified UPI Checkouts</text>
+                        </svg>
                     </div>
-                    <h3 class="font-bold text-base text-bikDark mb-2">Measure Business Value</h3>
-                    <p class="text-xs text-slateText leading-relaxed">Track step-by-step performance of your Instagram journeys with real-time revenue attribution dashboards.</p>
                 </div>
             </div>
+        </section>
 
-        </div>
-    </section>
+        <!-- VISUAL COMMERCE ENGINE & CORE 4 CAPABILITIES -->
+        <section class="py-20 bg-gradient-to-b from-white to-pink-50/30 border-b border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                    <div class="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4 order-2 lg:order-1">
+                        <div class="fc-showcase-frame p-2.5 bg-white">
+                            <img src="images/instagram_automation_dashboard.jpg" alt="Instagram Reel Comment to Instant Auto-DM Commerce Showcase" loading="lazy" class="rounded-xl w-full h-auto object-cover block">
+                        </div>
+                        <div class="fc-showcase-frame p-2.5 bg-white">
+                            <img src="images/instagram_automation_flow_v2.jpg" alt="Instagram DM Automated Flow &amp; Catalog Routing Interface" loading="lazy" class="rounded-xl w-full h-auto object-cover block">
+                        </div>
+                    </div>
+                    <div class="lg:col-span-6 space-y-4 order-1 lg:order-2">
+                        <span class="inline-block text-xs font-bold uppercase tracking-widest text-pink-700 bg-pink-50 px-3.5 py-1 rounded-full border border-pink-200">Visual Commerce Engine</span>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-bikDark font-display">Every Viral Reel &amp; Story Reply Converted Automatically</h2>
+                        <p class="text-sm sm:text-base text-slate-700 leading-relaxed">
+                            Pair organic lookbook storytelling with instant Meta Graph API replies that deliver size guides, UPI checkout links, and 1-tap WhatsApp handoff within secondsâ€”even when a single Reel generates 10,000+ overnight comments. Every DM interaction enriches your unified customer profile, powers Meta Conversions API attribution, and routes VIP or bulk inquiries directly to your sales team without losing momentum.
+                        </p>
+                    </div>
+                </div>
 
-    
-    <footer class="py-12 bg-white border-t border-slate-200 text-xs text-slate-500">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="p-6 rounded-2xl border border-slate-200 bg-white card-anim shadow-sm">
+                        <div class="w-12 h-12 rounded-xl bg-pink-50 border border-pink-200 text-pink-700 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="font-bold text-base text-bikDark mb-2">Engagement on Auto-Pilot</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">Journeys trigger automatically when a user comments on Reels, DMs on ads, or mentions you in Stories, guiding leads cleanly to purchases.</p>
+                    </div>
+
+                    <div class="p-6 rounded-2xl border border-slate-200 bg-white card-anim shadow-sm">
+                        <div class="w-12 h-12 rounded-xl bg-orange-50 border border-orange-200 text-orange-700 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-address-card" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="font-bold text-base text-bikDark mb-2">Intent-Based Lead Capture</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">Qualify buyers by SKU interest, budget, or pincode in DMs and sync phone numbers directly to dedicated WhatsApp catalog follow-ups.</p>
+                    </div>
+
+                    <div class="p-6 rounded-2xl border border-slate-200 bg-white card-anim shadow-sm">
+                        <div class="w-12 h-12 rounded-xl bg-purple-50 border border-purple-200 text-purple-700 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-robot" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="font-bold text-base text-bikDark mb-2">AI Chatbot Responses</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">Resolves 80% of routine shipping, COD, and sizing queries instantly in English &amp; Hinglish, routing complex VIP requests to human agents.</p>
+                    </div>
+
+                    <div class="p-6 rounded-2xl border border-slate-200 bg-white card-anim shadow-sm">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-700 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-chart-line" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="font-bold text-base text-bikDark mb-2">Measure Business Value</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">Track step-by-step performance from Reel comment to UPI payment confirmation with real-time per-Reel revenue attribution.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4 INDUSTRY USE CASES -->
+        <section class="py-24 bg-white border-b border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
+                <div class="text-center max-w-3xl mx-auto space-y-3">
+                    <span class="inline-block text-xs font-bold uppercase tracking-widest text-pink-700 bg-pink-50 border border-pink-200 px-3.5 py-1 rounded-full">
+                        4 Vertical Playbooks
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark font-display">
+                        How High-Velocity Categories Monetize Instagram DMs
+                    </h2>
+                    <p class="text-sm sm:text-base text-slate-700 leading-relaxed">
+                        Tailored conversational flows engineered for the exact buyer psychology of boutique fashion, creators, skincare, and fine jewellery.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm card-anim space-y-4">
+                        <div class="w-12 h-12 rounded-2xl bg-pink-50 border border-pink-200 text-pink-700 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-bag-shopping" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-bikDark">Boutique Fashion</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">
+                            Convert OOTD lookbook Reels where followers comment "OUTFIT" into multi-item DM carousels with size selection, styling notes, and instant UPI checkout.
+                        </p>
+                        <div class="pt-3 border-t border-slate-100 text-xs font-mono font-bold text-pink-700">18%â€“22% DM Checkout Rate</div>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm card-anim space-y-4">
+                        <div class="w-12 h-12 rounded-2xl bg-purple-50 border border-purple-200 text-purple-700 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-microphone-lines" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-bikDark">Creators &amp; Coaches</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">
+                            Deliver free PDF guides on "GUIDE" comments, capture WhatsApp numbers cleanly, and upsell paid cohorts or workshops directly inside the DM flow.
+                        </p>
+                        <div class="pt-3 border-t border-slate-100 text-xs font-mono font-bold text-purple-700">3.4x Lead-to-Cohort Conversion</div>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm card-anim space-y-4">
+                        <div class="w-12 h-12 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-700 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-droplet" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-bikDark">Skincare &amp; D2C</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">
+                            Run 3-question skin-type diagnostic quizzes inside Instagram DMs, recommend personalized serum bundles, and reward Story UGC tags automatically.
+                        </p>
+                        <div class="pt-3 border-t border-slate-100 text-xs font-mono font-bold text-emerald-700">+32% Average Bundle AOV</div>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm card-anim space-y-4">
+                        <div class="w-12 h-12 rounded-2xl bg-orange-50 border border-orange-200 text-orange-700 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-gem" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-bikDark">Fine Jewellery</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">
+                            Share BIS hallmark certification, weight-to-price breakdowns, and video-call showroom booking slots automatically when buyers comment on festive Reels.
+                        </p>
+                        <div class="pt-3 border-t border-slate-100 text-xs font-mono font-bold text-orange-700">2.9x Showroom Appointments</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- COMPARISON TABLE -->
+        <section class="py-24 bg-gradient-to-b from-slate-50/50 to-white border-b border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+                <div class="text-center max-w-3xl mx-auto space-y-3">
+                    <span class="inline-block text-xs font-bold uppercase tracking-widest text-pink-700 bg-pink-50 border border-pink-200 px-3.5 py-1 rounded-full">
+                        Platform Architecture Comparison
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark font-display">
+                        Manual DMs vs Generic Comment Bots vs Flying Cheetah Meta-Official IG Engine
+                    </h2>
+                    <p class="text-sm sm:text-base text-slate-700 leading-relaxed">
+                        Why scaling D2C brands migrate away from brittle browser scrapers and disconnected comment bots to an integrated IG + WhatsApp + UPI engine.
+                    </p>
+                </div>
+
+                <div class="overflow-x-auto rounded-3xl border border-slate-200 shadow-xl bg-white">
+                    <table class="w-full text-left border-collapse text-xs sm:text-sm min-w-[680px]">
+                        <thead>
+                            <tr class="bg-gradient-to-r from-orange-50 via-pink-50/70 to-purple-50 text-bikDark font-mono text-xs border-b border-pink-200">
+                                <th class="p-5 font-bold text-bikDark">Evaluation Criteria</th>
+                                <th class="p-5 font-bold text-slate-700">Manual Social Team DMs</th>
+                                <th class="p-5 font-bold text-slate-700">Generic Comment Bots</th>
+                                <th class="p-5 font-bold text-pink-700 bg-pink-100/70">Flying Cheetah Meta-Official Engine</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                            <tr class="hover:bg-slate-50/70 transition">
+                                <td class="p-5 font-bold text-bikDark">Account Safety &amp; API</td>
+                                <td class="p-5 text-slate-700">Safe but slow &amp; unscalable</td>
+                                <td class="p-5 text-slate-700">Risky cookie/scraping scripts or static links</td>
+                                <td class="p-5 font-bold text-emerald-700 bg-pink-50/20">100% Official Meta Graph API OAuth</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/70 transition">
+                                <td class="p-5 font-bold text-bikDark">Comment-to-DM Latency</td>
+                                <td class="p-5 text-slate-700">2 to 18 hours (night comments lost)</td>
+                                <td class="p-5 text-slate-700">5â€“15s static link drop only</td>
+                                <td class="p-5 font-bold text-emerald-700 bg-pink-50/20">1.4sâ€“3.5s dynamic SKU &amp; variant DM</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/70 transition">
+                                <td class="p-5 font-bold text-bikDark">Hinglish AI FAQ Handling</td>
+                                <td class="p-5 text-slate-700">Requires 24/7 shift staff</td>
+                                <td class="p-5 text-slate-700">Breaks on non-keyword replies</td>
+                                <td class="p-5 font-bold text-emerald-700 bg-pink-50/20">Neural AI handles size, COD &amp; delivery FAQs</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/70 transition">
+                                <td class="p-5 font-bold text-bikDark">WhatsApp &amp; UPI Handoff</td>
+                                <td class="p-5 text-slate-700">Copy-pasting payment links manually</td>
+                                <td class="p-5 text-slate-700">No native WhatsApp or UPI bridge</td>
+                                <td class="p-5 font-bold text-emerald-700 bg-pink-50/20">1-Tap Razorpay UPI + WhatsApp Tracking</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/70 transition">
+                                <td class="p-5 font-bold text-bikDark">Per-Reel ROAS Attribution</td>
+                                <td class="p-5 text-slate-700">Untracked manual spreadsheets</td>
+                                <td class="p-5 text-slate-700">Click counts only, no order sync</td>
+                                <td class="p-5 font-bold text-emerald-700 bg-pink-50/20">Exact Shopify Order + Meta CAPI Revenue</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- META GRAPH API COMPLIANCE & RATE-LIMIT GUARDRAILS -->
+        <section class="py-24 bg-white border-b border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+                <div class="text-center max-w-3xl mx-auto space-y-3">
+                    <span class="inline-block text-xs font-bold uppercase tracking-widest text-blue-700 bg-blue-50 border border-blue-200 px-3.5 py-1 rounded-full">
+                        Meta Compliance &amp; Safety
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark font-display">
+                        Meta Graph API Compliance &amp; Rate-Limit Guardrails
+                    </h2>
+                    <p class="text-sm sm:text-base text-slate-700 leading-relaxed">
+                        Built for high-volume creators and D2C flagships so viral Reels with thousands of comments never trigger Instagram action blocks or shadowbans.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="p-6 rounded-3xl bg-slate-50/80 border border-slate-200 space-y-3">
+                        <div class="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 text-blue-700 flex items-center justify-center text-base">
+                            <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-bikDark">Official OAuth Permissions</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">Uses Meta-reviewed `instagram_manage_comments` and `instagram_manage_messages` scopes via official Meta Business Suite tokensâ€”never asks for your Instagram password or session cookies.</p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-slate-50/80 border border-slate-200 space-y-3">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-700 flex items-center justify-center text-base">
+                            <i class="fa-solid fa-gauge-high" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-bikDark">Adaptive Queue Throttling</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">Redis-backed token bucket queues pace replies smoothly within Meta's hourly API quota during 50k+ view viral Reel surges while prioritizing high-intent purchase keywords first.</p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-slate-50/80 border border-slate-200 space-y-3">
+                        <div class="w-10 h-10 rounded-xl bg-pink-50 border border-pink-200 text-pink-700 flex items-center justify-center text-base">
+                            <i class="fa-solid fa-shuffle" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-bikDark">Public Reply Rotation</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">Automatically rotates 8â€“12 natural-sounding public comment replies with personalized first-name mentions so Meta's spam heuristics never flag repetitive phrasing.</p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-slate-50/80 border border-slate-200 space-y-3">
+                        <div class="w-10 h-10 rounded-xl bg-purple-50 border border-purple-200 text-purple-700 flex items-center justify-center text-base">
+                            <i class="fa-solid fa-clock" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-bikDark">24h Window &amp; Opt-In Guard</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">Strictly respects Meta's 24-hour customer messaging window and transitions long-term restock alerts, VIP drops, and order tracking safely to opted-in WhatsApp threads.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INTERACTIVE FAQ ACCORDION -->
+        <section class="py-24 bg-white border-b border-slate-100">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+                <div class="text-center space-y-3">
+                    <span class="inline-block text-xs font-bold uppercase tracking-widest text-pink-700 bg-pink-50 border border-pink-200 px-3.5 py-1 rounded-full">
+                        Questions &amp; Answers
+                    </span>
+                    <h2 class="text-3xl font-extrabold text-bikDark font-display">
+                        Frequently Asked Questions on Instagram DM Automation
+                    </h2>
+                    <p class="text-sm text-slate-700">
+                        Key technical and compliance answers for D2C founders, social media heads, and creator commerce teams.
+                    </p>
+                </div>
+
+                <div class="space-y-4" data-accordion="ig-faq">
+                    <div class="rounded-2xl border border-slate-200 bg-slate-50/60 overflow-hidden">
+                        <h3>
+                            <button type="button" aria-expanded="false" aria-controls="ig-faq-1" onclick="toggleIgFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-bikDark hover:bg-pink-50/40 transition cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange">
+                                <span>Is Instagram comment-to-DM automation safe from account bans or shadowbans?</span>
+                                <i class="fa-solid fa-chevron-down text-xs text-pink-700 transition-transform duration-200" aria-hidden="true"></i>
+                            </button>
+                        </h3>
+                        <div id="ig-faq-1" hidden class="px-6 pb-5 text-xs sm:text-sm text-slate-700 leading-relaxed border-t border-slate-200/70 pt-4 bg-white">
+                            Yes. Flying Cheetah connects strictly through Meta's official Instagram Graph API via Business Suite OAuth. We never use unofficial browser automation, headless logins, or password sharing, and our adaptive rate-limiter honors every Meta API quota.
+                        </div>
+                    </div>
+
+                    <div class="rounded-2xl border border-slate-200 bg-slate-50/60 overflow-hidden">
+                        <h3>
+                            <button type="button" aria-expanded="false" aria-controls="ig-faq-2" onclick="toggleIgFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-bikDark hover:bg-pink-50/40 transition cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange">
+                                <span>Can we enable "Follow Before Link" gates or lead capture before sending a DM offer?</span>
+                                <i class="fa-solid fa-chevron-down text-xs text-pink-700 transition-transform duration-200" aria-hidden="true"></i>
+                            </button>
+                        </h3>
+                        <div id="ig-faq-2" hidden class="px-6 pb-5 text-xs sm:text-sm text-slate-700 leading-relaxed border-t border-slate-200/70 pt-4 bg-white">
+                            Yes. You can check `is_user_follow_business` via the Meta Messaging API to reward existing followers immediately while nudging non-followers with a friendly 1-tap "Follow &amp; Unlock Link" prompt to accelerate organic follower growth.
+                        </div>
+                    </div>
+
+                    <div class="rounded-2xl border border-slate-200 bg-slate-50/60 overflow-hidden">
+                        <h3>
+                            <button type="button" aria-expanded="false" aria-controls="ig-faq-3" onclick="toggleIgFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-bikDark hover:bg-pink-50/40 transition cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange">
+                                <span>Does this work on boosted Reels and Instagram Collaboration posts too?</span>
+                                <i class="fa-solid fa-chevron-down text-xs text-pink-700 transition-transform duration-200" aria-hidden="true"></i>
+                            </button>
+                        </h3>
+                        <div id="ig-faq-3" hidden class="px-6 pb-5 text-xs sm:text-sm text-slate-700 leading-relaxed border-t border-slate-200/70 pt-4 bg-white">
+                            Yes. Both organic Reels and boosted Instagram ad placements fire comment and ad-reply webhooks to your connected Professional account, letting you pair paid reach with instant conversational checkout.
+                        </div>
+                    </div>
+
+                    <div class="rounded-2xl border border-slate-200 bg-slate-50/60 overflow-hidden">
+                        <h3>
+                            <button type="button" aria-expanded="false" aria-controls="ig-faq-4" onclick="toggleIgFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-bikDark hover:bg-pink-50/40 transition cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange">
+                                <span>How does Instagram DM automation connect with Shopify, UPI, and WhatsApp?</span>
+                                <i class="fa-solid fa-chevron-down text-xs text-pink-700 transition-transform duration-200" aria-hidden="true"></i>
+                            </button>
+                        </h3>
+                        <div id="ig-faq-4" hidden class="px-6 pb-5 text-xs sm:text-sm text-slate-700 leading-relaxed border-t border-slate-200/70 pt-4 bg-white">
+                            Every product card in Instagram DM pulls real-time price and inventory from Shopify or WooCommerce. When the buyer taps checkout, they receive a pre-filled Razorpay UPI link and opt into WhatsApp for instant order confirmation and Borzo/Delhivery tracking updates.
+                        </div>
+                    </div>
+
+                    <div class="rounded-2xl border border-slate-200 bg-slate-50/60 overflow-hidden">
+                        <h3>
+                            <button type="button" aria-expanded="false" aria-controls="ig-faq-5" onclick="toggleIgFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-bikDark hover:bg-pink-50/40 transition cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange">
+                                <span>How fast can our team launch automated Reel-to-DM campaigns?</span>
+                                <i class="fa-solid fa-chevron-down text-xs text-pink-700 transition-transform duration-200" aria-hidden="true"></i>
+                            </button>
+                        </h3>
+                        <div id="ig-faq-5" hidden class="px-6 pb-5 text-xs sm:text-sm text-slate-700 leading-relaxed border-t border-slate-200/70 pt-4 bg-white">
+                            Once your Instagram Professional account is linked to your Meta Business Page, our onboarding engineers configure your top 5 Reels, Story mention rewards, and Shopify DM catalog within 24 hours.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONVERSION CTA BANNER -->
+        <section class="py-20 bg-gradient-to-br from-pink-50 via-white to-purple-50 text-bikDark">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+                <span class="inline-block text-xs font-bold text-pink-700 uppercase tracking-widest bg-white px-3.5 py-1 rounded-full border border-pink-200">
+                    Official Meta Graph API Onboarding
+                </span>
+                <h2 class="text-3xl sm:text-5xl font-black font-display leading-tight text-bikDark">
+                    Convert Your Next Viral Reel Into Instant DM &amp; UPI Revenue.
+                </h2>
+                <p class="text-sm sm:text-base text-slate-700 max-w-2xl mx-auto leading-relaxed">
+                    Book a 15-minute live walkthrough of our Instagram AI Chatbot, comment-to-DM triggers, and Shopify/WhatsApp checkout bridge.
+                </p>
+                <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <button type="button" onclick="if(window.FC_LEADS){window.FC_LEADS.openAuditModal('Instagram DM Automation');}" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-pink-700 hover:bg-pink-800 text-white font-bold text-sm transition shadow-lg shadow-pink-500/20 cursor-pointer">
+                        <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+                        <span>Claim Free Instagram Automation Audit</span>
+                    </button>
+                    <a href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah%20team,%20I%20want%20to%20automate%20my%20Instagram%20Reels%20and%20DMs." target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl border border-emerald-300 text-emerald-700 font-bold text-sm bg-white hover:bg-emerald-50 transition shadow-sm">
+                        <i class="fa-brands fa-whatsapp text-emerald-700 text-base" aria-hidden="true"></i>
+                        <span>Chat With Founders on WhatsApp</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="py-12 bg-white border-t border-slate-200 text-xs text-slate-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between gap-6">
             <div class="flex items-center space-x-3">
                 <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah" class="h-6 w-6 rounded-full object-cover border border-slate-300">
-                <span class="font-bold text-slate-700">FLYING CHEETAH INSTAGRAM COMMERCE © 2026.</span>
+                <span class="font-bold text-slate-800">FLYING CHEETAH INSTAGRAM COMMERCE Â© 2026.</span>
                 <span>All Rights Reserved.</span>
             </div>
-            <div class="flex flex-wrap items-center gap-4 font-medium text-slate-600">
-                <a href="index.html" class="hover:text-bikOrange transition">Main Site</a>
-                <a href="store-automation.html" class="hover:text-bikOrange transition">Store Automation</a>
-                <a href="whatsapp-automation.html" class="hover:text-emerald-600 transition">WhatsApp</a>
-                <a href="ctwa-automation.html" class="hover:text-blue-600 transition">CTWA Ads</a>
-                <a href="ai-voice-agents.html" class="hover:text-purple-600 transition">Voice Agents</a>
-                <a href="delivery.html" class="hover:text-bikOrange transition">Fleet Protocol</a>
-                <a href="about.html" class="hover:text-bikOrange transition">About Us</a>
+            <div class="flex flex-wrap items-center justify-center gap-4 font-medium text-slate-700">
+                <a href="index.html" class="hover:text-orange-700 transition">Main Site</a>
+                <a href="store-automation.html" class="hover:text-orange-700 transition">Store Automation</a>
+                <a href="whatsapp-automation.html" class="hover:text-emerald-700 transition">WhatsApp</a>
+                <a href="instagram-automation.html" class="text-pink-700 font-bold">Instagram</a>
+                <a href="ctwa-automation.html" class="hover:text-blue-700 transition">CTWA Ads</a>
+                <a href="ai-voice-agents.html" class="hover:text-purple-700 transition">Voice Agents</a>
+                <a href="customer-data-platform.html" class="hover:text-indigo-700 transition">CDP 360</a>
+                <a href="delivery.html" class="hover:text-orange-700 transition">Fleet Protocol</a>
+                <a href="about.html" class="hover:text-orange-700 transition">About Us</a>
+                <a href="privacy-policy.html" class="hover:text-pink-700 transition">Privacy Policy</a>
+                <a href="terms-of-service.html" class="hover:text-pink-700 transition">Terms</a>
+                <a href="refund-policy.html" class="hover:text-pink-700 transition">Refunds</a>
             </div>
         </div>
     </footer>
-    <script>
-        // Toggle dropdowns on click & close when clicking outside
-        document.addEventListener('DOMContentLoaded', function() {
-            const dropdownParents = document.querySelectorAll('.dropdown-parent');
-            dropdownParents.forEach(function(parent) {
-                const btn = parent.querySelector('button');
-                if (btn) {
-                    btn.addEventListener('click', function(e) {
-                        e.stopPropagation();
-                        // Close other open dropdowns
-                        dropdownParents.forEach(p => { if (p !== parent) p.classList.remove('active'); });
-                        parent.classList.toggle('active');
-                    });
-                }
-            });
 
-            document.addEventListener('click', function(e) {
-                dropdownParents.forEach(p => p.classList.remove('active'));
-            });
-        });
-    </script>
     <!-- Supabase & Flying Cheetah Backend Architecture SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="js/supabase-client.js"></script>
@@ -408,24 +1048,44 @@
     <script src="js/leads.js"></script>
     <script src="js/fc-widgets.js"></script>
 
-<script>
-        // Top-level nav links hover safety: immediately dismiss all dropdowns
-        document.querySelectorAll('nav > a').forEach(function(link) {
-            link.addEventListener('mouseenter', function() {
-                document.querySelectorAll('.home-dropdown-parent, .products-dropdown-parent, .dropdown-parent').forEach(function(p) {
+    <script>
+        // Accessible Header Dropdowns (Home & Products)
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdownParents = document.querySelectorAll('.home-dropdown-parent, .products-dropdown-parent, .dropdown-parent');
+            function closeAllDropdowns() {
+                dropdownParents.forEach(function(p) {
                     p.classList.remove('active');
-                });
-            });
-        });
-        // Click outside dismiss
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('.home-dropdown-parent') && !e.target.closest('.products-dropdown-parent') && !e.target.closest('.dropdown-parent')) {
-                document.querySelectorAll('.home-dropdown-parent, .products-dropdown-parent, .dropdown-parent').forEach(function(p) {
-                    p.classList.remove('active');
+                    const b = p.querySelector('button[aria-expanded]');
+                    if (b) b.setAttribute('aria-expanded', 'false');
                 });
             }
+
+            dropdownParents.forEach(function(parent) {
+                const btn = parent.querySelector('button');
+                if (btn) {
+                    btn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const willOpen = !parent.classList.contains('active');
+                        closeAllDropdowns();
+                        if (willOpen) {
+                            parent.classList.add('active');
+                            btn.setAttribute('aria-expanded', 'true');
+                        }
+                    });
+                }
+            });
+
+            document.querySelectorAll('header nav > a').forEach(function(link) {
+                link.addEventListener('mouseenter', closeAllDropdowns);
+            });
+
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.home-dropdown-parent') && !e.target.closest('.products-dropdown-parent') && !e.target.closest('.dropdown-parent')) {
+                    closeAllDropdowns();
+                }
+            });
         });
-    
+
         // Instagram Video Controls
         function toggleIgVideoMute() {
             const video = document.getElementById('igChatbotVideo');
@@ -453,7 +1113,69 @@
                 if (icon) icon.className = 'fa-solid fa-play';
             }
         }
-    
-</script>
+
+        // Interactive Trigger Simulator Tabs
+        function switchIgTrigger(key) {
+            const keys = ['reel', 'story', 'dm'];
+            keys.forEach(function(k) {
+                const tab = document.getElementById('ig-tab-' + k);
+                const panel = document.getElementById('ig-panel-' + k);
+                const isActive = (k === key);
+                if (tab) {
+                    tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+                    if (isActive) {
+                        tab.className = 'px-5 py-3 rounded-xl text-xs sm:text-sm font-bold transition border border-pink-700 bg-pink-700 text-white shadow-md cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange focus-visible:ring-offset-2';
+                    } else {
+                        tab.className = 'px-5 py-3 rounded-xl text-xs sm:text-sm font-bold transition border border-slate-200 bg-white text-slate-700 hover:border-pink-300 hover:bg-pink-50/50 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange focus-visible:ring-offset-2';
+                    }
+                }
+                if (panel) {
+                    panel.hidden = !isActive;
+                }
+            });
+        }
+
+        // Interactive Instagram DM Revenue Estimator
+        function updateIgRoiCalc() {
+            const verticalEl = document.getElementById('igVerticalSelect');
+            const commentsEl = document.getElementById('igMonthlyComments');
+            const ticketEl = document.getElementById('igAvgTicket');
+            if (!verticalEl || !commentsEl || !ticketEl) return;
+
+            const convRate = Number(verticalEl.value) || 0.18;
+            const comments = Math.max(100, Number(commentsEl.value) || 3500);
+            const ticket = Math.max(100, Number(ticketEl.value) || 1899);
+
+            // ~33% of comment threads click through to checkout * vertical close rate, or direct buyer ratio
+            const paidOrders = Math.max(1, Math.round(comments * convRate * 0.33));
+            const monthlyRev = paidOrders * ticket;
+
+            const cDisp = document.getElementById('igCommentsDisplay');
+            const revOut = document.getElementById('igMonthlyRevenueOut');
+            const dmsOut = document.getElementById('igAutoDmsOut');
+            const ordOut = document.getElementById('igPaidOrdersOut');
+
+            if (cDisp) cDisp.textContent = comments.toLocaleString('en-IN');
+            if (revOut) revOut.textContent = 'â‚¹' + monthlyRev.toLocaleString('en-IN');
+            if (dmsOut) dmsOut.textContent = comments.toLocaleString('en-IN');
+            if (ordOut) ordOut.textContent = paidOrders.toLocaleString('en-IN') + ' orders';
+        }
+
+        // Interactive FAQ Accordion
+        function toggleIgFaq(btn) {
+            const targetId = btn.getAttribute('aria-controls');
+            const panel = targetId ? document.getElementById(targetId) : null;
+            if (!panel) return;
+            const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+            btn.setAttribute('aria-expanded', isExpanded ? 'false' : 'true');
+            panel.hidden = isExpanded;
+            const icon = btn.querySelector('i');
+            if (icon) {
+                icon.style.transform = isExpanded ? 'rotate(0deg)' : 'rotate(180deg)';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', updateIgRoiCalc);
+    </script>
 </body>
 </html>

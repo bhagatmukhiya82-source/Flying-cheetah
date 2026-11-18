@@ -49,16 +49,16 @@
             document.body.appendChild(container);
         }
         const toast = document.createElement('div');
-        toast.className = `pointer-events-auto flex items-start gap-3 p-4 rounded-2xl border shadow-2xl transition-all duration-300 transform translate-y-4 opacity-0 ${
-            type === 'success' ? 'bg-slate-900 border-slate-800 text-white' : 'bg-red-50 border-red-200 text-red-900'
+        toast.className = `pointer-events-auto flex items-start gap-3 p-4 rounded-2xl transition-all duration-300 transform translate-y-4 opacity-0 ${
+            type === 'success' ? 'bg-white text-slate-900 border border-slate-200 shadow-2xl' : 'bg-red-50 border border-red-200 text-red-900 shadow-2xl'
         }`;
         toast.innerHTML = `
             <div class="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 ${type === 'success' ? 'bg-emerald-500 text-white' : 'bg-red-500 text-white'}">
-                <i class="fa-solid ${type === 'success' ? 'fa-check' : 'fa-triangle-exclamation'} text-xs"></i>
+                <i class="fa-solid ${type === 'success' ? 'fa-check' : 'fa-triangle-exclamation'} text-xs" aria-hidden="true"></i>
             </div>
             <div class="flex-1 text-xs leading-relaxed">
-                <div class="font-bold">${type === 'success' ? 'Success' : 'Notice'}</div>
-                <div class="mt-0.5">${message}</div>
+                <div class="font-bold ${type === 'success' ? 'text-slate-900' : 'text-red-900'}">${type === 'success' ? 'Success' : 'Notice'}</div>
+                <div class="mt-0.5 ${type === 'success' ? 'text-slate-700' : 'text-red-800'}">${message}</div>
             </div>
         `;
         container.appendChild(toast);
@@ -298,7 +298,7 @@
             if (!currentUser) {
                 // Not logged in: Show "Sign In" button with Google mark
                 container.innerHTML = `
-                    <button onclick="window.FC_AUTH.openAuthModal('signin')" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl border border-slate-200 hover:border-bikOrange bg-white text-slate-700 hover:text-bikOrange font-bold text-xs transition shadow-sm cursor-pointer">
+                    <button type="button" onclick="window.FC_AUTH.openAuthModal('signin')" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl border border-slate-200 hover:border-bikOrange bg-white text-slate-700 hover:text-bikOrange font-bold text-xs transition shadow-sm cursor-pointer">
                         <svg class="w-3.5 h-3.5" viewBox="0 0 24 24">
                             <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.66v3.05h3.9c2.28-2.1 3.64-5.2 3.64-9.15z"/>
                             <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.9-3.05c-1.08.72-2.45 1.16-4.03 1.16-3.1 0-5.73-2.1-6.67-4.94H1.32v3.15C3.33 21.36 7.39 24 12 24z"/>
@@ -318,9 +318,9 @@
 
                 container.innerHTML = `
                     <div class="relative group/auth">
-                        <button class="flex items-center gap-2 p-1 rounded-full hover:ring-2 hover:ring-bikOrange/30 transition cursor-pointer">
+                        <button type="button" class="flex items-center gap-2 p-1 rounded-full hover:ring-2 hover:ring-bikOrange/30 transition cursor-pointer">
                             ${avatar ? `<img src="${avatar}" alt="${name}" class="w-8 h-8 rounded-full object-cover border border-slate-200 shadow-sm">`
-                                     : `<div class="w-8 h-8 rounded-full bg-slate-900 text-white font-bold text-xs flex items-center justify-center">${initials}</div>`}
+                                     : `<div class="w-8 h-8 rounded-full bg-orange-100 text-orange-800 border border-orange-200 font-bold text-xs flex items-center justify-center">${initials}</div>`}
                             <div class="text-left hidden md:block">
                                 <span class="text-xs font-bold text-slate-800 block leading-tight max-w-[110px] truncate">${name}</span>
                                 ${isAdmin ? `<span class="text-[9px] text-bikOrange font-black uppercase tracking-wider">Admin</span>` 
@@ -369,7 +369,7 @@
                                 </a>
                             </div>
                             <div class="pt-1 border-t border-slate-100">
-                                <button onclick="window.FC_AUTH.signOut()" class="w-full flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-bold text-red-600 hover:bg-red-50 transition text-left cursor-pointer">
+                                <button type="button" onclick="window.FC_AUTH.signOut()" class="w-full flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-bold text-red-600 hover:bg-red-50 transition text-left cursor-pointer">
                                     <i class="fa-solid fa-arrow-right-from-bracket"></i>
                                     <span>Sign Out</span>
                                 </button>
