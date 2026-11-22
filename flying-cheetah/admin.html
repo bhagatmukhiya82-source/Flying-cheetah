@@ -18,7 +18,7 @@
     <meta property="og:url" content="https://flying-cheetah.vercel.app/admin">
     <meta property="og:site_name" content="Flying Cheetah">
 
-    <!-- Tailwind CSS CDN -->
+    <!-- Compiled Tailwind CSS -->
     <link rel="stylesheet" href="css/styles.min.css">
     <!-- FontAwesome 6 CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -37,75 +37,47 @@
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
     </style>
 
-    <link rel="stylesheet" href="css/mobile-app.css">
+    <link id="fcMobileAppStyles" rel="stylesheet" href="css/mobile-app.css">
 </head>
-<body class="bg-bikBg text-slate-800 font-sans antialiased min-h-screen flex flex-col selection:bg-orange-100 selection:text-bikOrange">
+<body class="bg-white text-slate-900 font-sans antialiased min-h-screen flex flex-col selection:bg-orange-100 selection:text-orange-700">
 
     <!-- AUTH GUARD LOADING OVERLAY -->
     <div id="authGuardOverlay" class="fixed inset-0 z-[200] bg-white flex flex-col items-center justify-center transition-opacity duration-300">
         <div class="flex items-center gap-3 mb-6">
-            <div class="w-12 h-12 rounded-2xl bg-bikOrange text-white flex items-center justify-center font-black text-2xl shadow-lg shadow-orange-500/30 animate-pulse">
-                <i class="fa-solid fa-bolt"></i>
+            <div class="w-12 h-12 rounded-2xl bg-orange-700 text-white flex items-center justify-center font-black text-2xl shadow-lg shadow-orange-500/30 animate-pulse">
+                <i class="fa-solid fa-bolt" aria-hidden="true"></i>
             </div>
             <div>
                 <span class="font-display font-black text-2xl text-bikDark block leading-none">Flying Cheetah</span>
-                <span class="text-[10px] text-bikOrange font-bold tracking-widest uppercase">Security Guard</span>
+                <span class="text-[10px] text-orange-700 font-bold tracking-widest uppercase">Security Guard</span>
             </div>
         </div>
         <div class="flex items-center gap-3 text-slate-600 text-sm font-semibold">
-            <i class="fa-solid fa-circle-notch fa-spin text-bikOrange text-lg"></i>
+            <i class="fa-solid fa-circle-notch fa-spin text-orange-700 text-lg" aria-hidden="true"></i>
             <span id="authGuardMsg">Verifying Administrative Privileges for flyingcheetah.agency@gmail.com...</span>
-        </div>
-    </div>
-
-    <!-- UNAUTHORIZED LOCKOUT CARD (SHOWN IF USER IS NOT flyingcheetah.agency@gmail.com) -->
-    <div id="unauthorizedCard" class="hidden fixed inset-0 z-[190] bg-slate-900/60 backdrop-blur-md flex items-center justify-center p-4">
-        <div class="max-w-md w-full bg-white rounded-3xl p-8 border border-slate-200 shadow-2xl text-center space-y-4">
-            <div class="w-16 h-16 rounded-2xl bg-red-100 text-red-600 flex items-center justify-center text-3xl mx-auto shadow-inner">
-                <i class="fa-solid fa-shield-halved"></i>
-            </div>
-            <h2 class="text-2xl font-black text-bikDark font-display">Access Denied</h2>
-            <div id="unauthDetailMsg" class="text-xs text-slate-500 leading-relaxed space-y-2">
-                <p>This private executive portal is strictly restricted to <code class="bg-slate-100 px-1 py-0.5 rounded text-bikOrange font-bold">flyingcheetah.agency@gmail.com</code>.</p>
-            </div>
-            <div class="p-3 bg-red-50 border border-red-100 rounded-xl text-left text-xs text-red-800 leading-relaxed">
-                <b>Security Policy:</b> Client & trial accounts are separated from the agency admin desk to protect confidential store pipelines, webhooks, and fleet dispatch logs.
-            </div>
-            <div class="pt-2 space-y-2">
-                <button onclick="window.FC_AUTH.openAuthModal('signin')" class="w-full py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider transition shadow-md flex items-center justify-center gap-2 cursor-pointer">
-                    <i class="fa-solid fa-key text-brandGold"></i>
-                    <span>Sign In with Agency Admin Account</span>
-                </button>
-                <a href="index.html" class="block w-full py-3 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-xs uppercase tracking-wider transition shadow-lg shadow-orange-500/20 text-center">
-                    Return to Website (Client Dashboard)
-                </a>
-                <button onclick="window.FC_AUTH.signOut()" class="block w-full py-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-600 font-bold text-xs transition">
-                    Sign Out
-                </button>
-            </div>
         </div>
     </div>
 
     <!-- TOP HEADER -->
     <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
             
             <!-- Left Branding -->
             <div class="flex items-center gap-3">
-                <a href="index.html" class="w-10 h-10 rounded-xl bg-gradient-to-tr from-bikOrange to-amber-500 flex items-center justify-center text-white shadow-md shadow-orange-500/20 hover:scale-105 transition">
-                    <i class="fa-solid fa-bolt text-lg"></i>
+                <a href="index.html" aria-label="Flying Cheetah Home" class="w-10 h-10 rounded-xl bg-gradient-to-tr from-bikOrange to-amber-500 flex items-center justify-center text-white shadow-md shadow-orange-500/20 hover:scale-105 transition shrink-0">
+                    <i class="fa-solid fa-bolt text-lg" aria-hidden="true"></i>
                 </a>
                 <div>
                     <h1 class="flex items-center gap-2">
                         <span class="font-display font-black text-xl tracking-tight text-bikDark leading-none">Flying Cheetah</span>
-                        <span class="px-2 py-0.5 rounded-full bg-slate-900 text-white text-[9px] font-black uppercase tracking-wider">Agency Portal</span>
+                        <span class="px-2 py-0.5 rounded-full bg-orange-100 text-orange-800 border border-orange-200 text-[9px] font-black uppercase tracking-wider">Agency Portal</span>
                     </h1>
-                    <span class="hidden sm:block text-[11px] text-slate-400 font-semibold">Official Admin Desk • flyingcheetah.agency@gmail.com</span>
+                    <span class="hidden sm:block text-[11px] text-slate-600 font-semibold">Official Admin Desk • flyingcheetah.agency@gmail.com</span>
                 </div>
             </div>
 
             <!-- Right Controls -->
-            <div class="flex items-center gap-3">
+            <div class="flex items-center gap-2.5 shrink-0">
                 <!-- Backend State Pill -->
                 <div id="backendBadge" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-bold">
                     <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
@@ -113,47 +85,64 @@
                 </div>
 
                 <!-- Webhook Config Button -->
-                <button onclick="openConfigModal()" class="hidden sm:inline-flex px-3.5 py-2 rounded-xl border border-slate-200 hover:border-slate-300 bg-white text-slate-700 text-xs font-bold hover:bg-slate-50 transition shadow-sm items-center gap-2">
-                    <i class="fa-solid fa-sliders text-slate-400"></i>
+                <button type="button" onclick="openConfigModal()" class="hidden sm:inline-flex px-3.5 py-2 rounded-xl border border-slate-200 hover:border-slate-300 bg-white text-slate-700 text-xs font-bold hover:bg-slate-50 transition shadow-sm items-center gap-2">
+                    <i class="fa-solid fa-sliders text-slate-600" aria-hidden="true"></i>
                     <span>Cloud Integrations</span>
                 </button>
 
                 <!-- Merchant Store Profile Button -->
-                <button onclick="window.FC_AUTH.openProfileModal()" class="hidden sm:inline-flex px-3.5 py-2 rounded-xl border border-orange-200 hover:border-bikOrange bg-orange-50/60 hover:bg-orange-100/70 text-bikOrange font-bold text-xs transition shadow-sm items-center gap-2 cursor-pointer" title="Edit Merchant Profile, GSTIN, UPI & Pickup Address">
-                    <i class="fa-solid fa-store text-bikOrange"></i>
+                <button type="button" onclick="window.FC_AUTH.openProfileModal()" class="hidden sm:inline-flex px-3.5 py-2 rounded-xl border border-orange-200 hover:border-orange-700 bg-orange-50/60 hover:bg-orange-100/70 text-orange-700 font-bold text-xs transition shadow-sm items-center gap-2 cursor-pointer" title="Edit Merchant Profile, GSTIN, UPI & Pickup Address">
+                    <i class="fa-solid fa-store text-orange-700" aria-hidden="true"></i>
                     <span>Merchant Profile</span>
                 </button>
 
                 <!-- Admin Profile Menu -->
-                <div onclick="window.FC_AUTH.openProfileModal()" class="flex items-center gap-2.5 pl-2 border-l border-slate-200 cursor-pointer hover:opacity-85 transition" title="Click to view & edit Merchant Profile">
-                    <img id="adminAvatarImg" src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah Executive Crest" class="w-9 h-9 rounded-full object-cover bg-white p-0.5 border border-slate-200 shadow-sm">
-                    <div class="hidden lg:block text-left">
-                        <div id="adminNameTxt" class="text-xs font-black text-bikDark leading-tight">Agency Admin</div>
-                        <div id="adminEmailTxt" class="text-[10px] text-slate-400 font-semibold">flyingcheetah.agency@gmail.com</div>
-                    </div>
-                    <button onclick="event.stopPropagation(); window.FC_AUTH.signOut();" class="hidden sm:flex w-8 h-8 rounded-lg text-slate-400 hover:text-red-600 hover:bg-red-50 items-center justify-center transition ml-1" title="Sign Out">
-                        <i class="fa-solid fa-arrow-right-from-bracket text-xs"></i>
+                <div class="flex items-center gap-2 pl-2 border-l border-slate-200">
+                    <button type="button" onclick="window.FC_AUTH.openProfileModal()" class="flex items-center gap-2.5 text-left hover:opacity-85 transition cursor-pointer" title="Click to view & edit Merchant Profile">
+                        <img id="adminAvatarImg" src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah Executive Crest" class="w-9 h-9 rounded-full object-cover bg-white p-0.5 border border-slate-200 shadow-sm">
+                        <div class="hidden lg:block text-left">
+                            <div id="adminNameTxt" class="text-xs font-black text-bikDark leading-tight">Agency Admin</div>
+                            <div id="adminEmailTxt" class="text-[10px] text-slate-600 font-semibold">flyingcheetah.agency@gmail.com</div>
+                        </div>
+                    </button>
+                    <button type="button" onclick="window.FC_AUTH.signOut()" aria-label="Sign Out" class="inline-flex w-8 h-8 rounded-lg text-slate-600 hover:text-red-700 hover:bg-red-50 items-center justify-center transition" title="Sign Out">
+                        <i class="fa-solid fa-arrow-right-from-bracket text-xs" aria-hidden="true"></i>
                     </button>
                 </div>
+
+                <button id="fcMobileMenuBtn" type="button" aria-label="Toggle Mobile Menu" aria-expanded="false" aria-controls="fcMobileDrawer" onclick="window.FC_WIDGETS && window.FC_WIDGETS.toggleMobileDrawer ? window.FC_WIDGETS.toggleMobileDrawer() : null" class="lg:hidden p-2 rounded-xl border border-slate-200 hover:border-bikOrange bg-white text-slate-700 hover:text-orange-700 transition flex items-center justify-center shrink-0 w-10 h-10 shadow-sm cursor-pointer touch-target-44 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange focus-visible:ring-offset-2"><i class="fa-solid fa-bars text-sm" aria-hidden="true"></i></button>
             </div>
         </div>
     </header>
 
     <!-- MAIN DASHBOARD CONTENT -->
-    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+    <main id="main-content" class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+        <h2 class="sr-only">Executive Lead &amp; Merchant Operations</h2>
+
+        <!-- MOBILE QUICK ACTIONS (< 640px) -->
+        <div class="flex sm:hidden flex-wrap items-center gap-2">
+            <button type="button" onclick="openConfigModal()" class="flex-1 min-h-[44px] px-3 py-2 rounded-xl border border-slate-200 bg-white text-slate-700 text-xs font-bold flex items-center justify-center gap-2 shadow-sm">
+                <i class="fa-solid fa-sliders text-slate-600" aria-hidden="true"></i>
+                <span>Cloud Integrations</span>
+            </button>
+            <button type="button" onclick="window.FC_AUTH.openProfileModal()" class="flex-1 min-h-[44px] px-3 py-2 rounded-xl border border-orange-200 bg-orange-50 text-orange-800 text-xs font-bold flex items-center justify-center gap-2 shadow-sm">
+                <i class="fa-solid fa-store text-orange-700" aria-hidden="true"></i>
+                <span>Merchant Profile</span>
+            </button>
+        </div>
         
         <!-- MOCK MODE BANNER (Shown if using local simulation) -->
         <div id="mockModeBanner" class="hidden bg-amber-50 border border-amber-200 rounded-2xl p-4 flex items-center justify-between shadow-sm">
             <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-xl bg-amber-500 text-white flex items-center justify-center font-bold text-sm">
-                    <i class="fa-solid fa-circle-info"></i>
+                <div class="w-8 h-8 rounded-xl bg-amber-100 text-amber-800 border border-amber-200 flex items-center justify-center font-bold text-sm">
+                    <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
                 </div>
                 <div>
                     <div class="text-xs font-bold text-amber-900">Demo Simulation Active</div>
-                    <div class="text-[11px] text-amber-700">Displaying leads from local browser storage engine. You can paste live Supabase keys anytime via "Cloud Integrations".</div>
+                    <div class="text-[11px] text-amber-800">Displaying leads from local browser storage engine. You can paste live Supabase keys anytime via "Cloud Integrations".</div>
                 </div>
             </div>
-            <button onclick="openConfigModal()" class="px-3.5 py-1.5 rounded-lg bg-white border border-amber-300 text-amber-900 text-xs font-bold hover:bg-amber-100 transition shadow-sm">
+            <button type="button" onclick="openConfigModal()" class="px-3.5 py-1.5 rounded-lg bg-white border border-amber-300 text-amber-900 text-xs font-bold hover:bg-amber-100 transition shadow-sm">
                 Connect Live Keys
             </button>
         </div>
@@ -161,26 +150,26 @@
         <!-- MERCHANT BUSINESS PROFILE & OPERATIONS STRIP -->
         <div id="merchantProfileBanner" class="bg-white rounded-3xl p-5 border border-slate-200 shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-4">
             <div class="flex items-start sm:items-center gap-3.5">
-                <div class="w-12 h-12 rounded-2xl bg-orange-100 text-bikOrange flex items-center justify-center text-xl shrink-0 shadow-inner">
-                    <i class="fa-solid fa-shop"></i>
+                <div class="w-12 h-12 rounded-2xl bg-orange-100 text-orange-700 flex items-center justify-center text-xl shrink-0 shadow-inner">
+                    <i class="fa-solid fa-shop" aria-hidden="true"></i>
                 </div>
                 <div>
                     <div class="flex flex-wrap items-center gap-2">
                         <span id="merchantDisplayBrand" class="text-base font-black text-bikDark font-display">Merchant Store</span>
-                        <span id="merchantDisplayCategory" class="px-2.5 py-0.5 rounded-full bg-orange-50 border border-orange-200/80 text-bikOrange text-[10px] font-bold">Apparel & Fashion</span>
-                        <span id="merchantDisplayGstin" class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 font-mono text-[10px] font-bold">GSTIN: Not set</span>
+                        <span id="merchantDisplayCategory" class="px-2.5 py-0.5 rounded-full bg-orange-50 border border-orange-200/80 text-orange-700 text-[10px] font-bold">Apparel & Fashion</span>
+                        <span id="merchantDisplayGstin" class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 font-mono text-[10px] font-bold">GSTIN: Not set</span>
                     </div>
-                    <div class="flex flex-wrap items-center gap-x-4 gap-y-1 mt-1.5 text-[11px] text-slate-500 font-medium">
-                        <span class="flex items-center gap-1"><i class="fa-brands fa-whatsapp text-emerald-500"></i> Support: <strong id="merchantDisplayWhatsApp" class="text-slate-700">Not set</strong></span>
-                        <span class="flex items-center gap-1"><i class="fa-solid fa-location-dot text-rose-500"></i> Pickup: <span id="merchantDisplayPickup" class="text-slate-700 truncate max-w-xs">Not configured</span></span>
-                        <span class="flex items-center gap-1"><i class="fa-solid fa-wallet text-indigo-500"></i> UPI: <strong id="merchantDisplayUpi" class="text-slate-700 font-mono">Not configured</strong></span>
-                        <span class="flex items-center gap-1"><i class="fa-solid fa-route text-amber-500"></i> Radius: <strong id="merchantDisplayRadius" class="text-slate-700">15 km</strong></span>
+                    <div class="flex flex-wrap items-center gap-x-4 gap-y-1 mt-1.5 text-[11px] text-slate-600 font-medium">
+                        <span class="flex items-center gap-1"><i class="fa-brands fa-whatsapp text-emerald-700" aria-hidden="true"></i> Support: <strong id="merchantDisplayWhatsApp" class="text-slate-700">Not set</strong></span>
+                        <span class="flex items-center gap-1"><i class="fa-solid fa-location-dot text-rose-600" aria-hidden="true"></i> Pickup: <span id="merchantDisplayPickup" class="text-slate-700 truncate max-w-xs">Not configured</span></span>
+                        <span class="flex items-center gap-1"><i class="fa-solid fa-wallet text-indigo-600" aria-hidden="true"></i> UPI: <strong id="merchantDisplayUpi" class="text-slate-700 font-mono">Not configured</strong></span>
+                        <span class="flex items-center gap-1"><i class="fa-solid fa-route text-amber-700" aria-hidden="true"></i> Radius: <strong id="merchantDisplayRadius" class="text-slate-700">15 km</strong></span>
                     </div>
                 </div>
             </div>
             <div class="flex items-center gap-2.5 shrink-0 self-end lg:self-center">
-                <button onclick="window.FC_AUTH.openProfileModal()" class="px-4 py-2.5 rounded-xl bg-bikDark hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider transition shadow-sm flex items-center gap-2 cursor-pointer">
-                    <i class="fa-solid fa-pen-to-square text-xs"></i>
+                <button type="button" onclick="window.FC_AUTH.openProfileModal()" class="px-4 py-2.5 rounded-xl bg-orange-700 hover:bg-orange-800 text-white font-bold text-xs uppercase tracking-wider transition shadow-sm flex items-center gap-2 cursor-pointer">
+                    <i class="fa-solid fa-pen-to-square text-xs" aria-hidden="true"></i>
                     <span>Edit Profile & UPI</span>
                 </button>
             </div>
@@ -192,48 +181,48 @@
             <!-- Card 1: Total Leads -->
             <div class="bg-white rounded-3xl p-6 border border-orange-200/80 shadow-md hover:shadow-xl transition fc-card-glow relative overflow-hidden group">
                 <div class="flex items-center justify-between mb-3">
-                    <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Total Leads Captured</span>
-                    <div class="w-10 h-10 rounded-xl bg-orange-100 text-bikOrange flex items-center justify-center text-sm font-bold shadow-sm">
-                        <i class="fa-solid fa-address-book"></i>
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-600">Total Leads Captured</span>
+                    <div class="w-10 h-10 rounded-xl bg-orange-100 text-orange-700 flex items-center justify-center text-sm font-bold shadow-sm">
+                        <i class="fa-solid fa-address-book" aria-hidden="true"></i>
                     </div>
                 </div>
                 <div class="flex items-baseline gap-2">
                     <span id="statTotalLeads" class="text-4xl font-black text-bikDark font-display fc-num tracking-tight">0</span>
-                    <span class="text-xs text-emerald-600 font-bold flex items-center gap-1 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200/50">
-                        <i class="fa-solid fa-arrow-trend-up text-[10px]"></i> Lifetime
+                    <span class="text-xs text-emerald-700 font-bold flex items-center gap-1 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200/50">
+                        <i class="fa-solid fa-arrow-trend-up text-[10px]" aria-hidden="true"></i> Lifetime
                     </span>
                 </div>
-                <p class="text-[11px] text-slate-500 mt-2 font-medium">All store inquiries & audit requests</p>
+                <p class="text-[11px] text-slate-600 mt-2 font-medium">All store inquiries & audit requests</p>
             </div>
 
             <!-- Card 2: Pending Inquiries -->
             <div class="bg-white rounded-3xl p-6 border border-amber-200/80 shadow-md hover:shadow-xl transition fc-card-glow relative overflow-hidden group">
                 <div class="flex items-center justify-between mb-3">
-                    <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Pending Inquiries</span>
-                    <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-sm font-bold shadow-sm">
-                        <i class="fa-solid fa-clock-rotate-left"></i>
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-600">Pending Inquiries</span>
+                    <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center text-sm font-bold shadow-sm">
+                        <i class="fa-solid fa-clock-rotate-left" aria-hidden="true"></i>
                     </div>
                 </div>
                 <div class="flex items-baseline gap-2">
-                    <span id="statPendingInquiries" class="text-4xl font-black text-amber-600 font-display fc-num tracking-tight">0</span>
-                    <span class="text-xs text-amber-700 font-bold bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200/50">Requires Action</span>
+                    <span id="statPendingInquiries" class="text-4xl font-black text-amber-700 font-display fc-num tracking-tight">0</span>
+                    <span class="text-xs text-amber-800 font-bold bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200/50">Requires Action</span>
                 </div>
-                <p class="text-[11px] text-slate-500 mt-2 font-medium">WhatsApp follow-up dispatched</p>
+                <p class="text-[11px] text-slate-600 mt-2 font-medium">WhatsApp follow-up dispatched</p>
             </div>
 
             <!-- Card 3: Total Registered Users -->
             <div class="bg-white rounded-3xl p-6 border border-emerald-200/80 shadow-md hover:shadow-xl transition fc-card-glow relative overflow-hidden group">
                 <div class="flex items-center justify-between mb-3">
-                    <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Registered Users</span>
-                    <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-sm font-bold shadow-sm">
-                        <i class="fa-solid fa-users"></i>
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-600">Registered Users</span>
+                    <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-sm font-bold shadow-sm">
+                        <i class="fa-solid fa-users" aria-hidden="true"></i>
                     </div>
                 </div>
                 <div class="flex items-baseline gap-2">
-                    <span id="statRegisteredUsers" class="text-4xl font-black text-emerald-600 font-display fc-num tracking-tight">0</span>
-                    <span class="text-xs text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200/50">Supabase Profiles</span>
+                    <span id="statRegisteredUsers" class="text-4xl font-black text-emerald-700 font-display fc-num tracking-tight">0</span>
+                    <span class="text-xs text-emerald-800 font-bold bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200/50">Supabase Profiles</span>
                 </div>
-                <p class="text-[11px] text-slate-500 mt-2 font-medium">Google Auth & 14-day trial accounts</p>
+                <p class="text-[11px] text-slate-600 mt-2 font-medium">Google Auth & 14-day trial accounts</p>
             </div>
         </div>
 
@@ -245,16 +234,16 @@
                 
                 <!-- Status Filter Tabs -->
                 <div class="flex items-center gap-1.5 p-1 bg-slate-100 rounded-2xl w-fit text-xs font-bold overflow-x-auto max-w-full">
-                    <button onclick="setFilter('all')" data-filter="all" class="filter-tab px-3.5 py-1.5 rounded-xl transition bg-slate-900 text-white">
+                    <button type="button" onclick="setFilter('all')" data-filter="all" class="filter-tab px-3.5 py-1.5 rounded-xl transition bg-orange-700 text-white font-bold">
                         All Leads (<span id="countAll">0</span>)
                     </button>
-                    <button onclick="setFilter('new')" data-filter="new" class="filter-tab px-3.5 py-1.5 rounded-xl transition text-slate-600 hover:bg-white hover:text-slate-900">
+                    <button type="button" onclick="setFilter('new')" data-filter="new" class="filter-tab px-3.5 py-1.5 rounded-xl transition text-slate-700 hover:bg-white hover:text-slate-900">
                         New (<span id="countNew">0</span>)
                     </button>
-                    <button onclick="setFilter('contacted')" data-filter="contacted" class="filter-tab px-3.5 py-1.5 rounded-xl transition text-slate-600 hover:bg-white hover:text-slate-900">
+                    <button type="button" onclick="setFilter('contacted')" data-filter="contacted" class="filter-tab px-3.5 py-1.5 rounded-xl transition text-slate-700 hover:bg-white hover:text-slate-900">
                         Contacted (<span id="countContacted">0</span>)
                     </button>
-                    <button onclick="setFilter('converted')" data-filter="converted" class="filter-tab px-3.5 py-1.5 rounded-xl transition text-slate-600 hover:bg-white hover:text-slate-900">
+                    <button type="button" onclick="setFilter('converted')" data-filter="converted" class="filter-tab px-3.5 py-1.5 rounded-xl transition text-slate-700 hover:bg-white hover:text-slate-900">
                         Converted (<span id="countConverted">0</span>)
                     </button>
                 </div>
@@ -263,19 +252,19 @@
                 <div class="flex items-center gap-3">
                     <!-- Search Input -->
                     <div class="relative w-full sm:w-64">
-                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-600 text-xs" aria-hidden="true"></i>
                         <input type="text" id="searchInput" oninput="handleSearch()" placeholder="Search name, phone, email..." aria-label="Search inquiries by name, phone, or email" class="w-full pl-9 pr-3.5 py-2 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange focus:border-bikOrange outline-none transition bg-slate-50/50">
                     </div>
 
                     <!-- 1-Click CSV Export Button -->
-                    <button onclick="exportToCSV()" class="px-4 py-2 rounded-xl bg-bikDark hover:bg-slate-800 text-white text-xs font-bold transition shadow-sm flex items-center gap-2 whitespace-nowrap">
-                        <i class="fa-solid fa-file-excel text-emerald-400"></i>
+                    <button type="button" onclick="exportToCSV()" class="px-4 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold transition shadow-sm flex items-center gap-2 whitespace-nowrap">
+                        <i class="fa-solid fa-file-excel text-white" aria-hidden="true"></i>
                         <span>Export CSV</span>
                     </button>
 
                     <!-- Refresh Button -->
-                    <button onclick="fetchDashboardData()" class="w-9 h-9 rounded-xl border border-slate-200 text-slate-500 hover:text-bikOrange hover:border-bikOrange flex items-center justify-center transition" title="Refresh Leads">
-                        <i id="refreshIcon" class="fa-solid fa-arrows-rotate text-xs"></i>
+                    <button type="button" onclick="fetchDashboardData()" aria-label="Refresh Leads" class="w-9 h-9 rounded-xl border border-slate-200 text-slate-600 hover:text-orange-700 hover:border-orange-700 flex items-center justify-center transition" title="Refresh Leads">
+                        <i id="refreshIcon" class="fa-solid fa-arrows-rotate text-xs" aria-hidden="true"></i>
                     </button>
                 </div>
             </div>
@@ -284,7 +273,7 @@
             <div class="overflow-x-auto custom-scrollbar">
                 <table class="w-full text-left border-collapse text-xs">
                     <thead>
-                        <tr class="bg-slate-50/70 border-b border-slate-100 text-[11px] font-black text-slate-400 uppercase tracking-wider">
+                        <tr class="bg-slate-50/70 border-b border-slate-100 text-[11px] font-black text-slate-600 uppercase tracking-wider">
                             <th class="py-3.5 px-6">Date</th>
                             <th class="py-3.5 px-6">Lead Name & Work Email</th>
                             <th class="py-3.5 px-6">WhatsApp / Phone</th>
@@ -296,8 +285,8 @@
                     </thead>
                     <tbody id="leadsTableBody" class="divide-y divide-slate-100">
                         <tr>
-                            <td colspan="7" class="py-12 text-center text-slate-400">
-                                <i class="fa-solid fa-circle-notch fa-spin text-xl text-bikOrange mb-2"></i>
+                            <td colspan="7" class="py-12 text-center text-slate-600">
+                                <i class="fa-solid fa-circle-notch fa-spin text-xl text-orange-700 mb-2" aria-hidden="true"></i>
                                 <div>Loading leads from Supabase...</div>
                             </td>
                         </tr>
@@ -306,28 +295,74 @@
             </div>
 
             <!-- Table Footer Pagination/Status -->
-            <div class="p-4 bg-slate-50/50 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+            <div class="p-4 bg-slate-50/50 border-t border-slate-100 flex items-center justify-between text-xs text-slate-600">
                 <span id="tableStatusInfo">Showing 0 inquiries</span>
-                <span class="text-[11px] text-slate-400">Live sync via Supabase RLS &bull; Recipient: flyingcheetah.agency@gmail.com</span>
+                <span class="text-[11px] text-slate-600">Live sync via Supabase RLS &bull; Recipient: flyingcheetah.agency@gmail.com</span>
             </div>
         </div>
     </main>
 
+    <!-- FOOTER -->
+    <footer class="py-8 bg-white border-t border-slate-200 text-xs text-slate-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-3">
+                <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah" class="h-6 w-6 rounded-full object-cover border border-slate-300">
+                <span class="font-bold text-slate-700">FLYING CHEETAH AGENCY DESK © 2026.</span>
+                <span>All Rights Reserved.</span>
+            </div>
+            <div class="flex flex-wrap items-center justify-center gap-4 font-medium text-slate-700">
+                <a href="index.html" class="hover:text-orange-700 transition">Main Site</a>
+                <a href="store.html" class="hover:text-orange-700 transition">Store Demo</a>
+                <a href="privacy-policy.html" class="hover:text-orange-700 transition">Privacy Policy</a>
+                <a href="terms-of-service.html" class="hover:text-orange-700 transition">Terms</a>
+                <a href="refund-policy.html" class="hover:text-orange-700 transition">Refunds</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- UNAUTHORIZED LOCKOUT CARD (SHOWN IF USER IS NOT flyingcheetah.agency@gmail.com) -->
+    <div id="unauthorizedCard" class="hidden fixed inset-0 z-[190] bg-slate-900/25 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="max-w-md w-full bg-white rounded-3xl p-8 border border-slate-200 shadow-2xl text-center space-y-4">
+            <div class="w-16 h-16 rounded-2xl bg-red-100 text-red-600 flex items-center justify-center text-3xl mx-auto shadow-inner">
+                <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+            </div>
+            <h2 class="text-2xl font-black text-bikDark font-display">Access Denied</h2>
+            <div id="unauthDetailMsg" class="text-xs text-slate-600 leading-relaxed space-y-2">
+                <p>This private executive portal is strictly restricted to <code class="bg-slate-100 px-1 py-0.5 rounded text-orange-700 font-bold">flyingcheetah.agency@gmail.com</code>.</p>
+            </div>
+            <div class="p-3 bg-red-50 border border-red-100 rounded-xl text-left text-xs text-red-800 leading-relaxed">
+                <b>Security Policy:</b> Client & trial accounts are separated from the agency admin desk to protect confidential store pipelines, webhooks, and fleet dispatch logs.
+            </div>
+            <div class="pt-2 space-y-2">
+                <button type="button" onclick="window.FC_AUTH.openAuthModal('signin')" class="w-full py-3.5 rounded-xl bg-orange-700 hover:bg-orange-800 text-white font-bold text-xs uppercase tracking-wider transition shadow-md flex items-center justify-center gap-2 cursor-pointer">
+                    <i class="fa-solid fa-key text-orange-100" aria-hidden="true"></i>
+                    <span>Sign In with Agency Admin Account</span>
+                </button>
+                <a href="index.html" class="block w-full py-3 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs uppercase tracking-wider transition shadow-lg shadow-emerald-500/20 text-center">
+                    Return to Website (Client Dashboard)
+                </a>
+                <button type="button" onclick="window.FC_AUTH.signOut()" class="block w-full py-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-700 font-bold text-xs transition">
+                    Sign Out
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- CLOUD INTEGRATIONS MODAL -->
-    <div id="configModal" class="hidden fixed inset-0 z-[150] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div id="configModal" class="hidden fixed inset-0 z-[150] bg-slate-900/25 backdrop-blur-sm flex items-center justify-center p-4">
         <div class="max-w-lg w-full bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-2xl space-y-4">
             <div class="flex items-center justify-between pb-3 border-b border-slate-100">
                 <div class="flex items-center gap-2.5">
-                    <div class="w-8 h-8 rounded-xl bg-orange-100 text-bikOrange flex items-center justify-center font-bold text-sm">
-                        <i class="fa-solid fa-sliders"></i>
+                    <div class="w-8 h-8 rounded-xl bg-orange-100 text-orange-700 flex items-center justify-center font-bold text-sm">
+                        <i class="fa-solid fa-sliders" aria-hidden="true"></i>
                     </div>
                     <div>
-                        <h3 class="font-bold text-sm text-bikDark">Cloud Database & Automation</h3>
-                        <p class="text-[11px] text-slate-400">Manage database connection & automation webhooks</p>
+                        <h2 class="font-bold text-sm text-bikDark">Cloud Database & Automation</h2>
+                        <p class="text-[11px] text-slate-600">Manage database connection & automation webhooks</p>
                     </div>
                 </div>
-                <button onclick="closeConfigModal()" aria-label="Close Cloud Integrations Modal" class="text-slate-400 hover:text-slate-600">
-                    <i class="fa-solid fa-xmark text-lg"></i>
+                <button type="button" onclick="closeConfigModal()" aria-label="Close Cloud Integrations Modal" class="text-slate-600 hover:text-slate-900">
+                    <i class="fa-solid fa-xmark text-lg" aria-hidden="true"></i>
                 </button>
             </div>
 
@@ -343,18 +378,18 @@
                 <div class="pt-2 border-t border-slate-100">
                     <div class="flex items-center gap-1.5 mb-1">
                         <label for="cfgAutomationWebhook" class="block text-xs font-bold text-slate-700">Cloud Automation Webhook URL</label>
-                        <span class="px-1.5 py-0.5 rounded bg-orange-100 text-bikOrange text-[9px] font-black uppercase">Instant Alert</span>
+                        <span class="px-1.5 py-0.5 rounded bg-orange-100 text-orange-800 text-[9px] font-black uppercase">Instant Alert</span>
                     </div>
                     <input type="url" id="cfgAutomationWebhook" placeholder="https://api.yourdomain.com/webhook/flying-cheetah-leads" aria-label="Cloud Automation Webhook URL" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange outline-none">
-                    <p class="text-[10px] text-slate-400 mt-1">Every lead form submission automatically POSTs to this webhook for instant WhatsApp & Telegram routing.</p>
+                    <p class="text-[10px] text-slate-600 mt-1">Every lead form submission automatically POSTs to this webhook for instant WhatsApp & Telegram routing.</p>
                 </div>
             </div>
 
             <div class="flex items-center gap-2 pt-2">
-                <button onclick="testAutomationWebhook()" class="flex-1 py-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-700 font-bold text-xs transition">
+                <button type="button" onclick="testAutomationWebhook()" class="flex-1 py-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-700 font-bold text-xs transition">
                     Test Webhook
                 </button>
-                <button onclick="saveConfig()" class="flex-1 py-2.5 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-xs uppercase tracking-wider transition shadow-md shadow-orange-500/25">
+                <button type="button" onclick="saveConfig()" class="flex-1 py-2.5 rounded-xl bg-orange-700 hover:bg-orange-800 text-white font-bold text-xs uppercase tracking-wider transition shadow-md shadow-orange-500/25">
                     Save Changes
                 </button>
             </div>
@@ -375,6 +410,15 @@
         let allProfiles = [];
         let currentFilter = 'all';
         let searchQuery = '';
+
+        function escapeHtml(str) {
+            return String(str ?? '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
 
         // 1. SECURITY GUARD ENFORCEMENT
         async function runAuthGuard() {
@@ -409,8 +453,8 @@
                 if (overlay) overlay.classList.add('opacity-0', 'pointer-events-none');
                 if (unauthMsg) {
                     unauthMsg.innerHTML = `
-                        <p>You are currently signed in as <code class="bg-slate-100 px-1.5 py-0.5 rounded text-red-600 font-bold">${user.email}</code> (Client / 14-Day Free Trial Account).</p>
-                        <p class="text-[11px] text-slate-400 mt-1">This private executive desk is strictly restricted to agency administrators (<code class="bg-slate-100 px-1 py-0.5 rounded text-bikOrange font-bold">flyingcheetah.agency@gmail.com</code>).</p>
+                        <p>You are currently signed in as <code class="bg-slate-100 px-1.5 py-0.5 rounded text-red-700 font-bold">${escapeHtml(user.email)}</code> (Client / 14-Day Free Trial Account).</p>
+                        <p class="text-[11px] text-slate-600 mt-1">This private executive desk is strictly restricted to agency administrators (<code class="bg-slate-100 px-1 py-0.5 rounded text-orange-700 font-bold">flyingcheetah.agency@gmail.com</code>).</p>
                     `;
                 }
                 if (unauthorized) unauthorized.classList.remove('hidden');
@@ -606,17 +650,21 @@
         function renderTable() {
             const tbody = document.getElementById('leadsTableBody');
             let filtered = allLeads.filter(l => {
-                if (currentFilter === 'new') return l.status === 'new';
-                if (currentFilter === 'contacted') return l.status === 'contacted';
-                if (currentFilter === 'converted') return l.status === 'converted' || l.status === 'closed';
-                
+                const matchesStatus =
+                    currentFilter === 'all' ? true :
+                    currentFilter === 'new' ? l.status === 'new' :
+                    currentFilter === 'contacted' ? l.status === 'contacted' :
+                    currentFilter === 'converted' ? (l.status === 'converted' || l.status === 'closed') : true;
+                if (!matchesStatus) return false;
+
                 if (searchQuery) {
                     const q = searchQuery.toLowerCase();
                     return (l.name && l.name.toLowerCase().includes(q)) ||
                            (l.email && l.email.toLowerCase().includes(q)) ||
                            (l.phone && l.phone.toLowerCase().includes(q)) ||
                            (l.service && l.service.toLowerCase().includes(q)) ||
-                           (l.service_interested && l.service_interested.toLowerCase().includes(q));
+                           (l.service_interested && l.service_interested.toLowerCase().includes(q)) ||
+                           (l.message && l.message.toLowerCase().includes(q));
                 }
                 return true;
             });
@@ -626,11 +674,11 @@
             if (filtered.length === 0) {
                 tbody.innerHTML = `
                     <tr>
-                        <td colspan="7" class="py-12 text-center text-slate-400">
-                            <div class="w-12 h-12 rounded-2xl bg-slate-50 text-slate-300 flex items-center justify-center text-xl mx-auto mb-3">
-                                <i class="fa-solid fa-inbox"></i>
+                        <td colspan="7" class="py-12 text-center text-slate-600">
+                            <div class="w-12 h-12 rounded-2xl bg-slate-50 text-slate-600 flex items-center justify-center text-xl mx-auto mb-3">
+                                <i class="fa-solid fa-inbox" aria-hidden="true"></i>
                             </div>
-                            <div class="font-bold text-slate-600">No inquiries match this filter</div>
+                            <div class="font-bold text-slate-700">No inquiries match this filter</div>
                             <div class="text-[11px] mt-0.5">Switch filter tab or clear search to view other leads.</div>
                         </td>
                     </tr>`;
@@ -652,50 +700,57 @@
                     day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'
                 });
 
+                const safeId = escapeHtml(lead.id);
+                const safeName = escapeHtml(lead.name || 'Anonymous Lead');
+                const safeEmail = escapeHtml(lead.email);
+                const safePhone = escapeHtml(lead.phone);
+                const safeService = escapeHtml(chosenService);
+                const safeMsg = escapeHtml(lead.message);
+
                 return `
                 <tr class="hover:bg-slate-50/70 transition">
                     <td class="py-4 px-6 whitespace-nowrap">
-                        <div class="font-bold text-slate-800">${timeAgo}</div>
-                        <div class="text-[10px] text-slate-400">${dateFormatted}</div>
+                        <div class="font-bold text-slate-800">${escapeHtml(timeAgo)}</div>
+                        <div class="text-[10px] text-slate-600">${escapeHtml(dateFormatted)}</div>
                     </td>
                     <td class="py-4 px-6">
-                        <div class="font-bold text-bikDark">${lead.name || 'Anonymous Lead'}</div>
+                        <div class="font-bold text-bikDark">${safeName}</div>
                         ${lead.email ? `
-                        <a href="mailto:${encodeURIComponent(lead.email)}" class="text-slate-400 hover:text-bikOrange transition">${lead.email}</a>` : `
-                        <span class="text-slate-400 italic text-xs">No email</span>`}
+                        <a href="mailto:${encodeURIComponent(lead.email)}" class="text-slate-600 hover:text-orange-700 transition">${safeEmail}</a>` : `
+                        <span class="text-slate-600 italic text-xs">No email</span>`}
                     </td>
                     <td class="py-4 px-6 whitespace-nowrap">
-                        <div class="font-bold text-slate-800">${lead.phone || '<span class="text-slate-400 font-normal italic">No phone</span>'}</div>
+                        <div class="font-bold text-slate-800">${lead.phone ? safePhone : '<span class="text-slate-600 font-normal italic">No phone</span>'}</div>
                         ${hasValidPhone ? `
-                        <a href="${waLink}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-emerald-600 hover:text-emerald-700 font-bold text-[11px] mt-0.5">
-                            <i class="fa-brands fa-whatsapp text-xs"></i>
+                        <a href="${waLink}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-emerald-700 hover:text-emerald-800 font-bold text-[11px] mt-0.5">
+                            <i class="fa-brands fa-whatsapp text-xs" aria-hidden="true"></i>
                             <span>Chat on WhatsApp</span>
                         </a>` : `
-                        <span class="inline-flex items-center gap-1.5 text-slate-400 font-normal text-[11px] mt-0.5">
-                            <i class="fa-brands fa-whatsapp text-xs text-slate-300"></i>
+                        <span class="inline-flex items-center gap-1.5 text-slate-600 font-normal text-[11px] mt-0.5">
+                            <i class="fa-brands fa-whatsapp text-xs text-slate-600" aria-hidden="true"></i>
                             <span>No WhatsApp</span>
                         </span>`}
                     </td>
                     <td class="py-4 px-6">
-                        <span class="inline-block px-2.5 py-1 rounded-lg bg-orange-50 border border-orange-100 text-bikOrange font-bold text-[11px]">
-                            ${chosenService}
+                        <span class="inline-block px-2.5 py-1 rounded-lg bg-orange-50 border border-orange-100 text-orange-700 font-bold text-[11px]">
+                            ${safeService}
                         </span>
                     </td>
                     <td class="py-4 px-6 max-w-xs">
-                        <p class="truncate text-slate-600" title="${lead.message || ''}">
-                            ${lead.message || '<span class="text-slate-300 italic">No notes</span>'}
+                        <p class="truncate text-slate-600" title="${safeMsg}">
+                            ${lead.message ? safeMsg : '<span class="text-slate-600 italic">No notes</span>'}
                         </p>
                     </td>
                     <td class="py-4 px-6 whitespace-nowrap">
-                        <select onchange="updateLeadStatus('${lead.id}', this.value)" class="text-xs font-bold rounded-lg border px-2.5 py-1 outline-none transition cursor-pointer ${getStatusBadgeClass(lead.status)}">
+                        <select aria-label="Update status for ${safeName}" onchange="updateLeadStatus('${safeId}', this.value)" class="text-xs font-bold rounded-lg border px-2.5 py-1 outline-none transition cursor-pointer ${getStatusBadgeClass(lead.status)}">
                             <option value="new" ${lead.status === 'new' ? 'selected' : ''}>● New</option>
                             <option value="contacted" ${lead.status === 'contacted' ? 'selected' : ''}>● Contacted</option>
                             <option value="converted" ${lead.status === 'converted' || lead.status === 'closed' ? 'selected' : ''}>● Converted</option>
                         </select>
                     </td>
                     <td class="py-4 px-6 text-right whitespace-nowrap">
-                        <button onclick="deleteLead('${lead.id}')" title="Delete Inquiry" class="w-7 h-7 rounded-lg text-slate-400 hover:text-red-600 hover:bg-red-50 transition">
-                            <i class="fa-solid fa-trash-can text-xs"></i>
+                        <button type="button" onclick="deleteLead('${safeId}')" aria-label="Delete inquiry for ${safeName}" title="Delete Inquiry" class="w-7 h-7 rounded-lg text-slate-600 hover:text-red-700 hover:bg-red-50 transition">
+                            <i class="fa-solid fa-trash-can text-xs" aria-hidden="true"></i>
                         </button>
                     </td>
                 </tr>`;
@@ -772,9 +827,9 @@
             currentFilter = filter;
             document.querySelectorAll('.filter-tab').forEach(btn => {
                 if (btn.dataset.filter === filter) {
-                    btn.className = 'filter-tab px-3.5 py-1.5 rounded-xl transition bg-slate-900 text-white font-bold';
+                    btn.className = 'filter-tab px-3.5 py-1.5 rounded-xl transition bg-orange-700 text-white font-bold';
                 } else {
-                    btn.className = 'filter-tab px-3.5 py-1.5 rounded-xl transition text-slate-600 hover:bg-white hover:text-slate-900 font-bold';
+                    btn.className = 'filter-tab px-3.5 py-1.5 rounded-xl transition text-slate-700 hover:bg-white hover:text-slate-900 font-bold';
                 }
             });
             renderTable();

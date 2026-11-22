@@ -13,7 +13,7 @@
     <link rel="canonical" href="https://flying-cheetah.vercel.app/refund-policy">
     <meta property="og:url" content="https://flying-cheetah.vercel.app/refund-policy">
     <meta property="og:site_name" content="Flying Cheetah">
-        <link rel="icon" type="image/png" href="images/user_official_real_logo_transparent.png">
+    <link rel="icon" type="image/png" href="images/user_official_real_logo_transparent.png">
     <link rel="apple-touch-icon" href="images/user_official_real_logo_transparent.png">
     <!-- Tailwind CSS -->
     <link rel="stylesheet" href="css/styles.min.css">
@@ -22,7 +22,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/fx.css">
-    <link rel="stylesheet" href="css/mobile-app.css">
+    <link id="fcMobileAppStyles" rel="stylesheet" href="css/mobile-app.css">
     <script type="application/ld+json">
 {
       "@context": "https://schema.org",
@@ -38,33 +38,35 @@
 }
     </script>
 </head>
-<body class="bg-white text-slate-800 antialiased font-sans selection:bg-orange-100 selection:text-bikOrange">
+<body class="bg-white text-slate-900 antialiased font-sans selection:bg-orange-100 selection:text-orange-700">
 
     <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <a href="index.html" class="flex items-center space-x-3">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+            <a href="index.html" class="flex items-center space-x-3 shrink-0 whitespace-nowrap">
                 <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah Logo" class="h-11 w-11 rounded-full object-cover border border-slate-200 shadow-sm">
                 <div class="flex flex-col">
-                    <span class="text-xl font-black tracking-tight font-display text-bikDark">FLYING CHEETAH</span>
-                    <span class="text-[9px] text-bikOrange font-bold tracking-widest uppercase -mt-1">REFUND POLICY</span>
+                    <span class="text-lg xl:text-xl font-black tracking-tight font-display text-bikDark">FLYING CHEETAH</span>
+                    <span class="text-[9px] text-orange-700 font-bold tracking-widest uppercase -mt-1">REFUND POLICY</span>
                 </div>
             </a>
-            <div class="flex items-center gap-3">
-                <a href="index.html" class="px-4 py-2 rounded-xl text-xs font-bold text-slate-700 hover:text-bikOrange transition">← Back to Platform</a>
-                <a href="demo.html" class="inline-flex items-center justify-center gap-1 px-4 py-2 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-xs transition shadow-sm"><span>Book Free Live Demo</span> <span class="text-sm leading-none">➔</span></a>
+            <div class="flex items-center gap-2.5 shrink-0">
+                <a href="index.html" class="hidden sm:inline-flex px-3.5 py-2 rounded-xl text-xs font-bold text-slate-700 hover:text-orange-700 transition whitespace-nowrap">← Back to Platform</a>
+                <div class="fc-auth-slot"></div>
+                <a href="demo.html" class="hidden sm:inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-orange-700 hover:bg-orange-800 text-white font-bold text-xs transition shadow-sm whitespace-nowrap shrink-0"><span>Book Free Live Demo</span> <span class="text-sm leading-none" aria-hidden="true">➔</span></a>
+                <button id="fcMobileMenuBtn" type="button" aria-label="Toggle Mobile Menu" aria-expanded="false" aria-controls="fcMobileDrawer" onclick="window.FC_WIDGETS && window.FC_WIDGETS.toggleMobileDrawer ? window.FC_WIDGETS.toggleMobileDrawer() : null" class="lg:hidden p-2 rounded-xl border border-slate-200 hover:border-bikOrange bg-white text-slate-700 hover:text-orange-700 transition flex items-center justify-center shrink-0 w-10 h-10 shadow-sm cursor-pointer touch-target-44 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange focus-visible:ring-offset-2"><i class="fa-solid fa-bars text-sm" aria-hidden="true"></i></button>
             </div>
         </div>
     </header>
 
-    <main class="py-16 bg-slate-50/50">
+    <main id="main-content" class="py-16 bg-white">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 bg-white p-8 sm:p-12 rounded-3xl border border-slate-200 shadow-xl space-y-8">
             <div>
                 <span class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold font-tech uppercase tracking-wider">Merchant Transparency</span>
                 <h1 class="text-3xl sm:text-4xl font-black text-bikDark tracking-tight mt-3 font-display">Cancellation & Refund Policy</h1>
-                <p class="text-xs text-slate-400 mt-1">Effective Date: October 25, 2026</p>
+                <p class="text-xs text-slate-600 mt-1">Effective Date: October 25, 2026 | Last Updated: October 2026</p>
             </div>
 
-            <div class="prose prose-slate max-w-none text-sm leading-relaxed space-y-6 text-slate-600">
+            <div class="max-w-none text-sm leading-relaxed space-y-6 text-slate-600">
                 <section class="space-y-3">
                     <h2 class="text-lg font-bold text-bikDark">1. 14-Day Free Pilot Commitment</h2>
                     <p>At Flying Cheetah Labs, we believe in demonstrating tangible revenue ROI before asking for commercial commitment. Every merchant account initiates with a <b>100% Free 14-Day Pilot</b> with no credit card required. If you decide not to proceed during or after the pilot, your account incurs exactly ₹0.00.</p>
@@ -99,21 +101,22 @@
                     <h2 class="text-lg font-bold text-bikDark">5. How to Submit a Refund or Cancellation Request</h2>
                     <p>To request a subscription cancellation or refund, email our finance desk with your Store Name and registered billing email:</p>
                     <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 text-xs">
-                        <b>Flying Cheetah Billing Desk</b> • <a href="mailto:flyingcheetah.agency@gmail.com" class="text-bikOrange font-bold underline">flyingcheetah.agency@gmail.com</a> • Phone: +91 99203 86421
+                        <b>Flying Cheetah Billing Desk</b> • <a href="mailto:flyingcheetah.agency@gmail.com" class="text-orange-700 font-bold underline">flyingcheetah.agency@gmail.com</a> • Phone: +91 99203 86421
                     </div>
                 </section>
             </div>
         </div>
     </main>
 
-    <footer class="py-8 bg-white border-t border-slate-200 text-xs text-slate-500 text-center">
+    <footer class="py-8 bg-white border-t border-slate-200 text-xs text-slate-600 text-center">
         <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div>FLYING CHEETAH LABS • © 2026. All Rights Reserved.</div>
-            <div class="flex items-center gap-4">
-                <a href="privacy-policy.html" class="hover:text-bikOrange">Privacy Policy</a>
-                <a href="terms-of-service.html" class="hover:text-bikOrange">Terms of Service</a>
-                <a href="refund-policy.html" class="text-bikOrange font-bold">Refund Policy</a>
-                <a href="about.html" class="hover:text-bikOrange">About Us</a>
+            <div class="flex flex-wrap items-center justify-center gap-4 font-medium text-slate-700">
+                <a href="index.html" class="hover:text-orange-700 transition">Main Site</a>
+                <a href="privacy-policy.html" class="hover:text-orange-700 transition">Privacy Policy</a>
+                <a href="terms-of-service.html" class="hover:text-orange-700 transition">Terms of Service</a>
+                <a href="refund-policy.html" class="text-orange-700 font-bold">Refund Policy</a>
+                <a href="about.html" class="hover:text-orange-700 transition">About Us</a>
             </div>
         </div>
     </footer>

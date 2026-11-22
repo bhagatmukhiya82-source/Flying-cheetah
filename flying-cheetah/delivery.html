@@ -285,7 +285,7 @@
                     </div>
                 </div>
 
-                <!-- COD Reconciliation Highlight (Fixed h4 -> h3!) -->
+                <!-- COD Reconciliation Highlight -->
                 <div class="mt-12 p-6 rounded-2xl bg-gradient-to-r from-emerald-50 via-white to-amber-50 border-2 border-emerald-200 flex flex-col md:flex-row items-center justify-between gap-6 shadow-md">
                     <div class="flex items-center gap-4">
                         <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center text-xl shrink-0">
@@ -509,11 +509,11 @@
                             <div class="grid grid-cols-2 gap-4">
                                 <div class="p-4 rounded-2xl bg-emerald-50/60 border border-emerald-200">
                                     <span class="text-[11px] font-bold text-slate-600 block">On-Demand Cost / Order</span>
-                                    <strong id="fleetUnitCostOut" class="text-2xl font-black text-emerald-700 font-display">₹54</strong>
+                                    <strong id="fleetUnitCostOut" class="text-2xl font-black text-emerald-700 font-display">₹55</strong>
                                 </div>
                                 <div class="p-4 rounded-2xl bg-orange-50/60 border border-orange-200">
                                     <span class="text-[11px] font-bold text-slate-600 block">Estimated Monthly Spend</span>
-                                    <strong id="fleetMonthlySpendOut" class="text-2xl font-black text-orange-700 font-display">₹32,400</strong>
+                                    <strong id="fleetMonthlySpendOut" class="text-2xl font-black text-orange-700 font-display">₹33,000</strong>
                                 </div>
                                 <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200">
                                     <span class="text-[11px] font-bold text-slate-600 block">In-House Payroll Equivalent</span>
@@ -521,7 +521,7 @@
                                 </div>
                                 <div class="p-4 rounded-2xl bg-blue-50/60 border border-blue-200">
                                     <span class="text-[11px] font-bold text-slate-600 block">Monthly Margin Saved</span>
-                                    <strong id="fleetSavingsOut" class="text-2xl font-black text-blue-700 font-display">₹42,600</strong>
+                                    <strong id="fleetSavingsOut" class="text-2xl font-black text-blue-700 font-display">₹42,000</strong>
                                 </div>
                             </div>
                         </div>
@@ -529,7 +529,7 @@
                         <div class="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 flex flex-col sm:flex-row items-center justify-between gap-4">
                             <div>
                                 <span class="text-xs text-slate-700 block font-semibold">Annual Zero-Payroll Savings</span>
-                                <strong id="fleetAnnualSavingsOut" class="text-xl font-black text-bikDark font-display">₹5,11,200 / yr</strong>
+                                <strong id="fleetAnnualSavingsOut" class="text-xl font-black text-bikDark font-display">₹5,04,000 / yr</strong>
                             </div>
                             <button type="button" onclick="if(window.FC_LEADS){window.FC_LEADS.openAuditModal('Hyperlocal Borzo Fleet Protocol');}" class="px-5 py-3 rounded-xl bg-orange-700 hover:bg-orange-800 text-white font-bold text-xs transition shadow-md cursor-pointer whitespace-nowrap">
                                 Activate Fleet API ➔
@@ -787,6 +787,31 @@
             </div>
         </section>
 
+        <!-- FINAL CONVERSION CTA BANNER -->
+        <section class="py-20 bg-gradient-to-br from-emerald-50/80 via-white to-orange-50/70 border-t border-emerald-100">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+                <span class="inline-block text-xs font-bold text-emerald-800 uppercase tracking-widest bg-emerald-100 px-3.5 py-1 rounded-full border border-emerald-200">
+                    Zero Rider Payroll • 12–18 Min Counter Pickup
+                </span>
+                <h2 class="text-3xl sm:text-5xl font-black font-display text-bikDark leading-tight">
+                    Ship Hyperlocal Orders on Auto-Pilot Across Borzo &amp; Porter.
+                </h2>
+                <p class="text-sm sm:text-base text-slate-700 max-w-2xl mx-auto leading-relaxed">
+                    Book a 15-minute live fleet integration walkthrough. We will connect your Shopify or WhatsApp checkout to multi-carrier 2-wheeler dispatch with automated GPS &amp; OTP alerts.
+                </p>
+                <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <button type="button" onclick="if(window.FC_LEADS){window.FC_LEADS.openAuditModal('Hyperlocal Borzo Fleet Protocol');}" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-bikDark font-extrabold text-sm transition shadow-lg shadow-emerald-500/20 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange focus-visible:ring-offset-2">
+                        <i class="fa-solid fa-motorcycle" aria-hidden="true"></i>
+                        <span>Book Live Fleet Protocol Demo</span>
+                    </button>
+                    <a href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah%20team%2C%20I%20want%20to%20connect%20Hyperlocal%20Borzo%20and%20Porter%20Fleet%20Dispatch." target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl border border-emerald-300 hover:border-emerald-500 text-emerald-800 font-bold text-sm bg-white hover:bg-emerald-50 transition shadow-sm">
+                        <i class="fa-brands fa-whatsapp text-emerald-700 text-base" aria-hidden="true"></i>
+                        <span>Chat With Fleet Engineers</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <!-- CANONICAL CROSS-LINKED FOOTER -->
@@ -998,8 +1023,8 @@
             badge.textContent = 'DISPATCH CONFIRMED';
 
             log.innerHTML += `
-                <div class="text-emerald-800 font-bold mt-2">✓ [2/3] Rider Assigned: ${dispatchRes.rider?.name || 'Ramesh Shinde'}</div>
-                <div class="text-emerald-800 font-bold">✓ [3/3] Live GPS Tracking Link Generated (ETA: ${dispatchRes.eta_minutes || 14.5} min)</div>
+                <div class="text-emerald-800 font-bold mt-2">✓ [2/3] Rider Assigned: ${escapeDispatchHtml(dispatchRes.rider?.name || 'Ramesh Shinde')}</div>
+                <div class="text-emerald-800 font-bold">✓ [3/3] Live GPS Tracking Link Generated (ETA: ${escapeDispatchHtml(dispatchRes.eta_minutes || 14.5)} min)</div>
             `;
 
             document.getElementById('riderName').textContent = dispatchRes.rider?.name || 'Ramesh Shinde';

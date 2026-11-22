@@ -26,18 +26,16 @@
     <link rel="stylesheet" href="css/fx.css">
     <style>
         .bik-mega-shadow { box-shadow: 0 25px 60px -15px rgba(255, 104, 56, 0.15), 0 0 1px 1px rgba(0, 0, 0, 0.05); }
-        .mega-menu { display: none; }
-        .dropdown-parent:hover .mega-menu { display: block; }
         .home-menu { display: none; }
         .home-dropdown-parent:hover > .home-menu,
         .home-dropdown-parent.active > .home-menu { display: block; }
         .mega-menu { display: none; }
         .products-dropdown-parent:hover > .mega-menu,
-        .products-dropdown-parent.active > .mega-menu { display: block; }
+        .products-dropdown-parent.active > .mega-menu,
         .dropdown-parent:hover > .mega-menu,
         .dropdown-parent.active > .mega-menu { display: block; }
     </style>
-    <link rel="stylesheet" href="css/mobile-app.css">
+    <link id="fcMobileAppStyles" rel="stylesheet" href="css/mobile-app.css">
     <script type="application/ld+json">
 {
       "@context": "https://schema.org",
@@ -53,68 +51,68 @@
 }
     </script>
 </head>
-<body class="bg-slate-50 text-slate-900 font-sans antialiased selection:bg-bikOrange selection:text-white min-h-screen flex flex-col">
+<body class="bg-white text-slate-900 font-sans antialiased selection:bg-orange-100 selection:text-orange-700 min-h-screen flex flex-col">
 
     <!-- TOP PROMO BANNER -->
     <div class="bg-gradient-to-r from-orange-50 via-amber-50/70 to-emerald-50 border-b border-orange-200/70 text-bikDark py-2 px-4 text-center text-xs font-medium">
         <span>⚡ Experience Autonomous eCommerce: 18% cart recovery, 15-minute fleet dispatch & in-chat UPI payments.</span>
-        <a href="https://wa.me/919920386421" target="_blank" class="underline ml-2 text-bikOrange font-bold hover:text-bikOrangeDark transition">Chat with Flying Cheetah ↗</a>
+        <a href="https://wa.me/919920386421" target="_blank" rel="noopener noreferrer" class="underline ml-2 text-orange-700 font-bold hover:text-orange-800 transition">Chat with Flying Cheetah <span aria-hidden="true">↗</span></a>
     </div>
 
     <!-- MAIN NAVBAR -->
     <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
             <a href="index.html" class="flex items-center space-x-3 shrink-0 whitespace-nowrap">
                 <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah Logo" class="h-11 w-11 rounded-full object-cover border border-slate-200 shadow-sm">
                 <div class="flex flex-col">
-                    <span class="text-xl font-black tracking-tight font-display text-bikDark">FLYING CHEETAH</span>
-                    <span class="text-[9px] text-bikOrange font-bold tracking-widest uppercase -mt-1">LIVE DEMO PORTAL</span>
+                    <span class="text-lg xl:text-xl font-black tracking-tight font-display text-bikDark">FLYING CHEETAH</span>
+                    <span class="text-[9px] text-orange-700 font-bold tracking-widest uppercase -mt-1">LIVE DEMO PORTAL</span>
                 </div>
             </a>
 
-            <nav class="hidden lg:flex items-center gap-5 xl:gap-7 text-[13px] xl:text-sm font-semibold text-slate-700 whitespace-nowrap">
+            <nav aria-label="Primary Navigation" class="hidden lg:flex items-center gap-5 xl:gap-7 text-[13px] xl:text-sm font-semibold text-slate-700 whitespace-nowrap">
                 <!-- HOME DROPDOWN -->
-                <div class="relative home-dropdown-parent py-6">
-                    <button class="home-btn flex items-center gap-1.5 hover:text-bikOrange transition focus:outline-none text-slate-800 font-bold text-sm">
-                        <i class="fa-solid fa-house text-xs text-bikOrange"></i>
+                <div class="relative home-dropdown-parent dropdown-parent py-6">
+                    <button type="button" aria-expanded="false" aria-controls="fcHomeMenu" class="home-btn flex items-center gap-1.5 hover:text-orange-700 transition focus:outline-none text-slate-800 font-bold text-sm">
+                        <i class="fa-solid fa-house text-xs text-orange-700" aria-hidden="true"></i>
                         <span>Home</span>
-                        <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200"></i>
+                        <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200" aria-hidden="true"></i>
                     </button>
-                    <div class="mega-menu home-menu absolute top-full left-0 w-72 bg-white rounded-2xl border border-slate-200 p-4 shadow-2xl bik-mega-shadow z-50">
-                        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-3 pb-2 border-b border-slate-100 flex items-center justify-between">
+                    <div id="fcHomeMenu" class="mega-menu home-menu absolute top-full left-0 w-72 bg-white rounded-2xl border border-slate-200 p-4 shadow-2xl bik-mega-shadow z-50">
+                        <div class="text-[10px] font-bold text-slate-600 uppercase tracking-wider px-3 pb-2 border-b border-slate-100 flex items-center justify-between">
                             <span>Core Portals</span>
-                            <a href="index.html" class="text-bikOrange hover:underline font-bold">Executive Hub ↗</a>
+                            <a href="index.html" class="text-orange-700 hover:underline font-bold">Executive Hub ↗</a>
                         </div>
                         <div class="space-y-1.5 pt-2">
-                            <a href="index.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
-                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-bikOrange flex items-center justify-center text-sm group-hover:scale-110 transition">
-                                    <i class="fa-solid fa-store"></i>
+                            <a href="index.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-orange-700 transition group">
+                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-orange-700 flex items-center justify-center text-sm group-hover:scale-110 transition">
+                                    <i class="fa-solid fa-store" aria-hidden="true"></i>
                                 </div>
                                 <div>
-                                    <div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">Main Site</div>
-                                    <div class="text-[10px] text-slate-400">Flagship AI Commerce Suite</div>
+                                    <div class="text-xs font-bold text-bikDark group-hover:text-orange-700">Main Site</div>
+                                    <div class="text-[10px] text-slate-600">Flagship AI Commerce Suite</div>
                                 </div>
                             </a>
-                                                        <a href="web-development.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
-                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-bikOrange flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-code"></i></div>
-                                <div><div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">Web Development</div><div class="text-[10px] text-slate-400">Next.js &amp; Shopify Stores &bull; Mumbai</div></div>
+                            <a href="web-development.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-orange-700 transition group">
+                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-orange-700 flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-code" aria-hidden="true"></i></div>
+                                <div><div class="text-xs font-bold text-bikDark group-hover:text-orange-700">Web Development</div><div class="text-[10px] text-slate-600">Next.js &amp; Shopify Stores &bull; Mumbai</div></div>
                             </a>
-<a href="delivery.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-emerald-50 text-slate-700 hover:text-emerald-600 transition group">
-                                <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center text-sm group-hover:scale-110 transition">
-                                    <i class="fa-solid fa-motorcycle"></i>
+                            <a href="delivery.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-emerald-50 text-slate-700 hover:text-emerald-700 transition group">
+                                <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center text-sm group-hover:scale-110 transition">
+                                    <i class="fa-solid fa-motorcycle" aria-hidden="true"></i>
                                 </div>
                                 <div>
-                                    <div class="text-xs font-bold text-bikDark group-hover:text-emerald-600">Fleet Protocol</div>
-                                    <div class="text-[10px] text-slate-400">Hyperlocal Borzo/Porter API</div>
+                                    <div class="text-xs font-bold text-bikDark group-hover:text-emerald-700">Fleet Protocol</div>
+                                    <div class="text-[10px] text-slate-600">Hyperlocal Borzo/Porter API</div>
                                 </div>
                             </a>
-                            <a href="about.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
-                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-bikOrange flex items-center justify-center text-sm group-hover:scale-110 transition">
-                                    <i class="fa-solid fa-circle-info"></i>
+                            <a href="about.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-orange-700 transition group">
+                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-orange-700 flex items-center justify-center text-sm group-hover:scale-110 transition">
+                                    <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
                                 </div>
                                 <div>
-                                    <div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">About Us</div>
-                                    <div class="text-[10px] text-slate-400">Company Motive & Founders</div>
+                                    <div class="text-xs font-bold text-bikDark group-hover:text-orange-700">About Us</div>
+                                    <div class="text-[10px] text-slate-600">Company Motive & Founders</div>
                                 </div>
                             </a>
                         </div>
@@ -123,76 +121,79 @@
 
                 <!-- PRODUCTS & AUTOMATIONS DROPDOWN -->
                 <div class="relative products-dropdown-parent dropdown-parent py-6">
-                    <button class="flex items-center gap-1.5 hover:text-bikOrange transition focus:outline-none text-slate-800 font-bold">
+                    <button type="button" aria-expanded="false" aria-controls="fcProductsMenu" class="flex items-center gap-1.5 hover:text-orange-700 transition focus:outline-none text-slate-800 font-bold">
                         <span>Products & Automations</span>
-                        <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                        <i class="fa-solid fa-chevron-down text-[10px]" aria-hidden="true"></i>
                     </button>
-                    <div class="mega-menu absolute top-full -left-28 w-[760px] bg-white rounded-2xl border border-slate-200 p-8 shadow-2xl bik-mega-shadow z-50">
+                    <div id="fcProductsMenu" class="mega-menu absolute top-full -left-28 w-[760px] bg-white rounded-2xl border border-slate-200 p-8 shadow-2xl bik-mega-shadow z-50">
                         <div class="grid grid-cols-4 gap-6 text-xs">
                             <div class="space-y-3">
-                                <div class="flex items-center gap-2 text-bikOrange font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-bullhorn"></i> CAMPAIGNS</div>
+                                <div class="flex items-center gap-2 text-orange-700 font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-bullhorn" aria-hidden="true"></i> CAMPAIGNS</div>
                                 <ul class="space-y-2.5 text-slate-600 font-medium">
-                                    <li><a href="email-marketing.html" class="hover:text-bikOrange transition block">Email marketing</a></li>
-                                    <li><a href="whatsapp-marketing.html" class="hover:text-bikOrange transition block">WhatsApp marketing</a></li>
-                                    <li><a href="sms-marketing.html" class="hover:text-bikOrange transition block">SMS marketing</a></li>
-                                    <li><a href="customer-data-platform.html" class="hover:text-bikOrange transition block">Customer data platform</a></li>
-                                    <li><a href="rcs-messaging.html" class="hover:text-bikOrange transition block">RCS messaging</a></li>
+                                    <li><a href="email-marketing.html" class="hover:text-orange-700 transition block">Email marketing</a></li>
+                                    <li><a href="whatsapp-marketing.html" class="hover:text-orange-700 transition block">WhatsApp marketing</a></li>
+                                    <li><a href="sms-marketing.html" class="hover:text-orange-700 transition block">SMS marketing</a></li>
+                                    <li><a href="customer-data-platform.html" class="hover:text-orange-700 transition block">Customer data platform</a></li>
+                                    <li><a href="rcs-messaging.html" class="hover:text-orange-700 transition block">RCS messaging</a></li>
                                 </ul>
                             </div>
                             <div class="space-y-3 bg-orange-50/70 p-3 -m-3 rounded-xl border border-orange-100">
-                                <div class="flex items-center gap-2 text-bikOrange font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-gear"></i> AUTOMATIONS</div>
+                                <div class="flex items-center gap-2 text-orange-700 font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-gear" aria-hidden="true"></i> AUTOMATIONS</div>
                                 <ul class="space-y-2.5 text-slate-700 font-medium">
-                                    <li><a href="store-automation.html" class="hover:text-bikOrange transition block">Store automation</a></li>
-                                    <li><a href="instagram-automation.html" class="hover:text-bikOrange transition block">Instagram automation</a></li>
-                                    <li><a href="whatsapp-automation.html" class="hover:text-bikOrange transition block">WhatsApp automation</a></li>
-                                    <li><a href="ctwa-automation.html" class="hover:text-bikOrange transition block">Click to WhatsApp ads</a></li>
-                                    <li><a href="ai-voice-agents.html" class="hover:text-bikOrange transition block">AI Voice Agents</a></li>
+                                    <li><a href="store-automation.html" class="hover:text-orange-700 transition block">Store automation</a></li>
+                                    <li><a href="instagram-automation.html" class="hover:text-orange-700 transition block">Instagram automation</a></li>
+                                    <li><a href="whatsapp-automation.html" class="hover:text-orange-700 transition block">WhatsApp automation</a></li>
+                                    <li><a href="ctwa-automation.html" class="hover:text-orange-700 transition block">Click to WhatsApp ads</a></li>
+                                    <li><a href="ai-voice-agents.html" class="hover:text-orange-700 transition block">AI Voice Agents</a></li>
                                 </ul>
                             </div>
                             <div class="space-y-3 bg-emerald-50/50 p-3 -m-3 rounded-xl border border-emerald-100">
-                                <div class="flex items-center gap-2 text-emerald-700 font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-headset"></i> HELPDESK</div>
+                                <div class="flex items-center gap-2 text-emerald-700 font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-headset" aria-hidden="true"></i> HELPDESK</div>
                                 <ul class="space-y-2.5 text-slate-700 font-medium">
-                                    <li><a href="customer-support.html" class="hover:text-emerald-600 transition block">Customer support</a></li>
-                                    <li><a href="whatsapp-calling.html" class="hover:text-emerald-600 transition block font-bold text-emerald-700">WhatsApp calling ↗</a></li>
+                                    <li><a href="customer-support.html" class="hover:text-emerald-700 transition block">Customer support</a></li>
+                                    <li><a href="whatsapp-calling.html" class="hover:text-emerald-700 transition block font-bold text-emerald-700">WhatsApp calling ↗</a></li>
                                 </ul>
                             </div>
                             <div class="space-y-4">
                                 <div class="space-y-2">
-                                    <div class="text-bikOrange font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-comment-dots"></i> POPUPS</div>
-                                    <a href="solutions.html?module=gamification" class="hover:text-bikOrange transition block text-slate-600">Gamification</a>
+                                    <div class="text-orange-700 font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-comment-dots" aria-hidden="true"></i> POPUPS</div>
+                                    <a href="solutions.html?module=gamification" class="hover:text-orange-700 transition block text-slate-600">Gamification</a>
                                 </div>
                                 <div class="space-y-2 border-t border-slate-100 pt-3">
-                                    <div class="text-bikOrange font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-robot"></i> CHATBOTS</div>
-                                    <a href="solutions.html?module=whatsapp-chatbot" class="hover:text-bikOrange transition block text-slate-600">WhatsApp chatbot</a>
+                                    <div class="text-orange-700 font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-robot" aria-hidden="true"></i> CHATBOTS</div>
+                                    <ul class="space-y-2 text-slate-700 font-medium">
+                                        <li><a href="solutions.html?module=whatsapp-chatbot" class="hover:text-orange-700 transition block">WhatsApp chatbot</a></li>
+                                        <li><a href="solutions.html?module=instagram-chatbot" class="hover:text-orange-700 transition block">Instagram chatbot</a></li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <a href="delivery.html" class="hover:text-bikOrange transition">Fleet Dispatch</a>
-                <a href="web-development.html" class="hover:text-bikOrange transition">Web Development</a>
-                <a href="about.html" class="hover:text-bikOrange transition">About Us</a>
+                <a href="delivery.html" class="hover:text-orange-700 transition">Fleet Dispatch</a>
+                <a href="web-development.html" class="hover:text-orange-700 transition">Web Development</a>
+                <a href="about.html" class="hover:text-orange-700 transition">About Us</a>
             </nav>
 
-            <div class="flex items-center space-x-3">
+            <div class="flex items-center space-x-2.5 shrink-0">
                 <div class="fc-auth-slot"></div>
-                <a href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah%20team,%20I%20want%20to%20schedule%20an%20urgent%201-on-1%20demo." target="_blank" class="hidden sm:inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-xs sm:text-sm transition shadow-md shadow-orange-500/20">
-                    <i class="fa-brands fa-whatsapp mr-1.5 text-base"></i> WhatsApp VIP Booking
+                <a href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah%20team,%20I%20want%20to%20schedule%20an%20urgent%201-on-1%20demo." target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-orange-700 hover:bg-orange-800 text-white font-bold text-xs sm:text-sm transition shadow-md shadow-orange-500/20 whitespace-nowrap shrink-0">
+                    <i class="fa-brands fa-whatsapp mr-1.5 text-base" aria-hidden="true"></i> WhatsApp VIP Booking
                 </a>
-                <button id="fcMobileMenuBtn" type="button" aria-label="Toggle Mobile Menu" onclick="window.FC_WIDGETS && window.FC_WIDGETS.toggleMobileDrawer ? window.FC_WIDGETS.toggleMobileDrawer() : null" class="lg:hidden p-2 rounded-xl border border-slate-200 hover:border-bikOrange bg-white text-slate-700 hover:text-bikOrange transition flex items-center justify-center shrink-0 w-10 h-10 shadow-xs cursor-pointer touch-target-44"><i class="fa-solid fa-bars text-sm"></i></button>
+                <button id="fcMobileMenuBtn" type="button" aria-label="Toggle Mobile Menu" aria-expanded="false" aria-controls="fcMobileDrawer" onclick="window.FC_WIDGETS && window.FC_WIDGETS.toggleMobileDrawer ? window.FC_WIDGETS.toggleMobileDrawer() : null" class="lg:hidden p-2 rounded-xl border border-slate-200 hover:border-bikOrange bg-white text-slate-700 hover:text-orange-700 transition flex items-center justify-center shrink-0 w-10 h-10 shadow-sm cursor-pointer touch-target-44 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange focus-visible:ring-offset-2"><i class="fa-solid fa-bars text-sm" aria-hidden="true"></i></button>
             </div>
         </div>
     </header>
 
     <!-- MAIN DEMO SHOWCASE & BOOKING SECTION (Flying Cheetah CALIBER) -->
-    <main class="flex-1 py-12 md:py-20">
+    <main id="main-content" class="flex-1 py-12 md:py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
             
             <!-- Hero Title & Context -->
             <div class="text-center max-w-3xl mx-auto space-y-4">
-                <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-orange-100 border border-orange-200 text-bikOrange text-xs font-bold uppercase tracking-wider">
-                    <i class="fa-solid fa-calendar-check"></i> VIP 1-on-1 Architecture Walkthrough
+                <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-orange-100 border border-orange-200 text-orange-700 text-xs font-bold uppercase tracking-wider">
+                    <i class="fa-solid fa-calendar-check" aria-hidden="true"></i> VIP 1-on-1 Architecture Walkthrough
                 </div>
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-bikDark tracking-tight font-display leading-[1.08]">
                     Experience <span class="text-bikOrange">Flying Cheetah</span> in Action.
@@ -201,8 +202,8 @@
                     Book a personalized 20-minute live architectural walk-through with our engineering founders to audit your store, review tech requirements, and unlock automated growth.
                 </p>
                 <div class="pt-4 max-w-2xl mx-auto">
-                    <div class="fc-showcase-frame aspect-[16/9]">
-                        <img src="images/cdp_unified_hub_3d.jpg" alt="Flying Cheetah Autonomous Commerce & Unified 360 Walkthrough Architecture" class="fc-showcase-img">
+                    <div class="p-3.5 rounded-3xl border border-orange-200/80 bg-white shadow-2xl bik-mega-shadow">
+                        <img src="images/demo_platform_walkthrough_light.png" alt="Flying Cheetah Unified Automation Suite 20-Minute Live Architecture Walkthrough" class="rounded-2xl w-full h-auto border border-slate-100">
                     </div>
                 </div>
             </div>
@@ -238,8 +239,8 @@
                         <div class="space-y-1">
                             <label for="demoPhone" class="text-slate-700 block">WhatsApp Phone Number *</label>
                             <div class="flex items-center">
-                                <span class="px-3 py-2.5 bg-slate-100 border border-r-0 border-slate-200 rounded-l-xl text-slate-500 text-xs font-bold">+91</span>
-                                <input type="tel" id="demoPhone" required placeholder="98765 43210" maxlength="10" inputmode="tel" autocomplete="tel" aria-label="10-digit WhatsApp Phone Number" class="w-full px-3.5 py-3 sm:py-2.5 rounded-r-xl border border-slate-200 focus:border-bikOrange focus:ring-2 focus:ring-orange-100 outline-none text-slate-800 text-sm transition font-mono">
+                                <span class="px-3 py-2.5 bg-slate-100 border border-r-0 border-slate-200 rounded-l-xl text-slate-600 text-xs font-bold">+91</span>
+                                <input type="tel" id="demoPhone" required placeholder="98765 43210" maxlength="15" inputmode="tel" autocomplete="tel" aria-label="WhatsApp Phone Number" class="w-full px-3.5 py-3 sm:py-2.5 rounded-r-xl border border-slate-200 focus:border-bikOrange focus:ring-2 focus:ring-orange-100 outline-none text-slate-800 text-sm transition font-mono">
                             </div>
                         </div>
 
@@ -276,31 +277,31 @@
 
                         <!-- Submit Button -->
                         <div class="pt-2">
-                            <button type="submit" id="demoSubmitBtn" class="w-full py-3.5 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-sm transition shadow-lg shadow-orange-500/25 flex items-center justify-center gap-2">
-                                <i class="fa-solid fa-calendar-check"></i>
+                            <button type="submit" id="demoSubmitBtn" class="w-full py-3.5 rounded-xl bg-orange-700 hover:bg-orange-800 text-white font-bold text-sm transition shadow-lg shadow-orange-500/25 flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>
                                 <span>Confirm Demo Booking</span>
                             </button>
                         </div>
 
-                        <p class="text-[10px] text-slate-400 text-center">
+                        <p class="text-[10px] text-slate-600 text-center">
                             Zero spam • Instant WhatsApp confirmation • Direct access to Flying Cheetah Leadership
                         </p>
                     </form>
 
                     <!-- SUCCESS CARD (HIDDEN INITIALLY) -->
                     <div id="demoSuccessState" class="hidden text-center py-6 space-y-4">
-                        <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-3xl mx-auto shadow-inner">
-                            <i class="fa-solid fa-check"></i>
+                        <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-3xl mx-auto shadow-inner">
+                            <i class="fa-solid fa-check" aria-hidden="true"></i>
                         </div>
                         <div>
                             <h3 class="text-xl font-black text-bikDark font-display">Demo Confirmed!</h3>
-                            <p class="text-xs text-slate-500 mt-1" id="successMsg">Our founders have received your store audit request.</p>
+                            <p class="text-xs text-slate-600 mt-1" id="successMsg">Our founders have received your store audit request.</p>
                         </div>
                         <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-left text-xs text-emerald-800 space-y-1">
                             <p><strong>Next Step:</strong> Click below to connect on WhatsApp directly with Flying Cheetah Leadership to confirm your slot immediately.</p>
                         </div>
-                        <a id="successWhatsAppBtn" href="https://wa.me/919920386421" target="_blank" class="w-full py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs uppercase tracking-wider transition shadow-lg shadow-emerald-600/25 flex items-center justify-center gap-2">
-                            <i class="fa-brands fa-whatsapp text-base"></i>
+                        <a id="successWhatsAppBtn" href="https://wa.me/919920386421" target="_blank" rel="noopener noreferrer" class="w-full py-3.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs uppercase tracking-wider transition shadow-lg shadow-emerald-600/25 flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-base" aria-hidden="true"></i>
                             <span>Open WhatsApp VIP Chat</span>
                         </a>
                     </div>
@@ -312,88 +313,73 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="py-12 bg-white border-t border-slate-200 text-xs text-slate-500">
+    <footer class="py-12 bg-white border-t border-slate-200 text-xs text-slate-600">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div class="flex items-center space-x-3">
                 <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah" class="h-6 w-6 rounded-full object-cover border border-slate-300">
                 <span class="font-bold text-slate-700">FLYING CHEETAH LABS • LIVE DEMO SUITE © 2026.</span>
                 <span>All Rights Reserved.</span>
             </div>
-            <div class="flex flex-wrap items-center gap-4 font-medium text-slate-600">
-                <a href="index.html" class="hover:text-bikOrange transition">Main Site</a>
-                <a href="web-development.html" class="hover:text-bikOrange transition font-bold text-orange-600">Web Development</a>
-                <a href="store-automation.html" class="hover:text-bikOrange transition">Store Automation</a>
+            <div class="flex flex-wrap items-center gap-4 font-medium text-slate-700">
+                <a href="index.html" class="hover:text-orange-700 transition">Main Site</a>
+                <a href="web-development.html" class="hover:text-orange-700 transition font-bold text-orange-700">Web Development</a>
+                <a href="store-automation.html" class="hover:text-orange-700 transition">Store Automation</a>
                 <a href="instagram-automation.html" class="hover:text-pink-600 transition">Instagram</a>
-                <a href="whatsapp-automation.html" class="hover:text-emerald-600 transition">WhatsApp</a>
-                <a href="ctwa-automation.html" class="hover:text-blue-600 transition">CTWA Ads</a>
-                <a href="delivery.html" class="hover:text-bikOrange transition">Fleet Protocol</a>
-                <a href="about.html" class="hover:text-bikOrange transition">About Us</a>
+                <a href="whatsapp-automation.html" class="hover:text-emerald-700 transition">WhatsApp</a>
+                <a href="ctwa-automation.html" class="hover:text-blue-700 transition">CTWA Ads</a>
+                <a href="delivery.html" class="hover:text-orange-700 transition">Fleet Protocol</a>
+                <a href="about.html" class="hover:text-orange-700 transition">About Us</a>
+                <a href="privacy-policy.html" class="hover:text-orange-700 transition">Privacy</a>
+                <a href="terms-of-service.html" class="hover:text-orange-700 transition">Terms</a>
+                <a href="refund-policy.html" class="hover:text-orange-700 transition">Refunds</a>
             </div>
         </div>
     </footer>
 
     <!-- INTERACTIVE SCRIPTS -->
     <script>
-        // Dropdown toggle
+        // Accessible Header Dropdowns (Home & Products)
         document.addEventListener('DOMContentLoaded', function() {
-            const dropdownParents = document.querySelectorAll('.dropdown-parent');
+            const dropdownParents = document.querySelectorAll('.home-dropdown-parent, .products-dropdown-parent, .dropdown-parent');
+            function closeAllDropdowns() {
+                dropdownParents.forEach(function(p) {
+                    p.classList.remove('active');
+                    const b = p.querySelector('button[aria-expanded]');
+                    if (b) b.setAttribute('aria-expanded', 'false');
+                });
+            }
+
             dropdownParents.forEach(function(parent) {
                 const btn = parent.querySelector('button');
                 if (btn) {
                     btn.addEventListener('click', function(e) {
                         e.stopPropagation();
-                        dropdownParents.forEach(p => { if (p !== parent) p.classList.remove('active'); });
-                        parent.classList.toggle('active');
+                        const willOpen = !parent.classList.contains('active');
+                        closeAllDropdowns();
+                        if (willOpen) {
+                            parent.classList.add('active');
+                            btn.setAttribute('aria-expanded', 'true');
+                        }
                     });
                 }
             });
 
+            document.querySelectorAll('header nav > a').forEach(function(link) {
+                link.addEventListener('mouseenter', closeAllDropdowns);
+            });
+
             document.addEventListener('click', function(e) {
-                dropdownParents.forEach(p => p.classList.remove('active'));
+                if (!e.target.closest('.home-dropdown-parent') && !e.target.closest('.products-dropdown-parent') && !e.target.closest('.dropdown-parent')) {
+                    closeAllDropdowns();
+                }
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeAllDropdowns();
+                }
             });
         });
-
-        function showDemoToast(title, message, color = 'purple') {
-            let container = document.getElementById('fcDemoToastContainer');
-            if (!container) {
-                container = document.createElement('div');
-                container.id = 'fcDemoToastContainer';
-                container.className = 'fixed bottom-5 right-5 z-[200] flex flex-col gap-2 max-w-sm w-full pointer-events-none px-4';
-                document.body.appendChild(container);
-            }
-
-            const toast = document.createElement('div');
-            const colorBorder = {
-                purple: 'border-purple-400/60 shadow-purple-950/40',
-                emerald: 'border-emerald-400/60 shadow-emerald-950/40',
-                orange: 'border-orange-400/60 shadow-orange-950/40',
-                blue: 'border-blue-400/60 shadow-blue-950/40'
-            }[color] || 'border-slate-400/60';
-
-            toast.className = `p-4 rounded-2xl shadow-2xl border-2 ${colorBorder} bg-white/95 text-bikDark pointer-events-auto transform translate-y-4 opacity-0 transition-all duration-300 flex items-start gap-3 backdrop-blur-md`;
-            toast.innerHTML = `
-                <div class="flex-1">
-                    <div class="text-xs font-black uppercase tracking-wider text-bikOrangeDark flex items-center gap-1.5 mb-1">
-                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
-                        <span>${title}</span>
-                    </div>
-                    <div class="text-[11px] text-slate-600 leading-relaxed">${message}</div>
-                </div>
-                <button onclick="this.parentElement.remove()" aria-label="Dismiss notification" class="text-slate-400 hover:text-bikDark text-xs p-1 cursor-pointer">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            `;
-
-            container.appendChild(toast);
-            requestAnimationFrame(() => {
-                toast.classList.remove('translate-y-4', 'opacity-0');
-            });
-
-            setTimeout(() => {
-                toast.classList.add('translate-y-4', 'opacity-0');
-                setTimeout(() => toast.remove(), 300);
-            }, 6000);
-        }
 
         // Form Submission
         async function handleDemoSubmit(e) {
@@ -408,7 +394,7 @@
             const store = document.getElementById('demoStore').value.trim();
             const focus = document.getElementById('demoFocus')?.value || 'automation';
             const volume = document.getElementById('demoVolume')?.value || '500_2000';
-            const slot = document.querySelector('input[name="demoSlot"]:checked')?.value || 'Flexible';
+            const slot = 'Flexible';
             const btn = document.getElementById('demoSubmitBtn');
 
             btn.disabled = true;
@@ -467,24 +453,5 @@
     <script src="js/auth.js"></script>
     <script src="js/leads.js"></script>
     <script src="js/fc-widgets.js"></script>
-
-<script>
-        // Top-level nav links hover safety: immediately dismiss all dropdowns
-        document.querySelectorAll('nav > a').forEach(function(link) {
-            link.addEventListener('mouseenter', function() {
-                document.querySelectorAll('.home-dropdown-parent, .products-dropdown-parent, .dropdown-parent').forEach(function(p) {
-                    p.classList.remove('active');
-                });
-            });
-        });
-        // Click outside dismiss
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('.home-dropdown-parent') && !e.target.closest('.products-dropdown-parent') && !e.target.closest('.dropdown-parent')) {
-                document.querySelectorAll('.home-dropdown-parent, .products-dropdown-parent, .dropdown-parent').forEach(function(p) {
-                    p.classList.remove('active');
-                });
-            }
-        });
-    </script>
 </body>
 </html>

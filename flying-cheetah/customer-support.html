@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-        <link rel="icon" type="image/png" href="images/user_official_real_logo_transparent.png">
+    <link rel="icon" type="image/png" href="images/user_official_real_logo_transparent.png">
     <link rel="apple-touch-icon" href="images/user_official_real_logo_transparent.png">
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Omnichannel Helpdesk & Customer Support | Flying Cheetah</title>
+    <title>Omnichannel Helpdesk &amp; Customer Support | Flying Cheetah</title>
     <meta property="og:title" content="Omnichannel Helpdesk &amp; Customer Support | Flying Cheetah">
     <meta property="og:description" content="Omnichannel Helpdesk &amp; Customer Support | Flying Cheetah - Flying Cheetah Labs Autonomous AI Commerce &amp; Omnichannel Marketing Suite.">
-    <meta property="og:image" content="https://flying-cheetah.vercel.app/images/flying_cheetah_logo_one_tail.png">
+    <meta property="og:image" content="https://flying-cheetah.vercel.app/images/customer_support_workflow_light.png">
     <meta property="og:type" content="website">
 
-    <meta name="description" content="Omnichannel Helpdesk & Customer Support | Flying Cheetah - Flying Cheetah Labs Autonomous AI Commerce & Omnichannel Marketing Suite.">
+    <meta name="description" content="Omnichannel Helpdesk &amp; Customer Support | Flying Cheetah - Flying Cheetah Labs Autonomous AI Commerce &amp; Omnichannel Marketing Suite.">
     <link rel="canonical" href="https://flying-cheetah.vercel.app/customer-support">
     <meta property="og:url" content="https://flying-cheetah.vercel.app/customer-support">
     <meta property="og:site_name" content="Flying Cheetah">
 
-    <!-- Tailwind CSS CDN -->
+    <!-- Compiled Tailwind CSS -->
     <link rel="stylesheet" href="css/styles.min.css">
     <!-- FontAwesome 6 CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -26,30 +26,22 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/fx.css">
-    
+
     <style>
-        .dropdown-parent:hover .mega-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        .mega-menu {
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(8px);
-            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .home-menu.active {
-            opacity: 1 !important;
-            visibility: visible !important;
-            transform: translateY(0) !important;
-        }
-        .card-anim {
-            transition: all 0.25s ease;
-        }
-        .card-anim:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 16px 32px -8px rgba(0,0,0,0.08);
+        .bik-mega-shadow { box-shadow: 0 25px 60px -15px rgba(255, 104, 56, 0.15), 0 0 1px 1px rgba(0, 0, 0, 0.05); }
+        .home-menu { display: none; }
+        .home-dropdown-parent:hover > .home-menu,
+        .home-dropdown-parent.active > .home-menu { display: block; }
+        .mega-menu { display: none; }
+        .products-dropdown-parent:hover > .mega-menu,
+        .products-dropdown-parent.active > .mega-menu { display: block; }
+        .dropdown-parent:hover > .mega-menu,
+        .dropdown-parent.active > .mega-menu { display: block; }
+        .card-anim { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .card-anim:hover { transform: translateY(-4px); box-shadow: 0 20px 35px -10px rgba(0,0,0,0.08); }
+        #supportNode1.opacity-40, #supportNode2.opacity-40, #supportNode3.opacity-40, #supportNode4.opacity-40 {
+            opacity: 0.95 !important;
+            background-color: #F8FAFC;
         }
     </style>
     <link rel="stylesheet" href="css/mobile-app.css">
@@ -71,60 +63,55 @@
 }
     </script>
 </head>
-<body class="bg-white text-slate-800 font-sans antialiased selection:bg-orange-100 selection:text-bikOrange">
+<body class="bg-white text-slate-900 font-sans antialiased selection:bg-orange-100 selection:text-orange-700">
 
     <!-- TOP ANNOUNCEMENT BANNER -->
-    <div class="bg-gradient-to-r from-orange-50 via-amber-50/70 to-emerald-50 border-b border-orange-200/70 text-bikDark text-xs py-2 px-4 text-center font-medium flex items-center justify-center gap-2">
-        <span class="inline-flex items-center justify-center w-2 h-2 rounded-full bg-emerald-500 ring-2 ring-emerald-400/40 animate-ping"></span>
-        <span><b>Unified Shared Inbox:</b> WhatsApp, Instagram, Email & Live Chat synchronized in under 150ms.</span>
-        <a href="demo.html" class="underline ml-2 text-bikOrange font-bold hover:text-bikOrangeDark transition">Book Live Demo ↗</a>
+    <div class="bg-gradient-to-r from-orange-50 via-amber-50/70 to-emerald-50 border-b border-orange-200/70 text-bikDark text-xs py-2 px-4 text-center font-medium">
+        <span><i class="fa-solid fa-headset text-orange-700 mr-1.5" aria-hidden="true"></i><b>Unified Shared Inbox:</b> WhatsApp, Instagram, Email &amp; Live Chat synchronized with 45s average first-reply SLA.</span>
+        <a href="demo.html" onclick="if(window.FC_LEADS){window.FC_LEADS.openAuditModal('Omnichannel Helpdesk Support');return false;}" class="underline ml-2 text-orange-700 font-bold hover:text-orange-800 transition whitespace-nowrap">Book Live Demo ↗</a>
     </div>
 
     <!-- HEADER / NAVIGATION -->
     <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            
-            <a href="index.html" class="flex items-center gap-3 group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-bikOrange to-amber-500 flex items-center justify-center text-white shadow-md shadow-orange-500/20 group-hover:scale-105 transition">
-                    <i class="fa-solid fa-bolt text-lg"></i>
-                </div>
-                <div>
-                    <span class="font-display font-extrabold text-xl tracking-tight text-bikDark block leading-none">Flying Cheetah</span>
-                    <span class="text-[10px] text-slateText tracking-widest uppercase font-semibold">Autonomous Commerce</span>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+            <a href="index.html" class="flex items-center space-x-3 shrink-0 whitespace-nowrap">
+                <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah Logo" class="h-11 w-11 rounded-full object-cover border border-slate-200 shadow-sm">
+                <div class="flex flex-col">
+                    <span class="text-lg xl:text-xl font-black tracking-tight font-display text-bikDark">FLYING CHEETAH</span>
+                    <span class="text-[9px] text-orange-700 font-bold tracking-widest uppercase -mt-1">OMNICHANNEL SUPPORT</span>
                 </div>
             </a>
 
             <!-- NAV LINKS -->
-            <nav class="hidden lg:flex items-center gap-5 xl:gap-7 text-[13px] xl:text-sm font-semibold text-slate-700 whitespace-nowrap">
-                
+            <nav aria-label="Primary Navigation" class="hidden lg:flex items-center gap-5 xl:gap-7 text-[13px] xl:text-sm font-semibold text-slate-700 whitespace-nowrap">
                 <!-- HOME DROPDOWN -->
-                <div class="relative home-dropdown-parent py-6">
-                    <button class="home-btn flex items-center gap-1.5 hover:text-bikOrange transition focus:outline-none text-slate-800 hover:text-bikOrange font-bold text-sm">
-                        <i class="fa-solid fa-house text-xs text-bikOrange"></i>
+                <div class="relative home-dropdown-parent dropdown-parent py-6">
+                    <button type="button" aria-expanded="false" aria-controls="fcHomeMenu" class="home-btn flex items-center gap-1.5 hover:text-bikOrange transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange focus-visible:ring-offset-2 text-slate-800 font-bold text-sm rounded-lg px-1 cursor-pointer">
+                        <i class="fa-solid fa-house text-xs text-bikOrange" aria-hidden="true"></i>
                         <span>Home</span>
-                        <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200"></i>
+                        <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200" aria-hidden="true"></i>
                     </button>
-                    <div class="mega-menu home-menu absolute top-full left-0 w-72 bg-white rounded-2xl border border-slate-200 p-4 shadow-2xl bik-mega-shadow z-50">
-                        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-3 pb-2 border-b border-slate-100 flex items-center justify-between">
+                    <div id="fcHomeMenu" class="mega-menu home-menu absolute top-full left-0 w-72 bg-white rounded-2xl border border-slate-200 p-4 shadow-2xl bik-mega-shadow z-50">
+                        <div class="text-[10px] font-bold text-slate-600 uppercase tracking-wider px-3 pb-2 border-b border-slate-100 flex items-center justify-between">
                             <span>Core Portals</span>
-                            <a href="index.html" class="text-bikOrange hover:underline font-bold">Executive Hub ↗</a>
+                            <a href="index.html" class="text-orange-700 hover:underline font-bold">Executive Hub ↗</a>
                         </div>
                         <div class="space-y-1.5 pt-2">
                             <a href="index.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
-                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-bikOrange flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-store"></i></div>
-                                <div><div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">Main Site</div><div class="text-[10px] text-slate-400">Flagship AI Commerce Suite</div></div>
+                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-orange-700 flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-store" aria-hidden="true"></i></div>
+                                <div><div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">Main Site</div><div class="text-[10px] text-slate-600">Flagship AI Commerce Suite</div></div>
                             </a>
-                                                        <a href="web-development.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
-                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-bikOrange flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-code"></i></div>
-                                <div><div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">Web Development</div><div class="text-[10px] text-slate-400">Next.js &amp; Shopify Stores &bull; Mumbai</div></div>
+                            <a href="web-development.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
+                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-orange-700 flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-code" aria-hidden="true"></i></div>
+                                <div><div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">Web Development</div><div class="text-[10px] text-slate-600">Next.js &amp; Shopify Stores &bull; Mumbai</div></div>
                             </a>
-<a href="delivery.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-emerald-50 text-slate-700 hover:text-emerald-600 transition group">
-                                <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-motorcycle"></i></div>
-                                <div><div class="text-xs font-bold text-bikDark group-hover:text-emerald-600">Fleet Protocol</div><div class="text-[10px] text-slate-400">Hyperlocal Borzo/Porter API</div></div>
+                            <a href="delivery.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-emerald-50 text-slate-700 hover:text-emerald-600 transition group">
+                                <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-motorcycle" aria-hidden="true"></i></div>
+                                <div><div class="text-xs font-bold text-bikDark group-hover:text-emerald-600">Fleet Protocol</div><div class="text-[10px] text-slate-600">Hyperlocal Borzo/Porter API</div></div>
                             </a>
-                                                        <a href="about.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
-                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-bikOrange flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-circle-info"></i></div>
-                                <div><div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">About Us</div><div class="text-[10px] text-slate-400">Company Motive & Founders</div></div>
+                            <a href="about.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
+                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-orange-700 flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-circle-info" aria-hidden="true"></i></div>
+                                <div><div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">About Us</div><div class="text-[10px] text-slate-600">Company Motive &amp; Founders</div></div>
                             </a>
                         </div>
                     </div>
@@ -132,48 +119,48 @@
 
                 <!-- PRODUCTS & AUTOMATIONS MEGA MENU -->
                 <div class="relative products-dropdown-parent dropdown-parent py-6">
-                    <button class="flex items-center gap-1.5 hover:text-bikOrange transition focus:outline-none text-bikOrange font-bold">
-                        <span>Products & Automations</span>
-                        <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                    <button type="button" aria-expanded="false" aria-controls="fcProductsMenu" class="flex items-center gap-1.5 hover:text-bikOrange transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange focus-visible:ring-offset-2 text-orange-700 font-bold rounded-lg px-1 cursor-pointer">
+                        <span>Products &amp; Automations</span>
+                        <i class="fa-solid fa-chevron-down text-[10px]" aria-hidden="true"></i>
                     </button>
-                    <div class="mega-menu absolute top-full -left-28 w-[760px] bg-white rounded-2xl border border-slate-200 p-8 shadow-2xl bik-mega-shadow z-50">
+                    <div id="fcProductsMenu" class="mega-menu absolute top-full -left-28 w-[760px] bg-white rounded-2xl border border-slate-200 p-8 shadow-2xl bik-mega-shadow z-50">
                         <div class="grid grid-cols-4 gap-6 text-xs">
                             <div class="space-y-3">
-                                <div class="flex items-center gap-2 text-bikOrange font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-bullhorn"></i> CAMPAIGNS</div>
-                                <ul class="space-y-2.5 text-slate-600 font-medium">
+                                <div class="flex items-center gap-2 text-orange-700 font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-bullhorn" aria-hidden="true"></i> CAMPAIGNS</div>
+                                <ul class="space-y-2.5 text-slate-700 font-medium">
                                     <li><a href="email-marketing.html" class="hover:text-bikOrange transition block">Email marketing</a></li>
-                                    <li><a href="whatsapp-marketing.html" class="hover:text-bikOrange transition block">WhatsApp marketing</a></li>
-                                    <li><a href="sms-marketing.html" class="hover:text-bikOrange transition block">SMS marketing</a></li>
-                                    <li><a href="customer-data-platform.html" class="hover:text-bikOrange transition block">Customer data platform</a></li>
-                                    <li><a href="rcs-messaging.html" class="hover:text-bikOrange transition block">RCS messaging</a></li>
+                                    <li><a href="whatsapp-marketing.html" class="hover:text-emerald-600 transition block">WhatsApp marketing</a></li>
+                                    <li><a href="sms-marketing.html" class="hover:text-blue-700 transition block">SMS marketing</a></li>
+                                    <li><a href="customer-data-platform.html" class="hover:text-indigo-700 transition block">Customer data platform</a></li>
+                                    <li><a href="rcs-messaging.html" class="hover:text-blue-700 transition block">RCS messaging</a></li>
                                 </ul>
                             </div>
                             <div class="space-y-3 bg-orange-50/70 p-3 -m-3 rounded-xl border border-orange-100">
-                                <div class="flex items-center gap-2 text-bikOrange font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-gear"></i> AUTOMATIONS</div>
+                                <div class="flex items-center gap-2 text-orange-700 font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-gear" aria-hidden="true"></i> AUTOMATIONS</div>
                                 <ul class="space-y-2.5 text-slate-700 font-medium">
-                                    <li><a href="store-automation.html" class="hover:text-bikOrange transition block font-bold text-bikOrange">Store automation ↗</a></li>
-                                    <li><a href="instagram-automation.html" class="hover:text-bikOrange transition block font-semibold text-pink-600">Instagram automation</a></li>
-                                    <li><a href="whatsapp-automation.html" class="hover:text-bikOrange transition block font-semibold text-emerald-600">WhatsApp automation</a></li>
-                                    <li><a href="ctwa-automation.html" class="hover:text-bikOrange transition block font-semibold text-blue-600">Click to WhatsApp ads</a></li>
-                                    <li><a href="ai-voice-agents.html" class="hover:text-bikOrange transition block font-semibold text-purple-600">AI Voice Agents</a></li>
+                                    <li><a href="store-automation.html" class="hover:text-bikOrange transition block font-bold text-orange-700">Store automation ↗</a></li>
+                                    <li><a href="instagram-automation.html" class="hover:text-pink-700 transition block font-semibold text-pink-700">Instagram automation</a></li>
+                                    <li><a href="whatsapp-automation.html" class="hover:text-emerald-600 transition block font-semibold text-emerald-700">WhatsApp automation</a></li>
+                                    <li><a href="ctwa-automation.html" class="hover:text-blue-700 transition block font-semibold text-blue-700">Click to WhatsApp ads</a></li>
+                                    <li><a href="ai-voice-agents.html" class="hover:text-purple-700 transition block font-semibold text-purple-700">AI Voice Agents</a></li>
                                 </ul>
                             </div>
                             <div class="space-y-3 bg-emerald-50/50 p-3 -m-3 rounded-xl border border-emerald-100">
-                                <div class="flex items-center gap-2 text-emerald-700 font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-headset"></i> HELPDESK</div>
+                                <div class="flex items-center gap-2 text-emerald-700 font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-headset" aria-hidden="true"></i> HELPDESK</div>
                                 <ul class="space-y-2.5 text-slate-700 font-medium">
-                                    <li><a href="customer-support.html" class="hover:text-emerald-600 transition block">Customer support</a></li>
+                                    <li><a href="customer-support.html" class="hover:text-emerald-600 transition block font-bold text-emerald-700">Customer support</a></li>
                                     <li><a href="whatsapp-calling.html" class="hover:text-emerald-600 transition block font-bold text-emerald-700">WhatsApp calling ↗</a></li>
                                 </ul>
                             </div>
                             <div class="space-y-4">
                                 <div class="space-y-2">
-                                    <div class="text-bikOrange font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-comment-dots"></i> POPUPS</div>
-                                    <a href="solutions.html?module=gamification" class="hover:text-bikOrange transition block text-slate-600">Gamification</a>
+                                    <div class="text-orange-700 font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-comment-dots" aria-hidden="true"></i> POPUPS</div>
+                                    <a href="solutions.html?module=gamification" class="hover:text-bikOrange transition block text-slate-700">Gamification</a>
                                 </div>
                                 <div class="space-y-2 border-t border-slate-100 pt-3">
-                                    <div class="text-bikOrange font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-robot"></i> CHATBOTS</div>
-                                    <a href="solutions.html?module=whatsapp-chatbot" class="hover:text-bikOrange transition block text-slate-600">WhatsApp chatbot</a>
-                                    <a href="solutions.html?module=instagram-chatbot" class="hover:text-bikOrange transition block text-slate-600 mt-1">Instagram chatbot</a>
+                                    <div class="text-orange-700 font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-robot" aria-hidden="true"></i> CHATBOTS</div>
+                                    <a href="solutions.html?module=whatsapp-chatbot" class="hover:text-bikOrange transition block text-slate-700">WhatsApp chatbot</a>
+                                    <a href="solutions.html?module=instagram-chatbot" class="hover:text-bikOrange transition block text-slate-700 mt-1">Instagram chatbot</a>
                                 </div>
                             </div>
                         </div>
@@ -185,446 +172,742 @@
                 <a href="about.html" class="hover:text-bikOrange transition">About Us</a>
             </nav>
 
-            <div class="flex items-center space-x-3">
+            <div class="flex items-center space-x-2.5 shrink-0">
                 <div class="fc-auth-slot"></div>
-                <a href="demo.html" class="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-sm transition shadow-md shadow-orange-500/20 cursor-pointer"><span>Book Free Live Demo</span> <span class="text-base leading-none">➔</span></a>
+                <a href="demo.html" onclick="if(window.FC_LEADS){window.FC_LEADS.openAuditModal('Omnichannel Helpdesk Support');return false;}" class="hidden sm:inline-flex items-center justify-center gap-1.5 px-4 xl:px-5 py-2.5 rounded-xl bg-orange-700 hover:bg-orange-800 text-white font-bold text-xs xl:text-sm transition shadow-md shadow-orange-500/20 cursor-pointer whitespace-nowrap shrink-0"><span>Book Free Live Demo</span> <span class="text-base leading-none" aria-hidden="true">➔</span></a>
+                <button id="fcMobileMenuBtn" type="button" aria-label="Toggle Mobile Menu" aria-expanded="false" aria-controls="fcMobileDrawer" onclick="window.FC_WIDGETS && window.FC_WIDGETS.toggleMobileDrawer ? window.FC_WIDGETS.toggleMobileDrawer() : null" class="lg:hidden p-2 rounded-xl border border-slate-200 hover:border-bikOrange bg-white text-slate-700 hover:text-bikOrange transition flex items-center justify-center shrink-0 w-10 h-10 shadow-sm cursor-pointer touch-target-44 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange focus-visible:ring-offset-2"><i class="fa-solid fa-bars text-sm" aria-hidden="true"></i></button>
             </div>
         </div>
     </header>
 
-    <!-- HERO SECTION (Flying Cheetah INSPIRATION) -->
-    <section class="pt-16 pb-20 bg-gradient-to-b from-orange-50/40 via-bikBg to-white border-b border-slate-100 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                
-                <div class="lg:col-span-6 space-y-6 text-center lg:text-left">
-                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-100 border border-orange-200 text-bikOrange text-xs font-bold uppercase tracking-wide">
-                        <i class="fa-solid fa-headset text-sm"></i> Multi-Channel eCommerce Helpdesk
-                    </div>
+    <main id="main-content">
 
-                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-bikDark tracking-tight leading-[1.08] font-display">
-                        Customer support that fuels your <span class="text-bikOrange">sales engine.</span>
-                    </h1>
+        <!-- HERO SECTION -->
+        <section class="pt-16 pb-20 bg-gradient-to-b from-orange-50/40 via-bikBg to-white border-b border-slate-100 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
-                    <p class="text-lg text-slateText leading-relaxed">
-                        Support your shopper every time and everywhere with omnichannel query management. Unify WhatsApp, Instagram, Email, and Web Chat in 1 shared inbox and turn support into a 24/7 revenue-generating engine.
-                    </p>
-
-                    <!-- METRICS BADGES -->
-                    <div class="grid grid-cols-3 gap-3 pt-2">
-                        <div class="p-3.5 rounded-2xl bg-white border border-slate-200 shadow-sm text-center">
-                            <div class="text-2xl font-black text-emerald-600 font-display">32%</div>
-                            <div class="text-[11px] font-bold text-slate-500 mt-0.5">Reduced Support Cost</div>
-                        </div>
-                        <div class="p-3.5 rounded-2xl bg-white border border-slate-200 shadow-sm text-center">
-                            <div class="text-2xl font-black text-bikOrange font-display">3.2x</div>
-                            <div class="text-[11px] font-bold text-slate-500 mt-0.5">Faster Resolution Time</div>
-                        </div>
-                        <div class="p-3.5 rounded-2xl bg-white border border-slate-200 shadow-sm text-center">
-                            <div class="text-2xl font-black text-purple-600 font-display">35%</div>
-                            <div class="text-[11px] font-bold text-slate-500 mt-0.5">Higher Agent Sales</div>
-                        </div>
-                    </div>
-
-                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-4">
-                        <a href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah%20team,%20I%20want%20to%20set%20up%20Omnichannel%20Helpdesk." target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-xs sm:text-sm whitespace-nowrap transition shadow-lg shadow-orange-500/25">
-                            <i class="fa-solid fa-headset"></i><span>Launch Helpdesk in 1 Day</span>
-                        </a>
-                        <a href="demo.html" onclick="if(window.FC_LEADS){window.FC_LEADS.openAuditModal('Omnichannel Helpdesk Support');return false;}" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl border border-slate-300 hover:border-bikOrange text-slate-800 font-bold text-xs sm:text-sm whitespace-nowrap bg-white hover:bg-orange-50/50 transition">
-                            <span>Book Free Live Demo</span> <span class="text-base leading-none">➔</span>
-                        </a>
-                        <a href="whatsapp-calling.html" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl border border-slate-300 hover:border-emerald-600 text-slate-800 font-bold text-xs sm:text-sm whitespace-nowrap bg-white hover:bg-emerald-50/50 transition">
-                            <i class="fa-brands fa-whatsapp text-emerald-600 text-sm"></i><span>WA Calling</span>
-                        </a>
-                    </div>
-
-                    <div class="text-xs text-slate-400 flex items-center justify-center lg:justify-start gap-4 font-medium pt-2">
-                        <span><i class="fa-solid fa-check text-emerald-500 mr-1"></i> Shopify & WooCommerce 1-Click</span>
-                        <span><i class="fa-solid fa-check text-emerald-500 mr-1"></i> Smart Collision Guard</span>
-                        <span><i class="fa-solid fa-check text-emerald-500 mr-1"></i> TRAI DLT Compliant</span>
-                    </div>
-                </div>
-
-                <!-- RIGHT HERO VISUAL: ANIMATED FLOWCHART VIDEO CONSOLE -->
-                <div class="lg:col-span-6 relative">
-                    <div class="rounded-3xl border-2 border-slate-200/90 bg-white shadow-2xl bik-mega-shadow fc-card-glow relative overflow-hidden text-slate-800">
-                        
-                        <!-- Top Video Progress Bar -->
-                        <div class="w-full h-1 bg-slate-100 relative overflow-hidden">
-                            <div id="supportProgressBar" class="h-full bg-gradient-to-r from-bikOrange via-amber-400 to-emerald-400 transition-all duration-300 w-0"></div>
+                    <div class="lg:col-span-6 space-y-6 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-100 border border-orange-200 text-orange-800 text-xs font-bold uppercase tracking-wide">
+                            <i class="fa-solid fa-headset text-sm text-orange-700" aria-hidden="true"></i> Multi-Channel eCommerce Helpdesk
                         </div>
 
-                        <!-- Video Player Header Chrome -->
-                        <div class="px-5 py-3 border-b border-slate-200/80 flex items-center justify-between bg-slate-50/90 backdrop-blur-md">
-                            <div class="flex items-center gap-2">
-                                <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
-                                <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span>
-                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></span>
-                                <span class="text-[11px] font-bold text-slate-700 ml-1 font-mono flex items-center gap-1.5">
-                                    <i class="fa-solid fa-play text-bikOrange text-[10px]"></i>
-                                    <span>Omnichannel Helpdesk AI Resolution Pipeline</span>
-                                </span>
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-bikDark tracking-tight leading-[1.08] font-display">
+                            Customer support that fuels your <span class="text-orange-700">sales engine.</span>
+                        </h1>
+
+                        <p class="text-lg text-slate-700 leading-relaxed">
+                            Support your shopper every time and everywhere with omnichannel query management. Unify WhatsApp, Instagram, Email, and Web Chat in 1 shared inbox and turn support into a 24/7 revenue-generating engine.
+                        </p>
+
+                        <!-- METRICS BADGES -->
+                        <div class="grid grid-cols-3 gap-3 pt-2">
+                            <div class="p-3.5 rounded-2xl bg-emerald-50/70 border border-emerald-200 shadow-sm text-center">
+                                <div class="text-2xl font-black text-emerald-700 font-display">-32%</div>
+                                <div class="text-[11px] font-bold text-slate-700 mt-0.5">Reduced Support Cost</div>
                             </div>
-
-                            <div class="flex items-center gap-2">
-                                <span id="supportStepBadge" class="px-2.5 py-0.5 rounded-full bg-orange-50 border border-orange-200 text-bikOrange text-[10px] font-mono font-bold">
-                                    Step 1: Inbound
-                                </span>
-                                <button onclick="toggleSupportVideo()" id="supportPlayPauseBtn" class="w-7 h-7 rounded-lg bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 flex items-center justify-center transition text-xs shadow-xs" title="Pause / Play">
-                                    <i class="fa-solid fa-pause" id="supportPlayPauseIcon"></i>
-                                </button>
-                                <button onclick="restartSupportVideo()" class="w-7 h-7 rounded-lg bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 flex items-center justify-center transition text-xs shadow-xs" title="Replay">
-                                    <i class="fa-solid fa-rotate-right"></i>
-                                </button>
+                            <div class="p-3.5 rounded-2xl bg-orange-50/70 border border-orange-200 shadow-sm text-center">
+                                <div class="text-2xl font-black text-orange-700 font-display">3.2x</div>
+                                <div class="text-[11px] font-bold text-slate-700 mt-0.5">Faster Resolution Time</div>
+                            </div>
+                            <div class="p-3.5 rounded-2xl bg-purple-50/70 border border-purple-200 shadow-sm text-center">
+                                <div class="text-2xl font-black text-purple-700 font-display">+35%</div>
+                                <div class="text-[11px] font-bold text-slate-700 mt-0.5">Higher Agent Sales</div>
                             </div>
                         </div>
 
-                        <!-- Video Visual Canvas -->
-                        <div class="p-5 sm:p-6 grid grid-cols-1 sm:grid-cols-12 gap-5 items-center relative bg-gradient-to-b from-white via-slate-50/40 to-white">
-                            
-                            <!-- Left: Connected Flowchart Road Map (7 cols) -->
-                            <div class="sm:col-span-7 space-y-3 relative">
-                                
-                                <!-- Background Animated Beam Line -->
-                                <div class="absolute left-6 top-7 bottom-7 w-1 -translate-x-1/2 z-0 pointer-events-none">
-                                    <div class="w-full h-full bg-slate-200 rounded-full"></div>
-                                    <div id="supportBeamActive" class="absolute top-0 left-0 w-full bg-gradient-to-b from-bikOrange via-amber-300 to-emerald-400 rounded-full transition-all duration-500 shadow-[0_0_12px_#ff6838] h-0"></div>
-                                </div>
-
-                                <!-- Node 1: Omnichannel Inbound Stream -->
-                                <div id="supportNode1" onclick="jumpSupportStep(0)" class="relative z-10 p-2.5 rounded-2xl bg-white border border-orange-500/80 shadow-xs flex items-center gap-3 transition-all duration-300 cursor-pointer node-glow-orange">
-                                    <div class="w-8 h-8 rounded-xl bg-orange-500/20 text-bikOrange flex items-center justify-center text-sm font-bold border border-orange-500/30 transition shadow-sm">
-                                        <i class="fa-solid fa-comments"></i>
-                                    </div>
-                                    <div class="flex-1 min-w-0">
-                                        <div class="flex items-center justify-between">
-                                            <span class="text-xs font-black text-slate-900 block">1. Omnichannel Inflow</span>
-                                            <span class="text-[9px] font-mono text-orange-600 bg-orange-50 px-1.5 py-0.5 rounded border border-orange-200 font-bold">Unified Hub</span>
-                                        </div>
-                                        <span class="text-[10px] text-slate-500 block truncate">WhatsApp, IG, Web & Email in 1 Queue</span>
-                                    </div>
-                                </div>
-
-                                <!-- Node 2: AI Sentiment & Intent Triage -->
-                                <div id="supportNode2" onclick="jumpSupportStep(1)" class="relative z-10 p-2.5 rounded-2xl bg-white border border-slate-200 shadow-xs flex items-center gap-3 transition-all duration-300 cursor-pointer opacity-40">
-                                    <div class="w-8 h-8 rounded-xl bg-purple-500/20 text-purple-500 flex items-center justify-center text-sm font-bold border border-purple-500/30 transition shadow-sm">
-                                        <i class="fa-solid fa-wand-magic-sparkles text-xs"></i>
-                                    </div>
-                                    <div class="flex-1 min-w-0">
-                                        <div class="flex items-center justify-between">
-                                            <span class="text-xs font-black text-slate-900 block">2. AI Sentiment & Triage</span>
-                                            <span class="text-[9px] font-mono text-purple-600 bg-purple-50 px-1.5 py-0.5 rounded border border-purple-200 font-semibold">VIP Priority</span>
-                                        </div>
-                                        <span class="text-[10px] text-slate-500 block truncate">Intent Classified Quickly • Zero manual triage</span>
-                                    </div>
-                                </div>
-
-                                <!-- Node 3: Fast Live Resolution -->
-                                <div id="supportNode3" onclick="jumpSupportStep(2)" class="relative z-10 p-2.5 rounded-2xl bg-white border border-slate-200 shadow-xs flex items-center gap-3 transition-all duration-300 cursor-pointer opacity-40">
-                                    <div class="w-8 h-8 rounded-xl bg-blue-500/20 text-blue-500 flex items-center justify-center text-sm font-bold border border-blue-500/30 transition shadow-sm">
-                                        <i class="fa-solid fa-bolt text-xs"></i>
-                                    </div>
-                                    <div class="flex-1 min-w-0">
-                                        <div class="flex items-center justify-between">
-                                            <span class="text-xs font-black text-slate-900 block">3. Fast SLA Resolution</span>
-                                            <span class="text-[9px] font-mono text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded border border-blue-200 font-semibold">Sub-Minute</span>
-                                        </div>
-                                        <span class="text-[10px] text-slate-500 block truncate">1-Click Exchange • Courier Dispatched</span>
-                                    </div>
-                                </div>
-
-                                <!-- Node 4: High CSAT Rating & Loyalty -->
-                                <div id="supportNode4" onclick="jumpSupportStep(3)" class="relative z-10 p-3 rounded-2xl bg-white border border-slate-200 shadow-xs flex items-center gap-3 transition-all duration-300 cursor-pointer opacity-40">
-                                    <div class="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-600 flex items-center justify-center text-base font-bold border border-emerald-500/30 transition shadow-sm">
-                                        <i class="fa-solid fa-star"></i>
-                                    </div>
-                                    <div class="flex-1 min-w-0">
-                                        <div class="flex items-center justify-between">
-                                            <span class="text-xs font-black text-slate-900 block flex items-center gap-1.5">
-                                                <span>4. 4.8 CSAT Rating</span>
-                                                <i class="fa-solid fa-heart text-pink-500 text-xs"></i>
-                                            </span>
-                                            <span class="text-[9px] font-mono text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200 font-bold">Closed Fast</span>
-                                        </div>
-                                        <span class="text-[10px] text-emerald-600 font-semibold block truncate">Shopper Satisfied • Loyalty +250 Pts</span>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <!-- Right: Live Synchronized Support Desk Console (5 cols) -->
-                            <div class="sm:col-span-5 relative">
-                                <div class="rounded-2xl border border-slate-200 bg-slate-50/90 p-3.5 space-y-3 shadow-md">
-                                    
-                                    <!-- Queue Header -->
-                                    <div class="flex items-center justify-between border-b border-slate-200 pb-2">
-                                        <div class="flex items-center gap-2">
-                                            <span class="w-2.5 h-2.5 rounded-full bg-orange-500 animate-pulse"></span>
-                                            <span class="text-[10px] font-bold text-slate-700">Live Helpdesk Ticket</span>
-                                        </div>
-                                        <span class="text-[10px] font-mono text-bikOrange font-bold" id="supportTicketId">#FC-8941</span>
-                                    </div>
-
-                                    <!-- Customer Profile Box -->
-                                    <div class="text-center space-y-1 py-1">
-                                        <div class="w-12 h-12 mx-auto rounded-full bg-gradient-to-tr from-bikOrange to-amber-500 flex items-center justify-center text-white text-lg shadow-md shadow-orange-500/20">
-                                            <i class="fa-solid fa-user-check"></i>
-                                        </div>
-                                        <h5 class="text-xs font-black text-slate-900" id="supportCustomerName">Ananya Roy</h5>
-                                        <p class="text-[9px] text-slate-500" id="supportCustomerMeta">Gold VIP • WhatsApp Channel • Mumbai</p>
-                                    </div>
-
-                                    <!-- Live Status & Telemetry Pill -->
-                                    <div class="p-2 rounded-xl bg-white border border-slate-200 text-[10px] space-y-1 shadow-xs">
-                                        <div class="flex items-center justify-between font-bold">
-                                            <span class="text-slate-800">Shopify Order #FC-4829</span>
-                                            <span class="text-bikOrange font-mono" id="supportOrderVal">₹4,250</span>
-                                        </div>
-                                        <p class="text-[9px] text-slate-600" id="supportTelemetryStatus">Shopper requested express size exchange (M &rarr; L).</p>
-                                        <button id="supportActionBtn" class="w-full py-1.5 rounded-lg bg-bikOrange text-white font-bold text-[9px] flex items-center justify-center gap-1 mt-1 transition shadow-sm hover:bg-bikOrangeDark">
-                                            <i class="fa-solid fa-bolt"></i> Approve 1-Click Reverse Pickup
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <!-- Video Footer Status Bar -->
-                        <div class="px-5 py-2.5 bg-slate-50/90 border-t border-slate-200/80 flex items-center justify-between text-[11px] text-slate-600 font-mono">
-                            <span class="flex items-center gap-2">
-                                <span class="w-2 h-2 rounded-full bg-bikOrange animate-ping"></span>
-                                <span id="supportStatusText">Step 1: Omnichannel Inbound Stream Aggregation</span>
-                            </span>
-                            <span class="text-bikOrange font-bold">45s Avg SLA • 93.2% CSAT</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- UNIFIED OMNICHANNEL STUDIO SHOWCASE -->
-    <section class="py-16 bg-gradient-to-b from-white to-slate-50/70 border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            <div class="lg:col-span-6 order-2 lg:order-1">
-                <div class="fc-showcase-frame aspect-[16/10]">
-                    <img src="images/helpdesk_omnichannel_inbox.jpg" alt="Omnichannel Helpdesk Architecture Connecting WhatsApp, Instagram, Email and Voice" loading="lazy" class="fc-showcase-img">
-                </div>
-            </div>
-            <div class="lg:col-span-6 space-y-4 order-1 lg:order-2">
-                <span class="text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-100 px-3.5 py-1 rounded-full border border-emerald-200">Omnichannel Architecture</span>
-                <h2 class="text-2xl sm:text-3xl font-extrabold text-bikDark font-display">WhatsApp, Instagram, Email &amp; Voice Converged in One Hub</h2>
-                <p class="text-sm text-slateText leading-relaxed">Route every shopper inquiry by channel intent, keep complete order history pinned beside the conversation, and trigger refunds, replacements, or Borzo reverse pickups in one click.</p>
-                <div class="flex flex-wrap gap-2.5 text-xs font-bold text-slate-700 pt-1">
-                    <span class="px-3 py-1.5 rounded-xl bg-white border border-slate-200 shadow-xs"><i class="fa-brands fa-whatsapp text-emerald-500 mr-1.5"></i>WhatsApp API</span>
-                    <span class="px-3 py-1.5 rounded-xl bg-white border border-slate-200 shadow-xs"><i class="fa-brands fa-instagram text-pink-600 mr-1.5"></i>Instagram DMs</span>
-                    <span class="px-3 py-1.5 rounded-xl bg-white border border-slate-200 shadow-xs"><i class="fa-solid fa-envelope text-blue-600 mr-1.5"></i>Shared Support Mail</span>
-                    <span class="px-3 py-1.5 rounded-xl bg-white border border-slate-200 shadow-xs"><i class="fa-solid fa-phone-volume text-bikOrange mr-1.5"></i>In-App Calling</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CORE 4 CAPABILITIES -->
-    <section class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <span class="text-bikOrange font-bold text-xs uppercase tracking-widest bg-orange-50 px-3.5 py-1 rounded-full border border-orange-100">Intelligent CX Infrastructure</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark font-display mt-3">Improve CX with instant answers for your shoppers</h2>
-                <p class="text-slateText text-sm mt-3">Everything your support agents need to resolve tickets in under 2 minutes and drive repeat purchases.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                
-                <!-- 1 -->
-                <div class="p-6 rounded-3xl bg-slate-50 border border-slate-200 card-anim space-y-4">
-                    <div class="w-12 h-12 rounded-2xl bg-orange-100 text-bikOrange flex items-center justify-center text-xl font-bold">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                    </div>
-                    <h3 class="text-base font-bold text-bikDark">Promote products with interactive cards</h3>
-                    <p class="text-xs text-slate-500 leading-relaxed">
-                        Integrate your Shopify store to bring all your products and shopper history right into the Helpdesk. Recommend products, share 1-click checkout links, and update orders without leaving the chat.
-                    </p>
-                </div>
-
-                <!-- 2 -->
-                <div class="p-6 rounded-3xl bg-slate-50 border border-slate-200 card-anim space-y-4">
-                    <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl font-bold">
-                        <i class="fa-solid fa-comments"></i>
-                    </div>
-                    <h3 class="text-base font-bold text-bikDark">Help them start the conversation</h3>
-                    <p class="text-xs text-slate-500 leading-relaxed">
-                        Don't make shoppers struggle to type. Set up pre-populated conversational icebreakers for size charts, delivery timelines, and discount codes so conversations convert instantly.
-                    </p>
-                </div>
-
-                <!-- 3 -->
-                <div class="p-6 rounded-3xl bg-slate-50 border border-slate-200 card-anim space-y-4">
-                    <div class="w-12 h-12 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center text-xl font-bold">
-                        <i class="fa-solid fa-route"></i>
-                    </div>
-                    <h3 class="text-base font-bold text-bikDark">Route queries to the right agent</h3>
-                    <p class="text-xs text-slate-500 leading-relaxed">
-                        With smart skills-based routing, assign refund disputes to senior team members and sizing questions to styling reps. Zero agent collision or duplicate replies.
-                    </p>
-                </div>
-
-                <!-- 4 -->
-                <div class="p-6 rounded-3xl bg-slate-50 border border-slate-200 card-anim space-y-4">
-                    <div class="w-12 h-12 rounded-2xl bg-purple-100 text-purple-600 flex items-center justify-center text-xl font-bold">
-                        <i class="fa-solid fa-moon"></i>
-                    </div>
-                    <h3 class="text-base font-bold text-bikDark">Automated responses outside business hours</h3>
-                    <p class="text-xs text-slate-500 leading-relaxed">
-                        Enable autonomous after-hours triage. The assistant answers tracking questions, gathers return photos, and logs priorities so your team wakes up to organized, resolved queues.
-                    </p>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- INTERACTIVE CHANNEL SWITCHER DEMO -->
-    <section class="py-20 bg-slate-50 border-t border-slate-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-12">
-                <span class="text-xs font-bold text-bikOrange bg-orange-100 px-3 py-1 rounded-full uppercase tracking-wider">Live Interaction</span>
-                <h2 class="text-3xl font-extrabold text-bikDark font-display mt-3">Seamlessly transition between channels</h2>
-                <p class="text-slateText text-sm mt-2">Address queries from WhatsApp, Instagram, and Email on a single screen without switching tabs.</p>
-            </div>
-
-            <!-- INTERACTIVE INBOX TABS -->
-            <div class="max-w-4xl mx-auto bg-white rounded-3xl border border-slate-200 shadow-xl overflow-hidden">
-                <!-- Channel Selector Bar -->
-                <div class="flex items-center border-b border-slate-100 bg-slate-50/80 px-3 sm:px-6 pt-3 gap-2 overflow-x-auto no-scrollbar max-w-full touch-pan-x">
-                    <button onclick="switchTab('wa')" id="tab-wa" class="px-5 py-3 rounded-t-xl font-bold text-xs flex items-center gap-2 border-b-2 border-emerald-500 bg-white text-emerald-600 shadow-sm transition">
-                        <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp (14)
-                    </button>
-                    <button onclick="switchTab('ig')" id="tab-ig" class="px-5 py-3 rounded-t-xl font-bold text-xs flex items-center gap-2 text-slate-500 hover:text-pink-600 transition">
-                        <i class="fa-brands fa-instagram text-sm"></i> Instagram Direct (8)
-                    </button>
-                    <button onclick="switchTab('em')" id="tab-em" class="px-5 py-3 rounded-t-xl font-bold text-xs flex items-center gap-2 text-slate-500 hover:text-blue-600 transition">
-                        <i class="fa-solid fa-envelope text-sm"></i> Email Support (6)
-                    </button>
-                </div>
-
-                <!-- Tab Content -->
-                <div class="p-4 sm:p-8">
-                    <!-- WA CONTENT -->
-                    <div id="content-wa" class="space-y-4">
-                        <div class="flex items-center justify-between pb-3 border-b border-slate-100">
-                            <div>
-                                <span class="text-sm font-bold text-bikDark">Ananya Deshmukh • +91 98204 11928</span>
-                                <span class="text-xs text-slate-400 block">Order #FC-9021 • Kashmiri Embroidered Kurti (Beige)</span>
-                            </div>
-                            <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">WhatsApp Official BSP</span>
-                        </div>
-                        <div class="p-4 rounded-2xl bg-emerald-50/40 border border-emerald-100 text-xs text-slate-700 leading-relaxed">
-                            "Hi, the fabric is beautiful! Can I exchange Size 38 for 40 in Beige? Need it before Thursday for a wedding."
-                        </div>
-                        <div class="flex items-center gap-3 pt-2">
-                            <button onclick="(window.FC_AUTH && window.FC_AUTH.showAuthToast) ? window.FC_AUTH.showAuthToast('📦 Size 40 reserved in Bhiwandi warehouse. Borzo reverse pickup scheduled.') : null" class="px-5 py-2.5 rounded-xl bg-emerald-600 text-white font-bold text-xs hover:bg-emerald-700 transition">
-                                📦 Auto-Trigger Size Swap & Borzo Pickup
-                            </button>
-                            <a href="whatsapp-calling.html" class="px-5 py-2.5 rounded-xl border border-slate-300 text-slate-700 font-bold text-xs hover:bg-slate-50 transition">
-                                ✆ Shift to WhatsApp Call
+                        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-4">
+                            <a href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah%20team,%20I%20want%20to%20set%20up%20Omnichannel%20Helpdesk." target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-orange-700 hover:bg-orange-800 text-white font-bold text-xs sm:text-sm whitespace-nowrap transition shadow-lg shadow-orange-500/25">
+                                <i class="fa-solid fa-headset" aria-hidden="true"></i><span>Launch Helpdesk in 1 Day</span>
+                            </a>
+                            <a href="demo.html" onclick="if(window.FC_LEADS){window.FC_LEADS.openAuditModal('Omnichannel Helpdesk Support');return false;}" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl border border-slate-300 hover:border-bikOrange text-slate-800 font-bold text-xs sm:text-sm whitespace-nowrap bg-white hover:bg-orange-50/50 transition">
+                                <span>Book Free Live Demo</span> <span class="text-base leading-none" aria-hidden="true">➔</span>
+                            </a>
+                            <a href="whatsapp-calling.html" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl border border-slate-300 hover:border-emerald-600 text-slate-800 font-bold text-xs sm:text-sm whitespace-nowrap bg-white hover:bg-emerald-50/50 transition">
+                                <i class="fa-brands fa-whatsapp text-emerald-700 text-sm" aria-hidden="true"></i><span>WA Calling</span>
                             </a>
                         </div>
+
+                        <div class="text-xs text-slate-600 flex flex-wrap items-center justify-center lg:justify-start gap-4 font-medium pt-2">
+                            <span><i class="fa-solid fa-check text-emerald-700 mr-1" aria-hidden="true"></i> Shopify &amp; WooCommerce 1-Click</span>
+                            <span><i class="fa-solid fa-check text-emerald-700 mr-1" aria-hidden="true"></i> Smart Collision Guard</span>
+                            <span><i class="fa-solid fa-check text-emerald-700 mr-1" aria-hidden="true"></i> Borzo Reverse Fleet</span>
+                        </div>
                     </div>
 
-                    <!-- IG CONTENT -->
-                    <div id="content-ig" class="space-y-4 hidden">
-                        <div class="flex items-center justify-between pb-3 border-b border-slate-100">
-                            <div>
-                                <span class="text-sm font-bold text-bikDark">@karan_oberoi (Instagram DM)</span>
-                                <span class="text-xs text-slate-400 block">Replied to Story: Autumn Bomber Jacket</span>
+                    <!-- RIGHT HERO VISUAL: ANIMATED FLOWCHART VIDEO CONSOLE -->
+                    <div class="lg:col-span-6 relative">
+                        <div class="rounded-3xl border-2 border-slate-200/90 bg-white shadow-2xl bik-mega-shadow fc-card-glow relative overflow-hidden text-slate-800">
+
+                            <!-- Top Video Progress Bar -->
+                            <div class="w-full h-1 bg-slate-100 relative overflow-hidden">
+                                <div id="supportProgressBar" class="h-full bg-gradient-to-r from-bikOrange via-amber-400 to-emerald-400 transition-all duration-300 w-0"></div>
                             </div>
-                            <span class="text-xs font-bold text-pink-600 bg-pink-50 px-3 py-1 rounded-full border border-pink-200">Instagram Graph API 21.0</span>
-                        </div>
-                        <div class="p-4 rounded-2xl bg-pink-50/40 border border-pink-100 text-xs text-slate-700 leading-relaxed">
-                            "Saw your reel! Do you have this jacket in Matte Black Size L? And can you deliver to Bandra today?"
-                        </div>
-                        <div class="flex items-center gap-3 pt-2">
-                            <button onclick="(window.FC_AUTH && window.FC_AUTH.showAuthToast) ? window.FC_AUTH.showAuthToast('⚡ 1-Click UPI Payment link sent directly into Instagram DM!') : null" class="px-5 py-2.5 rounded-xl bg-pink-600 text-white font-bold text-xs hover:bg-pink-700 transition">
-                                🛍️ Send 1-Click UPI DM Checkout Link
-                            </button>
-                        </div>
-                    </div>
 
-                    <!-- EMAIL CONTENT -->
-                    <div id="content-em" class="space-y-4 hidden">
-                        <div class="flex items-center justify-between pb-3 border-b border-slate-100">
-                            <div>
-                                <span class="text-sm font-bold text-bikDark">finance@corporateclient.in</span>
-                                <span class="text-xs text-slate-400 block">Subject: Request for B2B GST Tax Invoice #INV-8821</span>
+                            <!-- Video Player Header Chrome -->
+                            <div class="px-5 py-3 border-b border-slate-200/80 flex items-center justify-between bg-slate-50/90 backdrop-blur-md">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-red-500/80" aria-hidden="true"></span>
+                                    <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80" aria-hidden="true"></span>
+                                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80" aria-hidden="true"></span>
+                                    <span class="text-[11px] font-bold text-slate-700 ml-1 font-mono flex items-center gap-1.5">
+                                        <i class="fa-solid fa-play text-orange-700 text-[10px]" aria-hidden="true"></i>
+                                        <span>Omnichannel Helpdesk AI Resolution Pipeline</span>
+                                    </span>
+                                </div>
+
+                                <div class="flex items-center gap-2">
+                                    <span id="supportStepBadge" class="px-2.5 py-0.5 rounded-full bg-orange-50 border border-orange-200 text-orange-700 text-[10px] font-mono font-bold">
+                                        Step 1: Inbound
+                                    </span>
+                                    <button type="button" onclick="toggleSupportVideo()" id="supportPlayPauseBtn" aria-label="Pause or play helpdesk pipeline simulation" class="w-7 h-7 rounded-lg bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 flex items-center justify-center transition text-xs shadow-sm cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange" title="Pause / Play">
+                                        <i class="fa-solid fa-pause" id="supportPlayPauseIcon" aria-hidden="true"></i>
+                                    </button>
+                                    <button type="button" onclick="restartSupportVideo()" aria-label="Replay helpdesk pipeline simulation" class="w-7 h-7 rounded-lg bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 flex items-center justify-center transition text-xs shadow-sm cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange" title="Replay">
+                                        <i class="fa-solid fa-rotate-right" aria-hidden="true"></i>
+                                    </button>
+                                </div>
                             </div>
-                            <span class="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1 rounded-full border border-blue-200">Synced via IMAP/Google Workspace</span>
+
+                            <!-- Video Visual Canvas -->
+                            <div class="p-5 sm:p-6 grid grid-cols-1 sm:grid-cols-12 gap-5 items-center relative bg-gradient-to-b from-white via-slate-50/40 to-white">
+
+                                <!-- Left: Connected Flowchart Road Map (7 cols) -->
+                                <div class="sm:col-span-7 space-y-3 relative">
+
+                                    <!-- Background Animated Beam Line -->
+                                    <div class="absolute left-6 top-7 bottom-7 w-1 -translate-x-1/2 z-0 pointer-events-none">
+                                        <div class="w-full h-full bg-slate-200 rounded-full"></div>
+                                        <div id="supportBeamActive" class="absolute top-0 left-0 w-full bg-gradient-to-b from-bikOrange via-amber-300 to-emerald-400 rounded-full transition-all duration-500 shadow-[0_0_12px_#ff6838] h-0"></div>
+                                    </div>
+
+                                    <!-- Node 1: Omnichannel Inbound Stream -->
+                                    <button type="button" id="supportNode1" onclick="jumpSupportStep(0)" aria-pressed="true" class="w-full text-left relative z-10 p-2.5 rounded-2xl bg-white border border-orange-500/80 shadow-sm flex items-center gap-3 transition-all duration-300 cursor-pointer node-glow-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange focus-visible:ring-offset-2">
+                                        <span class="w-8 h-8 rounded-xl bg-orange-50 border border-orange-200 text-orange-700 flex items-center justify-center text-sm font-bold transition shadow-sm shrink-0">
+                                            <i class="fa-solid fa-comments" aria-hidden="true"></i>
+                                        </span>
+                                        <span class="flex-1 min-w-0 block">
+                                            <span class="flex items-center justify-between gap-2">
+                                                <span class="text-xs font-black text-slate-900">1. Omnichannel Inflow</span>
+                                                <span class="text-[9px] font-mono text-orange-700 bg-orange-50 px-1.5 py-0.5 rounded border border-orange-200 font-bold shrink-0">Unified Hub</span>
+                                            </span>
+                                            <span class="text-[10px] text-slate-600 block truncate">WhatsApp API, IG DMs, Email &amp; Voice in 1 Queue</span>
+                                        </span>
+                                    </button>
+
+                                    <!-- Node 2: AI Sentiment & Intent Triage -->
+                                    <button type="button" id="supportNode2" onclick="jumpSupportStep(1)" aria-pressed="false" class="w-full text-left relative z-10 p-2.5 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-center gap-3 transition-all duration-300 cursor-pointer opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange focus-visible:ring-offset-2">
+                                        <span class="w-8 h-8 rounded-xl bg-purple-50 border border-purple-200 text-purple-700 flex items-center justify-center text-sm font-bold transition shadow-sm shrink-0">
+                                            <i class="fa-solid fa-wand-magic-sparkles text-xs" aria-hidden="true"></i>
+                                        </span>
+                                        <span class="flex-1 min-w-0 block">
+                                            <span class="flex items-center justify-between gap-2">
+                                                <span class="text-xs font-black text-slate-900">2. AI Sentiment &amp; Triage</span>
+                                                <span class="text-[9px] font-mono text-purple-700 bg-purple-50 px-1.5 py-0.5 rounded border border-purple-200 font-semibold shrink-0">VIP Priority</span>
+                                            </span>
+                                            <span class="text-[10px] text-slate-600 block truncate">Intent tag &amp; Smart Collision Guard</span>
+                                        </span>
+                                    </button>
+
+                                    <!-- Node 3: Borzo Reverse Pickup -->
+                                    <button type="button" id="supportNode3" onclick="jumpSupportStep(2)" aria-pressed="false" class="w-full text-left relative z-10 p-2.5 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-center gap-3 transition-all duration-300 cursor-pointer opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange focus-visible:ring-offset-2">
+                                        <span class="w-8 h-8 rounded-xl bg-blue-50 border border-blue-200 text-blue-700 flex items-center justify-center text-sm font-bold transition shadow-sm shrink-0">
+                                            <i class="fa-solid fa-bolt text-xs" aria-hidden="true"></i>
+                                        </span>
+                                        <span class="flex-1 min-w-0 block">
+                                            <span class="flex items-center justify-between gap-2">
+                                                <span class="text-xs font-black text-slate-900">3. Borzo Reverse Pickup</span>
+                                                <span class="text-[9px] font-mono text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded border border-blue-200 font-semibold shrink-0">AWB #BZ-7721</span>
+                                            </span>
+                                            <span class="text-[10px] text-slate-600 block truncate">1-Click Size Swap &amp; AWB &bull; Shopify Sync</span>
+                                        </span>
+                                    </button>
+
+                                    <!-- Node 4: High CSAT Rating & Loyalty -->
+                                    <button type="button" id="supportNode4" onclick="jumpSupportStep(3)" aria-pressed="false" class="w-full text-left relative z-10 p-3 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-center gap-3 transition-all duration-300 cursor-pointer opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange focus-visible:ring-offset-2">
+                                        <span class="w-8 h-8 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-700 flex items-center justify-center text-base font-bold transition shadow-sm shrink-0">
+                                            <i class="fa-solid fa-star" aria-hidden="true"></i>
+                                        </span>
+                                        <span class="flex-1 min-w-0 block">
+                                            <span class="flex items-center justify-between gap-2">
+                                                <span class="text-xs font-black text-slate-900 flex items-center gap-1.5">
+                                                    <span>4. CSAT &amp; Loyalty</span>
+                                                    <i class="fa-solid fa-heart text-pink-600 text-xs" aria-hidden="true"></i>
+                                                </span>
+                                                <span class="text-[9px] font-mono text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200 font-bold shrink-0">93.2% CSAT</span>
+                                            </span>
+                                            <span class="text-[10px] text-emerald-700 font-semibold block truncate">4.8 / 5 Automated CSAT &bull; +250 Loyalty Pts</span>
+                                        </span>
+                                    </button>
+
+                                </div>
+
+                                <!-- Right: Live Synchronized Support Desk Console (5 cols) -->
+                                <div class="sm:col-span-5 relative">
+                                    <div class="rounded-2xl border border-slate-200 bg-slate-50/90 p-3.5 space-y-3 shadow-md">
+
+                                        <!-- Queue Header -->
+                                        <div class="flex items-center justify-between border-b border-slate-200 pb-2">
+                                            <div class="flex items-center gap-2">
+                                                <span class="w-2.5 h-2.5 rounded-full bg-orange-500 animate-pulse" aria-hidden="true"></span>
+                                                <span class="text-[10px] font-bold text-slate-700">Live Helpdesk Ticket</span>
+                                            </div>
+                                            <span class="text-[10px] font-mono text-orange-700 font-bold" id="supportTicketId">#FC-8941</span>
+                                        </div>
+
+                                        <!-- Customer Profile Box -->
+                                        <div class="text-center space-y-1 py-1">
+                                            <div class="w-12 h-12 mx-auto rounded-full bg-gradient-to-tr from-bikOrange to-amber-500 flex items-center justify-center text-white text-lg shadow-md shadow-orange-500/20">
+                                                <i class="fa-solid fa-user-check" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="text-xs font-black text-slate-900" id="supportCustomerName">Ananya Verma</div>
+                                            <p class="text-[9px] text-slate-600" id="supportCustomerMeta">VIP Repeat Buyer &bull; LTV ₹28,400 &bull; WhatsApp</p>
+                                        </div>
+
+                                        <!-- Live Status & Telemetry Pill -->
+                                        <div class="p-2 rounded-xl bg-white border border-slate-200 text-[10px] space-y-1 shadow-sm">
+                                            <div class="flex items-center justify-between font-bold">
+                                                <span class="text-slate-800">Shopify Order #FC-4829</span>
+                                                <span class="text-orange-700 font-mono" id="supportOrderVal">₹4,250</span>
+                                            </div>
+                                            <p class="text-[9px] text-slate-700" id="supportTelemetryStatus">Size M &rarr; L swap requested. Borzo AWB #BZ-7721 ready.</p>
+                                            <button type="button" id="supportActionBtn" onclick="triggerSupportConsoleAction()" class="w-full py-1.5 rounded-lg bg-orange-700 hover:bg-orange-800 text-white font-bold text-[9px] flex items-center justify-center gap-1 mt-1 transition shadow-sm cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange">
+                                                <i class="fa-solid fa-bolt" aria-hidden="true"></i> Approve Borzo Reverse Pickup
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- Video Footer Status Bar -->
+                            <div class="px-5 py-2.5 bg-slate-50/90 border-t border-slate-200/80 flex items-center justify-between text-[11px] text-slate-600 font-mono">
+                                <span class="flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-orange-600 animate-ping" aria-hidden="true"></span>
+                                    <span id="supportStatusText">Step 1: Omnichannel Inbound Stream Aggregation</span>
+                                </span>
+                                <span class="text-orange-700 font-bold">45s Avg SLA &bull; 93.2% CSAT</span>
+                            </div>
                         </div>
-                        <div class="p-4 rounded-2xl bg-blue-50/40 border border-blue-100 text-xs text-slate-700 leading-relaxed">
-                            "Please email the GST invoice for Order #INV-8821 with GSTIN: 27AABCU9603R1ZM for our monthly input tax credit reconciliation."
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- M1 1600x960 LIGHT-PASTEL SUPPORT WORKFLOW ARCHITECTURE -->
+        <section class="py-16 bg-white border-b border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+                <div class="text-center max-w-3xl mx-auto space-y-3">
+                    <span class="inline-block text-xs font-bold uppercase tracking-widest text-orange-700 bg-orange-50 px-3.5 py-1 rounded-full border border-orange-200">
+                        45s Avg SLA &bull; 93.2% CSAT Architecture
+                    </span>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold text-bikDark font-display">
+                        Omnichannel Triage, Collision Guard &amp; 1-Click Borzo Reverse Pickup
+                    </h2>
+                    <p class="text-sm sm:text-base text-slate-700 leading-relaxed">
+                        Every ticket arrives with live Shopify LTV context, triggers AI sentiment &amp; Collision Guard protection, dispatches Borzo reverse pickup (<code class="font-mono text-orange-700 bg-orange-50 px-1.5 py-0.5 rounded">AWB #BZ-7721</code>), and credits automated loyalty rewards.
+                    </p>
+                </div>
+
+                <div class="rounded-3xl border border-slate-200 bg-white p-3 sm:p-4 shadow-xl">
+                    <img src="images/customer_support_workflow_light.png" alt="Pure-white Flying Cheetah Omnichannel Helpdesk and AI Triage workflow showing Omnichannel Inflow, AI Sentiment and Triage, Borzo Reverse Pickup AWB #BZ-7721 for Ananya Verma, and 4.8 CSAT and Loyalty" loading="lazy" class="w-full h-auto rounded-2xl border border-slate-100 block">
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="p-6 rounded-2xl bg-orange-50/60 border border-orange-200 space-y-2">
+                        <div class="text-xs font-bold uppercase tracking-wider text-orange-700">Step 02 &bull; Smart Collision Guard</div>
+                        <h3 class="font-bold text-base text-bikDark">Zero Duplicate Agent Replies</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">Real-time lock indicators show when an agent is viewing or typing on a ticket, routing VIP buyers to senior specialists automatically.</p>
+                    </div>
+                    <div class="p-6 rounded-2xl bg-purple-50/60 border border-purple-200 space-y-2">
+                        <div class="text-xs font-bold uppercase tracking-wider text-purple-700">Step 03 &bull; Borzo Reverse Pickup</div>
+                        <h3 class="font-bold text-base text-bikDark">1-Click Size Swap &amp; AWB #BZ-7721</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">Reserve replacement inventory in Shopify and dispatch a Borzo reverse pickup rider with live GPS link in under 60 seconds.</p>
+                    </div>
+                    <div class="p-6 rounded-2xl bg-emerald-50/60 border border-emerald-200 space-y-2">
+                        <div class="text-xs font-bold uppercase tracking-wider text-emerald-700">Step 04 &bull; 4.8 CSAT &amp; Upsells</div>
+                        <h3 class="font-bold text-base text-bikDark">-32% Cost &amp; +35% Agent Revenue</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">Post-resolution CSAT polls and +250 loyalty points turn support conversations into repeat 1-tap UPI purchases.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- UNIFIED OMNICHANNEL STUDIO SHOWCASE -->
+        <section class="py-16 bg-gradient-to-b from-white to-slate-50/70 border-b border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                <div class="lg:col-span-6 order-2 lg:order-1">
+                    <div class="fc-showcase-frame aspect-[16/10]">
+                        <img src="images/helpdesk_omnichannel_inbox.jpg" alt="Omnichannel Helpdesk Architecture Connecting WhatsApp, Instagram, Email and Voice" loading="lazy" class="fc-showcase-img">
+                    </div>
+                </div>
+                <div class="lg:col-span-6 space-y-4 order-1 lg:order-2">
+                    <span class="text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-100 px-3.5 py-1 rounded-full border border-emerald-200">Omnichannel Architecture</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-bikDark font-display">WhatsApp, Instagram, Email &amp; Voice Converged in One Hub</h2>
+                    <p class="text-sm text-slate-700 leading-relaxed">Route every shopper inquiry by channel intent, keep complete order history pinned beside the conversation, and trigger refunds, replacements, or Borzo reverse pickups in one click.</p>
+                    <div class="flex flex-wrap gap-2.5 text-xs font-bold text-slate-700 pt-1">
+                        <span class="px-3 py-1.5 rounded-xl bg-white border border-slate-200 shadow-sm"><i class="fa-brands fa-whatsapp text-emerald-700 mr-1.5" aria-hidden="true"></i>WhatsApp API</span>
+                        <span class="px-3 py-1.5 rounded-xl bg-white border border-slate-200 shadow-sm"><i class="fa-brands fa-instagram text-pink-700 mr-1.5" aria-hidden="true"></i>Instagram DMs</span>
+                        <span class="px-3 py-1.5 rounded-xl bg-white border border-slate-200 shadow-sm"><i class="fa-solid fa-envelope text-blue-700 mr-1.5" aria-hidden="true"></i>Shared Support Mail</span>
+                        <span class="px-3 py-1.5 rounded-xl bg-white border border-slate-200 shadow-sm"><i class="fa-solid fa-phone-volume text-orange-700 mr-1.5" aria-hidden="true"></i>In-App Calling</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CORE 4 CAPABILITIES -->
+        <section class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-orange-700 font-bold text-xs uppercase tracking-widest bg-orange-50 px-3.5 py-1 rounded-full border border-orange-200">Intelligent CX Infrastructure</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark font-display mt-3">Improve CX with instant answers for your shoppers</h2>
+                    <p class="text-slate-700 text-sm mt-3">Everything your support agents need to resolve tickets in under 2 minutes and drive repeat purchases.</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="p-6 rounded-3xl bg-white border border-orange-200 card-anim space-y-4 shadow-sm">
+                        <div class="w-12 h-12 rounded-2xl bg-orange-100 text-orange-700 flex items-center justify-center text-xl font-bold">
+                            <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
                         </div>
-                        <div class="flex items-center gap-3 pt-2">
-                            <button onclick="(window.FC_AUTH && window.FC_AUTH.showAuthToast) ? window.FC_AUTH.showAuthToast('📄 GST Invoice automatically fetched and attached with PDF download!') : null" class="px-5 py-2.5 rounded-xl bg-blue-600 text-white font-bold text-xs hover:bg-blue-700 transition">
-                                📄 Auto-Generate & Send Verified GST Invoice
-                            </button>
+                        <h3 class="text-base font-bold text-bikDark">Promote products with interactive cards</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">
+                            Integrate your Shopify store to bring all your products and shopper history right into the Helpdesk. Recommend products, share 1-click checkout links, and update orders without leaving the chat.
+                        </p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-white border border-emerald-200 card-anim space-y-4 shadow-sm">
+                        <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-xl font-bold">
+                            <i class="fa-solid fa-comments" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-bikDark">Help them start the conversation</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">
+                            Don't make shoppers struggle to type. Set up pre-populated conversational icebreakers for size charts, delivery timelines, and discount codes so conversations convert instantly.
+                        </p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-white border border-blue-200 card-anim space-y-4 shadow-sm">
+                        <div class="w-12 h-12 rounded-2xl bg-blue-100 text-blue-700 flex items-center justify-center text-xl font-bold">
+                            <i class="fa-solid fa-route" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-bikDark">Route queries to the right agent</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">
+                            With smart skills-based routing, assign refund disputes to senior team members and sizing questions to styling reps. Zero agent collision or duplicate replies.
+                        </p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-white border border-purple-200 card-anim space-y-4 shadow-sm">
+                        <div class="w-12 h-12 rounded-2xl bg-purple-100 text-purple-700 flex items-center justify-center text-xl font-bold">
+                            <i class="fa-solid fa-moon" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-bikDark">Automated responses outside business hours</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">
+                            Enable autonomous after-hours triage. The assistant answers tracking questions, gathers return photos, and logs priorities so your team wakes up to organized, resolved queues.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INTERACTIVE CHANNEL SWITCHER DEMO -->
+        <section class="py-20 bg-slate-50 border-t border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="text-xs font-bold text-orange-700 bg-orange-100 px-3 py-1 rounded-full uppercase tracking-wider border border-orange-200">Live Interaction</span>
+                    <h2 class="text-3xl font-extrabold text-bikDark font-display mt-3">Seamlessly transition between channels</h2>
+                    <p class="text-slate-700 text-sm mt-2">Address queries from WhatsApp, Instagram, and Email on a single screen without switching tabs.</p>
+                </div>
+
+                <!-- INTERACTIVE INBOX TABS -->
+                <div class="max-w-4xl mx-auto bg-white rounded-3xl border border-slate-200 shadow-xl overflow-hidden">
+                    <!-- Channel Selector Bar -->
+                    <div role="tablist" aria-label="Omnichannel Helpdesk Channels" class="flex items-center border-b border-slate-100 bg-slate-50/80 px-3 sm:px-6 pt-3 gap-2 overflow-x-auto no-scrollbar max-w-full touch-pan-x">
+                        <button type="button" role="tab" aria-selected="true" aria-controls="content-wa" onclick="switchTab('wa')" id="tab-wa" class="px-5 py-3 rounded-t-xl font-bold text-xs flex items-center gap-2 border-b-2 border-emerald-500 bg-white text-emerald-700 shadow-sm transition cursor-pointer whitespace-nowrap">
+                            <i class="fa-brands fa-whatsapp text-sm" aria-hidden="true"></i> WhatsApp (14)
+                        </button>
+                        <button type="button" role="tab" aria-selected="false" aria-controls="content-ig" onclick="switchTab('ig')" id="tab-ig" class="px-5 py-3 rounded-t-xl font-bold text-xs flex items-center gap-2 text-slate-600 hover:text-pink-700 transition cursor-pointer whitespace-nowrap">
+                            <i class="fa-brands fa-instagram text-sm" aria-hidden="true"></i> Instagram Direct (8)
+                        </button>
+                        <button type="button" role="tab" aria-selected="false" aria-controls="content-em" onclick="switchTab('em')" id="tab-em" class="px-5 py-3 rounded-t-xl font-bold text-xs flex items-center gap-2 text-slate-600 hover:text-blue-700 transition cursor-pointer whitespace-nowrap">
+                            <i class="fa-solid fa-envelope text-sm" aria-hidden="true"></i> Email Support (6)
+                        </button>
+                    </div>
+
+                    <!-- Tab Content -->
+                    <div class="p-4 sm:p-8">
+                        <!-- WA CONTENT -->
+                        <div id="content-wa" role="tabpanel" aria-labelledby="tab-wa" class="space-y-4">
+                            <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-100">
+                                <div>
+                                    <span class="text-sm font-bold text-bikDark">Ananya Verma &bull; +91 98204 11928</span>
+                                    <span class="text-xs text-slate-600 block">Order #FC-9021 &bull; Kashmiri Embroidered Kurti (Beige)</span>
+                                </div>
+                                <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">WhatsApp Official BSP</span>
+                            </div>
+                            <div class="p-4 rounded-2xl bg-emerald-50/40 border border-emerald-100 text-xs text-slate-700 leading-relaxed">
+                                &ldquo;Hi, the fabric is beautiful! Can I exchange Size 38 for 40 in Beige? Need it before Thursday for a wedding.&rdquo;
+                            </div>
+                            <div class="flex flex-wrap items-center gap-3 pt-2">
+                                <button type="button" onclick="notifySupportAction('Size 40 reserved in Bhiwandi warehouse. Borzo reverse pickup scheduled (AWB #BZ-7721).', 'success', 'Borzo Reverse Pickup')" class="px-5 py-2.5 rounded-xl bg-emerald-700 text-white font-bold text-xs hover:bg-emerald-800 transition cursor-pointer inline-flex items-center">
+                                    <i class="fa-solid fa-box-open mr-1.5" aria-hidden="true"></i> Auto-Trigger Size Swap &amp; Borzo Pickup
+                                </button>
+                                <a href="whatsapp-calling.html" class="px-5 py-2.5 rounded-xl border border-slate-300 text-slate-700 font-bold text-xs hover:bg-slate-50 transition inline-flex items-center">
+                                    <i class="fa-solid fa-phone-volume mr-1.5 text-emerald-700" aria-hidden="true"></i> Shift to WhatsApp Call
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- IG CONTENT -->
+                        <div id="content-ig" role="tabpanel" aria-labelledby="tab-ig" class="space-y-4 hidden">
+                            <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-100">
+                                <div>
+                                    <span class="text-sm font-bold text-bikDark">@karan_oberoi (Instagram DM)</span>
+                                    <span class="text-xs text-slate-600 block">Replied to Story: Autumn Bomber Jacket</span>
+                                </div>
+                                <span class="text-xs font-bold text-pink-700 bg-pink-50 px-3 py-1 rounded-full border border-pink-200">Instagram Graph API 21.0</span>
+                            </div>
+                            <div class="p-4 rounded-2xl bg-pink-50/40 border border-pink-100 text-xs text-slate-700 leading-relaxed">
+                                &ldquo;Saw your reel! Do you have this jacket in Matte Black Size L? And can you deliver to Bandra today?&rdquo;
+                            </div>
+                            <div class="flex flex-wrap items-center gap-3 pt-2">
+                                <button type="button" onclick="notifySupportAction('1-Click UPI payment link sent directly into Instagram DM with same-day Bandra Borzo quote.', 'success', 'Instagram DM Checkout')" class="px-5 py-2.5 rounded-xl bg-pink-700 text-white font-bold text-xs hover:bg-pink-800 transition cursor-pointer inline-flex items-center">
+                                    <i class="fa-solid fa-bag-shopping mr-1.5" aria-hidden="true"></i> Send 1-Click UPI DM Checkout Link
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- EMAIL CONTENT -->
+                        <div id="content-em" role="tabpanel" aria-labelledby="tab-em" class="space-y-4 hidden">
+                            <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-100">
+                                <div>
+                                    <span class="text-sm font-bold text-bikDark">finance@corporateclient.in</span>
+                                    <span class="text-xs text-slate-600 block">Subject: Request for B2B GST Tax Invoice #INV-8821</span>
+                                </div>
+                                <span class="text-xs font-bold text-blue-700 bg-blue-50 px-3 py-1 rounded-full border border-blue-200">Synced via IMAP/Google Workspace</span>
+                            </div>
+                            <div class="p-4 rounded-2xl bg-blue-50/40 border border-blue-100 text-xs text-slate-700 leading-relaxed">
+                                &ldquo;Please email the GST invoice for Order #INV-8821 with GSTIN: 27AABCU9603R1ZM for our monthly input tax credit reconciliation.&rdquo;
+                            </div>
+                            <div class="flex flex-wrap items-center gap-3 pt-2">
+                                <button type="button" onclick="notifySupportAction('GST Invoice #INV-8821 automatically fetched and attached as PDF.', 'info', 'Shared Support Mail')" class="px-5 py-2.5 rounded-xl bg-blue-700 text-white font-bold text-xs hover:bg-blue-800 transition cursor-pointer inline-flex items-center">
+                                    <i class="fa-solid fa-file-invoice mr-1.5" aria-hidden="true"></i> Auto-Generate &amp; Send Verified GST Invoice
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
-
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- FREQUENTLY ASKED QUESTIONS -->
-    <section class="py-20 bg-white border-t border-slate-200">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-14">
-                <span class="text-bikOrange font-bold text-xs uppercase tracking-widest bg-orange-50 px-3.5 py-1 rounded-full">Common Questions</span>
-                <h2 class="text-3xl font-extrabold text-bikDark font-display mt-3">Frequently asked questions</h2>
-            </div>
-
-            <div class="space-y-4 text-left">
-                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200">
-                    <h3 class="font-bold text-sm text-bikDark">How can a multi-channel helpdesk benefit my e-commerce website?</h3>
-                    <p class="text-xs text-slate-500 mt-2 leading-relaxed">This solution ensures you can manage customer inquiries and issues across multiple communication channels from a centralized system, enhancing efficiency, reducing response times, and improving customer satisfaction.</p>
+        <!-- INLINE SVG TELEMETRY CHARTS -->
+        <section class="py-20 bg-white border-t border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+                <div class="text-center max-w-3xl mx-auto space-y-3">
+                    <span class="inline-block text-xs font-bold uppercase tracking-widest text-orange-700 bg-orange-50 px-3.5 py-1 rounded-full border border-orange-200">Verified SLA Telemetry</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark font-display">Channel Deflection &amp; Ticket Cost Economics</h2>
                 </div>
-                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200">
-                    <h3 class="font-bold text-sm text-bikDark">Our brand has multiple Instagram and Facebook pages, can we connect them all?</h3>
-                    <p class="text-xs text-slate-500 mt-2 leading-relaxed">Yes! You can connect multiple Instagram and Facebook handles to a single shared inbox. All incoming messages, story mentions, and comments sync in real time.</p>
-                </div>
-                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200">
-                    <h3 class="font-bold text-sm text-bikDark">We use multiple Gmail/Outlook inboxes for support & sales, can all be connected?</h3>
-                    <p class="text-xs text-slate-500 mt-2 leading-relaxed">Yes! Multiple corporate email addresses can be routed into the Flying Cheetah shared inbox, with smart assignment rules preventing two agents from replying to the same email.</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    
-    <footer class="bg-white border-t border-slate-200 py-12 text-xs text-slate-500">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div class="flex items-center gap-2">
-                <div class="w-6 h-6 rounded-lg bg-bikOrange text-white flex items-center justify-center font-bold text-xs"><i class="fa-solid fa-bolt"></i></div>
-                <span class="font-bold text-bikDark">Flying Cheetah</span>
-                <span>© 2026. Official Meta Business Solution Provider.</span>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Chart 1 -->
+                    <div class="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200 shadow-lg space-y-4">
+                        <div class="flex items-center justify-between gap-2">
+                            <h3 class="text-base font-bold text-bikDark">First-Reply SLA &amp; AI Auto-Resolution by Channel</h3>
+                            <span class="text-xs font-mono font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">45s Avg SLA</span>
+                        </div>
+                        <svg viewBox="0 0 520 220" class="w-full h-auto" role="img" aria-label="First-reply SLA and AI deflection chart across WhatsApp, Instagram DM, Email, and Web Chat">
+                            <rect x="0" y="0" width="520" height="220" rx="12" fill="#FFFFFF" />
+                            <line x1="60" y1="40" x2="490" y2="40" stroke="#E2E8F0" stroke-dasharray="4 4" />
+                            <line x1="60" y1="90" x2="490" y2="90" stroke="#E2E8F0" stroke-dasharray="4 4" />
+                            <line x1="60" y1="140" x2="490" y2="140" stroke="#E2E8F0" stroke-dasharray="4 4" />
+                            <line x1="60" y1="180" x2="490" y2="180" stroke="#CBD5E1" />
+                            <text x="20" y="44" font-size="11" fill="#475569" font-family="Inter, sans-serif">100%</text>
+                            <text x="25" y="94" font-size="11" fill="#475569" font-family="Inter, sans-serif">65%</text>
+                            <text x="25" y="144" font-size="11" fill="#475569" font-family="Inter, sans-serif">30%</text>
+                            <rect x="90" y="54" width="64" height="126" rx="8" fill="#10B981" />
+                            <text x="122" y="48" text-anchor="middle" font-size="11" font-weight="700" fill="#047857">84% (38s)</text>
+                            <text x="122" y="202" text-anchor="middle" font-size="11" font-weight="600" fill="#334155">WhatsApp</text>
+
+                            <rect x="195" y="68" width="64" height="112" rx="8" fill="#EC4899" />
+                            <text x="227" y="62" text-anchor="middle" font-size="11" font-weight="700" fill="#BE185D">76% (44s)</text>
+                            <text x="227" y="202" text-anchor="middle" font-size="11" font-weight="600" fill="#334155">IG DM</text>
+
+                            <rect x="300" y="82" width="64" height="98" rx="8" fill="#2563EB" />
+                            <text x="332" y="76" text-anchor="middle" font-size="11" font-weight="700" fill="#1D4ED8">68% (52s)</text>
+                            <text x="332" y="202" text-anchor="middle" font-size="11" font-weight="600" fill="#334155">Email</text>
+
+                            <rect x="405" y="62" width="64" height="118" rx="8" fill="#FF6838" />
+                            <text x="437" y="56" text-anchor="middle" font-size="11" font-weight="700" fill="#C2410C">79% (41s)</text>
+                            <text x="437" y="202" text-anchor="middle" font-size="11" font-weight="600" fill="#334155">Web Chat</text>
+                        </svg>
+                    </div>
+
+                    <!-- Chart 2 -->
+                    <div class="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200 shadow-lg space-y-4">
+                        <div class="flex items-center justify-between gap-2">
+                            <h3 class="text-base font-bold text-bikDark">Manual Inbox vs Flying Cheetah AI Cost per Ticket</h3>
+                            <span class="text-xs font-mono font-bold text-orange-700 bg-orange-50 px-2.5 py-1 rounded-full border border-orange-200">-32% Cost</span>
+                        </div>
+                        <svg viewBox="0 0 520 220" class="w-full h-auto" role="img" aria-label="Comparison chart showing ₹118 manual cost per ticket vs ₹42 Flying Cheetah AI Helpdesk cost per ticket">
+                            <rect x="0" y="0" width="520" height="220" rx="12" fill="#FFFFFF" />
+                            <line x1="60" y1="45" x2="490" y2="45" stroke="#E2E8F0" stroke-dasharray="4 4" />
+                            <line x1="60" y1="95" x2="490" y2="95" stroke="#E2E8F0" stroke-dasharray="4 4" />
+                            <line x1="60" y1="145" x2="490" y2="145" stroke="#E2E8F0" stroke-dasharray="4 4" />
+                            <line x1="60" y1="180" x2="490" y2="180" stroke="#CBD5E1" />
+                            <text x="16" y="49" font-size="11" fill="#475569">₹120</text>
+                            <text x="20" y="99" font-size="11" fill="#475569">₹80</text>
+                            <text x="20" y="149" font-size="11" fill="#475569">₹40</text>
+
+                            <rect x="115" y="48" width="90" height="132" rx="8" fill="#94A3B8" />
+                            <text x="160" y="40" text-anchor="middle" font-size="12" font-weight="700" fill="#475569">₹118 / ticket</text>
+                            <text x="160" y="202" text-anchor="middle" font-size="11" font-weight="600" fill="#334155">Manual Siloed Inbox</text>
+
+                            <rect x="310" y="132" width="90" height="48" rx="8" fill="#FF6838" />
+                            <text x="355" y="124" text-anchor="middle" font-size="12" font-weight="700" fill="#C2410C">₹42 / ticket</text>
+                            <text x="355" y="202" text-anchor="middle" font-size="11" font-weight="600" fill="#334155">Flying Cheetah AI Desk</text>
+                        </svg>
+                    </div>
+                </div>
             </div>
-            <div class="flex flex-wrap items-center gap-6 font-semibold">
+        </section>
+
+        <!-- INTERACTIVE SUPPORT COST & SLA ROI CALCULATOR -->
+        <section id="supportRoiCalculator" class="py-20 bg-orange-50/30 border-t border-orange-100">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12 space-y-2">
+                    <span class="inline-block text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 px-3.5 py-1 rounded-full border border-emerald-200">Support ROI Simulator</span>
+                    <h2 class="text-3xl font-extrabold text-bikDark font-display">Estimate Your Monthly Support Savings &amp; Agent Sales</h2>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-xl">
+                    <div class="lg:col-span-6 space-y-6">
+                        <div>
+                            <div class="flex items-center justify-between text-xs font-bold text-slate-700 mb-2">
+                                <label for="supTicketsRange">Monthly Support Tickets</label>
+                                <span id="supTicketsVal" class="font-mono text-emerald-700">3,000 tickets</span>
+                            </div>
+                            <input id="supTicketsRange" type="range" min="500" max="25000" step="250" value="3000" oninput="recalcSupportRoi()" class="w-full accent-emerald-600 cursor-pointer">
+                        </div>
+
+                        <div>
+                            <div class="flex items-center justify-between text-xs font-bold text-slate-700 mb-2">
+                                <label for="supCostInput">Current Cost per Ticket (₹)</label>
+                                <span id="supCostVal" class="font-mono text-orange-700">₹95</span>
+                            </div>
+                            <input id="supCostInput" type="range" min="40" max="200" step="5" value="95" oninput="recalcSupportRoi()" class="w-full accent-bikOrange cursor-pointer">
+                        </div>
+
+                        <div>
+                            <div class="flex items-center justify-between text-xs font-bold text-slate-700 mb-2">
+                                <label for="supAovInput">Average Order Value (₹)</label>
+                                <span id="supAovVal" class="font-mono text-blue-700">₹2,200</span>
+                            </div>
+                            <input id="supAovInput" type="range" min="500" max="8000" step="100" value="2200" oninput="recalcSupportRoi()" class="w-full accent-blue-700 cursor-pointer">
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-6 flex flex-col justify-between gap-6 bg-slate-50 rounded-2xl border border-slate-200 p-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+                            <div class="p-4 rounded-2xl bg-white border border-emerald-200">
+                                <div class="text-[11px] font-bold text-slate-600 uppercase">Cost Saved / Mo</div>
+                                <div id="supOutSavings" class="text-xl font-black text-emerald-700 font-display mt-1">₹91,200</div>
+                            </div>
+                            <div class="p-4 rounded-2xl bg-white border border-blue-200">
+                                <div class="text-[11px] font-bold text-slate-600 uppercase">Agent Hours Freed</div>
+                                <div id="supOutHours" class="text-xl font-black text-blue-700 font-display mt-1">260 hrs</div>
+                            </div>
+                            <div class="p-4 rounded-2xl bg-white border border-orange-200">
+                                <div class="text-[11px] font-bold text-slate-600 uppercase">Agent Upsell Revenue</div>
+                                <div id="supOutRevenue" class="text-xl font-black text-orange-700 font-display mt-1">₹4,62,000</div>
+                            </div>
+                        </div>
+                        <button type="button" onclick="if(window.FC_LEADS){window.FC_LEADS.openAuditModal('Omnichannel Helpdesk Support');}" class="w-full py-3.5 rounded-xl bg-orange-700 hover:bg-orange-800 text-white font-bold text-sm transition shadow-md cursor-pointer">
+                            Get Custom Helpdesk ROI Blueprint ➔
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BENCHMARK COMPARISON TABLE -->
+        <section class="py-20 bg-white border-t border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+                <div class="text-center max-w-3xl mx-auto">
+                    <span class="inline-block text-xs font-bold uppercase tracking-widest text-orange-700 bg-orange-50 px-3.5 py-1 rounded-full border border-orange-200">Helpdesk Comparison</span>
+                    <h2 class="text-3xl font-extrabold text-bikDark mt-3 font-display">Legacy Email Ticketing vs Single-Channel Bot vs Flying Cheetah</h2>
+                </div>
+
+                <div class="overflow-x-auto rounded-3xl border border-slate-200 bg-white shadow-lg">
+                    <table class="w-full text-left border-collapse min-w-[680px]">
+                        <thead>
+                            <tr class="bg-slate-50 border-b border-slate-200 text-xs uppercase tracking-wider text-slate-700">
+                                <th class="p-4 sm:p-5 font-extrabold">Capability</th>
+                                <th class="p-4 sm:p-5 font-bold">Legacy Shared Email</th>
+                                <th class="p-4 sm:p-5 font-bold">Single-Channel Bot</th>
+                                <th class="p-4 sm:p-5 font-extrabold text-orange-800 bg-orange-50">Flying Cheetah Omnichannel Desk</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 text-sm text-slate-700">
+                            <tr>
+                                <td class="p-4 sm:p-5 font-bold text-bikDark">First-Reply SLA</td>
+                                <td class="p-4 sm:p-5">12–24 hours average</td>
+                                <td class="p-4 sm:p-5">Instant canned menu only</td>
+                                <td class="p-4 sm:p-5 font-bold text-emerald-700 bg-orange-50/30">45s average with AI + Human Handoff</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 sm:p-5 font-bold text-bikDark">Channel Convergence</td>
+                                <td class="p-4 sm:p-5">Email threads siloed from chats</td>
+                                <td class="p-4 sm:p-5">WhatsApp only, no IG/Email</td>
+                                <td class="p-4 sm:p-5 font-bold text-emerald-700 bg-orange-50/30">WhatsApp + IG DM + Email + Calling in 1 Queue</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 sm:p-5 font-bold text-bikDark">Exchanges &amp; Reverse Logistics</td>
+                                <td class="p-4 sm:p-5">Manual spreadsheets &amp; portals</td>
+                                <td class="p-4 sm:p-5">No courier webhook actions</td>
+                                <td class="p-4 sm:p-5 font-bold text-emerald-700 bg-orange-50/30">1-Click Size Swap + Borzo AWB #BZ-7721</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 sm:p-5 font-bold text-bikDark">In-Chat Revenue &amp; CSAT</td>
+                                <td class="p-4 sm:p-5">Cost center only</td>
+                                <td class="p-4 sm:p-5">High drop-off on complex queries</td>
+                                <td class="p-4 sm:p-5 font-bold text-emerald-700 bg-orange-50/30">+35% Agent Sales &amp; 93.2% CSAT (4.8/5)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- INTERACTIVE FAQ ACCORDION -->
+        <section class="py-20 bg-white border-t border-slate-200">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <span class="text-orange-700 font-bold text-xs uppercase tracking-widest bg-orange-50 px-3.5 py-1 rounded-full border border-orange-200">Common Questions</span>
+                    <h2 class="text-3xl font-extrabold text-bikDark font-display mt-3">Frequently Asked Questions</h2>
+                </div>
+
+                <div class="space-y-4" data-accordion>
+                    <div class="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
+                        <h3>
+                            <button type="button" aria-expanded="true" aria-controls="support-faq-1" onclick="toggleSupportFaq(this)" class="w-full px-6 py-4 text-left flex items-center justify-between gap-4 font-bold text-sm text-bikDark hover:bg-orange-50/40 transition cursor-pointer">
+                                <span>How can a multi-channel helpdesk benefit my e-commerce website?</span>
+                                <i class="fa-solid fa-chevron-down text-xs text-orange-700 transition-transform rotate-180" aria-hidden="true"></i>
+                            </button>
+                        </h3>
+                        <div id="support-faq-1" class="px-6 pb-5 text-xs sm:text-sm text-slate-700 leading-relaxed border-t border-slate-100 pt-3">
+                            Unifying WhatsApp, Instagram DMs, Email, and Web Chat into a single queue removes tab switching, shows full Shopify order history beside every ticket, cuts support costs by 32%, and boosts agent-assisted sales by 35%.
+                        </div>
+                    </div>
+
+                    <div class="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
+                        <h3>
+                            <button type="button" aria-expanded="false" aria-controls="support-faq-2" onclick="toggleSupportFaq(this)" class="w-full px-6 py-4 text-left flex items-center justify-between gap-4 font-bold text-sm text-bikDark hover:bg-orange-50/40 transition cursor-pointer">
+                                <span>Our brand has multiple Instagram and Facebook pages, can we connect them all?</span>
+                                <i class="fa-solid fa-chevron-down text-xs text-orange-700 transition-transform" aria-hidden="true"></i>
+                            </button>
+                        </h3>
+                        <div id="support-faq-2" hidden class="px-6 pb-5 text-xs sm:text-sm text-slate-700 leading-relaxed border-t border-slate-100 pt-3">
+                            Yes! You can connect multiple Instagram and Facebook handles to a single shared inbox. All incoming messages, story mentions, and reel comments sync in real time with Smart Collision Guard.
+                        </div>
+                    </div>
+
+                    <div class="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
+                        <h3>
+                            <button type="button" aria-expanded="false" aria-controls="support-faq-3" onclick="toggleSupportFaq(this)" class="w-full px-6 py-4 text-left flex items-center justify-between gap-4 font-bold text-sm text-bikDark hover:bg-orange-50/40 transition cursor-pointer">
+                                <span>We use multiple Gmail/Outlook inboxes for support &amp; sales, can all be connected?</span>
+                                <i class="fa-solid fa-chevron-down text-xs text-orange-700 transition-transform" aria-hidden="true"></i>
+                            </button>
+                        </h3>
+                        <div id="support-faq-3" hidden class="px-6 pb-5 text-xs sm:text-sm text-slate-700 leading-relaxed border-t border-slate-100 pt-3">
+                            Yes! Multiple corporate email addresses can be routed into the Flying Cheetah shared inbox, with smart assignment rules preventing two agents from replying to the same email.
+                        </div>
+                    </div>
+
+                    <div class="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
+                        <h3>
+                            <button type="button" aria-expanded="false" aria-controls="support-faq-4" onclick="toggleSupportFaq(this)" class="w-full px-6 py-4 text-left flex items-center justify-between gap-4 font-bold text-sm text-bikDark hover:bg-orange-50/40 transition cursor-pointer">
+                                <span>How does 1-click Borzo reverse pickup work for size exchanges?</span>
+                                <i class="fa-solid fa-chevron-down text-xs text-orange-700 transition-transform" aria-hidden="true"></i>
+                            </button>
+                        </h3>
+                        <div id="support-faq-4" hidden class="px-6 pb-5 text-xs sm:text-sm text-slate-700 leading-relaxed border-t border-slate-100 pt-3">
+                            Inside the ticket sidebar, an agent clicks Approve Borzo Reverse Pickup. Flying Cheetah reserves the replacement SKU in Shopify, generates an AWB (such as #BZ-7721), and sends live rider GPS tracking straight to the shopper on WhatsApp.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FINAL CONVERSION CTA BANNER -->
+        <section class="py-20 bg-gradient-to-br from-orange-50 via-white to-emerald-50 border-t border-orange-100">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+                <span class="inline-block text-xs font-bold text-orange-700 uppercase tracking-widest bg-white px-3.5 py-1 rounded-full border border-orange-200">
+                    Launch In 24 Hours
+                </span>
+                <h2 class="text-3xl sm:text-5xl font-black font-display text-bikDark leading-tight">
+                    Turn Every Support Ticket Into a 45-Second Sales &amp; Loyalty Moment.
+                </h2>
+                <p class="text-sm sm:text-base text-slate-700 max-w-2xl mx-auto leading-relaxed">
+                    Book a free Omnichannel Helpdesk audit. We connect your WhatsApp API, Instagram DMs, Gmail/Outlook inboxes, Shopify order cards, and Borzo reverse fleet in 1 day.
+                </p>
+                <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <button type="button" onclick="if(window.FC_LEADS){window.FC_LEADS.openAuditModal('Omnichannel Helpdesk Support');}" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-orange-700 hover:bg-orange-800 text-white font-bold text-sm transition shadow-lg shadow-orange-500/20 cursor-pointer">
+                        <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>
+                        <span>Book Free Helpdesk Audit</span>
+                    </button>
+                    <a href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah%20team,%20I%20want%20to%20launch%20Omnichannel%20Helpdesk%20Support." target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl border border-emerald-300 text-emerald-700 font-bold text-sm bg-white hover:bg-emerald-50 transition shadow-sm">
+                        <i class="fa-brands fa-whatsapp text-emerald-700 text-base" aria-hidden="true"></i>
+                        <span>Chat With Founders on WhatsApp</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-white border-t border-slate-200 py-12 text-xs text-slate-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between gap-6">
+            <div class="flex items-center space-x-3">
+                <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah" class="h-6 w-6 rounded-full object-cover border border-slate-300">
+                <span class="font-bold text-slate-800">FLYING CHEETAH LABS &bull; OFFICIAL META BSP &copy; 2026.</span>
+                <span>All Rights Reserved.</span>
+            </div>
+            <div class="flex flex-wrap items-center justify-center gap-4 font-semibold text-slate-700">
                 <a href="index.html" class="hover:text-bikOrange transition">Main Site</a>
                 <a href="delivery.html" class="hover:text-bikOrange transition">Fleet Dispatch</a>
-                <a href="customer-support.html" class="hover:text-bikOrange transition text-bikOrange font-bold">Customer Support</a>
-                <a href="whatsapp-calling.html" class="hover:text-bikOrange transition">WhatsApp Calling</a>
+                <a href="customer-support.html" class="text-orange-700 font-bold">Customer Support</a>
+                <a href="whatsapp-calling.html" class="hover:text-emerald-700 transition">WhatsApp Calling</a>
+                <a href="store-automation.html" class="hover:text-bikOrange transition">Store Automation</a>
                 <a href="about.html" class="hover:text-bikOrange transition">About Us</a>
+                <a href="privacy-policy.html" class="hover:text-bikOrange transition">Privacy Policy</a>
+                <a href="terms-of-service.html" class="hover:text-bikOrange transition">Terms</a>
+                <a href="refund-policy.html" class="hover:text-bikOrange transition">Refunds</a>
             </div>
         </div>
     </footer>
 
     <!-- Flowchart Video Engine -->
     <script src="js/flowchart-player.js"></script>
+    <!-- Supabase & Flying Cheetah Backend Architecture SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/leads.js"></script>
+    <script src="js/fc-widgets.js"></script>
+
     <script>
         let supportPlayerInstance = null;
+        const supportNodeIds = ['supportNode1', 'supportNode2', 'supportNode3', 'supportNode4'];
+
+        function syncSupportNodeAria(activeIdx) {
+            supportNodeIds.forEach(function(id, idx) {
+                const el = document.getElementById(id);
+                if (el) el.setAttribute('aria-pressed', idx === activeIdx ? 'true' : 'false');
+            });
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
+            recalcSupportRoi();
+
             supportPlayerInstance = new FlowchartConsolePlayer({
                 progressBarId: 'supportProgressBar',
                 beamId: 'supportBeamActive',
@@ -632,51 +915,52 @@
                 statusTextId: 'supportStatusText',
                 playPauseIconId: 'supportPlayPauseIcon',
                 activeGlowClass: 'node-glow-orange',
-                nodeIds: ['supportNode1', 'supportNode2', 'supportNode3', 'supportNode4'],
+                nodeIds: supportNodeIds,
                 stepDuration: 2800,
                 steps: [
                     {
                         badge: 'Step 1: Inbound Flow',
-                        status: 'Omnichannel Inflow: WhatsApp, IG & Web Chat Aggregated',
+                        status: 'Omnichannel Inflow: WhatsApp API, IG DM & Web Chat Aggregated',
                         ticket: '#FC-8941',
-                        name: 'Ananya Roy',
-                        meta: 'Gold VIP • WhatsApp Channel • Mumbai',
+                        name: 'Ananya Verma',
+                        meta: 'VIP Repeat Buyer • LTV ₹28,400 • WhatsApp',
                         val: '₹4,250',
-                        desc: 'Shopper inquired: "Can I exchange size M for L for my order?"',
+                        desc: 'Shopper inquired: "Can I swap Festive Kurta from Size M to Size L?"',
                         btn: 'Detecting Intent...'
                     },
                     {
                         badge: 'Step 2: AI Triage',
-                        status: 'AI Intent: Size Exchange Verified (Mumbai Hub: 7 In Stock)',
+                        status: 'AI Intent & Collision Guard: Size Swap Verified (7 In Stock)',
                         ticket: '#FC-8941',
-                        name: 'Ananya Roy',
-                        meta: 'Gold VIP • Sentiment: Mild Urgency • Priority High',
+                        name: 'Ananya Verma',
+                        meta: 'VIP Priority SLA: 45s • Collision Guard Active',
                         val: '₹4,250',
-                        desc: 'AI verified order delivered 2 hrs ago. Eligible for 1-tap swap.',
-                        btn: 'Auto-Approving Exchange'
+                        desc: 'AI verified order delivered 2 hrs ago. Size L reserved for 1-click swap.',
+                        btn: 'Approve Borzo Reverse Pickup'
                     },
                     {
-                        badge: 'Step 3: Fast SLA Resolve',
-                        status: 'Reverse Pickup Booked • Porter Driver Dispatched to Bandra',
+                        badge: 'Step 3: Borzo Pickup',
+                        status: 'Borzo Reverse Pickup Booked • AWB #BZ-7721 Dispatched',
                         ticket: '#FC-8941 (Resolved)',
-                        name: 'Ananya Roy',
-                        meta: 'Exchange Confirmed • New Size L In Transit',
+                        name: 'Ananya Verma',
+                        meta: 'Exchange Confirmed • AWB #BZ-7721 Live GPS',
                         val: '₹4,250',
-                        desc: 'Courier tracking link generated and sent via WhatsApp.',
-                        btn: '✓ Exchange Dispatched'
+                        desc: 'Size L reserved & Borzo reverse pickup scheduled (AWB #BZ-7721).',
+                        btn: '✓ AWB #BZ-7721 Dispatched'
                     },
                     {
-                        badge: 'Step 4: 4.8 CSAT Rating',
+                        badge: 'Step 4: 4.8 CSAT',
                         status: 'Ticket Resolved in 45s • 4.8 CSAT Feedback • +250 Loyalty Pts',
                         ticket: '#FC-8941 (Closed)',
-                        name: 'Ananya Roy',
-                        meta: 'Happy Shopper • 5-Star Feedback Recorded',
+                        name: 'Ananya Verma',
+                        meta: '93.2% CSAT • +250 Loyalty Pts Credited',
                         val: '₹4,250',
                         desc: '"Amazing! Courier is already on the way! Thank you Flying Cheetah!"',
-                        btn: '4.8 CSAT Recorded'
+                        btn: '4.8 / 5 CSAT Recorded'
                     }
                 ],
                 onStepChange: function(index, step) {
+                    syncSupportNodeAria(index);
                     const ticket = document.getElementById('supportTicketId');
                     const name = document.getElementById('supportCustomerName');
                     const meta = document.getElementById('supportCustomerMeta');
@@ -688,7 +972,52 @@
                     if (meta) meta.innerText = step.meta;
                     if (val) val.innerText = step.val;
                     if (desc) desc.innerText = step.desc;
-                    if (btn) btn.innerHTML = '<i class="fa-solid fa-bolt mr-1"></i> ' + step.btn;
+                    if (btn) btn.innerHTML = '<i class="fa-solid fa-bolt mr-1" aria-hidden="true"></i> ' + step.btn;
+                }
+            });
+
+            // Auth Slot Button Type Enforcement
+            const authSlot = document.querySelector('.fc-auth-slot');
+            if (authSlot) {
+                const ensureAuthBtnType = () => {
+                    authSlot.querySelectorAll('button:not([type])').forEach(b => b.setAttribute('type', 'button'));
+                };
+                ensureAuthBtnType();
+                new MutationObserver(ensureAuthBtnType).observe(authSlot, { childList: true, subtree: true });
+            }
+
+            // Accessible Header Dropdowns (Home & Products)
+            const dropdownParents = document.querySelectorAll('.home-dropdown-parent, .products-dropdown-parent, .dropdown-parent');
+            function closeAllDropdowns() {
+                dropdownParents.forEach(function(p) {
+                    p.classList.remove('active');
+                    const b = p.querySelector('button[aria-expanded]');
+                    if (b) b.setAttribute('aria-expanded', 'false');
+                });
+            }
+
+            dropdownParents.forEach(function(parent) {
+                const btn = parent.querySelector('button');
+                if (btn) {
+                    btn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const willOpen = !parent.classList.contains('active');
+                        closeAllDropdowns();
+                        if (willOpen) {
+                            parent.classList.add('active');
+                            btn.setAttribute('aria-expanded', 'true');
+                        }
+                    });
+                }
+            });
+
+            document.querySelectorAll('header nav > a').forEach(function(link) {
+                link.addEventListener('mouseenter', closeAllDropdowns);
+            });
+
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.home-dropdown-parent') && !e.target.closest('.products-dropdown-parent') && !e.target.closest('.dropdown-parent')) {
+                    closeAllDropdowns();
                 }
             });
         });
@@ -702,66 +1031,70 @@
         function restartSupportVideo() {
             if (supportPlayerInstance) supportPlayerInstance.restart();
         }
+        function triggerSupportConsoleAction() {
+            jumpSupportStep(2);
+            notifySupportAction('Size L reserved & Borzo reverse pickup scheduled (AWB #BZ-7721). Live GPS link sent to Ananya Verma.', 'success', 'Helpdesk Action');
+        }
+        function notifySupportAction(msg, type, title) {
+            if (window.fcToast) {
+                window.fcToast(msg, type || 'info', title || 'Flying Cheetah Helpdesk');
+            } else if (window.FC_AUTH && window.FC_AUTH.showAuthToast) {
+                window.FC_AUTH.showAuthToast(msg);
+            }
+        }
 
         function switchTab(channel) {
             const tabs = ['wa', 'ig', 'em'];
-            tabs.forEach(t => {
+            tabs.forEach(function(t) {
                 const btn = document.getElementById('tab-' + t);
                 const content = document.getElementById('content-' + t);
+                if (!btn || !content) return;
                 if (t === channel) {
-                    btn.className = "px-5 py-3 rounded-t-xl font-bold text-xs flex items-center gap-2 border-b-2 " + 
-                        (t==='wa' ? 'border-emerald-500 bg-white text-emerald-600 shadow-sm' : (t==='ig' ? 'border-pink-500 bg-white text-pink-600 shadow-sm' : 'border-blue-500 bg-white text-blue-600 shadow-sm'));
+                    btn.setAttribute('aria-selected', 'true');
+                    btn.className = "px-5 py-3 rounded-t-xl font-bold text-xs flex items-center gap-2 border-b-2 cursor-pointer whitespace-nowrap " +
+                        (t === 'wa' ? 'border-emerald-500 bg-white text-emerald-700 shadow-sm' : (t === 'ig' ? 'border-pink-500 bg-white text-pink-700 shadow-sm' : 'border-blue-500 bg-white text-blue-700 shadow-sm'));
                     content.classList.remove('hidden');
                 } else {
-                    btn.className = "px-5 py-3 rounded-t-xl font-bold text-xs flex items-center gap-2 text-slate-500 hover:text-slate-800 transition";
+                    btn.setAttribute('aria-selected', 'false');
+                    btn.className = "px-5 py-3 rounded-t-xl font-bold text-xs flex items-center gap-2 text-slate-600 hover:text-slate-900 transition cursor-pointer whitespace-nowrap";
                     content.classList.add('hidden');
                 }
             });
         }
 
-        // Dual Hover + Click Dropdown support for Home
-        document.addEventListener('DOMContentLoaded', function() {
-            const homeParent = document.querySelector('.home-dropdown-parent');
-            const homeBtn = document.querySelector('.home-btn');
-            const homeMenu = document.querySelector('.home-menu');
-            if(homeParent && homeBtn && homeMenu) {
-                homeBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    homeMenu.classList.toggle('active');
-                });
-                document.addEventListener('click', function(e) {
-                    if (!homeParent.contains(e.target)) {
-                        homeMenu.classList.remove('active');
-                    }
-                });
-            }
-        });
-    </script>
-    <!-- Supabase & Flying Cheetah Backend Architecture SDK -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="js/supabase-client.js"></script>
-    <script src="js/auth.js"></script>
-    <script src="js/leads.js"></script>
-    <script src="js/fc-widgets.js"></script>
+        function recalcSupportRoi() {
+            const tickets = parseInt(document.getElementById('supTicketsRange')?.value, 10) || 3000;
+            const cost = parseInt(document.getElementById('supCostInput')?.value, 10) || 95;
+            const aov = parseInt(document.getElementById('supAovInput')?.value, 10) || 2200;
 
-<script>
-        // Top-level nav links hover safety: immediately dismiss all dropdowns
-        document.querySelectorAll('nav > a').forEach(function(link) {
-            link.addEventListener('mouseenter', function() {
-                document.querySelectorAll('.home-dropdown-parent, .products-dropdown-parent, .dropdown-parent').forEach(function(p) {
-                    p.classList.remove('active');
-                });
-            });
-        });
-        // Click outside dismiss
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('.home-dropdown-parent') && !e.target.closest('.products-dropdown-parent') && !e.target.closest('.dropdown-parent')) {
-                document.querySelectorAll('.home-dropdown-parent, .products-dropdown-parent, .dropdown-parent').forEach(function(p) {
-                    p.classList.remove('active');
-                });
-            }
-        });
+            const tEl = document.getElementById('supTicketsVal');
+            const cEl = document.getElementById('supCostVal');
+            const aEl = document.getElementById('supAovVal');
+            if (tEl) tEl.textContent = tickets.toLocaleString('en-IN') + ' tickets';
+            if (cEl) cEl.textContent = '₹' + cost;
+            if (aEl) aEl.textContent = '₹' + aov.toLocaleString('en-IN');
+
+            const savings = Math.round(tickets * cost * 0.32);
+            const hours = Math.round(tickets * 0.0867);
+            const upsellRev = Math.round(tickets * 0.07 * aov);
+
+            const sOut = document.getElementById('supOutSavings');
+            const hOut = document.getElementById('supOutHours');
+            const rOut = document.getElementById('supOutRevenue');
+            if (sOut) sOut.textContent = '₹' + savings.toLocaleString('en-IN');
+            if (hOut) hOut.textContent = hours.toLocaleString('en-IN') + ' hrs';
+            if (rOut) rOut.textContent = '₹' + upsellRev.toLocaleString('en-IN');
+        }
+
+        function toggleSupportFaq(btn) {
+            const panelId = btn.getAttribute('aria-controls');
+            const panel = panelId ? document.getElementById(panelId) : null;
+            const expanded = btn.getAttribute('aria-expanded') === 'true';
+            btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+            const icon = btn.querySelector('i');
+            if (icon) icon.classList.toggle('rotate-180', !expanded);
+            if (panel) panel.hidden = expanded;
+        }
     </script>
 </body>
 </html>

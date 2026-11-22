@@ -35,7 +35,7 @@
             to { opacity: 1; transform: translateY(0) scale(1); }
         }
     </style>
-    <link rel="stylesheet" href="css/mobile-app.css">
+    <link id="fcMobileAppStyles" rel="stylesheet" href="css/mobile-app.css">
     <script type="application/ld+json">
 {
       "@context": "https://schema.org",
@@ -51,7 +51,7 @@
 }
     </script>
 </head>
-<body class="bg-slate-50 text-slate-900 font-sans antialiased selection:bg-bikOrange selection:text-white">
+<body class="bg-white text-slate-900 font-sans antialiased selection:bg-orange-100 selection:text-orange-700">
 
     <!-- Top Announcement -->
     <div class="bg-gradient-to-r from-orange-50 via-amber-50/70 to-emerald-50 border-b border-orange-200/70 text-bikDark text-xs py-2 px-4 text-center font-medium flex items-center justify-center gap-2">
@@ -61,43 +61,44 @@
 
     <!-- NAVBAR -->
     <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
             <a href="index.html" class="flex items-center space-x-3 shrink-0 whitespace-nowrap">
                 <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah" class="h-11 w-11 rounded-full object-cover border border-slate-200 shadow-sm">
                 <div class="flex flex-col">
-                    <span class="text-xl font-black tracking-tight font-display text-bikDark">FLYING CHEETAH</span>
-                    <span class="text-[9px] text-emerald-600 font-bold tracking-widest uppercase -mt-1">AUTONOMOUS STOREFRONT</span>
+                    <span class="text-lg xl:text-xl font-black tracking-tight font-display text-bikDark">FLYING CHEETAH</span>
+                    <span class="text-[9px] text-emerald-700 font-bold tracking-widest uppercase -mt-1">AUTONOMOUS STOREFRONT</span>
                 </div>
             </a>
 
-            <nav class="hidden lg:flex items-center gap-5 xl:gap-7 text-[13px] xl:text-sm font-semibold text-slate-700 whitespace-nowrap">
-                <a href="index.html" class="hover:text-bikOrange transition">Main Site</a>
-                <a href="store.html" class="text-bikOrange font-bold transition">🛍️ Live Store Demo</a>
-                <a href="delivery.html" class="hover:text-bikOrange transition">Fleet Dispatch (Borzo)</a>
-                <a href="whatsapp-automation.html" class="hover:text-emerald-600 transition">WhatsApp Automation</a>
-                <a href="demo.html" class="hover:text-bikOrange transition">Book Audit</a>
+            <nav aria-label="Primary Navigation" class="hidden lg:flex items-center gap-5 xl:gap-7 text-[13px] xl:text-sm font-semibold text-slate-700 whitespace-nowrap">
+                <a href="index.html" class="hover:text-orange-700 transition">Main Site</a>
+                <a href="store.html" class="text-orange-700 font-bold transition">🛍️ Live Store Demo</a>
+                <a href="delivery.html" class="hover:text-orange-700 transition">Fleet Dispatch (Borzo)</a>
+                <a href="whatsapp-automation.html" class="hover:text-emerald-700 transition">WhatsApp Automation</a>
+                <a href="demo.html" class="hover:text-orange-700 transition">Book Audit</a>
             </nav>
 
-            <div class="flex items-center space-x-3">
+            <div class="flex items-center space-x-2.5 shrink-0">
                 <div class="fc-auth-slot"></div>
-                <a id="connectWhatsAppStoreBtn" href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah%20team,%20I%20want%20this%20exact%20WhatsApp%20Store%20and%20Borzo%20delivery%20for%20my%20shop!" target="_blank" class="hidden sm:inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-waGreen hover:bg-emerald-600 text-white font-bold text-xs transition shadow-md shadow-emerald-500/20 gap-2">
-                    <i class="fa-brands fa-whatsapp text-sm"></i>
+                <a id="connectWhatsAppStoreBtn" href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah%20team,%20I%20want%20this%20exact%20WhatsApp%20Store%20and%20Borzo%20delivery%20for%20my%20shop!" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs transition shadow-md shadow-emerald-500/20 gap-2 whitespace-nowrap shrink-0">
+                    <i class="fa-brands fa-whatsapp text-sm" aria-hidden="true"></i>
                     <span>Connect WhatsApp Store</span>
                 </a>
-                <button id="fcMobileMenuBtn" type="button" aria-label="Toggle Mobile Menu" onclick="window.FC_WIDGETS && window.FC_WIDGETS.toggleMobileDrawer ? window.FC_WIDGETS.toggleMobileDrawer() : null" class="lg:hidden p-2 rounded-xl border border-slate-200 hover:border-bikOrange bg-white text-slate-700 hover:text-bikOrange transition flex items-center justify-center shrink-0 w-10 h-10 shadow-xs cursor-pointer touch-target-44"><i class="fa-solid fa-bars text-sm"></i></button>
+                <button id="fcMobileMenuBtn" type="button" aria-label="Toggle Mobile Menu" aria-expanded="false" aria-controls="fcMobileDrawer" onclick="window.FC_WIDGETS && window.FC_WIDGETS.toggleMobileDrawer ? window.FC_WIDGETS.toggleMobileDrawer() : null" class="lg:hidden p-2 rounded-xl border border-slate-200 hover:border-bikOrange bg-white text-slate-700 hover:text-orange-700 transition flex items-center justify-center shrink-0 w-10 h-10 shadow-sm cursor-pointer touch-target-44 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange focus-visible:ring-offset-2"><i class="fa-solid fa-bars text-sm" aria-hidden="true"></i></button>
             </div>
         </div>
     </header>
 
+    <main id="main-content">
     <!-- HERO HEADER -->
     <section class="py-12 bg-white border-b border-slate-200/80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="max-w-3xl">
-                <span class="text-xs font-bold uppercase tracking-widest text-bikOrange bg-orange-50 border border-orange-200/60 px-3 py-1 rounded-full">
+                <span class="text-xs font-bold uppercase tracking-widest text-orange-700 bg-orange-50 border border-orange-200 px-3 py-1 rounded-full">
                     End-to-End D2C Commerce Loop
                 </span>
                 <h1 class="text-3xl sm:text-5xl font-black text-bikDark tracking-tight mt-3 font-display">
-                    Customer Orders Shirt or Gadget &rarr; <span class="text-emerald-600">Borzo Delivers to Door</span>.
+                    Customer Orders Shirt or Gadget &rarr; <span class="text-emerald-700">Borzo Delivers to Door</span>.
                 </h1>
                 <p class="text-sm sm:text-base text-slate-600 mt-2 leading-relaxed">
                     Test the complete automated customer journey below. Browse products, order via the website or directly inside the interactive WhatsApp simulator, choose UPI or Cash-on-Delivery, and watch an on-demand Borzo bike courier dispatch in real time.
@@ -108,19 +109,20 @@
 
     <!-- MAIN TWO-COLUMN WORKFLOW: CATALOG (LEFT) + WHATSAPP SIMULATOR (RIGHT) -->
     <section class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="sr-only">Interactive Product Catalog &amp; WhatsApp Order Simulator</h2>
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
             <!-- LEFT COLUMN: INTERACTIVE CATALOG & WEB CHECKOUT (7 COLS) -->
             <div class="lg:col-span-7 space-y-6">
                 <!-- Filter Tabs -->
-                <div class="flex items-center gap-2 border-b border-slate-200 pb-3">
-                    <button onclick="filterCatalog('all')" id="tab-all" class="px-4 py-2 rounded-xl bg-bikDark text-white text-xs font-bold transition shadow-sm">
-                        All Products (6)
+                <div class="flex flex-wrap items-center gap-2 border-b border-slate-200 pb-3">
+                    <button type="button" onclick="filterCatalog('all')" id="tab-all" class="px-4 py-2 rounded-xl bg-orange-700 text-white text-xs font-bold transition shadow-sm">
+                        All Products (4)
                     </button>
-                    <button onclick="filterCatalog('clothes')" id="tab-clothes" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition">
+                    <button type="button" onclick="filterCatalog('clothes')" id="tab-clothes" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition">
                         👕 Designer Clothes
                     </button>
-                    <button onclick="filterCatalog('electronics')" id="tab-electronics" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition">
+                    <button type="button" onclick="filterCatalog('electronics')" id="tab-electronics" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition">
                         🎧 Electronics & Gadgets
                     </button>
                 </div>
@@ -132,20 +134,20 @@
                     <div class="product-card bg-white rounded-2xl border border-slate-200 p-4 shadow-sm hover:shadow-lg transition space-y-3 group" data-category="clothes">
                         <div class="h-48 rounded-xl bg-slate-100 relative overflow-hidden">
                             <img src="images/product_linen_shirt.jpg" alt="Oversized Pure Linen Shirt" class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500">
-                            <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-emerald-500/95 backdrop-blur-xs text-white font-tech text-[10px] font-bold shadow-xs">BORZO DISPATCH</span>
+                            <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-emerald-700/95 backdrop-blur-xs text-white font-tech text-[10px] font-bold shadow-xs">BORZO DISPATCH</span>
                         </div>
                         <div>
-                            <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Men's Luxury Apparel</div>
+                            <div class="text-[11px] font-bold text-slate-600 uppercase tracking-wider">Men's Luxury Apparel</div>
                             <h3 class="font-bold text-base text-bikDark mt-0.5">Oversized Pure Linen Shirt</h3>
-                            <p class="text-xs text-slate-500 mt-1">100% Breathable European Flax. Custom tailored in Bandra.</p>
+                            <p class="text-xs text-slate-600 mt-1">100% Breathable European Flax. Custom tailored in Bandra.</p>
                         </div>
                         <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
                             <div>
                                 <span class="text-lg font-black text-bikDark font-display">₹1,499</span>
-                                <span class="text-[11px] text-slate-400 line-through ml-1">₹2,499</span>
+                                <span class="text-[11px] text-slate-600 line-through ml-1">₹2,499</span>
                             </div>
-                            <button onclick="openCheckoutModal('Oversized Pure Linen Shirt', 1499, 'clothes')" class="px-4 py-2 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white text-xs font-bold transition shadow-sm shadow-orange-500/20 flex items-center gap-1.5">
-                                <i class="fa-solid fa-bag-shopping"></i>
+                            <button type="button" onclick="openCheckoutModal('Oversized Pure Linen Shirt', 1499, 'clothes')" class="px-4 py-2 rounded-xl bg-orange-700 hover:bg-orange-800 text-white text-xs font-bold transition shadow-sm shadow-orange-500/20 flex items-center gap-1.5">
+                                <i class="fa-solid fa-bag-shopping" aria-hidden="true"></i>
                                 <span>Buy & Dispatch</span>
                             </button>
                         </div>
@@ -155,20 +157,20 @@
                     <div class="product-card bg-white rounded-2xl border border-slate-200 p-4 shadow-sm hover:shadow-lg transition space-y-3 group" data-category="clothes">
                         <div class="h-48 rounded-xl bg-slate-100 relative overflow-hidden">
                             <img src="images/product_indigo_kurta.jpg" alt="Indigo Handblock Short Kurta" class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500">
-                            <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-emerald-500/95 backdrop-blur-xs text-white font-tech text-[10px] font-bold shadow-xs">BORZO DISPATCH</span>
+                            <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-emerald-700/95 backdrop-blur-xs text-white font-tech text-[10px] font-bold shadow-xs">BORZO DISPATCH</span>
                         </div>
                         <div>
-                            <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Ethnic Couture</div>
+                            <div class="text-[11px] font-bold text-slate-600 uppercase tracking-wider">Ethnic Couture</div>
                             <h3 class="font-bold text-base text-bikDark mt-0.5">Indigo Handblock Short Kurta</h3>
-                            <p class="text-xs text-slate-500 mt-1">Pure organic cotton with vegetable dye prints.</p>
+                            <p class="text-xs text-slate-600 mt-1">Pure organic cotton with vegetable dye prints.</p>
                         </div>
                         <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
                             <div>
                                 <span class="text-lg font-black text-bikDark font-display">₹1,850</span>
-                                <span class="text-[11px] text-slate-400 line-through ml-1">₹2,800</span>
+                                <span class="text-[11px] text-slate-600 line-through ml-1">₹2,800</span>
                             </div>
-                            <button onclick="openCheckoutModal('Indigo Handblock Short Kurta', 1850, 'clothes')" class="px-4 py-2 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white text-xs font-bold transition shadow-sm shadow-orange-500/20 flex items-center gap-1.5">
-                                <i class="fa-solid fa-bag-shopping"></i>
+                            <button type="button" onclick="openCheckoutModal('Indigo Handblock Short Kurta', 1850, 'clothes')" class="px-4 py-2 rounded-xl bg-orange-700 hover:bg-orange-800 text-white text-xs font-bold transition shadow-sm shadow-orange-500/20 flex items-center gap-1.5">
+                                <i class="fa-solid fa-bag-shopping" aria-hidden="true"></i>
                                 <span>Buy & Dispatch</span>
                             </button>
                         </div>
@@ -178,20 +180,20 @@
                     <div class="product-card bg-white rounded-2xl border border-slate-200 p-4 shadow-sm hover:shadow-lg transition space-y-3 group" data-category="electronics">
                         <div class="h-48 rounded-xl bg-slate-50 border border-slate-100 relative overflow-hidden">
                             <img src="images/product_sonicpods_anc.jpg" alt="SonicPods Pro ANC Wireless" class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500">
-                            <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-emerald-500/95 backdrop-blur-xs text-white font-tech text-[10px] font-bold shadow-xs">BORZO DISPATCH</span>
+                            <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-emerald-700/95 backdrop-blur-xs text-white font-tech text-[10px] font-bold shadow-xs">BORZO DISPATCH</span>
                         </div>
                         <div>
-                            <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Audio & Gadgets</div>
+                            <div class="text-[11px] font-bold text-slate-600 uppercase tracking-wider">Audio & Gadgets</div>
                             <h3 class="font-bold text-base text-bikDark mt-0.5">SonicPods Pro ANC Wireless</h3>
-                            <p class="text-xs text-slate-500 mt-1">42dB Active Noise Cancellation &amp; 38-hour battery.</p>
+                            <p class="text-xs text-slate-600 mt-1">42dB Active Noise Cancellation &amp; 38-hour battery.</p>
                         </div>
                         <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
                             <div>
                                 <span class="text-lg font-black text-bikDark font-display">₹2,499</span>
-                                <span class="text-[11px] text-slate-400 line-through ml-1">₹4,999</span>
+                                <span class="text-[11px] text-slate-600 line-through ml-1">₹4,999</span>
                             </div>
-                            <button onclick="openCheckoutModal('SonicPods Pro ANC Wireless', 2499, 'electronics')" class="px-4 py-2 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white text-xs font-bold transition shadow-sm shadow-orange-500/20 flex items-center gap-1.5">
-                                <i class="fa-solid fa-bag-shopping"></i>
+                            <button type="button" onclick="openCheckoutModal('SonicPods Pro ANC Wireless', 2499, 'electronics')" class="px-4 py-2 rounded-xl bg-orange-700 hover:bg-orange-800 text-white text-xs font-bold transition shadow-sm shadow-orange-500/20 flex items-center gap-1.5">
+                                <i class="fa-solid fa-bag-shopping" aria-hidden="true"></i>
                                 <span>Buy & Dispatch</span>
                             </button>
                         </div>
@@ -201,20 +203,20 @@
                     <div class="product-card bg-white rounded-2xl border border-slate-200 p-4 shadow-sm hover:shadow-lg transition space-y-3 group" data-category="electronics">
                         <div class="h-48 rounded-xl bg-slate-100 relative overflow-hidden">
                             <img src="images/product_magsafe_powerbank.jpg" alt="10,000mAh MagSafe PowerBank" class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500">
-                            <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-emerald-500/95 backdrop-blur-xs text-white font-tech text-[10px] font-bold shadow-xs">BORZO DISPATCH</span>
+                            <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-emerald-700/95 backdrop-blur-xs text-white font-tech text-[10px] font-bold shadow-xs">BORZO DISPATCH</span>
                         </div>
                         <div>
-                            <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Fast Power</div>
+                            <div class="text-[11px] font-bold text-slate-600 uppercase tracking-wider">Fast Power</div>
                             <h3 class="font-bold text-base text-bikDark mt-0.5">10,000mAh MagSafe PowerBank</h3>
-                            <p class="text-xs text-slate-500 mt-1">22.5W Fast Charging with strong magnetic snap.</p>
+                            <p class="text-xs text-slate-600 mt-1">22.5W Fast Charging with strong magnetic snap.</p>
                         </div>
                         <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
                             <div>
                                 <span class="text-lg font-black text-bikDark font-display">₹1,699</span>
-                                <span class="text-[11px] text-slate-400 line-through ml-1">₹2,999</span>
+                                <span class="text-[11px] text-slate-600 line-through ml-1">₹2,999</span>
                             </div>
-                            <button onclick="openCheckoutModal('10,000mAh MagSafe PowerBank', 1699, 'electronics')" class="px-4 py-2 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white text-xs font-bold transition shadow-sm shadow-orange-500/20 flex items-center gap-1.5">
-                                <i class="fa-solid fa-bag-shopping"></i>
+                            <button type="button" onclick="openCheckoutModal('10,000mAh MagSafe PowerBank', 1699, 'electronics')" class="px-4 py-2 rounded-xl bg-orange-700 hover:bg-orange-800 text-white text-xs font-bold transition shadow-sm shadow-orange-500/20 flex items-center gap-1.5">
+                                <i class="fa-solid fa-bag-shopping" aria-hidden="true"></i>
                                 <span>Buy & Dispatch</span>
                             </button>
                         </div>
@@ -229,31 +231,31 @@
                             <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
                             <span class="text-xs font-mono font-bold text-emerald-700">BORZO RIDER ON THE ROAD</span>
                         </div>
-                        <span id="orderRefDisplay" class="text-xs font-mono text-slate-500">ORDER #FC-MUM-4491</span>
+                        <span id="orderRefDisplay" class="text-xs font-mono text-slate-600">ORDER #FC-MUM-4491</span>
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
                         <div class="p-3 rounded-xl bg-white border border-emerald-200/80 shadow-sm">
-                            <div class="text-slate-500 text-[10px]">Assigned Rider</div>
+                            <div class="text-slate-600 text-[10px]">Assigned Rider</div>
                             <div id="riderNameDisplay" class="font-bold text-bikDark text-sm mt-0.5">Ramesh Shinde</div>
-                            <div id="riderVehicleDisplay" class="text-slate-500 text-[10px]">Honda Activa (MH-02-CD-4421)</div>
+                            <div id="riderVehicleDisplay" class="text-slate-600 text-[10px]">Honda Activa (MH-02-CD-4421)</div>
                         </div>
                         <div class="p-3 rounded-xl bg-white border border-emerald-200/80 shadow-sm">
-                            <div class="text-slate-500 text-[10px]">Doorstep Arrival</div>
-                            <div id="riderEtaDisplay" class="font-bold text-emerald-600 text-sm mt-0.5">24 Minutes</div>
-                            <div class="text-slate-500 text-[10px]">Zero Aggregator Commission</div>
+                            <div class="text-slate-600 text-[10px]">Doorstep Arrival</div>
+                            <div id="riderEtaDisplay" class="font-bold text-emerald-700 text-sm mt-0.5">24 Minutes</div>
+                            <div class="text-slate-600 text-[10px]">Zero Aggregator Commission</div>
                         </div>
                         <div class="p-3 rounded-xl bg-white border border-emerald-200/80 shadow-sm">
-                            <div class="text-slate-500 text-[10px]">Payment Status</div>
-                            <div id="paymentStatusDisplay" class="font-bold text-amber-600 text-sm mt-0.5">Cash On Delivery (COD)</div>
-                            <div id="paymentSubtextDisplay" class="text-slate-500 text-[10px]">Pay to Rider at Door</div>
+                            <div class="text-slate-600 text-[10px]">Payment Status</div>
+                            <div id="paymentStatusDisplay" class="font-bold text-amber-700 text-sm mt-0.5">Cash On Delivery (COD)</div>
+                            <div id="paymentSubtextDisplay" class="text-slate-600 text-[10px]">Pay to Rider at Door</div>
                         </div>
                     </div>
 
                     <div class="flex items-center justify-between pt-2">
                         <span class="text-xs text-slate-600">Saved live to Supabase PostgreSQL database.</span>
-                        <a id="liveTrackingBtn" href="https://borzodelivery.com" target="_blank" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs transition flex items-center gap-1.5 shadow-sm">
-                            <i class="fa-solid fa-location-dot"></i>
+                        <a id="liveTrackingBtn" href="https://borzodelivery.com" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-black text-xs transition flex items-center gap-1.5 shadow-sm">
+                            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
                             <span>Track Rider GPS Live</span>
                         </a>
                     </div>
@@ -265,17 +267,17 @@
             <div class="lg:col-span-5 bg-white rounded-3xl border border-slate-200 shadow-xl p-4 sm:p-6 sticky top-28 space-y-4">
                 <div class="flex items-center justify-between border-b border-slate-100 pb-3">
                     <div class="flex items-center gap-2.5">
-                        <div class="w-8 h-8 rounded-full bg-waGreen text-white flex items-center justify-center text-sm font-bold">
-                            <i class="fa-brands fa-whatsapp"></i>
+                        <div class="w-8 h-8 rounded-full bg-emerald-700 text-white flex items-center justify-center text-sm font-bold">
+                            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
                         </div>
                         <div>
                             <div class="text-xs font-bold text-slate-900">Boutique WhatsApp Assistant</div>
-                            <div class="text-[10px] text-emerald-600 font-semibold flex items-center gap-1">
+                            <div class="text-[10px] text-emerald-700 font-semibold flex items-center gap-1">
                                 <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Online • Auto-Responder
                             </div>
                         </div>
                     </div>
-                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 text-slate-500">SIMULATOR</span>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 text-slate-600">SIMULATOR</span>
                 </div>
 
                 <!-- Chat Box Content -->
@@ -293,15 +295,15 @@
 
                 <!-- Suggested Quick Replies -->
                 <div class="space-y-1.5">
-                    <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Tap to Chat as Customer:</div>
+                    <div class="text-[10px] font-bold text-slate-600 uppercase tracking-wider">Tap to Chat as Customer:</div>
                     <div class="flex flex-wrap gap-1.5">
-                        <button onclick="sendSimulatedCustomerMessage('Show me Linen Shirts', 'shirts')" class="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-emerald-50 hover:text-emerald-700 text-slate-700 text-[11px] font-semibold transition border border-slate-200">
+                        <button type="button" onclick="sendSimulatedCustomerMessage('Show me Linen Shirts', 'shirts')" class="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-emerald-50 hover:text-emerald-700 text-slate-700 text-[11px] font-semibold transition border border-slate-200">
                             👕 Show Linen Shirts
                         </button>
-                        <button onclick="sendSimulatedCustomerMessage('I want to order Size M to Worli', 'order_shirt')" class="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-emerald-50 hover:text-emerald-700 text-slate-700 text-[11px] font-semibold transition border border-slate-200">
+                        <button type="button" onclick="sendSimulatedCustomerMessage('I want to order Size M to Worli', 'order_shirt')" class="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-emerald-50 hover:text-emerald-700 text-slate-700 text-[11px] font-semibold transition border border-slate-200">
                             ⚡ Order Shirt (COD)
                         </button>
-                        <button onclick="sendSimulatedCustomerMessage('Where is my Borzo delivery rider?', 'track_rider')" class="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-emerald-50 hover:text-emerald-700 text-slate-700 text-[11px] font-semibold transition border border-slate-200">
+                        <button type="button" onclick="sendSimulatedCustomerMessage('Where is my Borzo delivery rider?', 'track_rider')" class="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-emerald-50 hover:text-emerald-700 text-slate-700 text-[11px] font-semibold transition border border-slate-200">
                             🛵 Track Rider Live
                         </button>
                     </div>
@@ -310,17 +312,40 @@
 
         </div>
     </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="py-10 bg-white border-t border-slate-200 text-xs text-slate-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-3">
+                <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah" class="h-6 w-6 rounded-full object-cover border border-slate-300">
+                <span class="font-bold text-slate-700">FLYING CHEETAH AUTONOMOUS STOREFRONT © 2026.</span>
+                <span>All Rights Reserved.</span>
+            </div>
+            <div class="flex flex-wrap items-center justify-center gap-4 font-medium text-slate-700">
+                <a href="index.html" class="hover:text-orange-700 transition">Main Site</a>
+                <a href="store-automation.html" class="hover:text-orange-700 transition">Store Automation</a>
+                <a href="delivery.html" class="hover:text-orange-700 transition">Fleet Dispatch</a>
+                <a href="whatsapp-automation.html" class="hover:text-emerald-700 transition">WhatsApp</a>
+                <a href="demo.html" class="hover:text-orange-700 transition">Live Demo</a>
+                <a href="about.html" class="hover:text-orange-700 transition">About Us</a>
+                <a href="privacy-policy.html" class="hover:text-orange-700 transition">Privacy Policy</a>
+                <a href="terms-of-service.html" class="hover:text-orange-700 transition">Terms</a>
+                <a href="refund-policy.html" class="hover:text-orange-700 transition">Refunds</a>
+            </div>
+        </div>
+    </footer>
 
     <!-- CHECKOUT MODAL -->
-    <div id="checkoutModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div id="checkoutModal" class="fixed inset-0 z-50 bg-slate-900/25 backdrop-blur-sm hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-100 space-y-4">
             <div class="flex items-center justify-between pb-3 border-b border-slate-100">
                 <div>
-                    <h3 class="text-base font-black text-bikDark font-display">Confirm Doorstep Delivery</h3>
-                    <p class="text-[11px] text-slate-500" id="modalProductTitle">Oversized Pure Linen Shirt</p>
+                    <h2 class="text-base font-black text-bikDark font-display">Confirm Doorstep Delivery</h2>
+                    <p class="text-[11px] text-slate-600" id="modalProductTitle">Oversized Pure Linen Shirt</p>
                 </div>
-                <button onclick="closeCheckoutModal()" aria-label="Close Checkout Modal" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-500 transition touch-target-44">
-                    <i class="fa-solid fa-xmark"></i>
+                <button type="button" onclick="closeCheckoutModal()" aria-label="Close Checkout Modal" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 transition touch-target-44">
+                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
                 </button>
             </div>
 
@@ -333,8 +358,8 @@
                 <div>
                     <label for="custPhone" class="text-slate-700 block mb-1">WhatsApp Mobile (For GPS Alerts) *</label>
                     <div class="flex items-center">
-                        <span class="px-3 py-2 bg-slate-100 border border-r-0 border-slate-200 rounded-l-xl text-slate-500 text-xs font-bold">+91</span>
-                        <input type="tel" id="custPhone" required value="99203 86421" maxlength="10" inputmode="tel" autocomplete="tel" aria-label="10-digit WhatsApp Mobile Phone Number" class="w-full px-3.5 py-2.5 sm:py-2 rounded-r-xl border border-slate-200 focus:border-bikOrange outline-none text-slate-800 text-sm font-mono">
+                        <span class="px-3 py-2 bg-slate-100 border border-r-0 border-slate-200 rounded-l-xl text-slate-600 text-xs font-bold">+91</span>
+                        <input type="tel" id="custPhone" required value="9920386421" maxlength="15" inputmode="tel" autocomplete="tel" aria-label="WhatsApp Mobile Phone Number" class="w-full px-3.5 py-2.5 sm:py-2 rounded-r-xl border border-slate-200 focus:border-bikOrange outline-none text-slate-800 text-sm font-mono">
                     </div>
                 </div>
 
@@ -344,7 +369,7 @@
                 </div>
 
                 <div>
-                    <label class="text-slate-700 block mb-1">Payment Method</label>
+                    <span class="text-slate-700 block mb-1">Payment Method</span>
                     <div class="grid grid-cols-2 gap-2">
                         <label for="payMethodCOD" class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 hover:border-bikOrange cursor-pointer">
                             <input type="radio" id="payMethodCOD" name="payMethod" value="COD" aria-label="Cash on Delivery" checked onchange="onPaymentMethodChange()" class="text-bikOrange">
@@ -358,8 +383,8 @@
                 </div>
 
                 <div class="pt-2">
-                    <button type="submit" id="confirmOrderBtn" class="w-full py-3.5 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-sm transition shadow-lg shadow-orange-500/25 flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-motorcycle"></i>
+                    <button type="submit" id="confirmOrderBtn" class="w-full py-3.5 rounded-xl bg-orange-700 hover:bg-orange-800 text-white font-bold text-sm transition shadow-lg shadow-orange-500/25 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-motorcycle" aria-hidden="true"></i>
                         <span>Confirm &amp; Call Borzo Rider (<span id="modalPrice">₹1,499</span>)</span>
                     </button>
                 </div>
@@ -368,32 +393,32 @@
     </div>
 
     <!-- DYNAMIC UPI QR PAYMENT MODAL -->
-    <div id="upiModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div id="upiModal" class="fixed inset-0 z-50 bg-slate-900/25 backdrop-blur-sm hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-100 space-y-4 max-h-[90vh] overflow-y-auto">
             <div class="flex items-center justify-between pb-3 border-b border-slate-100">
                 <div class="flex items-center gap-2.5">
-                    <div class="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-sm font-bold">
-                        <i class="fa-solid fa-qrcode"></i>
+                    <div class="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-sm font-bold">
+                        <i class="fa-solid fa-qrcode" aria-hidden="true"></i>
                     </div>
                     <div>
-                        <h3 class="text-base font-black text-bikDark font-display">Scan &amp; Pay via UPI</h3>
-                        <p class="text-[11px] text-slate-500">Zero-commission Instant UPI Payment</p>
+                        <h2 class="text-base font-black text-bikDark font-display">Scan &amp; Pay via UPI</h2>
+                        <p class="text-[11px] text-slate-600">Zero-commission Instant UPI Payment</p>
                     </div>
                 </div>
-                <button onclick="closeUpiModal()" aria-label="Close UPI Payment Modal" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-500 transition touch-target-44">
-                    <i class="fa-solid fa-xmark"></i>
+                <button type="button" onclick="closeUpiModal()" aria-label="Close UPI Payment Modal" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 transition touch-target-44">
+                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
                 </button>
             </div>
 
             <!-- Order Summary Pill -->
             <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-between">
                 <div>
-                    <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Item</div>
+                    <div class="text-[10px] text-slate-600 font-bold uppercase tracking-wider">Item</div>
                     <div id="upiModalItem" class="font-bold text-slate-800 text-xs">Oversized Pure Linen Shirt</div>
                 </div>
                 <div class="text-right">
-                    <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Payable Total</div>
-                    <div id="upiModalAmount" class="font-black text-bikOrange text-base font-display">₹1,499</div>
+                    <div class="text-[10px] text-slate-600 font-bold uppercase tracking-wider">Payable Total</div>
+                    <div id="upiModalAmount" class="font-black text-orange-700 text-base font-display">₹1,499</div>
                 </div>
             </div>
 
@@ -402,21 +427,21 @@
                 <div class="inline-block p-3.5 bg-white rounded-2xl border-2 border-slate-100 shadow-md">
                     <div id="upiQrCode" class="flex items-center justify-center min-w-[170px] min-h-[170px]"></div>
                 </div>
-                <div class="flex items-center justify-center gap-3 text-[11px] font-semibold text-slate-500">
-                    <span class="flex items-center gap-1"><i class="fa-brands fa-google-pay text-base text-slate-700"></i> GPay</span>
+                <div class="flex items-center justify-center gap-3 text-[11px] font-semibold text-slate-600">
+                    <span class="flex items-center gap-1"><i class="fa-brands fa-google-pay text-base text-slate-700" aria-hidden="true"></i> GPay</span>
                     <span>•</span>
-                    <span class="flex items-center gap-1"><i class="fa-solid fa-mobile-screen text-emerald-600"></i> PhonePe</span>
+                    <span class="flex items-center gap-1"><i class="fa-solid fa-mobile-screen text-emerald-700" aria-hidden="true"></i> PhonePe</span>
                     <span>•</span>
-                    <span class="flex items-center gap-1"><i class="fa-solid fa-wallet text-sky-600"></i> Paytm</span>
+                    <span class="flex items-center gap-1"><i class="fa-solid fa-wallet text-sky-600" aria-hidden="true"></i> Paytm</span>
                     <span>•</span>
-                    <span class="flex items-center gap-1"><i class="fa-solid fa-building-columns text-indigo-600"></i> BHIM</span>
+                    <span class="flex items-center gap-1"><i class="fa-solid fa-building-columns text-indigo-600" aria-hidden="true"></i> BHIM</span>
                 </div>
             </div>
 
             <!-- 1-Tap Mobile Intent Deep-link -->
             <div>
-                <a id="upiMobilePayBtn" href="javascript:void(0)" onclick="if(window.FC_AUTH && window.FC_AUTH.showAuthToast) window.FC_AUTH.showAuthToast('Demo Mode: Configure UPI in profile', 'notice');" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition shadow-md shadow-emerald-600/20 flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-bolt"></i>
+                <a id="upiMobilePayBtn" href="javascript:void(0)" onclick="if(window.FC_AUTH && window.FC_AUTH.showAuthToast) window.FC_AUTH.showAuthToast('Demo Mode: Configure UPI in profile', 'notice');" class="w-full py-3 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs transition shadow-md shadow-emerald-600/20 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-bolt" aria-hidden="true"></i>
                     <span>Pay via Mobile UPI App (1-Tap Intent)</span>
                 </a>
             </div>
@@ -424,28 +449,28 @@
             <!-- Copyable UPI ID Box -->
             <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200/80 flex items-center justify-between text-xs">
                 <div>
-                    <span class="text-[10px] text-slate-400 block font-semibold">UPI ID / VPA</span>
-                    <span id="upiIdText" class="font-mono font-bold text-slate-800"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-amber-50 text-amber-800 border border-amber-200/60 text-[10px]"><i class="fa-solid fa-flask"></i> Interactive Sandbox Demo Mode</span></span>
+                    <span class="text-[10px] text-slate-600 block font-semibold">UPI ID / VPA</span>
+                    <span id="upiIdText" class="font-mono font-bold text-slate-800"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-amber-50 text-amber-800 border border-amber-200/60 text-[10px]"><i class="fa-solid fa-flask" aria-hidden="true"></i> Interactive Sandbox Demo Mode</span></span>
                 </div>
-                <button type="button" onclick="copyUpiId()" id="copyUpiBtn" class="px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700 hover:border-bikOrange hover:text-bikOrange font-bold text-[11px] transition flex items-center gap-1">
-                    <i class="fa-regular fa-copy"></i>
+                <button type="button" onclick="copyUpiId()" id="copyUpiBtn" class="px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700 hover:border-orange-700 hover:text-orange-700 font-bold text-[11px] transition flex items-center gap-1">
+                    <i class="fa-regular fa-copy" aria-hidden="true"></i>
                     <span id="copyBtnLabel">Copy</span>
                 </button>
             </div>
 
             <!-- Optional 12-digit UTR Verification Field -->
             <div class="space-y-1">
-                <label for="upiUtrInput" class="text-[11px] text-slate-600 font-semibold block flex items-center justify-between">
+                <label for="upiUtrInput" class="text-[11px] text-slate-600 font-semibold flex items-center justify-between">
                     <span>UPI Reference / UTR Number</span>
-                    <span class="text-[10px] text-slate-400 font-normal">Optional (12 Digits)</span>
+                    <span class="text-[10px] text-slate-600 font-normal">Optional (12 Digits)</span>
                 </label>
                 <input type="text" id="upiUtrInput" maxlength="12" placeholder="e.g. 428190382910" aria-label="12-digit UPI UTR Reference Number" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 focus:border-bikOrange outline-none text-slate-800 text-xs font-mono tracking-wider">
             </div>
 
             <!-- Submit / Confirm Dispatch Button -->
             <div class="pt-1">
-                <button type="button" onclick="confirmUpiPayment()" id="upiPaidBtn" class="w-full py-3.5 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-sm transition shadow-lg shadow-orange-500/25 flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-motorcycle"></i>
+                <button type="button" onclick="confirmUpiPayment()" id="upiPaidBtn" class="w-full py-3.5 rounded-xl bg-orange-700 hover:bg-orange-800 text-white font-bold text-sm transition shadow-lg shadow-orange-500/25 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-motorcycle" aria-hidden="true"></i>
                     <span>I Have Paid — Dispatch Borzo Rider</span>
                 </button>
             </div>
@@ -462,7 +487,7 @@
             tabs.forEach(t => {
                 const el = document.getElementById('tab-' + t);
                 if (t === cat) {
-                    el.className = 'px-4 py-2 rounded-xl bg-bikDark text-white text-xs font-bold transition shadow-sm';
+                    el.className = 'px-4 py-2 rounded-xl bg-orange-700 text-white text-xs font-bold transition shadow-sm';
                 } else {
                     el.className = 'px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition';
                 }
@@ -779,10 +804,10 @@
                 const paymentSubtextEl = document.getElementById('paymentSubtextDisplay');
                 if (paymentStatusEl) {
                     if (orderData.payMethod === 'COD') {
-                        paymentStatusEl.className = 'font-bold text-amber-400 text-sm mt-0.5';
+                        paymentStatusEl.className = 'font-bold text-amber-700 text-sm mt-0.5';
                         paymentStatusEl.textContent = 'Cash on Delivery (₹' + orderData.item.price + ')';
                     } else {
-                        paymentStatusEl.className = 'font-bold text-emerald-400 text-sm mt-0.5';
+                        paymentStatusEl.className = 'font-bold text-emerald-700 text-sm mt-0.5';
                         paymentStatusEl.textContent = 'Paid via UPI 1-Click' + (utr ? ' (UTR: ' + utr + ')' : '');
                     }
                 }

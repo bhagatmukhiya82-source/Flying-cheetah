@@ -128,14 +128,14 @@
             <nav class="hidden lg:flex items-center gap-5 xl:gap-7 text-[13px] xl:text-sm font-semibold text-slate-700 whitespace-nowrap">
                 <!-- HOME DROPDOWN (NEXT TO PRODUCTS) -->
                 <div class="relative home-dropdown-parent py-6">
-                    <button class="home-btn flex items-center gap-1.5 hover:text-bikOrange transition focus:outline-none text-slate-800 hover:text-bikOrange font-bold text-sm">
+                    <button type="button" aria-expanded="false" class="home-btn flex items-center gap-1.5 hover:text-bikOrange transition focus:outline-none text-slate-800 hover:text-bikOrange font-bold text-sm">
                         <i class="fa-solid fa-house text-xs text-bikOrange"></i>
                         <span>Home</span>
                         <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200"></i>
                     </button>
                     <!-- Dropdown Menu with the 4 items from user image -->
                     <div class="mega-menu home-menu absolute top-full left-0 w-72 bg-white rounded-2xl border border-slate-200 p-4 shadow-2xl bik-mega-shadow z-50">
-                        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-3 pb-2 border-b border-slate-100 flex items-center justify-between">
+                        <div class="text-[10px] font-bold text-slate-600 uppercase tracking-wider px-3 pb-2 border-b border-slate-100 flex items-center justify-between">
                             <span>Core Portals</span>
                             <a href="index.html" class="text-bikOrange hover:underline font-bold">Executive Hub ↗</a>
                         </div>
@@ -147,7 +147,7 @@
                                 </div>
                                 <div>
                                     <div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">Main Site</div>
-                                    <div class="text-[10px] text-slate-400">Flagship AI Commerce Suite</div>
+                                    <div class="text-[10px] text-slate-600">Flagship AI Commerce Suite</div>
                                 </div>
                             </a>
 
@@ -158,14 +158,14 @@
                                 </div>
                                 <div>
                                     <div class="text-xs font-bold text-bikDark group-hover:text-emerald-600">Live Storefront Demo</div>
-                                    <div class="text-[10px] text-slate-400">Autonomous D2C &amp; Borzo Loop</div>
+                                    <div class="text-[10px] text-slate-600">Autonomous D2C &amp; Borzo Loop</div>
                                 </div>
                             </a>
 
 <!-- 3. Fleet Protocol -->
                                                         <a href="web-development.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
                                 <div class="w-8 h-8 rounded-lg bg-orange-100 text-bikOrange flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-code"></i></div>
-                                <div><div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">Web Development</div><div class="text-[10px] text-slate-400">Next.js &amp; Shopify Stores &bull; Mumbai</div></div>
+                                <div><div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">Web Development</div><div class="text-[10px] text-slate-600">Next.js &amp; Shopify Stores &bull; Mumbai</div></div>
                             </a>
 <a href="delivery.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-emerald-50 text-slate-700 hover:text-emerald-600 transition group">
                                 <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center text-sm group-hover:scale-110 transition">
@@ -173,13 +173,13 @@
                                 </div>
                                 <div>
                                     <div class="text-xs font-bold text-bikDark group-hover:text-emerald-600">Fleet Protocol</div>
-                                    <div class="text-[10px] text-slate-400">Hyperlocal Borzo/Porter API</div>
+                                    <div class="text-[10px] text-slate-600">Hyperlocal Borzo/Porter API</div>
                                 </div>
                             </a>
 
                                                         <a href="about.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
                                 <div class="w-8 h-8 rounded-lg bg-orange-100 text-bikOrange flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-circle-info"></i></div>
-                                <div><div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">About Us</div><div class="text-[10px] text-slate-400">Company Motive & Founders</div></div>
+                                <div><div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">About Us</div><div class="text-[10px] text-slate-600">Company Motive & Founders</div></div>
                             </a>
                         </div>
                     </div>
@@ -191,7 +191,7 @@
                 
                 <!-- Dropdown -->
                 <div class="relative products-dropdown-parent dropdown-parent py-6">
-                    <button class="flex items-center gap-1.5 hover:text-bikOrange transition focus:outline-none text-bikOrange font-bold">
+                    <button type="button" aria-expanded="false" class="flex items-center gap-1.5 hover:text-bikOrange transition focus:outline-none text-bikOrange font-bold">
                         <span>Products & Automations</span>
                         <i class="fa-solid fa-chevron-down text-[10px]"></i>
                     </button>
@@ -249,11 +249,12 @@
             <div class="flex items-center space-x-2.5 shrink-0">
                 <div class="fc-auth-slot"></div>
                 <a href="demo.html" class="hidden sm:inline-flex items-center justify-center gap-1.5 px-4 xl:px-5 py-2.5 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-xs xl:text-sm transition shadow-md shadow-orange-500/20 cursor-pointer whitespace-nowrap shrink-0"><span>Book Free Live Demo</span> <span class="text-base leading-none">➔</span></a>
-                <button id="fcMobileMenuBtn" type="button" aria-label="Toggle Mobile Menu" onclick="window.FC_WIDGETS && window.FC_WIDGETS.toggleMobileDrawer ? window.FC_WIDGETS.toggleMobileDrawer() : null" class="lg:hidden p-2 rounded-xl border border-slate-200 hover:border-bikOrange bg-white text-slate-700 hover:text-bikOrange transition flex items-center justify-center shrink-0 w-10 h-10 shadow-xs cursor-pointer touch-target-44"><i class="fa-solid fa-bars text-sm"></i></button>
+                <button id="fcMobileMenuBtn" type="button" aria-label="Toggle Mobile Menu" aria-expanded="false" aria-controls="fcMobileDrawer" onclick="window.FC_WIDGETS && window.FC_WIDGETS.toggleMobileDrawer ? window.FC_WIDGETS.toggleMobileDrawer() : null" class="lg:hidden p-2 rounded-xl border border-slate-200 hover:border-bikOrange bg-white text-slate-700 hover:text-bikOrange transition flex items-center justify-center shrink-0 w-10 h-10 shadow-sm cursor-pointer touch-target-44"><i class="fa-solid fa-bars text-sm"></i></button>
             </div>
         </div>
     </header>
 
+    <main id="main-content">
     <!-- HERO SECTION (FLYING CHEETAH AUTONOMOUS COMMERCE SUITE) -->
     <section class="pt-10 pb-14 md:pt-14 md:pb-20 bg-gradient-to-b from-bikBg via-white to-white overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -277,10 +278,10 @@
                         <a href="demo.html" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-sm transition shadow-lg shadow-orange-500/25 cursor-pointer whitespace-nowrap">
                             <span>Book Free Live Demo</span> <span class="text-base leading-none">➔</span>
                         </a>
-                        <a href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah%20team,%20I%20explored%20Flying%20Cheetah%20and%20I'm%20looking%20forward%20to%20working%20with%20you.%20Could%20we%20schedule%20a%20brief%20discussion%20regarding%20our%20brand's%20commerce%20automation%3F" target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl border border-slate-300 hover:border-emerald-600 text-slate-800 font-bold text-sm bg-white hover:bg-emerald-50/50 transition shadow-sm whitespace-nowrap">
+                        <a href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah%20team,%20I%20explored%20Flying%20Cheetah%20and%20I'm%20looking%20forward%20to%20working%20with%20you.%20Could%20we%20schedule%20a%20brief%20discussion%20regarding%20our%20brand's%20commerce%20automation%3F" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl border border-slate-300 hover:border-emerald-600 text-slate-800 font-bold text-sm bg-white hover:bg-emerald-50/50 transition shadow-sm whitespace-nowrap">
                             <i class="fa-brands fa-whatsapp text-emerald-500 text-base"></i> <span>Chat on WhatsApp</span>
                         </a>
-                        <button onclick="window.FC_LEADS.openAuditModal('Flagship Commerce Suite')" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl border border-slate-300 hover:border-bikOrange text-slate-800 font-bold text-sm bg-white hover:bg-orange-50/50 transition shadow-sm whitespace-nowrap cursor-pointer">
+                        <button type="button" onclick="window.FC_LEADS.openAuditModal('Flagship Commerce Suite')" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl border border-slate-300 hover:border-bikOrange text-slate-800 font-bold text-sm bg-white hover:bg-orange-50/50 transition shadow-sm whitespace-nowrap cursor-pointer">
                             <i class="fa-solid fa-clipboard-check text-bikOrange"></i>
                             <span>Growth &amp; Tech Audit</span>
                         </button>
@@ -319,11 +320,11 @@
                         <!-- Dashboard Top Bar -->
                         <div class="flex items-center justify-between gap-2 pb-3 border-b border-slate-100 text-xs">
                             <div class="flex items-center gap-2 whitespace-nowrap min-w-0">
-                                <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah Logo" class="w-6 h-6 rounded-full object-cover border border-slate-200 shadow-xs shrink-0">
+                                <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah Logo" class="w-6 h-6 rounded-full object-cover border border-slate-200 shadow-sm shrink-0">
                                 <span class="font-bold text-slate-800 font-display truncate">Flying Cheetah</span>
                                 <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 text-[10px] font-bold shrink-0">LIVE TELEMETRY</span>
                             </div>
-                            <div class="hidden sm:flex items-center gap-1.5 text-slate-400 bg-slate-50 px-2.5 py-1 rounded-lg border border-slate-200/60 text-[11px] whitespace-nowrap shrink-0">
+                            <div class="hidden sm:flex items-center gap-1.5 text-slate-600 bg-slate-50 px-2.5 py-1 rounded-lg border border-slate-200/60 text-[11px] whitespace-nowrap shrink-0">
                                 <i class="fa-solid fa-magnifying-glass text-[10px]"></i>
                                 <span>Search</span>
                             </div>
@@ -363,7 +364,7 @@
                             <div class="flex items-center justify-between pb-2 text-xs">
                                 <div>
                                     <span class="font-bold text-slate-800">Revenue & Profit Growth</span>
-                                    <span class="text-[11px] text-slate-400 ml-1.5 hidden sm:inline">Dec 1 – Dec 30</span>
+                                    <span class="text-[11px] text-slate-600 ml-1.5 hidden sm:inline">Dec 1 – Dec 30</span>
                                 </div>
                                 <span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full flex items-center gap-1">
                                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
@@ -425,7 +426,7 @@
                             </div>
 
                             <!-- X Axis Date Labels -->
-                            <div class="flex justify-between text-[10px] text-slate-400 px-3 pt-1 border-t border-slate-100 font-mono">
+                            <div class="flex justify-between text-[10px] text-slate-600 px-3 pt-1 border-t border-slate-100 font-mono">
                                 <span>Dec 1</span>
                                 <span>Dec 8</span>
                                 <span>Dec 15</span>
@@ -477,7 +478,7 @@
     <!-- OFFICIAL TECH STACK & INTEGRATION LOGOS MARQUEE -->
     <section class="py-8 bg-slate-50/80 border-y border-slate-200/70 overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 mb-4 text-center">
-            <span class="text-[11px] font-bold uppercase tracking-widest text-slate-400 font-tech">
+            <span class="text-[11px] font-bold uppercase tracking-widest text-slate-600 font-tech">
                 Official Technology Ecosystem &amp; API Gateways
             </span>
         </div>
@@ -551,7 +552,7 @@
 
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center max-w-3xl mx-auto mb-10">
-                <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-100 border border-orange-200 text-bikOrange text-xs font-mono font-bold uppercase tracking-wider mb-3.5 shadow-xs">
+                <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-100 border border-orange-200 text-bikOrange text-xs font-mono font-bold uppercase tracking-wider mb-3.5 shadow-sm">
                     <i class="fa-solid fa-clapperboard"></i> Autonomous Commerce in Motion
                 </span>
                 <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-bikDark tracking-tight font-display">
@@ -624,10 +625,10 @@
             </div>
 
             <!-- 5 Columns / Cards Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
                 
                 <!-- 1. Web & App Development Card -->
-                <a href="web-development.html" class="p-6 rounded-2xl bg-white border border-slate-200 card-anim block flex flex-col justify-between group hover:border-orange-500 transition">
+                <a href="web-development.html" class="p-6 rounded-2xl bg-white border border-slate-200 card-anim flex flex-col justify-between group hover:border-orange-500 transition">
                     <div>
                         <div class="flex items-center justify-between mb-4">
                             <div class="w-12 h-12 rounded-xl bg-orange-100 text-bikOrange flex items-center justify-center text-xl group-hover:scale-110 transition"><i class="fa-solid fa-code"></i></div>
@@ -643,7 +644,7 @@
                 </a>
 
                 <!-- 2. Instagram Automation Card -->
-                <a href="instagram-automation.html" class="p-6 rounded-2xl bg-white border border-slate-200 card-anim block flex flex-col justify-between group hover:border-pink-500 transition">
+                <a href="instagram-automation.html" class="p-6 rounded-2xl bg-white border border-slate-200 card-anim flex flex-col justify-between group hover:border-pink-500 transition">
                     <div>
                         <div class="flex items-center justify-between mb-4">
                             <div class="w-12 h-12 rounded-xl bg-pink-100 text-pink-600 flex items-center justify-center text-xl group-hover:scale-110 transition"><i class="fa-brands fa-instagram text-2xl"></i></div>
@@ -659,7 +660,7 @@
                 </a>
 
                 <!-- 3. WhatsApp Automation Card -->
-                <a href="whatsapp-automation.html" class="p-6 rounded-2xl bg-white border border-slate-200 card-anim block flex flex-col justify-between group hover:border-emerald-500 transition">
+                <a href="whatsapp-automation.html" class="p-6 rounded-2xl bg-white border border-slate-200 card-anim flex flex-col justify-between group hover:border-emerald-500 transition">
                     <div>
                         <div class="flex items-center justify-between mb-4">
                             <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl group-hover:scale-110 transition"><i class="fa-brands fa-whatsapp text-2xl"></i></div>
@@ -675,7 +676,7 @@
                 </a>
 
                 <!-- 4. Click to WhatsApp Ads Card -->
-                <a href="ctwa-automation.html" class="p-6 rounded-2xl bg-white border border-slate-200 card-anim block flex flex-col justify-between group hover:border-blue-500 transition">
+                <a href="ctwa-automation.html" class="p-6 rounded-2xl bg-white border border-slate-200 card-anim flex flex-col justify-between group hover:border-blue-500 transition">
                     <div>
                         <div class="flex items-center justify-between mb-4">
                             <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-xl group-hover:scale-110 transition"><i class="fa-solid fa-bullseye"></i></div>
@@ -691,7 +692,7 @@
                 </a>
 
                 <!-- 5. AI Voice Agents Card -->
-                <a href="ai-voice-agents.html" class="p-6 rounded-2xl bg-white border border-slate-200 card-anim block flex flex-col justify-between group hover:border-purple-500 transition">
+                <a href="ai-voice-agents.html" class="p-6 rounded-2xl bg-white border border-slate-200 card-anim flex flex-col justify-between group hover:border-purple-500 transition md:col-span-2 lg:col-span-1">
                     <div>
                         <div class="flex items-center justify-between mb-4">
                             <div class="w-12 h-12 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center text-xl group-hover:scale-110 transition"><i class="fa-solid fa-phone-volume"></i></div>
@@ -750,25 +751,25 @@
                             Stop losing customers to slow manual operations. Our autonomous AI pipelines verify COD orders in natural Hinglish, trigger instant WhatsApp cart recovery, and dispatch Mumbai delivery riders automatically.
                         </p>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                            <div class="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs">
+                            <div class="p-4 rounded-xl bg-white border border-slate-200/80 shadow-sm">
                                 <div class="font-bold text-xs text-bikDark flex items-center gap-2 mb-1">
                                     <i class="fa-solid fa-phone-volume text-purple-600"></i> AI Voice Calling Agents
                                 </div>
                                 <div class="text-[11px] text-slate-500">Sub-180ms voice latency in Hindi &amp; English for instant COD verification and cart recovery.</div>
                             </div>
-                            <div class="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs">
+                            <div class="p-4 rounded-xl bg-white border border-slate-200/80 shadow-sm">
                                 <div class="font-bold text-xs text-bikDark flex items-center gap-2 mb-1">
                                     <i class="fa-brands fa-whatsapp text-emerald-600"></i> WhatsApp Commerce Bots
                                 </div>
                                 <div class="text-[11px] text-slate-500">24/7 catalog browsing, automated UPI payment collection, and live tracking dispatch.</div>
                             </div>
-                            <div class="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs">
+                            <div class="p-4 rounded-xl bg-white border border-slate-200/80 shadow-sm">
                                 <div class="font-bold text-xs text-bikDark flex items-center gap-2 mb-1">
                                     <i class="fa-solid fa-motorcycle text-orange-600"></i> Hyperlocal Fleet Dispatch
                                 </div>
                                 <div class="text-[11px] text-slate-500">Direct Borzo &amp; Porter API integration for 25-minute South/Central Mumbai courier routing.</div>
                             </div>
-                            <div class="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs">
+                            <div class="p-4 rounded-xl bg-white border border-slate-200/80 shadow-sm">
                                 <div class="font-bold text-xs text-bikDark flex items-center gap-2 mb-1">
                                     <i class="fa-solid fa-diagram-project text-blue-600"></i> n8n &amp; Python Pipelines
                                 </div>
@@ -828,25 +829,25 @@
                             Traditional landing pages leak up to 80% of ad clicks. We direct Meta ad traffic straight into interactive WhatsApp buying journeys with 1-click checkouts, boosting your ROAS by an average of 28% to 42%.
                         </p>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                            <div class="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs">
+                            <div class="p-4 rounded-xl bg-white border border-slate-200/80 shadow-sm">
                                 <div class="font-bold text-xs text-bikDark flex items-center gap-2 mb-1">
                                     <i class="fa-solid fa-bullseye text-blue-600"></i> Click-to-WhatsApp (CTWA) Ads
                                 </div>
                                 <div class="text-[11px] text-slate-500">Convert cold Facebook &amp; Instagram traffic into instant buyers with zero website friction.</div>
                             </div>
-                            <div class="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs">
+                            <div class="p-4 rounded-xl bg-white border border-slate-200/80 shadow-sm">
                                 <div class="font-bold text-xs text-bikDark flex items-center gap-2 mb-1">
                                     <i class="fa-solid fa-bullhorn text-emerald-600"></i> High-Volume WhatsApp Broadcasts
                                 </div>
                                 <div class="text-[11px] text-slate-500">Official Meta BSP broadcast engine with personalized product carousels &amp; zero ban risk.</div>
                             </div>
-                            <div class="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs">
+                            <div class="p-4 rounded-xl bg-white border border-slate-200/80 shadow-sm">
                                 <div class="font-bold text-xs text-bikDark flex items-center gap-2 mb-1">
                                     <i class="fa-solid fa-comment-nodes text-purple-600"></i> RCS Rich Interactive Messaging
                                 </div>
                                 <div class="text-[11px] text-slate-500">Verified Google sender badges, rich carousels, and one-tap action chips directly inside SMS apps.</div>
                             </div>
-                            <div class="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs">
+                            <div class="p-4 rounded-xl bg-white border border-slate-200/80 shadow-sm">
                                 <div class="font-bold text-xs text-bikDark flex items-center gap-2 mb-1">
                                     <i class="fa-solid fa-database text-amber-600"></i> Omnichannel CDP 360
                                 </div>
@@ -854,7 +855,7 @@
                             </div>
                         </div>
                         <div class="pt-2 flex flex-wrap gap-3">
-                            <a href="ctwa-automation.html" class="px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition shadow-md flex items-center gap-2">
+                            <a href="ctwa-automation.html" class="px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition shadow-md flex items-center gap-2">
                                 <i class="fa-solid fa-chart-line text-[10px]"></i> Explore CTWA Ads
                             </a>
                             <a href="whatsapp-marketing.html" class="px-6 py-3 rounded-xl border border-slate-300 hover:border-emerald-600 bg-white text-slate-800 font-bold text-xs transition">
@@ -907,25 +908,25 @@
                             Slow websites kill sales. We build custom Next.js, Vite, and Headless Shopify web applications that load in under 1.2 seconds, hit 99+ Google Lighthouse scores, and come pre-wired with WhatsApp checkout and instant courier dispatch.
                         </p>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                            <div class="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs">
+                            <div class="p-4 rounded-xl bg-white border border-slate-200/80 shadow-sm">
                                 <div class="font-bold text-xs text-bikDark flex items-center gap-2 mb-1">
                                     <i class="fa-solid fa-gauge-high text-emerald-600"></i> Sub-100ms Server Response
                                 </div>
                                 <div class="text-[11px] text-slate-500">Edge-cached static pages with zero layout shift and instant tap responsiveness.</div>
                             </div>
-                            <div class="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs">
+                            <div class="p-4 rounded-xl bg-white border border-slate-200/80 shadow-sm">
                                 <div class="font-bold text-xs text-bikDark flex items-center gap-2 mb-1">
                                     <i class="fa-brands fa-shopify text-emerald-500"></i> Headless Shopify &amp; Custom Storefronts
                                 </div>
                                 <div class="text-[11px] text-slate-500">Unrestricted UI flexibility with native checkout, Razorpay, UPI, and inventory sync.</div>
                             </div>
-                            <div class="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs">
+                            <div class="p-4 rounded-xl bg-white border border-slate-200/80 shadow-sm">
                                 <div class="font-bold text-xs text-bikDark flex items-center gap-2 mb-1">
                                     <i class="fa-solid fa-magnifying-glass text-blue-600"></i> Day-1 Technical SEO &amp; Schema
                                 </div>
                                 <div class="text-[11px] text-slate-500">Structured product schemas, OpenGraph meta, canonical links, and automated sitemaps.</div>
                             </div>
-                            <div class="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs">
+                            <div class="p-4 rounded-xl bg-white border border-slate-200/80 shadow-sm">
                                 <div class="font-bold text-xs text-bikDark flex items-center gap-2 mb-1">
                                     <i class="fa-solid fa-server text-purple-600"></i> Custom SaaS Portals &amp; APIs
                                 </div>
@@ -933,7 +934,7 @@
                             </div>
                         </div>
                         <div class="pt-2 flex flex-wrap gap-3">
-                            <a href="web-development.html" class="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs transition shadow-md flex items-center gap-2">
+                            <a href="web-development.html" class="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs transition shadow-md flex items-center gap-2">
                                 <i class="fa-solid fa-laptop-code text-[10px]"></i> View Web Dev Showcase
                             </a>
                             <a href="web-development.html#pricing" class="px-6 py-3 rounded-xl border border-slate-300 hover:border-blue-600 bg-white text-slate-800 font-bold text-xs transition">
@@ -967,7 +968,7 @@
                                     <div class="text-[10px] font-bold text-emerald-800 mt-0.5 uppercase tracking-wider">SEO Score</div>
                                 </div>
                             </div>
-                            <div class="pt-2 text-center text-[11px] text-slate-400 font-medium">
+                            <div class="pt-2 text-center text-[11px] text-slate-600 font-medium">
                                 Tech Stack: Next.js 15 • Tailwind CSS • Python FastAPI • Supabase • Vercel Edge
                             </div>
                         </div>
@@ -996,7 +997,7 @@
                     <div class="flex items-center justify-between border-b border-slate-100 pb-3">
                         <div>
                             <h3 class="text-sm font-extrabold text-bikDark font-display">Channel Open &amp; Interaction Rates</h3>
-                            <span class="text-[11px] text-slate-400">30-Day Active Storefront Benchmark</span>
+                            <span class="text-[11px] text-slate-600">30-Day Active Storefront Benchmark</span>
                         </div>
                         <span class="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-sm"><i class="fa-solid fa-chart-bar"></i></span>
                     </div>
@@ -1015,7 +1016,7 @@
                         </div>
                         <div>
                             <div class="flex justify-between font-bold text-bikDark mb-1"><span>Instagram Reel Auto-DM</span><span class="text-igPink font-mono">18.0% Conv</span></div>
-                            <div class="h-3 rounded-full bg-slate-100 overflow-hidden"><div class="h-full rounded-full bg-gradient-to-r from-pink-400 to-purple-600" style="width: 28%"></div></div>
+                            <div class="h-3 rounded-full bg-slate-100 overflow-hidden"><div class="h-full rounded-full bg-gradient-to-r from-pink-400 to-purple-600" style="width: 18.0%"></div></div>
                         </div>
                         <div>
                             <div class="flex justify-between font-semibold text-slate-500 mb-1"><span>Manual Static Forms</span><span class="text-slate-500 font-mono">8.5%</span></div>
@@ -1029,7 +1030,7 @@
                     <div class="flex items-center justify-between border-b border-slate-100 pb-3">
                         <div>
                             <h3 class="text-sm font-extrabold text-bikDark font-display">Blended Revenue Attribution Mix</h3>
-                            <span class="text-[11px] text-slate-400">3.1x Target ROAS Composition</span>
+                            <span class="text-[11px] text-slate-600">3.1x Target ROAS Composition</span>
                         </div>
                         <span class="w-8 h-8 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center text-sm"><i class="fa-solid fa-chart-pie"></i></span>
                     </div>
@@ -1061,7 +1062,7 @@
                     <div class="flex items-center justify-between border-b border-slate-100 pb-3">
                         <div>
                             <h3 class="text-sm font-extrabold text-bikDark font-display">Latency &amp; Margin Economics</h3>
-                            <span class="text-[11px] text-slate-400">Flying Cheetah vs Aggregators</span>
+                            <span class="text-[11px] text-slate-600">Flying Cheetah vs Aggregators</span>
                         </div>
                         <span class="w-8 h-8 rounded-xl bg-orange-100 text-bikOrange flex items-center justify-center text-sm"><i class="fa-solid fa-gauge-high"></i></span>
                     </div>
@@ -1188,7 +1189,7 @@
                 <div class="lg:col-span-5 bg-white border-2 border-orange-200 p-6 sm:p-8 rounded-3xl space-y-6 shadow-2xl bik-mega-shadow relative">
                     <div class="flex items-center justify-between border-b border-slate-100 pb-3">
                         <span class="text-xs font-bold text-bikOrange uppercase tracking-widest flex items-center gap-1.5">
-                            <i class="fa-solid fa-sparkles text-brandGold"></i> Projected Impact
+                            <i class="fa-solid fa-wand-magic-sparkles text-brandGold"></i> Projected Impact
                         </span>
                         <span class="text-[10px] text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full font-mono font-bold">Turnaround: 48-72h</span>
                     </div>
@@ -1196,7 +1197,7 @@
                     <div class="space-y-4">
                         <div class="p-4 rounded-2xl bg-gradient-to-r from-emerald-50 to-teal-50/60 border border-emerald-200">
                             <div class="text-xs text-emerald-800 font-semibold">Estimated Monthly Revenue Saved / Recovered</div>
-                            <div class="text-3xl sm:text-4xl font-black text-emerald-600 font-display mt-1" id="roi-calc-rev">₹1,85,000 / mo</div>
+                            <div class="text-3xl sm:text-4xl font-black text-emerald-600 font-display mt-1" id="roi-calc-rev">₹5,76,000 / mo</div>
                             <div class="text-[11px] text-slate-600 mt-0.5">Based on reduced RTO, instant cart recovery &amp; higher Meta ROAS.</div>
                         </div>
 
@@ -1223,7 +1224,7 @@
                         <div class="grid grid-cols-2 gap-3">
                             <div class="p-3.5 rounded-xl bg-amber-50/70 border border-amber-200">
                                 <div class="text-[11px] text-slate-600 font-semibold">Manual Hours Saved</div>
-                                <div class="text-2xl font-black text-amber-600 font-mono mt-1" id="roi-calc-hours">140 hrs</div>
+                                <div class="text-2xl font-black text-amber-600 font-mono mt-1" id="roi-calc-hours">240 hrs</div>
                                 <div class="text-[10px] text-slate-500 mt-0.5">Staff payroll saved</div>
                             </div>
                             <div class="p-3.5 rounded-xl bg-blue-50/70 border border-blue-200">
@@ -1239,7 +1240,7 @@
                             <i class="fa-brands fa-whatsapp text-base"></i>
                             <span>Get Custom Proposal on WhatsApp</span>
                         </a>
-                        <button onclick="window.FC_LEADS.openAuditModal('Growth &amp; Tech Audit')" class="w-full py-3 rounded-xl border border-slate-300 hover:border-bikOrange bg-white text-bikDark font-bold text-xs transition text-center cursor-pointer">
+                        <button type="button" onclick="window.FC_LEADS.openAuditModal('Growth &amp; Tech Audit')" class="w-full py-3 rounded-xl border border-slate-300 hover:border-bikOrange bg-white text-bikDark font-bold text-xs transition text-center cursor-pointer">
                             Book Free 1-on-1 Strategy Call
                         </button>
                     </div>
@@ -1338,6 +1339,7 @@
                 waBtn.href = `https://wa.me/919920386421?text=${text}`;
             }
         }
+        document.addEventListener('DOMContentLoaded', calculateProjectedROI);
     </script>
 
     <!-- LIVE RECOVERY & ROAS PERFORMANCE TELEMETRY SECTION -->
@@ -1392,8 +1394,8 @@
                     <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-2xl bik-mega-shadow space-y-6">
                         <div class="flex items-center justify-between border-b border-slate-100 pb-4">
                             <div>
-                                <h4 class="font-bold text-sm text-bikDark font-display">Revenue Recovered by Automation (30-Day Growth)</h4>
-                                <span class="text-xs text-slate-400">Comparing Flying Cheetah Engine vs Standard Checkout</span>
+                                <h3 class="font-bold text-sm text-bikDark font-display">Revenue Recovered by Automation (30-Day Growth)</h3>
+                                <span class="text-xs text-slate-600">Comparing Flying Cheetah Engine vs Standard Checkout</span>
                             </div>
                             <span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-700 text-xs font-bold flex items-center gap-1.5">
                                 <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Live +32% ROAS Lift
@@ -1430,7 +1432,7 @@
                         <!-- Live Order Pipeline Strip -->
                         <div class="grid grid-cols-3 gap-3 text-center text-xs">
                             <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-100">
-                                <span class="text-slate-400 block text-[10px]">WhatsApp DMs</span>
+                                <span class="text-slate-600 block text-[10px]">WhatsApp DMs</span>
                                 <span class="font-bold text-bikDark text-sm">840 Sent</span>
                             </div>
                             <div class="p-2.5 rounded-xl bg-emerald-50 border border-emerald-100">
@@ -1513,7 +1515,7 @@
                             <span>Connect on LinkedIn</span>
                             <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-1 opacity-80"></i>
                         </a>
-                        <a href="https://github.com/bhagatmukhiya82-source" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-slate-900 hover:bg-black text-white font-bold text-xs transition shadow-md shadow-slate-900/20 border border-slate-800 group/btn">
+                        <a href="https://github.com/bhagatmukhiya82-source" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-900 font-bold text-xs transition shadow-sm border border-slate-300 group/btn">
                             <i class="fa-brands fa-github text-base group-hover/btn:scale-110 transition"></i>
                             <span>View GitHub Architecture</span>
                             <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-1 opacity-80"></i>
@@ -1567,7 +1569,9 @@
         </div>
     </section>
 
-    <footer class="py-12 bg-white border-t border-slate-200 text-xs text-slate-500">
+    </main>
+
+    <footer class="py-12 bg-white border-t border-slate-200 text-xs text-slate-600">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div class="flex items-center space-x-3">
                 <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah" class="h-6 w-6 rounded-full object-cover border border-slate-300">
@@ -1584,30 +1588,12 @@
                 <a href="ai-voice-agents.html" class="hover:text-purple-600 transition">Voice Agents</a>
                 <a href="delivery.html" class="hover:text-bikOrange transition">Fleet Protocol</a>
                 <a href="about.html" class="hover:text-bikOrange transition">About Us</a>
+                <a href="privacy-policy.html" class="hover:text-bikOrange transition">Privacy</a>
+                <a href="terms-of-service.html" class="hover:text-bikOrange transition">Terms</a>
+                <a href="refund-policy.html" class="hover:text-bikOrange transition">Refunds</a>
             </div>
         </div>
     </footer>
-    <script>
-        // Toggle dropdowns on click & close when clicking outside
-        document.addEventListener('DOMContentLoaded', function() {
-            const dropdownParents = document.querySelectorAll('.dropdown-parent');
-            dropdownParents.forEach(function(parent) {
-                const btn = parent.querySelector('button');
-                if (btn) {
-                    btn.addEventListener('click', function(e) {
-                        e.stopPropagation();
-                        // Close other open dropdowns
-                        dropdownParents.forEach(p => { if (p !== parent) p.classList.remove('active'); });
-                        parent.classList.toggle('active');
-                    });
-                }
-            });
-
-            document.addEventListener('click', function(e) {
-                dropdownParents.forEach(p => p.classList.remove('active'));
-            });
-        });
-    </script>
     <!-- Supabase & Flying Cheetah Backend Architecture SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="js/supabase-client.js"></script>
@@ -1616,6 +1602,19 @@
     <script src="js/fc-widgets.js"></script>
 
 <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdownParents = document.querySelectorAll('.home-dropdown-parent, .products-dropdown-parent, .dropdown-parent');
+            dropdownParents.forEach(function(parent) {
+                const btn = parent.querySelector('button');
+                if (btn) {
+                    btn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        dropdownParents.forEach(function(p) { if (p !== parent) p.classList.remove('active'); });
+                        parent.classList.toggle('active');
+                    });
+                }
+            });
+        });
         // Top-level nav links hover safety: immediately dismiss all dropdowns
         document.querySelectorAll('nav > a').forEach(function(link) {
             link.addEventListener('mouseenter', function() {

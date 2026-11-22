@@ -24,61 +24,60 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/fx.css">
+    <link id="fcMobileAppStyles" rel="stylesheet" href="css/mobile-app.css">
 </head>
-<body class="bg-bikBg text-slateText font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-orange-500 selection:text-white">
+<body class="bg-white text-slate-900 font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-orange-100 selection:text-orange-700">
 
     <!-- TOP ANNOUNCEMENT BANNER -->
     <div class="bg-gradient-to-r from-orange-50 via-amber-50/70 to-emerald-50 border-b border-orange-200/70 text-bikDark text-xs py-2 px-4 text-center font-medium flex items-center justify-center gap-2">
         <span class="inline-flex items-center justify-center w-2 h-2 rounded-full bg-bikOrange ring-2 ring-orange-400/40 animate-ping"></span>
         <span><b>Error Notice:</b> Looking for autonomous commerce systems or architecture demos?</span>
-        <a href="index.html" class="underline ml-2 text-bikOrange font-bold hover:text-bikOrangeDark transition">Explore Suite ➔</a>
+        <a href="index.html" class="underline ml-2 text-orange-700 font-bold hover:text-orange-800 transition">Explore Suite <span aria-hidden="true">➔</span></a>
     </div>
 
     <!-- HEADER / NAVIGATION -->
     <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <a href="index.html" class="flex items-center gap-3 group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-bikOrange to-amber-500 flex items-center justify-center text-white shadow-md shadow-orange-500/20 group-hover:scale-105 transition">
-                    <i class="fa-solid fa-bolt text-lg"></i>
-                </div>
-                <div>
-                    <span class="font-display font-extrabold text-xl tracking-tight text-bikDark block leading-none">Flying Cheetah</span>
-                    <span class="text-[10px] text-slateText tracking-widest uppercase font-semibold">Autonomous Commerce</span>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+            <a href="index.html" class="flex items-center space-x-3 shrink-0 whitespace-nowrap">
+                <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah Logo" class="h-11 w-11 rounded-full object-cover border border-slate-200 shadow-sm">
+                <div class="flex flex-col">
+                    <span class="text-lg xl:text-xl font-black tracking-tight font-display text-bikDark leading-none">FLYING CHEETAH</span>
+                    <span class="text-[9px] text-orange-700 font-bold tracking-widest uppercase mt-0.5">AUTONOMOUS COMMERCE</span>
                 </div>
             </a>
 
             <!-- NAV LINKS -->
-            <nav class="hidden lg:flex items-center gap-5 xl:gap-7 text-[13px] xl:text-sm font-semibold text-slate-700 whitespace-nowrap">
-                <a href="index.html" class="hover:text-bikOrange transition flex items-center gap-1.5 font-bold">
-                    <i class="fa-solid fa-house text-xs text-bikOrange"></i>
+            <nav aria-label="Primary Navigation" class="hidden lg:flex items-center gap-5 xl:gap-7 text-[13px] xl:text-sm font-semibold text-slate-700 whitespace-nowrap">
+                <a href="index.html" class="hover:text-orange-700 transition flex items-center gap-1.5 font-bold">
+                    <i class="fa-solid fa-house text-xs text-orange-700" aria-hidden="true"></i>
                     <span>Home</span>
                 </a>
-                <a href="solutions.html" class="hover:text-bikOrange transition">Solutions</a>
-                <a href="web-development.html" class="hover:text-bikOrange transition">Web Dev</a>
-                <a href="delivery.html" class="hover:text-bikOrange transition">Fleet Dispatch</a>
-                <a href="about.html" class="hover:text-bikOrange transition">About Us</a>
-                <a href="demo.html" class="hover:text-bikOrange transition text-emerald-600 font-bold">Live Demo</a>
+                <a href="solutions.html" class="hover:text-orange-700 transition">Solutions</a>
+                <a href="web-development.html" class="hover:text-orange-700 transition">Web Dev</a>
+                <a href="delivery.html" class="hover:text-orange-700 transition">Fleet Dispatch</a>
+                <a href="about.html" class="hover:text-orange-700 transition">About Us</a>
+                <a href="demo.html" class="hover:text-orange-700 transition text-emerald-700 font-bold">Live Demo</a>
             </nav>
 
-            <div class="flex items-center gap-3">
+            <div class="flex items-center gap-2.5 shrink-0">
                 <div class="fc-auth-slot"></div>
-                <a href="demo.html" class="hidden sm:inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-xs transition shadow-md shadow-orange-500/20">
-                    <i class="fa-solid fa-calendar-check"></i>
+                <a href="demo.html" class="hidden sm:inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-orange-700 hover:bg-orange-800 text-white font-bold text-xs transition shadow-md shadow-orange-500/20 whitespace-nowrap shrink-0">
+                    <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>
                     <span>Book Live Demo</span>
                 </a>
-                <button id="fcMobileMenuBtn" aria-label="Toggle Navigation Menu" class="lg:hidden p-2 rounded-xl border border-slate-200 text-slate-700 hover:text-bikOrange hover:border-bikOrange transition cursor-pointer">
-                    <i class="fa-solid fa-bars text-lg"></i>
+                <button id="fcMobileMenuBtn" type="button" aria-label="Toggle Mobile Menu" aria-expanded="false" aria-controls="fcMobileDrawer" onclick="window.FC_WIDGETS && window.FC_WIDGETS.toggleMobileDrawer ? window.FC_WIDGETS.toggleMobileDrawer() : null" class="lg:hidden p-2 rounded-xl border border-slate-200 hover:border-bikOrange bg-white text-slate-700 hover:text-orange-700 transition flex items-center justify-center shrink-0 w-10 h-10 shadow-sm cursor-pointer touch-target-44 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange focus-visible:ring-offset-2">
+                    <i class="fa-solid fa-bars text-sm" aria-hidden="true"></i>
                 </button>
             </div>
         </div>
     </header>
 
     <!-- MAIN 404 CONTENT -->
-    <main class="flex-1 flex items-center justify-center py-16 px-4 sm:px-6 lg:px-8">
+    <main id="main-content" class="flex-1 flex items-center justify-center py-16 px-4 sm:px-6 lg:px-8">
         <div class="max-w-3xl w-full text-center space-y-8">
             <!-- Badge -->
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-100 text-bikOrange text-xs font-black tracking-wider uppercase">
-                <i class="fa-solid fa-triangle-exclamation"></i>
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-100 text-orange-800 border border-orange-200 text-xs font-black tracking-wider uppercase">
+                <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
                 <span>Error 404 • Lost in Automation</span>
             </div>
 
@@ -88,7 +87,7 @@
                     <circle cx="48" cy="48" r="38" stroke="#E2E8F0" stroke-width="2" stroke-dasharray="4 4"/>
                     <circle cx="48" cy="48" r="26" fill="#FFF9F6" stroke="#FF6838" stroke-width="2.5"/>
                     <polygon points="48,18 55,44 48,40 41,44" fill="#FF6838"/>
-                    <polygon points="48,78 55,52 48,56 41,52" fill="#121624"/>
+                    <polygon points="48,78 55,52 48,56 41,52" fill="#94A3B8"/>
                     <circle cx="48" cy="48" r="4" fill="#10B981"/>
                 </svg>
             </div>
@@ -108,56 +107,56 @@
 
             <!-- Primary Recovery CTAs -->
             <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
-                <a href="index.html" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-sm transition shadow-lg shadow-orange-500/25">
-                    <i class="fa-solid fa-house"></i>
+                <a href="index.html" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-orange-700 hover:bg-orange-800 text-white font-bold text-sm transition shadow-lg shadow-orange-500/25">
+                    <i class="fa-solid fa-house" aria-hidden="true"></i>
                     <span>Return to Home</span>
                 </a>
-                <a href="demo.html" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm transition shadow-md">
-                    <i class="fa-solid fa-calendar-check text-emerald-400"></i>
+                <a href="demo.html" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-sm transition shadow-md">
+                    <i class="fa-solid fa-calendar-check text-emerald-100" aria-hidden="true"></i>
                     <span>Book Live Demo</span>
                 </a>
-                <a href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah,%20I%20hit%20a%20404%20error%20page%20and%20need%20help." target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl border border-slate-300 hover:border-bikOrange bg-white text-slate-800 font-bold text-sm transition hover:bg-orange-50/50">
-                    <i class="fa-brands fa-whatsapp text-emerald-500 text-base"></i>
+                <a href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah,%20I%20hit%20a%20404%20error%20page%20and%20need%20help." target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl border border-slate-300 hover:border-orange-700 bg-white text-slate-800 font-bold text-sm transition hover:bg-orange-50/50">
+                    <i class="fa-brands fa-whatsapp text-emerald-700 text-base" aria-hidden="true"></i>
                     <span>WhatsApp Support</span>
                 </a>
             </div>
 
             <!-- 4-Card Service Recovery Grid -->
             <div class="pt-8 text-left">
-                <div class="text-xs font-bold uppercase tracking-wider text-slate-400 text-center mb-4">
+                <div class="text-xs font-bold uppercase tracking-wider text-slate-600 text-center mb-4">
                     Or explore our core autonomous solutions
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <a href="ai-voice-agents.html" class="p-4 rounded-2xl bg-white border border-slate-200/80 hover:border-bikOrange hover:shadow-md transition group block">
-                        <div class="w-9 h-9 rounded-xl bg-orange-100 text-bikOrange flex items-center justify-center text-sm mb-3 group-hover:scale-110 transition">
-                            <i class="fa-solid fa-phone-volume"></i>
+                    <a href="ai-voice-agents.html" class="p-4 rounded-2xl bg-white border border-slate-200/80 hover:border-orange-700 hover:shadow-md transition group block">
+                        <div class="w-9 h-9 rounded-xl bg-orange-100 text-orange-700 flex items-center justify-center text-sm mb-3 group-hover:scale-110 transition">
+                            <i class="fa-solid fa-phone-volume" aria-hidden="true"></i>
                         </div>
-                        <div class="font-bold text-xs text-bikDark group-hover:text-bikOrange">AI Voice Calling</div>
-                        <div class="text-[11px] text-slate-500 mt-1">COD verification & automated outbound agents.</div>
+                        <div class="font-bold text-xs text-bikDark group-hover:text-orange-700">AI Voice Calling</div>
+                        <div class="text-[11px] text-slate-600 mt-1">COD verification & automated outbound agents.</div>
                     </a>
 
-                    <a href="whatsapp-automation.html" class="p-4 rounded-2xl bg-white border border-slate-200/80 hover:border-emerald-500 hover:shadow-md transition group block">
-                        <div class="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-sm mb-3 group-hover:scale-110 transition">
-                            <i class="fa-brands fa-whatsapp"></i>
+                    <a href="whatsapp-automation.html" class="p-4 rounded-2xl bg-white border border-slate-200/80 hover:border-emerald-700 hover:shadow-md transition group block">
+                        <div class="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-sm mb-3 group-hover:scale-110 transition">
+                            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
                         </div>
-                        <div class="font-bold text-xs text-bikDark group-hover:text-emerald-600">WhatsApp Commerce</div>
-                        <div class="text-[11px] text-slate-500 mt-1">Cart recovery, broadcasts & direct checkout.</div>
+                        <div class="font-bold text-xs text-bikDark group-hover:text-emerald-700">WhatsApp Commerce</div>
+                        <div class="text-[11px] text-slate-600 mt-1">Cart recovery, broadcasts & direct checkout.</div>
                     </a>
 
-                    <a href="web-development.html" class="p-4 rounded-2xl bg-white border border-slate-200/80 hover:border-bikOrange hover:shadow-md transition group block">
-                        <div class="w-9 h-9 rounded-xl bg-orange-100 text-bikOrange flex items-center justify-center text-sm mb-3 group-hover:scale-110 transition">
-                            <i class="fa-solid fa-code"></i>
+                    <a href="web-development.html" class="p-4 rounded-2xl bg-white border border-slate-200/80 hover:border-orange-700 hover:shadow-md transition group block">
+                        <div class="w-9 h-9 rounded-xl bg-orange-100 text-orange-700 flex items-center justify-center text-sm mb-3 group-hover:scale-110 transition">
+                            <i class="fa-solid fa-code" aria-hidden="true"></i>
                         </div>
-                        <div class="font-bold text-xs text-bikDark group-hover:text-bikOrange">High-Speed Web Dev</div>
-                        <div class="text-[11px] text-slate-500 mt-1">Ultra-fast storefronts with Mumbai CDN.</div>
+                        <div class="font-bold text-xs text-bikDark group-hover:text-orange-700">High-Speed Web Dev</div>
+                        <div class="text-[11px] text-slate-600 mt-1">Ultra-fast storefronts with Mumbai CDN.</div>
                     </a>
 
-                    <a href="about.html" class="p-4 rounded-2xl bg-white border border-slate-200/80 hover:border-slate-800 hover:shadow-md transition group block">
+                    <a href="about.html" class="p-4 rounded-2xl bg-white border border-slate-200/80 hover:border-orange-700 hover:shadow-md transition group block">
                         <div class="w-9 h-9 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center text-sm mb-3 group-hover:scale-110 transition">
-                            <i class="fa-solid fa-users"></i>
+                            <i class="fa-solid fa-users" aria-hidden="true"></i>
                         </div>
-                        <div class="font-bold text-xs text-bikDark group-hover:text-bikOrange">About Founders</div>
-                        <div class="text-[11px] text-slate-500 mt-1">Bhagat Mukhiya, Yash Gaikwad & our mission.</div>
+                        <div class="font-bold text-xs text-bikDark group-hover:text-orange-700">About Founders</div>
+                        <div class="text-[11px] text-slate-600 mt-1">Bhagat Mukhiya, Yash Gaikwad & our mission.</div>
                     </a>
                 </div>
             </div>
@@ -165,21 +164,22 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-white border-t border-slate-200 py-8 text-xs text-slate-500">
+    <footer class="bg-white border-t border-slate-200 py-8 text-xs text-slate-600">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
             <div class="flex items-center gap-2">
-                <div class="w-5 h-5 rounded-md bg-bikOrange text-white flex items-center justify-center text-[10px] font-bold"><i class="fa-solid fa-bolt"></i></div>
+                <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah" class="h-6 w-6 rounded-full object-cover border border-slate-300">
                 <span class="font-bold text-bikDark">Flying Cheetah</span>
                 <span>© 2026. Official Meta Business Solution Provider. All Rights Reserved.</span>
             </div>
-            <div class="flex flex-wrap items-center gap-4 font-semibold">
-                <a href="index.html" class="hover:text-bikOrange transition">Main Site</a>
-                <a href="demo.html" class="hover:text-bikOrange transition font-bold text-emerald-600">Live Demo</a>
-                <a href="web-development.html" class="hover:text-bikOrange transition">Web Development</a>
-                <a href="delivery.html" class="hover:text-bikOrange transition">Fleet Dispatch</a>
-                <a href="about.html" class="hover:text-bikOrange transition">About Us</a>
-                <a href="terms-of-service.html" class="hover:text-bikOrange transition">Terms</a>
-                <a href="privacy-policy.html" class="hover:text-bikOrange transition">Privacy</a>
+            <div class="flex flex-wrap items-center justify-center gap-4 font-semibold text-slate-700">
+                <a href="index.html" class="hover:text-orange-700 transition">Main Site</a>
+                <a href="demo.html" class="hover:text-orange-700 transition font-bold text-emerald-700">Live Demo</a>
+                <a href="web-development.html" class="hover:text-orange-700 transition">Web Development</a>
+                <a href="delivery.html" class="hover:text-orange-700 transition">Fleet Dispatch</a>
+                <a href="about.html" class="hover:text-orange-700 transition">About Us</a>
+                <a href="terms-of-service.html" class="hover:text-orange-700 transition">Terms</a>
+                <a href="privacy-policy.html" class="hover:text-orange-700 transition">Privacy</a>
+                <a href="refund-policy.html" class="hover:text-orange-700 transition">Refund Policy</a>
             </div>
         </div>
     </footer>

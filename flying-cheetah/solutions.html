@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-        <link rel="icon" type="image/png" href="images/user_official_real_logo_transparent.png">
+    <link rel="icon" type="image/png" href="images/user_official_real_logo_transparent.png">
     <link rel="apple-touch-icon" href="images/user_official_real_logo_transparent.png">
 
     <meta charset="UTF-8">
@@ -9,15 +9,15 @@
     <title>Enterprise Automation Module Specification — Flying Cheetah</title>
     <meta property="og:title" content="Enterprise Automation Module Specification — Flying Cheetah">
     <meta property="og:description" content="Enterprise Automation Module Specification — Flying Cheetah - Flying Cheetah Labs Autonomous AI Commerce &amp; Omnichannel Marketing Suite.">
-    <meta property="og:image" content="https://flying-cheetah.vercel.app/images/flying_cheetah_logo_one_tail.png">
+    <meta property="og:image" content="https://flying-cheetah.vercel.app/images/whatsapp_automation_journey_ui.jpg">
     <meta property="og:type" content="website">
 
-    <meta name="description" content="Enterprise Automation Module Specification — Flying Cheetah - Flying Cheetah Labs Autonomous AI Commerce & Omnichannel Marketing Suite.">
+    <meta name="description" content="Enterprise Automation Module Specification — Flying Cheetah - Flying Cheetah Labs Autonomous AI Commerce &amp; Omnichannel Marketing Suite.">
     <link rel="canonical" href="https://flying-cheetah.vercel.app/solutions">
     <meta property="og:url" content="https://flying-cheetah.vercel.app/solutions">
     <meta property="og:site_name" content="Flying Cheetah">
 
-    <!-- Tailwind CSS -->
+    <!-- Compiled Tailwind CSS -->
     <link rel="stylesheet" href="css/styles.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,9 +26,6 @@
     <link rel="stylesheet" href="css/fx.css">
     <style>
         .bik-mega-shadow { box-shadow: 0 25px 60px -15px rgba(255, 104, 56, 0.15), 0 0 1px 1px rgba(0, 0, 0, 0.05); }
-        .mega-menu { display: none; }
-        .dropdown-parent:hover .mega-menu { display: block; }
-    
         .home-menu { display: none; }
         .home-dropdown-parent:hover > .home-menu,
         .home-dropdown-parent.active > .home-menu { display: block; }
@@ -37,6 +34,8 @@
         .products-dropdown-parent.active > .mega-menu { display: block; }
         .dropdown-parent:hover > .mega-menu,
         .dropdown-parent.active > .mega-menu { display: block; }
+        .card-anim { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .card-anim:hover { transform: translateY(-4px); box-shadow: 0 20px 35px -10px rgba(0,0,0,0.08); }
     </style>
     <link rel="stylesheet" href="css/mobile-app.css">
     <script type="application/ld+json">
@@ -57,108 +56,100 @@
 }
     </script>
 </head>
-<body class="bg-white text-slate-900 font-sans antialiased selection:bg-bikOrange selection:text-white">
+<body class="bg-white text-slate-900 font-sans antialiased selection:bg-orange-100 selection:text-orange-700">
 
     <!-- Top Announcement -->
     <div class="bg-gradient-to-r from-orange-50 via-amber-50/70 to-emerald-50 border-b border-orange-200/70 text-bikDark py-2 px-4 text-center text-xs font-medium">
-        <span><i class="fa-solid fa-bolt text-bikOrange mr-1.5"></i>Flying Cheetah Enterprise Modules: High-throughput automated systems configured in 48 hours.</span>
-        <a href="demo.html" class="underline ml-2 text-bikOrange font-bold hover:text-bikOrangeDark transition">Book Live Demo ↗</a>
+        <span><i class="fa-solid fa-bolt text-orange-700 mr-1.5" aria-hidden="true"></i>Flying Cheetah Enterprise Modules: High-throughput automated systems configured in 48 hours.</span>
+        <a href="demo.html" onclick="if(window.FC_LEADS){window.FC_LEADS.openAuditModal('Enterprise Solutions Architecture');return false;}" class="underline ml-2 text-orange-700 font-bold hover:text-orange-800 transition whitespace-nowrap">Book Live Demo ↗</a>
     </div>
 
-    <!-- MAIN NAVBAR (IDENTICAL TO ALL PAGES) -->
+    <!-- MAIN NAVBAR -->
     <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
             <a href="index.html" class="flex items-center space-x-3 shrink-0 whitespace-nowrap">
                 <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah Logo" class="h-11 w-11 rounded-full object-cover border border-slate-200 shadow-sm">
                 <div class="flex flex-col">
-                    <span class="text-xl font-black tracking-tight font-display text-bikDark">FLYING CHEETAH</span>
-                    <span class="text-[9px] text-bikOrange font-bold tracking-widest uppercase -mt-1">MODULE BLUEPRINT</span>
+                    <span class="text-lg xl:text-xl font-black tracking-tight font-display text-bikDark">FLYING CHEETAH</span>
+                    <span class="text-[9px] text-orange-700 font-bold tracking-widest uppercase -mt-1">MODULE BLUEPRINT</span>
                 </div>
             </a>
 
             <!-- NAV LINKS -->
-            <nav class="hidden lg:flex items-center gap-5 xl:gap-7 text-[13px] xl:text-sm font-semibold text-slate-700 whitespace-nowrap">
-                <!-- HOME DROPDOWN (NEXT TO PRODUCTS) -->
-                <div class="relative home-dropdown-parent py-6">
-                    <button class="home-btn flex items-center gap-1.5 hover:text-bikOrange transition focus:outline-none text-slate-800 hover:text-bikOrange font-bold text-sm">
-                        <i class="fa-solid fa-house text-xs text-bikOrange"></i>
+            <nav aria-label="Primary Navigation" class="hidden lg:flex items-center gap-5 xl:gap-7 text-[13px] xl:text-sm font-semibold text-slate-700 whitespace-nowrap">
+                <!-- HOME DROPDOWN -->
+                <div class="relative home-dropdown-parent dropdown-parent py-6">
+                    <button type="button" aria-expanded="false" aria-controls="fcHomeMenu" class="home-btn flex items-center gap-1.5 hover:text-bikOrange transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange focus-visible:ring-offset-2 text-slate-800 font-bold text-sm rounded-lg px-1 cursor-pointer">
+                        <i class="fa-solid fa-house text-xs text-bikOrange" aria-hidden="true"></i>
                         <span>Home</span>
-                        <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200"></i>
+                        <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200" aria-hidden="true"></i>
                     </button>
-                    <!-- Dropdown Menu with the 4 items from user image -->
-                    <div class="mega-menu home-menu absolute top-full left-0 w-72 bg-white rounded-2xl border border-slate-200 p-4 shadow-2xl bik-mega-shadow z-50">
-                        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-3 pb-2 border-b border-slate-100 flex items-center justify-between">
+                    <div id="fcHomeMenu" class="mega-menu home-menu absolute top-full left-0 w-72 bg-white rounded-2xl border border-slate-200 p-4 shadow-2xl bik-mega-shadow z-50">
+                        <div class="text-[10px] font-bold text-slate-600 uppercase tracking-wider px-3 pb-2 border-b border-slate-100 flex items-center justify-between">
                             <span>Core Portals</span>
-                            <a href="index.html" class="text-bikOrange hover:underline font-bold">Executive Hub ↗</a>
+                            <a href="index.html" class="text-orange-700 hover:underline font-bold">Executive Hub ↗</a>
                         </div>
                         <div class="space-y-1.5 pt-2">
-                            <!-- 1. Main Site -->
                             <a href="index.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
-                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-bikOrange flex items-center justify-center text-sm group-hover:scale-110 transition">
-                                    <i class="fa-solid fa-store"></i>
+                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-orange-700 flex items-center justify-center text-sm group-hover:scale-110 transition">
+                                    <i class="fa-solid fa-store" aria-hidden="true"></i>
                                 </div>
                                 <div>
                                     <div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">Main Site</div>
-                                    <div class="text-[10px] text-slate-400">Flagship AI Commerce Suite</div>
+                                    <div class="text-[10px] text-slate-600">Flagship AI Commerce Suite</div>
                                 </div>
                             </a>
-
-<!-- 3. Fleet Protocol -->
-                                                        <a href="web-development.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
-                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-bikOrange flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-code"></i></div>
-                                <div><div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">Web Development</div><div class="text-[10px] text-slate-400">Next.js &amp; Shopify Stores &bull; Mumbai</div></div>
+                            <a href="web-development.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
+                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-orange-700 flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-code" aria-hidden="true"></i></div>
+                                <div><div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">Web Development</div><div class="text-[10px] text-slate-600">Next.js &amp; Shopify Stores &bull; Mumbai</div></div>
                             </a>
-<a href="delivery.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-emerald-50 text-slate-700 hover:text-emerald-600 transition group">
-                                <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center text-sm group-hover:scale-110 transition">
-                                    <i class="fa-solid fa-motorcycle"></i>
+                            <a href="delivery.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-emerald-50 text-slate-700 hover:text-emerald-600 transition group">
+                                <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center text-sm group-hover:scale-110 transition">
+                                    <i class="fa-solid fa-motorcycle" aria-hidden="true"></i>
                                 </div>
                                 <div>
                                     <div class="text-xs font-bold text-bikDark group-hover:text-emerald-600">Fleet Protocol</div>
-                                    <div class="text-[10px] text-slate-400">Hyperlocal Borzo/Porter API</div>
+                                    <div class="text-[10px] text-slate-600">Hyperlocal Borzo/Porter API</div>
                                 </div>
                             </a>
-
-                                                        <a href="about.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
-                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-bikOrange flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-circle-info"></i></div>
-                                <div><div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">About Us</div><div class="text-[10px] text-slate-400">Company Motive & Founders</div></div>
+                            <a href="about.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
+                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-orange-700 flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-circle-info" aria-hidden="true"></i></div>
+                                <div><div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">About Us</div><div class="text-[10px] text-slate-600">Company Motive &amp; Founders</div></div>
                             </a>
                         </div>
                     </div>
                 </div>
 
-
-
-
+                <!-- PRODUCTS & AUTOMATIONS MEGA MENU -->
                 <div class="relative products-dropdown-parent dropdown-parent py-6">
-                    <button class="flex items-center gap-1.5 hover:text-bikOrange transition focus:outline-none text-bikOrange font-bold">
-                        <span>Products & Automations</span>
-                        <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                    <button type="button" aria-expanded="false" aria-controls="fcProductsMenu" class="flex items-center gap-1.5 hover:text-bikOrange transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange focus-visible:ring-offset-2 text-orange-700 font-bold rounded-lg px-1 cursor-pointer">
+                        <span>Products &amp; Automations</span>
+                        <i class="fa-solid fa-chevron-down text-[10px]" aria-hidden="true"></i>
                     </button>
-                    <!-- Mega Menu -->
-                    <div class="mega-menu absolute top-full -left-28 w-[760px] bg-white rounded-2xl border border-slate-200 p-8 shadow-2xl bik-mega-shadow z-50">
+                    <div id="fcProductsMenu" class="mega-menu absolute top-full -left-28 w-[760px] bg-white rounded-2xl border border-slate-200 p-8 shadow-2xl bik-mega-shadow z-50">
                         <div class="grid grid-cols-4 gap-6 text-xs">
                             <div class="space-y-3">
-                                <div class="flex items-center gap-2 text-bikOrange font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-bullhorn"></i> CAMPAIGNS</div>
-                                <ul class="space-y-2.5 text-slate-600 font-medium">
+                                <div class="flex items-center gap-2 text-orange-700 font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-bullhorn" aria-hidden="true"></i> CAMPAIGNS</div>
+                                <ul class="space-y-2.5 text-slate-700 font-medium">
                                     <li><a href="email-marketing.html" class="hover:text-bikOrange transition block">Email marketing</a></li>
-                                    <li><a href="whatsapp-marketing.html" class="hover:text-bikOrange transition block">WhatsApp marketing</a></li>
-                                    <li><a href="sms-marketing.html" class="hover:text-bikOrange transition block">SMS marketing</a></li>
-                                    <li><a href="customer-data-platform.html" class="hover:text-bikOrange transition block">Customer data platform</a></li>
-                                    <li><a href="rcs-messaging.html" class="hover:text-bikOrange transition block">RCS messaging</a></li>
+                                    <li><a href="whatsapp-marketing.html" class="hover:text-emerald-600 transition block">WhatsApp marketing</a></li>
+                                    <li><a href="sms-marketing.html" class="hover:text-blue-700 transition block">SMS marketing</a></li>
+                                    <li><a href="customer-data-platform.html" class="hover:text-indigo-700 transition block">Customer data platform</a></li>
+                                    <li><a href="rcs-messaging.html" class="hover:text-blue-700 transition block">RCS messaging</a></li>
                                 </ul>
                             </div>
                             <div class="space-y-3 bg-orange-50/70 p-3 -m-3 rounded-xl border border-orange-100">
-                                <div class="flex items-center gap-2 text-bikOrange font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-gear"></i> AUTOMATIONS</div>
+                                <div class="flex items-center gap-2 text-orange-700 font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-gear" aria-hidden="true"></i> AUTOMATIONS</div>
                                 <ul class="space-y-2.5 text-slate-700 font-medium">
                                     <li><a href="store-automation.html" class="hover:text-bikOrange transition block">Store automation</a></li>
-                                    <li><a href="instagram-automation.html" class="hover:text-bikOrange transition block">Instagram automation</a></li>
-                                    <li><a href="whatsapp-automation.html" class="hover:text-bikOrange transition block">WhatsApp automation</a></li>
-                                    <li><a href="ctwa-automation.html" class="hover:text-bikOrange transition block">Click to WhatsApp ads</a></li>
-                                    <li><a href="ai-voice-agents.html" class="hover:text-bikOrange transition block">AI Voice Agents</a></li>
+                                    <li><a href="instagram-automation.html" class="hover:text-pink-700 transition block">Instagram automation</a></li>
+                                    <li><a href="whatsapp-automation.html" class="hover:text-emerald-600 transition block">WhatsApp automation</a></li>
+                                    <li><a href="ctwa-automation.html" class="hover:text-blue-700 transition block">Click to WhatsApp ads</a></li>
+                                    <li><a href="ai-voice-agents.html" class="hover:text-purple-700 transition block">AI Voice Agents</a></li>
                                 </ul>
                             </div>
                             <div class="space-y-3 bg-emerald-50/50 p-3 -m-3 rounded-xl border border-emerald-100">
-                                <div class="flex items-center gap-2 text-emerald-700 font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-headset"></i> HELPDESK</div>
+                                <div class="flex items-center gap-2 text-emerald-700 font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-headset" aria-hidden="true"></i> HELPDESK</div>
                                 <ul class="space-y-2.5 text-slate-700 font-medium">
                                     <li><a href="customer-support.html" class="hover:text-emerald-600 transition block">Customer support</a></li>
                                     <li><a href="whatsapp-calling.html" class="hover:text-emerald-600 transition block font-bold text-emerald-700">WhatsApp calling ↗</a></li>
@@ -166,12 +157,13 @@
                             </div>
                             <div class="space-y-4">
                                 <div class="space-y-2">
-                                    <div class="text-bikOrange font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-comment-dots"></i> POPUPS</div>
-                                    <a href="solutions.html?module=gamification" class="hover:text-bikOrange transition block text-slate-600">Gamification</a>
+                                    <div class="text-orange-700 font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-comment-dots" aria-hidden="true"></i> POPUPS</div>
+                                    <a href="solutions.html?module=gamification" class="hover:text-bikOrange transition block text-slate-700">Gamification</a>
                                 </div>
                                 <div class="space-y-2 border-t border-slate-100 pt-3">
-                                    <div class="text-bikOrange font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-robot"></i> CHATBOTS</div>
-                                    <a href="solutions.html?module=whatsapp-chatbot" class="hover:text-bikOrange transition block text-slate-600">WhatsApp chatbot</a>
+                                    <div class="text-orange-700 font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-robot" aria-hidden="true"></i> CHATBOTS</div>
+                                    <a href="solutions.html?module=whatsapp-chatbot" class="hover:text-bikOrange transition block text-slate-700">WhatsApp chatbot</a>
+                                    <a href="solutions.html?module=instagram-chatbot" class="hover:text-bikOrange transition block text-slate-700 mt-1">Instagram chatbot</a>
                                 </div>
                             </div>
                         </div>
@@ -183,60 +175,66 @@
                 <a href="about.html" class="hover:text-bikOrange transition">About Us</a>
             </nav>
 
-            <div class="flex items-center space-x-3">
+            <div class="flex items-center space-x-2.5 shrink-0">
                 <div class="fc-auth-slot"></div>
-                <a href="store-automation.html" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-sm transition shadow-md shadow-orange-500/20">
+                <a href="store-automation.html" class="hidden sm:inline-flex items-center justify-center px-4 xl:px-5 py-2.5 rounded-xl bg-orange-700 hover:bg-orange-800 text-white font-bold text-xs xl:text-sm transition shadow-md shadow-orange-500/20 whitespace-nowrap shrink-0">
                     Explore Platform
                 </a>
-                <button id="fcMobileMenuBtn" type="button" aria-label="Toggle Mobile Menu" onclick="window.FC_WIDGETS && window.FC_WIDGETS.toggleMobileDrawer ? window.FC_WIDGETS.toggleMobileDrawer() : null" class="lg:hidden p-2 rounded-xl border border-slate-200 hover:border-bikOrange bg-white text-slate-700 hover:text-bikOrange transition flex items-center justify-center shrink-0 w-10 h-10 shadow-xs cursor-pointer touch-target-44"><i class="fa-solid fa-bars text-sm"></i></button>
+                <button id="fcMobileMenuBtn" type="button" aria-label="Toggle Mobile Menu" aria-expanded="false" aria-controls="fcMobileDrawer" onclick="window.FC_WIDGETS && window.FC_WIDGETS.toggleMobileDrawer ? window.FC_WIDGETS.toggleMobileDrawer() : null" class="lg:hidden p-2 rounded-xl border border-slate-200 hover:border-bikOrange bg-white text-slate-700 hover:text-bikOrange transition flex items-center justify-center shrink-0 w-10 h-10 shadow-sm cursor-pointer touch-target-44 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange focus-visible:ring-offset-2"><i class="fa-solid fa-bars text-sm" aria-hidden="true"></i></button>
             </div>
         </div>
     </header>
 
-    <!-- MAIN DYNAMIC CONTENT (CLEAN Flying Cheetah LIGHT THEME) -->
-    <main class="max-w-5xl mx-auto px-4 py-16 md:py-24">
-        
+    <!-- MAIN DYNAMIC CONTENT -->
+    <main id="main-content" class="max-w-5xl mx-auto px-4 py-16 md:py-24">
+
         <!-- Module Header -->
         <div class="text-center max-w-2xl mx-auto mb-12">
-            <span id="moduleBadge" class="text-bikOrange text-xs font-bold uppercase tracking-widest bg-orange-100/70 border border-orange-200 px-3.5 py-1 rounded-full">Module Overview</span>
-            <h1 id="moduleTitle" class="text-3xl sm:text-5xl font-black text-bikDark mt-4 font-display">Module Specification</h1>
-            <p id="moduleDesc" class="text-slateText text-sm sm:text-base mt-3 leading-relaxed">Detailed architecture, implementation specs, and deployment timelines by Flying Cheetah Labs.</p>
+            <span id="moduleBadge" class="text-orange-700 text-xs font-bold uppercase tracking-widest bg-orange-100/70 border border-orange-200 px-3.5 py-1 rounded-full">Enterprise Architecture Overview</span>
+            <h1 id="moduleTitle" class="text-3xl sm:text-5xl font-black text-bikDark mt-4 font-display">Flying Cheetah Autonomous Commerce Suite</h1>
+            <p id="moduleDesc" class="text-slate-700 text-sm sm:text-base mt-3 leading-relaxed">Explore production-ready AI Voice Agents, WhatsApp automation, Borzo hyperlocal fleet dispatch, unified CDP 360, and interactive storefront modules configured in 48 hours.</p>
         </div>
 
         <!-- Quick Module Selector Pill Bar -->
         <div class="flex items-center justify-center flex-wrap gap-2 mb-10 max-w-4xl mx-auto">
             <a href="whatsapp-marketing.html" class="px-3.5 py-1.5 rounded-full text-xs font-bold border border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 transition flex items-center gap-1.5">
-                <i class="fa-brands fa-whatsapp"></i> WhatsApp Marketing
+                <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> WhatsApp Marketing
+            </a>
+            <a href="ai-voice-agents.html" class="px-3.5 py-1.5 rounded-full text-xs font-bold border border-purple-200 bg-purple-50 text-purple-700 hover:bg-purple-100 transition flex items-center gap-1.5">
+                <i class="fa-solid fa-microphone-lines" aria-hidden="true"></i> AI Voice Agents
+            </a>
+            <a href="delivery.html" class="px-3.5 py-1.5 rounded-full text-xs font-bold border border-emerald-200 bg-white text-emerald-700 hover:bg-emerald-50 transition flex items-center gap-1.5">
+                <i class="fa-solid fa-motorcycle" aria-hidden="true"></i> Borzo Fleet Dispatch
             </a>
             <a href="email-marketing.html" class="px-3.5 py-1.5 rounded-full text-xs font-bold border border-slate-200 bg-white text-slate-700 hover:border-bikOrange hover:text-bikOrange transition flex items-center gap-1.5">
-                <i class="fa-solid fa-envelope"></i> Email Sequences
+                <i class="fa-solid fa-envelope" aria-hidden="true"></i> Email Sequences
             </a>
             <a href="sms-marketing.html" class="px-3.5 py-1.5 rounded-full text-xs font-bold border border-slate-200 bg-white text-slate-700 hover:border-bikOrange hover:text-bikOrange transition flex items-center gap-1.5">
-                <i class="fa-solid fa-comment-sms"></i> SMS & DLT
+                <i class="fa-solid fa-comment-sms" aria-hidden="true"></i> SMS &amp; DLT
             </a>
             <a href="customer-data-platform.html" class="px-3.5 py-1.5 rounded-full text-xs font-bold border border-slate-200 bg-white text-slate-700 hover:border-bikOrange hover:text-bikOrange transition flex items-center gap-1.5">
-                <i class="fa-solid fa-database"></i> Customer CDP
+                <i class="fa-solid fa-database" aria-hidden="true"></i> Customer CDP
             </a>
             <a href="rcs-messaging.html" class="px-3.5 py-1.5 rounded-full text-xs font-bold border border-slate-200 bg-white text-slate-700 hover:border-bikOrange hover:text-bikOrange transition flex items-center gap-1.5">
-                <i class="fa-solid fa-comment-dots"></i> RCS Messaging
+                <i class="fa-solid fa-comment-dots" aria-hidden="true"></i> RCS Messaging
             </a>
             <a href="customer-support.html" class="px-3.5 py-1.5 rounded-full text-xs font-bold border border-slate-200 bg-white text-slate-700 hover:border-bikOrange hover:text-bikOrange transition flex items-center gap-1.5">
-                <i class="fa-solid fa-headset"></i> Support Inbox
+                <i class="fa-solid fa-headset" aria-hidden="true"></i> Support Inbox
             </a>
-            <a href="whatsapp-calling.html" class="px-3.5 py-1.5 rounded-full text-xs font-bold border border-slate-200 bg-white text-slate-700 hover:border-bikOrange hover:text-bikOrange transition flex items-center gap-1.5">
-                <i class="fa-solid fa-phone"></i> In-Chat Voice
+            <a href="solutions.html?module=whatsapp-calling" class="px-3.5 py-1.5 rounded-full text-xs font-bold border border-slate-200 bg-white text-slate-700 hover:border-bikOrange hover:text-bikOrange transition flex items-center gap-1.5">
+                <i class="fa-solid fa-phone" aria-hidden="true"></i> In-Chat Voice
             </a>
             <a href="solutions.html?module=gamification" class="px-3.5 py-1.5 rounded-full text-xs font-bold border border-slate-200 bg-white text-slate-700 hover:border-bikOrange hover:text-bikOrange transition flex items-center gap-1.5">
-                <i class="fa-solid fa-dice"></i> Gamification
+                <i class="fa-solid fa-dice" aria-hidden="true"></i> Gamification
             </a>
             <a href="solutions.html?module=whatsapp-chatbot" class="px-3.5 py-1.5 rounded-full text-xs font-bold border border-slate-200 bg-white text-slate-700 hover:border-bikOrange hover:text-bikOrange transition flex items-center gap-1.5">
-                <i class="fa-solid fa-robot"></i> WhatsApp Bot
+                <i class="fa-solid fa-robot" aria-hidden="true"></i> WhatsApp Bot
             </a>
             <a href="solutions.html?module=instagram-chatbot" class="px-3.5 py-1.5 rounded-full text-xs font-bold border border-slate-200 bg-white text-slate-700 hover:border-bikOrange hover:text-bikOrange transition flex items-center gap-1.5">
-                <i class="fa-brands fa-instagram"></i> Instagram Bot
+                <i class="fa-brands fa-instagram" aria-hidden="true"></i> Instagram Bot
             </a>
-            <a href="solutions.html?module=ai-commerce-agents" class="px-3.5 py-1.5 rounded-full text-xs font-bold border border-violet-200 bg-violet-50 text-violet-700 hover:bg-violet-100 transition flex items-center gap-1.5">
-                <i class="fa-solid fa-wand-magic-sparkles"></i> 15+ AI Agents
+            <a href="solutions.html?module=ai-commerce-agents" class="px-3.5 py-1.5 rounded-full text-xs font-bold border border-purple-200 bg-purple-50 text-purple-700 hover:bg-purple-100 transition flex items-center gap-1.5">
+                <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i> 15+ AI Agents
             </a>
         </div>
 
@@ -244,224 +242,99 @@
         <div class="relative">
             <div class="bg-white rounded-3xl border border-orange-200/80 p-8 sm:p-12 shadow-2xl bik-mega-shadow max-w-3xl mx-auto space-y-8 fc-card-glow relative">
                 <div class="flex items-center gap-5 border-b border-slate-100 pb-8">
-                    <div id="moduleIcon" class="w-16 h-16 rounded-2xl bg-orange-100 text-bikOrange flex items-center justify-center text-3xl font-bold shadow-sm">
-                        <i class="fa-solid fa-bolt"></i>
+                    <div id="moduleIcon" class="w-16 h-16 rounded-2xl bg-orange-100 text-orange-700 flex items-center justify-center text-3xl font-bold shadow-sm shrink-0">
+                        <i class="fa-solid fa-bolt" aria-hidden="true"></i>
                     </div>
                     <div>
-                        <h3 id="moduleName" class="text-2xl font-black text-bikDark font-display">Module Name</h3>
-                        <span id="moduleStatus" class="text-xs font-bold text-emerald-600 mt-0.5 inline-block">● Production-Ready for 48-Hour Deployment</span>
+                        <h2 id="moduleName" class="text-2xl font-black text-bikDark font-display">Enterprise Solutions Architecture</h2>
+                        <span id="moduleStatus" class="text-xs font-bold text-emerald-700 mt-0.5 inline-block">&#9679; Production-Ready for 48-Hour Deployment</span>
                     </div>
                 </div>
 
                 <!-- Visual Asset for Module -->
                 <div class="rounded-2xl border border-slate-200 overflow-hidden bg-white p-2 shadow-sm">
-                    <img id="moduleHeroImg" src="images/whatsapp_automation_journey_ui.jpg" alt="Module Architecture Mockup" class="rounded-xl w-full h-auto object-cover border border-slate-100 hover:scale-[1.01] transition duration-500">
+                    <img id="moduleHeroImg" src="images/whatsapp_automation_journey_ui.jpg" alt="Flying Cheetah Enterprise Module Architecture Mockup" class="rounded-xl w-full h-auto object-cover border border-slate-100 block">
                 </div>
 
                 <div class="space-y-5 text-sm text-slate-700 leading-relaxed">
-                    <h4 class="font-extrabold text-bikDark text-lg font-display">System Capabilities:</h4>
-                    <p id="moduleDetailText" class="text-base text-slateText">Loading specification details...</p>
+                    <h3 class="font-extrabold text-bikDark text-lg font-display">System Capabilities:</h3>
+                    <p id="moduleDetailText" class="text-base text-slate-700">Unify WhatsApp Cloud API broadcasts, AI Voice Agents for COD verification, Borzo hyperlocal fleet dispatch, unified Customer Data Platform (CDP 360), and omnichannel helpdesk queues inside one zero-commission commerce OS.</p>
 
-                    <h4 class="font-extrabold text-bikDark text-lg font-display pt-2">Operational Guarantees:</h4>
+                    <h3 class="font-extrabold text-bikDark text-lg font-display pt-2">Operational Guarantees:</h3>
                     <ul id="modulePoints" class="space-y-3 text-xs sm:text-sm text-slate-700 font-medium">
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-emerald-500 text-base"></i> <span>Done-for-you configuration and live onboarding by Flying Cheetah Technical Team</span></li>
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-emerald-500 text-base"></i> <span>Direct integration with official Meta WhatsApp API & Google Sheets</span></li>
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-emerald-500 text-base"></i> <span>14-day zero-risk trial period with continuous monitoring</span></li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-emerald-700 text-base" aria-hidden="true"></i> <span>Done-for-you configuration and live onboarding by Flying Cheetah Technical Team</span></li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-emerald-700 text-base" aria-hidden="true"></i> <span>Direct integration with official Meta WhatsApp API, Shopify &amp; Borzo Fleet Dispatch</span></li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-emerald-700 text-base" aria-hidden="true"></i> <span>14-day zero-risk trial period with continuous monitoring</span></li>
                     </ul>
                 </div>
 
-                <!-- WhatsApp Action -->
+                <!-- WhatsApp & Audit Action -->
                 <div class="pt-8 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
-                    <div class="text-xs font-medium text-slate-400">Direct Founder Access • South Mumbai & MMR</div>
-                    <a id="consultBtn" onclick="if(window.FC_LEADS){window.FC_LEADS.openAuditModal('Enterprise Solutions Architecture');return false;}" href="https://wa.me/919920386421" target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-sm transition shadow-lg shadow-orange-500/25">
-                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <div class="text-xs font-medium text-slate-600">Direct Founder Access &bull; South Mumbai &amp; MMR</div>
+                    <a id="consultBtn" onclick="if(window.FC_LEADS){window.FC_LEADS.openAuditModal('Enterprise Solutions Architecture');return false;}" href="https://wa.me/919920386421" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-orange-700 hover:bg-orange-800 text-white font-bold text-sm transition shadow-lg shadow-orange-500/25">
+                        <i class="fa-brands fa-whatsapp text-lg" aria-hidden="true"></i>
                         <span>Activate This Module</span>
                     </a>
                 </div>
             </div>
         </div>
+
+        <!-- OVERVIEW DIRECTORY CARDS (Visible in Overview Mode & Deep-Links) -->
+        <section class="mt-16 space-y-8">
+            <div class="text-center max-w-2xl mx-auto">
+                <span class="text-xs font-bold uppercase tracking-widest text-orange-700 bg-orange-50 px-3 py-1 rounded-full border border-orange-200">Core Enterprise Stack</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-bikDark font-display mt-3">Connected Modules Inside Flying Cheetah</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <a href="customer-data-platform.html" class="p-6 rounded-3xl bg-white border border-indigo-200 card-anim shadow-sm space-y-4 block">
+                    <img src="images/cdp_unified_hub_3d.jpg" alt="Unified Customer Data Platform 360 Hub" loading="lazy" class="w-full h-40 object-cover rounded-2xl border border-slate-100">
+                    <div class="text-xs font-bold text-indigo-700 uppercase tracking-wider">Unified CDP 360</div>
+                    <h3 class="text-base font-bold text-bikDark">Customer Data Platform</h3>
+                    <p class="text-xs text-slate-700 leading-relaxed">Merge Shopify orders, WhatsApp threads, and POS bills into one RFM loyalty profile.</p>
+                </a>
+
+                <a href="customer-support.html" class="p-6 rounded-3xl bg-white border border-orange-200 card-anim shadow-sm space-y-4 block">
+                    <img src="images/helpdesk_omnichannel_inbox.jpg" alt="Omnichannel Helpdesk Support Desk" loading="lazy" class="w-full h-40 object-cover rounded-2xl border border-slate-100">
+                    <div class="text-xs font-bold text-orange-700 uppercase tracking-wider">Shared Inbox &amp; Borzo</div>
+                    <h3 class="text-base font-bold text-bikDark">Omnichannel Helpdesk</h3>
+                    <p class="text-xs text-slate-700 leading-relaxed">Unify WhatsApp, Instagram DMs, Email, and 1-click Borzo reverse pickups in one queue.</p>
+                </a>
+
+                <a href="whatsapp-calling.html" class="p-6 rounded-3xl bg-white border border-emerald-200 card-anim shadow-sm space-y-4 block">
+                    <img src="images/whatsapp_calling_architecture_light.png" alt="WhatsApp Calling VoIP Architecture" loading="lazy" class="w-full h-40 object-cover rounded-2xl border border-slate-100">
+                    <div class="text-xs font-bold text-emerald-700 uppercase tracking-wider">Meta Cloud VoIP</div>
+                    <h3 class="text-base font-bold text-bikDark">WhatsApp Calling &amp; AI Voice</h3>
+                    <p class="text-xs text-slate-700 leading-relaxed">24kHz HD in-chat calling and AI Voice Agents for automated COD order confirmation.</p>
+                </a>
+            </div>
+        </section>
+
     </main>
 
-    
-    <footer class="py-12 bg-white border-t border-slate-200 text-xs text-slate-500">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <footer class="py-12 bg-white border-t border-slate-200 text-xs text-slate-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between gap-6">
             <div class="flex items-center space-x-3">
                 <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah" class="h-6 w-6 rounded-full object-cover border border-slate-300">
-                <span class="font-bold text-slate-700">FLYING CHEETAH LABS • ENTERPRISE SUITE © 2026.</span>
+                <span class="font-bold text-slate-800">FLYING CHEETAH LABS &bull; ENTERPRISE SUITE &copy; 2026.</span>
                 <span>All Rights Reserved.</span>
             </div>
-            <div class="flex flex-wrap items-center gap-4 font-medium text-slate-600">
+            <div class="flex flex-wrap items-center justify-center gap-4 font-medium text-slate-700">
                 <a href="index.html" class="hover:text-bikOrange transition">Main Site</a>
                 <a href="store-automation.html" class="hover:text-bikOrange transition">Store Automation</a>
-                <a href="instagram-automation.html" class="hover:text-pink-600 transition">Instagram</a>
-                <a href="whatsapp-automation.html" class="hover:text-emerald-600 transition">WhatsApp</a>
-                <a href="ctwa-automation.html" class="hover:text-blue-600 transition">CTWA Ads</a>
-                <a href="ai-voice-agents.html" class="hover:text-purple-600 transition">Voice Agents</a>
+                <a href="instagram-automation.html" class="hover:text-pink-700 transition">Instagram</a>
+                <a href="whatsapp-automation.html" class="hover:text-emerald-700 transition">WhatsApp</a>
+                <a href="ctwa-automation.html" class="hover:text-blue-700 transition">CTWA Ads</a>
+                <a href="ai-voice-agents.html" class="hover:text-purple-700 transition">Voice Agents</a>
                 <a href="delivery.html" class="hover:text-bikOrange transition">Fleet Protocol</a>
                 <a href="about.html" class="hover:text-bikOrange transition">About Us</a>
+                <a href="privacy-policy.html" class="hover:text-bikOrange transition">Privacy Policy</a>
+                <a href="terms-of-service.html" class="hover:text-bikOrange transition">Terms</a>
+                <a href="refund-policy.html" class="hover:text-bikOrange transition">Refunds</a>
             </div>
         </div>
     </footer>
 
-    <script>
-        const params = new URLSearchParams(window.location.search);
-        let moduleKey = params.get('module') || 'whatsapp-marketing';
-        if (moduleKey === 'integrations' || moduleKey === 'calculator') { window.location.replace('store-automation.html'); }
-
-        const directRedirects = {
-            'email-marketing': 'email-marketing.html',
-            'whatsapp-marketing': 'whatsapp-marketing.html',
-            'sms-marketing': 'sms-marketing.html',
-            'customer-data-platform': 'customer-data-platform.html',
-            'rcs-messaging': 'rcs-messaging.html',
-            'rcs': 'rcs-messaging.html',
-            'store-automation': 'store-automation.html',
-            'instagram-automation': 'instagram-automation.html',
-            'whatsapp-automation': 'whatsapp-automation.html',
-            'ctwa-automation': 'ctwa-automation.html',
-            'click-to-whatsapp-ads': 'ctwa-automation.html',
-            'ai-voice-agents': 'ai-voice-agents.html',
-            'delivery': 'delivery.html',
-            'customer-support': 'customer-support.html',
-        };
-
-        if (directRedirects[moduleKey]) {
-            window.location.replace(directRedirects[moduleKey]);
-        }
-
-        const modules = {
-            'email-marketing': {
-                badge: 'Campaigns Module',
-                title: 'High-Deliverability Email Marketing',
-                icon: 'fa-envelope',
-                name: 'Automated Email Marketing Sequences',
-                desc: 'Segment customers based on browsing behavior and trigger personalized transactional newsletters.',
-                detail: 'Our automated email engine connects to your customer database to send abandoned cart nudges, post-purchase receipts, and restock alerts with a 97% inbox deliverability rate.',
-                img: 'images/store_automation_ui_mockup.jpg'
-            },
-            'whatsapp-marketing': {
-                badge: 'Campaigns Module',
-                title: 'Official WhatsApp Marketing & Broadcasts',
-                icon: 'fa-brands fa-whatsapp',
-                name: 'WhatsApp Marketing Engine',
-                desc: 'Broadcast hyper-targeted offers with 85%+ open rates directly to verified customer phone numbers.',
-                detail: 'Leverage Meta-approved templates, multimedia catalogs, and dynamic buttons. Send bulk campaigns without getting your business number flagged or banned.',
-                img: 'images/whatsapp_automation_journey_ui.jpg'
-            },
-            'sms-marketing': {
-                badge: 'Campaigns Module',
-                title: 'Instant SMS & DLT Gateway',
-                icon: 'fa-comment-sms',
-                name: 'Transactional SMS Engine',
-                desc: 'Fast OTP, order tracking SMS, and fallback notification sequences.',
-                detail: 'Direct carrier routing across India ensuring 3-second delivery for verification codes, pickup alerts, and courier arrival notifications.',
-                img: 'images/ctwa_automation_dashboard.jpg'
-            },
-            'customer-data-platform': {
-                badge: 'Campaigns Module',
-                title: 'Unified Customer Data Platform (CDP)',
-                icon: 'fa-database',
-                name: 'Single Customer View & Data Layer',
-                desc: 'Consolidate orders from Shopify, WhatsApp, and offline billing into one profile.',
-                detail: 'Track total lifetime value (LTV), order frequency, and favorite product categories to execute high-conversion upsell campaigns.',
-                img: 'images/cdp_shopper_journey_360.jpg'
-            },
-            'rcs-messaging': {
-                badge: 'Campaigns Module',
-                title: 'Next-Gen RCS Rich Messaging',
-                icon: 'fa-comments',
-                name: 'Rich Communication Services (RCS)',
-                desc: 'Interactive branded SMS with carousel product cards and verified badges on Android.',
-                detail: 'Engage Android users with rich interactive cards, verified business checkmarks, and instant action buttons right in their default messaging app.',
-                img: 'images/rcs_rich_business_messaging.jpg'
-            },
-            'customer-support': {
-                badge: 'Helpdesk Module',
-                title: 'Unified Customer Support Helpdesk',
-                icon: 'fa-headset',
-                name: 'Omnichannel Support Inbox',
-                desc: 'Manage WhatsApp, Instagram, and web chats from a single dashboard.',
-                detail: 'Empower your team with smart canned responses, automated routing, and ticket escalation directly to management for high-priority VIP buyers.',
-                img: 'images/omnichannel_support_desk_3d.jpg'
-            },
-            'whatsapp-calling': {
-                badge: 'Helpdesk Module',
-                title: 'In-Chat WhatsApp Voice Calling',
-                icon: 'fa-phone',
-                name: 'Direct WhatsApp Voice Gateway',
-                desc: 'Let customers call your business with 1 tap inside the chat.',
-                detail: 'No phone numbers to dial. Customers tap call directly inside WhatsApp to speak with your representative or trigger an AI voice assistant.',
-                img: 'images/whatsapp_voip_telemetry_ui.jpg'
-            },
-            'gamification': {
-                badge: 'Popups Module',
-                title: 'Spin-to-Win Gamified Popups',
-                icon: 'fa-dice',
-                name: 'Interactive Gamification Popups',
-                desc: 'Engage website visitors with spin wheels and scratch cards to capture numbers.',
-                detail: 'Capture 30-40% more phone numbers by offering visitors a fun discount wheel that sends their exclusive coupon code directly to their WhatsApp.',
-                img: 'images/bik_main_platform_dashboard.jpg'
-            },
-            'whatsapp-chatbot': {
-                badge: 'Chatbots Module',
-                title: 'Multi-Turn AI WhatsApp Chatbot',
-                icon: 'fa-robot',
-                name: 'Autonomous Intelligent Chatbot',
-                desc: 'Natural language conversations that understand Hinglish and typos.',
-                detail: 'Understands customer slang, product inquiries, and delivery questions, answering accurately without sounding like a robotic menu.',
-                img: 'images/whatsapp_automation_journey_ui.jpg'
-            },
-            'instagram-chatbot': {
-                badge: 'Chatbots Module',
-                title: 'Instagram AI Sales Assistant',
-                icon: 'fa-comment',
-                name: 'Instagram Direct Messenger AI',
-                desc: 'Automates customer qualification and catalog distribution in Instagram DMs.',
-                detail: 'Never miss an Instagram DM while asleep. Collects buyer delivery pin codes and directs them to complete payment securely.',
-                img: 'images/instagram_automation_dashboard.jpg'
-            },
-            'ai-commerce-agents': {
-                badge: 'AI Agents Module',
-                title: 'Autonomous AI Commerce Agents',
-                icon: 'fa-wand-magic-sparkles',
-                name: 'Autonomous Revenue & Recovery Agents',
-                desc: 'Self-improving AI agents that optimize product recommendations and recover lost sales.',
-                detail: 'Agents analyze past purchase patterns to recommend relevant upsells and cross-sells, boosting Average Order Value (AOV) by up to 24%.',
-                img: 'images/hero_revenue_profit_dashboard.jpg'
-            }
-        };
-
-        const data = modules[moduleKey] || modules['whatsapp-marketing'];
-        document.getElementById('moduleBadge').textContent = data.badge;
-        document.getElementById('moduleTitle').textContent = data.title;
-        document.getElementById('moduleDesc').textContent = data.desc;
-        document.getElementById('moduleName').textContent = data.name;
-        document.getElementById('moduleDetailText').textContent = data.detail;
-        document.getElementById('moduleHeroImg').src = data.img || 'images/whatsapp_automation_journey_ui.jpg';
-        document.getElementById('moduleIcon').innerHTML = `<i class="${data.icon.includes('fa-') ? data.icon : 'fa-solid ' + data.icon}"></i>`;
-        document.getElementById('consultBtn').href = `https://wa.me/919920386421?text=${encodeURIComponent(`Hi Flying Cheetah team, I am interested in deploying the "${data.name}" module.`)}`;
-    </script>
-    <script>
-        // Toggle dropdowns on click & close when clicking outside
-        document.addEventListener('DOMContentLoaded', function() {
-            const dropdownParents = document.querySelectorAll('.dropdown-parent');
-            dropdownParents.forEach(function(parent) {
-                const btn = parent.querySelector('button');
-                if (btn) {
-                    btn.addEventListener('click', function(e) {
-                        e.stopPropagation();
-                        // Close other open dropdowns
-                        dropdownParents.forEach(p => { if (p !== parent) p.classList.remove('active'); });
-                        parent.classList.toggle('active');
-                    });
-                }
-            });
-
-            document.addEventListener('click', function(e) {
-                dropdownParents.forEach(p => p.classList.remove('active'));
-            });
-        });
-    </script>
     <!-- Supabase & Flying Cheetah Backend Architecture SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="js/supabase-client.js"></script>
@@ -469,22 +342,150 @@
     <script src="js/leads.js"></script>
     <script src="js/fc-widgets.js"></script>
 
-<script>
-        // Top-level nav links hover safety: immediately dismiss all dropdowns
-        document.querySelectorAll('nav > a').forEach(function(link) {
-            link.addEventListener('mouseenter', function() {
-                document.querySelectorAll('.home-dropdown-parent, .products-dropdown-parent, .dropdown-parent').forEach(function(p) {
+    <script>
+        (function() {
+            const params = new URLSearchParams(window.location.search);
+            const rawModule = params.get('module');
+
+            if (rawModule === 'integrations' || rawModule === 'calculator') {
+                window.location.replace('store-automation.html');
+                return;
+            }
+
+            const directRedirects = {
+                'email-marketing': 'email-marketing.html',
+                'whatsapp-marketing': 'whatsapp-marketing.html',
+                'sms-marketing': 'sms-marketing.html',
+                'customer-data-platform': 'customer-data-platform.html',
+                'rcs-messaging': 'rcs-messaging.html',
+                'rcs': 'rcs-messaging.html',
+                'store-automation': 'store-automation.html',
+                'instagram-automation': 'instagram-automation.html',
+                'whatsapp-automation': 'whatsapp-automation.html',
+                'ctwa-automation': 'ctwa-automation.html',
+                'click-to-whatsapp-ads': 'ctwa-automation.html',
+                'ai-voice-agents': 'ai-voice-agents.html',
+                'delivery': 'delivery.html',
+                'customer-support': 'customer-support.html'
+            };
+
+            if (rawModule && directRedirects[rawModule]) {
+                window.location.replace(directRedirects[rawModule]);
+                return;
+            }
+
+            const modules = {
+                'overview': {
+                    badge: 'Enterprise Architecture Overview',
+                    title: 'Flying Cheetah Autonomous Commerce Suite',
+                    icon: 'fa-bolt',
+                    name: 'Enterprise Solutions Architecture',
+                    desc: 'Explore production-ready AI Voice Agents, WhatsApp automation, Borzo hyperlocal fleet dispatch, unified CDP 360, and interactive storefront modules configured in 48 hours.',
+                    detail: 'Unify WhatsApp Cloud API broadcasts, AI Voice Agents for COD verification, Borzo hyperlocal fleet dispatch, unified Customer Data Platform (CDP 360), and omnichannel helpdesk queues inside one zero-commission commerce OS.',
+                    img: 'images/whatsapp_automation_journey_ui.jpg'
+                },
+                'whatsapp-calling': {
+                    badge: 'Helpdesk Module',
+                    title: 'In-Chat WhatsApp Voice Calling',
+                    icon: 'fa-phone',
+                    name: 'Direct WhatsApp Voice Gateway',
+                    desc: 'Let customers call your business with 1 tap inside the chat.',
+                    detail: 'No phone numbers to dial. Customers tap call directly inside WhatsApp to speak with your representative or trigger an AI Voice Agent with live Shopify context.',
+                    img: 'images/whatsapp_calling_architecture_light.png'
+                },
+                'gamification': {
+                    badge: 'Popups Module',
+                    title: 'Spin-to-Win Gamified Popups',
+                    icon: 'fa-dice',
+                    name: 'Interactive Gamification Popups',
+                    desc: 'Engage website visitors with spin wheels and scratch cards to capture verified WhatsApp leads.',
+                    detail: 'Capture 30-40% more phone numbers by offering visitors an interactive discount wheel that delivers their exclusive coupon code directly to their WhatsApp.',
+                    img: 'images/bik_main_platform_dashboard.jpg'
+                },
+                'whatsapp-chatbot': {
+                    badge: 'Chatbots Module',
+                    title: 'Multi-Turn AI WhatsApp Chatbot',
+                    icon: 'fa-robot',
+                    name: 'Autonomous Intelligent Chatbot',
+                    desc: 'Natural language conversations that understand Hinglish and shopper intent.',
+                    detail: 'Understands customer slang, sizing questions, and Borzo delivery tracking queries, answering accurately 24/7 with 1-tap UPI checkout.',
+                    img: 'images/whatsapp_automation_journey_ui.jpg'
+                },
+                'instagram-chatbot': {
+                    badge: 'Chatbots Module',
+                    title: 'Instagram AI Sales Assistant',
+                    icon: 'fa-comment',
+                    name: 'Instagram Direct Messenger AI',
+                    desc: 'Automates customer qualification and catalog distribution in Instagram DMs.',
+                    detail: 'Never miss a Story reply or Reel comment while asleep. Collects buyer delivery pin codes and directs them to complete payment securely.',
+                    img: 'images/instagram_automation_dashboard.jpg'
+                },
+                'ai-commerce-agents': {
+                    badge: 'AI Agents Module',
+                    title: 'Autonomous AI Commerce Agents',
+                    icon: 'fa-wand-magic-sparkles',
+                    name: 'Autonomous Revenue & Recovery Agents',
+                    desc: 'Self-improving AI agents that optimize product recommendations and recover lost sales.',
+                    detail: 'Agents analyze past purchase patterns in your CDP to recommend relevant upsells and trigger AI Voice Agents, boosting Average Order Value (AOV) by up to 24%.',
+                    img: 'images/hero_revenue_profit_dashboard.jpg'
+                }
+            };
+
+            const key = rawModule && modules[rawModule] ? rawModule : 'overview';
+            const data = modules[key];
+            document.getElementById('moduleBadge').textContent = data.badge;
+            document.getElementById('moduleTitle').textContent = data.title;
+            document.getElementById('moduleDesc').textContent = data.desc;
+            document.getElementById('moduleName').textContent = data.name;
+            document.getElementById('moduleDetailText').textContent = data.detail;
+            document.getElementById('moduleHeroImg').src = data.img;
+            document.getElementById('moduleIcon').innerHTML = `<i class="${data.icon.includes('fa-') && (data.icon.includes('fa-brands') || data.icon.includes('fa-solid')) ? data.icon : 'fa-solid ' + data.icon}" aria-hidden="true"></i>`;
+            document.getElementById('consultBtn').href = `https://wa.me/919920386421?text=${encodeURIComponent(`Hi Flying Cheetah team, I am interested in deploying the "${data.name}" module.`)}`;
+        })();
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const authSlot = document.querySelector('.fc-auth-slot');
+            if (authSlot) {
+                const ensureAuthBtnType = () => {
+                    authSlot.querySelectorAll('button:not([type])').forEach(b => b.setAttribute('type', 'button'));
+                };
+                ensureAuthBtnType();
+                new MutationObserver(ensureAuthBtnType).observe(authSlot, { childList: true, subtree: true });
+            }
+
+            const dropdownParents = document.querySelectorAll('.home-dropdown-parent, .products-dropdown-parent, .dropdown-parent');
+            function closeAllDropdowns() {
+                dropdownParents.forEach(function(p) {
                     p.classList.remove('active');
-                });
-            });
-        });
-        // Click outside dismiss
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('.home-dropdown-parent') && !e.target.closest('.products-dropdown-parent') && !e.target.closest('.dropdown-parent')) {
-                document.querySelectorAll('.home-dropdown-parent, .products-dropdown-parent, .dropdown-parent').forEach(function(p) {
-                    p.classList.remove('active');
+                    const b = p.querySelector('button[aria-expanded]');
+                    if (b) b.setAttribute('aria-expanded', 'false');
                 });
             }
+
+            dropdownParents.forEach(function(parent) {
+                const btn = parent.querySelector('button');
+                if (btn) {
+                    btn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const willOpen = !parent.classList.contains('active');
+                        closeAllDropdowns();
+                        if (willOpen) {
+                            parent.classList.add('active');
+                            btn.setAttribute('aria-expanded', 'true');
+                        }
+                    });
+                }
+            });
+
+            document.querySelectorAll('header nav > a').forEach(function(link) {
+                link.addEventListener('mouseenter', closeAllDropdowns);
+            });
+
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.home-dropdown-parent') && !e.target.closest('.products-dropdown-parent') && !e.target.closest('.dropdown-parent')) {
+                    closeAllDropdowns();
+                }
+            });
         });
     </script>
 </body>

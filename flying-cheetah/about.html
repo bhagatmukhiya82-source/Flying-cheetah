@@ -56,7 +56,7 @@
     }
     </script>
 
-    <!-- Tailwind CSS CDN -->
+    <!-- Compiled Tailwind CSS -->
     <link rel="stylesheet" href="css/styles.min.css">
     <!-- FontAwesome 6 CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -67,22 +67,15 @@
     <link rel="stylesheet" href="css/fx.css">
     
     <style>
-        .dropdown-parent:hover .mega-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        .mega-menu {
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(8px);
-            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .home-menu.active {
-            opacity: 1 !important;
-            visibility: visible !important;
-            transform: translateY(0) !important;
-        }
+        .bik-mega-shadow { box-shadow: 0 25px 60px -15px rgba(255, 104, 56, 0.15), 0 0 1px 1px rgba(0, 0, 0, 0.05); }
+        .home-menu { display: none; }
+        .home-dropdown-parent:hover > .home-menu,
+        .home-dropdown-parent.active > .home-menu { display: block; }
+        .mega-menu { display: none; }
+        .products-dropdown-parent:hover > .mega-menu,
+        .products-dropdown-parent.active > .mega-menu,
+        .dropdown-parent:hover > .mega-menu,
+        .dropdown-parent.active > .mega-menu { display: block; }
         .card-anim {
             transition: all 0.25s ease;
         }
@@ -91,66 +84,64 @@
             box-shadow: 0 20px 35px -10px rgba(0,0,0,0.08);
         }
     </style>
-    <link rel="stylesheet" href="css/mobile-app.css">
+    <link id="fcMobileAppStyles" rel="stylesheet" href="css/mobile-app.css">
 </head>
-<body class="bg-white text-slate-800 font-sans antialiased selection:bg-orange-100 selection:text-bikOrange">
+<body class="bg-white text-slate-900 font-sans antialiased selection:bg-orange-100 selection:text-orange-700">
 
     <!-- TOP ANNOUNCEMENT BANNER -->
     <div class="bg-gradient-to-r from-orange-50 via-amber-50/70 to-emerald-50 border-b border-orange-200/70 text-bikDark text-xs py-2 px-4 text-center font-medium flex items-center justify-center gap-2">
         <span class="inline-flex items-center justify-center w-2 h-2 rounded-full bg-bikOrange ring-2 ring-orange-400/40 animate-ping"></span>
         <span><b>Our Philosophy:</b> We build machines that sell things at 3 AM while you sleep soundly.</span>
-        <a href="#rules" class="underline ml-2 text-bikOrange font-bold hover:text-bikOrangeDark transition">Our House Rules ↓</a>
+        <a href="#rules" class="underline ml-2 text-orange-700 font-bold hover:text-orange-800 transition">Our House Rules ↓</a>
     </div>
 
     <!-- HEADER / NAVIGATION -->
     <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
             
-            <a href="index.html" class="flex items-center gap-3 group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-bikOrange to-amber-500 flex items-center justify-center text-white shadow-md shadow-orange-500/20 group-hover:scale-105 transition">
-                    <i class="fa-solid fa-bolt text-lg"></i>
-                </div>
-                <div>
-                    <span class="font-display font-extrabold text-xl tracking-tight text-bikDark block leading-none">Flying Cheetah</span>
-                    <span class="text-[10px] text-slateText tracking-widest uppercase font-semibold">Autonomous Commerce</span>
+            <a href="index.html" class="flex items-center space-x-3 shrink-0 whitespace-nowrap">
+                <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah Logo" class="h-11 w-11 rounded-full object-cover border border-slate-200 shadow-sm">
+                <div class="flex flex-col">
+                    <span class="text-lg xl:text-xl font-black tracking-tight font-display text-bikDark">FLYING CHEETAH</span>
+                    <span class="text-[9px] text-orange-700 font-bold tracking-widest uppercase -mt-1">AUTONOMOUS COMMERCE</span>
                 </div>
             </a>
 
             <!-- NAV LINKS -->
-            <nav class="hidden lg:flex items-center gap-5 xl:gap-7 text-[13px] xl:text-sm font-semibold text-slate-700 whitespace-nowrap">
+            <nav aria-label="Primary Navigation" class="hidden lg:flex items-center gap-5 xl:gap-7 text-[13px] xl:text-sm font-semibold text-slate-700 whitespace-nowrap">
                 
                 <!-- HOME DROPDOWN -->
-                <div class="relative home-dropdown-parent py-6">
-                    <button class="home-btn flex items-center gap-1.5 hover:text-bikOrange transition focus:outline-none text-slate-800 hover:text-bikOrange font-bold text-sm">
-                        <i class="fa-solid fa-house text-xs text-bikOrange"></i>
+                <div class="relative home-dropdown-parent dropdown-parent py-6">
+                    <button type="button" aria-expanded="false" aria-controls="fcHomeMenu" class="home-btn flex items-center gap-1.5 hover:text-orange-700 transition focus:outline-none text-slate-800 font-bold text-sm">
+                        <i class="fa-solid fa-house text-xs text-orange-700" aria-hidden="true"></i>
                         <span>Home</span>
-                        <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200"></i>
+                        <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200" aria-hidden="true"></i>
                     </button>
-                    <div class="mega-menu home-menu absolute top-full left-0 w-72 bg-white rounded-2xl border border-slate-200 p-4 shadow-2xl bik-mega-shadow z-50">
-                        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-3 pb-2 border-b border-slate-100 flex items-center justify-between">
+                    <div id="fcHomeMenu" class="mega-menu home-menu absolute top-full left-0 w-72 bg-white rounded-2xl border border-slate-200 p-4 shadow-2xl bik-mega-shadow z-50">
+                        <div class="text-[10px] font-bold text-slate-600 uppercase tracking-wider px-3 pb-2 border-b border-slate-100 flex items-center justify-between">
                             <span>Core Portals</span>
-                            <a href="index.html" class="text-bikOrange hover:underline font-bold">Executive Hub ↗</a>
+                            <a href="index.html" class="text-orange-700 hover:underline font-bold">Executive Hub ↗</a>
                         </div>
                         <div class="space-y-1.5 pt-2">
-                            <a href="index.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
-                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-bikOrange flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-store"></i></div>
-                                <div><div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">Main Site</div><div class="text-[10px] text-slate-400">Flagship AI Commerce Suite</div></div>
+                            <a href="index.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-orange-700 transition group">
+                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-orange-700 flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-store" aria-hidden="true"></i></div>
+                                <div><div class="text-xs font-bold text-bikDark group-hover:text-orange-700">Main Site</div><div class="text-[10px] text-slate-600">Flagship AI Commerce Suite</div></div>
                             </a>
-                            <a href="demo.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
-                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-bikOrange flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-play"></i></div>
-                                <div><div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">Live Demo Portal</div><div class="text-[10px] text-slate-400">1-on-1 Architecture Walkthrough</div></div>
+                            <a href="demo.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-orange-700 transition group">
+                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-orange-700 flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-play" aria-hidden="true"></i></div>
+                                <div><div class="text-xs font-bold text-bikDark group-hover:text-orange-700">Live Demo Portal</div><div class="text-[10px] text-slate-600">1-on-1 Architecture Walkthrough</div></div>
                             </a>
-                            <a href="web-development.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-bikOrange transition group">
-                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-bikOrange flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-code"></i></div>
-                                <div><div class="text-xs font-bold text-bikDark group-hover:text-bikOrange">Web Development</div><div class="text-[10px] text-slate-400">Next.js &amp; Shopify Stores &bull; Mumbai</div></div>
+                            <a href="web-development.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 text-slate-700 hover:text-orange-700 transition group">
+                                <div class="w-8 h-8 rounded-lg bg-orange-100 text-orange-700 flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-code" aria-hidden="true"></i></div>
+                                <div><div class="text-xs font-bold text-bikDark group-hover:text-orange-700">Web Development</div><div class="text-[10px] text-slate-600">Next.js &amp; Shopify Stores &bull; Mumbai</div></div>
                             </a>
-                            <a href="delivery.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-emerald-50 text-slate-700 hover:text-emerald-600 transition group">
-                                <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-motorcycle"></i></div>
-                                <div><div class="text-xs font-bold text-bikDark group-hover:text-emerald-600">Fleet Protocol</div><div class="text-[10px] text-slate-400">Hyperlocal Borzo/Porter API</div></div>
+                            <a href="delivery.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-emerald-50 text-slate-700 hover:text-emerald-700 transition group">
+                                <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-motorcycle" aria-hidden="true"></i></div>
+                                <div><div class="text-xs font-bold text-bikDark group-hover:text-emerald-700">Fleet Protocol</div><div class="text-[10px] text-slate-600">Hyperlocal Borzo/Porter API</div></div>
                             </a>
-                            <a href="about.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-orange-50 text-bikOrange font-bold transition group">
-                                <div class="w-8 h-8 rounded-lg bg-orange-200 text-bikOrange flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-circle-info"></i></div>
-                                <div><div class="text-xs font-bold text-bikOrange">About Us</div><div class="text-[10px] text-slate-500">Company Motive & Founders</div></div>
+                            <a href="about.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-orange-50 text-orange-700 font-bold transition group">
+                                <div class="w-8 h-8 rounded-lg bg-orange-200 text-orange-700 flex items-center justify-center text-sm group-hover:scale-110 transition"><i class="fa-solid fa-circle-info" aria-hidden="true"></i></div>
+                                <div><div class="text-xs font-bold text-orange-700">About Us</div><div class="text-[10px] text-slate-600">Company Motive & Founders</div></div>
                             </a>
                         </div>
                     </div>
@@ -158,74 +149,75 @@
 
                 <!-- PRODUCTS & AUTOMATIONS MEGA MENU -->
                 <div class="relative products-dropdown-parent dropdown-parent py-6">
-                    <button class="flex items-center gap-1.5 hover:text-bikOrange transition focus:outline-none text-slate-800 hover:text-bikOrange font-bold text-sm">
+                    <button type="button" aria-expanded="false" aria-controls="fcProductsMenu" class="flex items-center gap-1.5 hover:text-orange-700 transition focus:outline-none text-slate-800 font-bold text-sm">
                         <span>Products & Automations</span>
-                        <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                        <i class="fa-solid fa-chevron-down text-[10px]" aria-hidden="true"></i>
                     </button>
-                    <div class="mega-menu absolute top-full -left-28 w-[760px] bg-white rounded-2xl border border-slate-200 p-8 shadow-2xl bik-mega-shadow z-50">
+                    <div id="fcProductsMenu" class="mega-menu absolute top-full -left-28 w-[760px] bg-white rounded-2xl border border-slate-200 p-8 shadow-2xl bik-mega-shadow z-50">
                         <div class="grid grid-cols-4 gap-6 text-xs">
                             <div class="space-y-3">
-                                <div class="flex items-center gap-2 text-bikOrange font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-bullhorn"></i> CAMPAIGNS</div>
+                                <div class="flex items-center gap-2 text-orange-700 font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-bullhorn" aria-hidden="true"></i> CAMPAIGNS</div>
                                 <ul class="space-y-2.5 text-slate-600 font-medium">
-                                    <li><a href="email-marketing.html" class="hover:text-bikOrange transition block">Email marketing</a></li>
-                                    <li><a href="whatsapp-marketing.html" class="hover:text-bikOrange transition block">WhatsApp marketing</a></li>
-                                    <li><a href="sms-marketing.html" class="hover:text-bikOrange transition block">SMS marketing</a></li>
-                                    <li><a href="customer-data-platform.html" class="hover:text-bikOrange transition block">Customer data platform</a></li>
-                                    <li><a href="rcs-messaging.html" class="hover:text-bikOrange transition block">RCS messaging</a></li>
+                                    <li><a href="email-marketing.html" class="hover:text-orange-700 transition block">Email marketing</a></li>
+                                    <li><a href="whatsapp-marketing.html" class="hover:text-orange-700 transition block">WhatsApp marketing</a></li>
+                                    <li><a href="sms-marketing.html" class="hover:text-orange-700 transition block">SMS marketing</a></li>
+                                    <li><a href="customer-data-platform.html" class="hover:text-orange-700 transition block">Customer data platform</a></li>
+                                    <li><a href="rcs-messaging.html" class="hover:text-orange-700 transition block">RCS messaging</a></li>
                                 </ul>
                             </div>
                             <div class="space-y-3 bg-orange-50/70 p-3 -m-3 rounded-xl border border-orange-100">
-                                <div class="flex items-center gap-2 text-bikOrange font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-gear"></i> AUTOMATIONS</div>
+                                <div class="flex items-center gap-2 text-orange-700 font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-gear" aria-hidden="true"></i> AUTOMATIONS</div>
                                 <ul class="space-y-2.5 text-slate-700 font-medium">
-                                    <li><a href="store-automation.html" class="hover:text-bikOrange transition block font-bold text-bikOrange">Store automation ↗</a></li>
-                                    <li><a href="instagram-automation.html" class="hover:text-bikOrange transition block font-semibold text-pink-600">Instagram automation</a></li>
-                                    <li><a href="whatsapp-automation.html" class="hover:text-bikOrange transition block font-semibold text-emerald-600">WhatsApp automation</a></li>
-                                    <li><a href="ctwa-automation.html" class="hover:text-bikOrange transition block font-semibold text-blue-600">Click to WhatsApp ads</a></li>
-                                    <li><a href="ai-voice-agents.html" class="hover:text-bikOrange transition block font-semibold text-purple-600">AI Voice Agents</a></li>
+                                    <li><a href="store-automation.html" class="hover:text-orange-700 transition block font-bold text-orange-700">Store automation ↗</a></li>
+                                    <li><a href="instagram-automation.html" class="hover:text-orange-700 transition block font-semibold text-pink-600">Instagram automation</a></li>
+                                    <li><a href="whatsapp-automation.html" class="hover:text-orange-700 transition block font-semibold text-emerald-700">WhatsApp automation</a></li>
+                                    <li><a href="ctwa-automation.html" class="hover:text-orange-700 transition block font-semibold text-blue-700">Click to WhatsApp ads</a></li>
+                                    <li><a href="ai-voice-agents.html" class="hover:text-orange-700 transition block font-semibold text-purple-700">AI Voice Agents</a></li>
                                 </ul>
                             </div>
                             <div class="space-y-3 bg-emerald-50/50 p-3 -m-3 rounded-xl border border-emerald-100">
-                                <div class="flex items-center gap-2 text-emerald-700 font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-headset"></i> HELPDESK</div>
+                                <div class="flex items-center gap-2 text-emerald-700 font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-headset" aria-hidden="true"></i> HELPDESK</div>
                                 <ul class="space-y-2.5 text-slate-700 font-medium">
-                                    <li><a href="customer-support.html" class="hover:text-emerald-600 transition block">Customer support</a></li>
-                                    <li><a href="whatsapp-calling.html" class="hover:text-emerald-600 transition block font-bold text-emerald-700">WhatsApp calling ↗</a></li>
+                                    <li><a href="customer-support.html" class="hover:text-emerald-700 transition block">Customer support</a></li>
+                                    <li><a href="whatsapp-calling.html" class="hover:text-emerald-700 transition block font-bold text-emerald-700">WhatsApp calling ↗</a></li>
                                 </ul>
                             </div>
                             <div class="space-y-4">
                                 <div class="space-y-2">
-                                    <div class="text-bikOrange font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-comment-dots"></i> POPUPS</div>
-                                    <a href="solutions.html?module=gamification" class="hover:text-bikOrange transition block text-slate-600">Gamification</a>
+                                    <div class="text-orange-700 font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-comment-dots" aria-hidden="true"></i> POPUPS</div>
+                                    <a href="solutions.html?module=gamification" class="hover:text-orange-700 transition block text-slate-600">Gamification</a>
                                 </div>
                                 <div class="space-y-2 border-t border-slate-100 pt-3">
-                                    <div class="text-bikOrange font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-robot"></i> CHATBOTS</div>
-                                    <a href="solutions.html?module=whatsapp-chatbot" class="hover:text-bikOrange transition block text-slate-600">WhatsApp chatbot</a>
-                                    <a href="solutions.html?module=instagram-chatbot" class="hover:text-bikOrange transition block text-slate-600 mt-1">Instagram chatbot</a>
+                                    <div class="text-orange-700 font-bold uppercase tracking-wider text-[11px]"><i class="fa-solid fa-robot" aria-hidden="true"></i> CHATBOTS</div>
+                                    <a href="solutions.html?module=whatsapp-chatbot" class="hover:text-orange-700 transition block text-slate-600">WhatsApp chatbot</a>
+                                    <a href="solutions.html?module=instagram-chatbot" class="hover:text-orange-700 transition block text-slate-600 mt-1">Instagram chatbot</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <a href="store.html" class="hover:text-bikOrange transition font-medium">Live Store Demo</a>
-                <a href="delivery.html" class="hover:text-bikOrange transition">Fleet Dispatch</a>
-                <a href="web-development.html" class="hover:text-bikOrange transition">Web Development</a>
-                <a href="about.html" class="text-bikOrange font-bold transition">About Us</a>
+                <a href="store.html" class="hover:text-orange-700 transition font-medium">Live Store Demo</a>
+                <a href="delivery.html" class="hover:text-orange-700 transition">Fleet Dispatch</a>
+                <a href="web-development.html" class="hover:text-orange-700 transition">Web Development</a>
+                <a href="about.html" class="text-orange-700 font-bold transition">About Us</a>
             </nav>
 
-            <div class="flex items-center space-x-3">
+            <div class="flex items-center space-x-2.5 shrink-0">
                 <div class="fc-auth-slot"></div>
-                <a href="demo.html" class="hidden sm:inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-sm transition shadow-md shadow-orange-500/20 cursor-pointer"><span>Book Free Live Demo</span> <span class="text-base leading-none">➔</span></a>
-                <button id="fcMobileMenuBtn" type="button" aria-label="Toggle Mobile Menu" onclick="window.FC_WIDGETS && window.FC_WIDGETS.toggleMobileDrawer ? window.FC_WIDGETS.toggleMobileDrawer() : null" class="lg:hidden p-2 rounded-xl border border-slate-200 hover:border-bikOrange bg-white text-slate-700 hover:text-bikOrange transition flex items-center justify-center shrink-0 w-10 h-10 shadow-xs cursor-pointer touch-target-44"><i class="fa-solid fa-bars text-sm"></i></button>
+                <a href="demo.html" class="hidden sm:inline-flex items-center justify-center gap-1.5 px-4 xl:px-5 py-2.5 rounded-xl bg-orange-700 hover:bg-orange-800 text-white font-bold text-xs xl:text-sm transition shadow-md shadow-orange-500/20 cursor-pointer whitespace-nowrap shrink-0"><span>Book Free Live Demo</span> <span class="text-base leading-none" aria-hidden="true">➔</span></a>
+                <button id="fcMobileMenuBtn" type="button" aria-label="Toggle Mobile Menu" aria-expanded="false" aria-controls="fcMobileDrawer" onclick="window.FC_WIDGETS && window.FC_WIDGETS.toggleMobileDrawer ? window.FC_WIDGETS.toggleMobileDrawer() : null" class="lg:hidden p-2 rounded-xl border border-slate-200 hover:border-bikOrange bg-white text-slate-700 hover:text-orange-700 transition flex items-center justify-center shrink-0 w-10 h-10 shadow-sm cursor-pointer touch-target-44 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bikOrange focus-visible:ring-offset-2"><i class="fa-solid fa-bars text-sm" aria-hidden="true"></i></button>
             </div>
         </div>
     </header>
 
+    <main id="main-content">
     <!-- HERO SECTION (SHARP, WITTY & EXECUTIVE) -->
     <section class="pt-20 pb-20 bg-gradient-to-b from-orange-50/50 via-bikBg to-white border-b border-slate-100 overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-100 border border-orange-200 text-bikOrange text-xs font-extrabold uppercase tracking-widest mb-6">
-                <i class="fa-solid fa-bolt text-xs"></i> Autonomous Commerce Labs • Mumbai
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-100 border border-orange-200 text-orange-700 text-xs font-extrabold uppercase tracking-widest mb-6">
+                <i class="fa-solid fa-bolt text-xs" aria-hidden="true"></i> Autonomous Commerce Labs • Mumbai
             </div>
 
             <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-bikDark tracking-tight leading-[1.08] font-display max-w-4xl mx-auto">
@@ -239,24 +231,24 @@
             <!-- STATS COUNTER GRID -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto mt-14 text-left">
                 <div class="p-6 rounded-3xl bg-white border border-slate-200/80 shadow-sm card-anim">
-                    <div class="text-3xl sm:text-4xl font-black text-bikOrange font-display">&lt; 30s</div>
+                    <div class="text-3xl sm:text-4xl font-black text-orange-700 font-display">&lt; 30s</div>
                     <div class="text-xs font-bold text-bikDark mt-1">Lead to WhatsApp Response</div>
-                    <div class="text-[11px] text-slate-400 mt-0.5">Because waiting 10 minutes means they bought elsewhere.</div>
+                    <div class="text-[11px] text-slate-600 mt-0.5">Because waiting 10 minutes means they bought elsewhere.</div>
                 </div>
                 <div class="p-6 rounded-3xl bg-white border border-slate-200/80 shadow-sm card-anim">
-                    <div class="text-3xl sm:text-4xl font-black text-emerald-600 font-display">15+</div>
+                    <div class="text-3xl sm:text-4xl font-black text-emerald-700 font-display">15+</div>
                     <div class="text-xs font-bold text-bikDark mt-1">Ready Commerce Agents</div>
-                    <div class="text-[11px] text-slate-400 mt-0.5">Tuned on real Indian buyer checkout patterns.</div>
+                    <div class="text-[11px] text-slate-600 mt-0.5">Tuned on real Indian buyer checkout patterns.</div>
                 </div>
                 <div class="p-6 rounded-3xl bg-white border border-slate-200/80 shadow-sm card-anim">
-                    <div class="text-3xl sm:text-4xl font-black text-blue-600 font-display">99.9%</div>
+                    <div class="text-3xl sm:text-4xl font-black text-blue-700 font-display">99.9%</div>
                     <div class="text-xs font-bold text-bikDark mt-1">Serverless Event Uptime</div>
-                    <div class="text-[11px] text-slate-400 mt-0.5">Reliable webhook mesh built for high-concurrency traffic.</div>
+                    <div class="text-[11px] text-slate-600 mt-0.5">Reliable webhook mesh built for high-concurrency traffic.</div>
                 </div>
                 <div class="p-6 rounded-3xl bg-white border border-slate-200/80 shadow-sm card-anim">
-                    <div class="text-3xl sm:text-4xl font-black text-purple-600 font-display">18%</div>
+                    <div class="text-3xl sm:text-4xl font-black text-purple-700 font-display">18%</div>
                     <div class="text-xs font-bold text-bikDark mt-1">Average Cart Recovery</div>
-                    <div class="text-[11px] text-slate-400 mt-0.5">Realized net cash deposited directly into your bank.</div>
+                    <div class="text-[11px] text-slate-600 mt-0.5">Realized net cash deposited directly into your bank.</div>
                 </div>
             </div>
 
@@ -269,7 +261,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 
                 <div class="lg:col-span-6 space-y-6">
-                    <span class="text-xs font-extrabold text-bikOrange uppercase tracking-widest bg-orange-50 px-3.5 py-1 rounded-full border border-orange-100">Our Motive & Manifesto</span>
+                    <span class="text-xs font-extrabold text-orange-700 uppercase tracking-widest bg-orange-50 px-3.5 py-1 rounded-full border border-orange-200">Our Motive & Manifesto</span>
                     <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark font-display">
                         The Story Behind Flying Cheetah.
                     </h2>
@@ -281,14 +273,14 @@
                     </p>
                     
                     <div class="p-5 rounded-2xl bg-orange-50/70 border border-orange-200 text-xs text-slate-800 leading-relaxed font-medium">
-                        <i class="fa-solid fa-quote-left text-bikOrange mr-1.5 text-base"></i>
+                        <i class="fa-solid fa-quote-left text-orange-700 mr-1.5 text-base" aria-hidden="true"></i>
                         <i>"Our motive is embarrassingly simple: to make your eCommerce operations move so fast that your competitors think you have a 50-person night shift team in your basement."</i>
                     </div>
 
                     <div class="pt-2">
-                        <a href="#rules" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs transition shadow-md">
+                        <a href="#rules" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-orange-700 hover:bg-orange-800 text-white font-bold text-xs transition shadow-md shadow-orange-500/20">
                             <span>Explore Our House Rules</span>
-                            <i class="fa-solid fa-arrow-down text-[10px]"></i>
+                            <i class="fa-solid fa-arrow-down text-[10px]" aria-hidden="true"></i>
                         </a>
                     </div>
                 </div>
@@ -296,39 +288,39 @@
                 <div class="lg:col-span-6">
                     <div class="bg-slate-50 rounded-3xl border border-slate-200 p-8 shadow-xl space-y-5">
                         <h3 class="text-xl font-black text-bikDark font-display flex items-center gap-2">
-                            <i class="fa-solid fa-fire text-bikOrange"></i> The 4 Non-Negotiable Laws of Flying Cheetah
+                            <i class="fa-solid fa-fire text-orange-700" aria-hidden="true"></i> The 4 Non-Negotiable Laws of Flying Cheetah
                         </h3>
 
                         <div class="space-y-4">
                             <div class="p-4 rounded-2xl bg-white border border-slate-200/80 shadow-sm flex items-start gap-4 card-anim">
-                                <div class="w-10 h-10 rounded-xl bg-orange-100 text-bikOrange flex items-center justify-center font-black text-sm shrink-0">01</div>
+                                <div class="w-10 h-10 rounded-xl bg-orange-100 text-orange-700 flex items-center justify-center font-black text-sm shrink-0">01</div>
                                 <div>
                                     <h4 class="text-xs font-bold text-bikDark">Speed Beats Everything</h4>
-                                    <p class="text-[11px] text-slate-500 mt-0.5">Leads go cold faster than Mumbai street chai. Every trigger on our platform executes in under 2 seconds flat.</p>
+                                    <p class="text-[11px] text-slate-600 mt-0.5">Leads go cold faster than Mumbai street chai. Every trigger on our platform executes in under 2 seconds flat.</p>
                                 </div>
                             </div>
 
                             <div class="p-4 rounded-2xl bg-white border border-slate-200/80 shadow-sm flex items-start gap-4 card-anim">
-                                <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center font-black text-sm shrink-0">02</div>
+                                <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-black text-sm shrink-0">02</div>
                                 <div>
                                     <h4 class="text-xs font-bold text-bikDark">Zero-Payroll Scale</h4>
-                                    <p class="text-[11px] text-slate-500 mt-0.5">You shouldn't have to hire 15 new customer service reps just because your festive marketing campaign went viral.</p>
+                                    <p class="text-[11px] text-slate-600 mt-0.5">You shouldn't have to hire 15 new customer service reps just because your festive marketing campaign went viral.</p>
                                 </div>
                             </div>
 
                             <div class="p-4 rounded-2xl bg-white border border-slate-200/80 shadow-sm flex items-start gap-4 card-anim">
-                                <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center font-black text-sm shrink-0">03</div>
+                                <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center font-black text-sm shrink-0">03</div>
                                 <div>
                                     <h4 class="text-xs font-bold text-bikDark">Real Human Accountability</h4>
-                                    <p class="text-[11px] text-slate-500 mt-0.5">Both founders live in Mumbai. We answer your WhatsApp messages personally. No corporate elevator music on hold.</p>
+                                    <p class="text-[11px] text-slate-600 mt-0.5">Both founders live in Mumbai. We answer your WhatsApp messages personally. No corporate elevator music on hold.</p>
                                 </div>
                             </div>
 
                             <div class="p-4 rounded-2xl bg-white border border-slate-200/80 shadow-sm flex items-start gap-4 card-anim">
-                                <div class="w-10 h-10 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center font-black text-sm shrink-0">04</div>
+                                <div class="w-10 h-10 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center font-black text-sm shrink-0">04</div>
                                 <div>
                                     <h4 class="text-xs font-bold text-bikDark">Net Bank Balance is King</h4>
-                                    <p class="text-[11px] text-slate-500 mt-0.5">Clicks don't pay your rent. We build workflows solely engineered to recover abandoned revenue and compound GMV.</p>
+                                    <p class="text-[11px] text-slate-600 mt-0.5">Clicks don't pay your rent. We build workflows solely engineered to recover abandoned revenue and compound GMV.</p>
                                 </div>
                             </div>
                         </div>
@@ -342,68 +334,68 @@
     <!-- SECTION 2: OUR HOUSE RULES -->
     <section id="rules" class="py-20 bg-white border-t border-slate-200">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <span class="text-xs font-bold text-bikOrange uppercase tracking-widest bg-orange-100 px-3.5 py-1 rounded-full">Our House Rules</span>
-            <h3 class="text-3xl font-black text-bikDark font-display mt-3">How We Run Flying Cheetah</h3>
+            <span class="text-xs font-bold text-orange-700 uppercase tracking-widest bg-orange-100 px-3.5 py-1 rounded-full">Our House Rules</span>
+            <h2 class="text-3xl font-black text-bikDark font-display mt-3">How We Run Flying Cheetah</h2>
             <p class="text-slateText text-sm mt-2 max-w-xl mx-auto">No corporate jargon. No 40-page slide decks. Just 4 rules that keep our merchants making money.</p>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12 text-left">
                 <!-- Rule 1 -->
                 <div class="p-6 rounded-3xl bg-slate-50 border border-slate-200 shadow-sm card-anim space-y-3">
-                    <div class="w-10 h-10 rounded-xl bg-orange-100 text-bikOrange font-black flex items-center justify-center text-sm">#1</div>
-                    <h4 class="text-sm font-bold text-bikDark">No Slow Software</h4>
-                    <p class="text-xs text-slate-500 leading-relaxed">If an automation takes more than 45 seconds to reply to a prospective buyer, it goes straight to the digital penalty box. Speed prints money.</p>
+                    <div class="w-10 h-10 rounded-xl bg-orange-100 text-orange-700 font-black flex items-center justify-center text-sm">#1</div>
+                    <h3 class="text-sm font-bold text-bikDark">No Slow Software</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">If an automation takes more than 45 seconds to reply to a prospective buyer, it goes straight to the digital penalty box. Speed prints money.</p>
                 </div>
                 <!-- Rule 2 -->
                 <div class="p-6 rounded-3xl bg-slate-50 border border-slate-200 shadow-sm card-anim space-y-3">
-                    <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 font-black flex items-center justify-center text-sm">#2</div>
-                    <h4 class="text-sm font-bold text-bikDark">Direct Founder Accountability</h4>
-                    <p class="text-xs text-slate-500 leading-relaxed">No faceless overseas support queues. If you have an urgent question, The Flying Cheetah leadership team reviews and resolves technical blockers directly.</p>
+                    <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 font-black flex items-center justify-center text-sm">#2</div>
+                    <h3 class="text-sm font-bold text-bikDark">Direct Founder Accountability</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">No faceless overseas support queues. If you have an urgent question, The Flying Cheetah leadership team reviews and resolves technical blockers directly.</p>
                 </div>
                 <!-- Rule 3 -->
                 <div class="p-6 rounded-3xl bg-slate-50 border border-slate-200 shadow-sm card-anim space-y-3">
-                    <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-600 font-black flex items-center justify-center text-sm">#3</div>
-                    <h4 class="text-sm font-bold text-bikDark">Net Profit > Vanity Likes</h4>
-                    <p class="text-xs text-slate-500 leading-relaxed">We do not care about your Instagram follower count unless it translates into cold, hard UPI payments into your Razorpay settlement account.</p>
+                    <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-700 font-black flex items-center justify-center text-sm">#3</div>
+                    <h3 class="text-sm font-bold text-bikDark">Net Profit > Vanity Likes</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">We do not care about your Instagram follower count unless it translates into cold, hard UPI payments into your Razorpay settlement account.</p>
                 </div>
                 <!-- Rule 4 -->
                 <div class="p-6 rounded-3xl bg-slate-50 border border-slate-200 shadow-sm card-anim space-y-3">
-                    <div class="w-10 h-10 rounded-xl bg-purple-100 text-purple-600 font-black flex items-center justify-center text-sm">#4</div>
-                    <h4 class="text-sm font-bold text-bikDark">Fast Hyperlocal Fleet</h4>
-                    <p class="text-xs text-slate-500 leading-relaxed">Our Borzo/Porter courier API dispatches a rider to your customer's doorstep in Mumbai while your competitors are still looking for bubble wrap.</p>
+                    <div class="w-10 h-10 rounded-xl bg-purple-100 text-purple-700 font-black flex items-center justify-center text-sm">#4</div>
+                    <h3 class="text-sm font-bold text-bikDark">Fast Hyperlocal Fleet</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Our Borzo/Porter courier API dispatches a rider to your customer's doorstep in Mumbai while your competitors are still looking for bubble wrap.</p>
                 </div>
             </div>
 
             <!-- HYPERLOCAL 3D DISPATCH SPOTLIGHT -->
-            <div class="mt-16 bg-gradient-to-r from-slate-900 via-bikDark to-slate-900 rounded-3xl p-8 sm:p-10 text-white border border-slate-800 shadow-2xl relative overflow-hidden">
-                <div class="absolute -right-20 -bottom-20 w-80 h-80 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none"></div>
+            <div class="mt-16 bg-gradient-to-r from-emerald-50/80 via-white to-orange-50/70 rounded-3xl p-8 sm:p-10 text-bikDark border border-emerald-200 shadow-xl relative overflow-hidden">
+                <div class="absolute -right-20 -bottom-20 w-80 h-80 rounded-full bg-emerald-200/30 blur-3xl pointer-events-none"></div>
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center text-left">
                     <div class="lg:col-span-6 space-y-4">
-                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 text-xs font-bold uppercase tracking-wider font-tech">
-                            <i class="fa-solid fa-motorcycle"></i> Zero-Payroll Fleet Protocol
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 border border-emerald-200 text-emerald-800 text-xs font-bold uppercase tracking-wider font-tech">
+                            <i class="fa-solid fa-motorcycle" aria-hidden="true"></i> Zero-Payroll Fleet Protocol
                         </span>
-                        <h4 class="text-2xl sm:text-3xl font-black font-display tracking-tight text-white">
+                        <h3 class="text-2xl sm:text-3xl font-black font-display tracking-tight text-bikDark">
                             Intra-City Delivery at the Speed of Light.
-                        </h4>
-                        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
+                        </h3>
+                        <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-normal">
                             We integrated Borzo &amp; Porter direct telemetry into checkout. The exact millisecond payment confirms on WhatsApp, the nearest 2-wheeler rider within 1km is dispatched to your counter in Mumbai.
                         </p>
                         <div class="flex items-center gap-6 pt-2">
                             <div>
-                                <div class="text-2xl font-black text-emerald-400 font-tech">14.2 Mins</div>
-                                <div class="text-[11px] text-slate-400">Avg. Counter Arrival</div>
+                                <div class="text-2xl font-black text-emerald-700 font-tech">14.2 Mins</div>
+                                <div class="text-[11px] text-slate-600">Avg. Counter Arrival</div>
                             </div>
-                            <div class="border-l border-slate-700 pl-6">
-                                <div class="text-2xl font-black text-bikOrange font-tech">₹40-₹60</div>
-                                <div class="text-[11px] text-slate-400">Per Drop Flat Cost</div>
+                            <div class="border-l border-emerald-200 pl-6">
+                                <div class="text-2xl font-black text-orange-700 font-tech">₹40-₹60</div>
+                                <div class="text-[11px] text-slate-600">Per Drop Flat Cost</div>
                             </div>
-                            <div class="border-l border-slate-700 pl-6">
-                                <div class="text-2xl font-black text-brandGold font-tech">100%</div>
-                                <div class="text-[11px] text-slate-400">Margin Kept by Store</div>
+                            <div class="border-l border-emerald-200 pl-6">
+                                <div class="text-2xl font-black text-amber-700 font-tech">100%</div>
+                                <div class="text-[11px] text-slate-600">Margin Kept by Store</div>
                             </div>
                         </div>
                     </div>
                     <div class="lg:col-span-6">
-                        <div class="rounded-2xl overflow-hidden border border-slate-700/80 shadow-2xl fc-card-interactive-dark">
+                        <div class="fc-showcase-frame shadow-lg">
                             <img src="images/hyperlocal_dispatch_map_3d.jpg" alt="Mumbai Hyperlocal Dispatch Map 3D" class="w-full h-64 object-cover">
                         </div>
                     </div>
@@ -412,14 +404,14 @@
 
             <!-- TECH STACK & ECOSYSTEM -->
             <div class="mt-16 pt-12 border-t border-slate-200">
-                <span class="text-xs font-bold text-slate-400 uppercase tracking-widest font-tech">Enterprise Technical Foundation</span>
+                <span class="text-xs font-bold text-slate-600 uppercase tracking-widest font-tech">Enterprise Technical Foundation</span>
                 <div class="flex flex-wrap items-center justify-center gap-8 mt-6 opacity-85">
-                    <div class="flex items-center gap-2 text-xs font-bold text-slate-700"><i class="fa-brands fa-python text-bikOrange text-lg"></i> Python AsyncIO</div>
-                    <div class="flex items-center gap-2 text-xs font-bold text-slate-700"><i class="fa-brands fa-whatsapp text-emerald-600 text-lg"></i> Meta Graph Cloud API</div>
-                    <div class="flex items-center gap-2 text-xs font-bold text-slate-700"><i class="fa-solid fa-database text-emerald-500 text-lg"></i> Supabase PostgreSQL</div>
-                    <div class="flex items-center gap-2 text-xs font-bold text-slate-700"><i class="fa-brands fa-shopify text-emerald-600 text-lg"></i> Shopify Partner API</div>
-                    <div class="flex items-center gap-2 text-xs font-bold text-slate-700"><i class="fa-solid fa-credit-card text-blue-600 text-lg"></i> Razorpay Webhooks</div>
-                    <div class="flex items-center gap-2 text-xs font-bold text-slate-700"><i class="fa-solid fa-motorcycle text-brandGold text-lg"></i> Borzo &amp; Porter Open API</div>
+                    <div class="flex items-center gap-2 text-xs font-bold text-slate-700"><i class="fa-brands fa-python text-orange-700 text-lg" aria-hidden="true"></i> Python AsyncIO</div>
+                    <div class="flex items-center gap-2 text-xs font-bold text-slate-700"><i class="fa-brands fa-whatsapp text-emerald-700 text-lg" aria-hidden="true"></i> Meta Graph Cloud API</div>
+                    <div class="flex items-center gap-2 text-xs font-bold text-slate-700"><i class="fa-solid fa-database text-emerald-700 text-lg" aria-hidden="true"></i> Supabase PostgreSQL</div>
+                    <div class="flex items-center gap-2 text-xs font-bold text-slate-700"><i class="fa-brands fa-shopify text-emerald-700 text-lg" aria-hidden="true"></i> Shopify Partner API</div>
+                    <div class="flex items-center gap-2 text-xs font-bold text-slate-700"><i class="fa-solid fa-credit-card text-blue-700 text-lg" aria-hidden="true"></i> Razorpay Webhooks</div>
+                    <div class="flex items-center gap-2 text-xs font-bold text-slate-700"><i class="fa-solid fa-motorcycle text-amber-700 text-lg" aria-hidden="true"></i> Borzo &amp; Porter Open API</div>
                 </div>
             </div>
         </div>
@@ -428,8 +420,8 @@
     <!-- SECTION 3: MEET THE FOUNDERS -->
     <section class="py-20 bg-slate-50 border-t border-slate-200" id="founders">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-100 border border-orange-200 text-bikOrange text-xs font-extrabold uppercase tracking-widest mb-4">
-                <i class="fa-solid fa-handshake text-sm"></i> Local Leadership & Direct Accountability
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-100 border border-orange-200 text-orange-700 text-xs font-extrabold uppercase tracking-widest mb-4">
+                <i class="fa-solid fa-handshake text-sm" aria-hidden="true"></i> Local Leadership & Direct Accountability
             </div>
             
             <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark font-display">
@@ -444,7 +436,7 @@
                 
                 <!-- DIVISION 1: CORE SYSTEMS & ENGINEERING -->
                 <div class="relative bg-white rounded-3xl border-2 border-slate-200/80 p-8 shadow-xl hover:border-bikOrange transition-all duration-300 flex flex-col justify-between group">
-                    <div class="absolute -top-3.5 right-6 px-3.5 py-1 rounded-full bg-bikOrange text-white text-[10px] font-black uppercase tracking-wider shadow-md">
+                    <div class="absolute -top-3.5 right-6 px-3.5 py-1 rounded-full bg-orange-700 text-white text-[10px] font-black uppercase tracking-wider shadow-md">
                         Technical Architect
                     </div>
 
@@ -455,10 +447,10 @@
                             </div>
                             <div>
                                 <h3 class="text-2xl font-black text-bikDark font-display">Bhagat Mukhiya</h3>
-                                <p class="text-xs font-bold text-bikOrange">Co-Founder &amp; Technical Architect • Core Systems</p>
+                                <p class="text-xs font-bold text-orange-700">Co-Founder &amp; Technical Architect • Core Systems</p>
                                 <div class="flex items-center gap-2 mt-1">
                                     <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                                    <span class="text-[11px] font-semibold text-slate-500">Live Architecture Telemetry • Mumbai</span>
+                                    <span class="text-[11px] font-semibold text-slate-600">Live Architecture Telemetry • Mumbai</span>
                                 </div>
                             </div>
                         </div>
@@ -469,14 +461,14 @@
 
                         <!-- Key technical pillars -->
                         <div class="space-y-2 py-3 border-t border-b border-slate-100 text-[11px] text-slate-600">
-                            <div class="flex items-center gap-2"><i class="fa-solid fa-code text-bikOrange text-xs"></i> <span>Custom Webhook & Event Mesh Infrastructure</span></div>
-                            <div class="flex items-center gap-2"><i class="fa-solid fa-database text-bikOrange text-xs"></i> <span>Unified CRM & 1-Click Shopify Integrations</span></div>
-                            <div class="flex items-center gap-2"><i class="fa-solid fa-shield-halved text-bikOrange text-xs"></i> <span>99.9% Telemetry Uptime & Reliable Latency</span></div>
+                            <div class="flex items-center gap-2"><i class="fa-solid fa-code text-orange-700 text-xs" aria-hidden="true"></i> <span>Custom Webhook & Event Mesh Infrastructure</span></div>
+                            <div class="flex items-center gap-2"><i class="fa-solid fa-database text-orange-700 text-xs" aria-hidden="true"></i> <span>Unified CRM & 1-Click Shopify Integrations</span></div>
+                            <div class="flex items-center gap-2"><i class="fa-solid fa-shield-halved text-orange-700 text-xs" aria-hidden="true"></i> <span>99.9% Telemetry Uptime & Reliable Latency</span></div>
                         </div>
                     </div>
 
                     <div class="pt-6 space-y-2.5">
-                        <a href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah%20team,%20I%20explored%20Flying%20Cheetah%20and%20I'm%20looking%20forward%20to%20working%20with%20you.%20Could%20we%20connect%20regarding%20AI%20commerce%20automation%3F" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition shadow-md shadow-emerald-600/20 group/btn">
+                        <a href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah%20team,%20I%20explored%20Flying%20Cheetah%20and%20I'm%20looking%20forward%20to%20working%20with%20you.%20Could%20we%20connect%20regarding%20AI%20commerce%20automation%3F" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs transition shadow-md shadow-emerald-600/20 group/btn">
                             <i class="fa-brands fa-whatsapp text-base group-hover/btn:scale-110 transition"></i>
                             <span>Chat with Flying Cheetah on WhatsApp</span>
                             <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-1 opacity-80"></i>
@@ -486,7 +478,7 @@
                             <span>Connect on LinkedIn</span>
                             <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-1 opacity-80"></i>
                         </a>
-                        <a href="https://github.com/bhagatmukhiya82-source" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-slate-900 hover:bg-black text-white font-bold text-xs transition shadow-md shadow-slate-900/20 border border-slate-800 group/btn">
+                        <a href="https://github.com/bhagatmukhiya82-source" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-900 font-bold text-xs transition shadow-sm border border-slate-300 group/btn">
                             <i class="fa-brands fa-github text-base group-hover/btn:scale-110 transition"></i>
                             <span>View GitHub Architecture</span>
                             <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-1 opacity-80"></i>
@@ -496,7 +488,7 @@
 
                 <!-- DIVISION 2: GROWTH & CLIENT OPERATIONS -->
                 <div class="relative bg-white rounded-3xl border-2 border-slate-200/80 p-8 shadow-xl hover:border-emerald-500 transition-all duration-300 flex flex-col justify-between group">
-                    <div class="absolute -top-3.5 right-6 px-3.5 py-1 rounded-full bg-emerald-600 text-white text-[10px] font-black uppercase tracking-wider shadow-md">
+                    <div class="absolute -top-3.5 right-6 px-3.5 py-1 rounded-full bg-emerald-700 text-white text-[10px] font-black uppercase tracking-wider shadow-md">
                         Growth & Operations
                     </div>
 
@@ -507,10 +499,10 @@
                             </div>
                             <div>
                                 <h3 class="text-2xl font-black text-bikDark font-display">Yash Gaikwad</h3>
-                                <p class="text-xs font-bold text-emerald-600">Co-Founder &amp; Growth Operations</p>
+                                <p class="text-xs font-bold text-emerald-700">Co-Founder &amp; Growth Operations</p>
                                 <div class="flex items-center gap-2 mt-1">
                                     <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                                    <span class="text-[11px] font-semibold text-slate-500">In-Person Merchant Audits • MMR</span>
+                                    <span class="text-[11px] font-semibold text-slate-600">In-Person Merchant Audits • MMR</span>
                                 </div>
                             </div>
                         </div>
@@ -521,14 +513,14 @@
 
                         <!-- Key operational pillars -->
                         <div class="space-y-2 py-3 border-t border-b border-slate-100 text-[11px] text-slate-600">
-                            <div class="flex items-center gap-2"><i class="fa-solid fa-comments text-emerald-600 text-xs"></i> <span>WhatsApp Conversational Checkout Mastery</span></div>
-                            <div class="flex items-center gap-2"><i class="fa-solid fa-chart-line text-emerald-600 text-xs"></i> <span>Merchant Unit Economics & 35%+ Cart Recovery</span></div>
-                            <div class="flex items-center gap-2"><i class="fa-solid fa-handshake-angle text-emerald-600 text-xs"></i> <span>Direct 1-on-1 Merchant Success Onboarding</span></div>
+                            <div class="flex items-center gap-2"><i class="fa-solid fa-comments text-emerald-700 text-xs" aria-hidden="true"></i> <span>WhatsApp Conversational Checkout Mastery</span></div>
+                            <div class="flex items-center gap-2"><i class="fa-solid fa-chart-line text-emerald-700 text-xs" aria-hidden="true"></i> <span>Merchant Unit Economics & 35%+ Cart Recovery</span></div>
+                            <div class="flex items-center gap-2"><i class="fa-solid fa-handshake-angle text-emerald-700 text-xs" aria-hidden="true"></i> <span>Direct 1-on-1 Merchant Success Onboarding</span></div>
                         </div>
                     </div>
 
                     <div class="pt-6 space-y-2.5">
-                        <a href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah%20team,%20I%20explored%20Flying%20Cheetah%20and%20I'm%20looking%20forward%20to%20working%20with%20you.%20I'd%20like%20to%20discuss%20a%20growth%20audit%20for%20my%20store." target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition shadow-md shadow-emerald-600/20 group/btn">
+                        <a href="https://wa.me/919920386421?text=Hi%20Flying%20Cheetah%20team,%20I%20explored%20Flying%20Cheetah%20and%20I'm%20looking%20forward%20to%20working%20with%20you.%20I'd%20like%20to%20discuss%20a%20growth%20audit%20for%20my%20store." target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs transition shadow-md shadow-emerald-600/20 group/btn">
                             <i class="fa-brands fa-whatsapp text-base group-hover/btn:scale-110 transition"></i>
                             <span>Chat with Flying Cheetah on WhatsApp</span>
                             <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-1 opacity-80"></i>
@@ -544,47 +536,31 @@
             </div>
         </div>
     </section>
+    </main>
 
     <!-- FOOTER -->
-    <footer class="bg-white border-t border-slate-200 py-12 text-xs text-slate-500">
+    <footer class="bg-white border-t border-slate-200 py-12 text-xs text-slate-600">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
             <div class="flex items-center gap-2">
-                <div class="w-6 h-6 rounded-lg bg-bikOrange text-white flex items-center justify-center font-bold text-xs"><i class="fa-solid fa-bolt"></i></div>
+                <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah" class="h-6 w-6 rounded-full object-cover border border-slate-300">
                 <span class="font-bold text-bikDark">Flying Cheetah</span>
                 <span>© 2026. Official Meta Business Solution Provider. All Rights Reserved.</span>
             </div>
-            <div class="flex flex-wrap items-center gap-6 font-semibold">
-                <a href="index.html" class="hover:text-bikOrange transition">Main Site</a>
-                <a href="demo.html" class="hover:text-bikOrange transition font-bold text-emerald-600">Live Demo</a>
-                <a href="web-development.html" class="hover:text-bikOrange transition font-bold text-orange-600">Web Development</a>
-                <a href="about.html" class="text-bikOrange font-bold transition">About Us</a>
-                <a href="delivery.html" class="hover:text-bikOrange transition">Fleet Dispatch</a>
-                <a href="customer-support.html" class="hover:text-bikOrange transition">Customer Support</a>
-                <a href="whatsapp-calling.html" class="hover:text-bikOrange transition">WhatsApp Calling</a>
+            <div class="flex flex-wrap items-center justify-center gap-6 font-semibold text-slate-700">
+                <a href="index.html" class="hover:text-orange-700 transition">Main Site</a>
+                <a href="demo.html" class="hover:text-orange-700 transition font-bold text-emerald-700">Live Demo</a>
+                <a href="web-development.html" class="hover:text-orange-700 transition font-bold text-orange-700">Web Development</a>
+                <a href="about.html" class="text-orange-700 font-bold transition">About Us</a>
+                <a href="delivery.html" class="hover:text-orange-700 transition">Fleet Dispatch</a>
+                <a href="customer-support.html" class="hover:text-orange-700 transition">Customer Support</a>
+                <a href="whatsapp-calling.html" class="hover:text-orange-700 transition">WhatsApp Calling</a>
+                <a href="privacy-policy.html" class="hover:text-orange-700 transition">Privacy Policy</a>
+                <a href="terms-of-service.html" class="hover:text-orange-700 transition">Terms</a>
+                <a href="refund-policy.html" class="hover:text-orange-700 transition">Refunds</a>
             </div>
         </div>
     </footer>
 
-    <script>
-        // Dual Hover + Click Dropdown support for Home
-        document.addEventListener('DOMContentLoaded', function() {
-            const homeParent = document.querySelector('.home-dropdown-parent');
-            const homeBtn = document.querySelector('.home-btn');
-            const homeMenu = document.querySelector('.home-menu');
-            if(homeParent && homeBtn && homeMenu) {
-                homeBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    homeMenu.classList.toggle('active');
-                });
-                document.addEventListener('click', function(e) {
-                    if (!homeParent.contains(e.target)) {
-                        homeMenu.classList.remove('active');
-                    }
-                });
-            }
-        });
-    </script>
     <!-- Supabase & Flying Cheetah Backend Architecture SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="js/supabase-client.js"></script>
@@ -592,22 +568,42 @@
     <script src="js/leads.js"></script>
     <script src="js/fc-widgets.js"></script>
 
-<script>
-        // Top-level nav links hover safety: immediately dismiss all dropdowns
-        document.querySelectorAll('nav > a').forEach(function(link) {
-            link.addEventListener('mouseenter', function() {
-                document.querySelectorAll('.home-dropdown-parent, .products-dropdown-parent, .dropdown-parent').forEach(function(p) {
+    <script>
+        // Accessible Header Dropdowns (Home & Products)
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdownParents = document.querySelectorAll('.home-dropdown-parent, .products-dropdown-parent, .dropdown-parent');
+            function closeAllDropdowns() {
+                dropdownParents.forEach(function(p) {
                     p.classList.remove('active');
-                });
-            });
-        });
-        // Click outside dismiss
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('.home-dropdown-parent') && !e.target.closest('.products-dropdown-parent') && !e.target.closest('.dropdown-parent')) {
-                document.querySelectorAll('.home-dropdown-parent, .products-dropdown-parent, .dropdown-parent').forEach(function(p) {
-                    p.classList.remove('active');
+                    const b = p.querySelector('button[aria-expanded]');
+                    if (b) b.setAttribute('aria-expanded', 'false');
                 });
             }
+
+            dropdownParents.forEach(function(parent) {
+                const btn = parent.querySelector('button');
+                if (btn) {
+                    btn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const willOpen = !parent.classList.contains('active');
+                        closeAllDropdowns();
+                        if (willOpen) {
+                            parent.classList.add('active');
+                            btn.setAttribute('aria-expanded', 'true');
+                        }
+                    });
+                }
+            });
+
+            document.querySelectorAll('header nav > a').forEach(function(link) {
+                link.addEventListener('mouseenter', closeAllDropdowns);
+            });
+
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.home-dropdown-parent') && !e.target.closest('.products-dropdown-parent') && !e.target.closest('.dropdown-parent')) {
+                    closeAllDropdowns();
+                }
+            });
         });
     </script>
 </body>
