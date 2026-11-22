@@ -3374,6 +3374,8 @@
         if (!container) {
             container = document.createElement('div');
             container.id = 'fcToastContainer';
+            container.setAttribute('role', 'status');
+            container.setAttribute('aria-live', 'polite');
             container.className = 'fixed bottom-6 right-6 z-[160] flex flex-col gap-2 max-w-sm pointer-events-none';
             document.body.appendChild(container);
         }

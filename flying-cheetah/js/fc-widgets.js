@@ -12,8 +12,15 @@
 (function (window, document) {
     'use strict';
 
-    // 1. INJECT FAVICON & MOBILE-APP STYLESHEET ACROSS ALL PAGES
+    // 1. INJECT FAVICON, THEME-COLOR, SKIP LINK & MOBILE-APP STYLESHEET ACROSS ALL PAGES
     function injectFaviconAndStyles() {
+        if (!document.querySelector("meta[name='theme-color']")) {
+            const meta = document.createElement('meta');
+            meta.name = 'theme-color';
+            meta.content = '#FFFFFF';
+            document.head.appendChild(meta);
+        }
+
         if (!document.querySelector("link[rel*='icon']")) {
             const link = document.createElement('link');
             link.type = 'image/png';
@@ -28,6 +35,22 @@
             cssLink.rel = 'stylesheet';
             cssLink.href = 'css/mobile-app.css';
             document.head.appendChild(cssLink);
+        }
+
+        if (document.body && document.getElementById('main-content') && !document.querySelector('.fc-skip-link')) {
+            const skip = document.createElement('a');
+            skip.href = '#main-content';
+            skip.className = 'fc-skip-link';
+            skip.textContent = 'Skip to main content';
+            document.body.insertBefore(skip, document.body.firstChild);
+        }
+
+        // Respect prefers-reduced-motion for decorative autoplay showcase videos
+        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.querySelectorAll('video[autoplay]').forEach((v) => {
+                v.removeAttribute('autoplay');
+                try { v.pause(); } catch (_) {}
+            });
         }
     }
 
@@ -408,6 +431,8 @@
         if (!container) {
             container = document.createElement('div');
             container.id = 'fcUniversalToastContainer';
+            container.setAttribute('role', 'status');
+            container.setAttribute('aria-live', 'polite');
             container.className = 'fixed top-5 right-5 z-[9999] flex flex-col gap-2.5 max-w-sm w-[90%] sm:w-auto pointer-events-none transition-all';
             document.body.appendChild(container);
         }
