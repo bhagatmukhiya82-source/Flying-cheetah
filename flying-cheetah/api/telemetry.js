@@ -3,10 +3,21 @@
  * Endpoints: /api/v1/telemetry/stats or /api/telemetry
  */
 
-const SUPABASE_URL = process.env.SUPABASE_URL || 'https://txqtkpxdyoatzdgkcsry.supabase.co';
-const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR4cXRrcHhkeW9hdHpkZ2tjc3J5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI4Mzk5NDksImV4cCI6MjEwODQxNTk0OX0.TuGGpGZKHOhvkcpv02W_R-2wwuXykBTdL1iXa9G1qFE';
+const path = require('path');
+
+function _resolveAuth() {
+    const candidates = ['./_auth', '../../api/_auth', '../api/_auth', './api/_auth'];
+    if (typeof __dirname !== 'undefined') candidates.push(path.join(__dirname, '_auth'));
+    for (const c of candidates) {
+        try { return require(c); } catch (_) {}
+    }
+    return require('./_auth');
+}
+
+const { getSupabaseServerConfig } = _resolveAuth();
 
 module.exports = async function handler(req, res) {
+    const { url: SUPABASE_URL, serverKey: SUPABASE_SERVER_KEY } = getSupabaseServerConfig();
     const headers = {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Headers': 'Content-Type, Authorization',
@@ -30,13 +41,13 @@ module.exports = async function handler(req, res) {
     try {
         const [leadsRes, fleetRes, demosRes] = await Promise.all([
             fetch(`${SUPABASE_URL}/rest/v1/leads_inquiries?select=id`, {
-                headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}`, 'Range-Unit': 'items', 'Prefer': 'count=exact' }
+                headers: { 'apikey': SUPABASE_SERVER_KEY, 'Authorization': `Bearer ${SUPABASE_SERVER_KEY}`, 'Range-Unit': 'items', 'Prefer': 'count=exact' }
             }),
             fetch(`${SUPABASE_URL}/rest/v1/fleet_orders?select=id`, {
-                headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}`, 'Range-Unit': 'items', 'Prefer': 'count=exact' }
+                headers: { 'apikey': SUPABASE_SERVER_KEY, 'Authorization': `Bearer ${SUPABASE_SERVER_KEY}`, 'Range-Unit': 'items', 'Prefer': 'count=exact' }
             }),
             fetch(`${SUPABASE_URL}/rest/v1/demo_bookings?select=id`, {
-                headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}`, 'Range-Unit': 'items', 'Prefer': 'count=exact' }
+                headers: { 'apikey': SUPABASE_SERVER_KEY, 'Authorization': `Bearer ${SUPABASE_SERVER_KEY}`, 'Range-Unit': 'items', 'Prefer': 'count=exact' }
             })
         ]);
 

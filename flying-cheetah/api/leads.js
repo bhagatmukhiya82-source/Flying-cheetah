@@ -25,11 +25,9 @@ function _resolveHelper(mod) {
     return require('./' + mod);
 }
 
-const { verifyAdmin } = _resolveHelper('_auth');
+const { verifyAdmin, getSupabaseServerConfig } = _resolveHelper('_auth');
 const { sendMail, escapeHtml } = _resolveHelper('_mailer');
 
-const SUPABASE_URL = process.env.SUPABASE_URL || 'https://txqtkpxdyoatzdgkcsry.supabase.co';
-const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR4cXRrcHhkeW9hdHpkZ2tjc3J5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI4Mzk5NDksImV4cCI6MjEwODQxNTk0OX0.TuGGpGZKHOhvkcpv02W_R-2wwuXykBTdL1iXa9G1qFE';
 const OFFICIAL_ADMIN_EMAIL = process.env.FOUNDER_NOTIFY_EMAIL || process.env.ADMIN_EMAIL || 'flyingcheetah.agency@gmail.com';
 
 async function sendSmtpLeadAlert(lead) {
@@ -78,13 +76,15 @@ async function sendSmtpLeadAlert(lead) {
 }
 
 module.exports = async function handler(req, res) {
-    const supabaseUrl = process.env.SUPABASE_URL || SUPABASE_URL;
-    const supabaseKey = process.env.SUPABASE_ANON_KEY || SUPABASE_ANON_KEY;
+    const sbCfg = getSupabaseServerConfig();
+    const supabaseUrl = sbCfg.url;
+    const supabaseKey = sbCfg.serverKey;
+    const hasServiceRole = sbCfg.hasServiceRole;
 
     const headers = {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-        'Access-Control-Allow-Methods': 'GET, POST, PATCH, OPTIONS',
+        'Access-Control-Allow-Methods': 'GET, POST, PATCH, DELETE, OPTIONS',
         'Content-Type': 'application/json'
     };
 
@@ -158,14 +158,32 @@ module.exports = async function handler(req, res) {
                         'apikey': supabaseKey,
                         'Authorization': `Bearer ${supabaseKey}`,
                         'Content-Type': 'application/json',
-                        'Prefer': 'return=representation'
+                        'Prefer': hasServiceRole ? 'return=representation' : 'return=representation'
                     },
                     body: JSON.stringify(leadRecord)
                 });
                 if (sbResp.ok) {
-                    const data = await sbResp.json();
+                    const data = await sbResp.json().catch(() => null);
                     if (Array.isArray(data) && data.length > 0) savedLead = data[0];
                     else sbErrorMsg = 'Empty response from database';
+                } else if ((sbResp.status === 401 || sbResp.status === 403) && !hasServiceRole) {
+                    // Under strict RLS (anon INSERT allowed, anon SELECT blocked), PostgREST rejects
+                    // return=representation; retry with return=minimal so genuine public leads persist.
+                    const minResp = await fetch(`${supabaseUrl}/rest/v1/leads_inquiries`, {
+                        method: 'POST',
+                        headers: {
+                            'apikey': supabaseKey,
+                            'Authorization': `Bearer ${supabaseKey}`,
+                            'Content-Type': 'application/json',
+                            'Prefer': 'return=minimal'
+                        },
+                        body: JSON.stringify(leadRecord)
+                    });
+                    if (minResp.ok) {
+                        savedLead = { ...leadRecord, persisted: true };
+                    } else {
+                        sbErrorMsg = `Supabase insert failed with status ${minResp.status}`;
+                    }
                 } else {
                     sbErrorMsg = `Supabase insert failed with status ${sbResp.status}`;
                 }
@@ -258,6 +276,44 @@ module.exports = async function handler(req, res) {
             }
 
             return sendJson(200, data[0]);
+        }
+
+        // 4. DELETE LEAD (DELETE) - Protected Admin Endpoint
+        if (req.method === 'DELETE') {
+            const admin = verifyAdmin(req, res, headers);
+            if (!admin) return;
+
+            let body = req.body || {};
+            if (typeof body === 'string') {
+                try { body = JSON.parse(body); } catch (_) { body = {}; }
+            }
+
+            const leadId = req.query?.id || body.id;
+            if (!leadId) return sendJson(400, { error: 'Lead id is required.' });
+
+            if (!supabaseUrl || !supabaseKey) {
+                return sendJson(500, { error: 'Database service configuration missing.' });
+            }
+
+            let sbResp;
+            try {
+                sbResp = await fetch(`${supabaseUrl}/rest/v1/leads_inquiries?id=eq.${encodeURIComponent(leadId)}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'apikey': supabaseKey,
+                        'Authorization': `Bearer ${supabaseKey}`,
+                        'Prefer': 'return=representation'
+                    }
+                });
+            } catch (err) {
+                return sendJson(502, { error: 'Database delete connection failed: ' + err.message });
+            }
+
+            if (!sbResp.ok) {
+                return sendJson(502, { error: `Database delete failed with status ${sbResp.status}` });
+            }
+
+            return sendJson(200, { deleted: true, id: leadId });
         }
 
         return sendJson(405, { error: 'Method Not Allowed' });

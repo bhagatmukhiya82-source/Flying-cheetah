@@ -251,6 +251,28 @@ function verifyAdmin(req, res, corsHeaders = {}) {
     };
 }
 
+const DEFAULT_SUPABASE_URL = 'https://txqtkpxdyoatzdgkcsry.supabase.co';
+const DEFAULT_SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR4cXRrcHhkeW9hdHpkZ2tjc3J5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI4Mzk5NDksImV4cCI6MjEwODQxNTk0OX0.TuGGpGZKHOhvkcpv02W_R-2wwuXykBTdL1iXa9G1qFE';
+
+/**
+ * Resolves server-side Supabase configuration dynamically from process.env.
+ * Strictly prefers SUPABASE_SERVICE_ROLE_KEY on Vercel serverless routes so
+ * server endpoints continue operating cleanly after strict RLS and RPC lockdowns.
+ */
+function getSupabaseServerConfig() {
+    const url = (process.env.SUPABASE_URL || DEFAULT_SUPABASE_URL).trim();
+    const serviceKey = (process.env.SUPABASE_SERVICE_ROLE_KEY || '').trim();
+    const anonKey = (process.env.SUPABASE_ANON_KEY || DEFAULT_SUPABASE_ANON_KEY).trim();
+    const serverKey = serviceKey || anonKey;
+    return {
+        url,
+        serviceKey,
+        anonKey,
+        serverKey,
+        hasServiceRole: Boolean(serviceKey)
+    };
+}
+
 module.exports = {
     getJwtSecret,
     signJwt,
@@ -259,5 +281,6 @@ module.exports = {
     verifyPassword,
     verifyAdmin,
     requireAdminAuth: verifyAdmin,
+    getSupabaseServerConfig,
     ADMIN_EMAILS
 };

@@ -4,8 +4,18 @@
  * Endpoints: /api/v1/fleet/* or /api/fleet
  */
 
-const SUPABASE_URL = process.env.SUPABASE_URL;
-const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY;
+const path = require('path');
+
+function _resolveAuth() {
+    const candidates = ['./_auth', '../../api/_auth', '../api/_auth', './api/_auth'];
+    if (typeof __dirname !== 'undefined') candidates.push(path.join(__dirname, '_auth'));
+    for (const c of candidates) {
+        try { return require(c); } catch (_) {}
+    }
+    return require('./_auth');
+}
+
+const { getSupabaseServerConfig } = _resolveAuth();
 
 const MUMBAI_RIDERS = [
     { name: 'Ramesh Shinde', phone: '+91 98200 11998', vehicle: 'Honda Activa (MH-02-CD-4421)', lat: 19.0600, lng: 72.8360 },
@@ -82,15 +92,17 @@ module.exports = async function handler(req, res) {
             };
 
             // Ingest to Supabase fleet_orders table if environment configured
-            if (SUPABASE_URL && SUPABASE_ANON_KEY) {
+            const sbUrl = process.env.SUPABASE_URL;
+            const sbKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY;
+            if (sbUrl && sbKey) {
                 try {
-                    await fetch(`${SUPABASE_URL}/rest/v1/fleet_orders`, {
+                    await fetch(`${sbUrl}/rest/v1/fleet_orders`, {
                         method: 'POST',
                         headers: {
-                            'apikey': SUPABASE_ANON_KEY,
-                            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                            'apikey': sbKey,
+                            'Authorization': `Bearer ${sbKey}`,
                             'Content-Type': 'application/json',
-                            'Prefer': 'return=representation'
+                            'Prefer': process.env.SUPABASE_SERVICE_ROLE_KEY ? 'return=representation' : 'return=minimal'
                         },
                         body: JSON.stringify(fleetPayload)
                     });
@@ -112,12 +124,14 @@ module.exports = async function handler(req, res) {
         if (req.method === 'GET') {
             let orderData = null;
 
-            if (SUPABASE_URL && SUPABASE_ANON_KEY) {
+            const sbUrlGet = process.env.SUPABASE_URL;
+            const sbKeyGet = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY;
+            if (sbUrlGet && sbKeyGet) {
                 try {
-                    const sbResp = await fetch(`${SUPABASE_URL}/rest/v1/fleet_orders?order_ref=eq.${encodeURIComponent(orderRef)}&limit=1`, {
+                    const sbResp = await fetch(`${sbUrlGet}/rest/v1/fleet_orders?order_ref=eq.${encodeURIComponent(orderRef)}&limit=1`, {
                         headers: {
-                            'apikey': SUPABASE_ANON_KEY,
-                            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                            'apikey': sbKeyGet,
+                            'Authorization': `Bearer ${sbKeyGet}`
                         }
                     });
                     if (sbResp.ok) {

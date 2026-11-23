@@ -32,6 +32,7 @@ const {
     verifyJwt,
     hashPasswordScrypt,
     verifyPassword,
+    getSupabaseServerConfig,
     ADMIN_EMAILS
 } = _resolveHelper('_auth');
 const { sendMail, escapeHtml } = _resolveHelper('_mailer');
@@ -46,8 +47,6 @@ function safeSignJwt(payload) {
     }
 }
 
-const SUPABASE_URL = process.env.SUPABASE_URL || 'https://txqtkpxdyoatzdgkcsry.supabase.co';
-const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR4cXRrcHhkeW9hdHpkZ2tjc3J5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI4Mzk5NDksImV4cCI6MjEwODQxNTk0OX0.TuGGpGZKHOhvkcpv02W_R-2wwuXykBTdL1iXa9G1qFE';
 const OFFICIAL_ADMIN_EMAIL = process.env.FOUNDER_NOTIFY_EMAIL || 'flyingcheetah.agency@gmail.com';
 
 // In-memory OTP cache for instant password resets (keyed by email)
@@ -58,15 +57,16 @@ global._FC_ACTIVE_OTPS = ACTIVE_OTPS;
 const USER_STORE = global._FC_USER_STORE || new Map();
 global._FC_USER_STORE = USER_STORE;
 
-// Seed initial admin accounts if store is fresh
-if (!USER_STORE.has('flyingcheetah.agency@gmail.com')) {
+// Seed initial admin account only when configured (never use hardcoded fallback in Vercel production)
+const initialAdminPwd = process.env.INITIAL_ADMIN_PASSWORD || (process.env.VERCEL_ENV === 'production' ? '' : 'AdminPass2026!');
+if (initialAdminPwd && !USER_STORE.has('flyingcheetah.agency@gmail.com')) {
     USER_STORE.set('flyingcheetah.agency@gmail.com', {
         id: 'usr_admin_fc',
         email: 'flyingcheetah.agency@gmail.com',
         full_name: 'Agency Admin',
         role: 'admin',
         trial_active: false,
-        password_hash: hashPasswordScrypt(process.env.INITIAL_ADMIN_PASSWORD || 'AdminPass2026!'),
+        password_hash: hashPasswordScrypt(initialAdminPwd),
         phone: '+91 99203 86421',
         created_at: new Date().toISOString()
     });
@@ -78,17 +78,18 @@ function supabaseTimeoutSignal(ms = 2500) {
 
 /**
  * Persists an OTP code in both in-memory cache and Supabase `password_reset_otps`
- * so verification survives serverless cold starts.
+ * so verification survives serverless cold starts. Uses SUPABASE_SERVICE_ROLE_KEY on server.
  */
 async function storeOtpRecord(cleanEmail, otp, expiresAt) {
     ACTIVE_OTPS.set(cleanEmail, { otp, expiresAt });
+    const { url, serverKey } = getSupabaseServerConfig();
     try {
-        await fetch(`${SUPABASE_URL}/rest/v1/rpc/fc_store_password_otp`, {
+        await fetch(`${url}/rest/v1/rpc/fc_store_password_otp`, {
             method: 'POST',
             signal: supabaseTimeoutSignal(2500),
             headers: {
-                'apikey': SUPABASE_ANON_KEY,
-                'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                'apikey': serverKey,
+                'Authorization': `Bearer ${serverKey}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
@@ -106,17 +107,18 @@ async function storeOtpRecord(cleanEmail, otp, expiresAt) {
 async function verifyAndConsumeOtp(cleanEmail, otp) {
     const cleanOtp = String(otp || '').trim();
     if (!cleanOtp) return false;
+    const { url, serverKey } = getSupabaseServerConfig();
 
     const cached = ACTIVE_OTPS.get(cleanEmail);
     if (cached && cached.otp === cleanOtp && Date.now() <= cached.expiresAt) {
         ACTIVE_OTPS.delete(cleanEmail);
         try {
-            await fetch(`${SUPABASE_URL}/rest/v1/password_reset_otps?email=eq.${encodeURIComponent(cleanEmail)}&otp_code=eq.${encodeURIComponent(cleanOtp)}`, {
+            await fetch(`${url}/rest/v1/password_reset_otps?email=eq.${encodeURIComponent(cleanEmail)}&otp_code=eq.${encodeURIComponent(cleanOtp)}`, {
                 method: 'PATCH',
                 signal: supabaseTimeoutSignal(2500),
                 headers: {
-                    'apikey': SUPABASE_ANON_KEY,
-                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                    'apikey': serverKey,
+                    'Authorization': `Bearer ${serverKey}`,
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ used: true })
@@ -127,12 +129,12 @@ async function verifyAndConsumeOtp(cleanEmail, otp) {
 
     try {
         const resp = await fetch(
-            `${SUPABASE_URL}/rest/v1/password_reset_otps?email=eq.${encodeURIComponent(cleanEmail)}&otp_code=eq.${encodeURIComponent(cleanOtp)}&used=eq.false&order=created_at.desc&limit=1`,
+            `${url}/rest/v1/password_reset_otps?email=eq.${encodeURIComponent(cleanEmail)}&otp_code=eq.${encodeURIComponent(cleanOtp)}&used=eq.false&order=created_at.desc&limit=1`,
             {
                 signal: supabaseTimeoutSignal(2500),
                 headers: {
-                    'apikey': SUPABASE_ANON_KEY,
-                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                    'apikey': serverKey,
+                    'Authorization': `Bearer ${serverKey}`
                 }
             }
         );
@@ -141,12 +143,12 @@ async function verifyAndConsumeOtp(cleanEmail, otp) {
             if (Array.isArray(rows) && rows.length > 0) {
                 const row = rows[0];
                 if (row.expires_at && new Date(row.expires_at).getTime() >= Date.now()) {
-                    await fetch(`${SUPABASE_URL}/rest/v1/password_reset_otps?email=eq.${encodeURIComponent(cleanEmail)}&otp_code=eq.${encodeURIComponent(cleanOtp)}`, {
+                    await fetch(`${url}/rest/v1/password_reset_otps?email=eq.${encodeURIComponent(cleanEmail)}&otp_code=eq.${encodeURIComponent(cleanOtp)}`, {
                         method: 'PATCH',
                         signal: supabaseTimeoutSignal(2500),
                         headers: {
-                            'apikey': SUPABASE_ANON_KEY,
-                            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                            'apikey': serverKey,
+                            'Authorization': `Bearer ${serverKey}`,
                             'Content-Type': 'application/json'
                         },
                         body: JSON.stringify({ used: true })
@@ -166,15 +168,16 @@ async function verifyAndConsumeOtp(cleanEmail, otp) {
 async function fetchStoredPasswordHash(cleanEmail) {
     const user = USER_STORE.get(cleanEmail);
     if (user && user.password_hash) return user.password_hash;
+    const { url, serverKey } = getSupabaseServerConfig();
 
     try {
         const resp = await fetch(
-            `${SUPABASE_URL}/rest/v1/profiles?email=eq.${encodeURIComponent(cleanEmail)}&select=password_hash&limit=1`,
+            `${url}/rest/v1/profiles?email=eq.${encodeURIComponent(cleanEmail)}&select=password_hash&limit=1`,
             {
                 signal: supabaseTimeoutSignal(2500),
                 headers: {
-                    'apikey': SUPABASE_ANON_KEY,
-                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                    'apikey': serverKey,
+                    'Authorization': `Bearer ${serverKey}`
                 }
             }
         );
@@ -193,13 +196,14 @@ async function fetchStoredPasswordHash(cleanEmail) {
  * Awaits persistence of an updated scrypt password hash to Supabase `profiles`.
  */
 async function persistPasswordHashToSupabase(cleanEmail, upgradedHash, bearerToken) {
-    const authToken = bearerToken || SUPABASE_ANON_KEY;
+    const { url, serverKey } = getSupabaseServerConfig();
+    const authToken = bearerToken || serverKey;
     try {
-        await fetch(`${SUPABASE_URL}/rest/v1/profiles?email=eq.${encodeURIComponent(cleanEmail)}`, {
+        await fetch(`${url}/rest/v1/profiles?email=eq.${encodeURIComponent(cleanEmail)}`, {
             method: 'PATCH',
             signal: supabaseTimeoutSignal(2500),
             headers: {
-                'apikey': SUPABASE_ANON_KEY,
+                'apikey': serverKey,
                 'Authorization': `Bearer ${authToken}`,
                 'Content-Type': 'application/json'
             },
@@ -209,17 +213,18 @@ async function persistPasswordHashToSupabase(cleanEmail, upgradedHash, bearerTok
 }
 
 /**
- * Calls Supabase `fc_verify_and_update_password` RPC to verify OTP or current password
- * and update `auth.users.encrypted_password` across serverless invocations.
+ * Calls Supabase `fc_verify_and_update_password` RPC (service_role gated) to verify OTP
+ * or current password and update `auth.users.encrypted_password` across serverless invocations.
  */
 async function callSupabasePasswordRpc(cleanEmail, otp, newPassword, currentPassword) {
+    const { url, serverKey } = getSupabaseServerConfig();
     try {
-        const resp = await fetch(`${SUPABASE_URL}/rest/v1/rpc/fc_verify_and_update_password`, {
+        const resp = await fetch(`${url}/rest/v1/rpc/fc_verify_and_update_password`, {
             method: 'POST',
             signal: supabaseTimeoutSignal(3000),
             headers: {
-                'apikey': SUPABASE_ANON_KEY,
-                'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                'apikey': serverKey,
+                'Authorization': `Bearer ${serverKey}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
@@ -322,13 +327,14 @@ module.exports = async function handler(req, res) {
             };
 
             // Sync with Supabase Auth (which triggers handle_new_user -> public.profiles)
+            const { url: sbUrl, anonKey: sbAnonKey, serverKey: sbServerKey } = getSupabaseServerConfig();
             let sbAccessToken = null;
             try {
-                const sbSignupResp = await fetch(`${SUPABASE_URL}/auth/v1/signup`, {
+                const sbSignupResp = await fetch(`${sbUrl}/auth/v1/signup`, {
                     method: 'POST',
                     signal: supabaseTimeoutSignal(3000),
                     headers: {
-                        'apikey': SUPABASE_ANON_KEY,
+                        'apikey': sbAnonKey,
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
@@ -351,15 +357,16 @@ module.exports = async function handler(req, res) {
 
             USER_STORE.set(cleanEmail, userObj);
 
-            // Patch extra metadata fields on public.profiles when authenticated session was issued
-            if (sbAccessToken && userObj.id) {
+            // Patch extra metadata fields on public.profiles when authenticated session or service role is available
+            const profileAuthBearer = sbAccessToken || sbServerKey;
+            if (profileAuthBearer && userObj.id) {
                 try {
-                    await fetch(`${SUPABASE_URL}/rest/v1/profiles?id=eq.${encodeURIComponent(userObj.id)}`, {
+                    await fetch(`${sbUrl}/rest/v1/profiles?id=eq.${encodeURIComponent(userObj.id)}`, {
                         method: 'PATCH',
                         signal: supabaseTimeoutSignal(2500),
                         headers: {
-                            'apikey': SUPABASE_ANON_KEY,
-                            'Authorization': `Bearer ${sbAccessToken}`,
+                            'apikey': sbServerKey,
+                            'Authorization': `Bearer ${profileAuthBearer}`,
                             'Content-Type': 'application/json'
                         },
                         body: JSON.stringify({
@@ -430,13 +437,14 @@ module.exports = async function handler(req, res) {
             }
 
             if (!verifiedLocally) {
+                const { url: sbUrl, anonKey: sbAnonKey, serverKey: sbServerKey } = getSupabaseServerConfig();
                 // Check Supabase Auth for valid credentials
                 let authenticatedViaSupabase = false;
                 try {
-                    const sbAuthResp = await fetch(`${SUPABASE_URL}/auth/v1/token?grant_type=password`, {
+                    const sbAuthResp = await fetch(`${sbUrl}/auth/v1/token?grant_type=password`, {
                         method: 'POST',
                         headers: {
-                            'apikey': SUPABASE_ANON_KEY,
+                            'apikey': sbAnonKey,
                             'Content-Type': 'application/json'
                         },
                         body: JSON.stringify({ email: cleanEmail, password: password }),
@@ -460,14 +468,14 @@ module.exports = async function handler(req, res) {
                     }
                 } catch (_) {}
 
-                // Check Supabase profiles table if needed
+                // Check Supabase profiles table if needed (uses service role key on server)
                 if (!authenticatedViaSupabase) {
                     let profileMatched = false;
                     try {
-                        const profResp = await fetch(`${SUPABASE_URL}/rest/v1/profiles?email=eq.${encodeURIComponent(cleanEmail)}&select=*&limit=1`, {
+                        const profResp = await fetch(`${sbUrl}/rest/v1/profiles?email=eq.${encodeURIComponent(cleanEmail)}&select=*&limit=1`, {
                             headers: {
-                                'apikey': SUPABASE_ANON_KEY,
-                                'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                                'apikey': sbServerKey,
+                                'Authorization': `Bearer ${sbServerKey}`
                             },
                             signal: supabaseTimeoutSignal(2500)
                         });
@@ -772,14 +780,15 @@ module.exports = async function handler(req, res) {
 
             USER_STORE.set(cleanEmail, user);
 
-            // Persist to Supabase profiles table using canonical schema columns
+            // Persist to Supabase profiles table using canonical schema columns & server key
+            const { url: sbProfileUrl, serverKey: sbProfileKey } = getSupabaseServerConfig();
             try {
-                await fetch(`${SUPABASE_URL}/rest/v1/profiles?email=eq.${encodeURIComponent(cleanEmail)}`, {
+                await fetch(`${sbProfileUrl}/rest/v1/profiles?email=eq.${encodeURIComponent(cleanEmail)}`, {
                     method: 'PATCH',
                     signal: supabaseTimeoutSignal(2500),
                     headers: {
-                        'apikey': SUPABASE_ANON_KEY,
-                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'apikey': sbProfileKey,
+                        'Authorization': `Bearer ${sbProfileKey}`,
                         'Content-Type': 'application/json',
                         'Prefer': 'return=representation'
                     },

@@ -1689,31 +1689,27 @@
                         }
                     }
 
-                    // Direct Supabase RPC update with 4 parameters: { p_email, p_otp, p_new_password, p_current_password }
-                    if (userEmail && typeof client.rpc === 'function') {
-                        try {
-                            const { data: rpcRes, error: rpcErr } = await client.rpc('fc_verify_and_update_password', {
-                                p_email: userEmail,
-                                p_otp: otpVal || '',
-                                p_new_password: newPass,
-                                p_current_password: currPass || null
-                            });
-                            if (!updatedViaBackend && (rpcErr || (rpcRes && rpcRes.success === false))) {
-                                throw new Error((rpcRes && rpcRes.error) || (rpcErr && rpcErr.message) || 'Failed to update password.');
-                            }
-                        } catch (rpcErr) {
-                            if (!updatedViaBackend) throw rpcErr;
+                    // Security Hardening: Password updates go strictly through server-side
+                    // /api/v1/auth/change-password or authenticated Supabase session updateUser()
+                    if (!updatedViaBackend) {
+                        if (typeof client.auth.updateUser === 'function') {
+                            const { error: updErr } = await client.auth.updateUser({ password: newPass });
+                            if (updErr) throw updErr;
+                        } else {
+                            throw new Error('Unable to reach authentication server to update password.');
                         }
                     }
 
                     localStorage.removeItem('fc_active_change_pass_otp');
 
-                    // Also update active Supabase session if available
-                    try {
-                        if (typeof client.auth.updateUser === 'function') {
-                            await client.auth.updateUser({ password: newPass });
-                        }
-                    } catch (_) {}
+                    // Also sync active Supabase session if backend updated password
+                    if (updatedViaBackend) {
+                        try {
+                            if (typeof client.auth.updateUser === 'function') {
+                                await client.auth.updateUser({ password: newPass });
+                            }
+                        } catch (_) {}
+                    }
 
                     if (feedback) {
                         feedback.className = 'p-2.5 rounded-xl text-xs font-bold text-center bg-emerald-50 text-emerald-800 border border-emerald-200 block';
@@ -2273,9 +2269,27 @@
                 if (emailDispatched) {
                     showAuthToast(`📩 6-digit verification code sent to ${email}! Check your inbox.`);
                 } else {
-                    showAuthToast(`⚠️ OTP generated, but email delivery is unconfigured.`, 'notice');
-                    if (forgotOtpBanner) {
-                        forgotOtpBanner.innerHTML = `<span class="text-amber-800 font-semibold">⚠️ Notice: Email delivery is currently unconfigured. Enter the security code generated on your server to proceed.</span>`;
+                    // Fallback to Supabase Auth's built-in password recovery mailer so users can reset immediately
+                    let sbRecoverySent = false;
+                    try {
+                        if (client && client.auth && typeof client.auth.resetPasswordForEmail === 'function') {
+                            const { error: recErr } = await client.auth.resetPasswordForEmail(email, {
+                                redirectTo: window.location.origin + '/'
+                            });
+                            if (!recErr) sbRecoverySent = true;
+                        }
+                    } catch (_) {}
+
+                    if (sbRecoverySent) {
+                        showAuthToast(`📩 Password recovery link sent to ${email}! Check your inbox and spam folder.`);
+                        if (forgotOtpBanner) {
+                            forgotOtpBanner.innerHTML = `<span class="text-emerald-800 font-semibold">✓ A secure password recovery link has been emailed to <b>${email}</b> via Supabase Auth. Click the link in your inbox to set your new password.</span>`;
+                        }
+                    } else {
+                        showAuthToast(`⚠️ OTP generated, but email delivery is unconfigured.`, 'notice');
+                        if (forgotOtpBanner) {
+                            forgotOtpBanner.innerHTML = `<span class="text-amber-800 font-semibold">⚠️ Notice: Email delivery is currently unconfigured. Enter the security code generated on your server to proceed.</span>`;
+                        }
                     }
                 }
             });
@@ -2354,12 +2368,16 @@
                 const resetData = JSON.parse(localStorage.getItem('fc_active_password_reset') || '{}');
                 const email = resetData.email || (document.getElementById('fcForgotEmailInput')?.value || '').trim().toLowerCase();
 
+                const isSbRecovery = sessionStorage.getItem('fc_sb_recovery_mode') === '1' ||
+                    (window.location.hash || '').includes('type=recovery') ||
+                    (window.location.search || '').includes('type=recovery');
+
                 // Validation
-                if (!otp || otp.length < 6) {
+                if (!isSbRecovery && (!otp || otp.length < 6)) {
                     alert('Please enter the 6-digit OTP verification code sent to your email.');
                     return;
                 }
-                if (resetData.expiresAt && Date.now() > resetData.expiresAt) {
+                if (!isSbRecovery && resetData.expiresAt && Date.now() > resetData.expiresAt) {
                     alert('Verification OTP has expired. Please click "Resend OTP".');
                     return;
                 }
@@ -2378,52 +2396,50 @@
                 submitBtn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin text-xs"></i> <span>Updating password...</span>`;
 
                 try {
-                    // 1. Call Backend API for server-side verification and password update
+                    // 1. Call Backend API for server-side OTP verification (skip when in Supabase email recovery link session without OTP)
                     let backendUpdated = false;
-                    try {
-                        const apiBase = getApiBase();
-                        const bRes = await fetch(`${apiBase}/api/v1/auth/reset-password`, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ email, otp, new_password: newPass })
-                        });
-                        if (bRes.ok) {
-                            backendUpdated = true;
-                        } else {
-                            const errJson = await bRes.json().catch(() => ({}));
-                            if (bRes.status < 500) {
-                                throw new Error(errJson.error || 'Invalid or expired OTP code.');
-                            }
-                        }
-                    } catch (bErr) {
-                        if (bErr.message && !bErr.message.includes('fetch') && !bErr.message.includes('Failed to fetch') && !bErr.message.includes('NetworkError')) {
-                            throw bErr;
-                        }
-                    }
-
-                    // 2. Direct Supabase RPC with 4 parameters: { p_email, p_otp, p_new_password, p_current_password: null }
-                    if (typeof client.rpc === 'function') {
+                    if (!isSbRecovery || otp) {
                         try {
-                            const { data: rpcRes, error: rpcErr } = await client.rpc('fc_verify_and_update_password', {
-                                p_email: email,
-                                p_otp: otp,
-                                p_new_password: newPass,
-                                p_current_password: null
+                            const apiBase = getApiBase();
+                            const bRes = await fetch(`${apiBase}/api/v1/auth/reset-password`, {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ email, otp, new_password: newPass })
                             });
-                            if (!backendUpdated && (rpcErr || (rpcRes && rpcRes.success === false))) {
-                                throw new Error((rpcRes && rpcRes.error) || (rpcErr && rpcErr.message) || 'Failed to update password.');
+                            if (bRes.ok) {
+                                backendUpdated = true;
+                            } else {
+                                const errJson = await bRes.json().catch(() => ({}));
+                                if (bRes.status < 500) {
+                                    throw new Error(errJson.error || 'Invalid or expired OTP code.');
+                                }
                             }
-                        } catch (rpcErr) {
-                            if (!backendUpdated) throw rpcErr;
+                        } catch (bErr) {
+                            if (bErr.message && !bErr.message.includes('fetch') && !bErr.message.includes('Failed to fetch') && !bErr.message.includes('NetworkError')) {
+                                throw bErr;
+                            }
                         }
                     }
+                    sessionStorage.removeItem('fc_sb_recovery_mode');
 
-                    // 3. Call Supabase session update if logged in
-                    try {
+                    // 2. If user arrived via Supabase recovery link (no backend OTP needed), update via active recovery session
+                    if (!backendUpdated) {
                         if (typeof client.auth.updateUser === 'function') {
-                            await client.auth.updateUser({ password: newPass });
+                            const { error: recUpdErr } = await client.auth.updateUser({ password: newPass });
+                            if (recUpdErr) {
+                                throw new Error(recUpdErr.message || 'Invalid or expired OTP code.');
+                            }
+                        } else {
+                            throw new Error('Unable to verify OTP with authentication server.');
                         }
-                    } catch (_) {}
+                    } else {
+                        // 3. Sync Supabase session if logged in
+                        try {
+                            if (typeof client.auth.updateUser === 'function') {
+                                await client.auth.updateUser({ password: newPass });
+                            }
+                        } catch (_) {}
+                    }
 
                     // 3. Update localStorage mock profiles if present
                     const mockProfiles = JSON.parse(localStorage.getItem('fc_mock_profiles') || '[]');
@@ -3948,36 +3964,45 @@
         };
 
         // Primary: Serverless email endpoint
+        let smtpDispatched = false;
         try {
-            await fetch('/api/send-email', {
+            const emailResp = await fetch('/api/send-email', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
             });
+            if (emailResp.ok) {
+                const emailJson = await emailResp.json().catch(() => ({}));
+                if (emailJson && emailJson.dispatched === true) {
+                    smtpDispatched = true;
+                }
+            }
         } catch (e) {}
 
-        // Fallback: Direct FormSubmit endpoint
-        try {
-            await fetch(`https://formsubmit.co/ajax/flyingcheetah.agency@gmail.com`, {
-                method: 'POST',
-                headers: { 
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify({
-                    _subject: `🔐 User Login Alert: ${name} (${user.email})`,
-                    "Event": "User Login / Access",
-                    "User Name": name,
-                    "Email Address": user.email,
-                    "WhatsApp / Phone": user.user_metadata?.phone || 'Not provided',
-                    "Store URL": user.user_metadata?.store_url || 'Not provided',
-                    "Authentication Method": method,
-                    "14-Day Free Trial": trialActive ? "Active ✓" : "Standard",
-                    "Login Timestamp": timestamp + ' (IST)',
-                    "Access Route": window.location.pathname
-                })
-            });
-        } catch (err) {}
+        // Fallback: Direct FormSubmit endpoint (only when serverless SMTP did not dispatch)
+        if (!smtpDispatched) {
+            try {
+                await fetch(`https://formsubmit.co/ajax/flyingcheetah.agency@gmail.com`, {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        _subject: `🔐 User Login Alert: ${name} (${user.email})`,
+                        "Event": "User Login / Access",
+                        "User Name": name,
+                        "Email Address": user.email,
+                        "WhatsApp / Phone": user.user_metadata?.phone || 'Not provided',
+                        "Store URL": user.user_metadata?.store_url || 'Not provided',
+                        "Authentication Method": method,
+                        "14-Day Free Trial": trialActive ? "Active ✓" : "Standard",
+                        "Login Timestamp": timestamp + ' (IST)',
+                        "Access Route": window.location.pathname
+                    })
+                });
+            } catch (err) {}
+        }
 
         // Forward to webhook
         if (window.FC_LEADS && typeof window.FC_LEADS.triggerN8nWebhook === 'function') {
@@ -4125,6 +4150,7 @@
         const urlHash = window.location.hash || '';
         const urlSearch = window.location.search || '';
         if (urlHash.includes('type=recovery') || urlSearch.includes('type=recovery')) {
+            sessionStorage.setItem('fc_sb_recovery_mode', '1');
             openForgotPasswordModal();
             setTimeout(() => {
                 const reqStage = document.getElementById('fcForgotStageRequest');

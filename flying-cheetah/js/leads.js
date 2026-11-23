@@ -156,8 +156,12 @@
                 })
             });
             if (response.ok) {
-                console.log(`[Email] Serverless notification sent to ${OFFICIAL_EMAIL}`);
-                return true;
+                const resData = await response.json().catch(() => ({}));
+                if (resData && resData.dispatched === true) {
+                    console.log(`[Email] Serverless notification sent to ${OFFICIAL_EMAIL}`);
+                    return true;
+                }
+                console.warn('[Email] Serverless endpoint returned dispatched=false; falling back to FormSubmit...');
             }
         } catch (e) {
             console.log('[Email] Serverless endpoint offline or static mode. Using direct fallback dispatcher...');

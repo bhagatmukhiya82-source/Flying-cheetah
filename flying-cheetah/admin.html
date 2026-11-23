@@ -787,7 +787,19 @@
                     .update({ status: newStatus })
                     .eq('id', id);
 
-                if (error) throw error;
+                if (error) {
+                    const token = localStorage.getItem('fc_backend_token') ||
+                        (await client?.auth?.getSession?.())?.data?.session?.access_token || '';
+                    const apiResp = await fetch(`/api/v1/leads?id=${encodeURIComponent(id)}`, {
+                        method: 'PATCH',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            ...(token ? { 'Authorization': `Bearer ${token}` } : {})
+                        },
+                        body: JSON.stringify({ id, status: newStatus })
+                    });
+                    if (!apiResp.ok) throw error;
+                }
 
                 const lead = allLeads.find(l => l.id === id);
                 if (lead) lead.status = newStatus;
@@ -811,7 +823,15 @@
                     .delete()
                     .eq('id', id);
 
-                if (error) throw error;
+                if (error) {
+                    const token = localStorage.getItem('fc_backend_token') ||
+                        (await client?.auth?.getSession?.())?.data?.session?.access_token || '';
+                    const apiResp = await fetch(`/api/v1/leads?id=${encodeURIComponent(id)}`, {
+                        method: 'DELETE',
+                        headers: token ? { 'Authorization': `Bearer ${token}` } : {}
+                    });
+                    if (!apiResp.ok) throw error;
+                }
 
                 allLeads = allLeads.filter(l => l.id !== id);
                 updateStats();

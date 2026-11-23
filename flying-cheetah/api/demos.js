@@ -25,11 +25,9 @@ function _resolveHelper(mod) {
     return require('./' + mod);
 }
 
-const { verifyAdmin } = _resolveHelper('_auth');
+const { verifyAdmin, getSupabaseServerConfig } = _resolveHelper('_auth');
 const { sendMail, escapeHtml } = _resolveHelper('_mailer');
 
-const SUPABASE_URL = process.env.SUPABASE_URL || 'https://txqtkpxdyoatzdgkcsry.supabase.co';
-const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR4cXRrcHhkeW9hdHpkZ2tjc3J5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI4Mzk5NDksImV4cCI6MjEwODQxNTk0OX0.TuGGpGZKHOhvkcpv02W_R-2wwuXykBTdL1iXa9G1qFE';
 const OFFICIAL_ADMIN_EMAIL = process.env.FOUNDER_NOTIFY_EMAIL || process.env.ADMIN_EMAIL || 'flyingcheetah.agency@gmail.com';
 
 async function sendSmtpDemoAlert(demo) {
@@ -79,8 +77,10 @@ async function sendSmtpDemoAlert(demo) {
 }
 
 module.exports = async function handler(req, res) {
-    const supabaseUrl = process.env.SUPABASE_URL || SUPABASE_URL;
-    const supabaseKey = process.env.SUPABASE_ANON_KEY || SUPABASE_ANON_KEY;
+    const sbCfg = getSupabaseServerConfig();
+    const supabaseUrl = sbCfg.url;
+    const supabaseKey = sbCfg.serverKey;
+    const hasServiceRole = sbCfg.hasServiceRole;
 
     const headers = {
         'Access-Control-Allow-Origin': '*',
@@ -162,9 +162,25 @@ module.exports = async function handler(req, res) {
                     body: JSON.stringify(record)
                 });
                 if (sbResp.ok) {
-                    const data = await sbResp.json();
+                    const data = await sbResp.json().catch(() => null);
                     if (Array.isArray(data) && data.length > 0) savedDemo = data[0];
                     else sbErrorMsg = 'Empty response from database';
+                } else if ((sbResp.status === 401 || sbResp.status === 403) && !hasServiceRole) {
+                    const minResp = await fetch(`${supabaseUrl}/rest/v1/demo_bookings`, {
+                        method: 'POST',
+                        headers: {
+                            'apikey': supabaseKey,
+                            'Authorization': `Bearer ${supabaseKey}`,
+                            'Content-Type': 'application/json',
+                            'Prefer': 'return=minimal'
+                        },
+                        body: JSON.stringify(record)
+                    });
+                    if (minResp.ok) {
+                        savedDemo = { ...record, persisted: true };
+                    } else {
+                        sbErrorMsg = `Supabase insert failed with status ${minResp.status}`;
+                    }
                 } else {
                     sbErrorMsg = `Supabase insert failed with status ${sbResp.status}`;
                 }

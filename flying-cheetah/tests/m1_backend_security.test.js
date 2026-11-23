@@ -511,3 +511,75 @@ describe('M1 - Secret Scrubbing & Codebase Hygiene Audit', () => {
         assert.deepStrictEqual(leaks, [], `Insecure TLS setting found in: ${leaks.join(', ')}`);
     });
 });
+
+describe('M1 - Production Hardening Regressions (Service Role, OTP Takeover, Email Fallback)', () => {
+    test('getSupabaseServerConfig: strictly prefers SUPABASE_SERVICE_ROLE_KEY over SUPABASE_ANON_KEY', async () => {
+        await withEnv({
+            SUPABASE_URL: 'https://example.supabase.co',
+            SUPABASE_ANON_KEY: 'anon_public_key_123',
+            SUPABASE_SERVICE_ROLE_KEY: 'service_role_secret_456'
+        }, async () => {
+            const cfg = authGuard.getSupabaseServerConfig();
+            assert.strictEqual(cfg.url, 'https://example.supabase.co');
+            assert.strictEqual(cfg.serverKey, 'service_role_secret_456');
+            assert.strictEqual(cfg.anonKey, 'anon_public_key_123');
+            assert.strictEqual(cfg.hasServiceRole, true);
+        });
+
+        await withEnv({
+            SUPABASE_URL: 'https://example.supabase.co',
+            SUPABASE_ANON_KEY: 'anon_public_key_123',
+            SUPABASE_SERVICE_ROLE_KEY: null
+        }, async () => {
+            const cfg = authGuard.getSupabaseServerConfig();
+            assert.strictEqual(cfg.serverKey, 'anon_public_key_123');
+            assert.strictEqual(cfg.hasServiceRole, false);
+        });
+    });
+
+    test('POST /api/send-email: rejects client-supplied otp_verification with 403 Forbidden (account takeover blocked)', async () => {
+        const res = await invokeHandler(sendEmailHandler, {
+            method: 'POST',
+            body: {
+                type: 'otp_verification',
+                email: 'flyingcheetah.agency@gmail.com',
+                otp_code: '123456'
+            }
+        });
+        assert.strictEqual(res.statusCode, 403);
+        assert.ok(res.json?.error?.toLowerCase().includes('disabled'));
+    });
+
+    test('DELETE /api/leads: rejects unauthenticated caller with 401', async () => {
+        const res = await invokeHandler(leadsHandler, {
+            method: 'DELETE',
+            headers: {},
+            query: { id: 'lead_123' }
+        });
+        assert.strictEqual(res.statusCode, 401);
+    });
+
+    test('Client auth scripts never call privileged fc_verify_and_update_password RPC directly', () => {
+        const rootDir = path.resolve(__dirname, '..');
+        const authFiles = [
+            path.join(rootDir, 'js', 'auth.js'),
+            path.join(rootDir, 'js', 'auth', 'auth-modal.js'),
+            path.join(rootDir, 'js', 'auth', 'auth-core.js')
+        ];
+        for (const f of authFiles) {
+            const code = fs.readFileSync(f, 'utf8');
+            assert.ok(!code.includes("fc_verify_and_update_password"), `${path.basename(f)} must not invoke privileged RPC directly`);
+            assert.ok(!code.includes("fc_store_password_otp"), `${path.basename(f)} must not invoke privileged OTP RPC directly`);
+        }
+    });
+
+    test('js/leads.js checks resData.dispatched === true before skipping FormSubmit backup', () => {
+        const leadsJs = fs.readFileSync(path.resolve(__dirname, '../js/leads.js'), 'utf8');
+        assert.match(leadsJs, /resData\s*&&\s*resData\.dispatched\s*===\s*true/);
+    });
+
+    test('scripts/setup_vercel_env.js contains zero hardcoded admin passwords', () => {
+        const envScript = fs.readFileSync(path.resolve(__dirname, '../scripts/setup_vercel_env.js'), 'utf8');
+        assert.ok(!envScript.includes('AdminPass2026!'), 'setup_vercel_env.js must not hardcode AdminPass2026!');
+    });
+});

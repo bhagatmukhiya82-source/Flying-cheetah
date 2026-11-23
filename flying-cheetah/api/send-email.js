@@ -98,70 +98,18 @@ module.exports = async function handler(req, res) {
         });
 
         if (type === 'otp_verification') {
-            // CLIENT PASSWORD RESET / UPDATE OTP VERIFICATION
-            const { email, otp_code, action } = body;
-            if (!email || !otp_code) {
-                const errResp = JSON.stringify({ error: 'Missing recipient email or otp_code.' });
-                if (res.writeHead) {
-                    res.writeHead(400, headers);
-                    res.end(errResp);
-                    return;
-                }
-                return { statusCode: 400, headers, body: errResp };
+            // Security Hardening: Client-supplied OTP storage & email dispatch is disabled.
+            // Password reset and change OTPs are exclusively generated, stored, and dispatched
+            // server-side via /api/v1/auth/forgot-password and /api/v1/auth/request-change-password-otp.
+            const forbiddenBody = JSON.stringify({
+                error: 'Direct OTP dispatch via /api/send-email is disabled for security. Use /api/v1/auth/forgot-password.'
+            });
+            if (res.writeHead) {
+                res.writeHead(403, headers);
+                res.end(forbiddenBody);
+                return;
             }
-
-            recipientEmail = String(email).trim().toLowerCase();
-            const actionLabel = action ? String(action).trim() : 'Password Reset';
-            const safeAction = escapeHtml(actionLabel);
-            const safeOtp = escapeHtml(otp_code);
-
-            // Ingest OTP to Supabase for secure server-side verification fallback
-            try {
-                await fetch(`${SUPABASE_URL}/rest/v1/rpc/fc_store_password_otp`, {
-                    method: 'POST',
-                    headers: {
-                        'apikey': SUPABASE_ANON_KEY,
-                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        p_email: recipientEmail,
-                        p_otp: String(otp_code).trim()
-                    })
-                });
-            } catch (sbOtpErr) {
-                console.error('[Supabase OTP Store Notice]:', sbOtpErr.message);
-            }
-
-            emailSubject = `Flying Cheetah Verification Code: ${String(otp_code).replace(/[\r\n]+/g, '')}`;
-            emailText = `Your Flying Cheetah ${safeAction} verification code is: ${otp_code}. Valid for 10 minutes. Do not share this code with anyone.`;
-            emailHtml = `
-            <!DOCTYPE html>
-            <html>
-            <body style="font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif; background-color: #f8fafc; padding: 32px 16px; margin: 0;">
-                <div style="max-width: 480px; margin: 0 auto; background: #ffffff; border-radius: 20px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);">
-                    <div style="background: #121624; padding: 24px 32px; text-align: center;">
-                        <div style="color: #ff6838; font-weight: 800; font-size: 18px; letter-spacing: 0.5px;">FLYING CHEETAH</div>
-                        <div style="color: #94a3b8; font-size: 12px; margin-top: 4px;">Security Verification</div>
-                    </div>
-                    <div style="padding: 32px;">
-                        <h2 style="margin: 0 0 12px 0; color: #0f172a; font-size: 20px; font-weight: 800;">${safeAction} Verification</h2>
-                        <p style="color: #475569; font-size: 14px; line-height: 1.6; margin: 0 0 24px 0;">
-                            Use the one-time security code below to complete your ${safeAction.toLowerCase()}. This code is valid for <strong>10 minutes</strong>.
-                        </p>
-                        <div style="background: #fff7ed; border: 2px dashed #fdba74; border-radius: 16px; padding: 20px; text-align: center; margin-bottom: 24px;">
-                            <div style="font-family: monospace; font-size: 32px; font-weight: 900; letter-spacing: 8px; color: #ea580c;">${safeOtp}</div>
-                        </div>
-                        <p style="color: #64748b; font-size: 12px; line-height: 1.5; margin: 0;">
-                            If you did not request this verification code, you can safely ignore this email. Your account remains secure.
-                        </p>
-                    </div>
-                    <div style="background: #f1f5f9; padding: 16px 32px; text-align: center; color: #64748b; font-size: 11px;">
-                        &copy; 2026 Flying Cheetah Revenue Engine &bull; Automated Security Dispatch
-                    </div>
-                </div>
-            </body>
-            </html>`;
+            return { statusCode: 403, headers, body: forbiddenBody };
         } else if (type === 'login_alert') {
             // USER LOGIN / REGISTRATION NOTIFICATION
             const { name, email, auth_method, role, trial_active, source_page } = body || {};

@@ -465,36 +465,45 @@
         };
 
         // Primary: Serverless email endpoint
+        let smtpDispatched = false;
         try {
-            await fetch('/api/send-email', {
+            const emailResp = await fetch('/api/send-email', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
             });
+            if (emailResp.ok) {
+                const emailJson = await emailResp.json().catch(() => ({}));
+                if (emailJson && emailJson.dispatched === true) {
+                    smtpDispatched = true;
+                }
+            }
         } catch (e) {}
 
-        // Fallback: Direct FormSubmit endpoint
-        try {
-            await fetch(`https://formsubmit.co/ajax/flyingcheetah.agency@gmail.com`, {
-                method: 'POST',
-                headers: { 
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify({
-                    _subject: `🔐 User Login Alert: ${name} (${user.email})`,
-                    "Event": "User Login / Access",
-                    "User Name": name,
-                    "Email Address": user.email,
-                    "WhatsApp / Phone": user.user_metadata?.phone || 'Not provided',
-                    "Store URL": user.user_metadata?.store_url || 'Not provided',
-                    "Authentication Method": method,
-                    "14-Day Free Trial": trialActive ? "Active ✓" : "Standard",
-                    "Login Timestamp": timestamp + ' (IST)',
-                    "Access Route": window.location.pathname
-                })
-            });
-        } catch (err) {}
+        // Fallback: Direct FormSubmit endpoint (only when serverless SMTP did not dispatch)
+        if (!smtpDispatched) {
+            try {
+                await fetch(`https://formsubmit.co/ajax/flyingcheetah.agency@gmail.com`, {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        _subject: `🔐 User Login Alert: ${name} (${user.email})`,
+                        "Event": "User Login / Access",
+                        "User Name": name,
+                        "Email Address": user.email,
+                        "WhatsApp / Phone": user.user_metadata?.phone || 'Not provided',
+                        "Store URL": user.user_metadata?.store_url || 'Not provided',
+                        "Authentication Method": method,
+                        "14-Day Free Trial": trialActive ? "Active ✓" : "Standard",
+                        "Login Timestamp": timestamp + ' (IST)',
+                        "Access Route": window.location.pathname
+                    })
+                });
+            } catch (err) {}
+        }
 
         // Forward to webhook
         if (window.FC_LEADS && typeof window.FC_LEADS.triggerN8nWebhook === 'function') {
@@ -642,6 +651,7 @@
         const urlHash = window.location.hash || '';
         const urlSearch = window.location.search || '';
         if (urlHash.includes('type=recovery') || urlSearch.includes('type=recovery')) {
+            sessionStorage.setItem('fc_sb_recovery_mode', '1');
             openForgotPasswordModal();
             setTimeout(() => {
                 const reqStage = document.getElementById('fcForgotStageRequest');
