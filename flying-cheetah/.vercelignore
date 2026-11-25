@@ -10,6 +10,7 @@
 *.docx
 *.doc
 *.pdf
+*.csv
 *.py
 *.pyc
 __pycache__/
@@ -50,12 +51,14 @@ client_secret*.json
 blender*
 
 # ------------------------------------------------------------------------------
-# 5. Automated Test Suites & Test Artifacts
+# 5. Automated Test Suites, Internal Docs & Helper Scripts
 # ------------------------------------------------------------------------------
 tests/
 test/
+scripts/
 *.test.js
 *.spec.js
+TEST_*.md
 
 # ------------------------------------------------------------------------------
 # 6. Build Caches, Backups & Version Control

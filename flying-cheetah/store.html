@@ -748,24 +748,8 @@
                 if (!client) {
                     console.warn('[Store] Supabase client not initialized; skipping cloud sync.');
                 } else {
-                    const paymentNote = orderData.payMethod + (utr ? ' (UTR: ' + utr + ')' : '');
-
-                    // Insert storefront inquiry record into leads_inquiries
-                    const { data: leadData, error: leadError } = await client
-                        .from('leads_inquiries')
-                        .insert([{
-                            name: orderData.name,
-                            email: 'shopper@mumbai.in',
-                            phone: internationalPhone,
-                            service: 'Storefront Order: ' + orderData.item.name + ' (' + paymentNote + ')',
-                            message: 'Drop: ' + orderData.address,
-                            source_page: 'store.html',
-                            status: 'new'
-                        }]);
-
-                    if (leadError) {
-                        console.warn('[Store] Supabase leads_inquiries insert error:', leadError.message || leadError);
-                    }
+                    // Note: Interactive demo store simulations write only to fleet_orders
+                    // so real client leads in leads_inquiries are never polluted by demo clicks.
 
                     // Insert courier dispatch record into fleet_orders
                     const { data: fleetData, error: fleetError } = await client
