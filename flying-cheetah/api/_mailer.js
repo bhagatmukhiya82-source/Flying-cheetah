@@ -46,10 +46,11 @@ function sanitizeHeader(str) {
  */
 function sendMail({ to, subject, html, text, fromName = 'Flying Cheetah', fromEmail }) {
     return new Promise((resolve) => {
-        const user = process.env.SMTP_USER;
-        const pass = process.env.SMTP_PASS || process.env.SMTP_PASSWORD;
-        const host = process.env.SMTP_HOST || 'smtp.gmail.com';
-        const port = parseInt(process.env.SMTP_PORT || '465', 10);
+        const user = (process.env.SMTP_USER || '').trim();
+        const pass = (process.env.SMTP_PASS || process.env.SMTP_PASSWORD || '').trim();
+        const host = (process.env.SMTP_HOST || 'smtp.gmail.com').trim();
+        const rawPort = parseInt(process.env.SMTP_PORT || '465', 10);
+        const port = (host === 'smtp.gmail.com' && rawPort === 587) ? 465 : (rawPort || 465);
 
         // Fail gracefully if SMTP is not configured in environment
         if (!user || !pass) {
