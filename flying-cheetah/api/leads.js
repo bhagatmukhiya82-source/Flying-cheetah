@@ -80,6 +80,7 @@ module.exports = async function handler(req, res) {
     const supabaseUrl = sbCfg.url;
     const supabaseKey = sbCfg.serverKey;
     const hasServiceRole = sbCfg.hasServiceRole;
+    const internalSecret = sbCfg.internalSecret;
 
     const headers = {
         'Access-Control-Allow-Origin': '*',
@@ -213,6 +214,29 @@ module.exports = async function handler(req, res) {
                 return sendJson(500, { error: 'Database service configuration missing.' });
             }
 
+            if (!hasServiceRole && internalSecret) {
+                let rpcResp;
+                try {
+                    rpcResp = await fetch(`${supabaseUrl}/rest/v1/rpc/fc_admin_list_leads`, {
+                        method: 'POST',
+                        headers: {
+                            'apikey': supabaseKey,
+                            'Authorization': `Bearer ${supabaseKey}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ p_server_secret: internalSecret, p_limit: 50 })
+                    });
+                } catch (err) {
+                    return sendJson(502, { error: 'Database query connection failed: ' + err.message });
+                }
+                if (!rpcResp.ok) {
+                    return sendJson(502, { error: `Database query failed with status ${rpcResp.status}` });
+                }
+                const rpcData = await rpcResp.json();
+                const items = Array.isArray(rpcData?.items) ? rpcData.items : [];
+                return sendJson(200, { total: items.length, page: 1, size: 50, items });
+            }
+
             let sbResp;
             try {
                 sbResp = await fetch(`${supabaseUrl}/rest/v1/leads_inquiries?select=*&order=created_at.desc&limit=50`, {
@@ -248,6 +272,31 @@ module.exports = async function handler(req, res) {
 
             if (!supabaseUrl || !supabaseKey) {
                 return sendJson(500, { error: 'Database service configuration missing.' });
+            }
+
+            if (!hasServiceRole && internalSecret) {
+                let rpcResp;
+                try {
+                    rpcResp = await fetch(`${supabaseUrl}/rest/v1/rpc/fc_admin_update_lead`, {
+                        method: 'POST',
+                        headers: {
+                            'apikey': supabaseKey,
+                            'Authorization': `Bearer ${supabaseKey}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ p_server_secret: internalSecret, p_lead_id: String(leadId), p_status: body.status || 'contacted' })
+                    });
+                } catch (err) {
+                    return sendJson(502, { error: 'Database update connection failed: ' + err.message });
+                }
+                if (!rpcResp.ok) {
+                    return sendJson(502, { error: `Database update failed with status ${rpcResp.status}` });
+                }
+                const rpcData = await rpcResp.json();
+                if (rpcData?.not_found || !rpcData?.item) {
+                    return sendJson(404, { error: `Lead not found with id: ${leadId}` });
+                }
+                return sendJson(200, rpcData.item);
             }
 
             let sbResp;
@@ -293,6 +342,27 @@ module.exports = async function handler(req, res) {
 
             if (!supabaseUrl || !supabaseKey) {
                 return sendJson(500, { error: 'Database service configuration missing.' });
+            }
+
+            if (!hasServiceRole && internalSecret) {
+                let rpcResp;
+                try {
+                    rpcResp = await fetch(`${supabaseUrl}/rest/v1/rpc/fc_admin_update_lead`, {
+                        method: 'POST',
+                        headers: {
+                            'apikey': supabaseKey,
+                            'Authorization': `Bearer ${supabaseKey}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ p_server_secret: internalSecret, p_lead_id: String(leadId), p_status: 'archived' })
+                    });
+                } catch (err) {
+                    return sendJson(502, { error: 'Database delete connection failed: ' + err.message });
+                }
+                if (!rpcResp.ok) {
+                    return sendJson(502, { error: `Database delete failed with status ${rpcResp.status}` });
+                }
+                return sendJson(200, { deleted: true, id: leadId });
             }
 
             let sbResp;

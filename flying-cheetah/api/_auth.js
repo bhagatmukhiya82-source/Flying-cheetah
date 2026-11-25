@@ -265,12 +265,14 @@ function getSupabaseServerConfig() {
     const url = (process.env.SUPABASE_URL || DEFAULT_SUPABASE_URL).trim();
     const serviceKey = (process.env.SUPABASE_SERVICE_ROLE_KEY || '').trim();
     const anonKey = (process.env.SUPABASE_ANON_KEY || DEFAULT_SUPABASE_ANON_KEY).trim();
+    const internalSecret = (process.env.FC_INTERNAL_API_SECRET || '').trim();
     const serverKey = serviceKey || anonKey;
     return {
         url,
         serviceKey,
         anonKey,
         serverKey,
+        internalSecret,
         hasServiceRole: Boolean(serviceKey)
     };
 }

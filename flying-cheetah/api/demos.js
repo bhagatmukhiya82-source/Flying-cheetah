@@ -81,6 +81,7 @@ module.exports = async function handler(req, res) {
     const supabaseUrl = sbCfg.url;
     const supabaseKey = sbCfg.serverKey;
     const hasServiceRole = sbCfg.hasServiceRole;
+    const internalSecret = sbCfg.internalSecret;
 
     const headers = {
         'Access-Control-Allow-Origin': '*',
@@ -207,6 +208,29 @@ module.exports = async function handler(req, res) {
 
             if (!supabaseUrl || !supabaseKey) {
                 return sendJson(500, { error: 'Database service configuration missing.' });
+            }
+
+            if (!hasServiceRole && internalSecret) {
+                let rpcResp;
+                try {
+                    rpcResp = await fetch(`${supabaseUrl}/rest/v1/rpc/fc_admin_list_demos`, {
+                        method: 'POST',
+                        headers: {
+                            'apikey': supabaseKey,
+                            'Authorization': `Bearer ${supabaseKey}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ p_server_secret: internalSecret, p_limit: 50 })
+                    });
+                } catch (err) {
+                    return sendJson(502, { error: 'Database query connection failed: ' + err.message });
+                }
+                if (!rpcResp.ok) {
+                    return sendJson(502, { error: `Database query failed with status ${rpcResp.status}` });
+                }
+                const rpcData = await rpcResp.json();
+                const items = Array.isArray(rpcData?.items) ? rpcData.items : [];
+                return sendJson(200, { total: items.length, items });
             }
 
             let sbResp;

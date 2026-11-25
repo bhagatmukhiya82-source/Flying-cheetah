@@ -82,9 +82,9 @@ function supabaseTimeoutSignal(ms = 2500) {
  */
 async function storeOtpRecord(cleanEmail, otp, expiresAt) {
     ACTIVE_OTPS.set(cleanEmail, { otp, expiresAt });
-    const { url, serverKey } = getSupabaseServerConfig();
+    const { url, serverKey, internalSecret } = getSupabaseServerConfig();
     try {
-        await fetch(`${url}/rest/v1/rpc/fc_store_password_otp`, {
+        await fetch(`${url}/rest/v1/rpc/fc_server_store_otp`, {
             method: 'POST',
             signal: supabaseTimeoutSignal(2500),
             headers: {
@@ -94,7 +94,8 @@ async function storeOtpRecord(cleanEmail, otp, expiresAt) {
             },
             body: JSON.stringify({
                 p_email: cleanEmail,
-                p_otp: String(otp).trim()
+                p_otp: String(otp).trim(),
+                p_server_secret: internalSecret || null
             })
         });
     } catch (_) {}
@@ -168,23 +169,40 @@ async function verifyAndConsumeOtp(cleanEmail, otp) {
 async function fetchStoredPasswordHash(cleanEmail) {
     const user = USER_STORE.get(cleanEmail);
     if (user && user.password_hash) return user.password_hash;
-    const { url, serverKey } = getSupabaseServerConfig();
+    const { url, serverKey, internalSecret, hasServiceRole } = getSupabaseServerConfig();
 
     try {
-        const resp = await fetch(
-            `${url}/rest/v1/profiles?email=eq.${encodeURIComponent(cleanEmail)}&select=password_hash&limit=1`,
-            {
+        if (!hasServiceRole && internalSecret) {
+            const rpcResp = await fetch(`${url}/rest/v1/rpc/fc_server_get_profile`, {
+                method: 'POST',
                 signal: supabaseTimeoutSignal(2500),
                 headers: {
                     'apikey': serverKey,
-                    'Authorization': `Bearer ${serverKey}`
-                }
+                    'Authorization': `Bearer ${serverKey}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ p_server_secret: internalSecret, p_email: cleanEmail })
+            });
+            if (rpcResp.ok) {
+                const rpcData = await rpcResp.json();
+                if (rpcData?.profile?.password_hash) return rpcData.profile.password_hash;
             }
-        );
-        if (resp.ok) {
-            const rows = await resp.json();
-            if (Array.isArray(rows) && rows[0]?.password_hash) {
-                return rows[0].password_hash;
+        } else {
+            const resp = await fetch(
+                `${url}/rest/v1/profiles?email=eq.${encodeURIComponent(cleanEmail)}&select=password_hash&limit=1`,
+                {
+                    signal: supabaseTimeoutSignal(2500),
+                    headers: {
+                        'apikey': serverKey,
+                        'Authorization': `Bearer ${serverKey}`
+                    }
+                }
+            );
+            if (resp.ok) {
+                const rows = await resp.json();
+                if (Array.isArray(rows) && rows[0]?.password_hash) {
+                    return rows[0].password_hash;
+                }
             }
         }
     } catch (_) {}
@@ -196,30 +214,47 @@ async function fetchStoredPasswordHash(cleanEmail) {
  * Awaits persistence of an updated scrypt password hash to Supabase `profiles`.
  */
 async function persistPasswordHashToSupabase(cleanEmail, upgradedHash, bearerToken) {
-    const { url, serverKey } = getSupabaseServerConfig();
-    const authToken = bearerToken || serverKey;
+    const { url, serverKey, internalSecret, hasServiceRole } = getSupabaseServerConfig();
     try {
-        await fetch(`${url}/rest/v1/profiles?email=eq.${encodeURIComponent(cleanEmail)}`, {
-            method: 'PATCH',
-            signal: supabaseTimeoutSignal(2500),
-            headers: {
-                'apikey': serverKey,
-                'Authorization': `Bearer ${authToken}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ password_hash: upgradedHash, updated_at: new Date().toISOString() })
-        });
+        if (!hasServiceRole && internalSecret) {
+            await fetch(`${url}/rest/v1/rpc/fc_server_update_profile`, {
+                method: 'POST',
+                signal: supabaseTimeoutSignal(2500),
+                headers: {
+                    'apikey': serverKey,
+                    'Authorization': `Bearer ${serverKey}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    p_server_secret: internalSecret,
+                    p_email: cleanEmail,
+                    p_password_hash: upgradedHash
+                })
+            });
+        } else {
+            const authToken = bearerToken || serverKey;
+            await fetch(`${url}/rest/v1/profiles?email=eq.${encodeURIComponent(cleanEmail)}`, {
+                method: 'PATCH',
+                signal: supabaseTimeoutSignal(2500),
+                headers: {
+                    'apikey': serverKey,
+                    'Authorization': `Bearer ${authToken}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ password_hash: upgradedHash, updated_at: new Date().toISOString() })
+            });
+        }
     } catch (_) {}
 }
 
 /**
- * Calls Supabase `fc_verify_and_update_password` RPC (service_role gated) to verify OTP
+ * Calls Supabase `fc_verify_and_update_password` RPC (server-secret or service_role gated) to verify OTP
  * or current password and update `auth.users.encrypted_password` across serverless invocations.
  */
 async function callSupabasePasswordRpc(cleanEmail, otp, newPassword, currentPassword) {
-    const { url, serverKey } = getSupabaseServerConfig();
+    const { url, serverKey, internalSecret } = getSupabaseServerConfig();
     try {
-        const resp = await fetch(`${url}/rest/v1/rpc/fc_verify_and_update_password`, {
+        const resp = await fetch(`${url}/rest/v1/rpc/fc_server_verify_and_update_password`, {
             method: 'POST',
             signal: supabaseTimeoutSignal(3000),
             headers: {
@@ -231,7 +266,8 @@ async function callSupabasePasswordRpc(cleanEmail, otp, newPassword, currentPass
                 p_email: cleanEmail,
                 p_otp: otp ? String(otp).trim() : '',
                 p_new_password: String(newPassword),
-                p_current_password: currentPassword ? String(currentPassword) : null
+                p_current_password: currentPassword ? String(currentPassword) : null,
+                p_server_secret: internalSecret || null
             })
         });
         if (!resp.ok) return { reachable: false };
@@ -780,27 +816,48 @@ module.exports = async function handler(req, res) {
 
             USER_STORE.set(cleanEmail, user);
 
-            // Persist to Supabase profiles table using canonical schema columns & server key
-            const { url: sbProfileUrl, serverKey: sbProfileKey } = getSupabaseServerConfig();
+            // Persist to Supabase profiles table using server-secret RPC or service_role
+            const { url: sbProfileUrl, serverKey: sbProfileKey, internalSecret: sbProfSecret, hasServiceRole: sbProfHasSR } = getSupabaseServerConfig();
             try {
-                await fetch(`${sbProfileUrl}/rest/v1/profiles?email=eq.${encodeURIComponent(cleanEmail)}`, {
-                    method: 'PATCH',
-                    signal: supabaseTimeoutSignal(2500),
-                    headers: {
-                        'apikey': sbProfileKey,
-                        'Authorization': `Bearer ${sbProfileKey}`,
-                        'Content-Type': 'application/json',
-                        'Prefer': 'return=representation'
-                    },
-                    body: JSON.stringify({
-                        full_name: user.full_name,
-                        phone: user.phone,
-                        gstin_udyam: user.gstin,
-                        merchant_upi_id: user.upi_id,
-                        metadata: { store_url: user.store_url || '', trial_active: user.trial_active !== false },
-                        updated_at: new Date().toISOString()
-                    })
-                });
+                if (!sbProfHasSR && sbProfSecret) {
+                    await fetch(`${sbProfileUrl}/rest/v1/rpc/fc_server_update_profile`, {
+                        method: 'POST',
+                        signal: supabaseTimeoutSignal(2500),
+                        headers: {
+                            'apikey': sbProfileKey,
+                            'Authorization': `Bearer ${sbProfileKey}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            p_server_secret: sbProfSecret,
+                            p_email: cleanEmail,
+                            p_full_name: user.full_name || null,
+                            p_phone: user.phone || null,
+                            p_gstin: user.gstin || null,
+                            p_upi_id: user.upi_id || null,
+                            p_metadata: { store_url: user.store_url || '', trial_active: user.trial_active !== false }
+                        })
+                    });
+                } else {
+                    await fetch(`${sbProfileUrl}/rest/v1/profiles?email=eq.${encodeURIComponent(cleanEmail)}`, {
+                        method: 'PATCH',
+                        signal: supabaseTimeoutSignal(2500),
+                        headers: {
+                            'apikey': sbProfileKey,
+                            'Authorization': `Bearer ${sbProfileKey}`,
+                            'Content-Type': 'application/json',
+                            'Prefer': 'return=representation'
+                        },
+                        body: JSON.stringify({
+                            full_name: user.full_name,
+                            phone: user.phone,
+                            gstin_udyam: user.gstin,
+                            merchant_upi_id: user.upi_id,
+                            metadata: { store_url: user.store_url || '', trial_active: user.trial_active !== false },
+                            updated_at: new Date().toISOString()
+                        })
+                    });
+                }
             } catch (_) {}
 
             const { password_hash: _omit, ...safeUser } = user;
