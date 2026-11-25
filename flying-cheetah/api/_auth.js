@@ -10,6 +10,8 @@ const crypto = require('crypto');
 const ADMIN_EMAILS = [
     'flyingcheetah.agency@gmail.com',
     'bhagatmukhiya@gmail.com',
+    'bhagatmukhiya82@gmail.com',
+    'bhagatmukhiya07@gmail.com',
     'yashgaikwad@gmail.com'
 ];
 

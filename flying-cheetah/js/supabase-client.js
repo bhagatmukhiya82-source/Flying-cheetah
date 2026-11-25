@@ -21,8 +21,8 @@
         SUPABASE_URL: window.FC_SUPABASE_URL || cleanStorage('FC_SUPABASE_URL') || 'https://txqtkpxdyoatzdgkcsry.supabase.co',
         SUPABASE_ANON_KEY: window.FC_SUPABASE_ANON_KEY || cleanStorage('FC_SUPABASE_ANON_KEY') || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR4cXRrcHhkeW9hdHpkZ2tjc3J5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI4Mzk5NDksImV4cCI6MjEwODQxNTk0OX0.TuGGpGZKHOhvkcpv02W_R-2wwuXykBTdL1iXa9G1qFE',
         OFFICIAL_EMAIL: 'flyingcheetah.agency@gmail.com',
-        ADMIN_EMAILS: ['flyingcheetah.agency@gmail.com', 'bhagatmukhiya@gmail.com', 'yashgaikwad@gmail.com'],
-        N8N_WEBHOOK_URL: window.FC_N8N_WEBHOOK_URL || cleanStorage('FC_N8N_WEBHOOK_URL') || 'https://script.google.com/macros/s/AKfycbwJ6cvX2sJ2wPMORyZCTWv3HRicUWe3B2_CS-Z5IZVQu-sBrqbl69c8XyMNt1eL4Bln/exec'
+        ADMIN_EMAILS: ['flyingcheetah.agency@gmail.com', 'bhagatmukhiya@gmail.com', 'bhagatmukhiya82@gmail.com', 'bhagatmukhiya07@gmail.com', 'yashgaikwad@gmail.com'],
+        N8N_WEBHOOK_URL: window.FC_N8N_WEBHOOK_URL || cleanStorage('FC_N8N_WEBHOOK_URL') || ''
     };
 
     const isPlaceholder = (key) => !key || key.includes('xyzcompany') || key.includes('placeholder');
