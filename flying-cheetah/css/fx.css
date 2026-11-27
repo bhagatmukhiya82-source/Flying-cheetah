@@ -189,10 +189,10 @@ summary:focus-visible,
 
 @keyframes marqueeInfinite {
     0% {
-        transform: translateX(0%);
+        transform: translate3d(0%, 0, 0);
     }
     100% {
-        transform: translateX(-50%);
+        transform: translate3d(-100%, 0, 0);
     }
 }
 
@@ -245,25 +245,34 @@ summary:focus-visible,
 
 /* 6. INFINITE MARQUEE STRIP */
 .marquee-container {
+    display: flex;
     overflow: hidden;
     white-space: nowrap;
     position: relative;
-    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
 }
 
 .marquee-content {
     display: inline-flex;
-    animation: marqueeInfinite 24s linear infinite;
+    flex-shrink: 0;
+    min-width: max-content;
+    animation: marqueeInfinite 28s linear infinite;
 }
 
 .marquee-container:hover .marquee-content {
     animation-play-state: paused;
 }
 
-/* 7. CARD MICRO-INTERACTIONS */
-.fc-card-interactive {
-    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+/* 7. CARD MICRO-INTERACTIONS & STUDIO SPOTLIGHT */
+.fc-card-interactive,
+.card-anim {
+    position: relative;
+    transition:
+        transform 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+        border-color 0.3s ease,
+        background-color 0.3s ease;
 }
 
 .fc-card-interactive:hover {
@@ -271,8 +280,35 @@ summary:focus-visible,
     box-shadow: 0 25px 45px -12px rgba(15, 23, 42, 0.12), 0 0 1px 1px rgba(255, 104, 56, 0.15);
 }
 
+@media (hover: hover) and (pointer: fine) {
+    .fc-spotlight-ready::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.32s ease;
+        background: radial-gradient(
+            420px circle at var(--fc-mx, 50%) var(--fc-my, 50%),
+            rgba(255, 104, 56, 0.075),
+            rgba(124, 58, 237, 0.03) 42%,
+            transparent 70%
+        );
+        z-index: 1;
+    }
+
+    .fc-spotlight-ready:hover::before {
+        opacity: 1;
+    }
+}
+
 .fc-card-interactive-dark {
-    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    transition:
+        transform 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+        border-color 0.3s ease,
+        background-color 0.3s ease;
 }
 
 .fc-card-interactive-dark:hover {
@@ -528,7 +564,111 @@ header .max-w-7xl > div:last-child a {
     transform: scale(1.03);
 }
 
-/* 6. ACCESSIBILITY: RESPECT PREFERS-REDUCED-MOTION */
+/* 11. UNIVERSAL STUDIO SCROLL PROGRESS, STAGGER REVEALS & INTERACTIVE ACCORDIONS */
+#fcScrollProgress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    z-index: 9998;
+    pointer-events: none;
+    transform-origin: 0 50%;
+    transform: scaleX(var(--fc-scroll, 0));
+    background: linear-gradient(90deg, #FF6838 0%, #F59E0B 35%, #7C3AED 70%, #10B981 100%);
+    box-shadow: 0 1px 8px rgba(255, 104, 56, 0.35);
+    will-change: transform;
+}
+
+.fc-reveal {
+    opacity: 1;
+    transform: none;
+}
+
+html.fc-motion-ready .fc-reveal:not(.is-visible) {
+    opacity: 0;
+    transform: translate3d(0, 22px, 0);
+}
+
+html.fc-motion-ready .fc-reveal {
+    transition:
+        opacity 0.62s cubic-bezier(0.22, 1, 0.36, 1) var(--fc-delay, 0ms),
+        transform 0.62s cubic-bezier(0.22, 1, 0.36, 1) var(--fc-delay, 0ms);
+}
+
+html.fc-motion-ready .fc-reveal.is-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+}
+
+@keyframes fcTabPanelEnter {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 12px, 0) scale(0.992);
+    }
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+}
+
+.fc-tab-enter {
+    animation: fcTabPanelEnter 0.42s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes fcSvgDraw {
+    0% {
+        stroke-dashoffset: 900;
+    }
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+.fc-svg-draw {
+    stroke-dasharray: 900;
+    animation: fcSvgDraw 1.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.fc-studio-grid-bg {
+    background-image:
+        radial-gradient(circle at 18% 12%, rgba(255, 104, 56, 0.06) 0%, transparent 42%),
+        radial-gradient(circle at 84% 18%, rgba(124, 58, 237, 0.05) 0%, transparent 38%),
+        linear-gradient(to right, rgba(226, 232, 240, 0.38) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(226, 232, 240, 0.38) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 44px 44px, 44px 44px;
+}
+
+details.fc-faq-item {
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+}
+
+details.fc-faq-item > summary {
+    list-style: none;
+    cursor: pointer;
+}
+
+details.fc-faq-item > summary::-webkit-details-marker {
+    display: none;
+}
+
+details.fc-faq-item[open] {
+    border-color: rgba(255, 104, 56, 0.45);
+    background-color: #FFFFFF;
+    box-shadow: 0 16px 32px -14px rgba(15, 23, 42, 0.08);
+}
+
+details.fc-faq-item .fc-faq-icon {
+    transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.25s ease, color 0.25s ease;
+}
+
+details.fc-faq-item[open] .fc-faq-icon {
+    transform: rotate(45deg);
+    background-color: #FF6838;
+    color: #FFFFFF;
+}
+
+/* 12. ACCESSIBILITY: RESPECT PREFERS-REDUCED-MOTION */
 @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -541,5 +681,11 @@ header .max-w-7xl > div:last-child a {
     .marquee-content {
         animation: none !important;
         transform: none !important;
+    }
+    html.fc-motion-ready .fc-reveal,
+    html.fc-motion-ready .fc-reveal:not(.is-visible) {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
     }
 }

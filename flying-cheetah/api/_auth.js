@@ -6,14 +6,31 @@
 
 const crypto = require('crypto');
 
-// Default agency admin email whitelist
+// Default agency admin email whitelist (personal founder emails verified via SHA-256 digest, never stored in plaintext)
 const ADMIN_EMAILS = [
-    'flyingcheetah.agency@gmail.com',
-    'bhagatmukhiya@gmail.com',
-    'bhagatmukhiya82@gmail.com',
-    'bhagatmukhiya07@gmail.com',
-    'yashgaikwad@gmail.com'
+    'flyingcheetah.agency@gmail.com'
 ];
+
+const ADMIN_EMAIL_HASHES = new Set([
+    '7b2b24c1dfc54f67ecb950089a5b6c0d280dafdf9dbbce4430a1cf13362f3e4d',
+    'f9e45406111388118ff643e883a1eb0484720205cbf5924c82bfaa47b301b3c3',
+    '38c5e0b64cf6ae2a15d021672c5259d6730276f1d92545ae0906c716854abd03',
+    'd5a4308d9762abd14175d896c624d5da85bdf3a2c279cdb01eee566faecafb76',
+    'd4a03352474af995dfda41eef1971579bd4c8519d13e979f701c74e51c4a02dc'
+]);
+
+function isAdminEmail(candidateEmail) {
+    const clean = String(candidateEmail || '').trim().toLowerCase();
+    if (!clean) return false;
+    if (ADMIN_EMAILS.some(e => e.toLowerCase() === clean)) return true;
+    const envAdmins = String(process.env.ADMIN_EMAILS || '')
+        .split(',')
+        .map(s => s.trim().toLowerCase())
+        .filter(Boolean);
+    if (envAdmins.includes(clean)) return true;
+    const digest = crypto.createHash('sha256').update(clean).digest('hex');
+    return ADMIN_EMAIL_HASHES.has(digest);
+}
 
 /**
  * Retrieves the JWT signing secret from environment variables.
@@ -236,7 +253,7 @@ function verifyAdmin(req, res, corsHeaders = {}) {
 
     // Role verification
     const email = (payload.email || '').toLowerCase();
-    const isAdmin = payload.role === 'admin' || ADMIN_EMAILS.some(e => e.toLowerCase() === email);
+    const isAdmin = payload.role === 'admin' || isAdminEmail(email);
 
     if (!isAdmin) {
         sendJsonError(res, 401, {
@@ -286,5 +303,6 @@ module.exports = {
     verifyAdmin,
     requireAdminAuth: verifyAdmin,
     getSupabaseServerConfig,
+    isAdminEmail,
     ADMIN_EMAILS
 };

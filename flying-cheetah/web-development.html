@@ -43,7 +43,7 @@
 
     <style>
         .bik-mega-shadow { box-shadow: 0 25px 60px -15px rgba(255, 104, 56, 0.15), 0 0 1px 1px rgba(0, 0, 0, 0.05); }
-        .card-anim { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .card-anim { transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease; }
         .card-anim:hover { transform: translateY(-4px); box-shadow: 0 20px 35px -10px rgba(0,0,0,0.08); }
         .home-menu { display: none; }
         .home-dropdown-parent:hover > .home-menu,
@@ -73,7 +73,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
 
             <a href="index.html" class="flex items-center space-x-3 shrink-0 whitespace-nowrap">
-                <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah Logo" class="h-11 w-11 rounded-full object-cover border border-slate-200 shadow-sm">
+                <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah Logo" class="h-11 w-11 rounded-full object-cover border border-slate-200 shadow-sm" width="1024" height="1024" decoding="async">
                 <div class="flex flex-col">
                     <span class="text-lg xl:text-xl font-black tracking-tight font-display text-bikDark">FLYING CHEETAH</span>
                     <span class="text-[9px] text-orange-700 font-bold tracking-widest uppercase -mt-1">WEB DEVELOPMENT &bull; MUMBAI</span>
@@ -442,7 +442,7 @@
                 </div>
 
                 <div class="rounded-3xl border border-slate-200 bg-white p-3 sm:p-4 shadow-xl">
-                    <img src="images/web_engineering_stack_light.png" alt="Flying Cheetah Web Engineering Stack showing Next.js Headless Edge, Sub-1.2s Vitals and Schema, Checkout and Webhook Layer, 95+ Vitals Score, and +18% Conversion Lift" loading="lazy" class="w-full h-auto rounded-2xl border border-slate-100 block">
+                    <img src="images/web_engineering_stack_light.png" alt="Flying Cheetah Web Engineering Stack showing Next.js Headless Edge, Sub-1.2s Vitals and Schema, Checkout and Webhook Layer, 95+ Vitals Score, and +18% Conversion Lift" loading="lazy" class="w-full h-auto rounded-2xl border border-slate-100 block" width="1600" height="960" decoding="async">
                 </div>
             </div>
         </section>
@@ -462,7 +462,7 @@
                 </div>
                 <div class="lg:col-span-6">
                     <div class="fc-showcase-frame aspect-[16/10]">
-                        <img src="images/high_speed_store_dev_mockup.jpg" alt="Flying Cheetah High-Speed Storefront Engineering Hardware Preview" loading="lazy" class="fc-showcase-img">
+                        <img src="images/high_speed_store_dev_mockup.jpg" alt="Flying Cheetah High-Speed Storefront Engineering Hardware Preview" loading="lazy" class="fc-showcase-img" width="1376" height="768" decoding="async">
                     </div>
                 </div>
             </div>
@@ -732,42 +732,57 @@
                     </p>
                 </div>
 
-                <div class="space-y-4 text-left text-xs">
+                <div class="space-y-3.5 text-left text-xs">
 
-                    <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
-                        <h3 class="font-bold text-sm text-bikDark">How long does it take to develop a custom eCommerce website?</h3>
-                        <p class="text-slate-700 leading-relaxed">
-                            Typical project timelines range from 2 to 4 weeks depending on catalog complexity. A streamlined D2C Shopify store launches in ~14 days, whereas custom headless builds with ERP integrations typically require 3 to 4 weeks with end-to-end load testing.
-                        </p>
-                    </div>
+                    <details open class="fc-faq-item rounded-2xl bg-slate-50 border border-slate-200 overflow-hidden">
+                        <summary class="px-6 py-4 flex items-center justify-between gap-4 font-bold text-sm text-bikDark select-none">
+                            <span>How long does it take to develop a custom eCommerce website?</span>
+                            <span class="fc-faq-icon w-7 h-7 rounded-full bg-white border border-slate-200 text-bikOrange flex items-center justify-center shrink-0 text-xs"><i class="fa-solid fa-plus" aria-hidden="true"></i></span>
+                        </summary>
+                        <div class="px-6 pb-5 text-slate-700 leading-relaxed border-t border-slate-100 pt-3">
+                            <p>Typical project timelines range from 2 to 4 weeks depending on catalog complexity. A streamlined D2C Shopify store launches in ~14 days, whereas custom headless builds with ERP integrations typically require 3 to 4 weeks with end-to-end load testing.</p>
+                        </div>
+                    </details>
 
-                    <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
-                        <h3 class="font-bold text-sm text-bikDark">Which platform do you recommend: Shopify, WooCommerce, or Custom Headless?</h3>
-                        <p class="text-slate-700 leading-relaxed">
-                            For most D2C brands, <strong>Shopify Plus</strong> is the industry benchmark for stability, security, and app ecosystem. If you need complete open-source database control, <strong>WooCommerce</strong> is ideal. For enterprise brands needing instant route transitions and ~1.2s load times, <strong>Next.js Headless</strong> delivers unbeatable performance. We evaluate your exact business goals before recommending a stack.
-                        </p>
-                    </div>
+                    <details class="fc-faq-item rounded-2xl bg-slate-50 border border-slate-200 overflow-hidden">
+                        <summary class="px-6 py-4 flex items-center justify-between gap-4 font-bold text-sm text-bikDark select-none">
+                            <span>Which platform do you recommend: Shopify, WooCommerce, or Custom Headless?</span>
+                            <span class="fc-faq-icon w-7 h-7 rounded-full bg-white border border-slate-200 text-bikOrange flex items-center justify-center shrink-0 text-xs"><i class="fa-solid fa-plus" aria-hidden="true"></i></span>
+                        </summary>
+                        <div class="px-6 pb-5 text-slate-700 leading-relaxed border-t border-slate-100 pt-3">
+                            <p>For most D2C brands, <strong>Shopify Plus</strong> is the industry benchmark for stability, security, and app ecosystem. If you need complete open-source database control, <strong>WooCommerce</strong> is ideal. For enterprise brands needing instant route transitions and ~1.2s load times, <strong>Next.js Headless</strong> delivers unbeatable performance. We evaluate your exact business goals before recommending a stack.</p>
+                        </div>
+                    </details>
 
-                    <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
-                        <h3 class="font-bold text-sm text-bikDark">If we redesign our existing store, will we lose our current Google rankings?</h3>
-                        <p class="text-slate-700 leading-relaxed">
-                            No. We follow a strict <strong>Zero-Traffic-Loss SEO Protocol</strong>. Every existing URL is mapped to its exact destination with verified 301 redirects, canonical metadata is preserved, and structured schemas are upgraded. Clients typically see a 15% to 25% increase in organic traffic within 60 days due to dramatically faster load speeds.
-                        </p>
-                    </div>
+                    <details class="fc-faq-item rounded-2xl bg-slate-50 border border-slate-200 overflow-hidden">
+                        <summary class="px-6 py-4 flex items-center justify-between gap-4 font-bold text-sm text-bikDark select-none">
+                            <span>If we redesign our existing store, will we lose our current Google rankings?</span>
+                            <span class="fc-faq-icon w-7 h-7 rounded-full bg-white border border-slate-200 text-bikOrange flex items-center justify-center shrink-0 text-xs"><i class="fa-solid fa-plus" aria-hidden="true"></i></span>
+                        </summary>
+                        <div class="px-6 pb-5 text-slate-700 leading-relaxed border-t border-slate-100 pt-3">
+                            <p>No. We follow a strict <strong>Zero-Traffic-Loss SEO Protocol</strong>. Every existing URL is mapped to its exact destination with verified 301 redirects, canonical metadata is preserved, and structured schemas are upgraded. Clients typically see a 15% to 25% increase in organic traffic within 60 days due to dramatically faster load speeds.</p>
+                        </div>
+                    </details>
 
-                    <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
-                        <h3 class="font-bold text-sm text-bikDark">Can you integrate WhatsApp checkouts and Mumbai hyperlocal couriers?</h3>
-                        <p class="text-slate-700 leading-relaxed">
-                            Yes! That is Flying Cheetah’s proprietary advantage. We pre-integrate our official Meta WhatsApp Business Cloud API (allowing shoppers to complete orders via WhatsApp) and pre-wire Borzo &amp; Porter rider APIs so your warehouse or retail outlet can dispatch riders in under 25 minutes across Mumbai.
-                        </p>
-                    </div>
+                    <details class="fc-faq-item rounded-2xl bg-slate-50 border border-slate-200 overflow-hidden">
+                        <summary class="px-6 py-4 flex items-center justify-between gap-4 font-bold text-sm text-bikDark select-none">
+                            <span>Can you integrate WhatsApp checkouts and Mumbai hyperlocal couriers?</span>
+                            <span class="fc-faq-icon w-7 h-7 rounded-full bg-white border border-slate-200 text-bikOrange flex items-center justify-center shrink-0 text-xs"><i class="fa-solid fa-plus" aria-hidden="true"></i></span>
+                        </summary>
+                        <div class="px-6 pb-5 text-slate-700 leading-relaxed border-t border-slate-100 pt-3">
+                            <p>Yes! That is Flying Cheetah’s proprietary advantage. We pre-integrate our official Meta WhatsApp Business Cloud API (allowing shoppers to complete orders via WhatsApp) and pre-wire Borzo &amp; Porter rider APIs so your warehouse or retail outlet can dispatch riders in under 25 minutes across Mumbai.</p>
+                        </div>
+                    </details>
 
-                    <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
-                        <h3 class="font-bold text-sm text-bikDark">Do you provide ongoing support, hosting maintenance, and updates?</h3>
-                        <p class="text-slate-700 leading-relaxed">
-                            Yes, every project includes a 30-day post-launch warranty, followed by optional monthly engineering maintenance SLAs that cover security patches, Core Web Vitals audits, seasonal promotional banners, and continuous conversion rate optimization.
-                        </p>
-                    </div>
+                    <details class="fc-faq-item rounded-2xl bg-slate-50 border border-slate-200 overflow-hidden">
+                        <summary class="px-6 py-4 flex items-center justify-between gap-4 font-bold text-sm text-bikDark select-none">
+                            <span>Do you provide ongoing support, hosting maintenance, and updates?</span>
+                            <span class="fc-faq-icon w-7 h-7 rounded-full bg-white border border-slate-200 text-bikOrange flex items-center justify-center shrink-0 text-xs"><i class="fa-solid fa-plus" aria-hidden="true"></i></span>
+                        </summary>
+                        <div class="px-6 pb-5 text-slate-700 leading-relaxed border-t border-slate-100 pt-3">
+                            <p>Yes, every project includes a 30-day post-launch warranty, followed by optional monthly engineering maintenance SLAs that cover security patches, Core Web Vitals audits, seasonal promotional banners, and continuous conversion rate optimization.</p>
+                        </div>
+                    </details>
 
                 </div>
 
@@ -903,7 +918,7 @@
     <footer class="py-12 bg-white border-t border-slate-200 text-xs text-slate-600">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between gap-6">
             <div class="flex items-center space-x-3">
-                <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah" class="h-6 w-6 rounded-full object-cover border border-slate-300">
+                <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah" class="h-6 w-6 rounded-full object-cover border border-slate-300" width="1024" height="1024" decoding="async" loading="lazy">
                 <span class="font-bold text-slate-800">FLYING CHEETAH LABS &bull; WEB DEVELOPMENT SERVICES MUMBAI &copy; 2026.</span>
                 <span>All Rights Reserved.</span>
             </div>

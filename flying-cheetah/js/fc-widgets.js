@@ -166,7 +166,7 @@
                 <!-- Top Brand & Close -->
                 <div class="p-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/80 sticky top-0 z-10 backdrop-blur-md">
                     <a href="index.html" class="flex items-center gap-2.5">
-                        <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah Logo" class="w-8 h-8 rounded-full object-cover border border-slate-200 shadow-sm">
+                        <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah Logo" width="32" height="32" decoding="async" class="w-8 h-8 rounded-full object-cover border border-slate-200 shadow-sm">
                         <div class="flex flex-col text-left">
                             <span class="font-black text-xs tracking-tight font-display text-bikDark leading-none">FLYING CHEETAH</span>
                             <span class="text-[8px] text-orange-700 font-bold tracking-widest uppercase mt-0.5">AI COMMERCE</span>
@@ -405,7 +405,7 @@
             }
 
             if (tooltip && tooltipDate && tooltipRevenue) {
-                tooltipDate.textContent = `Dec ${item.day}, 2026 • Day ${item.day}`;
+                tooltipDate.textContent = `Nov ${item.day}, 2026 • Day ${item.day}`;
                 const surge = ((item.rev - 4600) / 4600 * 100).toFixed(1);
                 tooltipRevenue.innerHTML = `₹${item.rev.toLocaleString('en-IN')} <span class="text-[10px] text-emerald-700 font-bold">(+${surge}%)</span>`;
                 const subEl = document.getElementById('fcTooltipSub');
@@ -493,6 +493,206 @@
         };
     }
 
+    // 7. STUDIO SCROLL PROGRESS BEAM (COMPOSITOR-SAFE SCALEX)
+    function initScrollProgressBar() {
+        if (!document.body || document.getElementById('fcScrollProgress')) return;
+        const bar = document.createElement('div');
+        bar.id = 'fcScrollProgress';
+        bar.setAttribute('aria-hidden', 'true');
+        document.body.appendChild(bar);
+
+        let ticking = false;
+        const updateBar = () => {
+            const docEl = document.documentElement;
+            const maxScroll = Math.max(1, docEl.scrollHeight - docEl.clientHeight);
+            const pct = Math.max(0, Math.min(1, (window.scrollY || docEl.scrollTop || 0) / maxScroll));
+            bar.style.setProperty('--fc-scroll', pct.toFixed(4));
+            ticking = false;
+        };
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                ticking = true;
+                requestAnimationFrame(updateBar);
+            }
+        }, { passive: true });
+        updateBar();
+    }
+
+    // 8. UNIVERSAL STUDIO SCROLL CHOREOGRAPHY & LIVE KPI COUNTERS
+    function initStudioMotionAndCounters() {
+        const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduceMotion || typeof IntersectionObserver === 'undefined') return;
+
+        // Animate hero SVG curve path on load
+        const heroCurve = document.getElementById('fcChartLinePath');
+        if (heroCurve) {
+            heroCurve.classList.add('fc-svg-draw');
+        }
+
+        // Collect below-fold interactive cards, showcase frames & major section headers
+        const candidates = document.querySelectorAll(
+            'main section .card-anim, main section .fc-card-interactive, main section .fc-showcase-frame, main section > div > .text-center, [data-fc-reveal]'
+        );
+        const vh = window.innerHeight || 800;
+        const toObserve = [];
+
+        candidates.forEach((el) => {
+            if (el.closest('header') || el.closest('#fcHeroCard')) return;
+            const rect = el.getBoundingClientRect();
+            // Keep initial viewport above-the-fold elements 100% immediate for zero LCP delay
+            if (rect.top < vh * 0.92) {
+                el.classList.add('is-visible');
+                return;
+            }
+            const parent = el.parentElement;
+            let siblingIdx = 0;
+            if (parent) {
+                const kids = Array.from(parent.children);
+                siblingIdx = Math.max(0, kids.indexOf(el)) % 4;
+            }
+            el.style.setProperty('--fc-delay', `${siblingIdx * 65}ms`);
+            el.classList.add('fc-reveal');
+            toObserve.push(el);
+        });
+
+        if (toObserve.length > 0) {
+            document.documentElement.classList.add('fc-motion-ready');
+            const revealObserver = new IntersectionObserver((entries, obs) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, { rootMargin: '0px 0px -5% 0px', threshold: 0.06 });
+
+            toObserve.forEach((el) => revealObserver.observe(el));
+
+            // Fail-safe: ensure any offscreen element becomes visible if user jumps via anchor
+            window.addEventListener('hashchange', () => {
+                document.querySelectorAll('.fc-reveal:not(.is-visible)').forEach((el) => {
+                    const r = el.getBoundingClientRect();
+                    if (r.top < (window.innerHeight || 800) * 1.1) el.classList.add('is-visible');
+                });
+            });
+        }
+
+        // Animated Tabular-Nums KPI Counters (below-the-fold only so above-the-fold hero KPIs are instant)
+        const counterTargets = new Set(document.querySelectorAll('[data-fc-count]'));
+        document.querySelectorAll('main .font-display, main .font-black').forEach((el) => {
+            if (el.children.length > 0 || el.id === 'calcRoiOut' || el.id === 'calcHrsOut') return;
+            if (el.getBoundingClientRect().top < vh * 0.95) return;
+            const raw = (el.textContent || '').trim();
+            if (raw.length >= 2 && raw.length <= 12 && /^[+\-~₹$]?(\d+(?:\.\d+)?)\s*(x|%|hrs|m|ms|\+|k|L)?$/i.test(raw)) {
+                counterTargets.add(el);
+            }
+        });
+
+        if (counterTargets.size > 0) {
+            const countObserver = new IntersectionObserver((entries, obs) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) return;
+                    const el = entry.target;
+                    obs.unobserve(el);
+                    if (el.dataset.fcCounted === '1') return;
+                    el.dataset.fcCounted = '1';
+
+                    const finalStr = (el.dataset.fcCount || el.textContent || '').trim();
+                    const m = finalStr.match(/^([+\-~₹$\s]*)(\d+(?:\.\d+)?)(\s*(?:x|%|hrs|m|ms|\+|k|L)?)$/i);
+                    if (!m) return;
+                    const prefix = m[1] || '';
+                    const targetVal = parseFloat(m[2]);
+                    const suffix = m[3] || '';
+                    if (!isFinite(targetVal) || targetVal <= 0) return;
+
+                    const decimals = (m[2].split('.')[1] || '').length;
+                    const startVal = targetVal * 0.55;
+                    const duration = 550;
+                    const startTs = performance.now();
+                    el.style.fontVariantNumeric = 'tabular-nums';
+
+                    const tick = (now) => {
+                        const p = Math.min(1, (now - startTs) / duration);
+                        const eased = 1 - Math.pow(1 - p, 3);
+                        if (p >= 1) {
+                            el.textContent = finalStr;
+                        } else {
+                            const cur = (startVal + (targetVal - startVal) * eased).toFixed(decimals);
+                            el.textContent = `${prefix}${cur}${suffix}`;
+                            requestAnimationFrame(tick);
+                        }
+                    };
+                    requestAnimationFrame(tick);
+                });
+            }, { threshold: 0.25 });
+
+            counterTargets.forEach((el) => countObserver.observe(el));
+        }
+    }
+
+    // 9. DESKTOP CARD SPOTLIGHT & ACCESSIBLE DROPDOWN / ESCAPE CONTROLLER
+    function initCardSpotlightAndKeyboardA11y() {
+        if (window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+            document.querySelectorAll('.card-anim, .fc-card-interactive').forEach((card) => {
+                card.classList.add('fc-spotlight-ready');
+                card.addEventListener('pointermove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    card.style.setProperty('--fc-mx', `${(e.clientX - rect.left).toFixed(1)}px`);
+                    card.style.setProperty('--fc-my', `${(e.clientY - rect.top).toFixed(1)}px`);
+                }, { passive: true });
+            });
+        }
+
+        // Ensure all mega-menu triggers reflect aria-expanded accurately
+        document.querySelectorAll('.fc-dropdown-wrapper').forEach((wrapper) => {
+            const trigger = wrapper.querySelector('.fc-dropdown-trigger');
+            const panel = wrapper.querySelector('.fc-dropdown-panel');
+            if (!trigger || !panel) return;
+
+            const syncAria = () => {
+                const open = !panel.classList.contains('invisible') && !panel.classList.contains('pointer-events-none');
+                trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            };
+            wrapper.addEventListener('mouseenter', () => setTimeout(syncAria, 10));
+            wrapper.addEventListener('mouseleave', () => setTimeout(syncAria, 240));
+            trigger.addEventListener('click', () => setTimeout(syncAria, 10));
+        });
+
+        // Universal Escape key handler for menus, drawers, and modals
+        document.addEventListener('keydown', (e) => {
+            if (e.key !== 'Escape') return;
+
+            // 1. Close desktop mega-menu dropdowns
+            document.querySelectorAll('.fc-dropdown-wrapper').forEach((wrapper) => {
+                const panel = wrapper.querySelector('.fc-dropdown-panel');
+                const trigger = wrapper.querySelector('.fc-dropdown-trigger');
+                if (panel && !panel.classList.contains('invisible')) {
+                    panel.classList.add('opacity-0', 'invisible', 'pointer-events-none', 'translate-y-2');
+                    panel.classList.remove('opacity-100', 'visible', 'pointer-events-auto', 'translate-y-0');
+                    if (trigger) trigger.setAttribute('aria-expanded', 'false');
+                }
+            });
+
+            // 2. Close mobile navigation drawer if open
+            const drawerOverlay = document.getElementById('fcMobileDrawerOverlay');
+            if (drawerOverlay && !drawerOverlay.classList.contains('pointer-events-none')) {
+                toggleMobileDrawer();
+            }
+
+            // 3. Close audit modal or auth modal if open
+            const auditModal = document.getElementById('fcAuditModal');
+            if (auditModal && !auditModal.classList.contains('pointer-events-none') && window.FC_LEADS && typeof window.FC_LEADS.closeAuditModal === 'function') {
+                window.FC_LEADS.closeAuditModal();
+            }
+            const authModal = document.getElementById('fcAuthModal');
+            if (authModal && !authModal.classList.contains('pointer-events-none')) {
+                const closeBtn = document.getElementById('fcAuthCloseBtn');
+                if (closeBtn) closeBtn.click();
+            }
+        });
+    }
+
     // INITIALIZATION
     function initWidgets() {
         injectFaviconAndStyles();
@@ -500,6 +700,9 @@
         injectMobileBottomNav();
         ensureComplianceFooterLinks();
         initHeroInteractiveGraph();
+        initScrollProgressBar();
+        initStudioMotionAndCounters();
+        initCardSpotlightAndKeyboardA11y();
     }
 
     if (document.readyState === 'loading') {

@@ -48,7 +48,7 @@
         .products-dropdown-parent.active > .mega-menu { display: block; }
         .dropdown-parent:hover > .mega-menu,
         .dropdown-parent.active > .mega-menu { display: block; }
-        .card-anim { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .card-anim { transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease; }
         .card-anim:hover { transform: translateY(-4px); box-shadow: 0 20px 35px -10px rgba(0,0,0,0.08); }
     </style>
     <link rel="stylesheet" href="css/mobile-app.css">
@@ -65,7 +65,7 @@
     <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
             <a href="index.html" class="flex items-center space-x-3 shrink-0 whitespace-nowrap">
-                <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah Logo" class="h-11 w-11 rounded-full object-cover border border-slate-200 shadow-sm">
+                <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah Logo" class="h-11 w-11 rounded-full object-cover border border-slate-200 shadow-sm" width="1024" height="1024" decoding="async">
                 <div class="flex flex-col">
                     <span class="text-lg xl:text-xl font-black tracking-tight font-display text-bikDark">FLYING CHEETAH</span>
                     <span class="text-[9px] text-purple-700 font-bold tracking-widest uppercase -mt-1">AI VOICE CALLERS</span>
@@ -239,7 +239,7 @@
                     <div class="lg:col-span-5 relative">
                         <div class="rounded-3xl border border-purple-200/80 bg-white p-3 shadow-2xl bik-mega-shadow fc-card-glow relative overflow-hidden group">
                             <div class="relative overflow-hidden rounded-2xl bg-white aspect-[4/3] flex items-center justify-center">
-                                <img src="images/ai_voice_agent_dashboard.jpg" alt="Flying Cheetah 3D AI Talking Agent Acoustic Sphere and Live Call Telemetry" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700">
+                                <img src="images/ai_voice_agent_dashboard.jpg" alt="Flying Cheetah 3D AI Talking Agent Acoustic Sphere and Live Call Telemetry" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700" width="1376" height="768" decoding="async">
                                 <div class="fc-acoustic-ring" aria-hidden="true"></div>
                                 <div class="fc-acoustic-ring-delayed" aria-hidden="true"></div>
 
@@ -402,7 +402,7 @@
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                     <div class="lg:col-span-6 order-2 lg:order-1">
                         <div class="fc-showcase-frame p-3 bg-white">
-                            <img src="images/voice_agent_multilingual_matrix_light.png" alt="Multilingual Indian AI Voice Matrix showing Hindi, Hinglish, Marathi, Tamil, and English intent routing on pure white canvas" class="rounded-xl w-full h-auto object-cover border border-slate-100">
+                            <img src="images/voice_agent_multilingual_matrix_light.png" alt="Multilingual Indian AI Voice Matrix showing Hindi, Hinglish, Marathi, Tamil, and English intent routing on pure white canvas" class="rounded-xl w-full h-auto object-cover border border-slate-100" width="1600" height="960" decoding="async" loading="lazy">
                         </div>
                     </div>
                     <div class="lg:col-span-6 order-1 lg:order-2 space-y-5">
@@ -981,14 +981,14 @@
 
                     <div class="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div class="fc-showcase-frame p-3 bg-white">
-                            <img src="images/ai_voice_agent_orb_3d.jpg" alt="3D Neural Voice Agent Orb Console Architecture" class="rounded-xl w-full h-48 object-cover border border-slate-100">
+                            <img src="images/ai_voice_agent_orb_3d.jpg" alt="3D Neural Voice Agent Orb Console Architecture" class="rounded-xl w-full h-48 object-cover border border-slate-100" width="1024" height="1024" decoding="async" loading="lazy">
                             <div class="pt-3 px-1">
                                 <h3 class="text-sm font-bold text-bikDark">Neural Acoustic Core</h3>
                                 <p class="text-xs text-slate-600 mt-1">24kHz warm Indian voice synthesis with sub-second turn-taking.</p>
                             </div>
                         </div>
                         <div class="fc-showcase-frame p-3 bg-white">
-                            <img src="images/ai_commerce_neural_mesh_3d.jpg" alt="3D AI Commerce Neural Mesh connecting Voice, Shopify, and WhatsApp" class="rounded-xl w-full h-48 object-cover border border-slate-100">
+                            <img src="images/ai_commerce_neural_mesh_3d.jpg" alt="3D AI Commerce Neural Mesh connecting Voice, Shopify, and WhatsApp" class="rounded-xl w-full h-48 object-cover border border-slate-100" width="1376" height="768" decoding="async" loading="lazy">
                             <div class="pt-3 px-1">
                                 <h3 class="text-sm font-bold text-bikDark">Omnichannel Mesh</h3>
                                 <p class="text-xs text-slate-600 mt-1">Synchronizes voice outcomes directly into WhatsApp and CDP profiles.</p>
@@ -1119,7 +1119,7 @@
     <footer class="py-12 bg-white border-t border-slate-200 text-xs text-slate-600">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between gap-6">
             <div class="flex items-center space-x-3">
-                <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah" class="h-6 w-6 rounded-full object-cover border border-slate-300">
+                <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah" class="h-6 w-6 rounded-full object-cover border border-slate-300" width="1024" height="1024" decoding="async" loading="lazy">
                 <span class="font-bold text-slate-800">FLYING CHEETAH AI VOICE AGENTS © 2026.</span>
                 <span>All Rights Reserved.</span>
             </div>

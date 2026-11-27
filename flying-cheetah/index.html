@@ -84,7 +84,7 @@
         .bik-mega-shadow { box-shadow: 0 25px 60px -15px rgba(255, 104, 56, 0.15), 0 0 1px 1px rgba(0, 0, 0, 0.05); }
         .mega-menu { display: none; }
         .dropdown-parent:hover .mega-menu { display: block; }
-        .card-anim { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .card-anim { transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease; }
         .card-anim:hover { transform: translateY(-4px); box-shadow: 0 20px 35px -10px rgba(0,0,0,0.08); }
         .pulse-subtle { animation: pulseGlow 2.5s infinite; }
         @keyframes pulseGlow {
@@ -117,7 +117,7 @@
             
             <!-- BRAND LOGO -->
             <a href="index.html" class="flex items-center space-x-3 shrink-0 whitespace-nowrap">
-                <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah Logo" class="h-11 w-11 rounded-full object-cover border border-slate-200 shadow-sm">
+                <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah Logo" class="h-11 w-11 rounded-full object-cover border border-slate-200 shadow-sm" width="1024" height="1024" decoding="async">
                 <div class="flex flex-col">
                     <span class="text-lg xl:text-xl font-black tracking-tight font-display text-bikDark">FLYING CHEETAH</span>
                     <span class="text-[9px] text-bikOrange font-bold tracking-widest uppercase -mt-1">AI COMMERCE AGENTS</span>
@@ -128,7 +128,7 @@
             <nav class="hidden lg:flex items-center gap-5 xl:gap-7 text-[13px] xl:text-sm font-semibold text-slate-700 whitespace-nowrap">
                 <!-- HOME DROPDOWN (NEXT TO PRODUCTS) -->
                 <div class="relative home-dropdown-parent py-6">
-                    <button type="button" aria-expanded="false" class="home-btn flex items-center gap-1.5 hover:text-bikOrange transition focus:outline-none text-slate-800 hover:text-bikOrange font-bold text-sm">
+                    <button type="button" aria-expanded="false" class="home-btn flex items-center gap-1.5 hover:text-bikOrange transition focus-visible:outline-2 focus-visible:outline-bikOrange text-slate-800 font-bold text-sm">
                         <i class="fa-solid fa-house text-xs text-bikOrange"></i>
                         <span>Home</span>
                         <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200"></i>
@@ -191,7 +191,7 @@
                 
                 <!-- Dropdown -->
                 <div class="relative products-dropdown-parent dropdown-parent py-6">
-                    <button type="button" aria-expanded="false" class="flex items-center gap-1.5 hover:text-bikOrange transition focus:outline-none text-bikOrange font-bold">
+                    <button type="button" aria-expanded="false" class="flex items-center gap-1.5 hover:text-bikOrange transition focus-visible:outline-2 focus-visible:outline-bikOrange text-bikOrange font-bold">
                         <span>Products & Automations</span>
                         <i class="fa-solid fa-chevron-down text-[10px]"></i>
                     </button>
@@ -256,7 +256,7 @@
 
     <main id="main-content">
     <!-- HERO SECTION (FLYING CHEETAH AUTONOMOUS COMMERCE SUITE) -->
-    <section class="pt-10 pb-14 md:pt-14 md:pb-20 bg-gradient-to-b from-bikBg via-white to-white overflow-hidden">
+    <section class="pt-10 pb-14 md:pt-14 md:pb-20 bg-gradient-to-b from-bikBg via-white to-white fc-studio-grid-bg overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 
@@ -299,9 +299,9 @@
                         <div class="space-y-1">
                             <div class="flex items-center gap-1.5 text-emerald-600">
                                 <i class="fa-brands fa-whatsapp text-lg"></i>
-                                <span class="text-3xl font-black">84.6%</span>
+                                <span class="text-3xl font-black">85.2%</span>
                             </div>
-                            <div class="text-xs font-semibold text-slate-500">WhatsApp Message Open Rate</div>
+                            <div class="text-xs font-semibold text-slate-500">WhatsApp Message Read Rate</div>
                         </div>
                         <div class="space-y-1">
                             <div class="flex items-center gap-1.5 text-blue-600">
@@ -320,7 +320,7 @@
                         <!-- Dashboard Top Bar -->
                         <div class="flex items-center justify-between gap-2 pb-3 border-b border-slate-100 text-xs">
                             <div class="flex items-center gap-2 whitespace-nowrap min-w-0">
-                                <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah Logo" class="w-6 h-6 rounded-full object-cover border border-slate-200 shadow-sm shrink-0">
+                                <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah Logo" class="w-6 h-6 rounded-full object-cover border border-slate-200 shadow-sm shrink-0" width="1024" height="1024" decoding="async">
                                 <span class="font-bold text-slate-800 font-display truncate">Flying Cheetah</span>
                                 <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 text-[10px] font-bold shrink-0">LIVE TELEMETRY</span>
                             </div>
@@ -364,7 +364,7 @@
                             <div class="flex items-center justify-between pb-2 text-xs">
                                 <div>
                                     <span class="font-bold text-slate-800">Revenue & Profit Growth</span>
-                                    <span class="text-[11px] text-slate-600 ml-1.5 hidden sm:inline">Dec 1 – Dec 30</span>
+                                    <span class="text-[11px] text-slate-600 ml-1.5 hidden sm:inline">Rolling 30-Day Window</span>
                                 </div>
                                 <span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full flex items-center gap-1">
                                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
@@ -415,7 +415,7 @@
 
                                 <!-- Floating Live Data Tooltip (follows mouse or active point) -->
                                 <div id="fcChartTooltip" class="absolute pointer-events-none bg-white/95 backdrop-blur-md text-bikDark px-3.5 py-2.5 rounded-xl shadow-xl border-2 border-emerald-200 transition-all duration-75 text-xs z-20 whitespace-nowrap" style="left: 46%; top: 12px;">
-                                    <div class="text-[10px] text-slate-500 font-semibold" id="fcTooltipDate">Dec 24, 2026 • Day 24</div>
+                                    <div class="text-[10px] text-slate-500 font-semibold" id="fcTooltipDate">Nov 24, 2026 • Day 24</div>
                                     <div class="font-black text-emerald-600 text-sm" id="fcTooltipRevenue">₹7,420 <span class="text-[10px] text-bikOrange font-bold">(+28.4%)</span></div>
                                     <div class="text-[10px] text-slate-600 mt-0.5 flex items-center gap-1.5 font-semibold whitespace-nowrap" id="fcTooltipSub">
                                         <span><i class="fa-solid fa-box text-bikOrange text-[9px]"></i> 5 Orders</span>
@@ -427,11 +427,11 @@
 
                             <!-- X Axis Date Labels -->
                             <div class="flex justify-between text-[10px] text-slate-600 px-3 pt-1 border-t border-slate-100 font-mono">
-                                <span>Dec 1</span>
-                                <span>Dec 8</span>
-                                <span>Dec 15</span>
-                                <span>Dec 22</span>
-                                <span>Dec 30</span>
+                                <span>Day 1</span>
+                                <span>Day 8</span>
+                                <span>Day 15</span>
+                                <span>Day 22</span>
+                                <span>Day 30</span>
                             </div>
                         </div>
 
@@ -483,7 +483,7 @@
             </span>
         </div>
         <div class="marquee-container py-2">
-            <div class="marquee-content flex items-center gap-8">
+            <div class="marquee-content flex items-center gap-8 pr-8">
                 <div class="flex items-center gap-2.5 px-4 py-2.5 rounded-2xl bg-white border border-slate-200 shadow-sm text-xs font-bold text-emerald-700 font-tech">
                     <i class="fa-brands fa-whatsapp text-xl text-emerald-500"></i> Meta WhatsApp Cloud API
                 </div>
@@ -637,7 +637,7 @@
                         <h3 class="font-bold text-base text-bikDark mb-1 group-hover:text-bikOrange transition">Web &amp; App Development</h3>
                         <p class="text-xs text-slate-500 leading-relaxed">Headless Next.js storefronts &amp; bespoke web apps with sub-100ms load times, Day-1 SEO, and custom APIs.</p>
                         <div class="mt-4 fc-showcase-frame aspect-[16/10]">
-                            <img src="images/high_speed_store_dev_mockup.jpg" alt="High Speed Web Engineering" class="fc-showcase-img">
+                            <img src="images/high_speed_store_dev_mockup.jpg" alt="High Speed Web Engineering" class="fc-showcase-img" width="1376" height="768" decoding="async" loading="lazy">
                         </div>
                     </div>
                     <span class="text-xs font-bold text-bikOrange mt-4 inline-flex items-center gap-1">Explore Web Development <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
@@ -653,7 +653,7 @@
                         <h3 class="font-bold text-base text-bikDark mb-1 group-hover:text-pink-600 transition">Instagram Automation</h3>
                         <p class="text-xs text-slate-500 leading-relaxed">Turn Reel comments &amp; Story mentions into instant Auto-DM sales in under 2 seconds.</p>
                         <div class="mt-4 fc-showcase-frame aspect-[16/10]">
-                            <img src="images/instagram_automation_dashboard.jpg" alt="Instagram Automation Pipeline" class="fc-showcase-img">
+                            <img src="images/instagram_automation_dashboard.jpg" alt="Instagram Automation Pipeline" class="fc-showcase-img" width="1376" height="768" decoding="async" loading="lazy">
                         </div>
                     </div>
                     <span class="text-xs font-bold text-pink-600 mt-4 inline-flex items-center gap-1">Watch Instagram AI Bot <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
@@ -669,7 +669,7 @@
                         <h3 class="font-bold text-base text-bikDark mb-1 group-hover:text-emerald-600 transition">WhatsApp Automation</h3>
                         <p class="text-xs text-slate-500 leading-relaxed">Shop on chat with 24/7 conversational AI, instant stock check, &amp; 1-tap checkouts.</p>
                         <div class="mt-4 fc-showcase-frame aspect-[16/10]">
-                            <img src="images/whatsapp_commerce_checkout_mockup.jpg" alt="WhatsApp Commerce Checkout" class="fc-showcase-img">
+                            <img src="images/whatsapp_commerce_checkout_mockup.jpg" alt="WhatsApp Commerce Checkout" class="fc-showcase-img" width="1376" height="768" decoding="async" loading="lazy">
                         </div>
                     </div>
                     <span class="text-xs font-bold text-emerald-600 mt-4 inline-flex items-center gap-1">Watch WhatsApp AI Bot <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
@@ -685,7 +685,7 @@
                         <h3 class="font-bold text-base text-bikDark mb-1 group-hover:text-blue-600 transition">Click to WhatsApp Ads</h3>
                         <p class="text-xs text-slate-500 leading-relaxed">Direct Meta feed leads into instant buying journeys, boosting ROAS by 28%.</p>
                         <div class="mt-4 fc-showcase-frame aspect-[16/10]">
-                            <img src="images/ctwa_automation_dashboard.jpg" alt="CTWA Ads Engine" class="fc-showcase-img">
+                            <img src="images/ctwa_automation_dashboard.jpg" alt="CTWA Ads Engine" class="fc-showcase-img" width="1376" height="768" decoding="async" loading="lazy">
                         </div>
                     </div>
                     <span class="text-xs font-bold text-blue-600 mt-4 inline-flex items-center gap-1">Explore CTWA Ads <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
@@ -701,7 +701,7 @@
                         <h3 class="font-bold text-base text-bikDark mb-1 group-hover:text-purple-600 transition">AI Voice Agents</h3>
                         <p class="text-xs text-slate-500 leading-relaxed">Phone-based calling that verifies COD and recovers abandoned carts in Hindi/English.</p>
                         <div class="mt-4 fc-showcase-frame aspect-[16/10]">
-                            <img src="images/ai_voice_agent_dashboard.jpg" alt="AI Voice Agent Dashboard" class="fc-showcase-img">
+                            <img src="images/ai_voice_agent_dashboard.jpg" alt="AI Voice Agent Dashboard" class="fc-showcase-img" width="1376" height="768" decoding="async" loading="lazy">
                         </div>
                     </div>
                     <span class="text-xs font-bold text-purple-600 mt-4 inline-flex items-center gap-1">Explore Voice Agents <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
@@ -721,16 +721,16 @@
                 <p class="text-slateText text-sm mt-2">Flying Cheetah combines autonomous workflow automations, high-converting Meta marketing, and ultra-fast web development under one roof.</p>
                 
                 <!-- 3 Interactive Tabs -->
-                <div class="flex items-center justify-center gap-2 sm:gap-3 mt-8 p-1.5 bg-slate-100 rounded-2xl max-w-xl mx-auto">
-                    <button type="button" onclick="switchPillarTab('automation')" id="pillar-tab-btn-automation" class="pillar-tab-btn flex-1 py-2.5 px-3 rounded-xl font-bold text-xs sm:text-sm transition flex items-center justify-center gap-2 bg-white text-bikDark shadow-sm cursor-pointer">
+                <div role="tablist" aria-label="Core Growth Pillars" class="flex items-center justify-center gap-2 sm:gap-3 mt-8 p-1.5 bg-slate-100 rounded-2xl max-w-xl mx-auto">
+                    <button type="button" role="tab" aria-selected="true" aria-controls="pillar-content-automation" onclick="switchPillarTab('automation')" id="pillar-tab-btn-automation" class="pillar-tab-btn flex-1 py-2.5 px-3 rounded-xl font-bold text-xs sm:text-sm transition flex items-center justify-center gap-2 bg-white text-bikDark shadow-sm cursor-pointer">
                         <i class="fa-solid fa-bolt text-bikOrange"></i>
                         <span>AI Automations</span>
                     </button>
-                    <button type="button" onclick="switchPillarTab('marketing')" id="pillar-tab-btn-marketing" class="pillar-tab-btn flex-1 py-2.5 px-3 rounded-xl font-semibold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition flex items-center justify-center gap-2 cursor-pointer">
+                    <button type="button" role="tab" aria-selected="false" aria-controls="pillar-content-marketing" onclick="switchPillarTab('marketing')" id="pillar-tab-btn-marketing" class="pillar-tab-btn flex-1 py-2.5 px-3 rounded-xl font-semibold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition flex items-center justify-center gap-2 cursor-pointer">
                         <i class="fa-solid fa-bullhorn text-emerald-600"></i>
                         <span>Marketing</span>
                     </button>
-                    <button type="button" onclick="switchPillarTab('webdev')" id="pillar-tab-btn-webdev" class="pillar-tab-btn flex-1 py-2.5 px-3 rounded-xl font-semibold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition flex items-center justify-center gap-2 cursor-pointer">
+                    <button type="button" role="tab" aria-selected="false" aria-controls="pillar-content-webdev" onclick="switchPillarTab('webdev')" id="pillar-tab-btn-webdev" class="pillar-tab-btn flex-1 py-2.5 px-3 rounded-xl font-semibold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition flex items-center justify-center gap-2 cursor-pointer">
                         <i class="fa-solid fa-code text-blue-600"></i>
                         <span>Web Development</span>
                     </button>
@@ -1205,19 +1205,21 @@
                         <div class="p-4 rounded-2xl bg-slate-50/80 border border-slate-200 space-y-2.5 text-xs">
                             <div class="font-bold text-bikDark flex items-center justify-between">
                                 <span>Projected Contribution Mix</span>
-                                <span class="text-[10px] text-slate-500 font-mono">Monthly Breakdown</span>
+                                <span id="roi-active-count" class="text-[10px] text-slate-500 font-mono">4 Active Modules</span>
                             </div>
                             <div class="w-full h-3 rounded-full bg-slate-200 overflow-hidden flex">
-                                <div class="h-full bg-purple-500" style="width: 22%"></div>
-                                <div class="h-full bg-emerald-500" style="width: 26%"></div>
-                                <div class="h-full bg-[#0866FF]" style="width: 27%"></div>
-                                <div class="h-full bg-bikOrange" style="width: 25%"></div>
+                                <div id="roi-bar-voice" class="h-full bg-purple-500" style="width: 19%; transition: width 0.45s cubic-bezier(0.22, 1, 0.36, 1);"></div>
+                                <div id="roi-bar-wa" class="h-full bg-emerald-500" style="width: 24%; transition: width 0.45s cubic-bezier(0.22, 1, 0.36, 1);"></div>
+                                <div id="roi-bar-mkt" class="h-full bg-[#0866FF]" style="width: 27%; transition: width 0.45s cubic-bezier(0.22, 1, 0.36, 1);"></div>
+                                <div id="roi-bar-web" class="h-full bg-amber-500" style="width: 30%; transition: width 0.45s cubic-bezier(0.22, 1, 0.36, 1);"></div>
+                                <div id="roi-bar-fleet" class="h-full bg-bikOrange" style="width: 0%; transition: width 0.45s cubic-bezier(0.22, 1, 0.36, 1);"></div>
                             </div>
                             <div class="flex flex-wrap gap-3 text-[10px] font-semibold text-slate-600 pt-0.5">
                                 <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-purple-500"></span>Voice COD</span>
                                 <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-500"></span>WhatsApp</span>
                                 <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-[#0866FF]"></span>CTWA Ads</span>
-                                <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-bikOrange"></span>Storefront</span>
+                                <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-amber-500"></span>Storefront</span>
+                                <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-bikOrange"></span>25m Fleet</span>
                             </div>
                         </div>
 
@@ -1259,19 +1261,30 @@
                 if (k === tabKey) {
                     if (btn) {
                         btn.className = 'pillar-tab-btn flex-1 py-2.5 px-3 rounded-xl font-bold text-xs sm:text-sm transition flex items-center justify-center gap-2 bg-white text-bikDark shadow-sm cursor-pointer';
+                        btn.setAttribute('aria-selected', 'true');
                     }
-                    if (content) content.classList.remove('hidden');
+                    if (content) {
+                        content.classList.remove('hidden', 'fc-tab-enter');
+                        void content.offsetWidth;
+                        content.classList.add('fc-tab-enter');
+                    }
                 } else {
                     if (btn) {
                         btn.className = 'pillar-tab-btn flex-1 py-2.5 px-3 rounded-xl font-semibold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition flex items-center justify-center gap-2 cursor-pointer';
+                        btn.setAttribute('aria-selected', 'false');
                     }
-                    if (content) content.classList.add('hidden');
+                    if (content) {
+                        content.classList.add('hidden');
+                        content.classList.remove('fc-tab-enter');
+                    }
                 }
             });
         }
 
         let currentScaleMultiplier = 2.4;
         let currentScaleName = 'Scaling Brand (₹5L - ₹25L/mo)';
+        let prevRoiRev = 576000;
+        let prevRoiHrs = 240;
 
         function setBusinessScale(scaleKey, multiplier) {
             currentScaleMultiplier = multiplier;
@@ -1294,35 +1307,67 @@
             calculateProjectedROI();
         }
 
+        function animateNumericReadout(el, fromVal, toVal, formatter) {
+            if (!el) return;
+            if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                el.textContent = formatter(toVal);
+                return;
+            }
+            const start = performance.now();
+            const dur = 360;
+            const step = (now) => {
+                const t = Math.min(1, (now - start) / dur);
+                const eased = 1 - Math.pow(1 - t, 3);
+                const cur = Math.round(fromVal + (toVal - fromVal) * eased);
+                el.textContent = formatter(cur);
+                if (t < 1) requestAnimationFrame(step);
+            };
+            requestAnimationFrame(step);
+        }
+
         function calculateProjectedROI() {
+            const weights = {
+                voice: document.getElementById('svc-voice')?.checked ? 45000 : 0,
+                wa: document.getElementById('svc-wa')?.checked ? 58000 : 0,
+                mkt: document.getElementById('svc-mkt')?.checked ? 65000 : 0,
+                web: document.getElementById('svc-web')?.checked ? 72000 : 0,
+                fleet: document.getElementById('svc-fleet')?.checked ? 30000 : 0
+            };
+            const hoursMap = { voice: 45, wa: 35, mkt: 30, web: 40, fleet: 25 };
+            const labelsMap = {
+                voice: 'AI Voice Calling',
+                wa: 'WhatsApp Bot',
+                mkt: 'Meta CTWA Marketing',
+                web: 'High-Speed Web Dev',
+                fleet: 'Fleet Protocol'
+            };
+
             let baseRecovery = 0;
             let baseHours = 0;
             const selectedServices = [];
 
-            if (document.getElementById('svc-voice')?.checked) {
-                baseRecovery += 45000;
-                baseHours += 45;
-                selectedServices.push('AI Voice Calling');
-            }
-            if (document.getElementById('svc-wa')?.checked) {
-                baseRecovery += 58000;
-                baseHours += 35;
-                selectedServices.push('WhatsApp Bot');
-            }
-            if (document.getElementById('svc-mkt')?.checked) {
-                baseRecovery += 65000;
-                baseHours += 30;
-                selectedServices.push('Meta CTWA Marketing');
-            }
-            if (document.getElementById('svc-web')?.checked) {
-                baseRecovery += 72000;
-                baseHours += 40;
-                selectedServices.push('High-Speed Web Dev');
-            }
-            if (document.getElementById('svc-fleet')?.checked) {
-                baseRecovery += 30000;
-                baseHours += 25;
-                selectedServices.push('Fleet Protocol');
+            Object.keys(weights).forEach((k) => {
+                if (weights[k] > 0) {
+                    baseRecovery += weights[k];
+                    baseHours += hoursMap[k];
+                    selectedServices.push(labelsMap[k]);
+                }
+            });
+
+            // Dynamically update Contribution Mix bar segments
+            Object.keys(weights).forEach((k) => {
+                const seg = document.getElementById('roi-bar-' + k);
+                if (seg) {
+                    const pct = baseRecovery > 0 ? ((weights[k] / baseRecovery) * 100).toFixed(1) : 0;
+                    seg.style.width = pct + '%';
+                }
+            });
+
+            const activeCountEl = document.getElementById('roi-active-count');
+            if (activeCountEl) {
+                activeCountEl.textContent = selectedServices.length === 0
+                    ? 'Select 1+ capability'
+                    : `${selectedServices.length} Active Module${selectedServices.length > 1 ? 's' : ''}`;
             }
 
             const totalRecovery = Math.round(baseRecovery * currentScaleMultiplier);
@@ -1330,12 +1375,23 @@
 
             const revEl = document.getElementById('roi-calc-rev');
             const hoursEl = document.getElementById('roi-calc-hours');
-            if (revEl) revEl.textContent = '₹' + totalRecovery.toLocaleString('en-IN') + ' / mo';
-            if (hoursEl) hoursEl.textContent = totalHours + ' hrs';
+
+            if (selectedServices.length === 0) {
+                if (revEl) revEl.textContent = 'Select 1+ capability';
+                if (hoursEl) hoursEl.textContent = '0 hrs';
+                prevRoiRev = 0;
+                prevRoiHrs = 0;
+            } else {
+                animateNumericReadout(revEl, prevRoiRev, totalRecovery, (v) => '₹' + v.toLocaleString('en-IN') + ' / mo');
+                animateNumericReadout(hoursEl, prevRoiHrs, totalHours, (v) => v + ' hrs');
+                prevRoiRev = totalRecovery;
+                prevRoiHrs = totalHours;
+            }
 
             const waBtn = document.getElementById('roi-whatsapp-cta');
             if (waBtn) {
-                const text = encodeURIComponent(`Hi Flying Cheetah team! I used your ROI Estimator for ${currentScaleName}. Selected services: ${selectedServices.join(', ')}. Projected recovery: ₹${totalRecovery.toLocaleString('en-IN')}/mo. Can we discuss a tailored proposal?`);
+                const svcSummary = selectedServices.length > 0 ? selectedServices.join(', ') : 'Full AI Commerce Suite';
+                const text = encodeURIComponent(`Hi Flying Cheetah team! I used your ROI Estimator for ${currentScaleName}. Selected services: ${svcSummary}. Projected recovery: ₹${totalRecovery.toLocaleString('en-IN')}/mo. Can we discuss a tailored proposal?`);
                 waBtn.href = `https://wa.me/919920386421?text=${text}`;
             }
         }
@@ -1453,6 +1509,65 @@
     </section>
 
     
+    <!-- EXECUTIVE FAQ ACCORDION SECTION -->
+    <section id="faq" class="py-20 bg-slate-50/70 border-t border-slate-100">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+            <div class="text-center max-w-2xl mx-auto space-y-2.5">
+                <span class="inline-block text-xs font-bold text-bikOrange uppercase tracking-widest bg-orange-100 px-3.5 py-1 rounded-full">
+                    Executive Clarity
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-bikDark font-display">
+                    Frequently Asked Questions
+                </h2>
+                <p class="text-sm text-slate-600">
+                    Straight answers on integration speed, Meta WhatsApp compliance, hyperlocal couriers, and ROI guarantees.
+                </p>
+            </div>
+
+            <div class="space-y-3.5 text-left">
+                <details open class="fc-faq-item rounded-2xl bg-white border border-slate-200 overflow-hidden">
+                    <summary class="px-6 py-4 flex items-center justify-between gap-4 font-bold text-sm text-bikDark select-none">
+                        <span>How fast can Flying Cheetah go live with our existing Shopify or WooCommerce store?</span>
+                        <span class="fc-faq-icon w-7 h-7 rounded-full bg-orange-50 text-bikOrange flex items-center justify-center shrink-0 text-xs"><i class="fa-solid fa-plus" aria-hidden="true"></i></span>
+                    </summary>
+                    <div class="px-6 pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                        <p>Core WhatsApp cart recovery, Instagram comment-to-DM checkout flows, and AI COD voice verification launch within 48 to 72 hours via official webhooks—with zero downtime to your live checkout. Custom headless Next.js or Shopify Plus storefronts launch in 2 to 4 weeks.</p>
+                    </div>
+                </details>
+
+                <details class="fc-faq-item rounded-2xl bg-white border border-slate-200 overflow-hidden">
+                    <summary class="px-6 py-4 flex items-center justify-between gap-4 font-bold text-sm text-bikDark select-none">
+                        <span>Are your WhatsApp &amp; Instagram automations 100% Meta Cloud API compliant (zero ban risk)?</span>
+                        <span class="fc-faq-icon w-7 h-7 rounded-full bg-orange-50 text-bikOrange flex items-center justify-center shrink-0 text-xs"><i class="fa-solid fa-plus" aria-hidden="true"></i></span>
+                    </summary>
+                    <div class="px-6 pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                        <p>Yes. We exclusively use the official Meta WhatsApp Business Cloud API and Instagram Graph API—never unofficial browser scrapers. Your brand gets verified green-tick eligibility, high-throughput template broadcasts, and automatic opt-out quality rating protection.</p>
+                    </div>
+                </details>
+
+                <details class="fc-faq-item rounded-2xl bg-white border border-slate-200 overflow-hidden">
+                    <summary class="px-6 py-4 flex items-center justify-between gap-4 font-bold text-sm text-bikDark select-none">
+                        <span>How does 25-minute hyperlocal Mumbai delivery work without paying 30% marketplace commissions?</span>
+                        <span class="fc-faq-icon w-7 h-7 rounded-full bg-orange-50 text-bikOrange flex items-center justify-center shrink-0 text-xs"><i class="fa-solid fa-plus" aria-hidden="true"></i></span>
+                    </summary>
+                    <div class="px-6 pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                        <p>The moment a shopper pays via 1-Tap UPI on WhatsApp or your website, our engine pings Borzo and Porter 2-wheeler APIs simultaneously, assigns the nearest rider within 45 seconds, and sends live GPS tracking on WhatsApp. You pay only the flat per-km courier fare and keep 100% of your product margin.</p>
+                    </div>
+                </details>
+
+                <details class="fc-faq-item rounded-2xl bg-white border border-slate-200 overflow-hidden">
+                    <summary class="px-6 py-4 flex items-center justify-between gap-4 font-bold text-sm text-bikDark select-none">
+                        <span>Can your AI Voice Agents speak natural Hinglish, Hindi, Marathi, and English for COD verification?</span>
+                        <span class="fc-faq-icon w-7 h-7 rounded-full bg-orange-50 text-bikOrange flex items-center justify-center shrink-0 text-xs"><i class="fa-solid fa-plus" aria-hidden="true"></i></span>
+                    </summary>
+                    <div class="px-6 pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                        <p>Yes. Our sub-180ms neural voice agents converse naturally across 10+ Indian languages including conversational Hinglish. They confirm buyer intent, verify missing landmarks or pincodes, and send an instant ₹50-off UPI link on WhatsApp to convert risky COD orders into prepaid orders before dispatch.</p>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
     <!-- MEET THE FOUNDERS SECTION (DIRECT MUMBAI ACCOUNTABILITY) -->
     <section id="founders" class="py-24 bg-gradient-to-b from-white via-slate-50 to-white border-t border-slate-200">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -1480,7 +1595,7 @@
                     <div>
                         <div class="flex items-center gap-4 mb-6">
                             <div class="relative w-20 h-20 rounded-2xl overflow-hidden border-2 border-bikOrange/60 shadow-lg shadow-orange-500/20 group-hover:scale-105 transition duration-300 shrink-0 bg-slate-100">
-                                <img src="images/founder_bhagat_mukhiya.jpg" alt="Bhagat Mukhiya - Co-Founder & Technical Architect at Flying Cheetah" class="w-full h-full object-cover object-top">
+                                <img src="images/founder_bhagat_mukhiya.jpg" alt="Bhagat Mukhiya - Co-Founder & Technical Architect at Flying Cheetah" class="w-full h-full object-cover object-top" width="600" height="600" decoding="async" loading="lazy">
                             </div>
                             <div>
                                 <h3 class="text-2xl font-black text-bikDark font-display">Bhagat Mukhiya</h3>
@@ -1532,7 +1647,7 @@
                     <div>
                         <div class="flex items-center gap-4 mb-6">
                             <div class="relative w-20 h-20 rounded-2xl overflow-hidden border-2 border-emerald-500/60 shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition duration-300 shrink-0 bg-slate-100">
-                                <img src="images/founder_yash_gaikwad.jpg" alt="Yash Gaikwad - Co-Founder & Growth Operations Lead at Flying Cheetah" class="w-full h-full object-cover object-top">
+                                <img src="images/founder_yash_gaikwad.jpg" alt="Yash Gaikwad - Co-Founder & Growth Operations Lead at Flying Cheetah" class="w-full h-full object-cover object-top" width="600" height="600" decoding="async" loading="lazy">
                             </div>
                             <div>
                                 <h3 class="text-2xl font-black text-bikDark font-display">Yash Gaikwad</h3>
@@ -1574,7 +1689,7 @@
     <footer class="py-12 bg-white border-t border-slate-200 text-xs text-slate-600">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div class="flex items-center space-x-3">
-                <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah" class="h-6 w-6 rounded-full object-cover border border-slate-300">
+                <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah" class="h-6 w-6 rounded-full object-cover border border-slate-300" width="1024" height="1024" decoding="async" loading="lazy">
                 <span class="font-bold text-slate-700">FLYING CHEETAH LABS • ALL-IN-ONE AI COMMERCE SUITE © 2026.</span>
                 <span>All Rights Reserved.</span>
             </div>
@@ -1604,14 +1719,34 @@
 <script>
         document.addEventListener('DOMContentLoaded', function() {
             const dropdownParents = document.querySelectorAll('.home-dropdown-parent, .products-dropdown-parent, .dropdown-parent');
+            const setParentOpen = function(parent, open) {
+                parent.classList.toggle('active', open);
+                const triggerBtn = parent.querySelector('button[aria-expanded]');
+                if (triggerBtn) triggerBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+            };
             dropdownParents.forEach(function(parent) {
                 const btn = parent.querySelector('button');
                 if (btn) {
                     btn.addEventListener('click', function(e) {
                         e.stopPropagation();
-                        dropdownParents.forEach(function(p) { if (p !== parent) p.classList.remove('active'); });
-                        parent.classList.toggle('active');
+                        dropdownParents.forEach(function(p) { if (p !== parent) setParentOpen(p, false); });
+                        setParentOpen(parent, !parent.classList.contains('active'));
                     });
+                }
+                parent.addEventListener('mouseenter', function() {
+                    const triggerBtn = parent.querySelector('button[aria-expanded]');
+                    if (triggerBtn) triggerBtn.setAttribute('aria-expanded', 'true');
+                });
+                parent.addEventListener('mouseleave', function() {
+                    if (!parent.classList.contains('active')) {
+                        const triggerBtn = parent.querySelector('button[aria-expanded]');
+                        if (triggerBtn) triggerBtn.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            });
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    dropdownParents.forEach(function(p) { setParentOpen(p, false); });
                 }
             });
         });
@@ -1620,6 +1755,8 @@
             link.addEventListener('mouseenter', function() {
                 document.querySelectorAll('.home-dropdown-parent, .products-dropdown-parent, .dropdown-parent').forEach(function(p) {
                     p.classList.remove('active');
+                    const b = p.querySelector('button[aria-expanded]');
+                    if (b) b.setAttribute('aria-expanded', 'false');
                 });
             });
         });
@@ -1628,6 +1765,8 @@
             if (!e.target.closest('.home-dropdown-parent') && !e.target.closest('.products-dropdown-parent') && !e.target.closest('.dropdown-parent')) {
                 document.querySelectorAll('.home-dropdown-parent, .products-dropdown-parent, .dropdown-parent').forEach(function(p) {
                     p.classList.remove('active');
+                    const b = p.querySelector('button[aria-expanded]');
+                    if (b) b.setAttribute('aria-expanded', 'false');
                 });
             }
         });

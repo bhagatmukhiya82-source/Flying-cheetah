@@ -182,7 +182,7 @@
         if (document.getElementById('fcAuthModal')) return;
 
         const modalHtml = `
-        <div id="fcAuthModal" class="fixed inset-0 z-[110] flex items-center justify-center bg-black/65 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300 p-4 overflow-y-auto">
+        <div id="fcAuthModal" role="dialog" aria-modal="true" aria-label="Flying Cheetah Account Access" class="fixed inset-0 z-[110] flex items-center justify-center bg-black/65 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300 p-4 overflow-y-auto">
             <div id="fcAuthModalCard" class="relative w-full max-w-xl bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-2xl transform scale-95 transition-all duration-300 my-8">
                 
                 <!-- Close Button -->
@@ -340,7 +340,7 @@
 
                         <button type="submit" id="fcTrialSubmitBtn" class="w-full py-3.5 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-xs uppercase tracking-wider transition shadow-lg shadow-orange-500/25 flex items-center justify-center gap-2 mt-4 cursor-pointer">
                             <i class="fa-solid fa-rocket text-xs"></i>
-                            <span>Book Free Live Demo ➔</span>
+                            <span>Start 14-Day Free Trial ➔</span>
                         </button>
                     </form>
 
@@ -453,11 +453,11 @@
                             <div class="relative flex justify-center text-[10px] uppercase font-bold tracking-wider text-slate-400 bg-white px-3">or sign in with email</div>
                         </div>
 
-                        <!-- Sign In Form (Email + Password or Magic Link) -->
+                        <!-- Sign In Form (Email or Phone + Password or Magic Link) -->
                         <form id="fcSignInForm" class="space-y-3 text-left">
                             <div>
-                                <label class="block text-xs font-bold text-slate-700 mb-1">Work Email</label>
-                                <input type="email" id="fcSignInEmail" required placeholder="you@company.com" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange focus:border-bikOrange transition outline-none">
+                                <label for="fcSignInEmail" class="block text-xs font-bold text-slate-700 mb-1">Work Email or WhatsApp Number</label>
+                                <input type="text" inputmode="email" autocomplete="username" id="fcSignInEmail" required placeholder="you@company.com or +91 98765 43210" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-bikOrange focus:border-bikOrange transition outline-none">
                             </div>
                             <div>
                                 <div class="flex items-center justify-between mb-1">
@@ -493,7 +493,7 @@
                         <div class="text-center pt-2">
                             <p class="text-[11px] text-slate-500">
                                 Don't have an account yet? 
-                                <button type="button" id="fcSwitchToTrialLink" class="text-bikOrange font-bold hover:underline cursor-pointer">Book Free Live Demo ➔</button>
+                                <button type="button" id="fcSwitchToTrialLink" class="text-bikOrange font-bold hover:underline cursor-pointer">Start 14-Day Free Trial ➔</button>
                             </p>
                         </div>
                     </div>
@@ -2448,6 +2448,7 @@
                     let backendUser = null;
 
                     // 1. Authenticate with backend API first (supports email or phone number)
+                    let backendErrorMsg = null;
                     try {
                         const apiBase = getApiBase();
                         const bResp = await fetch(`${apiBase}/api/v1/auth/login`, {
@@ -2455,8 +2456,8 @@
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify({ email, password })
                         });
+                        const bData = await bResp.json().catch(() => ({}));
                         if (bResp.ok) {
-                            const bData = await bResp.json();
                             if (bData.access_token) {
                                 backendToken = bData.access_token;
                                 localStorage.setItem('fc_backend_token', backendToken);
@@ -2464,27 +2465,31 @@
                             if (bData.user) {
                                 backendUser = bData.user;
                             }
+                        } else if (bData && (bData.error || bData.detail || bData.message)) {
+                            backendErrorMsg = bData.error || bData.detail || bData.message;
                         }
                     } catch (_) {}
 
-                    // 2. Authenticate with Supabase client
+                    // 2. Authenticate with Supabase client (for email identifiers)
                     let sbUser = null;
-                    try {
-                        let res;
-                        if (typeof client.auth.signInWithPassword === 'function') {
-                            res = await client.auth.signInWithPassword({ email, password });
-                        } else {
-                            res = await client.auth.signInWithOtp({ email });
+                    if (email.includes('@')) {
+                        try {
+                            let res;
+                            if (typeof client.auth.signInWithPassword === 'function') {
+                                res = await client.auth.signInWithPassword({ email, password });
+                            } else {
+                                res = await client.auth.signInWithOtp({ email });
+                            }
+                            if (res?.data?.user) {
+                                sbUser = res.data.user;
+                            }
+                        } catch (sbErr) {
+                            console.warn('[Supabase Sign In Notice]:', sbErr);
                         }
-                        if (res?.data?.user) {
-                            sbUser = res.data.user;
-                        }
-                    } catch (sbErr) {
-                        console.warn('[Supabase Sign In Notice]:', sbErr);
                     }
 
                     if (!backendToken && !sbUser) {
-                        throw new Error('Invalid email, phone number, or password credentials.');
+                        throw new Error(backendErrorMsg || 'Invalid email, phone number, or password credentials.');
                     }
 
                     currentUser = sbUser || {

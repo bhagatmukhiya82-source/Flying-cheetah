@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="css/fx.css">
     <style>
         .bik-mega-shadow { box-shadow: 0 25px 60px -15px rgba(255, 104, 56, 0.15), 0 0 1px 1px rgba(0, 0, 0, 0.05); }
-        .card-anim { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .card-anim { transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease; }
         .card-anim:hover { transform: translateY(-4px); box-shadow: 0 20px 35px -10px rgba(0,0,0,0.08); }
     
         .home-menu { display: none; }
@@ -56,7 +56,7 @@
             
             <!-- BRAND LOGO -->
             <a href="index.html" class="flex items-center space-x-3 shrink-0 whitespace-nowrap">
-                <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah Logo" class="h-11 w-11 rounded-full object-cover border border-slate-200 shadow-sm">
+                <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah Logo" class="h-11 w-11 rounded-full object-cover border border-slate-200 shadow-sm" width="1024" height="1024" decoding="async">
                 <div class="flex flex-col">
                     <span class="text-xl font-black tracking-tight font-display text-bikDark">FLYING CHEETAH</span>
                     <span class="text-[9px] text-bikOrange font-bold tracking-widest uppercase -mt-1">EXECUTIVE HOME</span>
@@ -227,7 +227,7 @@
                             Full-stack autonomous eCommerce platform with 15+ ready AI commerce agents, abandoned cart recovery, and conversational checkouts.
                         </p>
                         <div class="rounded-2xl overflow-hidden border border-slate-100 mb-6 shadow-md fc-card-interactive">
-                            <img src="images/hero_revenue_profit_dashboard.jpg" alt="Live Revenue & Profit Analytics Dashboard" class="w-full h-36 object-cover">
+                            <img src="images/hero_revenue_profit_dashboard.jpg" alt="Live Revenue & Profit Analytics Dashboard" class="w-full h-36 object-cover" width="1600" height="960" decoding="async">
                         </div>
                     </div>
                     <a href="index.html" class="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-xs transition shadow-md shadow-orange-500/20">
@@ -248,7 +248,7 @@
                             Shared inbox uniting WhatsApp, Instagram, Email, and Web Chat with automated macros and native WhatsApp VoIP Calling.
                         </p>
                         <div class="rounded-2xl overflow-hidden border border-slate-100 mb-6 shadow-md fc-card-interactive">
-                            <img src="images/customer_support_workflow_light.png" alt="Helpdesk 3D Command Desk" class="w-full h-36 object-cover">
+                            <img src="images/customer_support_workflow_light.png" alt="Helpdesk 3D Command Desk" class="w-full h-36 object-cover" width="1600" height="960" decoding="async" loading="lazy">
                         </div>
                     </div>
                     <div class="grid grid-cols-2 gap-2">
@@ -275,7 +275,7 @@
                             Zero-payroll courier network. Instant API integration with Borzo Express and Porter for 25-minute delivery in Mumbai &amp; MMR.
                         </p>
                         <div class="rounded-2xl overflow-hidden border border-slate-100 mb-6 shadow-md fc-card-interactive">
-                            <img src="images/hyperlocal_dispatch_map_3d.jpg" alt="Mumbai 3D Fleet Dispatch Map" class="w-full h-36 object-cover">
+                            <img src="images/hyperlocal_dispatch_map_3d.jpg" alt="Mumbai 3D Fleet Dispatch Map" class="w-full h-36 object-cover" width="1376" height="768" decoding="async" loading="lazy">
                         </div>
                     </div>
                     <a href="delivery.html" class="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition shadow-md shadow-emerald-600/20">
@@ -297,7 +297,7 @@
                             Conversion-engineered high-speed builds for Mumbai D2C brands. Fast page load, 95+ Core Web Vitals, and zero third-party bloat.
                         </p>
                         <div class="rounded-2xl overflow-hidden border border-slate-100 mb-6 shadow-md fc-card-interactive">
-                            <img src="images/high_speed_store_dev_mockup.jpg" alt="Mumbai Web Development Storefront" class="w-full h-36 object-cover">
+                            <img src="images/high_speed_store_dev_mockup.jpg" alt="Mumbai Web Development Storefront" class="w-full h-36 object-cover" width="1376" height="768" decoding="async" loading="lazy">
                         </div>
                     </div>
                     <a href="web-development.html" class="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-bikOrange hover:bg-bikOrangeDark text-white font-bold text-xs transition shadow-md shadow-orange-500/20">
@@ -319,14 +319,14 @@
                         </p>
                         <div class="grid grid-cols-2 gap-3 mb-6">
                             <div class="rounded-2xl overflow-hidden border border-orange-200/80 shadow-sm group/b bg-white">
-                                <img src="images/founder_bhagat_mukhiya.jpg" alt="Flying Cheetah Engineering" class="w-full h-28 object-cover object-top group-hover/b:scale-105 transition duration-300">
+                                <img src="images/founder_bhagat_mukhiya.jpg" alt="Flying Cheetah Engineering" class="w-full h-28 object-cover object-top group-hover/b:scale-105 transition duration-300" width="600" height="600" decoding="async" loading="lazy">
                                 <div class="bg-white border-t border-slate-100 p-2 text-left">
                                     <div class="text-[11px] font-bold text-bikDark leading-tight">Engineering</div>
                                     <div class="text-[9px] text-orange-700 font-semibold">Head of Engineering</div>
                                 </div>
                             </div>
                             <div class="rounded-2xl overflow-hidden border border-emerald-200/80 shadow-sm group/y bg-white">
-                                <img src="images/founder_yash_gaikwad.jpg" alt="Flying Cheetah Growth" class="w-full h-28 object-cover object-top group-hover/y:scale-105 transition duration-300">
+                                <img src="images/founder_yash_gaikwad.jpg" alt="Flying Cheetah Growth" class="w-full h-28 object-cover object-top group-hover/y:scale-105 transition duration-300" width="600" height="600" decoding="async" loading="lazy">
                                 <div class="bg-white border-t border-slate-100 p-2 text-left">
                                     <div class="text-[11px] font-bold text-bikDark leading-tight">Growth</div>
                                     <div class="text-[9px] text-emerald-700 font-semibold">Head of Growth</div>
@@ -519,7 +519,7 @@
                     <div>
                         <div class="flex items-center gap-4 mb-6">
                             <div class="relative w-20 h-20 rounded-2xl overflow-hidden border-2 border-bikOrange/60 shadow-lg shadow-orange-500/20 group-hover:scale-105 transition duration-300 shrink-0 bg-slate-100">
-                                <img src="images/founder_bhagat_mukhiya.jpg" alt="Flying Cheetah Core Systems & Engineering Lead" class="w-full h-full object-cover object-top">
+                                <img src="images/founder_bhagat_mukhiya.jpg" alt="Flying Cheetah Core Systems & Engineering Lead" class="w-full h-full object-cover object-top" width="600" height="600" decoding="async" loading="lazy">
                             </div>
                             <div>
                                 <h3 class="text-2xl font-black text-bikDark font-display">Core Systems &amp; Engineering</h3>
@@ -571,7 +571,7 @@
                     <div>
                         <div class="flex items-center gap-4 mb-6">
                             <div class="relative w-20 h-20 rounded-2xl overflow-hidden border-2 border-emerald-500/60 shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition duration-300 shrink-0 bg-slate-100">
-                                <img src="images/founder_yash_gaikwad.jpg" alt="Flying Cheetah Growth & Operations Lead" class="w-full h-full object-cover object-top">
+                                <img src="images/founder_yash_gaikwad.jpg" alt="Flying Cheetah Growth & Operations Lead" class="w-full h-full object-cover object-top" width="600" height="600" decoding="async" loading="lazy">
                             </div>
                             <div>
                                 <h3 class="text-2xl font-black text-bikDark font-display">Growth &amp; Client Operations</h3>
@@ -613,7 +613,7 @@
     <footer class="py-12 bg-white border-t border-slate-200 text-xs text-slate-600">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div class="flex items-center space-x-3">
-                <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah" class="h-6 w-6 rounded-full object-cover border border-slate-300">
+                <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah" class="h-6 w-6 rounded-full object-cover border border-slate-300" width="1024" height="1024" decoding="async" loading="lazy">
                 <span class="font-bold text-slate-700">FLYING CHEETAH LABS • ALL-IN-ONE AI COMMERCE SUITE © 2026.</span>
                 <span>All Rights Reserved.</span>
             </div>

@@ -33,6 +33,7 @@ const {
     hashPasswordScrypt,
     verifyPassword,
     getSupabaseServerConfig,
+    isAdminEmail,
     ADMIN_EMAILS
 } = _resolveHelper('_auth');
 const { sendMail, escapeHtml } = _resolveHelper('_mailer');
@@ -348,7 +349,7 @@ module.exports = async function handler(req, res) {
             }
 
             const cleanEmail = String(email).trim().toLowerCase();
-            const isAdmin = ADMIN_EMAILS.some(e => e.toLowerCase() === cleanEmail);
+            const isAdmin = isAdminEmail(cleanEmail);
             const rawPassword = password || 'TrialPass2026!';
             const userObj = {
                 id: `usr_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`,
@@ -452,7 +453,7 @@ module.exports = async function handler(req, res) {
             }
 
             const cleanEmail = String(email).trim().toLowerCase();
-            const isAdmin = ADMIN_EMAILS.some(e => e.toLowerCase() === cleanEmail);
+            const isAdmin = isAdminEmail(cleanEmail);
 
             let user = USER_STORE.get(cleanEmail);
             let verifiedLocally = false;

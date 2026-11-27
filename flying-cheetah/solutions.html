@@ -34,7 +34,7 @@
         .products-dropdown-parent.active > .mega-menu { display: block; }
         .dropdown-parent:hover > .mega-menu,
         .dropdown-parent.active > .mega-menu { display: block; }
-        .card-anim { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .card-anim { transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease; }
         .card-anim:hover { transform: translateY(-4px); box-shadow: 0 20px 35px -10px rgba(0,0,0,0.08); }
     </style>
     <link rel="stylesheet" href="css/mobile-app.css">
@@ -68,7 +68,7 @@
     <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
             <a href="index.html" class="flex items-center space-x-3 shrink-0 whitespace-nowrap">
-                <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah Logo" class="h-11 w-11 rounded-full object-cover border border-slate-200 shadow-sm">
+                <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah Logo" class="h-11 w-11 rounded-full object-cover border border-slate-200 shadow-sm" width="1024" height="1024" decoding="async">
                 <div class="flex flex-col">
                     <span class="text-lg xl:text-xl font-black tracking-tight font-display text-bikDark">FLYING CHEETAH</span>
                     <span class="text-[9px] text-orange-700 font-bold tracking-widest uppercase -mt-1">MODULE BLUEPRINT</span>
@@ -253,7 +253,7 @@
 
                 <!-- Visual Asset for Module -->
                 <div class="rounded-2xl border border-slate-200 overflow-hidden bg-white p-2 shadow-sm">
-                    <img id="moduleHeroImg" src="images/whatsapp_automation_journey_ui.jpg" alt="Flying Cheetah Enterprise Module Architecture Mockup" class="rounded-xl w-full h-auto object-cover border border-slate-100 block">
+                    <img id="moduleHeroImg" src="images/whatsapp_automation_journey_ui.jpg" alt="Flying Cheetah Enterprise Module Architecture Mockup" class="rounded-xl w-full h-auto object-cover border border-slate-100 block" width="1376" height="768" decoding="async">
                 </div>
 
                 <div class="space-y-5 text-sm text-slate-700 leading-relaxed">
@@ -288,21 +288,21 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <a href="customer-data-platform.html" class="p-6 rounded-3xl bg-white border border-indigo-200 card-anim shadow-sm space-y-4 block">
-                    <img src="images/cdp_unified_hub_3d.jpg" alt="Unified Customer Data Platform 360 Hub" loading="lazy" class="w-full h-40 object-cover rounded-2xl border border-slate-100">
+                    <img src="images/cdp_unified_hub_3d.jpg" alt="Unified Customer Data Platform 360 Hub" loading="lazy" class="w-full h-40 object-cover rounded-2xl border border-slate-100" width="1376" height="768" decoding="async">
                     <div class="text-xs font-bold text-indigo-700 uppercase tracking-wider">Unified CDP 360</div>
                     <h3 class="text-base font-bold text-bikDark">Customer Data Platform</h3>
                     <p class="text-xs text-slate-700 leading-relaxed">Merge Shopify orders, WhatsApp threads, and POS bills into one RFM loyalty profile.</p>
                 </a>
 
                 <a href="customer-support.html" class="p-6 rounded-3xl bg-white border border-orange-200 card-anim shadow-sm space-y-4 block">
-                    <img src="images/helpdesk_omnichannel_inbox.jpg" alt="Omnichannel Helpdesk Support Desk" loading="lazy" class="w-full h-40 object-cover rounded-2xl border border-slate-100">
+                    <img src="images/helpdesk_omnichannel_inbox.jpg" alt="Omnichannel Helpdesk Support Desk" loading="lazy" class="w-full h-40 object-cover rounded-2xl border border-slate-100" width="1376" height="768" decoding="async">
                     <div class="text-xs font-bold text-orange-700 uppercase tracking-wider">Shared Inbox &amp; Borzo</div>
                     <h3 class="text-base font-bold text-bikDark">Omnichannel Helpdesk</h3>
                     <p class="text-xs text-slate-700 leading-relaxed">Unify WhatsApp, Instagram DMs, Email, and 1-click Borzo reverse pickups in one queue.</p>
                 </a>
 
                 <a href="whatsapp-calling.html" class="p-6 rounded-3xl bg-white border border-emerald-200 card-anim shadow-sm space-y-4 block">
-                    <img src="images/whatsapp_calling_architecture_light.png" alt="WhatsApp Calling VoIP Architecture" loading="lazy" class="w-full h-40 object-cover rounded-2xl border border-slate-100">
+                    <img src="images/whatsapp_calling_architecture_light.png" alt="WhatsApp Calling VoIP Architecture" loading="lazy" class="w-full h-40 object-cover rounded-2xl border border-slate-100" width="1600" height="960" decoding="async">
                     <div class="text-xs font-bold text-emerald-700 uppercase tracking-wider">Meta Cloud VoIP</div>
                     <h3 class="text-base font-bold text-bikDark">WhatsApp Calling &amp; AI Voice</h3>
                     <p class="text-xs text-slate-700 leading-relaxed">24kHz HD in-chat calling and AI Voice Agents for automated COD order confirmation.</p>
@@ -315,7 +315,7 @@
     <footer class="py-12 bg-white border-t border-slate-200 text-xs text-slate-600">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between gap-6">
             <div class="flex items-center space-x-3">
-                <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah" class="h-6 w-6 rounded-full object-cover border border-slate-300">
+                <img src="images/flying_cheetah_logo_one_tail.png" alt="Flying Cheetah" class="h-6 w-6 rounded-full object-cover border border-slate-300" width="1024" height="1024" decoding="async" loading="lazy">
                 <span class="font-bold text-slate-800">FLYING CHEETAH LABS &bull; ENTERPRISE SUITE &copy; 2026.</span>
                 <span>All Rights Reserved.</span>
             </div>
